@@ -1,30 +1,9 @@
-﻿# OS / IDE
-.DS_Store
-Thumbs.db
-.idea/
-.vscode/*
-!.vscode/settings.json
-!.vscode/extensions.json
+﻿# з кореня репо
+cd C:\Users\aleksandr.novikov\InterpipeNewDev
+# створити / оновити .gitignore
+notepad .gitignore
+# (вставляєш вміст вище, зберігаєш)
 
-# Node / PHP
-node_modules/
-vendor/
-
-# Env / local
-.env
-.env.local
-.env.*.local
-
-# Salesforce / SFDX
-.sfdx/
-.sf/
-.cache/
-*.log
-*.tmp
-
-# Build artifacts
-dist/
-build/
-
-# VSCode history
-.history/
+git add .gitignore
+git commit -m "chore(git): add Salesforce-friendly .gitignore"
+git push
