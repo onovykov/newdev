@@ -1,7 +1,5 @@
 /*** Контролер характеристик продукції ***/
-public with sharing class ProductsController {
-
-    private static final Decimal MM_PER_INCH = 25.4; 
+public with sharing class ProductsController {    
     /***************** Типи продукції ***********************
     ********************************************************/  
     public class ProdInfo {
@@ -167,19 +165,19 @@ public with sharing class ProductsController {
                         if (param == 'D_mm') {
                             Decimal d_mm = (v == null) ? 0.00 : v.setScale(2);
                             recTubeOD.OD_mm = d_mm;
-                            recTubeOD.OD_inch = (d_mm/MM_PER_INCH).setScale(2);
-                            recTubeOD.Mark1 = mmToInchesFraction(d_mm);
+                            recTubeOD.OD_inch = ProductsHelper.mmToInches(d_mm, 3);
+                            recTubeOD.Mark1 = ProductsHelper.mmToInchesFraction(d_mm);
                             //recTubeOD.OD_mm_str = 'ø'+String.valueOf(d_mm.stripTrailingZeros());
                             recTubeOD.OD_mm_str = 'ø'+ApexUtil.formatDecimal(d_mm);
                         } else if (param == 'H_mm') {
                             Decimal h_mm = (v == null) ? 0.00 : v.setScale(2);
                             recTubeOD.H_mm = h_mm;
-                            recTubeOD.H_inch = (h_mm/MM_PER_INCH).setScale(2);
+                            recTubeOD.H_inch = ProductsHelper.mmToInches(h_mm, 3);
                             isH = true;
                         } else if (param == 'L_mm') {
                             Decimal l_mm = (v == null) ? 0.00 : v.setScale(2);
                             recTubeOD.L_mm = l_mm;
-                            recTubeOD.L_inch = (l_mm/MM_PER_INCH).setScale(2);
+                            recTubeOD.L_inch = ProductsHelper.mmToInches(l_mm, 3);
                             isL=true;
                         }
                         if(isH && isL) recTubeOD.IsRound = false;
@@ -305,8 +303,8 @@ public with sharing class ProductsController {
                         if (param == 'WT_mm') {
                             Decimal wt_mm = (v == null) ? 0.00 : v.setScale(2);
                             recTubeWT.WT_mm = wt_mm;
-                            recTubeWT.WT_inch = mmToInches(wt_mm, 3);
-                            recTubeWT.WT_inch_str = +ApexUtil.formatDecimal(mmToInches(wt_mm, 3))+'W';
+                            recTubeWT.WT_inch = ProductsHelper.mmToInches(wt_mm, 3);
+                            recTubeWT.WT_inch_str = +ApexUtil.formatDecimal(ProductsHelper.mmToInches(wt_mm, 3))+'W';
                         }
                     }
                 }
@@ -585,73 +583,5 @@ public with sharing class ProductsController {
     public static void refreshTubeLen() {
         clearCacheTubeLen();
         loadAllTubeLen();
-    }
-
-    /***************************************************************************
-     *                          Хелпери та службові методи                     *
-    ****************************************************************************/
-    //--- Простий конвертор mm->inch ---
-    public static Decimal mmToInches(Decimal mm, Integer precision) {
-        return (mm==null)? 0.00 : (mm/MM_PER_INCH).setScale(precision);
-    }
-
-    /*---------------------------------------------------------------------------
-      Конвертор мм у дюйми як змішаний дріб з округленням до 1/denominator дюйма.
-      Приклади: 244.48 -> "9 5/8", 168.28 -> "6 5/8", 88.90 -> "3 1/2"
-     ---------------------------------------------------------------------------*/
-    public static String mmToInchesFraction(Decimal mm, Integer denominator) {
-        if (mm == null) return null;
-        if (denominator == null || denominator <= 0) denominator = 8;
-
-        // Обробка знаку
-        Boolean isNegative = (mm < 0);
-        Decimal inchesAbs = (mm.abs() / MM_PER_INCH);
-
-        // Ціла частина
-        Integer whole = (Integer)Math.floor(inchesAbs);
-
-        // Дробова частина та округлення до найближчого 1/denominator
-        Decimal frac = inchesAbs - whole;
-        Integer num = (Integer)Math.round(frac * denominator);
-
-        // Якщо після округлення дробова частина "переповнилась"
-        if (num >= denominator) {
-            whole += 1;
-            num = 0;
-        }
-
-        // Спрощення дробу
-        if (num != 0) {
-            Integer g = gcd(num, denominator);
-            num /= g;
-            denominator /= g;
-        }
-
-        // Формування рядка
-        String sign = isNegative && (whole != 0 || num != 0) ? '-' + '' : '';
-        if (num == 0) {
-            return sign + String.valueOf(whole);
-        } else if (whole == 0) {
-            return sign + num + '/' + denominator;
-        } else {
-            return sign + whole + ' ' + num + '/' + denominator;
-        }
-    }
-
-    // Евклід для НСД
-    private static Integer gcd(Integer a, Integer b) {
-        a = Math.abs(a);
-        b = Math.abs(b);
-        while (b != 0) {
-            Integer t = Math.mod(a, b);
-            a = b;
-            b = t;
-        }
-        return a == 0 ? 1 : a;
-    }
-    
-    // Дефолт-оверлоад: за замовчуванням округляємо до 1/8"
-    public static String mmToInchesFraction(Decimal mm) {
-        return mmToInchesFraction(mm, 8);
     }
 }
