@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Pipe Benchmark</label>
+    <protected>false</protected>
+    <values>
+        <field>Object_Name__c</field>
+        <value xsi:type="xsd:string">Pipe_Benchmark__c</value>
+    </values>
+    <values>
+        <field>Required_Fields__c</field>
+        <value xsi:type="xsd:string">[
+  &quot;Year__c&quot;,
+  &quot;Month__c&quot;,
+  &quot;Quote__c&quot;
+]</value>
+    </values>
+    <values>
+        <field>Sheet_Columns__c</field>
+        <value xsi:type="xsd:string">[
+ {
+    &quot;label&quot;: &quot;Primary Key&quot;,
+    &quot;fieldName&quot;: &quot;Primary_Key__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Year&quot;,
+    &quot;fieldName&quot;: &quot;Year__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Quarter&quot;,
+    &quot;fieldName&quot;: &quot;Quarter__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Month&quot;,
+    &quot;fieldName&quot;: &quot;Month__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Region&quot;,
+    &quot;fieldName&quot;: &quot;Region__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Source&quot;,
+    &quot;fieldName&quot;: &quot;Source__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Product&quot;,
+    &quot;fieldName&quot;: &quot;Product__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Quote&quot;,
+    &quot;fieldName&quot;: &quot;Quote__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Price&quot;,
+    &quot;fieldName&quot;: &quot;Price__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  }
+]</value>
+    </values>
+    <values>
+        <field>Sheet_Name__c</field>
+        <value xsi:type="xsd:string">PipeBenchmarks</value>
+    </values>
+</CustomMetadata>

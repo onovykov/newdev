@@ -1,0 +1,31 @@
+<aura:component  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                 access="global" controller='CustomerEnquiryDetailsController'>
+	
+    <aura:attribute name="data" type="String"/>	
+    <aura:attribute name="mapDataOppItem" type="Object"/>	
+    <aura:attribute name="mydata" type="Object"/>
+    <aura:attribute name="mycolumns" type="List"/>    
+    <aura:attribute name="sortedDirection" type="String" />
+    <aura:attribute name="sortedBy" type="String"/>
+    <aura:attribute name="showTable" type="Boolean" default='false'/>
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+                   	
+    <aura:if isTrue="{!v.showTable}">
+        <h2 class="slds-text-heading_medium slds-text-align_center slds-m-bottom_x-small">{!$Label.c.CustomerEnquiryDetailsTable}</h2>
+    	<lightning:datatable data="{! v.mydata }"
+        aura:id="accountTable"
+        columns="{! v.mycolumns }"
+        keyField="id"
+        showRowNumberColumn="true"
+        hideCheckboxColumn="true"
+        onsort="{!c.handleSort}"
+        sortedBy="{!v.sortedBy}"
+        sortedDirection= "{!v.sortedDirection}"
+        />   		        	    
+          
+    </aura:if>
+    
+    
+</aura:component>

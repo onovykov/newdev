@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PeriodValidation</fullName>
+    <active>true</active>
+    <errorConditionFormula>Or(Period__c &lt; SalesBudget__r.PeriodBeginning__c, Period__c &gt; SalesBudget__r.PeriodEnd__c)</errorConditionFormula>
+    <errorDisplayField>Period__c</errorDisplayField>
+    <errorMessage>The period is out of range that is specified in parent object</errorMessage>
+</ValidationRule>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Camera_5</label>
+    <protected>false</protected>
+    <values>
+        <field>Camera_Id__c</field>
+        <value xsi:type="xsd:double">5.0</value>
+    </values>
+    <values>
+        <field>Description__c</field>
+        <value xsi:type="xsd:string">Pipe rolling shop #7 (Nikopol NIKOTUBE)</value>
+    </values>
+    <values>
+        <field>IP_Camera_URL__c</field>
+        <value xsi:type="xsd:string">https://motionnzbt.interpipe.biz/picture/1/current/</value>
+    </values>
+    <values>
+        <field>Preview_IMG__c</field>
+        <value xsi:type="xsd:string">cam5.png</value>
+    </values>
+</CustomMetadata>

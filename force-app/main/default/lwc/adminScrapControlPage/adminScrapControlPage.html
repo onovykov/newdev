@@ -1,0 +1,52 @@
+<template>
+    <lightning-card title="Адміністративна панель керування металобрухтом" class="admin-panel-card">
+        <div class="admin-panel-container">
+            <lightning-tabset variant="scoped">
+
+                <lightning-tab label="Постачальники">
+                    <c-scrap-supplier-info-panel class="supplier-info-panel"></c-scrap-supplier-info-panel>
+                </lightning-tab>
+
+                <lightning-tab label="Брухт">
+                    <c-scrap-info-panel class="info-panel"></c-scrap-info-panel>
+                </lightning-tab>
+
+                <lightning-tab label="Наявні доступи">
+                    <c-scrap-access-panel class="access-panel"></c-scrap-access-panel>
+                </lightning-tab>
+
+                <lightning-tab label="Декади">
+                    <c-scrap-decade-panel class="decade-panel"></c-scrap-decade-panel>
+                </lightning-tab>
+
+                <lightning-tab label="Поточні ліміти постачальників">
+                    <!--                    <c-scrap-admin-limit-request-panel class="limits-panel"></c-scrap-admin-limit-request-panel>-->
+                    <c-scrap-admin-limit-view-panel class="limits-panel"></c-scrap-admin-limit-view-panel>
+                </lightning-tab>
+
+                <lightning-tab label="Заявки на узгодження лімітів">
+                    <c-scrap-admin-limit-request-panel class="limits-panel"></c-scrap-admin-limit-request-panel>
+                </lightning-tab>
+
+                <lightning-tab label="Погодження змін у слотах">
+                    <c-scrap-slot-change-approval-panel class="slot-change-panel"></c-scrap-slot-change-approval-panel>
+                </lightning-tab>
+
+                <lightning-tab label="Позапланові слоти">
+                    <c-scrap-out-of-plan-slots-panel class="oop-panel"></c-scrap-out-of-plan-slots-panel>
+                </lightning-tab>
+
+                <!--                ПОТРІБНО ДОРОБИТИ-->
+
+                <lightning-tab label="Зарезервовані слоти">
+                    <c-admin-reserves-panel class="reserves-panel"></c-admin-reserves-panel>
+                </lightning-tab>
+
+
+
+
+
+            </lightning-tabset>
+        </div>
+    </lightning-card>
+</template>

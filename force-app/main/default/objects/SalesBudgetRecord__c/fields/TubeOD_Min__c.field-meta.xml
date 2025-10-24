@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TubeOD_Min__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Min OD</label>
+    <referenceTo>TubeOD__c</referenceTo>
+    <relationshipName>SalesBudget</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

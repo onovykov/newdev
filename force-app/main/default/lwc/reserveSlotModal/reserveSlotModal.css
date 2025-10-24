@@ -1,0 +1,388 @@
+/* =========================
+   Design tokens / variables
+   ========================= */
+:host {
+    /* Brand */
+    --brand-500: #ffc200;
+    --brand-600: #d6a900;
+    --brand-color: var(--brand-500);
+    --brand-dark: #1f2937;
+
+    /* Ink / нейтраль */
+    --ink-900: #222;
+    --ink-700: #444;
+    --ink-500: #666;
+
+    /* Lines / bg */
+    --line-200: #e8e8e8;
+    --bg-50: #fafafa;
+
+    /* States */
+    --success-50: #f6ffed;
+    --success-200: #b7eb8f;
+    --success-400: #52c41a;
+
+    --warning-50: #fffbe6;
+    --warning-200: #ffe58f;
+    --warning-400: #d48806;
+
+    --info-50: #eef5ff;
+    --info-200: #adc6ff;
+    --info-400: #2a6ebb;
+
+    --error-50: #fff1f0;
+    --error-200: #ffa39e;
+    --error-400: #d93025;
+
+    /* Shape & shadow */
+    --radius: 10px;
+    --border-radius: var(--radius);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
+    --shadow-lg: 0 8px 20px rgba(0,0,0,.12);
+    --shadow: var(--shadow-lg);
+
+    /* Focus */
+    --focus-ring: 0 0 0 3px rgba(42,110,187,.28);
+}
+
+/* ====== Layout / container ====== */
+.container {
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+/* ====== Modal ====== */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 2.5rem 3rem;
+    border-radius: var(--border-radius);
+    width: 1300px;
+    max-width: 95%;
+    max-height: 95vh;
+    min-height: 50vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow);
+    color: var(--ink-900);
+    animation: fadeIn .3s ease-out;
+    position: relative;
+
+    /* Верхній бренд-акцент */
+    border-top: 6px solid var(--brand-500);
+}
+
+/* Заголовок великого кроку */
+.modal-content h1{
+    text-align:center;
+    font-size:2.0rem;
+    font-weight:700;
+    color:#222;
+    margin: 0 0 1.25rem;
+}
+
+/* Спінер поверх модалки */
+.modal-spinner-overlay{
+    position:absolute; inset:0;
+    background: rgba(255,255,255,.65);
+    display:flex; align-items:center; justify-content:center;
+    z-index: 1000;
+}
+
+/* ====== Top info panel (tab header) ====== */
+.tab-header{
+    margin-bottom: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--warning-50);
+    border: 1px solid var(--warning-200);
+    border-left-width: 6px;
+    border-left-color: var(--brand-500);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+.tab-title{ margin:0; font-size:1.35rem; font-weight:700; color:var(--ink-900); }
+.tab-subtitle{ margin:.5rem 0 0; font-size:.95rem; color:var(--ink-700); }
+
+/* ====== Decade navigation bar ====== */
+.nav-bar{
+    display:grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items:center;
+    gap:.75rem;
+    padding:.5rem .75rem;
+    border:1px solid var(--line-200);
+    background:#fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: .5rem;
+}
+.nav-bar .left{ justify-self:start; display:flex; gap:.5rem; }
+.nav-bar .center{ justify-self:center; font-weight:700; letter-spacing:.04em; color:var(--ink-900); }
+.nav-bar .right{ justify-self:end; }
+
+/* ====== Table wrapper (responsive) ====== */
+.table-scroll{
+    width:100%;
+    overflow:auto;
+    border:1px solid var(--line-200);
+    border-radius: var(--radius);
+    background:#fff;
+    box-shadow: var(--shadow-sm);
+}
+.table-scroll table{ min-width: 860px; }
+
+/* ====== Table styling ====== */
+.centered-text th,
+.centered-text td{ text-align:center; vertical-align:middle; }
+
+.slds-table thead tr{
+    background: linear-gradient(0deg, rgba(255,221,0,.12), rgba(255,221,0,.12));
+    border-bottom: 2px solid var(--brand-500);
+    color: var(--ink-900);
+}
+
+/* (опціонально) липка перша колонка при горизонтальному скролі */
+.slds-table th:first-child,
+.slds-table td:first-child{
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: #fff;
+}
+.slds-table thead th:first-child{ z-index: 3; }
+
+/* Кнопка-ячейка */
+.cell-button{
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 6px 10px;
+    width:100%;
+    font-weight:600;
+    cursor:pointer;
+    transition: background-color .15s ease, border-color .15s ease, transform .02s ease;
+}
+.cell-button:hover:enabled{ background:#fffbe6; border-color: var(--brand-500); }
+.cell-button:active:enabled{ transform: scale(.995); }
+.cell-button:focus-visible{
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-color: var(--brand-500);
+}
+.cell-button:disabled{ background:#f3f4f6; color:#9ca3af; cursor:not-allowed; }
+
+.empty-cell{ min-height: 28px; display:block; }
+
+/* ====== Static info blocks ====== */
+.static-section{
+    position: relative;
+    background:#fff;
+    border:1px solid #eee;
+    border-radius: var(--radius);
+    padding:.9rem 1.1rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1rem;
+}
+.static-section::before{
+    content:"";
+    position:absolute; left:0; right:0; top:0; height:6px;
+    background: var(--brand-500);
+    border-top-left-radius:var(--radius); border-top-right-radius:var(--radius);
+}
+.static-section p{ margin:.35rem 0; font-size:.95rem; }
+.static-section p strong{ min-width:150px; display:inline-block; color:var(--ink-900); }
+
+/* Підзаголовок “Реєстрація на дату …” */
+.registration-info{
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #222;
+    margin: .75rem 0 1rem;
+    border-left: 4px solid var(--info-400);
+    padding-left: .75rem;
+    line-height: 1.4;
+}
+
+/* ====== Lookup controls ====== */
+.lookup{ position: relative; margin: 12px 0; }
+.lookup-input{
+    width:100%;
+    padding:.6rem .8rem;
+    border:1px solid #d9d9d9;
+    border-radius:6px;
+    font-size:.95rem;
+    background:#fff;
+    box-sizing:border-box;
+}
+.lookup-input:focus{
+    outline:none;
+    box-shadow: var(--focus-ring);
+    border-color:#b5ccf1;
+}
+.lookup-input.invalid{
+    border-color: var(--error-400);
+    box-shadow: 0 0 0 3px rgba(217,48,37,.15);
+}
+
+.sug,
+.lookup-list{
+    position:absolute; left:0; right:0; z-index:20;
+    background:#fff; border:1px solid #e8e8e8; border-radius:6px; margin-top:4px;
+    max-height:220px; overflow:auto; box-shadow: var(--shadow-lg);
+}
+.sug li,
+.lookup-list li{
+    padding:.55rem .75rem; cursor:pointer;
+}
+.sug li:hover,
+.lookup-list li:hover{ background:#fffbe6; }
+.lookup-helper{ margin-top:.25rem; font-size:.85rem; color: var(--error-400); }
+.muted{ color: var(--ink-500); font-size:.8rem; }
+.req{ color: #c21a00; }
+
+/* ====== Checkbox line ====== */
+.checkbox-block{
+    margin-top: 1.2rem;
+    display:flex; align-items:center; gap:.6rem;
+    font-size:.95rem; font-weight:500; color:#444;
+}
+.checkbox-block input[type="checkbox"]{
+    width:18px; height:18px; accent-color: var(--brand-color); cursor:pointer; margin:0;
+}
+
+/* ====== Vehicle summary (yellow panel) ====== */
+.vehicle-summary{
+    background-color: #fffaf0;
+    border: 1px solid #ffe082;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    margin: 1rem 0 2rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    display:flex; gap:2rem; flex-wrap:wrap; justify-content:flex-start;
+}
+.vehicle-block{ flex: 1 1 300px; min-width: 250px; }
+.vehicle-block h4{ font-size:1.05rem; margin:0 0 .5rem; color: var(--brand-dark); }
+.vehicle-block p{ margin:.2rem 0; font-size:.95rem; color:#333; }
+
+/* ====== Footer buttons ====== */
+.modal-footer{
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    display:flex; justify-content:flex-end; gap: .75rem;
+}
+.modal-footer button{
+    font-size: 1rem;
+    font-weight: 600;
+    padding: .6rem 1.2rem;
+    border-radius: 6px;
+    border: 1px solid #e1e1e1;
+    cursor: pointer;
+    transition: background-color .15s ease, transform .08s ease;
+}
+.modal-footer button:hover{ transform: translateY(-1px); }
+.modal-footer button:first-child{ margin-right:auto; } /* “Скасувати” вліво */
+
+/* Primary / secondary (використовуються і поза футером) */
+.primary-button{
+    background: var(--brand-500);
+    color:#000;
+    border:1px solid #e1e1e1;
+    border-radius:6px;
+    padding:.6rem 1.2rem;
+    font-weight:600;
+    cursor:pointer;
+    transition: background-color .15s ease, transform .08s ease;
+}
+.primary-button:hover{ background: var(--brand-600); }
+.primary-button:active{ transform: scale(.98); }
+.primary-button:focus-visible{ outline:none; box-shadow: var(--focus-ring); }
+
+.secondary-button{
+    background:#efefef;
+    color:#333;
+    border:1px solid #e1e1e1;
+    border-radius:6px;
+    padding:.6rem 1.2rem;
+    font-weight:600;
+    cursor:pointer;
+}
+.secondary-button:hover{ background:#e5e5e5; }
+
+/* ====== Success / requested panels ====== */
+.success-panel{
+    display:flex;
+    flex-direction:column;
+    background:#f6ffed;
+    border:1px solid #b7eb8f;
+    border-left:5px solid #52c41a;
+    border-radius:10px;
+    padding:1rem 1.25rem;
+    margin:.5rem 0 0;
+}
+.success-panel h2{
+    margin:0 0 .75rem;
+    font-size:1.5rem;
+    font-weight:800;
+    color: var(--ink-900);
+}
+.success-list{ margin:.25rem 0 .75rem 1rem; }
+.success-list li{ line-height:1.6; }
+.success-actions{
+    margin-top:1.1rem;
+    display:flex; justify-content:center;
+}
+
+/* ====== Info / Warning callouts (SLDS boxes you render) ====== */
+.modal-content .slds-box.slds-theme_info,
+.modal-content .slds-box.slds-theme_warning{
+    position: relative;
+    padding: .9rem 1.1rem;
+    border: 1px solid var(--line-200);
+    border-radius: var(--radius);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    line-height: 1.45;
+    color: #222;
+}
+.modal-content .slds-box.slds-theme_info{
+    background: var(--info-50); border-color: var(--info-200);
+}
+.modal-content .slds-box.slds-theme_info::before{
+    content:""; position:absolute; left:0; top:0; bottom:0;
+    width:6px; background: var(--info-400);
+    border-top-left-radius: var(--radius); border-bottom-left-radius: var(--radius);
+}
+.modal-content .slds-box.slds-theme_warning{
+    background: var(--warning-50); border-color: var(--warning-200);
+}
+.modal-content .slds-box.slds-theme_warning::before{
+    content:""; position:absolute; left:0; top:0; bottom:0;
+    width:6px; background: var(--warning-400);
+    border-top-left-radius: var(--radius); border-bottom-left-radius: var(--radius);
+}
+
+/* ====== Duplicate modal small width ====== */
+.dup-modal .slds-modal__container{ max-width: 36rem; }
+
+/* ====== Animations ====== */
+@keyframes fadeIn{
+    from{ transform: scale(.98); opacity: 0; }
+    to{ transform: none; opacity: 1; }
+}
+
+.slds-modal__footer{
+    display: flex;
+    gap: 15px;
+    justify-content: end;
+}

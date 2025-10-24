@@ -1,0 +1,29 @@
+<template>
+    <div class="container">
+            <div class="datatable">
+                <table>
+                    <tr>
+                        <th>Назва</th>
+                        <th>Власник</th>
+                        <th>Остання зміна</th>
+                        <th>Розмір</th>
+                    </tr>
+                    <template for:each= {reclamationFiles} for:item="item">
+                        <tr key = {item.ContentDocumentId}>
+                            <td class="reclamation-number" onclick={openFile} data-id={item.Id}>{item.ContentDocument.Title}</td>
+                            <td>{item.ContentDocument.Owner.Name}</td>
+                            <td>
+                                <lightning-formatted-date-time
+                                    value= {item.ContentDocument.ContentModifiedDate}
+                                    year="numeric"
+                                    month="numeric"
+                                    day="numeric">
+                                </lightning-formatted-date-time>
+                        </td>
+                            <td>{item.fileSize}</td>
+                        </tr>
+                    </template>
+                </table>
+            </div>
+    </div>
+</template>

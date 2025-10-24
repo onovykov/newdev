@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Business Division --></label>
+    <name>BusinessDivision__c</name>
+    <picklistValues>
+        <masterLabel>Customer</masterLabel>
+        <translation><!-- Customer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IT Department</masterLabel>
+        <translation><!-- IT Department --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Marketing</masterLabel>
+        <translation><!-- Marketing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pipe Products</masterLabel>
+        <translation><!-- Pipe Products --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product &amp; Resource Dept.</masterLabel>
+        <translation><!-- Product &amp; Resource Dept. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Railway Products</masterLabel>
+        <translation><!-- Railway Products --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Recycled Scrap</masterLabel>
+        <translation><!-- Recycled Scrap --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Steel Products</masterLabel>
+        <translation><!-- Steel Products --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Top Management</masterLabel>
+        <translation><!-- Top Management --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

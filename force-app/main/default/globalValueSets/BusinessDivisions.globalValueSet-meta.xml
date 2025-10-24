@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Pipes</fullName>
+        <default>false</default>
+        <label>Pipe Products</label>
+    </customValue>
+    <customValue>
+        <fullName>Railway</fullName>
+        <default>false</default>
+        <label>Railway Products</label>
+    </customValue>
+    <customValue>
+        <fullName>Steel</fullName>
+        <default>false</default>
+        <label>Steel Products</label>
+    </customValue>
+    <customValue>
+        <fullName>PRD</fullName>
+        <default>false</default>
+        <label>Product &amp; Resource Dept.</label>
+    </customValue>
+    <customValue>
+        <fullName>Marketing</fullName>
+        <default>false</default>
+        <label>Marketing</label>
+    </customValue>
+    <customValue>
+        <fullName>IT</fullName>
+        <default>false</default>
+        <label>IT Department</label>
+    </customValue>
+    <customValue>
+        <fullName>Customer</fullName>
+        <default>false</default>
+        <label>Customer</label>
+    </customValue>
+    <customValue>
+        <fullName>TOP</fullName>
+        <default>false</default>
+        <label>Top Management</label>
+    </customValue>
+    <customValue>
+        <fullName>DVM</fullName>
+        <default>false</default>
+        <label>ДніпроВторМет</label>
+    </customValue>
+    <masterLabel>Business Divisions</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

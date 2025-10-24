@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DrawingWheels</fullName>
+    <columns>BaseID__c</columns>
+    <columns>Facet__c</columns>
+    <columns>NAME</columns>
+    <columns>AxLoad_t__c</columns>
+    <columns>AxLoadType__c</columns>
+    <columns>Diameter__c</columns>
+    <columns>Hub__c</columns>
+    <columns>HubBore__c</columns>
+    <columns>Groove__c</columns>
+    <columns>HubOffset__c</columns>
+    <columns>Standard__c</columns>
+    <columns>Imbalance__c</columns>
+    <columns>PlugType__c</columns>
+    <columns>WeightKG__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>WheelProduct__c</field>
+        <operation>equals</operation>
+        <value>Wheels</value>
+    </filters>
+    <label>Drawing Wheels</label>
+</ListView>

@@ -1,0 +1,281 @@
+<template>
+
+    <div class="tab-header">
+        <h1 class="tab-title">Ліміти постачальників</h1>
+        <p class="tab-subtitle">
+            У цій вкладці ви бачите <b>ліміти постачальників</b> на металобрухт:
+            <span class="descr-badge proposed">Заявлені</span>,
+            <span class="descr-badge approved">Узгоджені</span>,
+            <span class="descr-badge factual">Використано</span> та
+            <span class="descr-badge remain">Залишок</span>.
+            Для редагування узгоджених значень скористайтесь кнопкою праворуч.
+        </p>
+    </div>
+
+    <div class="top-toolbar">
+        <label>
+            <input class="search-input"
+                   type="search"
+                   placeholder="Пошук постачальника..."
+                   oninput={handleSearchInput}/>
+        </label>
+        <div class="spacer"></div>
+    </div>
+
+    <!-- ПІСЛЯ .top-toolbar ДОДАЙ ОЦЕ -->
+    <div class="summary-accordion">
+        <button class="acc-head" onclick={toggleSummary} aria-expanded={summaryOpen}>
+            <span class="caret" if:true={summaryOpen}>▾</span>
+            <span class="caret" if:false={summaryOpen}>▸</span>
+            Підсумки: заплановано на {currentMonthLabel}
+        </button>
+
+        <template if:true={summaryOpen}>
+            <div class="acc-body">
+                <div class="sum-lead">
+                    Комерційний: <b>{summaryCommercial.total}</b>,
+                    Корпоративний: <b>{summaryCorporate.total}</b>
+                </div>
+
+                <div class="summary-table-wrap">
+                    <table class="summary-table">
+                        <thead>
+                        <tr>
+                            <th>Тип постачальника</th>
+                            <th>1 декада</th>
+                            <th>2 декада</th>
+                            <th>3 декада</th>
+                            <th>Місяць</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Комерційний</td>
+                            <td>{summaryCommercial.dec1}</td>
+                            <td>{summaryCommercial.dec2}</td>
+                            <td>{summaryCommercial.dec3}</td>
+                            <td>{summaryCommercial.total}</td>
+                        </tr>
+                        <tr>
+                            <td>Корпоративний</td>
+                            <td>{summaryCorporate.dec1}</td>
+                            <td>{summaryCorporate.dec2}</td>
+                            <td>{summaryCorporate.dec3}</td>
+                            <td>{summaryCorporate.total}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="sum-note">
+                    * Підсумки рахуються за <b>узгодженими</b> лімітами для поточного місяця.
+                    Пошук над таблицею впливає на підсумки (агрегація по відфільтрованому списку).
+                </div>
+            </div>
+        </template>
+    </div>
+
+
+    <div class="request-table-container">
+        <table class="request-table">
+            <thead>
+            <tr>
+                <th>Постачальник</th>
+                <th class="type-col">Тип ліміту</th>
+                <th>1 декада</th>
+                <th>2 декада</th>
+                <th>3 декада</th>
+                <th>Місяць</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <template for:each={filteredAndSorted} for:item="req" for:index="index">
+                <!-- Заявлений -->
+                <tr class={req.proposedRowClass} key={req.propKey}>
+                    <td class={req.supplierCellClass} rowspan="4">
+                        {req.supplier}
+                        <template if:true={req.hasSupplierLimitEdit}>
+                            <span class="badge-edited" title="Є зміни після першого затвердження">•</span>
+                        </template>
+                    </td>
+
+                    <td class="type-cell proposed">Заявлений</td>
+                    <td>{req.proposedDisplay.dec1}</td>
+                    <td>{req.proposedDisplay.dec2}</td>
+                    <td>{req.proposedDisplay.dec3}</td>
+                    <td>{req.proposedDisplay.total}</td>
+                    <td class="btn-cell" rowspan="4">
+<!--                        <button class="approve-btn" onclick={handleApprove} data-index={index} title="Редагувати узгоджений">-->
+                        <button class="approve-btn" onclick={handleApprove} data-id={req.id} data-idx={index} title="Редагувати узгоджений">
+                            <svg viewBox="0 0 20 20" class="approve-icon">
+                                <path d="M 6 1 L 6 4 L 7 4 L 7 2 L 9 2 L 9 1 L 6 1 z M 11 1 L 11 2 L 14 2 L 14 1 L 11 1 z M 16 1 L 16 2 L 18 2 L 18 4 L 19 4 L 19 1 L 16 1 z M 1 6 L 1 19 L 14 19 L 14 6 L 1 6 z M 18 6 L 18 9 L 19 9 L 19 6 L 18 6 z M 2 7 L 13 7 L 13 18 L 2 18 L 2 7 z M 11.035156 9.3183594 L 6.0859375 14.267578 L 3.9648438 12.146484 L 3.2578125 12.853516 L 6.0859375 15.681641 L 11.742188 10.025391 L 11.035156 9.3183594 z M 18 11 L 18 13 L 16 13 L 16 14 L 19 14 L 19 11 z"></path>
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+
+                <!-- Узгоджений -->
+                <tr class={req.approvedRowClass} key={req.apprKey}>
+                    <td class="type-cell approved">Узгоджений</td>
+                    <td>{req.approvedDisplay.dec1}</td>
+                    <td>{req.approvedDisplay.dec2}</td>
+                    <td>{req.approvedDisplay.dec3}</td>
+                    <td class={req.monthAlertClass}>{req.approvedDisplay.total}</td>
+                </tr>
+
+                <!-- Фактичний -->
+                <tr class={req.factualRowClass} key={req.factKey}>
+                    <td class="type-cell factual">Використано ліміту</td>
+                    <td>{req.factualDisplay.dec1}</td>
+                    <td>{req.factualDisplay.dec2}</td>
+                    <td>{req.factualDisplay.dec3}</td>
+                    <td>{req.factualDisplay.total}</td>
+                </tr>
+
+                <!-- Залишок -->
+                <tr class={req.remainRowClass} key={req.remainKey}>
+                    <td class="type-cell remain">Залишилося ліміту</td>
+                    <td>{req.remainDisplay.dec1}</td>
+                    <td>{req.remainDisplay.dec2}</td>
+                    <td>{req.remainDisplay.dec3}</td>
+                    <td>{req.remainDisplay.total}</td>
+                </tr>
+            </template>
+            </tbody>
+
+        </table>
+    </div>
+
+    <template if:false={hasRequests}>
+        <div class="empty-state">Наразі немає заявок на підтвердження лімітів</div>
+    </template>
+
+    <!-- Модалка -->
+    <template if:true={isModalOpen}>
+        <div class="modal-backdrop">
+            <div class="modal-content">
+                <template if:true={isSaving}>
+                    <div class="saving-overlay">
+                        <lightning-spinner alternative-text="Збереження..." size="medium" variant="brand"></lightning-spinner>
+                        <div class="saving-text">Зберігаємо…</div>
+                    </div>
+                </template>
+
+                <template if:true={selectedRequest}>
+                    <template if:true={selectedRequest.showNoDeclared}>
+                        <div class="info-banner">
+                            Для цього постачальника ще <b>немає заявленого</b> ліміту за поточний місяць.
+                        </div>
+                    </template>
+                    <template if:true={selectedRequest.showNoApproved}>
+                        <div class="info-banner">
+                            Для цього постачальника ще <b>немає узгодженого</b> ліміту. Ви можете його встановити нижче.
+                        </div>
+                    </template>
+                </template>
+
+                <div class="modal-header">
+                    <h2>Внесення змін до затверджених лімітів постачальника</h2>
+                </div>
+
+                <div class="modal-body">
+                    <p><b>Постачальник:</b> {selectedRequest.supplier}</p>
+
+                    <!-- Заголовки -->
+                    <div class="limit-label-row">
+                        <div class="limit-label-cell"></div>
+                        <div class="limit-label-cell">1 декада</div>
+                        <div class="limit-label-cell">2 декада</div>
+                        <div class="limit-label-cell">3 декада</div>
+                        <div class="limit-label-cell">Місяць</div>
+                    </div>
+
+                    <!-- Пропоновані -->
+                    <div class="limit-row limit-proposed">
+                        <div class="limit-cell">Пропонований:</div>
+                        <div class="limit-cell">{selectedRequest.dec1}</div>
+                        <div class="limit-cell">{selectedRequest.dec2}</div>
+                        <div class="limit-cell">{selectedRequest.dec3}</div>
+                        <div class="limit-cell">{proposedTotal}</div>
+                    </div>
+
+                    <template if:true={hasOverLimitWarnings}>
+                        <div class="modal-alert">
+                            <ul class="modal-alert__list">
+                                <template for:each={overLimitWarnings} for:item="w">
+                                    <li key={w.key} class={w.className}>{w.text}</li>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+
+
+                    <!-- Узгоджені (інпут) -->
+                    <div class="limit-row limit-approved">
+                        <div class="limit-cell">Узгоджений:</div>
+                        <div class="limit-cell">
+                            <input type="number" class="limit-input" value={approvedDec1} data-name="dec1" oninput={handleInputChange}/>
+                        </div>
+                        <div class="limit-cell">
+                            <input type="number" class="limit-input" value={approvedDec2} data-name="dec2" oninput={handleInputChange}/>
+                        </div>
+                        <div class="limit-cell">
+                            <input type="number" class="limit-input" value={approvedDec3} data-name="dec3" oninput={handleInputChange}/>
+                        </div>
+                        <div class="limit-cell">{approvedTotal}</div>
+                    </div>
+
+<!--                    <div class="modal-footer right-align">-->
+<!--                        <button class="confirm-proposed-button" onclick={fillAsProposed}>Підтвердити пропоновані</button>-->
+<!--                    </div>-->
+                </div>
+
+                <!-- Показувати блок договору тільки коли є фактичні зміни у лімітах -->
+                <template if:true={limitsChanged}>
+                    <div class="contract-section">
+                        <h3 class="contract-title">Підтверджувальний документ</h3>
+                        <p class="contract-hint">
+                            Завантажте <b>документ</b>, що підтверджує зміну лімітів.
+                            Без документа <b>підтвердження неможливе</b>.
+                        </p>
+
+                        <!-- Повідомлення, коли ще не завантажено (поки файл не додадуть — confirm заблокований) -->
+                        <template if:true={mustUploadFile}>
+                            <div class="error-inline">
+                                Не можна підтвердити зміни без завантаження документу-підстави.
+                            </div>
+                        </template>
+
+                        <lightning-file-upload
+                                label="Додати файл "
+                                name="limitContract"
+                                record-id={effectiveUploadRecordId}
+                                onuploadfinished={handleUploadFinished}>
+                        </lightning-file-upload>
+
+                        <!-- Список завантажених -->
+                        <template if:true={uploadedFiles.length}>
+                            <ul class="uploaded-list">
+                                <template for:each={uploadedFiles} for:item="f" for:index="i">
+                                    <li key={f.documentId}>
+                                        <span class="file-pill">{f.name}</span>
+                                        <button class="linkLike" data-id={f.documentId} onclick={removeUploadedFile}>видалити</button>
+                                    </li>
+                                </template>
+                            </ul>
+                        </template>
+                    </div>
+                </template>
+
+
+                <div class="modal-footer">
+                    <button class="secondary-button" onclick={handleModalCancel}>Скасувати</button>
+                    <button class="primary-button" disabled={isApproveDisabled} onclick={handleModalSave}>Підтвердити</button>
+
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

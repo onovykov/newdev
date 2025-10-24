@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Calendar days</fullName>
+        <default>false</default>
+        <label>Calendar days</label>
+    </customValue>
+    <customValue>
+        <fullName>Banking days</fullName>
+        <default>false</default>
+        <label>Banking days</label>
+    </customValue>
+    <customValue>
+        <fullName>Work days</fullName>
+        <default>false</default>
+        <label>Work days</label>
+    </customValue>
+    <customValue>
+        <fullName>Current month date</fullName>
+        <default>false</default>
+        <label>Current month date</label>
+    </customValue>
+    <customValue>
+        <fullName>Next month date</fullName>
+        <default>false</default>
+        <label>Next month date</label>
+    </customValue>
+    <customValue>
+        <fullName>Previous month date</fullName>
+        <default>false</default>
+        <label>Previous month date</label>
+    </customValue>
+    <masterLabel>Payment Days Types</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,5 @@
+<apex:page >
+    <script>
+        window.location = '/{!$Label.All_Routes_Quotes_record_Id}';
+    </script>
+</apex:page>

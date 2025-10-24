@@ -1,0 +1,4 @@
+span:hover{
+        border-color: var(--lwc-colorBorderInputActive,rgb(27, 150, 255));
+        cursor: pointer;
+}

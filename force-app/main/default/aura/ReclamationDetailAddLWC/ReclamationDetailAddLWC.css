@@ -1,0 +1,16 @@
+.THIS {
+}
+
+.THIS .slds-modal__close{
+    background: #D9D9D9;
+    margin-right: 20px;
+    border-radius: 20px;
+    top: 10px; 
+    right: 0rem; 
+    margin-left: 0; 
+    bottom: 0;
+}
+
+.THIS .slds-modal__header{
+    height: 50px;
+}

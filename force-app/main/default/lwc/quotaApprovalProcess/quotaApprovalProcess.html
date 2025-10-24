@@ -1,0 +1,112 @@
+<template>
+    <template if:false={showMessage}>
+        <header class="slds-modal__header slds-p-around_x-small">
+            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Заявка на коригування квоти #{quotaNumber} {marketSegmentName} {formattedDate}</h2>
+        </header>
+    
+                <div class="slds-modal__content slds-p-bottom_large">
+                    <template if:true={quotaHeaderData}>
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Заявка #</th>
+                                    <th>Сегмент</th>
+                                    <th>Дата від...</th>
+                                    <th>Дата по...</th>
+                                    <th>Створив</th>
+                                    <th>Дата/Час</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{quotaHeaderData.requestNumber}</td>
+                                    <td>{quotaHeaderData.marketSegmentName}</td>
+                                    <td>{quotaHeaderData.formattedDateFrom}</td>
+                                    <td>{quotaHeaderData.formattedDateTo}</td>
+                                    <td>{quotaHeaderData.createdBy}</td>
+                                    <td>{quotaHeaderData.formattedCreatedDate}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </template>
+                    <template if:false={quotaHeaderData}>
+                        <p>Loading data...</p>
+                    </template>
+                </div>
+                <div class="slds-modal__content slds-p-bottom_large">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th scope="col">Код сімейства маршрутів #</th>
+                                <th scope="col">Назва сімейства маршрутів</th>
+                                <th scope="col">Тип сімейства маршрутів</th>
+                                <th scope="col">Квота по сімейству маршрутів, т.</th>
+                                <!-- <th scope="col">Відкоригована квота по сімейству маршрутів, т.</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={familyTotals} for:item="row">
+                                <tr key={row.familyType}>
+                                    <td>{row.familyId}</td>
+                                    <td>{row.family}</td>
+                                    <td>{row.familyType}</td>
+                                    <td class="slds-text-align_right">{row.quoteT}</td>
+                                    <!-- <td class="slds-text-align_right highlight-cell">{row.quoteT}</td> -->
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+    
+            <div></div>
+            <div class="slds-modal__content slds-p-bottom_large">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th>Тип сімейства маршрутів</th>
+                            <th if:true={isManagerVisible}>Продавець</th>
+                            <th if:true={isGroup3Visible}>Group3</th>
+                            <th if:true={isRegionVisible}>Region</th>
+                            <th>Об'єм в структурі квоти, %</th>
+                            <th>Додана кількість, т.</th>
+                            <th>Об'єм по структурі, т.</th>
+                            <th>Новий об'єм в структурі квоти, %</th>
+                            <th>Новий додана кількість, т.</th>
+                            <th>Новий об'єм по структурі, т.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={groupedData} for:item="group">
+                            <tr key={group.familyType} class="slds-hint-parent">
+                                <td rowspan={group.rowspan}>{group.familyType}</td>
+                            </tr>
+                            <template for:each={group.rows} for:item="row">
+                                <tr key={row.quoteStructDetailId}>
+                                    <td if:true={isManagerVisible} class={row.managerClass}>{row.manager}</td>
+                                    <td if:true={isGroup3Visible}>{row.group3}</td>
+                                    <td if:true={isRegionVisible}>{row.region}</td>
+                                    <td class={row.percentOldClass}>{row.percentOld}</td>
+                                    <td class={row.addQtyOldClass}>{row.addQtyOld}</td>
+                                    <td class={row.quoteTOldClass}>{row.quoteTOld}</td>
+                                    <td class={row.percentClass}>{row.percent}</td>
+                                    <td class={row.addQtyClass}>{row.addQty}</td>
+                                    <td class={row.quoteTClass}>{row.quoteT}</td>
+                                </tr>
+                            </template>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+    
+            <div class="slds-grid slds-grid_align-end slds-m-bottom_small">
+                <button class="slds-button slds-p-horizontal_medium reject-button" onclick={handleRejectRequest}>Відхилити</button>
+                <button class="slds-button slds-p-horizontal_medium approve-button" onclick={handleApproveRequest}>Узгодити</button>
+            </div>
+    </template>
+    <template if:true={showMessage}>
+        <header class="slds-modal__header slds-p-around_x-small">
+            <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">{message}</h2>
+        </header>
+    </template>
+    
+</template>

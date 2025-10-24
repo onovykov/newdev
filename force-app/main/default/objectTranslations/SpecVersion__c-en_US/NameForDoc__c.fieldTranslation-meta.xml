@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Name For Doc --></label>
+    <name>NameForDoc__c</name>
+    <relationshipLabel><!-- Specification Versions --></relationshipLabel>
+</CustomFieldTranslation>

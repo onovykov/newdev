@@ -1,0 +1,244 @@
+<template>
+    <c-custom-toast-lwc auto-close-time="8000"></c-custom-toast-lwc>
+    <lightning-spinner
+                    if:true={showSpinner}
+                    class="slds-is-fixed slds-align_absolute-center"
+                    alternative-text="Loading Details..."
+                    size="medium"
+                    variant="brand"
+                    >
+                </lightning-spinner>
+    <div  class="container">
+        <div class="slds-grid slds-wrap">
+            <div  class="slds-col slds-size_12-of-12 slds-small-size_9-of-12 slds-p-around_medium" style="padding-top: 0px;">
+                <div class="slds-col header-pipe slds-p-around_medium" style="padding-bottom: 0px;">{labels.supportHeader}</div>
+                <div class="slds-col sub-header-pipe slds-p-around_medium"  style="padding-top: 0px;"> {labels.supportSubheader}</div>
+            </div>
+            <div  class="slds-col slds-size_12-of-12 slds-small-size_3-of-12 slds-p-around_medium" style="padding-top: 0px;">
+                <div class="chat-btn" style="width:100%;" onclick={downloadFile}>
+                    <img src={manualImg} alt="" class="manual-icon"> 
+                    <p class="chat-text" style="font-size: 20px;">{labels.Download_Manual}</p>
+                </div>
+            </div>
+        </div>
+        <div class="slds-grid slds-wrap border-gray-top">
+            <div  class="slds-col slds-size_12-of-12 slds-small-size_6-of-12 slds-p-around_medium ">
+                <div class="slds-grid slds-wrap">
+                    <div  class="slds-col slds-size_12-of-12 slds-small-size_3-of-12 slds-p-around_large">
+                        <p class="header-detail">{labels.supportAccount}</p>
+                    </div>
+                    <div  class="slds-col slds-size_12-of-12 slds-small-size_9-of-12 slds-p-around_large border-gray-right">
+                        <form>
+                            <label for="fname" class="label-detail">{labels.Your_name}</label>
+                            <input type="text" id="fname" name="userName" value="" class="user-name" oninput={validateInputs}>                      
+                        </form>
+                        <form>
+                            <label for="fname" class="label-detail">{labels.E_mail}</label>
+                            <input type="email" id="mail" name="userEmail" value="" class="mail user-mail" oninput={validateEmail} >                     
+                        </form>
+                        <form>
+                            <label for="fname" class="label-detail">{labels.Phone_number}</label>
+                            <input type="tel" id="phone" name="userPhone" value="" class="user-phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">                     
+                        </form>
+                    </div>
+                </div>
+
+                <div class="slds-grid slds-wrap">
+                    <div  class="slds-col slds-size_12-of-12 slds-small-size_3-of-12 slds-p-around_large">
+                        <p class="header-detail" >{labels.supportDescription}</p>
+                    </div>
+                    <div  class="slds-col slds-size_12-of-12 slds-small-size_9-of-12 slds-p-around_large border-gray-right">
+                        <form>
+                            <label for="fname" class="label-detail">{labels.SupportTheme}</label>
+                            <input type="text" id="theme" name="userTheme" class="user-theme" value="">                      
+                        </form>
+                        <form>
+                            <label for="fname" class="label-detail">{labels.Problem_description}</label>
+                            <div>
+                                <textarea id="w3review" name="w3review" rows="4" cols="50" class="user-description"></textarea>      
+                            </div>                             
+                        </form>     
+                        
+                        <form class="slds-m-top_large">
+                        <label for="fname" class="label-detail slds-m-top_small">{labels.Attach_files}</label>
+                            <div class="slds-form-element__control ">
+                                <div class="slds-file-selector slds-file-selector_files ">
+                                    <div class="slds-file-selector__dropzone slds-has-drag-over "  id="buttonid">
+                                        <input  type="file" multiple  class="slds-file-selector__input slds-assistive-text input-file"  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.doc,application/pdf,image/png, image/gif, image/jpeg" id="file-upload-input-01" onchange={handleFileSelect}  aria-labelledby="file-selector-primary-label file-selector-secondary-label" />
+                                        <label class="slds-file-selector__body" for="file-upload-input-01" id="file-selector-secondary-label" >                               
+                            <span class="slds-file-selector__button slds-button slds-button_neutral attach-file-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" class="attach-svg">
+                                    <use xlink:href={attach}></use>
+                                </svg>
+                                    {labels.Upload_file}
+                                </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                            </div>  
+                        </form>     
+                        <template if:true={uploadedFiles} >
+                            <template for:each={uploadedFiles} for:item="file" for:index="index">                          
+                                <div key={file.name} class="slds-grid slds-grid_align-spread file-border slds-m-top_small slds-p-around_xx-small slds-grid_vertical-align-center">
+                                    <div class="slds-col">
+                                        <span>{file.name} </span>
+                                    </div>
+                                    <div class="slds-col">
+                                        <lightning-button-icon icon-name="utility:close" class="slds-m-left_x-small slds-m-bottom_xx-small" variant="bare" onclick={deleteFromList} alternative-text="Delete" title="Delete" value={index}></lightning-button-icon>
+                                    </div>
+                                </div>
+                            </template>
+                        </template>   
+                        
+                        <button onclick={submitHelp} disabled={buttonDisabled} 
+                                class="pipe-btn slds-m-top_large" >{labels.Send}</button>
+                    </div>
+                </div>
+            </div>
+            <div  class="slds-col slds-size_12-of-12 slds-small-size_6-of-12 slds-p-around_medium without-padding">
+                <div class="slds-p-around_medium without-padding">
+                    <p class="datatable-header">{labels.My_application_history}</p>
+                    <div class="datatable-tabs-desktop">
+                        <ul class="slds-tabs_default__nav" role="tablist">
+                            <div class="li-wrapper">
+                                <li class="slds-tabs_default__item slds-is-active " role="presentation" data-id="tab-default-1__item">
+                                    <a  onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" data-id="tab-defaultItem-1">{labels.All_cases}
+                                        <div class="amount">{amountAllCases}</div>
+                                    </a>
+                                </li>
+                        </div>
+                            <div class="li-wrapper">
+                                <li class="slds-tabs_default__item" role="presentation" data-id="tab-default-2__item">
+                                    <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" data-id="tab-defaultItem-2">{labels.New}
+                                        <div class="amount">{amountNewCases}</div>
+                                    </a>
+                                </li>
+                            </div>
+                            <div class="li-wrapper">
+                                <li class="slds-tabs_default__item "  role="presentation" data-id="tab-default-3__item">
+                                    <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" data-id="tab-defaultItem-3">{labels.On_Hold}
+                                        <div class="amount">{amountHoldCases}</div>
+                                    </a>
+                                </li>
+                        </div>
+                            <div class="li-wrapper">
+                                <li class="slds-tabs_default__item"  role="presentation"  data-id="tab-default-4__item" >
+                                    <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-4" data-id="tab-defaultItem-4">{labels.Processing}
+                                        <div class="amount">{amountProcessingClaims}</div>
+                                    </a>
+                                </li>
+                            </div>
+                            
+                            
+                        </ul>
+                    </div>
+                    <div class="datatable-tabs-mobile">
+                        <div class="dropdown" tabindex="0">
+                            <button class="dropdown-toggle" lwc:ref="dropdownBtn" aria-expanded={dropdownOpen} onclick={toggleDropdown}>{selectedOption}
+                                <div class="arrow-down"></div>  
+                            </button>
+                            <ul if:true={dropdownOpen} lwc:ref="dropdownList" class="dropdown-menu">
+                                <template for:each={optionsToDisplay} for:item="option">
+                                    <li key={option.id} onclick={handleOptionClick} data-id={option.id}>
+                                        <a onclick={handleOptionClick} data-id={option.id}>{option.label}
+                                            <!-- <div class="amount">{option.amount}</div> -->
+                                        </a>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="datatable">
+                        <table>
+                            <thead>
+                                <tr class="datatable-col-header">
+                                    <th>{labels.Support_contact}</th>
+                                    <th>{labels.subject}</th>
+                                    <th>{labels.Creation_date}
+                                        <img  class="sort-icon" data-id="dateSortIcon" onclick={filterByDate} src={sortIcon}  alt="" >
+                                    </th>
+                                    <th>{labels.Status}
+                                        <img  class="sort-icon" data-id="stageSortIcon" onclick={filterByStage} src={sortIcon}  alt="" >
+                                    </th>
+                                    <th>{labels.Status_date}</th>
+                                </tr>
+                            </thead>
+                            <template for:each= {filteredCasesList} for:item="item">
+                                <tr key = {item.Id}>
+                                    <td data-label={labels.Support_contact} if:false={isAmericanUser} onclick={openModal} data-id={item.Id} class="pointer"> {BOspecLastName}</td>
+                                    <td if:true={isAmericanUser} onclick={openModal} data-id={item.Id} class="pointer"> {ManagerLastName}</td>
+
+                                    <td data-label={labels.subject}> {item.Subject} </td>
+                                    <td data-label={labels.Creation_date}>
+                                        <lightning-formatted-date-time
+                                            value= {item.CreatedDate} 
+                                            year="numeric"
+                                            month="numeric"
+                                            day="numeric">
+                                        </lightning-formatted-date-time>
+                                    </td>
+                                    <td data-label={labels.Status}> {item.Status} </td>
+                                    <td data-label={labels.Support_contact}>
+                                        <lightning-formatted-date-time
+                                            value= {item.Status_date}
+                                            year="numeric"
+                                            month="numeric"
+                                            day="numeric">
+                                        </lightning-formatted-date-time> 
+                                    </td>
+                                </tr>
+                            </template>
+                        </table>
+                    </div>
+                    <a if:false={isAmericanUser} href={BOspecEmail}>
+                        <div class="chat-btn">
+                                <img src={chatImg} alt="" class="chat-icon"> 
+                                <p class="chat-text">{labels.Write_to_manager}</p>
+                        </div>
+                    </a>
+                    <a if:true={isAmericanUser} href={ManagerEmail}>
+                        <div class="chat-btn">
+                                <img src={chatImg} alt="" class="chat-icon"> 
+                                <p class="chat-text">{labels.Write_to_manager}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal/Popup starts here -->
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header slds-modal__header_empty modal-header">
+                    <div class="slds-grid slds-wrap slds-grid_align-end">
+                        <div class="slds-col">
+                            <button class="slds-button slds-button_icon slds-button_icon-inverse slds-p-around_small" title="Close" onclick={closeModal}>
+                                <lightning-icon icon-name="action:remove"
+                                    alternative-text="close"
+                                    variant="inverse"
+                                    size="small" ></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                        </div>
+                    </div>
+                  </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content modal-content" id="modal-content-id-1">                 
+                    <c-site-support-detail get-selected-case={selectedCaseid}></c-site-support-detail>
+                </div>
+                <lightning-spinner
+                if:false={modalContainer}
+                class="slds-is-absolute slds-align_absolute-center"
+                alternative-text="Loading Details..."
+                size="medium"
+                variant="brand"
+            >
+            </lightning-spinner>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

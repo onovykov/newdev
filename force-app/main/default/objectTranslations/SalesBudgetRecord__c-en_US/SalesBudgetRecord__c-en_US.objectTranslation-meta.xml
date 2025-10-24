@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Sales Budget Record</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Sales Budget Records</value>
+    </caseValues>
+    <layouts>
+        <layout>Month Plan Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Product Details --></label>
+            <section>Product Details</section>
+        </sections>
+        <sections>
+            <label><!-- Quantity and Prices --></label>
+            <section>Quantity and Prices</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Quarter Plan Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Product Details --></label>
+            <section>Product Details</section>
+        </sections>
+        <sections>
+            <label><!-- Quantity and Prices --></label>
+            <section>Quantity and Prices</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Plan Month --></label>
+        <name>PlanMonth</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Plan Quarter --></label>
+        <name>PlanQuarter</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- The period is out of range that is specified in parent object --></errorMessage>
+        <name>PeriodValidation</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Mass_Delete --></label>
+        <name>Mass_Delete</name>
+    </webLinks>
+</CustomObjectTranslation>

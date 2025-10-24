@@ -1,0 +1,252 @@
+<template>
+    <div class="container">
+        <lightning-spinner
+                if:true={showGenPdfSpinner}
+                class="slds-is-absolute slds-align_absolute-center"
+                alternative-text="Loading Generated PDF..."
+                size="medium"
+                variant="brand"
+            >
+            </lightning-spinner>
+        <div>
+            <div class="datatable-tabs">
+                <ul class="slds-tabs_default__nav" role="tablist">
+                    <div class="li-wrapper">
+                        <li class="slds-tabs_default__item slds-is-active"  role="presentation" data-id="tab-default-1__item">
+                                <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" data-id="tab-default-1__item">{labels.All_Invoices}
+                                <div class="amount">{allinvoicesCount}</div> </a>
+                        </li>
+                    </div>
+                    <div if:true={isMENAUser} class="li-wrapper">
+                        <li class="slds-tabs_default__item " role="presentation" data-id="tab-default-2__item">
+                                <a  onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="true" aria-controls="tab-default-2" data-id="tab-default-2__item">USD Invoices
+                                <!-- <div class="amount">{amountActiveOrders}</div> -->
+                            </a>
+                        </li>
+                    </div>
+                    <div if:true={isMENAUser} class="li-wrapper">
+                        <li class="slds-tabs_default__item"  role="presentation"  data-id="tab-default-3__item" >
+                                <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" data-id="tab-default-3__item">EUR Invoices
+                                <!-- <div class="amount">{amountShippedOrders}</div> -->
+                            </a>
+                        </li>
+                    </div>
+                    <div if:true={showContractsTab} class="li-wrapper">
+                        <li class="slds-tabs_default__item"  role="presentation" data-id="tab-default-4__item">
+                                <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-4" data-id="tab-default-4__item">{labels.By_Contracts}
+                                </a>
+                        </li>
+                    </div>
+                    
+                </ul>
+            </div>
+            <div class="datatable-tabs-mobile">
+                <div class="dropdown" tabindex="0">
+                    <button class="dropdown-toggle" lwc:ref="dropdownBtn" aria-expanded={dropdownOpen} onclick={toggleDropdown}>{selectedOption}
+                        <div class="arrow-down"></div>  
+                    </button>
+                    <ul if:true={dropdownOpen} lwc:ref="dropdownList" class="dropdown-menu">
+                        <template for:each={optionsToDisplay} for:item="option">
+                            <li key={option.id} onclick={selectDropdownOption} data-id={option.id}>
+                                <a onclick={selectDropdownOption} data-id={option.id}>{option.label}
+                                    <!-- <div class="amount">{option.amount}</div> -->
+                                </a>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="datatable-menu">
+                <div class="currency">
+                    <lightning-combobox
+                        name="Currency"
+                        value={selectedCurrency}
+                        options={currencyOptions}
+                        onchange={changeCurrency}
+                        placeholder="Select a currency">
+                        
+                    </lightning-combobox>
+                    <div if:true={isCurrencySelected} class="cancel-btn"   onclick={cancelCurrencyInput} > 
+                        <p class="cancel-text">Cancel</p>
+                    </div>
+                </div>
+                <div class="calendar">
+                    <p class="calendar-choose-date">{chooseADate}: </p>
+                    <p class="calendar-from">{from}</p>
+                    <div class="calendar-start-date">
+                        <lightning-input  type ="date" onchange={setStartDate} ></lightning-input>
+                    </div>
+                    <p class="calendar-to">{to}</p>
+                    <div class="calendar-end-date" >
+                        <lightning-input type ="date"  onchange={setEndDate}></lightning-input>
+                    </div>
+                </div>
+                <div class="searchbox">
+                    <lightning-input class="search-input" id="textfield1" type="search"  onchange={searchInvoices}></lightning-input>
+                    <div class="refresh-btn" onclick={resetSearch}>
+                        <img  class="refresh-btn-img" src={refresh}  alt="" >
+                    </div>
+                </div>
+                <div class="currency-mobile">
+                    <lightning-combobox
+                        name="Currency"
+                        value={selectedCurrency}
+                        options={currencyOptions}
+                        onchange={changeCurrency}
+                        placeholder="Select a currency">
+                        
+                    </lightning-combobox>
+                    <div if:true={isCurrencySelected} class="cancel-btn"   onclick={cancelCurrencyInput} > 
+                        <p class="cancel-text">Cancel</p>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="datatable" if:false={isTab4Active}>
+                <table>
+                    <thead>
+                        <tr class="datatable-header">
+                            <th>{labels.COC}
+                            </th>
+                            <th if:true={showContractsTab}>{labels.Contract}
+                            </th>
+                            <th>{labels.Invoice}</th>
+                            <th if:true={isAllDivisions}>{labels.Prod_Type}</th>
+                            <!-- <th>{labels.Detail}</th> -->
+                            <th>{labels.Invoice_Date}
+                                <img  class="sort-icon" data-id="invDateSortIcon" onclick={sortInvoicesByDate} src={sortIcon}  alt="" >
+                            </th>
+                            <th>{labels.Due_Date}
+                            </th>
+                            <th>{labels.Days_Overdue}
+                                <img  class="sort-icon" data-id="dueDateSortIcon" onclick={sortInvoicesByDueDate} src={sortIcon}  alt="" >
+    
+                            </th>
+                            <th>{labels.Net_Amount}</th>
+                            <!-- <th>{VAT_Amount}</th> -->
+                            <th lwc:ref="sum">{labels.Outstanding_Debt}</th>
+                            <th lwc:ref="currency">{labels.Currency}</th>
+                        </tr>
+                    </thead>
+                    <template for:each= {displayedInvoices} for:item="item">
+                        <tr key = {item.Id}>
+                            <td class="reclamation-number" data-id={item.Id}> {item.AdditionalNumber} </td>
+                            <td if:true={showContractsTab} data-label="Contract" >{item.Contract__c}</td>
+                            <td data-label="Invoice #" class="reclamation-number" >{item.Name}</td>
+                            <td if:true={isAllDivisions} data-label="Prod. Type" class="reclamation-number" >{item.ProdType}</td>
+                            <!-- <td data-label = 'Detail ' data-id={item.Id}>
+                                <div class="delivery-status-btn" data-id={item.Id} onclick={handleViewDetailPDF}>
+                                    {view}
+                               </div>
+                           </td> -->
+                            <td data-label="Invoice Date"> 
+                                <lightning-formatted-date-time
+                                        value= {item.InvoiceDate__c} 
+                                        year="numeric"
+                                        month="numeric"
+                                        day="numeric"
+                                        time-zone="UTC">
+                                </lightning-formatted-date-time>
+                            </td>
+                            <td data-label="Due Date"> 
+                                <lightning-formatted-date-time
+                                        value= {item.DueDate__c} 
+                                        year="numeric"
+                                        month="numeric"
+                                        day="numeric"
+                                        time-zone="UTC">
+                                </lightning-formatted-date-time>
+                             </td>
+                            <td data-label="Days Overdue"> {item.DaysOverdue__c} </td>
+                            <td data-label="Net Amount"> {item.NetAmount__c} </td>
+                            <!-- <td data-label="VAT Amount"> {item.VATAmount__c} </td> -->
+                            <td data-label="Outstanding Debt"> {item.OutstandingDebt__c} </td>  
+                            <td data-label="Currency"> {item.CurrencyIsoCode} </td>
+                        </tr>
+                        
+                    </template>
+                </table>
+            </div>
+                <template  if:true={isTab4Active} for:each={groupedInvoices} for:item="group">
+                    <div key={group.contract}>
+                        <div class="contract-info">
+                            <h3 style="font-size: 24px; font-weight: bold;">Contract: {group.contract}</h3>
+                            <h3 style="font-size: 24px; font-weight: bold;">{group.totalOutstandingDebt}{selectedCurrency}</h3>
+                        </div>
+                        <div class="contract-info">
+                            <h3 style="font-size: 24px; font-weight: bold;">{labels.Overdue_accounts_receivable}</h3>
+                            <h3 style="font-size: 24px; font-weight: bold;">{group.totalOverdueOutstandingDebt} {selectedCurrency}</h3>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr class="datatable-header">
+                                    <th>{labels.Invoice}</th>
+                                    <th>{labels.Invoice_Date}</th>
+                                    <th>{labels.Days_Overdue}</th>
+                                    <th>{labels.Outstanding_Debt}</th>
+                                    <th>{labels.Currency}</th>
+                                    <!-- Add more columns as needed -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={group.invoices} for:item="invoice">
+                                    <tr key={invoice.Id}>
+                                        <td>{invoice.Name}</td>
+                                        <td data-label="Invoice date"> 
+                                            <lightning-formatted-date-time
+                                                    value= {invoice.InvoiceDate__c} 
+                                                    year="numeric"
+                                                    month="numeric"
+                                                    day="numeric"
+                                                    time-zone="UTC">
+                                            </lightning-formatted-date-time>
+                                         </td>
+                                        <td>{invoice.DaysOverdue__c}</td>
+                                        <td>{invoice.OutstandingDebt__c}</td>
+                                        <td>{invoice.CurrencyIsoCode}</td>
+
+                                        <!-- Add more data cells as needed -->
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </template>
+            <div  class="datatable-footer">
+                <div class="total-text">
+                    <p style="font-weight: bold;" if:true={totalOutstandingDebt}>{labels.Total_Debt_Common}: </p>
+                    <p if:true={totalOutstandingDebtOverdue}>{labels.Overdue_accounts_receivable}: </p>
+                </div>
+                <div class="total-values" lwc:ref="sumTotal">
+                    <p style="font-weight: bold;" if:true={totalOutstandingDebt}>{totalOutstandingDebt}</p>
+                    <p if:true={totalOutstandingDebtOverdue}>{totalOutstandingDebtOverdue}</p>
+                </div>
+                <div class="total-currency" lwc:ref="currencyTotal">
+                    <p style="font-weight: bold;" if:true={totalOutstandingDebt}>{selectedCurrency}</p>
+                    <p style="font-weight: bold;" if:true={totalOutstandingDebtOverdue}>{selectedCurrency}</p>
+                </div>
+            </div>
+
+           
+            <!-- <div class="slds-grid slds-wrap slds-grid_align-end">
+                <div class="slds-col slds-size_6-of-12">
+                    <lightning-combobox
+                        name="Currency"
+                        label="Select Currency"
+                        value={selectedCurrency}
+                        options={currencyOptions}
+                        onchange={handleChange}>
+                    </lightning-combobox>
+                </div>
+            </div>            -->
+           
+        </div>
+        
+    </div>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </template>
+</template>

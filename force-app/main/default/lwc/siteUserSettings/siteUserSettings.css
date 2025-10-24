@@ -1,0 +1,155 @@
+.container{
+    max-width: 1736px;
+    width: 95%;
+    margin: 0 auto;
+}
+.user-name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.name{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 53px;
+}
+.user-info-block{
+    display: flex;
+    flex-direction: column;
+    gap: 40px 
+}
+p{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+.modal-text{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    text-align: center;
+    line-height: 32px;
+}
+
+.label-detail{
+    font-family: Golos;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.field-value{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 43px;
+    margin-top: 20px;
+}
+.about-me-text{
+    margin-top: 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 36px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+input[type=text],input[type=tel], input[type=email] {
+    width: 100%;
+    padding: 0px 0px;
+    border: none;
+    box-sizing: border-box;
+    border-bottom: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    font-family: Golos;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+input[type=text]:focus, input[type=tel]:focus, input[type=email]:focus {
+    border: none;
+    border-bottom: 3px solid #555;
+}
+textarea{
+    width: 100%;
+    border: 3px solid #ccc;
+}
+.print-btn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 28px;
+    gap: 12px;
+    width: 50%;
+    height: 58px;
+    background: #FFDD00;
+    border: none;
+    border-radius: 18px;
+}
+
+.print-btn-answer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #FFDD00;
+    border-radius: 18px;
+    border: none;
+    font-size: 24px;
+    width: 100%;
+    height: 60px;
+    transition: all 0.3s ease-out;
+}
+.print-btn-answer:hover{
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.save-cancel{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+}
+.print-btn:hover{
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.password:hover{
+    cursor: pointer;
+    box-shadow: rgba(175, 12, 12, 0.733) 0px 5px 15px;
+}
+.print-text{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 22px;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+
+@media (max-width: 578px) {
+   .field-value{
+    font-size: 20px;
+   }
+   .print-btn{
+    width: 100%;
+   }
+}

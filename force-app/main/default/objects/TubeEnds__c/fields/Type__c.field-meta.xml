@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <defaultValue>&quot;PE&quot;</defaultValue>
+    <label>Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>NU</fullName>
+                <default>false</default>
+                <label>NU</label>
+            </value>
+            <value>
+                <fullName>EU</fullName>
+                <default>false</default>
+                <label>EU</label>
+            </value>
+            <value>
+                <fullName>PE</fullName>
+                <default>false</default>
+                <label>PE</label>
+            </value>
+            <value>
+                <fullName>STD</fullName>
+                <default>false</default>
+                <label>STD</label>
+            </value>
+            <value>
+                <fullName>NO CROPPING</fullName>
+                <default>false</default>
+                <label>NO CROPPING</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

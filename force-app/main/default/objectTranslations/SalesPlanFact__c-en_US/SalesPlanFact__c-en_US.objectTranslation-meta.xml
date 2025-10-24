@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Sales Plan and Fact</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Sales Plan and Fact</value>
+    </caseValues>
+    <layouts>
+        <layout>Sales Plan and Fact Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Quantity and Prices --></label>
+            <section>Quantity and Prices</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Actual Budget --></label>
+        <name>ActualBudget</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Corrected Budget --></label>
+        <name>CorrectedBudget</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Actual production and sales data --></description>
+        <label><!-- Fact --></label>
+        <name>Fact</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Initial Budget --></label>
+        <name>InitialBudget</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Opportunity --></label>
+        <name>Opportunity</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Open order --></description>
+        <label><!-- Order --></label>
+        <name>Order</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Production and sales plan data --></description>
+        <label><!-- Plan --></label>
+        <name>Plan</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Mass_Delete --></label>
+        <name>Mass_Delete</name>
+    </webLinks>
+</CustomObjectTranslation>

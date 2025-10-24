@@ -1,0 +1,15 @@
+<template>
+    <article class="slds-card">
+        <template if:true={prices}>
+            <c-dynamic-filter-for-prices filters={filters} tdata={prices} onfilter={handleFilter}></c-dynamic-filter-for-prices>
+            <br>
+            <lightning-datatable
+                key-field="priceId"
+                data={prices}
+                columns={columns}
+                hide-checkbox-column="true"
+            >
+           </lightning-datatable>
+        </template>
+    </article>
+</template>

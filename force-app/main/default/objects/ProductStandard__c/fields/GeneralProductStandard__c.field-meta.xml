@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GeneralProductStandard__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>General Product Standard</label>
+    <referenceTo>GeneralProductStandard__c</referenceTo>
+    <relationshipLabel>Product Standards</relationshipLabel>
+    <relationshipName>Product_Standards</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>None</fullName>
+        <default>false</default>
+        <label>None</label>
+    </customValue>
+    <customValue>
+        <fullName>Varnish</fullName>
+        <default>false</default>
+        <label>Varnish</label>
+    </customValue>
+    <customValue>
+        <fullName>No Varnish</fullName>
+        <default>false</default>
+        <label>No Varnish</label>
+    </customValue>
+    <customValue>
+        <fullName>Galvanizing</fullName>
+        <default>false</default>
+        <label>Galvanizing</label>
+    </customValue>
+    <customValue>
+        <fullName>Polyethylene Coating</fullName>
+        <default>false</default>
+        <label>Polyethylene Coating</label>
+    </customValue>
+    <customValue>
+        <fullName>3LPE Coating</fullName>
+        <default>false</default>
+        <label>3LPE Coating</label>
+    </customValue>
+    <customValue>
+        <fullName>Dyeing</fullName>
+        <default>false</default>
+        <label>Dyeing</label>
+    </customValue>
+    <description>Possible coating types for the products</description>
+    <masterLabel>Coating Types</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

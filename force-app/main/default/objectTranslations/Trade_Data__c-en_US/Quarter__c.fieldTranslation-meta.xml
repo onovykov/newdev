@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- enter values such as Q1/Q2/Q3/Q4 --></help>
+    <label><!-- Quarter --></label>
+    <name>Quarter__c</name>
+</CustomFieldTranslation>

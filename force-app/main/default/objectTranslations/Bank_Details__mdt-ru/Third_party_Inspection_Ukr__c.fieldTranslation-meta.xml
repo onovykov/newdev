@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Third party Inspection (Ukr) --></label>
+    <name>Third_party_Inspection_Ukr__c</name>
+</CustomFieldTranslation>

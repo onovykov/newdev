@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Departure Station</fullName>
+        <default>false</default>
+        <label>Departure Station</label>
+    </customValue>
+    <customValue>
+        <fullName>Shipper&apos;s Warehouse</fullName>
+        <default>false</default>
+        <label>Shipper&apos;s Warehouse</label>
+    </customValue>
+    <customValue>
+        <fullName>Supplier&apos;s Warehouse</fullName>
+        <default>false</default>
+        <label>Supplier&apos;s Warehouse</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer after loading on board</fullName>
+        <default>false</default>
+        <label>Transfer after loading on board</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer after loading on board - paid till delivery point</fullName>
+        <default>false</default>
+        <label>Transfer after loading on board - paid till delivery point</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer after loading on board- paid till delivery point</fullName>
+        <default>false</default>
+        <label>Transfer after loading on board- paid till delivery point</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at delivery point</fullName>
+        <default>false</default>
+        <label>Transfer at delivery point</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at port of destination- paid till delivery point</fullName>
+        <default>false</default>
+        <label>Transfer at port of destination- paid till delivery point</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the border</fullName>
+        <default>false</default>
+        <label>Transfer at the border</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the border (as per CCD date)</fullName>
+        <default>false</default>
+        <label>Transfer at the border (as per CCD date)</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the delivery point</fullName>
+        <default>false</default>
+        <label>Transfer at the delivery point</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the delivery point/port</fullName>
+        <default>false</default>
+        <label>Transfer at the delivery point/port</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the mill</fullName>
+        <default>false</default>
+        <label>Transfer at the mill</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the mill - paid till border/port</fullName>
+        <default>false</default>
+        <label>Transfer at the mill - paid till border/port</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the mill - paid till client&apos;s warehouse</fullName>
+        <default>false</default>
+        <label>Transfer at the mill - paid till client&apos;s warehouse</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the mill - paid till delivery point</fullName>
+        <default>false</default>
+        <label>Transfer at the mill - paid till delivery point</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the mill (as per CCD date)</fullName>
+        <default>false</default>
+        <label>Transfer at the mill (as per CCD date)</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the mill (as per CCD date) - paid till delivery point</fullName>
+        <default>false</default>
+        <label>Transfer at the mill (as per CCD date) - paid till delivery point</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the mill (as per packing list date)</fullName>
+        <default>false</default>
+        <label>Transfer at the mill (as per packing list date)</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the mill (as per packing list date) - paid till delivery point</fullName>
+        <default>false</default>
+        <label>Transfer at the mill (as per packing list date) - paid till delivery point</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the mill (as per shipping document date)</fullName>
+        <default>false</default>
+        <label>Transfer at the mill (as per shipping document date)</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the mill (as per shipping document date) - paid till delivery</fullName>
+        <default>false</default>
+        <label>Transfer at the mill (as per shipping document date) - paid till delivery</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the mill (as per shipping document)</fullName>
+        <default>false</default>
+        <label>Transfer at the mill (as per shipping document)</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the mill- paid till delivery point</fullName>
+        <default>false</default>
+        <label>Transfer at the mill- paid till delivery point</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the port - paid till delivery point</fullName>
+        <default>false</default>
+        <label>Transfer at the port - paid till delivery point</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the transhipping point</fullName>
+        <default>false</default>
+        <label>Transfer at the transhipping point</label>
+    </customValue>
+    <customValue>
+        <fullName>Transfer at the transhipping point - paid till delivery point</fullName>
+        <default>false</default>
+        <label>Transfer at the transhipping point - paid till delivery point</label>
+    </customValue>
+    <masterLabel>Delivery Terms</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

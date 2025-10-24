@@ -1,0 +1,71 @@
+.container{
+    max-width: 1736px;
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 114px;
+}
+
+.header-detail{
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+    
+}
+.account{
+    margin-top: 25%;
+}
+.user-info{
+    display: flex;
+    flex-direction: column;
+}
+.user-profile-img{
+    width: 108px;
+    height: 108px;
+    border-radius: 105px;
+}
+.user-name{
+    margin-top: 16px;
+}
+.client{
+    margin-top: 8px;
+}
+
+.border-gray-top{
+    margin-top: 78px;
+    margin-bottom: 38px;
+    border-top: 2px solid #ccc;
+}
+.border-gray-right{
+    border-right: 2px solid #ccc;
+}
+
+.data-item{
+    border-bottom: 1.5px solid #EFEFEF;
+}
+p{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+.status{
+    
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+}
+.label{
+    margin-top: 24px;
+}
+.value{
+    margin-top: 12px;
+}
+
+.left-section{
+    padding-right: 94px;
+}
+.right-section{
+    padding-left: 94px;
+}

@@ -1,0 +1,159 @@
+<aura:component controller="CustomNewEnquiryController" implements="lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:attribute name="recordTypes" type="List"/>
+    <aura:attribute name="selectedRecordTypeId" type="String"/>
+    <aura:attribute name="contactMailingCountryId" type="String"/>
+    <aura:attribute name="managerId" type="String"/>
+    <aura:attribute name="contactAccId" type="String"/>
+    <aura:attribute name="measurementUnit" type="String" default="34"/>
+    <aura:attribute name="totalQty" type="Double"/>
+    <aura:attribute name="totalQty_t" type="Double"/>
+    <aura:attribute name="isRecordTypeSelectionVisible" type="Boolean" default="false"/>
+    <aura:attribute name="isRecordEditFormVisible" type="Boolean" default="false"/>
+    <aura:attribute name="isModalOpen" type="boolean" default="false" />
+    <aura:attribute name="deletedFileId" type="String" default='' />
+
+    <aura:attribute name="isSaveAndSubmit" type="boolean" default="false" />
+
+    <aura:attribute name="parentAction" type="Aura.Action"/>
+
+    
+    
+
+    <aura:attribute name="filetype" type="List"
+        default="['.png', '.jpg', '.jpeg','.pdf','.doc','.docx','.xls','.xlsx','.txt','.rtf']" />
+    <aura:attribute name="fileId" type="String[]" />
+    <aura:attribute name="fileNames" type="List" default="[]" />
+    <aura:attribute name="recordId" type="String" />
+    
+
+    <aura:if isTrue="{!v.isRecordTypeSelectionVisible}">
+        <section class="slds-modal slds-fade-in-open slds-modal--large" role="dialog" tabindex="-1" 
+                 aria-labelledby="modal-heading-01" 
+                 aria-modal="true" aria-describedby="modal-content-id-1">
+            <div id="modal1" class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="modal-header slds-hyphenate"> {!$Label.c.New_Enquiry} </h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium scrollable" id="modal-content-id-1">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_1-of-2 select-rt">
+                          <span>{!$Label.c.Select_a_product_type}</span>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 record-type-radios">
+                            <div>
+                                <lightning:radioGroup name="recordTypes"
+                                                        options="{! v.recordTypes }"
+                                                        type="radio"
+                                                        onchange="{! c.handleChange }"
+                                                        value="{! v.selectedRecordTypeId }"/>
+                            </div>
+                        </div>
+                      </div>
+                    
+                            
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning:button label="{!$Label.c.Cancel}" onclick="{!v.parentAction}"/>
+                    <lightning:button variant="brand" label="{!$Label.c.Next}" onclick="{! c.handleNext }" />
+                </footer>
+            </div>
+        </section>
+    </aura:if>
+    <aura:if isTrue="{!v.isRecordEditFormVisible}">
+        <lightning:recordEditForm aura:id="recordEditForm" objectApiName="CustomerEnquiry__c" recordTypeId="{! v.selectedRecordTypeId }"
+                                  onsubmit="{!c.handleSave}"
+                                  onsuccess="{!c.callSuccess}">
+        <section class="slds-modal slds-fade-in-open slds-modal--large" role="dialog" 
+                 tabindex="-1" aria-labelledby="modal-heading-01" 
+                 aria-modal="true" aria-describedby="modal-content-id-1">
+            <div id="modal2" class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-text-heading--medium slds-hyphenate"></h2>
+                </header>
+                
+                <div class="slds-modal__content slds-p-around_medium scrollable" id="modal-content-id-1">
+                    
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2">
+                                <!-- <label for="countryLookup">State</label> -->
+                                <lightning:inputField aura:id="countryLookup" fieldName="Country__c" label="{!$Label.c.Reclamation_Date}"
+                                                      value="{!v.contactMailingCountryId}" variant='label-stacked'/>
+
+                                <!-- <label for="managerLookup">State</label> -->
+                                <lightning:inputField aura:id="managerLookup" fieldName="SalesRepId__c" 
+                                                      value="{!v.managerId}" variant='label-stacked'/>
+
+                                <lightning:inputField aura:id="accountLookup" fieldName="AccountId__c"
+                                                      value="{!v.contactAccId}" variant='label-stacked' class="slds-hidden"/>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <!-- <label for="MeasurementUnit__c">State</label> -->
+                                <lightning:inputField fieldName="MeasurementUnit__c" variant='label-stacked' value="{!v.measurementUnit}"/>
+                                <!-- <label for="TotalQuantity__c">State</label> -->
+                                <lightning:inputField fieldName="TotalQuantity__c" variant='label-stacked' value="{!v.totalQty}" onchange="{!c.onTotalQtyChange}"/>
+                                <!-- <label for="TotalQuantity_t__c">State</label> -->
+                                <lightning:inputField fieldName="TotalQuantity_t__c" variant='label-stacked' value="{!v.totalQty_t}" disabled="{!v.measurementUnit == '34'}"/>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12">
+                                <!-- <label for="Description__c">State</label> -->
+                                <lightning:inputField fieldName="Description__c" variant='label-stacked'/>
+                            </div>
+                        </div>
+                    
+                        <lightning:fileUpload label="" name="fileUploader" multiple="true"
+                        accept="{!v.filetype}" recordId="{!v.recordId}" onuploadfinished="{!c.handleUploadFinished}" />
+                        <aura:iteration items="{!v.fileNames}" var="name">
+                            <div>
+                                <p class="slds-text-heading_small slds-m-vertical_xx-small" style="display: inline-block;">{!name.name}
+                                    - {!$Label.c.CustomerSupportFileLoaded}
+                                </p>
+                                <lightning:buttonIcon iconName="utility:close" class="slds-m-left_x-small slds-m-bottom_xx-small"
+                                    variant="bare" onclick="{! c.openModel }" alternativeText="Delete" title="Delete"
+                                    value="{!name.documentId}" />
+                            </div>
+                        </aura:iteration>
+                </div>
+
+                
+<!-- {! c.handleEditFormCancel } -->
+
+                <footer class="slds-modal__footer">
+                    <lightning:button class="slds-m-top_small" label="{!$Label.c.Cancel}" onclick="{!v.parentAction}"/>
+                    <button id="submitButton" class="slds-m-top_small slds-button slds-button_brand" variant="brand" type="submit">{!$Label.c.Save}</button>
+                    <lightning:button class="slds-m-top_small" variant="brand" label= "{!$Label.c.Save_and_Confirm}" onclick="{!c.handeSaveAndSubmit}"/>       
+                    <lightning:navigation aura:id="navService"/>
+                </footer>
+            </div>
+        </section>
+            </lightning:recordEditForm>
+            <aura:if isTrue="{!v.isModalOpen}">
+
+            <!-- Modal/Popup Box starts here-->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box Header Starts here-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close" onclick="{!v.parentAction}"
+                            alternativeText="close" variant="bare-inverse" class="slds-modal__close" />
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Delete File</h2>
+                    </header>
+                    <!--Modal/Popup Box Body Starts here-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <p><b>{!$Label.c.Are_you_sure_to_delete_this_file}
+                            </b>
+                        </p>
+                    </div>
+                    <!--Modal/Popup Box Footer Starts here-->
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral" label="{!$Label.c.Cancel}" title="Cancel" onclick="{!v.parentAction}" />
+                        <lightning:button variant="brand" label="OK" title="OK" onclick="{!c.deleteFile}" />
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+    </aura:if>
+</aura:component>

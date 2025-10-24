@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Salutation__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(TEXT(Respondent__r.Salutation),
+  &quot;Mr.&quot;, &quot;Dear Mr.&quot;,
+  &quot;Mrs.&quot;, &quot;Dear Mrs&quot;,
+  &quot;Ms.&quot;, &quot;Dear Ms&quot;,
+  &quot;Пані&quot;, &quot;Шановна Пані&quot;,
+  &quot;Пан&quot;, &quot;Шановний Пане&quot;,
+  &quot;Господин&quot;, &quot;Уважаемый Господин&quot;,
+  &quot;Госпожа&quot;, &quot;Уважаемая Госпожа&quot;,
+  &quot;Dear Mr./Mrs.&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Salutation</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

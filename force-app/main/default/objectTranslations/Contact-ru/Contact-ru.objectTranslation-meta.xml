@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Internal Contact Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description>Любой человек за пределами нашей компании (клиент, партнер, конкурент, др.)</description>
+        <label>Внешний</label>
+        <name>External</name>
+    </recordTypes>
+    <recordTypes>
+        <description>Наш сотрудник</description>
+        <label>Внутренний</label>
+        <name>Internal</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Lead Contact --></label>
+        <name>Lead_Contact</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- You must specify the value in the &quot;Mailing Country&quot; field --></errorMessage>
+        <name>Require_Mailing_Address</name>
+    </validationRules>
+</CustomObjectTranslation>

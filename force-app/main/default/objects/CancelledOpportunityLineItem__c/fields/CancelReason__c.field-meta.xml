@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CancelReason__c</fullName>
+    <label>Cancel Reason</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Out of size range</fullName>
+                <default>false</default>
+                <label>Out of size range</label>
+            </value>
+            <value>
+                <fullName>Out of steel grade</fullName>
+                <default>false</default>
+                <label>Out of steel grade</label>
+            </value>
+            <value>
+                <fullName>Out of product range</fullName>
+                <default>false</default>
+                <label>Out of product range</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

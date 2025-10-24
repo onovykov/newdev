@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- LotType --></label>
+    <name>LotType__c</name>
+    <picklistValues>
+        <masterLabel>Delivered</masterLabel>
+        <translation><!-- Delivered --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Produced</masterLabel>
+        <translation><!-- Produced --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Shipped</masterLabel>
+        <translation><!-- Shipped --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

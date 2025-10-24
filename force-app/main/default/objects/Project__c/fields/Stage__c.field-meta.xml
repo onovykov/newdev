@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage__c</fullName>
+    <inlineHelpText>Where are we now in our deal for the project</inlineHelpText>
+    <label>Stage</label>
+    <required>true</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Planning</fullName>
+                <default>true</default>
+                <label>Planning</label>
+            </value>
+            <value>
+                <fullName>Announced</fullName>
+                <default>false</default>
+                <label>Announced</label>
+            </value>
+            <value>
+                <fullName>Tendering &amp; bidding</fullName>
+                <default>false</default>
+                <label>Tendering &amp; bidding</label>
+            </value>
+            <value>
+                <fullName>Prequalification</fullName>
+                <default>false</default>
+                <label>Prequalification</label>
+            </value>
+            <value>
+                <fullName>Bid submission</fullName>
+                <default>false</default>
+                <label>Bid submission</label>
+            </value>
+            <value>
+                <fullName>Bid Evaluation</fullName>
+                <default>false</default>
+                <label>Bid Evaluation</label>
+            </value>
+            <value>
+                <fullName>Awarded</fullName>
+                <default>false</default>
+                <label>Awarded</label>
+            </value>
+            <value>
+                <fullName>Commissioning</fullName>
+                <default>false</default>
+                <label>Commissioning</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NeedsSalesManagerApproval__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>An indicator, saying that a PAR needs to be approved by Sales Manager after Sales Rep has confirmed it</description>
+    <label>Needs Sales Manager Approval</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

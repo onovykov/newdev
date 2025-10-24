@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>RFP Opportunity Layout</layout>
+        <sections>
+            <label><!-- Cross Market --></label>
+            <section>Cross Market</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Segment --></label>
+            <section>Industry Segment</section>
+        </sections>
+        <sections>
+            <label><!-- Lost Details --></label>
+            <section>Lost Details</section>
+        </sections>
+        <sections>
+            <label><!-- Opportunity Value --></label>
+            <section>Opportunity Value</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Tender Opportunity Layout</layout>
+        <sections>
+            <label><!-- Cross Market --></label>
+            <section>Cross Market</section>
+        </sections>
+        <sections>
+            <label><!-- Forecast --></label>
+            <section>Forecast</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Segment --></label>
+            <section>Industry Segment</section>
+        </sections>
+        <sections>
+            <label><!-- Lost Details --></label>
+            <section>Lost Details</section>
+        </sections>
+        <sections>
+            <label><!-- Opportunity Value --></label>
+            <section>Opportunity Value</section>
+        </sections>
+        <sections>
+            <label><!-- Preparation for Tender --></label>
+            <section>Preparation for Tender</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Add Product --></label>
+        <name>Add_new_Product</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Cancel Opportunity --></label>
+        <name>Cancel_Opportunity</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Quote --></label>
+        <name>CreateQuote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Send To Backoffice --></label>
+        <name>Send_To_Backoffice</name>
+    </quickActions>
+    <recordTypes>
+        <description><!-- New Client`s Enquiry --></description>
+        <label><!-- New Client`s Enquiry --></label>
+        <name>New_Client_Enquiry</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Request for Proposal (not tender) --></description>
+        <label><!-- Tubes: Simple RFP --></label>
+        <name>Tubes_RFP</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Participating in customer&apos;s tender --></description>
+        <label><!-- Tubes: Tender --></label>
+        <name>Tubes_Tender</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Request for proposal (not tender) --></description>
+        <label><!-- Wheels: Simple RFP --></label>
+        <name>Wheels_RFP</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Participation in customer&apos;s tender --></description>
+        <label><!-- Wheels: Tender --></label>
+        <name>Wheels_Tender</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- You can&apos;t change stage from &quot;Сlosed Won&quot; to another status --></errorMessage>
+        <name>Closed_Status</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Created Date can`t be grater than CloseDate --></errorMessage>
+        <name>Created_Date_Conrol</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- ❌ You cannot create an Opportunity for accounts with activity type Unknown, Banned, or Cancelled --></errorMessage>
+        <name>Do_not_create_Opp_if_Account_Unknown</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Opportunity creation for Account without value in the &quot;ID in ERP&quot; field is prohibited! --></errorMessage>
+        <name>Do_not_create_Opp_without_ID_ERP_on_Acc</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- ⚠️WARNING! Expected Delivery Date is required field and cannot be empty! --></errorMessage>
+        <name>ExpectedDelivDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>
+            <!-- ❌ERROR!
+&quot;Expected Delivery Date&quot; cannot be empty and cannot be less or equal Today! -->
+        </errorMessage>
+        <name>Expected_delivery_date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can&apos;t change stage from Cancelled to Closed. --></errorMessage>
+        <name>From_Cancelled_to_Closed_Stage</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Specify the reason why the opportunity is lost --></errorMessage>
+        <name>LostReason</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Specify market segment (region) --></errorMessage>
+        <name>MarketSegment</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- An opportunity must have at least one product before placing it to the &quot;Closed won&quot; stage --></errorMessage>
+        <name>Products_number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Payment Terms is required --></errorMessage>
+        <name>Require_PaymentTerms</name>
+    </validationRules>
+</CustomObjectTranslation>

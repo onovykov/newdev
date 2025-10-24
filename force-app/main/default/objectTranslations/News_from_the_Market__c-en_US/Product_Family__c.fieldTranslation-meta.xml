@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Product Family --></label>
+    <name>Product_Family__c</name>
+    <picklistValues>
+        <masterLabel>Billet</masterLabel>
+        <translation><!-- Billet --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>LP/GU</masterLabel>
+        <translation><!-- LP/GU --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mechanical</masterLabel>
+        <translation><!-- Mechanical --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OCTG</masterLabel>
+        <translation><!-- OCTG --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Welded</masterLabel>
+        <translation><!-- Welded --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wheels</masterLabel>
+        <translation><!-- Wheels --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

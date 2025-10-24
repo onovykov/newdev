@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Owner_Test__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Owner to test the joined report</description>
+    <label>Owner_Test</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Sales_Plan_and_Fact</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

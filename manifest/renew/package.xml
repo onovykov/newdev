@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <!-- Код -->
+    <types>
+        <members>*</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>ApexTrigger</name>
+    </types>
+
+    <!-- UI компоненти -->
+    <types>
+        <members>*</members>
+        <name>LightningComponentBundle</name> <!-- LWC -->
+    </types>
+    <types>
+        <members>*</members>
+        <name>AuraDefinitionBundle</name> <!-- Якщо користуєтесь Aura -->
+    </types>
+
+    <!-- Flows -->
+    <types>
+        <members>*</members>
+        <name>Flow</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>FlowDefinition</name>
+    </types>
+
+    <!-- Дані та метадані об’єктів -->
+    <types>
+        <members>*</members>
+        <name>CustomObject</name> <!-- Підтягне ВСЕ всередині кастомних об’єктів: поля, валідації, лейаути тощо -->
+    </types>
+    <types>
+        <members>*</members>
+        <name>RecordType</name> <!-- Для стандартних об’єктів (рекорд-тайпи на кастомних уже зайдуть з CustomObject) -->
+    </types>
+    <types>
+        <members>*</members>
+        <name>Layout</name> <!-- Лейаути стандартних об’єктів -->
+    </types>
+
+    <version>61.0</version>
+</Package>

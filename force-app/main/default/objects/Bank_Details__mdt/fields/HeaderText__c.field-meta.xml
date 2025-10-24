@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HeaderText__c</fullName>
+    <defaultValue>&quot;Dear Sirs,&lt;br/&gt;We thankfully acknowledge receipt of your enquiry &amp; we are pleased to submit our offer for the supply of materials with the following additional details:&quot;</defaultValue>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>HeaderText</label>
+    <length>32768</length>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

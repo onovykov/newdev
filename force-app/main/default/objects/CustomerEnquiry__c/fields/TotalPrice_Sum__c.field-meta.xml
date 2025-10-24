@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TotalPrice_Sum__c</fullName>
+    <description>Rollup summary of all enquiry products total prices. Should be hidden on layouts, as it is only used as a helper for TotalPrice__c field.</description>
+    <label>Total Price (Sum)</label>
+    <summarizedField>CustomerEnquiryProduct__c.TotalPrice__c</summarizedField>
+    <summaryForeignKey>CustomerEnquiryProduct__c.CustomerEnquiryId__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

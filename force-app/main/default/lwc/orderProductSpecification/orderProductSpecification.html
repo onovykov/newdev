@@ -1,0 +1,149 @@
+<template>
+    <div >
+        <div class="slds-col slds-p-around_x-small" if:true={orderItem}>
+            <div>
+                <div
+                    class="slds-grid slds-wrap slds-grid_vertical-align-center slds-m-top_medium slds-m-bottom_medium">
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Product_Type}</p>
+                        <p class="description-detail border-bottom-gray"><b>{orderItem.Drawing__r.WheelProduct__c}</b></p>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Drawing}</p>
+                        <p class="description-detail border-bottom-gray"><b>{orderItem.Drawing__r.Name}</b></p>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Product_Name}</p>
+                        <p class="description-detail border-bottom-gray"><b>{orderItem.Name__c}</b></p>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Name_to_Srandard}</p>
+                        <p class="description-detail border-bottom-gray"><b>{nameForDoc}</b></p>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Specification}</p>
+                        <p class="description-detail border-bottom-gray"><b>{orderItem.KLWSpec__r.Name}</b></p>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Product_Details}</p>
+                        <p class="description-detail border-bottom-gray"><b>{prodDetails}</b></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-grid slds-grid_align-start slds-p-around_large slds-size_3-of-3">
+                <p class="header-detail">{labels.site_prodSpec_Specification} {orderItem.KLWSpec__r.Name}</p>
+            </div>
+
+            <div class="slds-col slds-p-around_x-small">
+                <div
+                    class="slds-grid slds-wrap slds-grid_vertical-align-center slds-m-top_medium slds-m-bottom_medium">
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Exec_Category}</p>
+                        <p class="description-detail border-bottom-gray"><b>{execCategory}</b></p>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Name_to_Srandard}</p>
+                        <p class="description-detail border-bottom-gray"><b>{nameForDoc}</b></p>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Marking_Type}</p>
+                        <p class="description-detail border-bottom-gray"><b>{marking}</b></p>
+                    </div>
+
+                    <div if:false={isWheels} class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Steel_Grade}</p>
+                        <p class="description-detail border-bottom-gray"><b>{steelGrade}</b></p>
+                    </div>
+
+                    <div if:false={isWheels} class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Standard}</p>
+                        <p class="description-detail border-bottom-gray"><b>{standard}</b></p>
+                    </div>
+
+                    <div if:true={isWheelsets} class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Axle_Box}</p>
+                        <p class="description-detail border-bottom-gray"><b>{axleBox}</b></p>
+                    </div>
+                    
+                    <div if:true={isWheelsets} class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Bearer}</p>
+                        <p class="description-detail border-bottom-gray"><b>{bearer}</b></p>
+                    </div>
+
+                    <div if:true={isWheels} class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Imbalance}</p>
+                        <p class="description-detail border-bottom-gray"><b>{imbalance}</b></p>
+                    </div>
+
+                    <div if:true={isWheels} class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Oil_Hole}</p>
+                        <p class="description-detail border-bottom-gray"><b>{oilHole}</b></p>
+                    </div>
+
+                    <div if:true={isWheelsOrAxles} class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Plug_Type}</p>
+                        <p class="description-detail border-bottom-gray"><b>{plugType}</b></p>
+                    </div>
+
+                    <div if:true={isWheelsOrAxles} class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Cover_Type}</p>
+                        <p class="description-detail border-bottom-gray"><b>{coverType}</b></p>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Cover_Material}</p>
+                        <p class="description-detail border-bottom-gray"><b>{cover}</b></p>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Packing_Type}</p>
+                        <p class="description-detail border-bottom-gray"><b>{packing}</b></p>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Inspection}</p>
+                        <p class="description-detail border-bottom-gray"><b>{inspection}</b></p>
+                    </div>
+
+                    <div if:false={isTyres} class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Purpose}</p>
+                        <p class="description-detail border-bottom-gray"><b>{purpose}</b></p>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Has_Spec_Req}</p>
+                        <p class="description-detail border-bottom-gray"><b>{hasSpecReq}</b></p>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Weight_kg}</p>
+                        <p class="description-detail border-bottom-gray"><b>{weightKG}</b></p>
+                    </div>
+
+                    <div if:true={isWheels} class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Shape}</p>
+                        <p class="description-detail border-bottom-gray"><b>{shape}</b></p>
+                    </div>
+                    
+                    <div if:true={isWheelsets} class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Wheel_Specification}</p>
+                        <p class="description-detail border-bottom-gray"><b>{specWheel}</b></p>
+                    </div>
+                    
+                    <div if:true={isWheelsets} class="slds-col slds-size_1-of-3 slds-p-around_x-small slds-m-bottom_large">
+                        <p class="label-detail">{labels.site_prodSpec_Axle_Specification}</p>
+                        <p class="description-detail border-bottom-gray"><b>{specAxle}</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

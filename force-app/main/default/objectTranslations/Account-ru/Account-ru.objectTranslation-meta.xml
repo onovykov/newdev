@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Компания</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Компании</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value>Компанию</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value>Компании</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value>Компании</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value>Компаний</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value>Компании</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value>Компаниям</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>false</plural>
+        <value>Компанией</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>true</plural>
+        <value>Компаниями</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>false</plural>
+        <value>Компании</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>true</plural>
+        <value>Компаниях</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Test --></label>
+        <name>Test</name>
+    </fieldSets>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>Competitor Layout</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Assortment --></label>
+            <section>Assortment</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Corporate Group Layout</layout>
+        <sections>
+            <label><!-- Addresses --></label>
+            <section>Addresses</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Customer Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Dealing Status --></label>
+            <section>Dealing Status</section>
+        </sections>
+        <sections>
+            <label><!-- Delivery &amp; Payment Terms --></label>
+            <section>Delivery &amp; Payment Terms</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Funnel --></label>
+            <section>Sales Funnel</section>
+        </sections>
+        <sections>
+            <label><!-- Website, Email, Phone --></label>
+            <section>Website, Email, Phone</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Customer Room Site Layout</layout>
+        <sections>
+            <label><!-- Dealing Status --></label>
+            <section>Dealing Status</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Partner Layout</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Дочерняя компания</label>
+        <name>Child_Account</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Статус доставки клиенту</label>
+        <name>Client_Delivery_Status</name>
+    </quickActions>
+    <recordTypes>
+        <label>Конкурент</label>
+        <name>Competitor</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Корпоративная группа</label>
+        <name>CorporateGroup</name>
+    </recordTypes>
+    <recordTypes>
+        <description>Клиент (Конечный потребитель или торговый посредник)</description>
+        <label>Клиент</label>
+        <name>Customer</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Партнер</label>
+        <name>Partner</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Scrap Supplier --></label>
+        <name>Scrap_Supplier</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- You must specify values in the &quot;Industry&quot; and &quot;Website&quot; fields for ACTIVE Account --></errorMessage>
+        <name>ACTIVE_Account</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You do not have access to update Virtual type --></errorMessage>
+        <name>Do_not_update_Virtual_Type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>
+            <!-- This account is UNDER SANCTIONS!!!\n
+Its Activity Type must be FREEZED only! -->
+        </errorMessage>
+        <name>Freeze_Sanctions</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot change Name for Account with Activity Type «Active» --></errorMessage>
+        <name>No_Change_Name_in_Active_Account</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You don&apos;t have permission to edit the Activity Type field. --></errorMessage>
+        <name>Only_Admin_can_change_Activity_type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must specify values in &quot;Billing Country&quot; and &quot;Shipping Country&quot; fields for the customer --></errorMessage>
+        <name>Require_Billing_Shipping_Address</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only System Administrator can set the value &quot;Inner Firm&quot; in the &quot;Type&quot; field --></errorMessage>
+        <name>Type_Rule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only System Administrator can set value in the &quot;Under Sanctions&quot; field in FALSE --></errorMessage>
+        <name>Under_Sanctions_False_Set</name>
+    </validationRules>
+</CustomObjectTranslation>

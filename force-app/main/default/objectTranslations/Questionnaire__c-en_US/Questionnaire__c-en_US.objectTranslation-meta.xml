@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Questionnaire</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Questionnaires</value>
+    </caseValues>
+    <layouts>
+        <layout>Questionnaire Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Clone --></label>
+        <name>Clone</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Responses --></label>
+        <name>Create_Responses</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Get XLSX --></label>
+        <name>Get_XLSX</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Send Invites --></label>
+        <name>Send_Invites</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Send Recall --></label>
+        <name>Send_Recall</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

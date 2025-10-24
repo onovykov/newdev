@@ -1,0 +1,166 @@
+<template>
+    <lightning-card>
+        <section role="dialog" aria-modal="true" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_full">
+            <div class="slds-modal__container">
+      
+                <!-- Header -->
+                <header class="slds-modal__header slds-p-around_x-small">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="Close" size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                
+                    <div class="slds-grid slds-wrap slds-grid_align-spread slds-m-bottom_small slds-grid_align-end">
+
+                        <div class="slds-form-element">
+                            <label class="slds-checkbox_toggle slds-grid">
+                              <span class="slds-form-element__label slds-m-bottom_none">Base</span>
+                              <input type="checkbox" name="checkbox-toggle-18" value="checkbox-toggle-18" aria-describedby="checkbox-toggle-18" onchange={handleFamilyTypeCheckboxChange}/>
+                              <span id="checkbox-toggle-18" class="slds-checkbox_faux_container">
+                                <span class="slds-checkbox_faux"></span>
+                                <span class="slds-checkbox_on"></span>
+                                <span class="slds-checkbox_off"></span>
+                              </span>
+                            </label>
+                        </div>
+                        <lightning-button variant="brand" label={label.cancelChanges} onclick={handleCancelChanges} class="slds-m-left_small"></lightning-button>
+                        <lightning-button variant="brand" label={label.calculateChanges} onclick={handleCalculateChanges} class="slds-m-left_small"></lightning-button>
+                        <lightning-button variant="brand" label={label.applyChanges} onclick={handleApplyChanges} class="slds-m-left_small" disabled={isApplyDisabled}></lightning-button>
+                    </div>
+
+                    <div class="slds-grid slds-modal__content slds-p-around_xxx-small">
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered slds-size_1-of-3">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th scope="col">Quota (t)</th>
+                                        <!-- <th scope="col">New Quote (t)</th>
+                                        <th scope="col">Δ Quote (t)</th> -->
+                                        <th scope="col">AddQty (t)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                       <td class="slds-text-align_right">
+                                            <lightning-formatted-number value={overallTotals.quoteT} maximum-fraction-digits="2" minimum-fraction-digits="2"></lightning-formatted-number>
+                                        </td>
+                                        <!-- <td class="slds-text-align_right">
+                                            <lightning-formatted-number value={overallTotals.newQuoteT} maximum-fraction-digits="2" minimum-fraction-digits="2"></lightning-formatted-number>
+                                        </td>
+                                        <td class="slds-text-align_right">
+                                            <lightning-formatted-number value={overallTotals.deltaQuoteT} maximum-fraction-digits="2" minimum-fraction-digits="2"></lightning-formatted-number>
+                                        </td> -->
+                                        <td class="slds-text-align_right">
+                                            <lightning-formatted-number value={overallTotals.addQtyT} maximum-fraction-digits="2" minimum-fraction-digits="2"></lightning-formatted-number>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered slds-size_2-of-3">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th scope="col">Family Type</th>
+                                    <th scope="col">Quota (t)</th>
+                                    <th scope="col">AddQty (t)</th>
+                                    <th scope="col">Percent (%)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={familyTypeTotals} for:item="row">
+                                    <tr key={row.familyType}>
+                                        <td>{row.familyType}</td>
+                                        <td class="slds-text-align_right">
+                                            <lightning-formatted-number value={row.quoteT} maximum-fraction-digits="2" minimum-fraction-digits="2"></lightning-formatted-number>
+                                        </td>
+                                        <td class="slds-text-align_right">
+                                            <lightning-formatted-number value={row.addQtyT} maximum-fraction-digits="2" minimum-fraction-digits="2"></lightning-formatted-number>
+                                        </td>
+                                        <td if:false={isWrongPercent} class="slds-text-align_right">
+                                            <lightning-formatted-number value={row.newPercent} maximum-fraction-digits="2" minimum-fraction-digits="2"></lightning-formatted-number>
+                                        </td>
+                                        <td if:true={isWrongPercent} style="background-color:rgb(255, 134, 134);" class="slds-text-align_right">
+                                            <lightning-formatted-number value={row.newPercent} maximum-fraction-digits="2" minimum-fraction-digits="2"></lightning-formatted-number>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </header>
+      
+                <!-- Body -->
+                <div class="slds-modal__content slds-p-around_x-small">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th scope="col" style="width: 13%;">Family Type</th>
+                                <th scope="col" style="width: 13%;">Family</th>
+                                <th if:true={isManagerVisible} scope="col" style="width: 13%;">Manager</th>
+                                <th if:true={isRegionVisible} scope="col" style="width: 13%;">Region</th>
+                                <th if:true={isGroup3Visible} scope="col" style="width: 12%;">Group3</th>
+                                <th scope="col" style="width: 12%;">Percent (%)</th>
+                                <th scope="col" style="width: 12%;">Approved Quota (t)</th>
+                                <th scope="col" style="width: 12%;">AddQty (t)</th>
+                                <th scope="col" style="width: 12%;">New Quota (t)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={filteredQuotaData} for:item="row">
+                                <tr key={row.quoteStructDetailId}>
+                                    <td>{row.familyType}</td>
+                                    <td>{row.family}</td>
+                                    <td if:true={isManagerVisible}>{row.manager}</td>
+                                    <td if:true={isRegionVisible}>{row.region}</td>
+                                    <td if:true={isGroup3Visible}>{row.group3}</td>
+                                    <td>
+                                        <lightning-input 
+                                          type="number" 
+                                          value={row.percent} 
+                                          step="0.01"
+                                          data-id={row.quoteStructDetailId}
+                                          data-field="percent"
+                                          variant = "label-hidden"
+                                          onchange={handleInputChange}>
+                                        </lightning-input>
+                                    </td>
+                                    <td class="slds-text-align_right">
+                                        <lightning-formatted-number 
+                                          value={row.quoteT} 
+                                          maximum-fraction-digits="2"
+                                          minimum-fraction-digits="2">
+                                        </lightning-formatted-number>
+                                    </td>
+                                    <td>
+                                        <lightning-input 
+                                          type="number" 
+                                          value={row.addQty} 
+                                          data-id={row.quoteStructDetailId}
+                                          step="0.01"
+                                          data-field="addQty"
+                                          variant = "label-hidden"
+                                          onchange={handleInputChange}>
+                                        </lightning-input>
+                                    </td>
+                                    <td class="slds-text-align_right">
+                                        <lightning-formatted-number 
+                                          value={row.newQuota} 
+                                          maximum-fraction-digits="2"
+                                          minimum-fraction-digits="2">
+                                        </lightning-formatted-number>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+      
+                <!-- Footer -->
+                <footer class="slds-modal__footer">
+                  <button class="slds-button slds-button_neutral" onclick={closeModal}>Close</button>
+                </footer>
+      
+            </div>
+        </section>
+    </lightning-card>
+   
+  <div class="slds-backdrop slds-backdrop_open"></div>
+</template>

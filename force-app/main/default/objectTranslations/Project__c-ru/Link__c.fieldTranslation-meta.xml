@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Пожалуйста, добавьте ссылку на сайт проекта или на сайт о информации о проекте</help>
+    <label>Ссылка</label>
+    <name>Link__c</name>
+</CustomFieldTranslation>

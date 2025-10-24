@@ -1,0 +1,95 @@
+.print-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 28px;
+    gap: 12px;
+    height: 58px;
+    background: #FFDD00;
+    border-radius: 18px;
+}
+
+.select-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 28px;
+    gap: 12px;
+    height: 58px;
+    background: #FFDD00;
+    border-radius: 18px;
+}
+
+.print-btn:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.select-btn:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.deselect-btn:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+.print-text {
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.selection-text {
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+
+.deselect-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 28px;
+    gap: 12px;
+    height: 58px;
+    background: #ff5026;
+    border-radius: 18px;
+}
+
+
+.deselect-btn.disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+    pointer-events: all !important;
+}
+
+.print-btn.disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+    pointer-events: all !important;
+}
+
+
+.header-block {
+    padding-bottom: 15px;
+}
+
+.btns-block {
+    gap: 15px;
+}
+
+.xlsx-icon {
+    width: 20px;
+    height: 20px;
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Typical size of the tube. --></help>
+    <label><!-- Type --></label>
+    <name>Type__c</name>
+    <picklistValues>
+        <masterLabel>DRL</masterLabel>
+        <translation><!-- DRL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Specified</masterLabel>
+        <translation><!-- Not Specified --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>R1</masterLabel>
+        <translation><!-- R1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>R2</masterLabel>
+        <translation><!-- R2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>R3</masterLabel>
+        <translation><!-- R3 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SRL</masterLabel>
+        <translation><!-- SRL --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

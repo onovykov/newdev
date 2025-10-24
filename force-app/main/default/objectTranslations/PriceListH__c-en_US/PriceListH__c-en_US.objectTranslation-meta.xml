@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Price List (H)</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Price Lists (H)</value>
+    </caseValues>
+    <layouts>
+        <layout>Price List Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- All_Prices --></label>
+        <name>All_Prices</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- All_Prices_Report --></label>
+        <name>All_Prices_Report</name>
+    </webLinks>
+</CustomObjectTranslation>

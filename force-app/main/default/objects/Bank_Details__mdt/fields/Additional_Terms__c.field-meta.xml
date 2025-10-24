@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Additional_Terms__c</fullName>
+    <defaultValue>&quot;a) The offer is for total quantity, if partial quantity is ordered, we reserve the right to accept or reject the order.&quot; + 
+&quot;&lt;br/&gt; b) Production and Delivery time is given considering current mill booking position; A firm delivery schedule will be mutually discussed &amp; agreed upon at the time of contract signing.&quot; + 
+&quot;&lt;br/&gt; c) Any amendments of a.m. conditions must be subject to prior approval.&quot;</defaultValue>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Additional Terms</label>
+    <length>32768</length>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

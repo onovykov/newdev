@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SpecWS__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Spec WS</label>
+    <referenceTo>SpecificationBase__c</referenceTo>
+    <relationshipLabel>Spec WS Link</relationshipLabel>
+    <relationshipName>Spec_WS_Link</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

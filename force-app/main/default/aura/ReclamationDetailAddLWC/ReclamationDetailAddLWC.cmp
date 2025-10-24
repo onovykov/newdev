@@ -1,0 +1,40 @@
+<aura:component access="global" implements="flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:hasRecordId,lightning:availableForFlowScreens" >
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
+    <aura:method name="parentMethod" action="{!c.reloadItemPage}"/>
+    <lightning:messageChannel type="addReclamationProduct__c"
+        onMessage="{!c.handleMessage}" />
+        <aura:attribute name="parentValueReclamation" type="String" />
+    
+  
+    <c:siteReclamationsDatatable aura:id="lWCComponent" onaddedproduct="{!c.handleAddedProduct}" />
+
+
+    
+        <div class="container2 slds-grid slds-grid_align-end">
+        <div class="slds-m-around_small ">
+            
+            <aura:if isTrue="{!v.isModalOpen}">                     
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <!-- Modal/Popup Box Header Starts here-->
+                        <header class="slds-modal__header">
+                            <lightning:buttonIcon iconName="utility:close"
+                                                onclick="{! c.closeModel }"
+                                                alternativeText="close"
+                                                variant="bare-inverse"
+                                                class="slds-modal__close"/>
+                        
+                        </header>
+                        <!--Modal/Popup Box Body Starts here-->
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">                      
+                            <c:ReclamationDetailAdd recordId="{!v.parentValueReclamation}"  parentAction="{!c.closeModel}" reloadPageParent="{! this }"/>
+                        </div>
+                                        
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+    </div>
+</aura:component>

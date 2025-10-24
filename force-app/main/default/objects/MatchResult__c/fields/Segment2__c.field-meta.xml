@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Segment2__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(TEXT(account2Id__r.MarketSegment__c),
+  &apos;00001&apos;,&apos;America&apos;,
+  &apos;00002&apos;,&apos;MENA&apos;,
+  &apos;00004&apos;,&apos;Europe&apos;,
+  &apos;00006&apos;,&apos;KLW&apos;,
+  &apos;00010&apos;,&apos;CIS&apos;,
+  &apos;00011&apos;,&apos;Ukraine&apos;,
+  &apos;00100&apos;,&apos;Steel&apos;,
+  &apos;&apos;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Segment2</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Production plant where the shop is located. --></help>
+    <label>Завод</label>
+    <name>Plant__c</name>
+    <relationshipLabel><!-- Shops --></relationshipLabel>
+</CustomFieldTranslation>

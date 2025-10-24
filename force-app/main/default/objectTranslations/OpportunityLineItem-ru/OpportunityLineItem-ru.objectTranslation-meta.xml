@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Opportunity Product Layout</layout>
+        <sections>
+            <label><!-- Quantity and Price --></label>
+            <section>Quantity and Price</section>
+        </sections>
+        <sections>
+            <label><!-- Status --></label>
+            <section>Status</section>
+        </sections>
+        <sections>
+            <label><!-- Tubular Product Characteristics --></label>
+            <section>Tubular Product Characteristics</section>
+        </sections>
+        <sections>
+            <label><!-- Wheel Product Characteristics --></label>
+            <section>Wheel Product Characteristics</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

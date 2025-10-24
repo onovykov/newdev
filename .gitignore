@@ -1,0 +1,30 @@
+﻿# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Node / PHP
+node_modules/
+vendor/
+
+# Env / local
+.env
+.env.local
+.env.*.local
+
+# Salesforce / SFDX
+.sfdx/
+.sf/
+.cache/
+*.log
+*.tmp
+
+# Build artifacts
+dist/
+build/
+
+# VSCode history
+.history/

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>ITENumber__c</columns>
+    <columns>Year__c</columns>
+    <columns>Month__c</columns>
+    <columns>WeekNum__c</columns>
+    <columns>DateFrom__c</columns>
+    <columns>DateTo__c</columns>
+    <columns>DatePlan__c</columns>
+    <columns>ProdPlanType__c</columns>
+    <columns>PlanQty_t__c</columns>
+    <columns>ValidDate__c</columns>
+    <columns>DateSnapshot__c</columns>
+    <columns>OrderItem__c</columns>
+    <columns>ProdWeek__c</columns>
+    <columns>Shop__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

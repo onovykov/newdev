@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Read</fullName>
+        <default>false</default>
+        <label>Read</label>
+    </customValue>
+    <customValue>
+        <fullName>Edit</fullName>
+        <default>false</default>
+        <label>Edit</label>
+    </customValue>
+    <customValue>
+        <fullName>All</fullName>
+        <default>false</default>
+        <label>All</label>
+    </customValue>
+    <customValue>
+        <fullName>None</fullName>
+        <default>false</default>
+        <label>None</label>
+    </customValue>
+    <masterLabel>Share Access Level</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

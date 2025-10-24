@@ -1,0 +1,13 @@
+<aura:component implements="forceCommunity:themeLayout">
+    <aura:attribute name="Header" type="Aura.Component[]"/>
+    <aura:attribute name="Content" type="Aura.Component[]"/>
+    <aura:attribute name="Footer" type="Aura.Component[]"/>
+    <div class="slds-grid slds-grid--align-center">
+                <div class="slds-col">
+                    {!v.Footer}
+                </div>
+            </div>
+        <div class="slds-col content">
+            {!v.body}
+        </div>
+</aura:component>

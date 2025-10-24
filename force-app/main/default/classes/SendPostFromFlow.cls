@@ -1,0 +1,43 @@
+global without sharing class SendPostFromFlow {
+	@InvocableMethod
+   public static void sendPost(List<String> idCreatedOpportunity) {
+    
+    String currentUserId = UserInfo.getUserId();
+    User getUserInfo = [SELECT contact.account.ownerid, AssignedBOS__c FROM User WHERE id =:currentUserId LIMIT 1];  
+    String ownerAccoutId = getUserInfo.contact.account.ownerid; 
+    String assignedBosId = getUserInfo.AssignedBOS__c;
+    String urlProduction = system.label.OrganizationURL;
+       
+    FeedItem post = new FeedItem();
+    post.ParentId = ownerAccoutId;
+    post.Body = 'Opportunity was created. Link: '+ urlProduction + '/'+idCreatedOpportunity[0]; 
+       
+    FeedItem post2 = new FeedItem();
+    post2.ParentId = assignedBosId;
+    post2.Body = 'Opportunity was created. Link: '+ urlProduction + '/'+idCreatedOpportunity[0];  
+       
+       if(assignedBosId!=null){
+           insert post2; 
+       }
+       
+       if(ownerAccoutId!=null){
+           insert post; 
+       }
+  Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
+    
+    message.optOutPolicy = 'FILTER';
+    message.subject = 'New Opportunity';
+    message.htmlbody = 'Opportunity was created. Link: '+ urlProduction+ '/'+idCreatedOpportunity[0]; 
+       try{
+           User ownerEmail  = [SELECT email FROM user WHERE id =:ownerAccoutId limit 1];   
+           User assignedBosEmail  = [SELECT Email FROM USER WHERE id=:assignedBosId limit 1]; 
+           message.toAddresses = new String[] { ownerEmail.email,assignedBosEmail.Email};   
+           Messaging.SingleEmailMessage[] messages =   new List<Messaging.SingleEmailMessage> {message};
+           Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
+       } catch (exception e){
+           system.debug(e.getMessage());
+       }
+      
+   }
+    
+}

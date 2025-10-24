@@ -1,0 +1,288 @@
+<apex:page showHeader="false" extensions="QuotePDF"
+		standardcontroller="Quote" standardstylesheets="false" renderAs="pdf" 
+           applybodytag="false" applyhtmltag="false" >
+	<head>
+        <style>
+            @page {
+                size: portrait;
+
+                @top-center {
+                    content: element(header);
+                }
+            }
+
+
+
+            @page :left {
+                margin: 140px 0 2.5cm 0;
+            }
+
+            @page :right {
+                margin: 140px 0 2.5cm 0;
+            }
+
+            body {
+                margin: 0 2.5cm 0 2cm;
+                font-family: Arial Unicode MS, Calibri, Geneva, Arial, Helvetica, sans-serif;
+                font-size: 12px;
+            }
+
+            .heading {
+                text-align: center;
+                font-weight: bold;
+                
+                font-size: 17px;
+                text-decoration: underline;
+                margin-left: 1cm;
+                margin-top: 1cm;
+                margin-bottom: 0;
+            }
+
+
+
+            .footerheading {
+                font-family: Helvetica, sans-serif;
+                font-size: 18px;
+                color: gray;
+                margin-left: 95px;
+            }
+
+            .footertext {
+                font-family: Geneva, sans-serif;
+                font-size: 11px;
+                color: gray;
+                margin-left: 95px;
+            }
+
+            b {
+                font-weight: bold;
+                
+            }
+
+            p {
+                margin: 0;
+            }
+
+            caption {
+                text-align: left;
+                padding-top: 30px;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                page-break-inside: avoid;
+                margin: 5px -1cm 0 0;
+            }
+
+            td, th {
+                text-align: center;
+            }
+
+            div.header {
+                position: running(header);
+            }
+
+                div.header:after {
+                    background: url('{!$Resource.Logo100}') no-repeat center center;
+                    height: 2.5cm;
+                    width: 2cm;
+                    text-align: center;
+                    position: absolute;
+                    top: 0px;
+                    right: 90px;
+                    content: " ";
+                    display: block;
+
+                }
+
+
+
+            tr.tableHeader th {
+                background-color: gray;
+                color: white;
+            }
+
+            tr.odd {
+                background-color: #ffffff;
+                z-index: 10;
+            }
+
+            tr.even {
+                background-color: #efefef;
+                z-index: 10;
+            }
+
+            tr.totals > td {
+                border-top: 1px solid black;
+                border-right: none;
+            }
+
+            td {
+                /*position: relative;
+            	z-index: 10;*/
+                border-right: 1px solid black;
+                /*padding: 0px;
+            	margin: 0px;*/
+            }
+                /*td:after{
+			    content: " ";
+			    width: 1px;
+			    height: 100%;
+			    position: absolute;
+			    right: 0;
+			    top: 0;
+			    background-color: black;
+			    display: block;
+			    z-index: 999999;
+            }*/
+                td.lastCell {
+                    border-right: none;
+                }
+
+                td.alignRight {
+                    text-align: right;
+                }
+
+            .grandTotalCapture {
+                background-color: transparent !important;
+                border-left: 0px solid black !important;
+                border-top: 0px solid black !important;
+                border-bottom: 0px solid black !important;
+                border-right: 1px solid black !important;
+                color: black !important;
+                text-align: right !important;
+            }
+
+            table.grandTotals tr .allBorders {
+                border: 1px solid black;
+            }
+
+            .fixedWidth {
+                width: 100px;
+            }
+
+            .tabulation {
+                margin-left: 2.6cm;
+            }
+
+            th {
+                min-width: 1cm;
+            }
+        </style>
+    </head>
+    <body>
+    	<div class="header"></div>
+
+        <br/>
+		<br/>
+        <br/><br/>
+        <b>№: {!numPdfs}</b><br/>
+		<b>Дата:  
+		<apex:outputtext value=" {!todayRus}"/>
+        </b><br/>
+        
+		<div class="heading">Коммерческое и техническое предложение</div>
+        <br/><br/><br/><br/>
+        <b>Тема: {!quote.Name}</b><br/>
+		<b>Кому: {!quote.QuoteNumber}</b><br/>
+        <br/><br/><br/>
+		<br/>
+        <br/>
+		
+        <apex:outputText escape="false" value="Уважаемый {!sirName},<br/><br/><br/>Мы благодарны за Ваше обращение и высылаем 
+                свое коммерческое предложение на поставку продукции в соответствии с требуемыми стандартами и условиями.<br/><br/>
+                Выражаем надежду на дальнейшее сотрудничество и ожидаем Ваш ответ.<br/>
+                <br/>С уважением," /><br/>
+
+        <div>
+            <div style="display: inline-block; margin-right:20px;">
+                <apex:outputText escape="false" value="{!if(!ISBLANK(curUser.Full_Name_Rus__c), curUser.Full_Name_Rus__c, curUser.Name)}<br/>
+                Менеджер по продажам<br/>
+                Тел: {!curUser.Phone}<br/>
+                Email: {!userEmail}<br/>
+                www.interpipe.biz"/>
+            </div>
+            <div style="{!IF (!ISBLANK(curUserSignature), 'display:inline-block', 'display:none')}">
+            	<apex:image url="/sfc/servlet.shepherd/version/download/{!curUserSignature}" alt="{!curUserSignatureTitle}"
+                        height="60px" rendered="{! !ISBLANK(curUserSignature)}"/>
+        	</div>
+        </div>
+        
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        
+		<apex:variable var="countTable" value="{!0}" />
+		<apex:variable var="showNotForMT" value="{true}"/>
+		<apex:variable var="labelToApiMap" value="{!apinameToLabelMap}"/>
+		<apex:variable var="keyList" value="{!groupKeys}"/>
+		<apex:variable value="{!0}" var="index" />
+		
+		
+
+		<!-- Iterate over groups of line items -->
+		<apex:repeat var="tableI" value="{!listOpps}">
+            <apex:variable var="showLBFT" value="{!showLB_FTForTables[countTable]}" />
+            <apex:variable var="showWT" value="{!showWTForTables[countTable]}" />
+			<apex:variable var="showNotForMT" value="{!tableI[0].InquiryUnit__c!='34'}" />
+			<div >
+
+				<table>
+					<caption>
+						<b>Техническая спецификация и цены:</b>
+					</caption>
+					<tr class="tableHeader">
+						<th>Тип продукта</th>
+						<th>Чертеж №</th>
+                        <th>Спецификация</th>
+                        <th>Марка стали</th>
+                        <th>Размер Ø, мм</th>
+                        <th>Количество, шт</th>   
+						<th>Вес, кг</th>
+		                <th class="alignRight">Цена за шт.<br/>(без НДС)</th>
+		            </tr>
+		        
+		        	<!-- Iterate over rows -->
+		        	<apex:variable var="localCounter" value="{!1}"/>
+					<apex:repeat value="{!tableI}" var="line">
+			            <tr class="{!if(mod(localCounter,2)==0, 'odd', 'even')}">
+			            	<td style="text-align: left;">{!line.Product2.Name}</td>
+			              	<td></td>
+                            <td>{!line.ProductSpecLevel__r.Name}</td>
+                            <td>{!line.SteelGrade__r.ShortName__c}</td>
+                            <td>{!line.TubeLengthSize__r.ShortName__c}</td>
+                            <td class="alignRight">{!oliIdToFormattedDataMap[line.Id].Quantity}</td>
+			              	<td>{!line.Weight_ppf__c}</td>
+			              	<td class="alignRight">{!oliIdToFormattedDataMap[line.Id].InquiryUnitPrice__c}</td>
+			            </tr>
+			            <apex:variable var="localCounter" value="{!localCounter+1}"/>	       
+			        </apex:repeat>
+		        </table>
+
+		        <br/><br/>
+	        </div>
+			<apex:variable var="countTable" value="{!countTable+1}"/>
+		</apex:repeat>
+
+        <b>Производство:</b>
+        <ul Style="list-style-type:none">
+            <li>-<b>  Страна происхождения:&nbsp;</b><apex:outputText escape="false" value="Украина" /></li>
+            <li>-<b>  Завод:&nbsp;</b><apex:outputText escape="false" value="{!manufacturerAndOriginRus}" /></li>
+            <li>-<b>  Стандарт:&nbsp;</b><apex:outputText value="{!tolerance}" /></li>
+        </ul>
+        <b>Инспекция: </b>
+        <apex:outputText escape="false" value="{!quoteThirdPartyInspectionRus}" /><br/><br/>
+        <b>Условия и сроки доставки: </b>
+        <apex:outputText escape="false" value="{!quote.DeliveryTerms__r.NameRus__c}" />
+        <ul Style="list-style-type:none" Class="tabulation">
+            <li>-	Дата доставки: {!productionDeliveryDateCIS}</li>
+            <li>-	Дополнительная маркировка при доставке: {!additionalMarkingOnDeliveryRus}</li>
+            <li>-	Дополнительные требования по доставке: {!additionalTermsOnDeliveryRus}</li>
+        </ul>
+        <b>Условия оплаты: </b>
+        <apex:outputText escape="false" value="{!quotePaymentTermsNameFull}" /><br/><br/>  
+        <b>Дополнительные требования и условия: </b><br/>
+        <apex:outputText escape="false" value="{!additionalTermsWheelsRus}" /><br/><br/>
+        <b>Срок действия предложения: </b>
+        <apex:outputText escape="false" value="{!expirationDateCIS}" />
+    </body>
+</apex:page>

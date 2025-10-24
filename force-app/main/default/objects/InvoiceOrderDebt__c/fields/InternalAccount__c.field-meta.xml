@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>InternalAccount__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Внітрішні аккаунти Інтерпайп в Сейлсфорс</description>
+    <label>Internal Account</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Invoice Order Debts (Internal Account)</relationshipLabel>
+    <relationshipName>Invoice_Order_Debts1</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

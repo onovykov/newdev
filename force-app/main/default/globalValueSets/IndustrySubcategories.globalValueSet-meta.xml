@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Upstream</fullName>
+        <default>false</default>
+        <label>Upstream</label>
+    </customValue>
+    <customValue>
+        <fullName>Downstream</fullName>
+        <default>false</default>
+        <label>Downstream</label>
+    </customValue>
+    <customValue>
+        <fullName>Midstream</fullName>
+        <default>false</default>
+        <label>Midstream</label>
+    </customValue>
+    <customValue>
+        <fullName>Roads</fullName>
+        <default>false</default>
+        <label>Roads</label>
+    </customValue>
+    <customValue>
+        <fullName>Metro</fullName>
+        <default>false</default>
+        <label>Metro</label>
+    </customValue>
+    <customValue>
+        <fullName>Railways / Tramways</fullName>
+        <default>false</default>
+        <label>Railways / Tramways</label>
+    </customValue>
+    <customValue>
+        <fullName>Power Generation</fullName>
+        <default>false</default>
+        <label>Power Generation</label>
+    </customValue>
+    <customValue>
+        <fullName>Bridges</fullName>
+        <default>false</default>
+        <label>Bridges</label>
+    </customValue>
+    <customValue>
+        <fullName>Ports</fullName>
+        <default>false</default>
+        <label>Ports</label>
+    </customValue>
+    <customValue>
+        <fullName>High-Rise Buildings</fullName>
+        <default>false</default>
+        <label>High-Rise Buildings</label>
+    </customValue>
+    <customValue>
+        <fullName>Mid-Rise Buildings</fullName>
+        <default>false</default>
+        <label>Mid-Rise Buildings</label>
+    </customValue>
+    <customValue>
+        <fullName>Individual Housing</fullName>
+        <default>false</default>
+        <label>Individual Housing</label>
+    </customValue>
+    <customValue>
+        <fullName>Commercial Buildings</fullName>
+        <default>false</default>
+        <label>Commercial Buildings</label>
+    </customValue>
+    <customValue>
+        <fullName>Administrative Buildings</fullName>
+        <default>false</default>
+        <label>Administrative Buildings</label>
+    </customValue>
+    <customValue>
+        <fullName>Local Authorities</fullName>
+        <default>false</default>
+        <label>Local Authorities</label>
+    </customValue>
+    <customValue>
+        <fullName>Industrial Projects</fullName>
+        <default>false</default>
+        <label>Industrial Projects</label>
+    </customValue>
+    <customValue>
+        <fullName>Warehouses and commercial depots</fullName>
+        <default>false</default>
+        <label>Warehouses and commercial depots</label>
+    </customValue>
+    <customValue>
+        <fullName>Industrial Machinery</fullName>
+        <default>false</default>
+        <label>Industrial Machinery</label>
+    </customValue>
+    <customValue>
+        <fullName>Heavy Machinery</fullName>
+        <default>false</default>
+        <label>Heavy Machinery</label>
+    </customValue>
+    <customValue>
+        <fullName>Construction Elements</fullName>
+        <default>false</default>
+        <label>Construction Elements</label>
+    </customValue>
+    <customValue>
+        <fullName>Shipbuilding</fullName>
+        <default>false</default>
+        <label>Shipbuilding</label>
+    </customValue>
+    <customValue>
+        <fullName>O&amp;G</fullName>
+        <default>false</default>
+        <label>O&amp;G</label>
+    </customValue>
+    <customValue>
+        <fullName>Construction</fullName>
+        <default>false</default>
+        <label>Construction</label>
+    </customValue>
+    <customValue>
+        <fullName>Wagon Manufacturing (OEM)</fullName>
+        <default>false</default>
+        <label>Wagon Manufacturing (OEM)</label>
+    </customValue>
+    <customValue>
+        <fullName>Repairing (AM)</fullName>
+        <default>false</default>
+        <label>Repairing (AM)</label>
+    </customValue>
+    <customValue>
+        <fullName>Wagon Keeping</fullName>
+        <default>false</default>
+        <label>Wagon Keeping</label>
+    </customValue>
+    <customValue>
+        <fullName>Railway Undertaking</fullName>
+        <default>false</default>
+        <label>Railway Undertaking</label>
+    </customValue>
+    <customValue>
+        <fullName>Industrial Segment</fullName>
+        <default>false</default>
+        <label>Industrial Segment</label>
+    </customValue>
+    <customValue>
+        <fullName>Wheel Set Assembling</fullName>
+        <default>false</default>
+        <label>Wheel Set Assembling</label>
+    </customValue>
+    <customValue>
+        <fullName>Wheels/Axles Processing</fullName>
+        <default>false</default>
+        <label>Wheels/Axles Processing</label>
+    </customValue>
+    <customValue>
+        <fullName>Others</fullName>
+        <default>false</default>
+        <label>Others</label>
+    </customValue>
+    <customValue>
+        <fullName>Salesforce Applications</fullName>
+        <default>false</default>
+        <label>Salesforce Applications</label>
+    </customValue>
+    <customValue>
+        <fullName>Transportation</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Transportation</label>
+    </customValue>
+    <customValue>
+        <fullName>OCTG</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>OCTG</label>
+    </customValue>
+    <customValue>
+        <fullName>Mechanical</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Mechanical</label>
+    </customValue>
+    <customValue>
+        <fullName>Automotive</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Automotive</label>
+    </customValue>
+    <customValue>
+        <fullName>Civil Construction</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Civil Construction</label>
+    </customValue>
+    <customValue>
+        <fullName>Infrastructure</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Infrastructure</label>
+    </customValue>
+    <masterLabel>Industry Subcategories</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage__c</fullName>
+    <label>Stage</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Draft</fullName>
+                <default>true</default>
+                <label>Draft</label>
+            </value>
+            <value>
+                <fullName>Needs Confirmation</fullName>
+                <default>false</default>
+                <label>Sales Rep Confirmation</label>
+            </value>
+            <value>
+                <fullName>Costing</fullName>
+                <default>false</default>
+                <label>Costing</label>
+            </value>
+            <value>
+                <fullName>PRD</fullName>
+                <default>false</default>
+                <label>Prod &amp; Resr dept</label>
+            </value>
+            <value>
+                <fullName>In Review</fullName>
+                <default>false</default>
+                <label>Additional Review</label>
+            </value>
+            <value>
+                <fullName>Resolved</fullName>
+                <default>false</default>
+                <label>Resolved</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

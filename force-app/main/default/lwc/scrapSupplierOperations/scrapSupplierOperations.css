@@ -1,0 +1,289 @@
+:host { display: block;}
+.scrap-ops { display: flex; flex-direction: column; gap: 24px; }
+
+/* Ліміти */
+.limits-container { width: 100%; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.table-wrapper { width: 100%; border-radius: 12px; overflow: hidden; box-shadow: 0 0 8px rgba(0,0,0,0.05); border: 1px solid rgb(221,221,221); }
+.title { font-size: 18px; margin-bottom: 16px; text-align: center; font-weight: 600; }
+.supplier-name { font-weight: 700; text-decoration: underline; }
+
+.limits-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 14px; background-color: rgb(255,255,255); text-align: center; }
+.limits-table thead tr { background-color: rgb(245,245,245); font-weight: 600; }
+.limits-table th, .limits-table td { padding: 12px 16px; border: 1px solid rgb(224,224,224); text-align: center; white-space: nowrap; }
+.agreed { background-color: rgb(236,253,243); }
+.left { background-color: rgb(255,251,230); font-size: 14px; font-weight: 700; }
+.limits-table th:first-child, .limits-table td:first-child { font-weight: 500; }
+.limits-table tr:first-child th:first-child { border-top-left-radius: 12px; }
+.limits-table tr:first-child th:last-child { border-top-right-radius: 12px; }
+.limits-table tr:last-child td:first-child { border-bottom-left-radius: 12px; }
+.limits-table tr:last-child td:last-child { border-bottom-right-radius: 12px; }
+.highlight-zero { background-color: rgb(255,221,221); color: rgb(164,0,0); font-weight: 700; }
+
+/* Замовлення */
+.orders-container { margin-top: 16px; background-color: rgb(255,255,255); padding: 24px; border-radius: 12px; box-shadow: 0 0 8px rgba(0,0,0,0.05); }
+.orders-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.orders-header h3 { font-size: 14px; font-weight: 600; margin: 0; }
+.order-actions { display: flex; gap: 16px; }
+
+.main-button, .secondary-button { padding: 8px 16px; font-size: 14px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; }
+.main-button { background-color: rgb(255,221,0); color: rgb(0,0,0); }
+.secondary-button { background-color: rgb(243,243,243); color: rgb(51,51,51); }
+.main-button:hover, .secondary-button:hover { opacity: 0.9; transform: scale(1.02); transition: all 0.2s ease; }
+.main-button:active, .secondary-button:active { transform: scale(0.98); background-color: rgb(230,200,0); }
+.main-button:focus, .secondary-button:focus { outline: 2px solid rgb(51,51,51); outline-offset: 2px; }
+
+.orders-table { width: 100%; border-collapse: collapse; text-align: center; font-size: 14px; }
+.orders-table th, .orders-table td { padding: 10px; border: 1px solid rgb(224,224,224); text-align: center; vertical-align: middle; }
+.nowrap { white-space: nowrap; word-break: keep-all; } /* для дати */
+
+.pass-col, .action-col, .status-col { text-align: center; white-space: nowrap; }
+
+/* Кнопка "Редагувати" */
+.edit-button {
+    padding: 6px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    background-color: rgb(255,221,0);
+    color: rgb(0,0,0);
+    cursor: pointer;
+    transition: transform .15s ease, opacity .15s ease;
+}
+.edit-button:hover { opacity: .9; transform: scale(1.02); }
+.edit-button:active { transform: scale(0.98); }
+
+/* Статус-пілі */
+.status-pill{
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.status-issued{
+    background-color: rgba(0,147,72,0.12);
+    color: rgb(0,147,72);
+    border: 1px solid rgba(0,147,72,0.25);
+}
+/* Обробка — ЖОВТИЙ */
+.status-in-progress{
+    background-color: rgba(255,221,0,0.18);
+    color: rgb(133,110,0);
+    border: 1px solid rgba(255,221,0,0.5);
+}
+.status-pending{
+    background-color: rgba(53,122,189,0.12);
+    color: rgb(53,122,189);
+    border: 1px solid rgba(53,122,189,0.25);
+}
+.status-draft{
+    background-color: rgba(120,120,120,0.12);
+    color: rgb(100,100,100);
+    border: 1px solid rgba(120,120,120,0.25);
+}
+.status-canceled{
+    background-color: rgba(166,46,46,0.12);
+    color: rgb(166,46,46);
+    border: 1px solid rgba(166,46,46,0.25);
+}
+
+/* Вигляд скасованих рядків */
+.is-canceled td{
+    color: rgb(120,120,120);
+    background-color: rgb(248,248,248);
+}
+.is-canceled .edit-button{ opacity: 0.6; pointer-events: none; }
+
+/* Ховер */
+.orders-table tbody tr:hover td{ background-color: rgb(250,250,250); }
+
+/* Якщо є перепустка — трохи підсвітити жирністю */
+.pass-col{ font-weight: 600; }
+
+/* Backdrop (для інших модалок) */
+.modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 9999; }
+
+/* Лоадер сторінки */
+.page-loader {
+    position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
+    background: rgba(255,255,255,0.65);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 99998;
+}
+.page-loader-spinner {
+    width: 56px; height: 56px;
+    border: 6px solid rgb(230,230,230);
+    border-top-color: rgb(255,221,0);
+    border-radius: 50%;
+    animation: spin-ani 900ms linear infinite;
+}
+@keyframes spin-ani { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* було: .pass-col, .action-col, .status-col { text-align:center; white-space:nowrap; } */
+.pass-col, .action-col {
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* статус тепер може переноситись */
+.status-col{
+    text-align: center;
+    white-space: normal;           /* дозволити перенос */
+}
+
+/* сама "пілюля" зі статусом: 2 рядки, центр, обмеження ширини */
+.status-pill{
+    display: inline-block;
+    max-width: 220px;              /* підбери під свою таблицю */
+    padding: 6px 12px;
+    line-height: 1.2;
+    text-align: center;
+    white-space: normal;           /* переносимо за пробілами */
+    overflow-wrap: anywhere;       /* якщо раптом довге слово/без пробілів */
+    border-radius: 999px;
+}
+
+.status-note{
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+    line-height: 1.25;
+}
+
+.truck-cell { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; }
+.truck-model { font-weight: 600; }
+
+/* читабельний номер: нейтральний фон, чіткий текст, менший розмір */
+.truck-plate {
+    display: inline-block;
+    padding: 2px 8px;
+    border: 2px solid #222;
+    border-radius: 6px;
+    background: #f7f7f7;          /* світло-сірий, високий контраст */
+    color: #111;
+    font-size: 11px;               /* менший розмір */
+    line-height: 1.1;
+    letter-spacing: 1px;           /* краща читабельність */
+    text-transform: uppercase;     /* стандарт для номерів */
+}
+
+.empty-orders-panel { padding:16px; border:1px dashed #cbd5e1; border-radius:12px; background:#f8fafc; text-align:center; }
+.empty-title { font-weight:600; margin-bottom:6px; }
+.empty-text { color:#475569; margin-bottom:12px; }
+
+/* ───── ІСТОРІЯ: мінімальні покращення ───── */
+
+.history-container { padding-top: 8px; }
+
+.history-month {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed #e5e7eb; /* тонкий роздільник між місяцями */
+}
+
+.month-title {
+    margin: 0 0 8px 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.orders-table.history { font-size: 13px; }            /* трошки дрібніше */
+.orders-table.history th,
+.orders-table.history td { padding: 8px 10px; }       /* щільніше */
+
+.orders-table.history tbody tr:nth-child(even) td {
+    background-color: #fbfbfb;                        /* легка «зебра» */
+}
+
+/* бейджі в історії компактніші */
+.history-container .status-pill {
+    max-width: 180px;
+    padding: 4px 10px;
+}
+
+/* колонка редагування в історії — приглушена */
+.history-container .action-col {
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+.info-block {
+    padding: 12px;
+    border-radius: 8px;
+    background: #f6f9ff;
+    border: 1px solid #dfe6ff;
+}
+.info-block .muted {
+    color: #5f6c7b;
+    margin: 4px 0 0;
+}
+
+/* Кнопка видалення */
+.icon-btn.danger {
+    background-color: #fff;            /* білий фон */
+    border-radius: 50%;                /* коло */
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+/* Ховер — фон стає рожевим, рамка залишається червоною */
+.icon-btn.danger:hover {
+    background-color: #fee2e2;         /* ніжно-рожевий фон */
+    border-color: #dc2626;             /* рамка залишається насиченою */
+    transform: scale(1.05);            /* легке збільшення */
+}
+
+/* Активний стан — трошки темніший рожевий */
+.icon-btn.danger:active {
+    background-color: #fecaca;         /* темніший рожевий */
+    transform: scale(0.97);            /* легке зменшення при кліку */
+}
+
+/* Іконка всередині кнопки */
+.trash-icon {
+    width: 18px;
+    height: 18px;
+    stroke: #dc2626;                    /* червона іконка за замовчуванням */
+    transition: stroke 0.2s ease-in-out;
+}
+
+/* При наведенні — іконка стає насиченішою */
+.icon-btn.danger:hover .trash-icon {
+    stroke: #b91c1c;                     /* темніший червоний */
+}
+.truck-cell, .driver-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.truck-model, .driver-name {
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.truck-plate {
+    font-family: monospace;
+}
+
+.muted {
+    color: var(--lwc-colorTextLabel, #6b7280);
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+@media (max-width: 1100px) {
+    .orders-table .driver-phone,
+    .orders-table .truck-extra {
+        font-size: 11px;
+    }
+}

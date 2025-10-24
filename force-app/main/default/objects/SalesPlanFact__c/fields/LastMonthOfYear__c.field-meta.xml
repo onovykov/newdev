@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LastMonthOfYear__c</fullName>
+    <formula>Month(Period__c) = 12</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Last Month of the Year</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

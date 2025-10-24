@@ -1,0 +1,223 @@
+<template>
+    <div class="scrap-ops">
+
+        <!-- Актуальні замовлення -->
+        <div class="orders-container">
+            <div class="orders-header">
+                <h3>Актуальні замовлення</h3>
+                <div class="order-actions">
+                    <template if:true={showReserveBtn}>
+                        <button class="main-button" onclick={openReserveModal}>+ Зарезервувати слот</button>
+                    </template>
+
+                    <template if:true={showOutOfLimitBtn}>
+                        <button class="secondary-button" onclick={openOutOfLimitModal}>Позапланове резервування</button>
+                    </template>
+
+                    <template if:true={showNoActionsInfo}>
+                        <div class="info-block">
+                            <strong>{noActionsTitle}</strong>
+                            <p class="muted">{noActionsText}</p>
+                        </div>
+                    </template>
+
+
+                </div>
+            </div>
+
+            <template if:true={showEmptyOrdersPanel}>
+                <div class="empty-state">
+                    <div class="empty-title">Замовлень за поточний місяць немає</div>
+                    <p class="empty-text">Створіть перший слот резервування, щоб розпочати поставку.</p>
+                </div>
+            </template>
+
+            <template if:true={hasOrders}>
+                <div class="table-scroll">
+                    <table class="orders-table">
+                        <thead>
+                        <tr>
+                            <th>Статус</th>
+                            <th>Дата</th>
+                            <th>Тип брухту</th>
+                            <th>Машина</th>
+                            <th>Тоннаж</th>
+                            <th>Водiй</th>
+                            <th>Адреса</th>
+                            <th>Перепустка</th>
+                            <th>Редагування</th>
+                            <th>Видалити</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <template for:each={orders} for:item="order">
+                            <tr key={order.id} class={order.rowClass}>
+                                <td class="status-col">
+                                    <span class={order.statusClass} title={order.statusPlaceholder}>{order.statusShort}</span>
+                                </td>
+                                <td class="nowrap">{order.date}</td>
+                                <td>{order.scrapType}</td>
+                                <td>
+                                    <div class="truck-cell">
+                                        <div class="truck-model">{order.truckModel}</div>
+                                        <div class="truck-plate">{order.truckPlate}</div>
+                                        <template if:true={order.trailerPlate}>
+                                            <div class="truck-extra muted">Причіп: {order.trailerPlate}</div>
+                                        </template>
+                                    </div>
+                                </td>
+                                <td>{order.tonnage}</td>
+                                <td>
+                                    <div class="driver-cell">
+                                        <div class="driver-name">{order.driver}</div>
+                                        <template if:true={order.driverPhone}>
+                                            <div class="driver-phone muted">{order.driverPhone}</div>
+                                        </template>
+                                    </div>
+                                </td>
+                                <td>{order.address}</td>
+                                <td class="pass-col">
+                                    <template if:true={order.passNumber}>{order.passNumber}</template>
+                                    <template if:false={order.passNumber}>—</template>
+                                </td>
+                                <td class="action-col">
+                                    <template if:true={order.canEdit}>
+                                        <button class="edit-button"
+                                                data-id={order.id}
+                                                onclick={handleEditPass}>
+                                            Внести зміни
+                                        </button>
+                                    </template>
+                                    <template if:false={order.canEdit}>—</template>
+                                </td>
+                                <td class="action-col">
+                                    <button class="icon-btn danger" title="Видалити" data-id={order.id} onclick={handleAskDelete} aria-label="Видалити">
+                                        <svg viewBox="0 0 24 24" fill="none" class="trash-icon">
+                                            <path d="M10 12V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M14 12V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M4 7H20"  stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10"
+                                                  stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                                                  stroke="#000000" stroke-width="2"></path>
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+        </div>
+
+        <!-- Історія замовлень -->
+        <div class="orders-container history-container">
+            <div class="orders-header">
+                <h3>Історія замовлень</h3>
+            </div>
+
+            <template if:true={hasHistory}>
+                <template for:each={historyGroups} for:item="g">
+                    <div key={g.key} class="history-month">
+                        <h4 class="month-title">{g.label}</h4>
+
+                        <div class="table-scroll">
+                            <table class="orders-table history">
+                                <thead>
+                                <tr>
+                                    <th>Статус</th>
+                                    <th>Дата</th>
+                                    <th>Тип брухту</th>
+                                    <th>Машина</th>
+                                    <th>Тоннаж</th>
+                                    <th>Водiй</th>
+                                    <th>Адреса</th>
+                                    <th>Перепустка</th>
+                                    <th>Редагування</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <template for:each={g.items} for:item="order">
+                                    <tr key={order.id} class={order.rowClass}>
+                                        <td class="status-col">
+                                            <span class={order.statusClass} title={order.statusPlaceholder}>{order.statusShort}</span>
+                                        </td>
+                                        <td class="nowrap">{order.date}</td>
+                                        <td>{order.scrapType}</td>
+                                        <td>
+                                            <div class="truck-cell">
+                                                <div class="truck-model">{order.truckModel}</div>
+                                                <div class="truck-plate">{order.truckPlate}</div>
+                                                <template if:true={order.trailerPlate}>
+                                                    <div class="truck-extra muted">причіп: {order.trailerPlate}</div>
+                                                </template>
+                                            </div>
+                                        </td>
+                                        <td>{order.tonnage}</td>
+                                        <td>
+                                            <div class="driver-cell">
+                                                <div class="driver-name">{order.driver}</div>
+                                                <template if:true={order.driverPhone}>
+                                                    <div class="driver-phone muted">{order.driverPhone}</div>
+                                                </template>
+                                            </div>
+                                        </td>
+                                        <td>{order.address}</td>
+                                        <td class="pass-col">
+                                            <template if:true={order.passNumber}>{order.passNumber}</template>
+                                            <template if:false={order.passNumber}>—</template>
+                                        </td>
+                                        <td class="action-col">—</td>
+                                    </tr>
+                                </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </template>
+            </template>
+
+            <template if:false={hasHistory}>
+                <div class="empty-state">
+                    Замовлень в історії поки немає.
+                </div>
+            </template>
+        </div>
+
+
+        <!-- приклад: показ модалки резерву -->
+        <template if:true={showReserveModal}>
+            <c-reserve-slot-modal
+                    if:true={showReserveModal}
+                    supplier-id={currentAccountId}
+                    onclose={closeReserveModal}
+                    preset-out-of-limit={outOfLimitMode}
+                    onslotcreated={handlePassCreated}>   <!-- ⬅️ -->
+            </c-reserve-slot-modal>
+
+        </template>
+
+    </div>
+
+    <!-- Модал редагування перепустки -->
+    <template if:true={showEditPass}>
+        <!-- ScrapSupplierOperations.html -->
+        <c-scrap-edit-pass-modal
+                order={selectedOrder}
+                supplier-id={currentAccountId}
+                onchanged={handleSlotChanged}
+                onclose={handleEditPassClose}>
+        </c-scrap-edit-pass-modal>
+
+
+
+    </template>
+
+    <!-- Лоадер сторінки -->
+    <template if:true={isSaving}>
+        <div class="page-loader">
+            <div class="page-loader-spinner"></div>
+        </div>
+    </template>
+</template>

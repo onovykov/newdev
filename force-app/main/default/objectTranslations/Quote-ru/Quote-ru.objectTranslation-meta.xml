@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Quote Layout</layout>
+        <sections>
+            <label><!-- PDF Top and Tail --></label>
+            <section>PDF Top and Tail</section>
+        </sections>
+        <sections>
+            <label><!-- Quote Information in Russian --></label>
+            <section>Quote Information in Russian</section>
+        </sections>
+        <sections>
+            <label><!-- Quote Information in Ukranian --></label>
+            <section>Quote Information in Ukranian</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Edit Products --></label>
+        <name>Edit_Products</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Создать PDF</label>
+        <name>PDF</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SendEmail --></label>
+        <name>SendEmail</name>
+    </quickActions>
+</CustomObjectTranslation>

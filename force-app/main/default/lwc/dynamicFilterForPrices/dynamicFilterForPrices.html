@@ -1,0 +1,17 @@
+<template>
+    <template lwc:if={filters}>
+        <div class="slds-grid slds-grid_align-end">
+            <lightning-button-icon icon-name="utility:refresh" alternative-text="Reset Filters" class="slds-p-around_xx-small" onclick={resetFilters}></lightning-button-icon>
+        </div>
+
+        <div class="slds-grid slds-gutters_direct-xxx-small slds-var-p-left_xx-small slds-var-p-right_xx-small">
+            <template for:each={filters} for:item="filter">
+                <div class="slds-col" key={filter.api}>
+                    <lightning-input name={filter.api} type={filter.type} label={filter.label} value={filter.value}
+                        onchange={handleChange} data-label={filter.label}>
+                    </lightning-input>
+                </div>
+            </template>
+        </div>
+    </template>
+</template>

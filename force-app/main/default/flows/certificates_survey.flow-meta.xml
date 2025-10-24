@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <choices>
+        <name>c_06af6388_825d_4be1_9552_df33cf543bcc</name>
+        <choiceText>more than 3000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>more than 3000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_14925c2b_efe0_44df_a78d_ebc5e9c5b965</name>
+        <choiceText>0 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>0 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_1a99d55f_2310_4d8b_baa8_d0f8f3c510bf</name>
+        <choiceText>more than 3000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>more than 3000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_2870d206_a716_4d26_94e5_38c743be0ce2</name>
+        <choiceText>2000-3000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>2000-3000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_29e1ddec_d8cc_49e6_9b4d_6f98b227db4b</name>
+        <choiceText>100-500 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>100-500 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_2e8271d0_6215_4c92_ac8f_629fe8e3f6f8</name>
+        <choiceText>1000-2000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>1000-2000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_2fcc1c07_3281_4bb9_996c_e5fa4b5685bd</name>
+        <choiceText>more than 3000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>more than 3000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_3e06452b_133a_41cf_86d0_15601e030516</name>
+        <choiceText>500-1000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>500-1000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_4bb6d0c9_1124_46cc_9f38_38d4d28e98c1</name>
+        <choiceText>500-1000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>500-1000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_5480f190_27d3_41c0_8a67_1cfd561331c6</name>
+        <choiceText>0 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>0 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_577f22e3_4d52_4f4d_bba2_d714693e2711</name>
+        <choiceText>0 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>0 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_5bca3347_b121_4c1e_8559_277c96c4a2ea</name>
+        <choiceText>2000-3000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>2000-3000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_6685d5dd_0e99_448b_b750_803a56eada6a</name>
+        <choiceText>500-1000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>500-1000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_77c541ae_21b2_402c_8421_b94e4c3faa47</name>
+        <choiceText>1000-2000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>1000-2000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_78d7ef63_219e_4f2c_b642_b35fa1d8e91d</name>
+        <choiceText>500-1000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>500-1000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_79670f1e_2969_41f1_9890_d173ead5c429</name>
+        <choiceText>0 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>0 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_7da288c7_8eda_4a87_b749_93f366408ade</name>
+        <choiceText>2000-3000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>2000-3000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_8551fb85_ecae_41fc_894b_bd695e9839f3</name>
+        <choiceText>100-500 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>100-500 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_8fceea46_f2b6_4283_9f78_38ac76d1c458</name>
+        <choiceText>1000-2000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>1000-2000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_9ac79aed_b1e5_4138_a6cb_2b86c4c7cb35</name>
+        <choiceText>0 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>0 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_9f8d9e14_236f_4df5_b60d_d605b5312092</name>
+        <choiceText>more than 3000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>more than 3000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_a3f1f814_4cc4_40e8_9795_7f81645a36b7</name>
+        <choiceText>500-1000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>500-1000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_da77effd_54cc_450e_bdc2_6af11f2bbb7e</name>
+        <choiceText>100-500 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>100-500 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_dcabfd85_69b4_46b2_a37a_ab15c5657cf8</name>
+        <choiceText>more than 3000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>more than 3000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_df969bd9_4b85_47ab_a5fd_ade930bc6b54</name>
+        <choiceText>100-500 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>100-500 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_e7cba206_d756_408c_870a_bbca495f55e3</name>
+        <choiceText>more than 3000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>more than 3000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_ed7cc802_30e1_40ba_bad4_a0c1cbe1563b</name>
+        <choiceText>2000-3000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>2000-3000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_eefdfa65_0f1a_4b73_ac34_d525176f14a7</name>
+        <choiceText>100-500 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>100-500 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_f20a5424_03fd_45a9_9799_3076654c9996</name>
+        <choiceText>1000-2000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>1000-2000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_f35f7ee5_f12a_4678_a25b_ea953a679666</name>
+        <choiceText>100-500 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>100-500 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_f4ef9f45_79cb_40a0_9838_7c4a86a8eeda</name>
+        <choiceText>1000-2000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>1000-2000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_f6153c74_0faf_44fa_9d96_84b38ee9a6d5</name>
+        <choiceText>0 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>0 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_f6fd4ecc_b065_42d5_b856_b0bb929c7239</name>
+        <choiceText>2000-3000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>2000-3000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_f81ab116_e26c_4664_8a2e_fc9bc447407a</name>
+        <choiceText>1000-2000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>1000-2000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_f9805762_6943_4128_b07e_f20c1fc37210</name>
+        <choiceText>500-1000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>500-1000 Mt</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_f9f66b52_5a91_4457_95e3_105c718bb5ce</name>
+        <choiceText>2000-3000 Mt</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>2000-3000 Mt</stringValue>
+        </value>
+    </choices>
+    <interviewLabel>Certificates Survey﻿</interviewLabel>
+    <label>Certificates Survey﻿</label>
+    <processMetadataValues>
+        <name>BrandingSet</name>
+        <value>
+            <stringValue>certificates_survey_4</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>autoProgressEnabled</name>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>hasWelcomePage</name>
+        <value>
+            <booleanValue>true</booleanValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>overrideActiveVersion</name>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </processMetadataValues>
+    <processType>Survey</processType>
+    <screens>
+        <name>p_2e09c82e_2567_4198_891d_266ca7c84d6d</name>
+        <label>Page 2</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>p_887baea7_8cef_4ced_948a_0af952b5d4bc</targetReference>
+        </connector>
+        <fields>
+            <processMetadataValues>
+                <name>autoProgressAction</name>
+                <value>
+                    <stringValue>NONE</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>q_a51c7099_e40a_4629_a831_974202670b0e</name>
+            <choiceReferences>c_577f22e3_4d52_4f4d_bba2_d714693e2711</choiceReferences>
+            <choiceReferences>c_f35f7ee5_f12a_4678_a25b_ea953a679666</choiceReferences>
+            <choiceReferences>c_78d7ef63_219e_4f2c_b642_b35fa1d8e91d</choiceReferences>
+            <choiceReferences>c_f20a5424_03fd_45a9_9799_3076654c9996</choiceReferences>
+            <choiceReferences>c_f9f66b52_5a91_4457_95e3_105c718bb5ce</choiceReferences>
+            <choiceReferences>c_dcabfd85_69b4_46b2_a37a_ab15c5657cf8</choiceReferences>
+            <dataType>String</dataType>
+            <extensionName>survey:runtimeRadioButton</extensionName>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-family: Calibri, sans-serif; font-size: 11pt;&quot;&gt;Det Norske Veritas GL&lt;/b&gt;&lt;span style=&quot;font-family: Calibri, sans-serif; font-size: 11pt;&quot;&gt; &lt;/span&gt;Certificate - Volume Mt&lt;/p&gt;</fieldText>
+            <fieldType>ComponentChoice</fieldType>
+            <helpText>Please choose approximate Volume Mt</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <processMetadataValues>
+                <name>autoProgressAction</name>
+                <value>
+                    <stringValue>NONE</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>q_488e30e8_0238_418e_91d5_8cdbadf2997d</name>
+            <dataType>String</dataType>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 11pt; font-family: Calibri, sans-serif;&quot;&gt;Det Norske Veritas GL - &lt;/b&gt;&lt;span style=&quot;font-size: 11pt; font-family: Calibri, sans-serif;&quot;&gt;main clients&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>Please write customers who require this certificate</helpText>
+            <isRequired>false</isRequired>
+        </fields>
+        <pausedText>Survey paused. To pick up where you left off, refresh this page or click the link in your survey invitation.</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>p_671aee6a_54a7_440b_8498_29b73796b0ea</name>
+        <label>Page 4</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>p_e430a2f2_2ecb_4dbd_ad87_32c7975ef0cc</targetReference>
+        </connector>
+        <fields>
+            <processMetadataValues>
+                <name>autoProgressAction</name>
+                <value>
+                    <stringValue>NONE</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>q_71437e0d_a9b5_4988_9133_86bfd2e87303</name>
+            <choiceReferences>c_14925c2b_efe0_44df_a78d_ebc5e9c5b965</choiceReferences>
+            <choiceReferences>c_29e1ddec_d8cc_49e6_9b4d_6f98b227db4b</choiceReferences>
+            <choiceReferences>c_6685d5dd_0e99_448b_b750_803a56eada6a</choiceReferences>
+            <choiceReferences>c_2e8271d0_6215_4c92_ac8f_629fe8e3f6f8</choiceReferences>
+            <choiceReferences>c_5bca3347_b121_4c1e_8559_277c96c4a2ea</choiceReferences>
+            <choiceReferences>c_9f8d9e14_236f_4df5_b60d_d605b5312092</choiceReferences>
+            <dataType>String</dataType>
+            <extensionName>survey:runtimeRadioButton</extensionName>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 11pt; font-family: Calibri, sans-serif;&quot;&gt;UL&lt;span class=&quot;ql-cursor&quot;&gt;&lt;/span&gt; &lt;/b&gt;Certificate - Volume Mt&lt;/p&gt;</fieldText>
+            <fieldType>ComponentChoice</fieldType>
+            <helpText>Please choose approximate Volume Mt</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <processMetadataValues>
+                <name>autoProgressAction</name>
+                <value>
+                    <stringValue>NONE</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>q_0d0864e2_4f29_450c_b343_47430886aea6</name>
+            <dataType>String</dataType>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-family: Calibri, sans-serif; font-size: 11pt;&quot;&gt;UL&lt;span class=&quot;ql-cursor&quot;&gt;&lt;/span&gt;- &lt;/b&gt;&lt;span style=&quot;font-family: Calibri, sans-serif; font-size: 11pt;&quot;&gt;main clients&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>Please write customers who require this certificate</helpText>
+            <isRequired>false</isRequired>
+        </fields>
+        <pausedText>Survey paused. To pick up where you left off, refresh this page or click the link in your survey invitation.</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>p_887baea7_8cef_4ced_948a_0af952b5d4bc</name>
+        <label>Page 3</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>p_671aee6a_54a7_440b_8498_29b73796b0ea</targetReference>
+        </connector>
+        <fields>
+            <processMetadataValues>
+                <name>autoProgressAction</name>
+                <value>
+                    <stringValue>NONE</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>q_69100620_d887_4047_8b9c_3383d3340b96</name>
+            <choiceReferences>c_5480f190_27d3_41c0_8a67_1cfd561331c6</choiceReferences>
+            <choiceReferences>c_eefdfa65_0f1a_4b73_ac34_d525176f14a7</choiceReferences>
+            <choiceReferences>c_3e06452b_133a_41cf_86d0_15601e030516</choiceReferences>
+            <choiceReferences>c_8fceea46_f2b6_4283_9f78_38ac76d1c458</choiceReferences>
+            <choiceReferences>c_2870d206_a716_4d26_94e5_38c743be0ce2</choiceReferences>
+            <choiceReferences>c_06af6388_825d_4be1_9552_df33cf543bcc</choiceReferences>
+            <dataType>String</dataType>
+            <extensionName>survey:runtimeRadioButton</extensionName>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 11pt; font-family: Calibri, sans-serif;&quot;&gt;Lloyd’s Register&lt;span class=&quot;ql-cursor&quot;&gt;&lt;/span&gt;&lt;/b&gt;&lt;span style=&quot;font-size: 11pt; font-family: Calibri, sans-serif;&quot;&gt; &lt;/span&gt;Certificate - Volume Mt&lt;/p&gt;</fieldText>
+            <fieldType>ComponentChoice</fieldType>
+            <helpText>Please choose approximate Volume Mt</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <processMetadataValues>
+                <name>autoProgressAction</name>
+                <value>
+                    <stringValue>NONE</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>q_19f01189_23d2_4881_842a_65ccbc666a55</name>
+            <dataType>String</dataType>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-family: Calibri, sans-serif; font-size: 11pt;&quot;&gt;Lloyd’s Register&lt;span class=&quot;ql-cursor&quot;&gt;&lt;/span&gt;&lt;span class=&quot;ql-cursor&quot;&gt;&lt;/span&gt; - &lt;/b&gt;&lt;span style=&quot;font-family: Calibri, sans-serif; font-size: 11pt;&quot;&gt;main clients&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>Please write customers who require this certificate</helpText>
+            <isRequired>false</isRequired>
+        </fields>
+        <pausedText>Survey paused. To pick up where you left off, refresh this page or click the link in your survey invitation.</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>p_e430a2f2_2ecb_4dbd_ad87_32c7975ef0cc</name>
+        <label>Page 5</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>p_ec5da2d6_2b71_4166_a6b5_0c2ff8ea7a64</targetReference>
+        </connector>
+        <fields>
+            <processMetadataValues>
+                <name>autoProgressAction</name>
+                <value>
+                    <stringValue>NONE</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>q_b94b1c61_8a22_4467_9ecb_768c1e91cfa9</name>
+            <choiceReferences>c_79670f1e_2969_41f1_9890_d173ead5c429</choiceReferences>
+            <choiceReferences>c_8551fb85_ecae_41fc_894b_bd695e9839f3</choiceReferences>
+            <choiceReferences>c_f9805762_6943_4128_b07e_f20c1fc37210</choiceReferences>
+            <choiceReferences>c_f4ef9f45_79cb_40a0_9838_7c4a86a8eeda</choiceReferences>
+            <choiceReferences>c_7da288c7_8eda_4a87_b749_93f366408ade</choiceReferences>
+            <choiceReferences>c_e7cba206_d756_408c_870a_bbca495f55e3</choiceReferences>
+            <dataType>String</dataType>
+            <extensionName>survey:runtimeRadioButton</extensionName>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-family: Calibri, sans-serif; font-size: 11pt;&quot;&gt;UDT &lt;/b&gt;Certificate - Volume Mt&lt;/p&gt;</fieldText>
+            <fieldType>ComponentChoice</fieldType>
+            <helpText>Please choose approximate Volume Mt</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <processMetadataValues>
+                <name>autoProgressAction</name>
+                <value>
+                    <stringValue>NONE</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>q_718d760a_8cc1_4f20_8829_0d5e7743d5f0</name>
+            <dataType>String</dataType>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 11pt; font-family: Calibri, sans-serif;&quot;&gt;&lt;span class=&quot;ql-cursor&quot;&gt;&lt;/span&gt;UDT- &lt;/b&gt;&lt;span style=&quot;font-size: 11pt; font-family: Calibri, sans-serif;&quot;&gt;main clients&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>Please write customers who require this certificate</helpText>
+            <isRequired>false</isRequired>
+        </fields>
+        <pausedText>Survey paused. To pick up where you left off, refresh this page or click the link in your survey invitation.</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>p_ec5da2d6_2b71_4166_a6b5_0c2ff8ea7a64</name>
+        <label>Page 6</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <processMetadataValues>
+                <name>autoProgressAction</name>
+                <value>
+                    <stringValue>NONE</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>q_82e6b8c9_0c1b_468e_9245_13c4b16239a6</name>
+            <dataType>String</dataType>
+            <fieldText>&lt;p&gt;&lt;b&gt;Other certificates&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>If there are other certificates required in your market, please add it</helpText>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <processMetadataValues>
+                <name>autoProgressAction</name>
+                <value>
+                    <stringValue>NONE</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>q_ac3b5fe1_a1df_48cc_ba61_70ca6dd71a5b</name>
+            <choiceReferences>c_f6153c74_0faf_44fa_9d96_84b38ee9a6d5</choiceReferences>
+            <choiceReferences>c_da77effd_54cc_450e_bdc2_6af11f2bbb7e</choiceReferences>
+            <choiceReferences>c_4bb6d0c9_1124_46cc_9f38_38d4d28e98c1</choiceReferences>
+            <choiceReferences>c_77c541ae_21b2_402c_8421_b94e4c3faa47</choiceReferences>
+            <choiceReferences>c_ed7cc802_30e1_40ba_bad4_a0c1cbe1563b</choiceReferences>
+            <choiceReferences>c_2fcc1c07_3281_4bb9_996c_e5fa4b5685bd</choiceReferences>
+            <dataType>String</dataType>
+            <extensionName>survey:runtimePicklist</extensionName>
+            <fieldText>&lt;p&gt;&lt;b&gt;Other Certificate - Volume Mt&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>ComponentChoice</fieldType>
+            <helpText>If you put few other certificates, than please choose total possible volume.</helpText>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <processMetadataValues>
+                <name>autoProgressAction</name>
+                <value>
+                    <stringValue>NONE</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>q_11c44630_e3be_49e1_81e1_9a3dda9007a5</name>
+            <dataType>String</dataType>
+            <fieldText>&lt;p&gt;&lt;b&gt;Other certificates - main clients&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>Please write customers who require certificates</helpText>
+            <isRequired>false</isRequired>
+        </fields>
+        <pausedText>Survey paused. To pick up where you left off, refresh this page or click the link in your survey invitation.</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>p_ff3f20f5_35b0_4fba_811e_e180d3454b4f</name>
+        <label>Page 1</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>p_2e09c82e_2567_4198_891d_266ca7c84d6d</targetReference>
+        </connector>
+        <fields>
+            <processMetadataValues>
+                <name>autoProgressAction</name>
+                <value>
+                    <stringValue>NONE</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>q_162827d2_a281_4e94_9e1c_356c4c7c4d2b</name>
+            <choiceReferences>c_9ac79aed_b1e5_4138_a6cb_2b86c4c7cb35</choiceReferences>
+            <choiceReferences>c_df969bd9_4b85_47ab_a5fd_ade930bc6b54</choiceReferences>
+            <choiceReferences>c_a3f1f814_4cc4_40e8_9795_7f81645a36b7</choiceReferences>
+            <choiceReferences>c_f81ab116_e26c_4664_8a2e_fc9bc447407a</choiceReferences>
+            <choiceReferences>c_f6fd4ecc_b065_42d5_b856_b0bb929c7239</choiceReferences>
+            <choiceReferences>c_1a99d55f_2310_4d8b_baa8_d0f8f3c510bf</choiceReferences>
+            <dataType>String</dataType>
+            <extensionName>survey:runtimeRadioButton</extensionName>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-family: Calibri, sans-serif; font-size: 11pt;&quot;&gt;RINA&lt;span class=&quot;ql-cursor&quot;&gt;&lt;/span&gt; &lt;/b&gt;Certificate - Volume Mt&lt;/p&gt;</fieldText>
+            <fieldType>ComponentChoice</fieldType>
+            <helpText>Please choose approximate Volume Mt, if  no need, than please choose 0 Mt</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <processMetadataValues>
+                <name>autoProgressAction</name>
+                <value>
+                    <stringValue>NONE</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>q_2de2ad14_2b44_4eb6_8d48_8d30ee0a099a</name>
+            <dataType>String</dataType>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 11pt; font-family: Calibri, sans-serif;&quot;&gt;RINA &lt;span class=&quot;ql-cursor&quot;&gt;&lt;/span&gt; - &lt;/b&gt;&lt;span style=&quot;font-size: 11pt; font-family: Calibri, sans-serif;&quot;&gt;main clients&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>Please write customers who require this certificate</helpText>
+            <isRequired>false</isRequired>
+        </fields>
+        <pausedText>Survey paused. To pick up where you left off, refresh this page or click the link in your survey invitation.</pausedText>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>welcome_page</name>
+        <label>Welcome Page</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>p_ff3f20f5_35b0_4fba_811e_e180d3454b4f</targetReference>
+        </connector>
+        <fields>
+            <name>welcome_question</name>
+            <extensionName>survey:runtimeWelcome</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>{!welcome_question_lref_tt}</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>description</name>
+                <value>
+                    <stringValue>{!welcome_question_dref_tt}</stringValue>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>welcome_page</startElementReference>
+    <status>Active</status>
+    <textTemplates>
+        <name>thankYouDescriptionTextTemplate</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text></text>
+    </textTemplates>
+    <textTemplates>
+        <name>thankYouLabelTextTemplate</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;b style=&quot;font-size: 20px;&quot;&gt;Thank you very much for participating in this survey. &lt;/b&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>welcome_question_dref_tt</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>Technical department is asking Sales Managers to evaluate which certificates are required on the market - please choose volume and clients/end users.</text>
+    </textTemplates>
+    <textTemplates>
+        <name>welcome_question_lref_tt</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;b style=&quot;font-size: 20px;&quot;&gt;Certificates Survey&lt;span class=&quot;ql-cursor&quot;&gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>guestUserLang</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>invitationId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>previewMode</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>thankYouDescription</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>{!thankYouDescriptionTextTemplate}</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>thankYouLabel</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>{!thankYouLabelTextTemplate}</stringValue>
+        </value>
+    </variables>
+</Flow>

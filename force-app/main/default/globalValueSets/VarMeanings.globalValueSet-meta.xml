@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>MinOD_mm</fullName>
+        <default>false</default>
+        <label>Min OD (mm)</label>
+    </customValue>
+    <customValue>
+        <fullName>MaxOD_mm</fullName>
+        <default>false</default>
+        <label>Max OD (mm)</label>
+    </customValue>
+    <customValue>
+        <fullName>OD_mm</fullName>
+        <default>false</default>
+        <label>OD (mm)</label>
+    </customValue>
+    <customValue>
+        <fullName>OD_inch</fullName>
+        <default>false</default>
+        <label>OD (inch)</label>
+    </customValue>
+    <customValue>
+        <fullName>H_mm</fullName>
+        <default>false</default>
+        <label>H (mm)</label>
+    </customValue>
+    <customValue>
+        <fullName>L_mm</fullName>
+        <default>false</default>
+        <label>L (mm)</label>
+    </customValue>
+    <customValue>
+        <fullName>NPS</fullName>
+        <default>false</default>
+        <label>NPS</label>
+    </customValue>
+    <customValue>
+        <fullName>H_inch</fullName>
+        <default>false</default>
+        <label>H (inch)</label>
+    </customValue>
+    <customValue>
+        <fullName>SCH</fullName>
+        <default>false</default>
+        <label>SCH</label>
+    </customValue>
+    <customValue>
+        <fullName>WT_mm</fullName>
+        <default>false</default>
+        <label>WT (mm)</label>
+    </customValue>
+    <customValue>
+        <fullName>WT_inch</fullName>
+        <default>false</default>
+        <label>WT (inch)</label>
+    </customValue>
+    <customValue>
+        <fullName>Type</fullName>
+        <default>false</default>
+        <label>Type</label>
+    </customValue>
+    <customValue>
+        <fullName>Tubing</fullName>
+        <default>false</default>
+        <label>Tubing</label>
+    </customValue>
+    <customValue>
+        <fullName>Casing</fullName>
+        <default>false</default>
+        <label>Casing</label>
+    </customValue>
+    <customValue>
+        <fullName>ShortName</fullName>
+        <default>false</default>
+        <label>Short Name</label>
+    </customValue>
+    <masterLabel>Var Meanings</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

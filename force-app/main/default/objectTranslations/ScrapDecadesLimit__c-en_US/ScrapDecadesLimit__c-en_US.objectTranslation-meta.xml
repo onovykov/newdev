@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ScrapDecadesLimit</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>ScrapDecadesLimit</value>
+    </caseValues>
+    <recordTypes>
+        <label><!-- Day --></label>
+        <name>Day</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Decade --></label>
+        <name>Decade</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

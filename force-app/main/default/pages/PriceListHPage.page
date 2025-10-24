@@ -1,0 +1,5 @@
+<apex:page >
+    <script>
+        window.location = '/{!$Label.Price_List_H_Id}';
+    </script>
+</apex:page>

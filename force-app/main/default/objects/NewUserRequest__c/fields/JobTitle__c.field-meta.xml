@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>JobTitle__c</fullName>
+    <label>Job Title</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>UserType__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetName>Job_Titles</valueSetName>
+        <valueSettings>
+            <controllingFieldValue>Manager Sales</controllingFieldValue>
+            <valueName>Sales Manager</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Senior Sales</controllingFieldValue>
+            <valueName>Sales Senior</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chief Sales</controllingFieldValue>
+            <controllingFieldValue>Directors</controllingFieldValue>
+            <valueName>Sales Division Head</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chief Sales</controllingFieldValue>
+            <valueName>Sales Chief Officer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BO Specialist</controllingFieldValue>
+            <valueName>BO Specialist</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BO Manager</controllingFieldValue>
+            <controllingFieldValue>Directors</controllingFieldValue>
+            <valueName>BO Director</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BO Manager</controllingFieldValue>
+            <valueName>BO Manager</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>Marketing Chief</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>Marketing Specialist</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Directors</controllingFieldValue>
+            <valueName>CEO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Directors</controllingFieldValue>
+            <valueName>PRM Director</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Directors</controllingFieldValue>
+            <controllingFieldValue>Product &amp; Resources</controllingFieldValue>
+            <valueName>PR Director</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product &amp; Resources</controllingFieldValue>
+            <valueName>Chief PM</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product &amp; Resources</controllingFieldValue>
+            <valueName>Chief Product Manager</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product &amp; Resources</controllingFieldValue>
+            <valueName>Product Manager</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product &amp; Resources</controllingFieldValue>
+            <valueName>Analytics Dept Head</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product &amp; Resources</controllingFieldValue>
+            <valueName>Analytics Manager</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product &amp; Resources</controllingFieldValue>
+            <valueName>PR Group Manager</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product &amp; Resources</controllingFieldValue>
+            <valueName>PR Manager</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT Department</controllingFieldValue>
+            <valueName>Sys Admin</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT Department</controllingFieldValue>
+            <valueName>Outsource Developer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT Department</controllingFieldValue>
+            <valueName>Support Director</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT Department</controllingFieldValue>
+            <valueName>App Admin</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT Department</controllingFieldValue>
+            <valueName>Helpdesk</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Reclamation</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Reclamations</value>
+    </caseValues>
+    <layouts>
+        <layout>Reclamation Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- System information --></label>
+            <section>System information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Reclamation Layout For CC users</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Add Product --></label>
+        <name>Add_Product</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Confirm Reclamation --></label>
+        <name>Confirm_Reclamation</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

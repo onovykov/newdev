@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Height</fullName>
+        <default>false</default>
+        <label>Height</label>
+    </customValue>
+    <customValue>
+        <fullName>Width</fullName>
+        <default>false</default>
+        <label>Width</label>
+    </customValue>
+    <customValue>
+        <fullName>Length</fullName>
+        <default>false</default>
+        <label>Length</label>
+    </customValue>
+    <customValue>
+        <fullName>Diameter</fullName>
+        <default>false</default>
+        <label>Diameter</label>
+    </customValue>
+    <customValue>
+        <fullName>Diameter type</fullName>
+        <default>false</default>
+        <label>Diameter type</label>
+    </customValue>
+    <customValue>
+        <fullName>Wall</fullName>
+        <default>false</default>
+        <label>Wall</label>
+    </customValue>
+    <customValue>
+        <fullName>Wall type</fullName>
+        <default>false</default>
+        <label>Wall type</label>
+    </customValue>
+    <customValue>
+        <fullName>Type</fullName>
+        <default>false</default>
+        <label>Type</label>
+    </customValue>
+    <masterLabel>Prod Meaning Types</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

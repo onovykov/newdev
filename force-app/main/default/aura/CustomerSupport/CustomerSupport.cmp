@@ -1,0 +1,69 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global" controller="CustomerSupportController" >
+	<aura:attribute name="managersNames" type="String[]" />
+    <aura:attribute name="managerEmailFastAnswer" type="String" />
+    <aura:attribute name="filetype" type="List" default="['.png', '.jpg', '.jpeg','.pdf','.doc']" />
+    <aura:attribute name="fileId" type="String[]" />
+    <aura:attribute name="fileNames" type="List" default="[]" />
+    <aura:attribute name="multiple" type="Boolean" default="true" />
+    <aura:attribute name="disabled" type="Boolean" default="true" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="sortedDirection" type="String" />
+    <aura:attribute name="sortedBy" type="String"/>
+    <aura:attribute name="mydata" type="Object"/>
+    <aura:attribute name="mycolumns" type="List"/> 
+    <aura:attribute name="google" type="String" default='https://www.google.com.ua/'/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_6-of-12">
+            <div class="slds-text-color_default slds-text-heading_medium slds-text-align_center" >{!$Label.c.CustomerSupportHeader}</div>
+            <div class="slds-text-color_default slds-text-heading_small slds-text-align_center">{!$Label.c.CustomerSupportSubHeader}</div>
+             
+                <lightning:select name="select" aura:id="selectName" label="Contact Name" required="true">
+                    <aura:iteration items="{!v.managersNames}" var="name">
+                            <option value="{!name.fullName}" text="{!name.fullName}"></option>
+                        </aura:iteration>
+                </lightning:select>
+        
+        <lightning:select name="select2" label="Status"  disabled="true">
+            <option value="">New</option>        
+        </lightning:select>
+        
+        <lightning:input name="input1" label="Subject" aura:id="subject"/>
+        
+        <lightning:textarea name="input2" label="Description" aura:id="description"/>
+        
+    
+        <lightning:fileUpload label="Attach receipt"
+            name="fileUploader"
+            multiple="true"
+            accept="{!v.filetype}"
+            recordId="{!v.recordId}"
+            onuploadfinished="{!c.handleUploadFinished}" />
+        <lightning:navigation aura:id="navService"/>
+             <aura:iteration items="{!v.fileNames}" var="name">
+                            <p class="slds-text-heading_small slds-m-vertical_xx-small">{!name} - {!$Label.c.CustomerSupportFileLoaded}</p>
+                        </aura:iteration>
+    	<lightning:button variant="brand" class="slds-align_absolute-center" label="Submit" title="Brand action" onclick="{!c.createSupportCase}" />
+        </div>
+        
+        <div class="slds-col slds-size_6-of-12">
+            
+            <a href='{!v.managerEmailFastAnswer}' class="slds-button slds-button_brand slds-align_absolute-center slds-m-bottom_x-small">{!$Label.c.CustomerSupportQuickAnswer}</a>
+            <div class="slds-text-color_default slds-text-heading_medium slds-text-align_center" >{!$Label.c.CustomerSupport}</div>
+            <lightning:datatable data="{! v.mydata }"
+                aura:id="accountTable"
+                columns="{! v.mycolumns }"
+                keyField="id"
+                showRowNumberColumn="true"
+                hideCheckboxColumn="true"  
+                onsort="{!c.handleSort}"
+        		sortedBy="{!v.sortedBy}"
+        		sortedDirection= "{!v.sortedDirection}"
+                /> 
+                
+        </div>
+    </div>
+</aura:component>

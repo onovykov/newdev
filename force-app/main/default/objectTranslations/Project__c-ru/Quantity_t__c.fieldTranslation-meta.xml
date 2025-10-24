@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Пожалуйста, введите общее количество по проекты в Мт</help>
+    <label>Общее количество по проекту (т)</label>
+    <name>Quantity_t__c</name>
+</CustomFieldTranslation>

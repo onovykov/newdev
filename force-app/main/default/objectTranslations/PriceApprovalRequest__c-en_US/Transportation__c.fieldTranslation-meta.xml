@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Is the transportation cost calculated by Logistic Department --></help>
+    <label><!-- Transportation Cost --></label>
+    <name>Transportation__c</name>
+</CustomFieldTranslation>

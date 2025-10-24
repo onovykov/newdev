@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Type of product. --></help>
+    <label><!-- Product Type --></label>
+    <name>ProductType__c</name>
+    <picklistValues>
+        <masterLabel>Axle</masterLabel>
+        <translation><!-- Axle --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Billet</masterLabel>
+        <translation><!-- Billet --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Coupling</masterLabel>
+        <translation><!-- Coupling --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tube</masterLabel>
+        <translation><!-- Tube --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wheel</masterLabel>
+        <translation><!-- Wheel --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wheel set</masterLabel>
+        <translation><!-- Wheel set --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

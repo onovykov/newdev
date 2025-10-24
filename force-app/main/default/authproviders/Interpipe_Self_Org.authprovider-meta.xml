@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <consumerKey>3MVG9HxRZv05HarTMc46F4uxiZRuiczv7ZLjcKmA4kAef_c_gsGQAazPJL7eD6374BmKe9vhlcYojw0lJHL5i</consumerKey>
+    <consumerSecret>Placeholder_Value</consumerSecret>
+    <friendlyName>Interpipe Self Org</friendlyName>
+    <includeOrgIdInIdentifier>true</includeOrgIdInIdentifier>
+    <isPkceEnabled>false</isPkceEnabled>
+    <providerType>Salesforce</providerType>
+    <requireMfa>false</requireMfa>
+    <sendAccessTokenInHeader>false</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <sendSecretInApis>true</sendSecretInApis>
+</AuthProvider>

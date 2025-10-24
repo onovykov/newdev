@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Tube Quote Line Item Layout</layout>
+        <sections>
+            <label><!-- Costs --></label>
+            <section>Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Quantity and Prices --></label>
+            <section>Quantity and Prices</section>
+        </sections>
+        <sections>
+            <label><!-- Tubes Product Characteristics --></label>
+            <section>Tubes Product Characteristics</section>
+        </sections>
+        <sections>
+            <label><!-- Wheels Product Characteristics --></label>
+            <section>Wheels Product Characteristics</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

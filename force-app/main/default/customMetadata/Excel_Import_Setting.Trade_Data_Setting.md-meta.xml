@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Trade Data</label>
+    <protected>false</protected>
+    <values>
+        <field>Object_Name__c</field>
+        <value xsi:type="xsd:string">Trade_Data__c</value>
+    </values>
+    <values>
+        <field>Required_Fields__c</field>
+        <value xsi:type="xsd:string">[
+  &quot;Year__c&quot;,
+  &quot;Quarter__c&quot;,
+  &quot;Month__c&quot;,
+  &quot;Country__c&quot;,
+  &quot;Customer__c&quot;,
+  &quot;Manufacturer__c&quot;,
+  &quot;Exporter__c&quot;,
+  &quot;Interpipe_portfolio__c&quot;,
+  &quot;Product_group__c&quot;,
+  &quot;Product__c&quot;,
+  &quot;OD_mm__c&quot;,
+  &quot;Steel_grade__c&quot;,
+  &quot;Connection_type__c&quot;,
+  &quot;INCOTERMS__c&quot;
+]</value>
+    </values>
+    <values>
+        <field>Sheet_Columns__c</field>
+        <value xsi:type="xsd:string">[
+ {
+    &quot;label&quot;: &quot;Primary Key&quot;,
+    &quot;fieldName&quot;: &quot;Primary_Key__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Year&quot;,
+    &quot;fieldName&quot;: &quot;Year__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Quarter&quot;,
+    &quot;fieldName&quot;: &quot;Quarter__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Month&quot;,
+    &quot;fieldName&quot;: &quot;Month__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Trade type&quot;,
+    &quot;fieldName&quot;: &quot;Trade_type__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Region&quot;,
+    &quot;fieldName&quot;: &quot;Region__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Country&quot;,
+    &quot;fieldName&quot;: &quot;Country__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Customer&quot;,
+    &quot;fieldName&quot;: &quot;Customer__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Manufacturer&quot;,
+    &quot;fieldName&quot;: &quot;Manufacturer__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Exporter Region&quot;,
+    &quot;fieldName&quot;: &quot;Exporter_Region__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Exporter&quot;,
+    &quot;fieldName&quot;: &quot;Exporter__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Interpipe portfolio&quot;,
+    &quot;fieldName&quot;: &quot;Interpipe_portfolio__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Product group&quot;,
+    &quot;fieldName&quot;: &quot;Product_group__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Product&quot;,
+    &quot;fieldName&quot;: &quot;Product__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;OD, mm&quot;,
+    &quot;fieldName&quot;: &quot;OD_mm__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Steel grade&quot;,
+    &quot;fieldName&quot;: &quot;Steel_grade__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Connection type&quot;,
+    &quot;fieldName&quot;: &quot;Connection_type__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;INCOTERMS&quot;,
+    &quot;fieldName&quot;: &quot;INCOTERMS__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Volume,t&quot;,
+    &quot;fieldName&quot;: &quot;Volume_t__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  },
+  {
+    &quot;label&quot;: &quot;Price, usd/t&quot;,
+    &quot;fieldName&quot;: &quot;Price_usd_t__c&quot;,
+    &quot;type&quot;: &quot;text&quot;
+  }
+]</value>
+    </values>
+    <values>
+        <field>Sheet_Name__c</field>
+        <value xsi:type="xsd:string">TradeData</value>
+    </values>
+</CustomMetadata>

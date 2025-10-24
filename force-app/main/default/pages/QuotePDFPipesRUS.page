@@ -1,0 +1,465 @@
+<apex:page showHeader="false" extensions="QuotePDF"
+		standardcontroller="Quote" standardstylesheets="false" renderAs="pdf" 
+           applybodytag="false" applyhtmltag="false" >
+	<head>
+        <style>
+            @page {
+                size: landscape;
+
+                @top-center {
+                    content: element(header);
+                }
+            }
+
+            @page :left {
+                margin: 140px 0 2.5cm 0;
+            }
+
+            @page :right {
+                margin: 140px 0 2.5cm 0;
+            }
+
+            body {
+                margin: 0 2.5cm 0 2cm;
+                font-family: Arial Unicode MS, Calibri, Geneva, Arial, Helvetica, sans-serif;
+                font-size: 12px;
+            }
+
+            .heading {
+                text-align: center;
+                font-weight: bold;
+                font-size: 17px;
+                text-decoration: underline;
+                margin-left: 0.7cm;
+                margin-top: 1cm;
+                margin-bottom: 0.2cm;
+            }
+
+            .footerheading {
+                font-family: Helvetica, sans-serif;
+                font-size: 18px;
+                color: gray;
+                margin-left: 95px;
+            }
+
+            .footertext {
+                font-family: Geneva, sans-serif;
+                font-size: 11px;
+                color: gray;
+                margin-left: 95px;
+            }
+
+
+            p {
+                margin: 0;
+            }
+
+            caption {
+                text-align: left;
+                padding-top: 30px;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                page-break-inside: avoid;
+            }
+
+            td, th {
+                text-align: center;
+            }
+
+            div.header {
+                position: running(header);
+            }
+
+                div.header:after {
+                    background: url('{!$Resource.Logo100}') no-repeat center center;
+                    height: 100px;
+                    width: 100px;
+                    text-align: center;
+                    position: absolute;
+                    top: 45px;
+                    right: 70px;
+                    content: " ";
+                    display: block;
+                }
+
+
+
+            tr.tableHeader th {
+                background-color: gray;
+                color: white;
+            }
+
+            tr.odd {
+                background-color: #ffffff;
+                z-index: 10;
+            }
+
+            tr.even {
+                background-color: #efefef;
+                z-index: 10;
+            }
+
+            tr.totals > td {
+                border-top: 1px solid black;
+                border-right: none;
+            }
+
+            td {
+                /*position: relative;
+            	z-index: 10;*/
+                border-right: 1px solid black;
+                /*padding: 0px;
+            	margin: 0px;*/
+            }
+                /*td:after{
+			    content: " ";
+			    width: 1px;
+			    height: 100%;
+			    position: absolute;
+			    right: 0;
+			    top: 0;
+			    background-color: black;
+			    display: block;
+			    z-index: 999999;
+            }*/
+                td.lastCell {
+                    border-right: none;
+                }
+
+                td.alignRight {
+                    text-align: right;
+                }
+
+            .grandTotalCapture {
+                background-color: transparent !important;
+                border-left: 0px solid black !important;
+                border-top: 0px solid black !important;
+                border-bottom: 0px solid black !important;
+                border-right: 1px solid black !important;
+                color: black !important;
+                text-align: right !important;
+            }
+
+            table.grandTotals tr .allBorders {
+                border: 1px solid black;
+            }
+
+            .fixedWidth {
+                width: 100px;
+            }
+
+            .tabulation {
+                margin-left: 2cm;
+            }
+
+            th {
+                min-width: 1cm;
+            }
+        </style>
+    </head>
+    <body>
+    	<div class="header"></div>
+
+        №: {!numPdfs}<br/>
+		Дата: <apex:outputtext value=" {!todayRus}"/>
+        
+		<br/>
+		
+        <div class="heading">Коммерческое и техническое предложение</div>
+        <br/><br/><br/>
+        Тема: {!quote.Name}<br/>
+		Кому: {!quote.QuoteNumber}<br/>
+        
+		<br/><br/><br/>
+		
+        <apex:outputText escape="false" value="Уважаемый {!sirName},<br/><br/><br/>Мы благодарны за Ваше обращение и высылаем свое 
+                коммерческое предложение на поставку продукции в соответствии с требуемыми стандартами и условиями. <br/><br/>
+                Выражаем надежду на дальнейшее сотрудничество и ожидаем Ваш ответ. <br/>
+                <br/>С уважением," /><br/>
+        
+        <div>
+            <div style="display: inline-block; margin-right:20px;">
+                <apex:outputText escape="false" value="{!if(!ISBLANK(curUser.Full_Name_Rus__c), curUser.Full_Name_Rus__c, curUser.Name)}<br/>
+                Менеджер по продажам<br/>
+                Тел: {!curUser.Phone}<br/>
+                Email: {!userEmail}<br/>
+                www.interpipe.biz"/>
+            </div>
+            <div style="{!IF (!ISBLANK(curUserSignature), 'display:inline-block', 'display:none')}">
+            	<apex:image url="/sfc/servlet.shepherd/version/download/{!curUserSignature}" alt="{!curUserSignatureTitle}"
+                        height="60px" rendered="{! !ISBLANK(curUserSignature)}"/>
+        	</div>
+        </div>
+        
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <!-- new display type -->      
+        <apex:variable var="cnt" value="{!1}" />
+		<apex:variable var="countTable" value="{!0}" />
+		<apex:variable var="showNotForMT" value="{true}"/>
+		<apex:variable var="labelToApiMap" value="{!apinameToLabelMap}"/>
+		<apex:variable var="keyList" value="{!groupKeys}"/>
+		<apex:variable value="{!0}" var="index" />
+		<apex:variable value="{!testForRepeat}" var="testRepeat" />
+        
+        <!-- Iterate over groups of line items -->
+		<apex:repeat var="tableI" value="{!listOpps}">
+			<apex:variable var="show" value="{!tableI[0].Product2.Type__c=='Tube'}" />
+            <apex:variable var="showLBFT" value="{!showLB_FTForTables[countTable]}" />
+            <apex:variable var="showWT" value="{!showWTForTables[countTable]}" />
+			<apex:variable var="showNotForMT" value="{!tableI[0].InquiryUnit__c!='34'}" />
+			<div style="display:{!if(show,"","none")};" >
+
+				<!-- Table for tubes -->
+				<table cellpadding="0">	
+					<caption>	
+						<b>Продукт в соответствии с {!tableI[0].ProductStandard__r.Name} {!tableI[0].ProductSpecLevel__r.Name}<br/>
+						Цены указаны на {!tableI[0].Quote.DeliveryTerms__r.Incoterms__c} {!tableI[0].ShippingPoint__r.Name} ({!tableI[0].ShippingPoint__r.Country__r.Name})</b>
+					</caption>	
+					<tr class="tableHeader">
+						<th>#</th>					
+						<th>Продукт</th>
+						<th>Диаметр<br/> дюйм</th>				
+						<th style="display:{!if(showLBFT,"","none")};">lb/ft</th>	
+		                <th>Диаметр<br/> мм</th>
+		                <th style="display:{!if(showWT,"","none")};">Толщина<br/> стенки<br/> мм</th>				
+		                <th>Марка стали</th>			
+                        <th>Тип сое-<br/>динения </th>					
+		                <th>Длина, м</th>            
+		                
+		                
+		                
+                        <apex:repeat value="{!namesOfMeasureUnitsRus}" var="ne">
+                            <th>Коли-<br/>чество, {!ne}</th>					                	
+                        </apex:repeat>
+                        <th class="fixedWidth">Общая<br/> стоимость<br/> ({!quote.Opportunity.CurrencyISOCode})</th>
+                        <apex:repeat value="{!namesOfMeasureUnitsRus}" var="ne">
+                            <th>Цена за {!ne}</th>					                	
+                        </apex:repeat>
+		            </tr>
+		        
+		        	<!-- Iterate over rows -->
+		        	<apex:variable var="localCounter" value="{!1}"/>
+					<apex:repeat value="{!tableI}" var="line">
+			            <tr class="{!if(mod(localCounter,2)==0, 'odd', 'even')}">
+			            	<td><apex:OutputText value="{!cnt}"/></td>	
+			            	<td style="text-align: left;">{!line.Product2.Name}</td>				
+			              	<td>{!line.TubeOD__r.OD_inch__c}</td>		
+			              	<td style="display:{!if(showLBFT,"","none")};">{!line.Weight_ppf__c}</td>				
+			              	<td>{!line.TubeOD__r.OD_mm__c}</td>			
+			              	<td style="display:{!if(showWT,"","none")};">{!line.TubeWT__r.WT_mm__c}</td>			
+			              	<td>{!line.SteelGrade__r.ShortName__c}</td>	
+			              	<td>{!line.TubeEnds__r.ShortName__c}</td>	
+			              	<td>{!line.TubeLengthSize__r.ShortName__c}</td>
+			              	        	
+			              	
+			              	<!--<apex:outputText value="{0, number, #, ###.000}"><apex:param value="{!line.Quantity}"/></apex:outputText>-->
+			              	
+			              	
+                            <apex:repeat value="{!testForRepeat}" var="ne">
+                            <th>{!oliIdToFormattedDataMap[line.Id][ne]}</th>					                	
+                        	</apex:repeat>
+                            <td class="lastCell alignRight fixedWidth">{!oliIdToFormattedDataMap[line.Id].TotalPrice}</td>
+                            <apex:repeat value="{!selectedSalesPrice}" var="ne">
+                            <th>{!line[ne]}</th>					                	
+                        	</apex:repeat>
+			            </tr>
+			            <apex:variable var="cnt" value="{!if(show,cnt+1,cnt)}"/>
+			            <apex:variable var="localCounter" value="{!localCounter+1}"/>       
+			        </apex:repeat>
+
+			        <!-- Calculate totals old form
+		        	<tr class="totals">
+                        <td colspan="{!if(showNotForMT,if(showLBFT,if(showWT,9,8),if(showWT,8,7)),if(showLBFT,if(showWT,8,7),if(showWT,7,6)))}" class="alignRight">TOTAL</td>
+		        		<td class="alignRight">{!mapGroupsToMapAggregates[countTable].q}</td>
+		        		<td style="display:{!if(showNotForMT,"","none")};" class="alignRight"><!--{!mapGroupsToMapAggregates[countTable].inqUnitPrice}</td>
+		        		<td class="alignRight fixedWidth">{!mapGroupsToMapAggregates[countTable].totalPrice}</td>
+                        <td class="alignRight fixedWidth">{!mapGroupsToMapAggregates[countTable].quantityM}</td>
+		        	</tr> -->
+                    <tr class="totals">
+                        <td colspan="{!if(showNotForMT,if(showLBFT,if(showWT,8,8),if(showWT,8,8)),if(showLBFT,if(showWT,8,8),if(showWT,8,5)))}" class="alignRight">Итог</td>
+                        		        				        				        		
+                        <apex:repeat value="{!quantitySumNamesMap}" var="val">
+                            <td class="alignRight">{!mapGroupsToMapAggregates[countTable][val]}</td>
+                           				                	
+                        </apex:repeat>
+                        <td class="alignRight fixedWidth">{!mapGroupsToMapAggregates[countTable].totalPrice}</td>
+		        	</tr>
+		        </table>
+
+		        <br/><br/>
+	        </div>
+
+	        <div style="display:{!if(show,"none","")};" >
+				
+				<!-- Table for non-tubes -->
+				<table>
+					<caption>
+						<b>Продукт в соответствии с {!tableI[0].ProductStandard__r.Name} {!tableI[0].ProductSpecLevel__r.Name}<br/>
+						Цены указаны на {!tableI[0].Quote.DeliveryTerms__r.Incoterms__c} {!tableI[0].ShippingPoint__r.Name} ({!tableI[0].ShippingPoint__r.Country__r.Name})</b>
+					</caption>
+					<tr class="tableHeader">
+						<th>#</th>
+						<th>Продукт</th>
+						<th>Диаметр дюйм</th>
+                        <th>Диаметр мм</th>
+						<th style="display:{!if(showLBFT,"","none")};">lb/ft</th>
+                        <th style="display:{!if(showWT,"","none")};">Толщина стенки мм</th>
+		                <th>Марка стали</th>
+		                <th>Тип сое-<br/>динения</th>
+		                <th>Длина, м</th>
+		                
+		                <th style="display:{!if(showNotForMT,"","none")};">Quantity</th>   
+                        <th style="display:{!if(showNotForMT,"","none")};">Unit</th>             
+		                <th>Коли-<br/>чество, MT</th>
+		                <th style="display:{!if(showNotForMT,"","none")};" class="alignRight">Price ({!quote.Opportunity.CurrencyISOCode}/{!apinameToLabelMap[tableI[0].InquiryUnit__c]})</th>
+		                <th class="alignRight">Цена ({!quote.Opportunity.CurrencyISOCode}/Mt)</th>
+		                <th class="alignRight fixedWidth">Общая<br/> стоимость<br/> ({!quote.Opportunity.CurrencyISOCode})</th>
+                        <apex:repeat value="{!namesOfMeasureUnitsRus}" var="ne">
+                            <th>Коли-<br/>чество, {!ne}</th>					                	
+                        </apex:repeat>
+                        <apex:repeat value="{!namesOfMeasureUnitsRus}" var="ne">
+                            <th>Цена за {!ne}</th>					                	
+                        </apex:repeat>
+		            </tr>
+		        
+		        	<!-- Iterate over rows -->
+		        	<apex:variable var="localCounter" value="{!1}"/>
+					<apex:repeat value="{!tableI}" var="line">
+			            <tr class="{!if(mod(localCounter,2)==0, 'odd', 'even')}">
+			            	<td><apex:OutputText value="{!cnt}"/></td>
+			            	<td style="text-align: left;">{!line.Product2.Name}</td>
+			              	<td>{!line.TubeOD__r.OD_inch__c}</td>
+                            <td>{!line.TubeOD__r.OD_mm__c}</td>
+			              	<td style="display:{!if(showLBFT,"","none")};">{!line.Weight_ppf__c}</td>
+                            <td style="display:{!if(showWT,"","none")};">{!line.TubeWT__r.WT_mm__c}</td>	
+			              	<td>{!line.SteelGrade__r.ShortName__c}</td>
+			              	<td>{!line.TubeEnds__r.ShortName__c}</td>
+			              	<td>{!line.TubeLengthSize__r.ShortName__c}</td>
+			              	
+			              	<td style="display:{!if(showNotForMT,"","none")};" class="alignRight">{!oliIdToFormattedDataMap[line.Id].InquiryQuantity__c}</td> 
+                            <td style="display:{!if(showNotForMT,"","none")};">{!apinameToLabelMap[line.InquiryUnit__c]}</td>             	
+			              	<td class="alignRight">{!oliIdToFormattedDataMap[line.Id][$CurrentPage.parameters.Quantity]}</td>
+			              	<td style="display:{!if(showNotForMT,"","none")};" class="alignRight">{!oliIdToFormattedDataMap[line.Id].InquiryUnitPrice__c}</td>
+			              	<td class="alignRight">{!oliIdToFormattedDataMap[line.Id].UnitPrice}</td>
+			              	<td class="lastCell alignRight fixedWidth">{!oliIdToFormattedDataMap[line.Id].TotalPrice}</td>
+                            <apex:repeat value="{!testForRepeat}" var="ne">
+                            <th>{!oliIdToFormattedDataMap[line.Id][ne]}</th>					                	
+                        	</apex:repeat>
+                            <apex:repeat value="{!selectedSalesPrice}" var="ne">
+                            <th>{!line[ne]}</th>					                	
+                        	</apex:repeat>
+			            </tr>
+                        
+			            <apex:variable var="cnt" value="{!if(show,cnt,cnt+1)}"/>
+			            <apex:variable var="localCounter" value="{!localCounter+1}"/>	       
+			        </apex:repeat>
+
+			        <!-- Calculate totals old form
+		        	<tr class="totals">
+                        <td colspan="{!if(showNotForMT,if(showLBFT,if(showWT,9,8),if(showWT,8,7)),if(showLBFT,if(showWT,8,7),if(showWT,7,6)))}" class="alignRight">TOTAL</td>
+		        		<td class="alignRight">{!mapGroupsToMapAggregates[countTable].q}</td>
+		        		<td style="display:{!if(showNotForMT,"","none")};" class="alignRight"><!--{!mapGroupsToMapAggregates[countTable].inqUnitPrice}</td>
+		        		<td class="alignRight fixedWidth">{!mapGroupsToMapAggregates[countTable].totalPrice}</td>
+		        	</tr>-->
+                    
+                    <tr class="totals">
+                        <td colspan="{!if(showNotForMT,if(showLBFT,if(showWT,9,13),if(showWT,13,10)),if(showLBFT,if(showWT,13,10),if(showWT,10,6)))}" class="alignRight">Итог</td>
+                        <td class="alignRight fixedWidth">{!mapGroupsToMapAggregates[countTable].totalPrice}</td>		        				        				        		
+                        <apex:repeat value="{!quantitySumNamesMap}" var="val">
+                            <td class="alignRight">{!mapGroupsToMapAggregates[countTable][val]}</td>
+                           				                	
+                        </apex:repeat>
+		        	</tr>
+		        </table>
+		        <br/><br/>
+	        </div>
+			<apex:variable var="countTable" value="{!countTable+1}"/>
+		</apex:repeat>
+		
+        <br/>
+        
+        <apex:pageBlock rendered="{!oliListAccessories.size>0}">           
+        <table>
+            <caption>
+				<b>Аксессуары</b>
+			</caption>
+            <tr class="tableHeader">
+            	<th>Название</th>
+                <th>Цена за шт.</th>
+                <th>Количество шт. </th>
+                <th>Итоговая цена</th>
+            </tr>
+            <tr>
+            	<apex:variable var="localCounter" value="{!1}"/>
+            	<apex:repeat value="{!oliListAccessories}" var="item">               
+            <tr class="{!if(mod(localCounter,2)==0, 'odd', 'even')}">    
+                 <td class="allBorders fixedWidth">{!item.Product2.Name}</td>              
+                 <td class="alignRight allBorders fixedWidth">{!item.InquiryUnitPrice__c}</td> 
+                 <td class="alignRight allBorders fixedWidth">{!item.InquiryQuantity__c}</td>  
+                 <td class="alignRight allBorders fixedWidth">{!item.TotalPrice}</td> 
+            </tr> 
+                <apex:variable var="localCounter" value="{!localCounter+1}"/>    
+                </apex:repeat> 
+            </tr>
+            <tr class="totals">
+                <td colspan="2"  class="alignRight">Итог</td>
+                	<apex:repeat value="{!accessoriesSumMap}" var="item">
+                        <td class="alignRight fixedWidth">{!accessoriesSumMap[item]}</td>
+                    </apex:repeat>               
+		    </tr>
+        </table> 
+             </apex:pageBlock>
+        
+        <br/>
+        <br/>
+        <apex:variable var="showNotForMTInTotal" value="{!listOpps[0][0].InquiryUnit__c!='34'}" />
+        <table class="grandTotals">
+        	<tr class="tableHeader">
+        		<th rowspan="2" class="grandTotalCapture">Общий итог &nbsp;&nbsp;</th>      		
+        		<!--<th class="allBorders fixedWidth">Quantity, {!metricName}</th>-->
+        		
+                <apex:repeat value="{!namesOfMeasureUnitsRus}" var="ne">
+                      <th class="allBorders">Количество, {!ne}</th>					                	
+                </apex:repeat>             
+                <th style="display:{!if(oliListAccessories.size>0,"","none")};" class="alignRight allBorders">Количество акссесуаров</th>  
+                <th class="allBorders fixedWidth">Цена, {!quote.Opportunity.CurrencyISOCode}</th>
+        	</tr>
+        	<tr>     
+        		<!--<td class="alignRight allBorders fixedWidth">{!quantityMTSumAsString}</td> --> 
+        		
+                <apex:repeat value="{!testForRepeat}" var="ne">
+                     <th class="allBorders">{!sumOfQuantityUnitsMap[ne]}</th>					                	
+                </apex:repeat>
+                <th style="display:{!if(oliListAccessories.size>0,"","none")};" class="alignRight allBorders">{!quantityAccessories}</th> 
+                <td class="alignRight allBorders fixedWidth">{!totalPriceSumAsString}</td>
+        	</tr>
+        </table>
+        <br/>
+        
+        <b>Производство:</b>
+        <ul Style="list-style-type:none">
+            <li>-<b>  Страна происхождения:&nbsp;</b><apex:outputText escape="false" value="Украина" /></li>
+            <li>-<b>  Завод:&nbsp;</b><apex:outputText escape="false" value="{!manufacturerAndOriginRus}" /></li>
+            <li>-<b>  Стандарт:&nbsp;</b><apex:outputText value="{!tolerance}" /></li>
+        </ul>
+        <apex:outputText escape="false" value="Маркировка: {!quoteMarkingRus}" /><br/>
+        <apex:outputText escape="false" value="Упаковка: {!quotePackingRus}" /><br/>
+        <apex:outputText escape="false" value="Пластиковые колпаки: {!plasticCapsRus}" /><br/>
+        <apex:outputText escape="false" value="Инспекция: {!quoteThirdPartyInspectionRus}" /><br/>
+        <apex:outputText escape="false" value="Допуск по весу доставки: {!quoteToleranceWeight}" /><br/>
+        <apex:outputText escape="false" value="Условия и сроки доставки: {!quote.DeliveryTerms__r.NameRus__c}" />
+        <ul Style="list-style-type:none" Class="tabulation">
+            <li>-	Дата доставки: {!productionDeliveryDateCIS}</li>
+            <li>-	Дополнительная маркировка при доставке: {!additionalMarkingOnDeliveryRus}</li>
+            <li>-	Дополнительные требования по доставке: {!additionalTermsOnDeliveryRus}</li>
+        </ul>
+        <apex:outputText escape="false" value="Условия оплаты: {!quotePaymentTermsNameFull}" /><br/><br/>
+        Дополнительные требования: <br/>
+        <apex:outputText escape="false" value="{!additionalTermsRus}" /><br/>
+        <br/><br/><br/>
+        <apex:outputText escape="false" value="Срок действия коммерческого предложения: {!expirationDateCIS}" />
+    </body>
+</apex:page>

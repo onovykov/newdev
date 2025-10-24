@@ -1,0 +1,58 @@
+.THIS .slds-modal__container {
+    width: 75%;
+    max-width: 2000px;
+    }
+
+.THIS #modal-parent{
+    background: transparent !important;
+}
+.THIS .pipe-btn{   
+    padding: 18px 28px;
+    gap: 12px;
+    background: #FFDD00;
+    border-radius: 18px;
+    border:none;
+     
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 22px;
+    color:black;
+}
+
+.THIS .pipe-btn:hover{
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+.THIS.container2{
+    max-width: 1736px !important;
+    width: 95% !important;
+    margin: 0 auto !important;
+}
+
+.THIS .pipe-btn svg {
+    width: 1.5rem;
+    height: 1.5rem;
+} 
+
+
+
+
+/*  */
+.THIS .slds-modal__header{
+    padding: 0;
+    border: none;
+}
+
+@media (max-width: 578px) {
+    .THIS .slds-modal__container{
+        width: auto !important;
+        max-width: 100% !important;
+        margin: 0;
+    }
+    .THIS span{
+       font-size: 10px;
+    }
+}

@@ -1,0 +1,77 @@
+<template>
+    <template if:true={hasReports}>
+        <lightning-tabset>
+            <template for:each={visibleReports} for:item="report">
+                <lightning-tab label={report.label} key={report.name}>
+                    <!-- Головний звіт -->
+                    <template if:true={report.url}>
+                        <template if:true={report.isValidUrl}>
+                            <div class="container">
+                                <iframe
+                                        src={report.url}
+                                        class="powerbi-frame"
+                                        frameborder="0"
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                        </template>
+                        <template if:false={report.isValidUrl}>
+                            <div class="error-box error">
+                                <span class="icon">❌</span>
+                                <div class="message">
+                                    <p><strong>Power BI URL невірний!</strong></p>
+                                    <p>Очікується: <strong>https://app.powerbi.com/reportEmbed?reportId=...</strong></p>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+                    <template if:false={report.url}>
+                        <div class="error-box warning">
+                            <span class="icon">⚠️</span>
+                            <div class="message">
+                                <p><strong>URL не вказано у метаданих для цього звіту.</strong></p>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- Другий звіт -->
+                    <template if:true={report.url2}>
+                        <template if:true={report.isValidUrl2}>
+                            <div class="container">
+                                <iframe
+                                    src={report.url2}
+                                    class="powerbi-frame"
+                                    frameborder="0"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </template>
+                    </template>
+
+                    <!-- Третій звіт -->
+                    <template if:true={report.url3}>
+                        <template if:true={report.isValidUrl3}>
+                            <div class="container">
+                                <iframe
+                                    src={report.url3}
+                                    class="powerbi-frame"
+                                    frameborder="0"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </template>
+                    </template>
+                </lightning-tab>
+            </template>
+        </lightning-tabset>
+    </template>
+
+    <template if:false={hasReports}>
+        <div class="error-box warning">
+            <span class="icon">⛔</span>
+            <div class="message">
+                <p><strong>У вас немає доступу до жодного звіту Power BI.</strong></p>
+            </div>
+        </div>
+    </template>
+</template>

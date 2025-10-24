@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BaseDoc__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(NOT(ISBLANK(Contract__r.Name)),
+&apos;Угода № &apos; + Contract__r.Name + 
+&apos; від &apos; + LPAD(TEXT(DAY(Contract__r.StartDate)), 2, &apos;0&apos;) + 
+&apos;.&apos; + LPAD(TEXT(MONTH(Contract__r.StartDate)), 2, &apos;0&apos;) + 
+&apos;.&apos; + TEXT(YEAR(Contract__r.StartDate)), &apos;&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Підстава</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

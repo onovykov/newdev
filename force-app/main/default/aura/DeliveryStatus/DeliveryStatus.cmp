@@ -1,0 +1,28 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+<aura:html tag="style">
+        .slds-modal__container{
+        width: 70% !important;
+        max-width: 70% !important;
+        }
+        .modal-body{
+        height : 80% !important;
+          
+        max-height: 80% !important;
+        }
+           
+        .slds-docked-form-footer {
+          bottom: 9% !important;
+           } 
+        input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+  		-webkit-appearance: none;
+  		margin: 0;
+}   
+    </aura:html>
+    
+    <div class="LWCcomponent;">
+    <c:orderDelivery recordId="{!v.recordId}"></c:orderDelivery>
+</div>
+
+    
+</aura:component>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Декада --></label>
+    <name>Decade__c</name>
+    <picklistValues>
+        <masterLabel>І декада</masterLabel>
+        <translation><!-- І декада --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ІІ декада</masterLabel>
+        <translation><!-- ІІ декада --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ІІІ декада</masterLabel>
+        <translation><!-- ІІІ декада --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

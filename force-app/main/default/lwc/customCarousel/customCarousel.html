@@ -1,0 +1,14 @@
+<template>
+    <div class="slds-is-relative container">
+        <template for:each={slidesData} for:item="slide">
+            <div class={slide.cardClasses} key={slide.slideIndex}>
+                <img src={slide.image}/>
+            </div>
+        </template>
+    </div>
+    <div class="slds-text-align_center slds-p-around_medium dots">
+        <template for:each={slidesData} for:item="slide">
+            <span class={slide.dotClases} data-id={slide.slideIndex} key={slide.slideIndex} onclick={currentSlide}></span>
+        </template>
+    </div>
+</template>

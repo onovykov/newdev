@@ -1,0 +1,6 @@
+.THIS .LWCcomponent {
+    width:100%;
+    max-width: none;
+    min-width: 40rem;
+    height: 100%;
+}

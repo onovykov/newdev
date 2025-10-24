@@ -1,0 +1,43 @@
+<template>
+    <div if:true={showSpinner} class="exampleHolder slds-align_absolute-center"
+        style="height:11rem;position:absolute;left: 50%">
+        <lightning-spinner alternative-text="Loading" size="small" variant="brand"></lightning-spinner>
+    </div>
+
+    <!-- modal header start -->
+    <header class="slds-modal__header">
+        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">Order Confirmation</h2>
+    </header>
+    <!-- modal body start -->
+    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+
+        <div class="exampleHolder" if:true={showSpinner}>
+            <p class="slds-text-heading_medium slds-hyphenate">Waiting for response</p>
+        </div>
+        
+        <div class="container"></div>
+
+        <div if:true={showOrderConfirm}>
+          <p class="slds-text-heading_medium slds-hyphenate">File is ready for download</p>
+        </div>
+
+        <div if:true={showError}>
+            <p class="slds-text-heading_medium slds-hyphenate">Order Confirmation not found</p>
+        </div>
+    </div>
+    <!-- modal footer start-->
+    <footer class="slds-modal__footer">
+        <lightning-button onclick={downloadFile} 
+            variant="brand"
+            disabled={showOrderConfirmDisabled}
+            label="Download PDF"
+            title="Download PDF"
+            class="slds-var-p-right_small"
+        ></lightning-button>
+        <lightning-button variant="brand"
+                        label="Close"
+                        title="Close"
+                        onclick={closeModal}
+        ></lightning-button>
+    </footer>
+</template>

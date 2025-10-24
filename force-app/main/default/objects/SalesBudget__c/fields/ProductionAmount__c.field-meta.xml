@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ProductionAmount__c</fullName>
+    <label>Dispatched Amount (t)</label>
+    <summarizedField>SalesBudgetRecord__c.ProductionAmount__c</summarizedField>
+    <summaryForeignKey>SalesBudgetRecord__c.SalesBudget__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

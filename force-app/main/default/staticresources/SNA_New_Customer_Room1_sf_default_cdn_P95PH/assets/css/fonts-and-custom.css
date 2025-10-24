@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Golos';
+    src: url(../resource/Golos) format('TrueType');
+}
+.datatable-menu[c-siteOrderDatatable_siteOrderDatatable] .slds-form-element__label{
+    display:none
+}
+.datatable-menu[c-siteReclamationsDatatable_siteReclamationsDatatable] .slds-form-element__label{
+    display:none
+}
+.datatable-menu[c-siteEnquiryDatatable_siteEnquiryDatatable] .slds-form-element__label{
+    display:none
+}
+.datatable-menu[c-siteFilesDatatable_siteFilesDatatable] .slds-form-element__label{
+    display:none
+}
+.datatable-menu[c-siteInvoiceDatatable_siteInvoiceDatatable] .slds-form-element__label{
+    display:none
+}
+.search-input[c-siteOrderDatatable_siteOrderDatatable] div {
+    width: 100%;
+}
+.search-input[c-siteReclamationsDatatable_siteReclamationsDatatable] div {
+    width: 100%;
+}
+.search-input[c-siteEnquiryDatatable_siteEnquiryDatatable] div {
+    width: 100%;
+}
+.search-input[c-siteFilesDatatable_siteFilesDatatable] div {
+    width: 100%;
+}
+.search-input[c-siteInvoiceDatatable_siteInvoiceDatatable] div {
+    width: 100%;
+}
+:root { --dxp-c-section-columns-max-width: 1170px; }

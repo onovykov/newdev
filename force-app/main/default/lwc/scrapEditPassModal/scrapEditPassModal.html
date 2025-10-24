@@ -1,0 +1,186 @@
+<template>
+    <div class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-window modal-wide">
+            <!-- Header -->
+            <header class="modal-header">
+                <h2 id="modalTitle">Редагування замовлення</h2>
+                <template if:true={order.status}>
+                    <span class="status-badge">{order.status}</span>
+                </template>
+            </header>
+
+            <!-- Основна інформація -->
+            <section class="card">
+                <div class="card-title">Основна інформація</div>
+
+                <div class="summary two-col">
+                    <div class="row">
+                        <div class="label">Дата</div>
+                        <div class="value">{order.date}</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Тип брухту</div>
+                        <div class="value">{order.scrapType}</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Тоннаж</div>
+                        <div class="value">{order.tonnage}</div>
+                    </div>
+<!--                    <div class="row">-->
+<!--                        <div class="label">Адреса</div>-->
+<!--                        <div class="value">{order.address}</div>-->
+<!--                    </div>-->
+                    <template if:true={order.passNumber}>
+                        <div class="row">
+                            <div class="label">Перепустка</div>
+                            <div class="value">{order.passNumber}</div>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Постачальник -->
+                <div class="info-strip supplier mt-12" aria-label="Постачальник">
+                    <div class="icon" aria-hidden="true">S</div>
+                    <div class="body">
+                        <div class="title">{order.supplierName}</div>
+                        <div class="meta">
+                            <template if:true={order.supplierCode}>
+                                <span class="badge">ЄДРПОУ: {order.supplierCode}</span>
+                            </template>
+                            <template if:true={order.supplierCity}>
+                                <span class="badge">Місто: {order.supplierCity}</span>
+                            </template>
+                            <template if:true={order.supplierAddress}>
+                                <span class="badge">Адреса: {order.supplierAddress}</span>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Транспорт -->
+            <section class="card">
+                <div class="card-title">Транспорт</div>
+
+                <!-- Поточний стан -->
+                <div class="mini-table">
+                    <div class="mini-row">
+                        <div class="mini-cell key">Тягач</div>
+                        <div class="mini-cell strong">
+                            <template if:true={order.truckModel}>
+                                {order.truckModel}
+                            </template>
+                            <template if:false={order.truckModel}>
+                                <span class="empty">немає даних</span>
+                            </template>
+                        </div>
+
+                        <div class="mini-cell key">Номер</div>
+                        <div class="mini-cell strong">
+                            <template if:true={order.truckPlate}>
+                                {order.truckPlate}
+                            </template>
+                            <template if:false={order.truckPlate}>
+                                <span class="empty">немає</span>
+                            </template>
+                        </div>
+
+
+                        <div class="mini-cell key">Причіп</div>
+                        <div class="mini-cell">
+                            <template if:true={order.hasTrailer}>
+                                <span class="plate">{order.trailerPlate}</span>
+                            </template>
+                            <template if:false={order.hasTrailer}>
+                                <span class="empty">немає</span>
+                            </template>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Зміни транспорту -->
+                <div class="form twocol">
+                    <div class="field">
+                        <label>Новий тягач</label>
+                        <lightning-combobox
+                                value={tractorId}
+                                options={tractorOptions}
+                                placeholder="— Без змін —"
+                                onchange={onTractorChange}>
+                        </lightning-combobox>
+                    </div>
+
+                    <div class="field">
+                        <label>Новий причіп</label>
+                        <lightning-combobox
+                                value={trailerId}
+                                options={trailerOptions}
+                                placeholder="— Без змін —"
+                                onchange={onTrailerChange}
+                                disabled={trailerRemove}>
+                        </lightning-combobox>
+
+                        <template if:true={order.hasTrailer}>
+                            <label class="check mt-8">
+                                <input type="checkbox" checked={trailerRemove} onchange={onTrailerRemoveToggle}/>
+                                <span>Зняти існуючий причіп</span>
+                            </label>
+                        </template>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Водій -->
+            <section class="card">
+                <div class="card-title">Водій</div>
+
+                <!-- Інформаційний блок -->
+                <div class="info-strip driver">
+                    <div class="icon" aria-hidden="true">D</div>
+                    <div class="body">
+                        <div class="title">{order.driver}</div>
+                        <div class="meta">
+                            <template if:true={order.driverPhone}>
+                                <span class="badge">Тел: {order.driverPhone}</span>
+                            </template>
+                            <template if:true={order.driverDoc}>
+                                <span class="badge">Док.: {order.driverDoc}</span>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вибір нового водія -->
+                <div class="form onecol mt-12">
+                    <div class="field">
+                        <label>Новий водій</label>
+                        <lightning-combobox
+                                value={driverId}
+                                options={driverOptions}
+                                placeholder="— Без змін —"
+                                onchange={onDriverChange}>
+                        </lightning-combobox>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Коментар -->
+            <section class="card">
+                <div class="card-title">Коментар (причина зміни)</div>
+                <div class="form onecol">
+                    <div class="field">
+                        <textarea class="text" rows="3" placeholder="Коротка причина" value={comment} oninput={onComment}></textarea>
+                        <div class="note">Опишіть, що саме змінюєте (для швидшого погодження).</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Дії -->
+            <footer class="actions">
+                <button class="secondary-button" onclick={close} disabled={saving}>Скасувати</button>
+                <button class="main-button" onclick={save} disabled={saveDisabled}>Зберегти</button>
+            </footer>
+        </div>
+    </div>
+</template>

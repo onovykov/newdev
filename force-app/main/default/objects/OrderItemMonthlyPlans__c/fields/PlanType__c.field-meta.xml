@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PlanType__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(TEXT(ProdPlanType__c),
+&apos;253&apos;,&apos;PRODUCTION&apos;,
+&apos;254&apos;,&apos;SHIPPING&apos;,
+&apos;N/A&apos;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Plan Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

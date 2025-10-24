@@ -1,0 +1,207 @@
+<template>
+	<div style="display:flex; justify-content:center;">
+		<div class="questionnaire-wrapper">
+			<template if:true={isClosed}>
+				<div class="closed-page">
+					<div class="header">
+						<div class="logo-and-name">
+							<div class="logo" style={logoStyle}>
+							</div>
+							<div class="name">
+								{questionnaireName}
+							</div>
+						</div>
+						<hr class="horizontal-line">
+					</div>
+					<div>
+						<h1 style="font-size: 16px;">Sorry, the survey period has ended.</h1>
+						<br>
+						<h1 style="font-size: 16px;">Вибачте, період опитування закінчився.</h1>
+						<br>
+						<h1 style="font-size: 16px;">Извините, период опроса закончился.</h1>
+					</div>
+				</div>
+			</template>
+
+			<template if:false={isClosed}>
+			<template if:true={showStartPage}>
+				<div class="start-page">
+					<div class="header">
+						<div class="logo-and-name">
+							<div class="logo" style={logoStyle}>
+								<!-- <img class="" src={questionnaireLogo}/> -->
+							</div>
+							<div class="name">
+								{questionnaireName}
+							</div>
+						</div>
+						<hr class="horizontal-line">
+					</div>
+					<div>
+						<h1 style="font-size: 16px;">Thank you for participating in the survey. </h1>
+						<p style="font-size: 16px;">Please choose a language:</p>
+						<br>
+						<h1 style="font-size: 16px;">Дякуємо за те, що приймаєте участь в опитування.</h1>
+						<p style="font-size: 16px;">Будь-ласка, оберіть мову:</p>
+						<br>
+						<h1 style="font-size: 16px;">Благодарим за то, что принимаете участие в опросе.</h1>
+						<p style="font-size: 16px;">Пожалуйста, выберите язык:</p>
+					</div>
+					<div class="language-selection">
+						<button class="lang-button" data-language="English"  data-id="en" onclick={handleLanguageSelection}>English</button>
+						<button class="lang-button" data-language="Ukrainian"  data-id="uk" onclick={handleLanguageSelection}>Українська</button>
+						<button class="lang-button" data-language="Russian"  data-id="ru" onclick={handleLanguageSelection}>Русский</button>
+					</div>
+					
+					<div class="navigation">
+						<button class="navigation start-button" 
+								disabled={startButtonDisabled} 
+								onclick={startQuestionnaire}>
+							Start
+						</button>
+					</div>
+						
+				</div>
+			</template>
+			
+			<template if:false={showStartPage}>
+				<div if:false={questionnaireCompleted}>
+					<div>
+						<div class="header">
+							<div class="logo-and-name">
+								<div class="logo" style={logoStyle}>
+									<!-- <img class="" src={questionnaireLogo}/> -->
+								</div>
+								<div class="name">
+									{questionnaireName}
+								</div>
+							</div>
+							<hr class="horizontal-line">
+							<div class="progress-bar">
+								<div class="progress-fill">
+									<span class="progress-text">{progress}%</span>
+								</div>
+							</div>
+						</div>
+						<template if:false={finishToggled}>
+							<div class="section-additional-info">
+								{visibleSection.additionalInformation}
+							</div>
+							<template if:true={visibleSection} for:each={visibleSection.questions} for:item="question">
+								<template if:true={question.isVisible}>
+									<div class="question" key={question.questionId}>
+										<label for={question.Id}>
+										<abbr if:true={question.isRequiredAndVisible} class="required-marker">*</abbr>
+										{question.questionValue}
+										</label>
+										<!-- Check the question type and render accordingly -->
+										<template if:true={question.isPicklist}>
+											<lightning-combobox
+												data-id={question.Id}
+												options={question.options}
+												onchange={handleQuestionChange}
+												value={question.initialValue}
+												required={question.isRequiredAndVisible}
+												></lightning-combobox>
+											<div class="error-message" if:true={question.errorMessage}>{question.errorMessage}</div>
+										</template>
+										<template if:true={question.isText}>
+											<lightning-input
+												data-id={question.Id}
+												type="text"
+												onchange={handleQuestionChange}
+												value={question.initialValue}
+												required={question.isRequiredAndVisible}
+												></lightning-input>
+											<div class="error-message" if:true={question.errorMessage}>{question.errorMessage}</div>
+										</template>
+										<template if:true={question.isTextArea}>
+											<lightning-textarea
+												data-id={question.Id}
+												name={question.questionValue}
+												placeholder="type here..."
+												onchange={handleQuestionChange}
+												value={question.initialValue}
+												required={question.isRequiredAndVisible}
+												></lightning-textarea>
+										</template>
+										<template if:true={question.isCheckboxGroup}>
+											<c-custom-checkbox-group
+												data-id={question.Id}
+												options={question.options}
+												onchange={handleCheckboxGroupChange}
+												value={question.initialValue}
+												required={question.isRequiredAndVisible}
+												initial-value={question.initialValue}
+												></c-custom-checkbox-group>
+										</template>
+										<template if:true={question.isRadioGroup}>
+											<lightning-radio-group
+												data-id={question.Id}
+												options={question.options}
+												class="radio-group-container"
+												onchange={handleQuestionChange}
+												value={question.initialValue}
+												required={question.isRequiredAndVisible}
+												></lightning-radio-group>
+										</template>
+									</div>
+							</template>
+							</template>
+						</template>
+						<template if:true={finishToggled}>
+							<div class="final-message">
+								<h2>{finalMessage.header}</h2>
+								<p>{finalMessage.body}</p>
+								<p>{finalMessage.closing}</p>
+								<p>{finalMessage.team}</p>
+								<p>{finalMessage.company}</p>
+								<div class="slds-m-top_medium">
+									<lightning-button label={downloadPdfLabel} onclick={downloadPDF} variant="brand"></lightning-button>
+								</div>		
+							</div>
+						</template>
+						
+					</div>
+	
+				</div>
+				<div if:true={questionnaireCompleted}>
+					<div class="header">
+						<div class="logo-and-name">
+							<div class="logo" style={logoStyle}>
+								<!-- <img class="" src={questionnaireLogo}/> -->
+							</div>
+							<div class="name">
+								{questionnaireName}
+							</div>
+						</div>
+						<hr class="horizontal-line">
+					</div>
+					<div class="final-message">
+						<h2>{alreadyCompletedMessage}</h2>
+						<p>{downloadInstructions}</p>
+						<div class="slds-m-top_medium">
+							<lightning-button label={downloadPdfLabel} onclick={downloadPDF} variant="brand"></lightning-button>
+						</div>
+					</div>
+				</div>
+				<div class="footer" if:false={questionnaireCompleted}>
+					<div if:false={finishToggled} class="navigation">
+						<button onclick={previousPage} disabled={disablePrevious}>{buttonLabels.previous}</button>
+						<template if:false={isNextVisibleSectionExists}>
+							<button onclick={finishQuestionnaire}>{buttonLabels.finish}</button>
+						</template>
+						<template if:true={isNextVisibleSectionExists}>
+							<button onclick={nextPage}>{buttonLabels.next}</button>
+						</template>                        
+					</div>
+					<!-- <span style="font-size: 16px;font-weight: bold;color: #333; margin-top:1px;">
+						{displayPageNumber} - {maxSectionNumber}
+					</span> -->
+				</div>
+			</template>
+		</template>
+			
+		</div>
+	</div>
+</template>

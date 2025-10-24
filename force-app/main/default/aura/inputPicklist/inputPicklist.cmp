@@ -1,0 +1,12 @@
+<aura:component controller="addProductController">
+	<aura:attribute name="sObject" type="sObject"/>
+    <aura:attribute name="objName" type="String"/><!--Field API Name-->
+    <aura:attribute name="label" type="String"/>
+    <aura:attribute name="class" type="String"/>
+    <aura:attribute name="selected" type="sObject"/>
+    <aura:attribute name="req" type="Boolean" default="false"/>
+    
+    <aura:handler name="init" action="{!c.doInit2}" value="{!this}"/>    
+       
+    <ui:inputSelect label="{!v.label}" required="{!v.req}" aura:id="inputSelect" value="{!v.selected}" class="{!v.class}"/>
+</aura:component>

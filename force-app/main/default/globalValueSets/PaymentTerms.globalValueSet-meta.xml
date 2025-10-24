@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>PIA</fullName>
+        <default>true</default>
+        <label>PIA</label>
+    </customValue>
+    <customValue>
+        <fullName>Net 7</fullName>
+        <default>false</default>
+        <label>Net 7</label>
+    </customValue>
+    <customValue>
+        <fullName>Net 10</fullName>
+        <default>false</default>
+        <label>Net 10</label>
+    </customValue>
+    <customValue>
+        <fullName>Net 30</fullName>
+        <default>false</default>
+        <label>Net 30</label>
+    </customValue>
+    <customValue>
+        <fullName>Net 60</fullName>
+        <default>false</default>
+        <label>Net 60</label>
+    </customValue>
+    <customValue>
+        <fullName>Net 90</fullName>
+        <default>false</default>
+        <label>Net 90</label>
+    </customValue>
+    <customValue>
+        <fullName>Letter of credit</fullName>
+        <default>false</default>
+        <label>Letter of credit</label>
+    </customValue>
+    <description>Invoice payment terms and conditions</description>
+    <masterLabel>Payment Terms</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

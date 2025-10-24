@@ -1,0 +1,216 @@
+<aura:component controller="addProductController" implements="force:lightningQuickAction,force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId">
+	<aura:attribute name="oppProduct" type="OpportunityLineItem" default="{'sobjectType' : 'OpportunityLineItem', 'TubeOD__c' : '', 'TubeWT__c' : '', 'TubeEnds__c' : '', 'Coating__c' : '', 'Product2Id' : '', 'Shop__c' : '', 'QuotaType__c' : ''}" />
+	<aura:attribute name="opp" type="Opportunity"/>
+	<aura:attribute name="firstScreen" type="Boolean" default="true"/>
+	<aura:attribute name="secondScreen" type="Boolean"/>
+	<aura:attribute name="thirdScreen" type="Boolean"/>
+	<aura:attribute name="fourthScreen" type="Boolean"/>
+	<aura:attribute name="fifthScreen" type="Boolean"/>
+	<aura:attribute name="finishScreen" type="Boolean"/>
+	<aura:attribute name="finishScreenForMobile" type="Boolean"/>
+	<aura:attribute name="OdId" type="Integer"/>
+	<aura:attribute name="SteelGradeId" type="Integer"/>
+	<aura:attribute name="WtId" type="Integer"/>
+	<aura:attribute name="EndsId" type="Integer"/>
+	<aura:attribute name="CoatingId" type="Integer"/>
+	<aura:attribute name="LengthSizeId" type="Integer"/>
+	<aura:attribute name="QuotaTypeId" type="Integer"/>
+	<aura:attribute name="StandardId" type="Integer"/>
+	
+	
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+	<aura:renderIf isTrue="{!v.firstScreen}">
+		<article class="slds-card">
+		  <div class="slds-card__header slds-grid">
+		  </div>
+		  <div class="slds-card__body slds-card__body_inner">
+		  	Please, enter the name of the product you wish to add to Opportunity<br/> <br/>
+
+			<!--<c:inputPicklist sObject="{!v.oppProduct}" objName="Product2" req="true" label="Product Group" selected="{!v.oppProduct.Product2Id}" class="my-margin"/>-->
+			<div class="slds-col my-margin">
+				<ui:inputSelect value="{!v.oppProduct.Product2Id}" required="true" label="Product Group" class="dynamic" aura:id="productName"/>
+			</div>
+			
+		  </div>
+		  <footer class="slds-card__footer">
+		  	<div class="slds-no-flex">
+		  		<lightning:button variant="brand" label="Next" onclick="{!c.nextTo2}" />
+		    </div>
+		  </footer>
+		</article>
+  	</aura:renderIf> 
+
+	<aura:renderIf isTrue="{!v.secondScreen}">
+		<article class="slds-card">
+		  <div class="slds-card__header slds-grid">
+		  </div>
+		  <div class="slds-card__body slds-card__body_inner">
+		<b>Please, specify product features:</b><br/><br/>
+		<div class="my-margin">
+		{!v.body[1]}		
+		<c:inputLookup aura:id="sg" label="Steel Grade" object="SteelGrade__c" searchField="Name" placeholder="Select an option"
+                                order="Name" 
+                               loadingMessage="Loading..." errorMessage="Invalid input" value="{!v.oppProduct.SteelGrade__c}" 
+                               showRecentRecords="true" class="my-margin"/>
+                           </div>
+		<div class="slds-grid">
+			<div class="slds-col my-margin">
+				{!v.body[7]}
+				<c:inputLookup aura:id="standard" label="Standard" object="ProductStandard__c" searchField="Name" placeholder="Select an option"
+                                order="Name" 
+                               loadingMessage="Loading..." errorMessage="Invalid input" value="{!v.oppProduct.ProductStandard__c}" 
+                               showRecentRecords="true" />
+				<!--<c:inputPicklist sObject="{!v.oppProduct}" objName="ProductStandard__c" label="Standard" selected="{!v.oppProduct.ProductStandard__c}"/>-->
+			</div>
+			<div class="slds-col my-margin">
+				<c:inputPicklist sObject="{!v.oppProduct}" objName="ProductSpecLevel__c" label="Spec Level" selected="{!v.oppProduct.ProductSpecLevel__c}" class="my-height1"/>
+			</div>
+		</div>
+		
+		
+        
+		</div>
+		  <footer class="slds-card__footer">
+		  	<div class="slds-no-flex">
+		<lightning:button variant="neutral" label="Cancel" onclick="{!c.cancel}" />
+		<lightning:button variant="neutral" label="Back" onclick="{!c.backTo1}" />
+		<lightning:button variant="brand" label="Next" onclick="{!c.nextTo3}" />
+		</div>
+		  </footer>
+		</article>
+	</aura:renderIf>
+
+	<aura:renderIf isTrue="{!v.thirdScreen}">
+		<article class="slds-card">
+		  <div class="slds-card__header slds-grid">
+		  </div>
+		  <div class="slds-card__body slds-card__body_inner">
+		<b>Please, specify product features:</b><br/><br/>
+		<div class="slds-grid">
+			<div class="slds-col my-margin">
+				{!v.body[0]}
+				<c:inputLookup aura:id="od" label="OD" required = "true" object="TubeOD__c" searchField="Name" placeholder="Select an option"
+                                order="Name" 
+                               loadingMessage="Loading..." errorMessage="Invalid input" value="{!v.oppProduct.TubeOD__c}" 
+                               showRecentRecords="true"/>
+                               </div>
+			<div class="slds-col my-margin">
+				{!v.body[2]}
+        		<c:inputLookup aura:id="wt" label="WT" required = "true" object="TubeWT__c" searchField="Name" placeholder="Select an option"
+                                order="Name" 
+                               loadingMessage="Loading..." errorMessage="Invalid input" value="{!v.oppProduct.TubeWT__c}" 
+                               showRecentRecords="true"/>
+            	</div>
+			</div>
+				<div class="my-margin">
+				{!v.body[5]}
+				<c:inputLookup aura:id="lengthSize" label="Length Size" object="TubeLengthSize__c" searchField="Name" placeholder="Select an option"
+                                order="Name" 
+                               loadingMessage="Loading..." errorMessage="Invalid input" value="{!v.oppProduct.LengthSize__c}" 
+                               showRecentRecords="true" /></div>
+
+        <div class="slds-grid">
+			<div class="slds-col my-margin">
+				<ui:inputNumber aura:id="quantity" class="field slds-col" value="{!v.oppProduct.InquiryQuantity__c}" label="Quantity" required = "true"/>
+			</div>
+			<div class="slds-col my-margin">
+				<ui:inputSelect value="{v.oppProduct.InquiryUnit__c}" label="Unit" required = "true" aura:id="Unit" class="dynamic slds-col my-height"/>
+			</div>
+			<div class="slds-col my-margin">
+				<ui:inputCurrency value="{!v.oppProduct.InquiryUnitPrice__c}" aura:id="salesPrice"/>
+			</div>
+		</div>
+
+
+		</div>
+		  <footer class="slds-card__footer">
+		  	<div class="slds-no-flex">
+		<lightning:button variant="neutral" label="Cancel" onclick="{!c.cancel}" />
+		<lightning:button variant="neutral" label="Back" onclick="{!c.backTo2}" />
+		<lightning:button variant="brand" label="Next" onclick="{!c.nextTo4}" />
+		</div>
+		  </footer>
+		</article>
+	</aura:renderIf>
+
+	<aura:renderIf isTrue="{!v.fourthScreen}">
+		<article class="slds-card">
+		  <div class="slds-card__header slds-grid">
+		  </div>
+		  <div class="slds-card__body slds-card__body_inner">
+		<b>Please, specify product features:</b><br/><br/>
+		<div class="my-margin">
+		{!v.body[3]}
+		<c:inputLookup aura:id="ends" label="Ends" object="TubeEnds__c" searchField="Name" placeholder="Select an option"
+                                order="Name" 
+                               loadingMessage="Loading..." errorMessage="Invalid input" value="{!v.oppProduct.TubeEnds__c}" 
+                               showRecentRecords="true" /></div>
+        <div class="my-margin">
+        {!v.body[4]}                       
+        <c:inputLookup aura:id="coating" label="Coating" object="CoatingType__c" searchField="Name" placeholder="Select an option"
+                                order="Name" 
+                               loadingMessage="Loading..." errorMessage="Invalid input" value="{!v.oppProduct.Coating__c}" 
+                               showRecentRecords="true" /></div>
+
+		
+		<div class="my-margin">
+		<c:inputPicklist sObject="{!v.oppProduct}" objName="Shop__c" label="Shop" selected="{!v.oppProduct.Shop__c}"/>
+		</div>
+
+		</div>
+		  <footer class="slds-card__footer">
+		  	<div class="slds-no-flex">
+		<lightning:button variant="neutral" label="Cancel" onclick="{!c.cancel}" />
+		<lightning:button variant="neutral" label="Back" onclick="{!c.backTo3}" />
+		<lightning:button variant="brand" label="Next" onclick="{!c.nextTo5}" />
+		</div>
+		  </footer>
+		</article>
+	</aura:renderIf>
+
+	<aura:renderIf isTrue="{!v.fifthScreen}">
+		<article class="slds-card">
+		  <div class="slds-card__header slds-grid">
+		  </div>
+		  <div class="slds-card__body slds-card__body_inner">
+		<b>Please, specify product features:</b><br/><br/>
+		<div class="my-margin">		
+		<ui:inputSelect value="{!v.oppProduct.ShippingPoint__c}" label="Shipping Point " class="dynamic" aura:id="shippingPoint"/></div>
+		<div class="my-margin">
+		{!v.body[6]}
+		<c:inputLookup aura:id="quotaType" label="Quota Type " object="QuotaType__c" searchField="Name" placeholder="Select an option"
+                                order="Name" 
+                               loadingMessage="Loading..." errorMessage="Invalid input" value="{!v.oppProduct.QuotaType__c}" 
+                               showRecentRecords="true" /></div>
+
+		</div>
+		  <footer class="slds-card__footer">
+		  	<div class="slds-no-flex">
+		<lightning:button variant="neutral" label="Cancel" onclick="{!c.cancel}" />
+		<lightning:button variant="neutral" label="Back" onclick="{!c.backTo4}" />
+		<lightning:button variant="brand" label="Save" onclick="{!c.addOppProduct}" />
+		</div>
+		  </footer>
+		</article>
+	</aura:renderIf>
+
+	<aura:renderIf isTrue="{!v.finishScreen}">
+		<article class="slds-card">
+		  <div class="slds-card__header slds-grid">
+		  </div>
+		  <div class="slds-card__body slds-card__body_inner">
+		Product was added.
+		</div>
+		  <footer class="slds-card__footer">
+		  	<div class="slds-no-flex">
+		  		<lightning:button variant="neutral" label="Add another Product" onclick="{!c.addAnotherProduct}" />
+		  		<aura:renderIf isTrue="{!v.finishScreenForMobile}">
+		  			<lightning:button variant="neutral" label="Finish" onclick="{!c.close}" />
+		  		</aura:renderIf>
+		  	</div>
+		  </footer>
+		</article>
+	</aura:renderIf>
+
+</aura:component>

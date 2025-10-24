@@ -1,0 +1,92 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId"
+                controller="PreviewPdfController">
+    
+    <style>
+        .modal-container.slds-modal__container {
+        max-width: 70% !important;
+        width:70% !important;
+        min-height:70% !important;
+        }
+    </style>
+    <aura:attribute name="marketSegment" type="String" access="PRIVATE"/>
+    <aura:attribute name="templateOptions" type="List" access="PRIVATE"/>
+    <aura:attribute name="template" type="String" access="PRIVATE"/>
+    <aura:attribute name="languageOptions" type="List" access="PRIVATE"/>
+    <aura:attribute name="metricOptionsMap" type="Map" access="PRIVATE"/>
+    <aura:attribute name="metricOptions" type="List" default="true" access="PRIVATE"/>
+    <aura:attribute name="showMetrics" type="Boolean" access="PRIVATE"/>
+    <aura:attribute name="selectedTemplate" type="String" access="PRIVATE"/>
+    <aura:attribute name="selectedLanguage" type="String" access="PRIVATE"/>
+    <aura:attribute name="selectedMetric" type="String" access="PRIVATE"/>
+    <aura:attribute name="pdfLink" type="String" access="PRIVATE"/>
+    <aura:attribute name="showGeneratedPDF" type="Boolean" default="false" access="PRIVATE"/>
+    <aura:attribute name="validatedQuoteTerms" type="Boolean" default="true" access="PRIVATE"/>
+    <aura:attribute type="QuoteLineItem[]" name="quoteLineItemList"/>
+    <aura:attribute name="mycolumns" type="List"/>
+    <aura:attribute type="List" name="selectedRows"/>
+    <aura:attribute type="List" name="selectedQuoteItemIds"/>
+    
+    <!--12.11-->
+    <aura:attribute name="options" type="List" default="[
+    {'label': 'm', 'value': 'Quantity_m__c'},
+    {'label': 't', 'value': 'Quantity'},
+    {'label': 'pcs', 'value': 'Quantity_pcs__c'}, 
+    {'label': 'ft', 'value': 'Quantity_ft__c'},
+    {'label': 'lb', 'value': 'Quantity_lb__c'}                                                    
+    ]"/>
+    <aura:attribute name="defaultMeasureValues" type="List" default="Quantity_m__c"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    
+    
+    	
+    
+    
+    <aura:if isTrue="{! !v.showGeneratedPDF}">
+        <!-- <lightning:select name="templateId" label="Select a template:" aura:id="templateId" value="{!v.selectedTemplate}" onchange="{!c.onTemplateChange}">
+        <option text="- Template -" value="{!option}" selected="true"/>
+        <aura:iteration items="{!v.templateOptions}" var="option">
+         <option text="{!option}" value="{!option}"/>
+        </aura:iteration>
+      </lightning:select> -->
+        <ui:outputText value="{!'Market Segment: ' + v.marketSegment}"/> <br/>
+        <ui:outputText value="{!'Template: ' + v.template}"/> 
+        <lightning:select name="languageId" label="Select a language:" aura:id="languageId" value="{!v.selectedLanguage}" disabled="true">
+            <aura:iteration items="{!v.languageOptions}" var="option">
+                <option text="{!option}" value="{!option}"/>
+            </aura:iteration>
+        </lightning:select>
+        <aura:renderIf isTrue="{!v.showMetrics}">
+            
+            <lightning:checkboxGroup name="Checkbox Group"
+                             label="Select measure units for display"
+                             options="{! v.options }"
+                             value="{! v.defaultMeasureValues }"
+                             />
+        </aura:renderIf>
+        <lightning:button aura:id="generatePDFButton" class="slds-m-top_small" variant="brand" label="Generate PDF" onclick="{!c.saveAndShowGeneratedPDF}" disabled="true"/>
+        
+        <!-- datatable with selection -->
+    	<lightning:datatable data="{! v.quoteLineItemList }"
+                         columns="{! v.mycolumns }"
+                         keyField="Id"
+                         selectedRows="{! v.selectedRows }"
+                         onrowselection="{! c.getSelectedName }"    
+                         aura:id="partnerTable"    
+                         />
+    	<!-- datatable with selection -->
+        
+        <aura:if isTrue="{! !v.validatedQuoteTerms}">
+            <br/><br/><ui:outputText class="slds-text-color_error" value="{!$Label.c.No_Payment_or_Delivery_Terms_on_Quote}"/><br/>
+                <ui:outputText class="slds-text-color_error" value="{!$Label.c.Fill_in_your_Quote_Payment_and_Delivery_Terms}"/>
+        </aura:if>
+        <aura:set attribute="else">
+            <iframe src="{!v.pdfLink}" width="100%;" height="700px;" frameBorder="0"/>
+            
+            <div class="buttons">
+                <lightning:button variant="brand" label="Save to Quote" onclick="{!c.saveOnQuote}"/>
+                <lightning:button variant="brand" label="Cancel" onclick="{!c.cancel}"/>
+            </div>
+        </aura:set>
+    </aura:if>
+</aura:component>

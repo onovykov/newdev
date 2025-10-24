@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>План и Факт продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Планы и Факты продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value>План и Факт продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value>Планы и Факты продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value>Плана и Факта продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value>Планов и Фактов продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value>Плану и Факту продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value>Планам и Фактам продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>false</plural>
+        <value>Планом и Фактом продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>true</plural>
+        <value>Планами и Фактами продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>false</plural>
+        <value>Плане и Факте продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>true</plural>
+        <value>Планах и Фактах продаж</value>
+    </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>Sales Plan and Fact Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Quantity and Prices --></label>
+            <section>Quantity and Prices</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>План и Факт продаж</nameFieldLabel>
+    <recordTypes>
+        <label>Годовой бюджет</label>
+        <name>ActualBudget</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Итоговый бюджет</label>
+        <name>CorrectedBudget</name>
+    </recordTypes>
+    <recordTypes>
+        <description>Факт производства и продаж</description>
+        <label>Факт</label>
+        <name>Fact</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Изначальный бюджет</label>
+        <name>InitialBudget</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Возможность</label>
+        <name>Opportunity</name>
+    </recordTypes>
+    <recordTypes>
+        <description>Открытый заказ</description>
+        <label>Заказ</label>
+        <name>Order</name>
+    </recordTypes>
+    <recordTypes>
+        <description>План производства и продаж</description>
+        <label>План</label>
+        <name>Plan</name>
+    </recordTypes>
+    <webLinks>
+        <label><!-- Mass_Delete --></label>
+        <name>Mass_Delete</name>
+    </webLinks>
+</CustomObjectTranslation>

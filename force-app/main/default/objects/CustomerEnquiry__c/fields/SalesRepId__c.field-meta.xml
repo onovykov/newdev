@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SalesRepId__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <inlineHelpText>A contact person assigned for processing this enquiry</inlineHelpText>
+    <label>Manager</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>User.Id</field>
+            <operation>notEqual</operation>
+            <valueField>$User.Id</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Customer_Enquiries</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

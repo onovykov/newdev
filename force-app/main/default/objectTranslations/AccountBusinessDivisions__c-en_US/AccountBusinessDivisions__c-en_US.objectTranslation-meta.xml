@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Account Business Divisions</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Account Business Divisions</value>
+    </caseValues>
+    <layouts>
+        <layout>Account Business Divisions Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Business Division can not be updated. Create a new record. --></errorMessage>
+        <name>Do_not_change_Business_Division</name>
+    </validationRules>
+</CustomObjectTranslation>

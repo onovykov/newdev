@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Order Layout</layout>
+        <sections>
+            <label><!-- Addresses --></label>
+            <section>Addresses</section>
+        </sections>
+        <sections>
+            <label><!-- Amount --></label>
+            <section>Amount</section>
+        </sections>
+        <sections>
+            <label><!-- Cross Market --></label>
+            <section>Cross Market</section>
+        </sections>
+        <sections>
+            <label><!-- Execution Status --></label>
+            <section>Execution Status</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Order Layout For Customers</layout>
+        <sections>
+            <label><!-- Addresses --></label>
+            <section>Addresses</section>
+        </sections>
+        <sections>
+            <label><!-- Amount --></label>
+            <section>Amount</section>
+        </sections>
+        <sections>
+            <label><!-- Cross Market --></label>
+            <section>Cross Market</section>
+        </sections>
+        <sections>
+            <label><!-- Execution Status --></label>
+            <section>Execution Status</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Delivery Status --></label>
+        <name>Delivery_Status</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Get Order Confirmation --></label>
+        <name>Get_Order_Confirmation</name>
+    </quickActions>
+</CustomObjectTranslation>

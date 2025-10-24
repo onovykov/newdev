@@ -1,0 +1,133 @@
+<template>
+
+    <div class="tab-header">
+        <h1 class="tab-title">Перегляд і затвердження лімітів</h1>
+        <p class="tab-subtitle">
+            У цій вкладці ви бачите <b>заявлені</b> та <b>узгоджені</b> ліміти постачальників на металобрухт.
+            ЛІВОРУЧ знайдіть потрібного постачальника,
+            У ВІКНІ ПРАВОРУЧ перегляньте значення по декадах і за місяць та
+            <b> відредагуйте/затвердіть </b> узгоджений ліміт за допомогою кнопки праворуч у рядку.
+        </p>
+    </div>
+
+
+    <div class="request-table-container" if:true={hasRequests}>
+        <div class="period-banner">
+            <div class="period-title">Перегляд лімітів</div>
+            <div class="period-sub">
+                <span>Поточний місяць: {currentMonthLabel}</span>
+<!--                <span class="ml-16">| Наступний: {nextMonthLabel}</span>-->
+            </div>
+        </div>
+
+        <table class="request-table">
+            <thead>
+            <tr>
+                <th>Дата створення</th>
+                <th>Постачальник</th>
+                <th>Період</th>
+                <th>1 декада</th>
+                <th>2 декада</th>
+                <th>3 декада</th>
+                <th>Сума за місяць</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <template for:each={requests} for:item="req" for:index="index" >
+                <tr key={req.parentId}>
+                    <td>{req.createdDateLabel}</td>
+                    <td class="supplier-cell">{req.supplier}</td>
+                    <td><span class={req.periodClass}>{req.periodLabel}</span></td>
+                    <td>{req.dec1}</td>
+                    <td>{req.dec2}</td>
+                    <td>{req.dec3}</td>
+                    <td>{req.monthTotal}</td>
+                    <td class="btn-cell">
+                        <button class="approve-btn" onclick={handleApprove} data-index={index} title="Затвердити">
+                            <svg viewBox="0 0 20 20" class="approve-icon" aria-hidden="true">
+                                <path d="M 6 1 L 6 4 L 7 4 L 7 2 L 9 2 L 9 1 L 6 1 z M 11 1 L 11 2 L 14 2 L 14 1 L 11 1 z M 16 1 L 16 2 L 18 2 L 18 4 L 19 4 L 19 1 L 16 1 z M 1 6 L 1 19 L 14 19 L 14 6 L 1 6 z M 18 6 L 18 9 L 19 9 L 19 6 L 18 6 z M 2 7 L 13 7 L 13 18 L 2 18 L 2 7 z M 11.035156 9.3183594 L 6.0859375 14.267578 L 3.9648438 12.146484 L 3.2578125 12.853516 L 6.0859375 15.681641 L 11.742188 10.025391 L 11.035156 9.3183594 z M 18 11 L 18 13 L 16 13 L 16 14 L 19 14 L 19 11 z"></path>
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            </template>
+            </tbody>
+        </table>
+    </div>
+
+    <template if:false={hasRequests}>
+        <div class="empty-state">Наразі немає неузгоджених заявок за поточний місяць.</div>
+    </template>
+
+    <!-- Модалка -->
+    <template if:true={isModalOpen}>
+
+        <div class="modal-backdrop">
+            <div class="modal-content">
+                <lightning-spinner if:true={isLoading} alternative-text="Зачекайте, йде обробка..." size="medium"></lightning-spinner>
+
+                <div class="modal-header">
+                    <h2>Затвердження лімітів для постачальника</h2>
+                </div>
+
+                <div class="modal-body">
+                    <p><b>Постачальник:</b> {selectedRequest.supplier}</p>
+
+                    <!-- Заголовки -->
+                    <div class="limit-label-row">
+                        <div class="limit-label-cell"></div>
+                        <div class="limit-label-cell">1 декада</div>
+                        <div class="limit-label-cell">2 декада</div>
+                        <div class="limit-label-cell">3 декада</div>
+                        <div class="limit-label-cell">Місяць</div>
+                    </div>
+
+                    <!-- Пропоновані -->
+                    <div class="limit-row limit-proposed">
+                        <div class="limit-cell">Пропонований:</div>
+                        <div class="limit-cell">{selectedRequest.dec1}</div>
+                        <div class="limit-cell">{selectedRequest.dec2}</div>
+                        <div class="limit-cell">{selectedRequest.dec3}</div>
+                        <div class="limit-cell">{proposedTotal}</div>
+                    </div>
+
+                    <template if:true={hasOverLimitWarnings}>
+                        <div class="modal-alert">
+                            <ul class="modal-alert__list">
+                                <template for:each={overLimitWarnings} for:item="w">
+                                    <li key={w.key} class={w.className}>{w.text}</li>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+
+
+                    <!-- Узгоджені (інпут) -->
+                    <div class="limit-row limit-approved">
+                        <div class="limit-cell">Узгоджений:</div>
+                        <div class="limit-cell">
+                            <input type="number" class="limit-input" value={approvedDec1} data-name="dec1" oninput={handleInputChange}/>
+                        </div>
+                        <div class="limit-cell">
+                            <input type="number" class="limit-input" value={approvedDec2} data-name="dec2" oninput={handleInputChange}/>
+                        </div>
+                        <div class="limit-cell">
+                            <input type="number" class="limit-input" value={approvedDec3} data-name="dec3" oninput={handleInputChange}/>
+                        </div>
+                        <div class="limit-cell">{approvedTotal}</div>
+                    </div>
+
+                    <div class="modal-footer right-align">
+                        <button class="confirm-proposed-button" onclick={fillAsProposed}>Підтвердити пропоновані</button>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="secondary-button" onclick={handleModalCancel}>Скасувати</button>
+                    <button class="primary-button" disabled={isApproveDisabled} onclick={handleModalSave}>Підтвердити</button>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

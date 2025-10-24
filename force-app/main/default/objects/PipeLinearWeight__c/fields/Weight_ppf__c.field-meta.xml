@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Weight_ppf__c</fullName>
+    <description>Linear weight (pounds per foot)</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Linear weight (pounds per foot)</inlineHelpText>
+    <label>Weight (ppf)</label>
+    <precision>11</precision>
+    <required>false</required>
+    <scale>3</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

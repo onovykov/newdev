@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Please input total required quantity for the project in Mt --></help>
+    <label><!-- Total Q-ty of Project (Mt) --></label>
+    <name>Quantity_t__c</name>
+</CustomFieldTranslation>

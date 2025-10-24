@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>InspectionName__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(SpecBase__r.Country__r.Name=&apos;Ukraine&apos;,  Inspection__r.NameUKR__c,  Inspection__r.NameENG__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Inspection Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,4 @@
+<apex:page showHeader="true" sidebar="true" lightningStylesheets="true" standardController="OpportunityLineItem" extensions="OpportunityLineItemControllerExtension" action="{!saveRecord}">
+
+
+</apex:page>

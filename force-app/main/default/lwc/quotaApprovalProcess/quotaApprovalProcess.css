@@ -1,0 +1,35 @@
+.highlight-cell {
+    background-color: #FFDD00;
+}
+
+.bold-cell {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.slds-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 28px;
+    gap: 12px;
+    width: 256px;
+    height: 58px;
+    margin-top: 20px;
+    background: #FFDD00;
+    border-radius: 18px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 22px;
+    color: rgb(0, 0, 0);
+}
+
+.approve-button {
+    background: #FFDD00;
+}
+
+.reject-button {
+    background: #ff5026;
+}

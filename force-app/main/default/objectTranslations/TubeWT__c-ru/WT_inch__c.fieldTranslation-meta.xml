@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Precise wall thickness in inches --></help>
+    <label>дюйм</label>
+    <name>WT_inch__c</name>
+</CustomFieldTranslation>

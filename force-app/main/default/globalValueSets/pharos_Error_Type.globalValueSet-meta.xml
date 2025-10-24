@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Apex Exception</fullName>
+        <default>false</default>
+        <label>Apex Exception</label>
+    </customValue>
+    <customValue>
+        <fullName>Flow Error</fullName>
+        <default>false</default>
+        <label>Flow Error</label>
+    </customValue>
+    <customValue>
+        <fullName>Bulk API</fullName>
+        <default>false</default>
+        <label>Bulk API</label>
+    </customValue>
+    <customValue>
+        <fullName>Limit Exception</fullName>
+        <default>false</default>
+        <label>Limit Exception</label>
+    </customValue>
+    <customValue>
+        <fullName>Workflow/Job</fullName>
+        <default>false</default>
+        <label>Workflow/Job</label>
+    </customValue>
+    <customValue>
+        <fullName>Trigger</fullName>
+        <default>false</default>
+        <label>Trigger</label>
+    </customValue>
+    <customValue>
+        <fullName>Duplicate Error</fullName>
+        <default>false</default>
+        <label>Duplicate Error</label>
+    </customValue>
+    <customValue>
+        <fullName>No ID in ERP Error</fullName>
+        <default>false</default>
+        <label>No ID in ERP Error</label>
+    </customValue>
+    <customValue>
+        <fullName>Wrong ERP Order</fullName>
+        <default>false</default>
+        <label>Wrong ERP Order</label>
+    </customValue>
+    <masterLabel>Pharos Error Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quota_Type__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Quota Type</label>
+    <referenceTo>QuotaType__c</referenceTo>
+    <relationshipLabel>Opportunity Product For Prod. Quotes</relationshipLabel>
+    <relationshipName>Opportunity_Product_For_Prod_Quotes</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

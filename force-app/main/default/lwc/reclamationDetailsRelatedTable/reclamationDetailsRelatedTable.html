@@ -1,0 +1,11 @@
+<template>
+   
+    <lightning-card if:true={showData}>
+        <template for:each={groupedRecordByOrder} for:item="keyValue" for:index="index"> 
+            <c-single-table-reclamation-detail key={keyValue} get-my-data={keyValue}>
+        
+            </c-single-table-reclamation-detail>
+            </template>
+    </lightning-card>
+        
+</template>

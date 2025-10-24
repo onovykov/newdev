@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Запись бюджета продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Записи бюджета продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value>Запись бюджета продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value>Записи бюджета продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value>Записи бюджета продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value>Записей бюджета продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value>Записи бюджета продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value>Записям бюджета продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>false</plural>
+        <value>Записью бюджета продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>true</plural>
+        <value>Записями бюджета продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>false</plural>
+        <value>Записи бюджета продаж</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>true</plural>
+        <value>Записях бюджета продаж</value>
+    </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>Month Plan Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Product Details --></label>
+            <section>Product Details</section>
+        </sections>
+        <sections>
+            <label><!-- Quantity and Prices --></label>
+            <section>Quantity and Prices</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Quarter Plan Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Product Details --></label>
+            <section>Product Details</section>
+        </sections>
+        <sections>
+            <label><!-- Quantity and Prices --></label>
+            <section>Quantity and Prices</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Запись бюджета продаж</nameFieldLabel>
+    <recordTypes>
+        <label>План месяца</label>
+        <name>PlanMonth</name>
+    </recordTypes>
+    <recordTypes>
+        <label>План квартала</label>
+        <name>PlanQuarter</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage>период вне диапазона, указанного в исходном объекте</errorMessage>
+        <name>PeriodValidation</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Mass_Delete --></label>
+        <name>Mass_Delete</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Price Approval Request Item</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Price Approval Request Items</value>
+    </caseValues>
+    <layouts>
+        <layout>Price Approval Request Item Layout</layout>
+        <sections>
+            <label><!-- Costs --></label>
+            <section>Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Product Characteristics --></label>
+            <section>Product Characteristics</section>
+        </sections>
+        <sections>
+            <label><!-- Quantity and amount --></label>
+            <section>Quantity and amount</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

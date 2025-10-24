@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Tube</fullName>
+        <default>false</default>
+        <label>Tube</label>
+    </customValue>
+    <customValue>
+        <fullName>Wheel</fullName>
+        <default>false</default>
+        <label>Wheel</label>
+    </customValue>
+    <customValue>
+        <fullName>Tyre</fullName>
+        <default>false</default>
+        <label>Tyre</label>
+    </customValue>
+    <customValue>
+        <fullName>Axle</fullName>
+        <default>false</default>
+        <label>Axle</label>
+    </customValue>
+    <customValue>
+        <fullName>Wheel set</fullName>
+        <default>false</default>
+        <label>Wheel set</label>
+    </customValue>
+    <customValue>
+        <fullName>Centre</fullName>
+        <default>false</default>
+        <label>Centre</label>
+    </customValue>
+    <customValue>
+        <fullName>Cookware</fullName>
+        <default>false</default>
+        <label>Cookware</label>
+    </customValue>
+    <description>Our product types</description>
+    <masterLabel>Product Types</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

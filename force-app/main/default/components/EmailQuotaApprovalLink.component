@@ -1,0 +1,10 @@
+<apex:component controller="EmailQuotaApprovalLinkController" access="global">
+  <apex:attribute name="recordId" type="Id" description="Header Id" assignTo="{!headerId}"/>
+  <apex:attribute name="userId" type="Id" description="User Id" assignTo="{!user}"/>
+
+
+  <a href="{!linkAddress}" target="_blank" style="font-size: 15px; font-family: Calibri, Arial, sans-serif; font-weight: normal; color: #000000; text-decoration: none; display: inline-block;">
+    Перейти до узгодження
+  </a>
+
+</apex:component>

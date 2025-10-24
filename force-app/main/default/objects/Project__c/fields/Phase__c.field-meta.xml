@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Phase__c</fullName>
+    <description>Phase of the project</description>
+    <inlineHelpText>Phase of the project</inlineHelpText>
+    <label>Phase</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Planning</fullName>
+                <default>false</default>
+                <label>Planning</label>
+            </value>
+            <value>
+                <fullName>Announced</fullName>
+                <default>false</default>
+                <label>Announced</label>
+            </value>
+            <value>
+                <fullName>Active</fullName>
+                <default>false</default>
+                <label>Active</label>
+            </value>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+            <value>
+                <fullName>Delayed</fullName>
+                <default>false</default>
+                <label>Delayed</label>
+            </value>
+            <value>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+                <label>On Hold</label>
+            </value>
+            <value>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+                <label>Cancelled</label>
+            </value>
+            <value>
+                <fullName>Awarded</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Awarded</label>
+            </value>
+            <value>
+                <fullName>Bid Evaluation</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Bid Evaluation</label>
+            </value>
+            <value>
+                <fullName>Bid submission</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Bid submission</label>
+            </value>
+            <value>
+                <fullName>Commissioning</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Commissioning</label>
+            </value>
+            <value>
+                <fullName>Prequalification</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Prequalification</label>
+            </value>
+            <value>
+                <fullName>Tendering &amp; bidding</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Tendering &amp; bidding</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,80 @@
+<apex:page renderAs="advanced_pdf" applyBodyTag="false" showHeader="false" controller="SiteEnquiryDatatablePDFController">
+    <head>
+		<style type="text/CSS">
+            .table-bordered {
+                border: none;
+                border-collapse : collapse;
+                font-size : .7em;
+            }
+            td {
+                border-top: 1px solid #E2E2E2;
+                border-bottom: 1px solid #E2E2E2;
+                text-align: center;
+            }
+            th{
+                text-align: center;
+            }
+            
+            .parent {
+            text-align: left;
+            }
+            .child {
+            display: inline-block;
+            vertical-align: right;
+            margin-left: 100px;
+            }
+
+            @page {
+							size: letter;
+							margin: 25mm;
+							margin-top: 0.8cm;
+							@bottom-center {
+								content: "Page " counter(page) " of " counter(pages);
+							}
+                           
+						}
+						.page-break {
+							display:block;
+							page-break-after:always;
+						}
+                        
+
+        </style>
+	</head>
+
+    <div class='parent'>
+        <div style="display: inline-block;">
+            <img src="{!$Resource.InterpipeLogo}" width="65%"/>
+        </div>
+        <div class='child'>
+            <p style="font-size:12px">+38 (056) 736-60-06</p>
+            <p style="font-size:12px">info@ua.interpipe.biz</p>
+        </div>
+    </div>
+    
+            
+    <div style="width =100px; border: 1px solid #000000; margin-bottom: 15px;"></div>
+        
+
+    <div style="font-family: 'Golos';font-style: normal;font-weight: 500;font-size: 28px;line-height: 74px; margin-top 10px;">
+        Enquiries:
+    </div>
+    <table width="100%" class="table-bordered" style="font-family: Arial Unicode MS, sans-serif;">
+        <tr>
+            <th>Enquiry number</th>
+            <th>Date</th>
+            <th>Manager</th>
+            <th>Stage</th>
+            <th>CreatedBy</th>
+        </tr>
+        <apex:repeat value="{!enquiriesList}" var="item">
+            <tr>
+                <td> {!item.Name}</td>
+                <td> {!item.CreatedDate} </td>
+                <td> {!item.SalesRepId__r.Name} </td>
+                <td> {!item.Status__c} </td>
+                <td> {!item.CreatedBy.Name} </td>
+            </tr>
+        </apex:repeat>
+    </table>
+</apex:page>

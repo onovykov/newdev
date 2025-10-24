@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>_1</fullName>
+        <default>false</default>
+        <label>Initiator</label>
+    </customValue>
+    <customValue>
+        <fullName>_3</fullName>
+        <default>false</default>
+        <label>Sales Rep</label>
+    </customValue>
+    <customValue>
+        <fullName>_10</fullName>
+        <default>false</default>
+        <label>Rejected</label>
+    </customValue>
+    <customValue>
+        <fullName>_26</fullName>
+        <default>false</default>
+        <label>Pending for recommended CDD</label>
+    </customValue>
+    <customValue>
+        <fullName>_23</fullName>
+        <default>false</default>
+        <label>Archive</label>
+    </customValue>
+    <customValue>
+        <fullName>_25</fullName>
+        <default>false</default>
+        <label>Autocoder</label>
+    </customValue>
+    <customValue>
+        <fullName>_5</fullName>
+        <default>false</default>
+        <label>Delivery cost</label>
+    </customValue>
+    <customValue>
+        <fullName>_7</fullName>
+        <default>false</default>
+        <label>Parallel processing</label>
+    </customValue>
+    <customValue>
+        <fullName>_6</fullName>
+        <default>false</default>
+        <label>Outside checking</label>
+    </customValue>
+    <customValue>
+        <fullName>_4</fullName>
+        <default>false</default>
+        <label>FES Calculation</label>
+    </customValue>
+    <customValue>
+        <fullName>_11</fullName>
+        <default>false</default>
+        <label>FES calculation is completed</label>
+    </customValue>
+    <customValue>
+        <fullName>_15</fullName>
+        <default>false</default>
+        <label>Additional approval (Logistics)</label>
+    </customValue>
+    <customValue>
+        <fullName>_12</fullName>
+        <default>false</default>
+        <label>Transportation cost estimated</label>
+    </customValue>
+    <customValue>
+        <fullName>_8</fullName>
+        <default>false</default>
+        <label>Prod &amp; Resr dept</label>
+    </customValue>
+    <customValue>
+        <fullName>_16</fullName>
+        <default>false</default>
+        <label>Additional Approval (outside check)</label>
+    </customValue>
+    <customValue>
+        <fullName>_13</fullName>
+        <default>false</default>
+        <label>Turnover rate estimated</label>
+    </customValue>
+    <customValue>
+        <fullName>_14</fullName>
+        <default>false</default>
+        <label>Additional approval (FES)</label>
+    </customValue>
+    <customValue>
+        <fullName>_2</fullName>
+        <default>false</default>
+        <label>Additional approval (Prod &amp; Resr dept)</label>
+    </customValue>
+    <customValue>
+        <fullName>_9</fullName>
+        <default>false</default>
+        <label>Approved</label>
+    </customValue>
+    <customValue>
+        <fullName>_18</fullName>
+        <default>false</default>
+        <label>Director of Prod &amp; Resr dept</label>
+    </customValue>
+    <customValue>
+        <fullName>_17</fullName>
+        <default>false</default>
+        <label>FES control</label>
+    </customValue>
+    <customValue>
+        <fullName>_20</fullName>
+        <default>false</default>
+        <label>Additional approval (Director of Prod &amp; Resr dept)</label>
+    </customValue>
+    <customValue>
+        <fullName>_19</fullName>
+        <default>false</default>
+        <label>Additional approval (Controlling)</label>
+    </customValue>
+    <customValue>
+        <fullName>_24</fullName>
+        <default>false</default>
+        <label>CEO</label>
+    </customValue>
+    <customValue>
+        <fullName>_22</fullName>
+        <default>false</default>
+        <label>CFO</label>
+    </customValue>
+    <customValue>
+        <fullName>_21</fullName>
+        <default>false</default>
+        <label>Additional approval (CFO)</label>
+    </customValue>
+    <customValue>
+        <fullName>_27</fullName>
+        <default>false</default>
+        <label>Director of the division</label>
+    </customValue>
+    <customValue>
+        <fullName>_28</fullName>
+        <default>false</default>
+        <label>Chairman of the board</label>
+    </customValue>
+    <description>Stages of Price Approval Request</description>
+    <masterLabel>PAR Stages</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

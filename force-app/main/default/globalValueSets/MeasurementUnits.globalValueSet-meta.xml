@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>34</fullName>
+        <default>true</default>
+        <label>t</label>
+    </customValue>
+    <customValue>
+        <fullName>20</fullName>
+        <default>false</default>
+        <label>m</label>
+    </customValue>
+    <customValue>
+        <fullName>74</fullName>
+        <default>false</default>
+        <label>ft</label>
+    </customValue>
+    <customValue>
+        <fullName>43</fullName>
+        <default>false</default>
+        <label>pcs</label>
+    </customValue>
+    <customValue>
+        <fullName>962</fullName>
+        <default>false</default>
+        <label>hour</label>
+    </customValue>
+    <description>Product measurement units.</description>
+    <masterLabel>Measurement Units</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

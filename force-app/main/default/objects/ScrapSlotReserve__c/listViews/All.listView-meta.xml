@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Supplier__c</columns>
+    <columns>MonthLookup__c</columns>
+    <columns>DecadeLookup__c</columns>
+    <columns>ScrapType__c</columns>
+    <columns>ReserveDate__c</columns>
+    <columns>Track__c</columns>
+    <columns>DriverFIO__c</columns>
+    <columns>Tonnage__c</columns>
+    <columns>FixedWeight__c</columns>
+    <columns>Weight__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Special_Shipping_Requirements__c</fullName>
+    <defaultValue>&quot;-Max age of vessel and flag restrictions - None &lt;br/&gt;&quot; +
+
+&quot;-Any additional Vessel Certificates required - None &lt;br/&gt;&quot; +
+
+&quot;Dunnage Material - No Restriction &lt;br/&gt;&quot; +
+
+&quot;-Advise any special shipping requirements for confirmation&lt;br/&gt;&quot;</defaultValue>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Special Shipping Requirements</label>
+    <length>32768</length>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

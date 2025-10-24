@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DriverFIO__c</fullName>
+    <externalId>false</externalId>
+    <formula>Driver__r.LastName + &apos; &apos; + LEFT(Driver__r.FirstName, 1) +&apos;.&apos;+LEFT(Driver__r.MiddleName, 1)+&apos;.&apos;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>DriverFIO</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>QuestionnaireResponse__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Questionnaire Response</label>
+    <referenceTo>Questionnaire_Response__c</referenceTo>
+    <relationshipLabel>Marketing: Main Table</relationshipLabel>
+    <relationshipName>Marketing_Main_Table</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

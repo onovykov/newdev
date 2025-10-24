@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WorldCountries__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>World Countries</label>
+    <referenceTo>WorldCountries__c</referenceTo>
+    <relationshipLabel>Countries</relationshipLabel>
+    <relationshipName>Countries</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

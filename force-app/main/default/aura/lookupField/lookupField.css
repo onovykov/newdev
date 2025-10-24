@@ -1,0 +1,14 @@
+.THIS .slds-combobox__input-entity-icon + .slds-input-has-icon_left {
+    padding-left: 2rem;
+}
+
+.THIS .full-size {
+    width:100%;
+}
+.THIS .asd{
+    display: none;
+}
+.THIS .uiInputDateHtml {
+    display: flex;
+    flex-direction:column
+}

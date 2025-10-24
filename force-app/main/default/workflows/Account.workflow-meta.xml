@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Email_Alert_ID_ERP_C_has_been_changed_on_account</fullName>
+        <ccEmails>Aleksandr.Novikov@m.interpipe.biz</ccEmails>
+        <description>Email Alert  ID_ERP__C has been changed on account</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>violetta.chernenko@interpipe.biz</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/ID_ERP_C_has_been_changed_on_Account</template>
+    </alerts>
+</Workflow>

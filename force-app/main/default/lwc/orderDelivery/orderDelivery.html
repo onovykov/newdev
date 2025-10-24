@@ -1,0 +1,69 @@
+<template>
+
+    <div class="exampleHolder" if:true={showSpinner}>
+        <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+    </div>
+    {fontCode}
+
+
+    <lightning-card if:true={showData}>
+        <div class="header-block slds-grid  slds-wrap">
+
+            <div if:false={isMobile}
+                 class="slds-grid slds-p-vertical_medium  slds-p-horizontal_medium btns-block selection-block">
+                <div class={selectButton} onclick={selectAll}>
+                    <p class="selection-text">{label.selectAll}</p>
+                </div>
+                <div class={deselectButton} onclick={deselectAll}>
+                    <p class="selection-text">{label.deselectAll}</p>
+                </div>
+            </div>
+
+
+            <div
+                class="slds-grid slds-p-vertical_medium slds-p-horizontal_medium slds-col_bump-left btns-block print-block">
+                <div class={printBntsClass} data-id="PDF" onclick={handlePrint}>
+                    <img src={printImg} alt="" class="print-icon">
+                    <p class="print-text">{label.print}</p>
+                </div>
+                <div class={printBntsClass} data-id="XLSX" onclick={handlePrint}>
+                    <img src={xlsxIcon} alt="" class="xlsx-icon">
+                    <p class="print-text">Excel</p>
+                </div>
+
+            </div>
+
+        </div>
+        <template for:each={orderItemArray} for:item="keyValue" for:index="index">
+            <c-order-table get-my-data={keyValue}
+                           get-array-length={orderItemArray.length}
+                           get-index={index}
+                           get-history={history}
+                           key={keyValue}
+                           class="slds-m-around_medium"
+                           onspinnervaluechange={hanldeSpinnerValueChange}
+                           onitemselect={handlerItemSelect}
+
+            ></c-order-table>
+        </template>
+
+    </lightning-card>
+
+    <lightning-card if:true={showErrorMessage}>
+        <div class="slds-m-around_medium">
+            <p class="slds-text-heading_medium">{label.nonDeliveryInfo}</p>
+        </div>
+    </lightning-card>
+
+    <lightning-card if:true={showMissingOrderValueMessage}>
+        <div class="slds-m-around_medium">
+            <p class="slds-text-heading_medium">{missingOrderValueMessage}</p>
+        </div>
+    </lightning-card>
+
+    <lightning-card if:true={showPickupMessage}>
+        <div class="slds-m-around_medium">
+            <p class="slds-text-heading_medium">{label.pickupMessage}</p>
+        </div>
+    </lightning-card>
+</template>

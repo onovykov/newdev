@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>00002</fullName>
+        <default>false</default>
+        <label>MENA</label>
+    </customValue>
+    <customValue>
+        <fullName>00001</fullName>
+        <default>false</default>
+        <label>Americas</label>
+    </customValue>
+    <customValue>
+        <fullName>00004</fullName>
+        <default>false</default>
+        <label>Europe</label>
+    </customValue>
+    <customValue>
+        <fullName>00010</fullName>
+        <default>false</default>
+        <label>CIS</label>
+    </customValue>
+    <customValue>
+        <fullName>00011</fullName>
+        <default>false</default>
+        <label>Ukraine</label>
+    </customValue>
+    <customValue>
+        <fullName>00016</fullName>
+        <default>false</default>
+        <label>Customs Union</label>
+    </customValue>
+    <customValue>
+        <fullName>00006</fullName>
+        <default>false</default>
+        <label>KLW</label>
+    </customValue>
+    <customValue>
+        <fullName>00020</fullName>
+        <default>false</default>
+        <label>ETA</label>
+    </customValue>
+    <customValue>
+        <fullName>00021</fullName>
+        <default>false</default>
+        <label>Machinery</label>
+    </customValue>
+    <customValue>
+        <fullName>SFAdmins</fullName>
+        <default>false</default>
+        <label>Salesforce Admins</label>
+    </customValue>
+    <description>Sales divisions in our company</description>
+    <masterLabel>Sales Divisions</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

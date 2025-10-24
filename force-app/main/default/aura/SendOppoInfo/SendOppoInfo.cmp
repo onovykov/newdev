@@ -1,0 +1,173 @@
+<aura:component controller="OpportunityInfoController" implements="force:lightningQuickActionWithoutHeader,force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId">
+    <aura:attribute name="oppWrapper" type="OpportunityInfoController" />
+    <aura:attribute name="typeOfMessage" type="String"/>
+    <aura:attribute name="Quantity" type="String"/>
+    <aura:attribute name="attachementsExist" type="Boolean" default="true"/>
+    <aura:attribute name="emailsExist" type="Boolean" default="true"/>
+    <aura:attribute name="isMobile" type="Boolean" default="{!false}" description="Determines if the user is in Salesforce1" access="private"/>
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+
+    <style>
+        .modal-container.slds-modal__container {
+            max-width: 50% !important;
+            width:50% !important;
+        }
+    </style>
+
+    <article class="slds-card">
+        <!-- Spinner -->
+        <div class="slds-spinner_container slds-is-fixed custom-full-size" aura:id="spinner">
+            <div role="status" class="slds-spinner slds-spinner_large">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+
+        <!-- Error banner -->
+        <div aura:id="messageBanner">
+          <div class="slds-notify_container">
+            <div class="slds-notify slds-notify_toast" role="alert" aura:id="messageSeverity">
+              <span class="slds-assistive-text">{!v.typeOfMessage}</span>
+              <div class="slds-notify__content">
+                <h2 class="slds-text-heading_small ">
+                    <aura:unescapedHtml aura:id="messageHTML"/>
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <div class="slds-modal__header" style="margin-left: 15px;margin-right: 15px;">
+            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Send Opportunity information to Backoffice</h2>
+          </div>
+
+          <div class="slds-card__body slds-card__body_inner">
+            <div style="{!if(v.isMobile, 'min-height: 30rem;', 'overflow: scroll;overflow-x: hidden;height: 21rem;max-height: 21rem;')}">
+                <div class="slds-page-header">
+                    <p class="slds-text-heading--label">Opportunity info</p>
+                </div>
+
+                <br/>
+
+                <div style="margin-left: 15px;">
+                    <p class="slds-text-heading--label"><div class="slds-show_inline-block fixed-width-oppinfo-label fixed-bottom-indent"><b>Account Name :</b></div><div class="slds-show_inline-block">{!v.oppWrapper.acc.Name}</div></p>
+                    <p class="slds-text-heading--label"><div class="slds-show_inline-block fixed-width-oppinfo-label"><b>Account Type :</b></div><div class="slds-show_inline-block">{!v.oppWrapper.acc.Type}</div></p>
+                    <p class="slds-text-heading--label"><b>
+                    <c:inputLookup aura:id="boSpec" label="BO Specialist : " object="User" searchField="Name" placeholder="Select an option"
+                                            order="Name"
+                                           loadingMessage="Loading..." errorMessage="" value="{!v.oppWrapper.oppo.AssignedBOS__c}"  
+                                           showRecentRecords="true" error="true"/>
+                                       </b></p>
+                    <p class="slds-text-heading--label"><b>
+                    <c:inputLookup aura:id="boSpec" label="Additional BO Specialist : " object="User" searchField="Name" placeholder="Select an option"
+                                            order="Name"
+                                           loadingMessage="Loading..." errorMessage="" value="{!v.oppWrapper.oppo.AdditionalBOS__c}"  
+                                           showRecentRecords="true" error="false"/>
+                                       </b></p>
+                    
+                    <br/>
+                </div>
+
+                <!-- Opportunity Products-->
+                <div class="slds-page-header" role="banner">
+                    <p class="slds-text-heading--label">Opportunity Products</p>
+                </div>
+
+                <br/>
+
+            <ui:scrollerWrapper class="scrollerSize">
+            <table class="slds-table slds-table--bordered slds-table--striped slds-table_col-bordered slds-table_cell-buffer">
+                <thead>
+                    <tr>
+                        <th scope="col"><span class="slds-truncate"><b>Name</b></span></th>
+                        <th scope="col"><span class="slds-truncate"><b>Quantity</b></span></th>
+                        <th scope="col"><span class="slds-truncate"><b>Measurement Unit</b></span></th>
+                        <th scope="col"><span class="slds-truncate"><b>Price</b></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.oppWrapper.products}" var="product">
+                        <tr>
+                            <td>{!product.Product2.Name}</td>
+                            <td><ui:outPutNumber aura:id="quantity" format="#0.00" value="{!product.Quantity}"/></td>
+                            <td>{!product.InquiryUnit__c}</td>
+                            <td><ui:outPutNumber aura:id="totalPrice" format="#0.00" value="{!product.TotalPrice}"/></td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+            </ui:scrollerWrapper>
+
+            <!-- end Products-->
+            <br/>
+
+            <aura:if isTrue="{!v.emailsExist}">
+                <!--Opportunity emails-->
+                <div class="slds-page-header" role="banner">
+                    <p class="slds-text-heading--label">Opportunity emails</p>
+                </div>
+                <br/>
+                <table class="slds-table slds-table--bordered slds-table--striped slds-table_col-bordered slds-table_cell-buffer">
+                    <thead>
+                        <tr>
+                            <th scope="col"><span class="slds-truncate"><b>Email Subject</b></span></th>
+                            <th scope="col"><span class="slds-truncate"><b>Include</b></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.oppWrapper.emails}" var="email">
+                            <tr>
+                                <td>{!email.mailMessage.Subject}</td>
+                                <td><ui:inputCheckbox value="{!email.checkbox}"/></td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+                <br/>
+            </aura:if>
+            <!-- end Emails-->
+
+            <!--Opportunity attachements-->
+            <aura:if isTrue="{!v.attachementsExist}">
+                <div class="slds-page-header" role="banner">
+                    <p class="slds-text-heading--label">Opportunity attachments</p>
+                </div>
+                <br/>
+
+                <ui:scrollerWrapper class="scrollerSize">
+                <table class="slds-table slds-table--bordered slds-table--striped slds-table_col-bordered slds-table_cell-buffer">
+                    <thead>
+                        <tr>
+                            <th scope="col"><span class="slds-truncate"><b>Source</b></span></th>
+                            <th scope="col"><span class="slds-truncate"><b>Attachment Name</b></span></th>
+                            <th scope="col"><span class="slds-truncate"><b>Include</b></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.oppWrapper.attachements}" var="attach">
+                            <tr>
+                                <td>{!attach.source}</td>
+                                <td>{!attach.Name}</td>
+                                <td><ui:inputCheckbox value="{!attach.checkbox}"/></td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+                </ui:scrollerWrapper>
+                <br/>
+            </aura:if>
+
+            </div>
+
+            </div>
+    </article>
+
+    <div class = "slds-align_absolute-center" style="margin-top: 10px;">
+        <lightning:button variant="brand" label="Send" onclick="{!c.submit}"  disabled="{empty(v.oppWrapper.oppo.Owner.ID_ERP__c) || v.oppWrapper.bo_user.Id == null || v.oppWrapper.bo_user.Id == ''}"/><!--disabled="{!empty(v.oppWrapper.oppo.Owner.ID_ERP__c) || v.oppWrapper.bo_user.Id == null || v.oppWrapper.bo_user.Id == ''}"-->
+        <!-- Trying to fix disabled button disabled="{!empty(v.oppWrapper.oppo.Owner.ID_ERP__c) || v.oppWrapper.bo_user.Id == null || v.oppWrapper.bo_user.Id == ''}"-->
+        <!--disabled="{!or(empty(v.oppWrapper.oppo.AssignedBO__r.Id),empty(v.oppWrapper.oppo.AssignedBO__r.Email))}"-->
+        <lightning:button variant="brand" label="Cancel" onclick="{!c.cancel}"/>
+    </div>
+</aura:component>

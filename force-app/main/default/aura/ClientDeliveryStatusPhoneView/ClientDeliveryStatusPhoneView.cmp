@@ -1,0 +1,100 @@
+<aura:component>
+	<aura:attribute name="Data" type="Object"/>
+
+	<div class="accordion-section" style="font-size: 1rem;">
+		{!'Account Name: ' + v.Data.AccountName}
+	</div>
+
+	<lightning:accordion allowMultipleSectionsOpen="true">
+		<!-- Booked Orders -->
+        <lightning:accordionSection name="BookedOrders" label="{!'Booked Orders: ' + v.Data.BookedOrder.TotalOfTotals}">
+			<div class="accordion-section">
+				{!'Backlog: ' + v.Data.BookedOrder.TotalNumberOfJournalsByQuarters2017}
+			</div>
+			<lightning:accordion allowMultipleSectionsOpen="true">
+				<lightning:accordionSection name="BookedOrdersNewOrders" label="{!'New Orders: ' + v.Data.BookedOrder.TotalNumberOfJournalsByQuarters2018}">
+					<div class="accordion-section">
+						{!'Q1: ' + v.Data.BookedOrder.NumberOfJournalsByQuarters2018[0]}
+					</div>
+					<div class="accordion-section">
+						{!'Q2: ' + v.Data.BookedOrder.NumberOfJournalsByQuarters2018[1]}
+					</div>
+					<div class="accordion-section">
+						{!'Q3: ' + v.Data.BookedOrder.NumberOfJournalsByQuarters2018[2]}
+					</div>
+					<div class="accordion-section">
+						{!'Q4: ' + v.Data.BookedOrder.NumberOfJournalsByQuarters2018[3]}
+					</div>
+				</lightning:accordionSection>
+			</lightning:accordion>
+        </lightning:accordionSection>
+		
+		<!-- Shipped to Client -->
+        <lightning:accordionSection name="ShippedtoClient" label="{!'Shipped to Client: ' + v.Data.QTYShippedToClient.TotalOfTotals}">
+			<lightning:accordion allowMultipleSectionsOpen="true">
+				<lightning:accordionSection name="ShippedtoClientQ1" label="{!'Q1: ' + v.Data.QTYShippedToClient.TotalNumberOfJournalsByQuarters[0]}">
+					<div class="accordion-section">
+						{!'New Orders: ' + v.Data.QTYShippedToClient.NumberOfJournalsByQuarters2018[0]}
+					</div>
+					<div class="accordion-section">
+						{!'Old Orders: ' + v.Data.QTYShippedToClient.NumberOfJournalsByQuarters2017[0]}
+					</div>
+				</lightning:accordionSection>
+				<lightning:accordionSection name="ShippedtoClientQ2" label="{!'Q2: ' + v.Data.QTYShippedToClient.TotalNumberOfJournalsByQuarters[1]}">
+					<div class="accordion-section">
+						{!'New Orders: ' + v.Data.QTYShippedToClient.NumberOfJournalsByQuarters2018[1]}
+					</div>
+					<div class="accordion-section">
+						{!'Old Orders: ' + v.Data.QTYShippedToClient.NumberOfJournalsByQuarters2017[1]}
+					</div>
+				</lightning:accordionSection>
+				<lightning:accordionSection name="ShippedtoClientQ3" label="{!'Q3: ' + v.Data.QTYShippedToClient.TotalNumberOfJournalsByQuarters[2]}">
+					<div class="accordion-section">
+						{!'New Orders: ' + v.Data.QTYShippedToClient.NumberOfJournalsByQuarters2018[2]}
+					</div>
+					<div class="accordion-section">
+						{!'Old Orders: ' + v.Data.QTYShippedToClient.NumberOfJournalsByQuarters2017[2]}
+					</div>
+				</lightning:accordionSection>
+				<lightning:accordionSection name="ShippedtoClientQ4" label="{!'Q4: ' + v.Data.QTYShippedToClient.TotalNumberOfJournalsByQuarters[3]}">
+					<div class="accordion-section">
+						{!'New Orders: ' + v.Data.QTYShippedToClient.NumberOfJournalsByQuarters2018[3]}
+					</div>
+					<div class="accordion-section">
+						{!'Old Orders: ' + v.Data.QTYShippedToClient.NumberOfJournalsByQuarters2017[3]}
+					</div>
+				</lightning:accordionSection>
+			</lightning:accordion>
+		</lightning:accordionSection>
+		
+		<!-- Distribution Agreement -->
+		<lightning:accordionSection name="C" label="{!'Distribution Agreement ' + v.Data.CurrentYear + ': ' + v.Data.DistributionAgreement.Total}">
+			<div class="accordion-section">
+				{!'Q1: ' + v.Data.DistributionAgreement.KSA[0]}
+			</div>
+			<div class="accordion-section">
+				{!'Q2: ' + v.Data.DistributionAgreement.KSA[1]}
+			</div>
+			<div class="accordion-section">
+				{!'Q3: ' + v.Data.DistributionAgreement.KSA[2]}
+			</div>
+			<div class="accordion-section">
+				{!'Q4: ' + v.Data.DistributionAgreement.KSA[3]}
+			</div>
+        </lightning:accordionSection>
+    </lightning:accordion>
+	<div class="accordion-section" style="font-size: 1rem;">
+		{!'Current Balance: ' + v.Data.ToTalPendingDeliveries.CurrentBalanceForShipment}
+	</div>
+	<div class="accordion-section" style="font-size: 1rem;">
+		{!v.Data.ToTalPendingDeliveries.PlannedShipmentInThisMonthTitle + ': ' + v.Data.ToTalPendingDeliveries.PlannedShipmentInThisMonth}
+	</div>
+	<div class="accordion-section" style="font-size: 1rem;">
+		{!v.Data.ToTalPendingDeliveries.PlannedShipmentInNextMonthTitle + ': ' + v.Data.ToTalPendingDeliveries.PlannedShipmentInNextMonth}
+	</div>
+	<div class="accordion-section" style="font-size: 1rem;">
+		{!'Remaining Qty for Shipment: ' + v.Data.ToTalPendingDeliveries.RemainingQtyForShipment}
+	</div>
+
+	<lightning:button variant="brand" label="Back" onclick="{!c.back}"/>
+</aura:component>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ScrapSupplierLimit__c</fullName>
+    <label>Опис лиміту</label>
+    <referenceTo>ScrapSupplierLimit__c</referenceTo>
+    <relationshipLabel>SupplierLimitDetails</relationshipLabel>
+    <relationshipName>SupplierLimitDetails</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

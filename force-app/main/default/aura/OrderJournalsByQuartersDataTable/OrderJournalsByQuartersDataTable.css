@@ -1,0 +1,19 @@
+.THIS.sl-lookup--mobile.sl-lookup--open {
+    padding: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 10px;
+    overflow: initial;
+    overflow-x: auto;
+    overflow-y: auto;
+    z-index: t(zIndexOverlay);
+    background: white;
+    -webkit-overflow-scrolling: touch;
+}
+
+.THIS .first-table-column {
+    /*width: 18rem;*/
+}

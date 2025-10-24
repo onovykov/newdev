@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TubeOD__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Tube outside diameter</description>
+    <inlineHelpText>Tube outside diameter</inlineHelpText>
+    <label>OD</label>
+    <referenceTo>TubeOD__c</referenceTo>
+    <relationshipLabel>Pipes Linear Weights</relationshipLabel>
+    <relationshipName>Pipes_Linear_Weights</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Request_Name__c</fullName>
+    <externalId>false</externalId>
+    <formula>&apos;Quota Request #&apos; +  Name + &apos; &apos; +  
+CASE(MarketSegment__c,
+&apos;00011&apos;, &apos;Ukraine&apos;,
+&apos;00004&apos;, &apos;Europe&apos;,
+&apos;00002&apos;, &apos;MENA&apos;,
+&apos;00001&apos;, &apos;Americas&apos;,
+&apos;00010&apos;, &apos;CIS&apos;,
+&apos;00006&apos;, &apos;KLW&apos;,
+null)  
++ &apos; &apos; + TEXT(Year__c) + &apos;/&apos; +  TEXT(Month__c)</formula>
+    <label>Request Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

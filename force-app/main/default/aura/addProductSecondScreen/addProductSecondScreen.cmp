@@ -1,0 +1,9 @@
+<aura:component >
+	<aura:attribute name="oppProduct" type="OpportunityLineItem" default="{'sobjectType' : 'OpportunityLineItem'}" />
+	
+	 
+	<b>Please, specify product features:</b>
+	<ui:inputText label="CoatingSpecification" value="{!v.oppProduct.CoatingSpecification__c}" required="true"  class="slds-input"/>
+	<lightning:button variant="neutral" label="Back" onclick="{!c.backToAccount}" />
+	<lightning:button variant="brand" label="Next" onclick="{!c.nextToReview}" />
+</aura:component>

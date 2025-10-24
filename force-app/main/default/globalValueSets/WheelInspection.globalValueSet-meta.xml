@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>00002</fullName>
+        <default>false</default>
+        <label>Без инспекции</label>
+    </customValue>
+    <customValue>
+        <fullName>00003</fullName>
+        <default>false</default>
+        <label>Бюро Веритас</label>
+    </customValue>
+    <customValue>
+        <fullName>00164</fullName>
+        <default>false</default>
+        <label>Инспекция DB</label>
+    </customValue>
+    <customValue>
+        <fullName>00165</fullName>
+        <default>false</default>
+        <label>Инспекция заказчиком</label>
+    </customValue>
+    <customValue>
+        <fullName>00168</fullName>
+        <default>false</default>
+        <label>Инспекция УЗ</label>
+    </customValue>
+    <masterLabel>Wheel Inspection</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

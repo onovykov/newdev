@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Status --></label>
+    <name>Status__c</name>
+    <picklistValues>
+        <masterLabel>Accepted</masterLabel>
+        <translation><!-- Accepted --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Accepted  (pending compensation)</masterLabel>
+        <translation><!-- Accepted  (pending compensation) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Accepted partially</masterLabel>
+        <translation><!-- Accepted partially --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Accepted partially (pending compensation)</masterLabel>
+        <translation><!-- Accepted partially (pending compensation) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Director decision</masterLabel>
+        <translation><!-- Director decision --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Draft</masterLabel>
+        <translation><!-- Draft --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Is being considered</masterLabel>
+        <translation><!-- Is being considered --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>On Hold</masterLabel>
+        <translation><!-- On Hold --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Registered</masterLabel>
+        <translation><!-- Registered --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejected</masterLabel>
+        <translation><!-- Rejected --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sended</masterLabel>
+        <translation><!-- Sended --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Standards_WHEELS</fullName>
+    <columns>NAME</columns>
+    <columns>FullName__c</columns>
+    <columns>FullName_UA__c</columns>
+    <columns>GeneralProductStandard__c</columns>
+    <columns>ID_ERP__c</columns>
+    <columns>ProductType__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ProductType__c</field>
+        <operation>equals</operation>
+        <value>Wheel,Wheel set,Axle</value>
+    </filters>
+    <label>Standards WHEELS</label>
+</ListView>

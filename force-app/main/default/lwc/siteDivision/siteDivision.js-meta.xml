@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+     <apiVersion>55.0</apiVersion>
+    <isExposed>true</isExposed>
+     <targets>
+      <target>lightningCommunity__Default</target>
+      <target>lightningCommunity__Page</target>
+      <target>lightningCommunity__Page_Layout</target>
+      <target>lightningCommunity__Theme_Layout</target>
+  </targets>
+     <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="Image1" type="String"  label="Enter static resource name for Items Images"></property>
+            <property name="Label1" type="String"  label="Enter Item Label #1 EN" default="defaultText" > </property>
+            <property name="Label1UA" type="String"  label="Enter Item Label #1 UA" default="defaultText" > </property>
+            <property name="Label1RU" type="String"  label="Enter Item Label #1 RU" default="defaultText" > </property>
+            <property name="Text1" type="String"  label="Enter Item Text #1 EN" default="defaultText" > </property>
+            <property name="Text1UA" type="String"  label="Enter Item Text #1 UA" default="defaultText" > </property>
+            <property name="Text1RU" type="String"  label="Enter Item Text #1 RU" default="defaultText" > </property>
+            <property name="Item1Link" type="String"  label="Enter Link for item #1"></property>
+            <property name="Item1LinkUA" type="String"  label="Enter Link for item #1 UA"></property>
+            <property name="Item1LinkRU" type="String"  label="Enter Link for item #1 RU"></property>
+
+            <property name="Label2" type="String"  label="Enter Item Label #2 EN" default="defaultText" > </property>
+            <property name="Label2UA" type="String"  label="Enter Item Label #2 UA" default="defaultText" > </property>
+            <property name="Label2RU" type="String"  label="Enter Item Label #2 RU" default="defaultText" > </property>
+            <property name="Text2" type="String"  label="Enter Item Text #2 EN" default="defaultText" > </property>
+            <property name="Text2UA" type="String"  label="Enter Item Text #2 UA" default="defaultText" > </property>
+            <property name="Text2RU" type="String"  label="Enter Item Text #2 RU" default="defaultText" > </property>
+            <property name="Item2Link" type="String"  label="Enter Link for item #2 EN"></property>
+            <property name="Item2LinkUA" type="String"  label="Enter Link for item #2 UA"></property>
+            <property name="Item2LinkRU" type="String"  label="Enter Link for item #2 RU"></property>
+
+            <property name="Label3" type="String"  label="Enter Item Label #3 EN" default="defaultText" > </property>
+            <property name="Label3UA" type="String"  label="Enter Item Label #3 UA" default="defaultText" > </property>
+            <property name="Label3RU" type="String"  label="Enter Item Label #3 RU" default="defaultText" > </property>
+            <property name="Text3" type="String"  label="Enter Item Text #3 EN" default="defaultText" > </property>
+            <property name="Text3UA" type="String"  label="Enter Item Text #3 UA" default="defaultText" > </property>
+            <property name="Text3RU" type="String"  label="Enter Item Text #3 RU" default="defaultText" > </property>
+            <property name="Item3Link" type="String"  label="Enter Link for item #3"></property>
+            <property name="Item3LinkUA" type="String"  label="Enter Link for item #3 UA"></property>
+            <property name="Item3LinkRU" type="String"  label="Enter Link for item #3 RU"></property>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,58 @@
+/*style*/
+
+.tableSize{
+    height: 200px;
+    
+}
+
+.spinner{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+
+.main{
+    position: relative;
+    min-height: 700px;
+}
+
+.slds-docked-form-footer{
+    position: absolute;
+    bottom: 0;
+}
+
+@media(min-height:1px) {
+    .main{
+        position: relative;
+        min-height: 400px;
+    }
+    .tableSize{
+        height: 300px;
+    }
+} 
+
+@media(min-height:600px) {
+    .main{
+        position: relative;
+        min-height: 500px;
+    }
+    .tableSize{
+        height: 400px;
+    }
+}
+
+@media(min-height:800px) {
+    .main{
+        position: relative;
+        min-height: 700px;
+    }
+    .tableSize{
+        min-height: 600px; 
+          
+    }
+
+}

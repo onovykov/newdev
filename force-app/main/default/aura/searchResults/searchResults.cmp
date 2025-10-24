@@ -1,0 +1,35 @@
+<aura:component access="global">
+
+	<aura:attribute name="records" type="Object[]"/>
+	<aura:attribute name="rec" type="Object"/>
+	<aura:attribute name="sourceId" type="String"/>
+	<aura:registerEvent name="appEvent" type="c:setRecord"/>
+	
+            
+                    
+                    
+
+	<table class="slds-table slds-table--bordered slds-table--striped slds-table_col-bordered slds-table_cell-buffer">
+            <thead>
+                <tr>
+                    <th scope="col"><span class="slds-truncate"><b>Name</b></span></th>               
+                </tr>
+            </thead>
+            <tbody>
+
+<aura:iteration items="{!v.records}" var="record" indexVar="index">
+	<tr>
+                        <td role="presentation" data-index="{!index}" onclick="{!c.handleRecordClick}">
+                                    <div>{!record.label}</div>
+                                  
+                        </td></tr>
+                    </aura:iteration>
+
+                <!--<aura:iteration items="{!v.records}" var="record">
+                    <tr>
+                        <td id="{!record.label}" onclick="{!c.handleRecordClick}">{!record.label}</td>
+                    </tr>
+                </aura:iteration>-->
+            </tbody>
+        </table>
+</aura:component>

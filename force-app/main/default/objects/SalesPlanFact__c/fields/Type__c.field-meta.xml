@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <label>Type</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Initial Budget</fullName>
+                <color>#FFCC33</color>
+                <default>false</default>
+                <label>Initial Budget</label>
+            </value>
+            <value>
+                <fullName>Corrected Budget</fullName>
+                <color>#DDDDDD</color>
+                <default>false</default>
+                <label>Corrected Budget</label>
+            </value>
+            <value>
+                <fullName>Actual Budget</fullName>
+                <color>#78C953</color>
+                <default>false</default>
+                <label>Budget</label>
+            </value>
+            <value>
+                <fullName>Plan</fullName>
+                <color>#AFCADF</color>
+                <default>false</default>
+                <label>Plan</label>
+            </value>
+            <value>
+                <fullName>Order</fullName>
+                <color>#2F5D85</color>
+                <default>false</default>
+                <label>Open Orders</label>
+            </value>
+            <value>
+                <fullName>Opportunity</fullName>
+                <color>#419249</color>
+                <default>false</default>
+                <label>Open Orders &amp; Opps</label>
+            </value>
+            <value>
+                <fullName>Fact</fullName>
+                <color>#2F5D85</color>
+                <default>false</default>
+                <label>Fact</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

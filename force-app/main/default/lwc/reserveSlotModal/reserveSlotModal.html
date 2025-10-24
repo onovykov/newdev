@@ -1,0 +1,446 @@
+<template>
+    <div class="container">
+        <section class="modal">
+            <div class="modal-content">
+                <!-- ⚠️ Попередження про дублікати -->
+                <template if:true={dupModalOpen}>
+                    <section role="dialog" tabindex="-1" aria-modal="true" class="dup-modal slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container">
+                            <header class="slds-modal__header">
+                                <h2 class="slds-text-heading_medium">Знайдено схожі заявки</h2>
+                            </header>
+                            <div class="slds-modal__content slds-p-around_medium">
+                                <p class="slds-m-bottom_small">
+                                    На {formattedSelectedDate} вже існує заявка з цим ТЗ і тим самим тоннажем.
+                                    Перевірте список нижче. Продовжити створення все одно?
+                                </p>
+                                <template if:true={dupCheckInProgress}>
+                                    <lightning-spinner alternative-text="Перевірка…" size="small"></lightning-spinner>
+                                </template>
+                                <template if:false={dupCheckInProgress}>
+                                    <template if:true={dupData.summaries}>
+                                        <ul class="slds-list_dotted">
+                                            <template for:each={dupData.summaries} for:item="s">
+                                                <li key={s}>{s}</li>
+                                            </template>
+
+                                        </ul>
+                                    </template>
+                                </template>
+                            </div>
+                            <footer class="slds-modal__footer">
+                                <button class="secondary-button" onclick={cancelDuplicateCreate}>Змінити дані</button>
+                                <button class="primary-button" onclick={confirmDuplicateCreate}>Продовжити все одно</button>
+                            </footer>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </template>
+
+                <!-- усередині .modal-content -->
+                <template if:true={isSending}>
+                    <div class="modal-spinner-overlay">
+                        <lightning-spinner alternative-text="Надсилаємо в ERP…" size="large" variant="brand"></lightning-spinner>
+                    </div>
+                </template>
+                <template if:true={showRequestedInfo}>
+                    <div class="success-panel">
+                        <h2>Заявка відправлена на розгляд</h2>
+                        <ul class="success-list">
+                            <li><strong>Дата:</strong> {requestedInfo.date}</li>
+                            <li><strong>Тип брухту:</strong> {requestedInfo.scrapType}</li>
+                            <li><strong>Норматив:</strong> {requestedInfo.tonnage} т</li>
+                            <li><strong>Тягач:</strong> {requestedInfo.truck}</li>
+                            <li><strong>Причіп:</strong> {requestedInfo.trailer}</li>
+                            <li><strong>Водій:</strong> {requestedInfo.driver}</li>
+                            <li><strong>Адреса:</strong> {requestedInfo.address}</li>
+                        </ul>
+                        <div class="success-actions" style="margin-top:1rem;">
+                            <button class="primary-button" onclick={closeModal}>Готово</button>
+                        </div>
+                    </div>
+                </template>
+                <template if:false={showRequestedInfo}>
+
+                    <template if:true={successShown}>
+                        <div class="success-panel">
+                            <h2>Перепустку видано</h2>
+                            <ul class="success-list">
+                                <li><strong>Дата:</strong> {successInfo.date}</li>
+                                <li><strong>Тип брухту:</strong> {successInfo.scrapType}</li>
+                                <li><strong>Транспортний засіб:</strong> {successInfo.truckModel} • {successInfo.truckPlate}</li>
+
+                                <!-- ⬇️ Показуємо причіп, тільки якщо був обраний -->
+                                <template if:true={successInfo.hasTrailer}>
+                                    <li><strong>Причіп:</strong> {successInfo.trailer}</li>
+                                </template>
+
+                                <li><strong>Тоннаж:</strong> {successInfo.tonnage} т</li>
+                                <li><strong>Водій:</strong> {successInfo.driver}</li>
+                                <li><strong>Адреса:</strong> {successInfo.address}</li>
+                                <li><strong>№ перепустки:</strong> {successInfo.passNumber}</li>
+                                <li><strong>Pass ID:</strong> {successInfo.passId}</li>
+                            </ul>
+
+                            <!-- ⬇️ Кнопка замість автозакриття -->
+                            <div class="success-actions" style="margin-top:1rem;">
+                                <button class="primary-button" onclick={closeModal}>Закрити</button>
+                            </div>
+                        </div>
+                    </template>
+
+
+                    <template if:false={successShown}>
+
+                        <!-- КРОК 1. Таблиця слотів (без змін) -->
+                        <template if:true={isStepSelectDate}>
+                            <!-- було: <div class="header"> -->
+                            <div class="tab-header">
+                                <h2 class="tab-title">Резервування слоту на доправу брухту</h2>
+                                <p class="tab-subtitle">Оберіть тип брухту та натисніть на дату. Доступні слоти показані активними кнопками.</p>
+                            </div>
+
+                            <div class="nav-bar slds-m-bottom_small">
+                                <div class="left">
+                                    <button class="secondary-button" onclick={goPrevDecade}>← Декада</button>
+                                    <button class="secondary-button slds-m-left_x-small" onclick={goNextDecade}>Декада →</button>
+                                </div>
+                                <div class="center slds-text-title_caps">{headerTitle}</div>
+                                <div class="right">
+                                    <!-- опц.: перемикач режиму -->
+                                    <!-- <lightning-button variant="neutral" label={viewMode === 'decade' ? 'Показати місяць' : 'Показати декаду'} onclick={toggleViewMode}></lightning-button> -->
+                                </div>
+                            </div>
+
+
+                            <div class="table-scroll">
+
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered centered-text">
+                            <thead>
+                            <tr>
+                                <th>Тип</th>
+                                <template for:each={dates} for:item="date">
+                                    <th key={date}>{date}</th>
+                                </template>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <template for:each={tableRows} for:item="row">
+                                <tr key={row.scrapId}>
+                                    <td><strong>{row.scrapName}</strong></td>
+                                    <template for:each={row.cells} for:item="cell">
+                                        <td key={cell.key}>
+                                            <button class="cell-button"
+                                                    disabled={cell.uiDisabled}
+                                                    title={cell.tooltip}
+                                                    data-type={row.scrapId}
+                                                    data-date={cell.date}
+                                                    data-reason={cell.reason}
+                                                    onclick={handleSelectDate}>{cell.value}</button>
+                                        </td>
+                                    </template>
+                                </tr>
+                            </template>
+                            </tbody>
+                        </table>
+                            </div>
+
+                        </template>
+
+                <!-- КРОК 2а. Статика + лукапи контакт/адреса/договір -->
+                    <template if:true={isStepVehicle}>
+                        <h1>Реєстрація транспорту на дату</h1>
+
+                        <div class="static-section">
+                            <template if:true={isLoadingStatic}>
+                                <lightning-spinner alternative-text="Завантаження даних постачальника…" size="small"></lightning-spinner>
+                            </template>
+
+                            <p><strong>Тип брухту:</strong> {selectedScrapLabel}</p>
+                            <p><strong>Постачальник:</strong> {supplierName}</p>
+                            <p><strong>Підстава (договір):</strong> {contractInfo.label}</p>
+                            <p class="meta">
+                                <span class="slds-badge slds-m-right_x-small">№ {contractInfo.number}</span>
+                                <span class="slds-badge slds-m-right_x-small">від {contractInfo.dateFromHuman}</span>
+                                <span class={contractBadgeTheme}>{contractDaysLeftText}</span>
+                            </p>
+
+                        <!-- Контактна особа (lookup) -->
+                            <template if:true={hasMultipleManagers}>
+                                <div class="lookup" onfocusout={contactFocusOut}>
+                                    <label>Контактна особа <span class="req">*</span></label>
+                                    <input class="lookup-input"
+                                           type="text"
+                                           placeholder="Почніть вводити ПІБ…"
+                                           value={contactQuery}
+                                           oninput={onContactInput}
+                                           onfocus={openContactSug}
+                                           autocomplete="off" />
+                                    <template if:true={showContactSug}>
+                                        <ul class="sug" role="listbox">
+                                            <template for:each={contactSuggestions} for:item="opt">
+                                                <li key={opt.id}
+                                                    data-id={opt.id}
+                                                    data-name={opt.name}
+                                                    role="option"
+                                                    onmousedown={pickContact}>
+                                                    {opt.name}
+                                                    <span class="muted"> | {opt.role} • {opt.phone}</span>
+                                                </li>
+                                            </template>
+                                        </ul>
+                                    </template>
+                                    <template if:true={contactInvalid}>
+                                        <div class="lookup-helper slds-text-color_error">
+                                            Оберіть контактну особу зі списку.
+                                        </div>
+                                    </template>
+
+                                </div>
+                            </template>
+                            <template if:false={hasMultipleManagers}>
+                                <p><strong>Контактна особа:</strong> {singleManagerLine}</p>
+                            </template>
+
+                            <template if:true={hasMultipleAddresses}>
+                                <div class="lookup" onfocusout={addressFocusOut}>
+                                    <label>Адреса відвантаження <span class="req">*</span></label>
+                                    <input class="lookup-input"
+                                           type="text"
+                                           placeholder="Введіть адресу…"
+                                           value={addressQuery}
+                                           oninput={onAddressInput}
+
+                                           onfocus={openAddressSug}
+                                           autocomplete="off" />
+                                    <template if:true={showAddressSug}>
+                                        <ul class="sug" role="listbox">
+                                            <template for:each={addressSuggestions} for:item="opt">
+                                                <li key={opt.id}
+                                                    data-id={opt.id}
+                                                    data-display={opt.display}
+                                                    role="option"
+                                                    onmousedown={pickAddress}>{opt.display}</li>
+                                            </template>
+                                        </ul>
+                                    </template>
+                                    <template if:true={addressInvalid}>
+                                        <div class="lookup-helper slds-text-color_error">
+                                            Оберіть адресу відвантаження зі списку.
+                                        </div>
+                                    </template>
+
+                                </div>
+                            </template>
+                        <template if:false={hasMultipleAddresses}>
+                            <p><strong>Адреса відвантаження:</strong> {singleAddressLine}</p>
+                        </template>
+
+                        </div>
+
+                        <hr/>
+
+                        <!-- КРОК 2б. Транспорт -->
+                        <p class="registration-info">
+                            Реєстрація на дату: <strong>{formattedSelectedDate}</strong> , тип: <strong>{selectedScrapName}</strong>
+                        </p>
+
+                        <!-- Норматив ваги -->
+                        <div class="lookup one">
+                            <label>Норматив ваги, т</label>
+                            <lightning-combobox
+                                    name="weightNorm"
+                                    value={selectedWeightNorm}
+                                    options={filteredWeightOptions}
+                                    placeholder="Оберіть зі списку"
+                                    onchange={handleWeightNormChange}>
+                            </lightning-combobox>
+                            <template if:true={weightInvalid}>
+                                <div class="slds-text-color_error" style="margin-top:4px">
+                                    Оберіть норматив ваги.
+                                </div>
+                            </template>
+
+
+                            <template if:true={weightHint}>
+                                <p class="muted" style="margin-top:4px">{weightHint}</p>
+                            </template>
+
+                            <template if:true={noWeightOptions}>
+                                <p class="slds-text-color_error" style="margin-top:4px">
+                                    На обрану дату залишок менший за мінімальне значення у списку.
+                                </p>
+                            </template>
+                        </div>
+
+
+                    <!-- ТЗ (lookup або ручне введення) -->
+                        <!-- обгортаємо все в контейнер і слідкуємо за focusout -->
+                        <div class="lookup" onfocusout={vehicleFocusOut}>
+                            <label>Транспортний засіб (тягач) <span class="req">*</span></label>
+                            <input class="lookup-input"
+                                   value={vehicleQuery}
+                                   oninput={onVehicleInput}
+                                   onfocus={onVehicleFocus}
+                                   placeholder="Почніть вводити марку/номер…"/>
+
+                            <template if:true={truckInvalid}>
+                                <div class="lookup-helper slds-text-color_error">
+                                    Оберіть тягач зі списку.
+                                </div>
+                            </template>
+
+                            <template if:true={showVehicleList}>
+                                <ul class="lookup-list" role="listbox">
+                                    <template for:each={vehicleOptions} for:item="v">
+                                        <li key={v.Id}
+                                            data-id={v.Id}
+                                            role="option"
+                                            onmousedown={onVehiclePick}>
+                                            {v.display}
+                                        </li>
+                                    </template>
+                                </ul>
+                            </template>
+                        </div>
+
+
+                        <!-- Причіп -->
+                        <div class="checkbox-block">
+                            <input type="checkbox"
+                                   id="hasTrailer"
+                                   checked={trailerRequired}
+                                   disabled={trailerLock}
+                                   onchange={handleTrailerToggle}/>
+                            <label for="hasTrailer">Потрібен причіп?</label>
+                            <template if:true={trailerLock}>
+                                <span class="muted"> (обов'язково, бо тоннаж тягача = 0)</span>
+                            </template>
+                        </div>
+
+
+                        <template if:true={trailerRequired}>
+                            <div class="lookup" onfocusout={trailerFocusOut}>
+                                <label>Причіп <span class="req">*</span></label>
+                                <input class="lookup-input"
+                                       value={trailerQuery}
+                                       oninput={onTrailerInput}
+                                       onfocus={onTrailerFocus}
+                                       placeholder="Почніть вводити марку/номер…"/>
+                                <template if:true={showTrailerList}>
+                                    <ul class="lookup-list" role="listbox">
+                                        <template for:each={trailerOptions} for:item="t">
+                                            <li key={t.Id}
+                                                data-id={t.Id}
+                                                role="option"
+                                                onmousedown={onTrailerPick}>
+                                                {t.display}
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </template>
+                            </div>
+                        </template>
+
+                        <!-- ІНФО: тягач ще не обраний -->
+                        <template if:true={noTruckSelected}>
+                            <div class="slds-box slds-theme_info slds-m-top_small" role="status">
+                                Оберіть тягач. Якщо ТЗ немає у списку — додайте його в довідник.
+                            </div>
+                        </template>
+
+                    <!-- ПОПЕРЕДЖЕННЯ: у тягача тоннаж = 0, а причеп не вибраний -->
+                    <template if:true={needTrailerButMissing}>
+                        <div class="slds-box slds-theme_warning slds-m-top_small" role="alert">
+                            У вибраного тягача тоннаж = 0. Додайте причіп або оберіть інший тягач.
+                        </div>
+                    </template>
+                </template> <!-- ✅ ЗАКРИВАЄМО isStepVehicle -->
+
+
+
+                        <!-- КРОК 3. Водій -->
+                    <template if:true={isStepDriver}>
+                        <div class="static-section">
+                            <p><strong>Дата:</strong> {formattedSelectedDate}</p>
+                            <p><strong>Тип брухту:</strong> {selectedScrapName}</p>
+                            <p><strong>Постачальник:</strong> {supplierName}</p>
+                            <p><strong>Адреса відвантаження:</strong> {singleAddressLine}</p>
+                            <p><strong>Підстава (договір):</strong> {contractInfo.label}</p>
+                        </div>
+
+                        <div class="vehicle-summary">
+                            <div class="vehicle-block">
+                                <h4>Транспортний засіб</h4>
+                                <p><strong>Тягач:</strong> {vehicleQuery}</p>
+                                <p><strong>Норматив ваги:</strong> {selectedWeightNorm} т</p>
+                                <template if:true={trailerRequired}>
+                                    <p><strong>Причіп:</strong> {trailerQuery}</p>
+                                </template>
+                            </div>
+                        </div>
+
+                        <template if:false={isManualDriver}>
+                            <!-- Водій (lookup) -->
+                            <div class="lookup" onfocusout={driverFocusOut}>
+                                <label>Водій <span class="req">*</span></label>
+                                <input class="lookup-input"
+                                       value={driverQuery}
+                                       placeholder="Почніть вводити ПІБ…"
+                                       onclick={onDriverFocus}
+                                       onfocus={onDriverFocus}
+                                       oninput={onDriverInput}
+                                       autocomplete="off" />
+
+                                <template if:true={showDriverList}>
+                                    <ul class="lookup-list" role="listbox">
+                                        <template for:each={driverOptions} for:item="d">
+                                            <li key={d.Id}
+                                                data-id={d.Id}
+                                                role="option"
+                                                onmousedown={onDriverPick}>
+                                                {d.display}
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </template>
+
+                                <template if:true={noDriversForSupplier}>
+                                    <div class="slds-box slds-theme_info slds-m-top_x-small" role="status">
+                                        Водії не знайдені для цього постачальника.
+                                        Спочатку додайте контакт-водія до постачальника, потім оберіть зі списку.
+                                    </div>
+                                </template>
+
+                                <template if:true={driverInvalid}>
+                                    <div class="lookup-helper slds-text-color_error">
+                                        Оберіть водія зі списку.
+                                    </div>
+                                </template>
+                            </div>
+
+                        </template>
+                    </template>
+
+                <!-- Футер модалки -->
+                    <div class="modal-footer">
+                        <button class="secondary-button" onclick={closeModal}>Скасувати</button>
+
+                        <template if:true={isStepVehicle}>
+                            <button onclick={handleBackToDateStep}>Назад</button>
+                            <button onclick={handleNext}>Далі</button>
+                        </template>
+
+                        <template if:true={isStepDriver}>
+                            <button onclick={handlePrevious}>Назад</button>
+                            <button onclick={handleSubmit} disabled={isSubmitDisabled}>Надіслати</button>
+                        </template>
+                    </div>
+                </template>
+
+                </template>
+
+            </div>
+        </section>
+    </div>
+</template>

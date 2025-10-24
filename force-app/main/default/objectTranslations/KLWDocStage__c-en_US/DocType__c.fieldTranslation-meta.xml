@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Doc Type --></label>
+    <name>DocType__c</name>
+    <picklistValues>
+        <masterLabel>Drawing</masterLabel>
+        <translation><!-- Drawing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Specification</masterLabel>
+        <translation><!-- Specification --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

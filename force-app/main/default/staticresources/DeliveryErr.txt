@@ -1,0 +1,31 @@
+{
+  "ID_ERP__c": 30045945,
+  "ITENumber__c": "22-004830",
+  "OrderLineItems": [
+    {
+      "ITENumber__c": "22-004830-008",
+      "NOM_VM": "AE 3377BX/AE3331XT",
+      "TRDOC_NUM": 30365348,
+      "UNDOC_PA": 30262419,
+      "KOBJ": "НИКДП",
+      "PACK_NUM": "20066_1222212",
+      "DATE_OTGR": "/Date(1661472000257)/",
+      "NOMSERT": "2108/5",
+      "Prod_Name": "",
+      "QTY_PCS": 5,
+      "QTY_T_BRUTTO": 2.16,
+      "QTY_T_NETTO": 2.145,
+      "LENGTH_M": 60.65,
+      "COORD_DT": "15.09.2022 12:05:08",
+      "LATITUDE": 48.51824188,
+      "LONGTITUDE": 35.02129745,
+      "COUNTRY": "Ukraine",
+      "ISO": "UA",
+      "PLACE": "ПAО \"ИНТЕРПАЙП НТЗ\"",
+      "STATUS_NAME": "Завершено в 16.09.2022 18:10:07",
+      "STATUSDT": "/Date(1663341007000)/"
+    }
+  ],
+  "Success": true,
+  "Comments": ""
+}

@@ -1,0 +1,52 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" >
+    <aura:html tag="style">
+          
+        .cuf-content {
+        	padding: 0 0rem !important;
+        }
+        .slds-p-around--medium {
+        	padding: 0rem !important;
+        }
+        .modal-body{
+        	height : 700px !important;
+        	max-height: 700px !important;
+        	
+        }
+        .slds-modal__container{
+        	width: 90%;
+        	max-width: 150rem;
+        }
+        .slds-docked-form-footer {
+           bottom: unset;
+    	}
+        .slds-form-element__label {
+        	display: none !important;
+        }
+        lightning-helptext{
+        	display: none !important;
+        }           
+        
+        @media(min-height:1px) {
+    	.modal-body{
+        	height : 400px !important;
+        	max-height: 400px !important;
+        }
+        
+        @media(min-height:600px)  {
+    	.modal-body{
+        	height : 500px !important;
+        	max-height: 500px !important;
+        	}       
+        }
+        
+        @media(min-height:800px) {
+    	.modal-body{
+        	height : 700px !important;
+        	max-height: 700px !important;
+        }
+    }
+ }
+    </aura:html>
+    
+    <c:groupEditProducts recordId="{!v.recordId}" onclose="{!c.closeMethodInAuraController}"></c:groupEditProducts>
+</aura:component>

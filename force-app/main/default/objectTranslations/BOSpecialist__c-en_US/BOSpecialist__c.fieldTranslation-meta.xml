@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- BO Specialist --></label>
+    <name>BOSpecialist__c</name>
+    <relationshipLabel><!-- Manager`s BO Specialists (BO Specialist) --></relationshipLabel>
+</CustomFieldTranslation>

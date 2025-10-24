@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Статус</label>
+    <name>Status__c</name>
+    <picklistValues>
+        <masterLabel>Cancelled</masterLabel>
+        <translation>Скасовано</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Closed</masterLabel>
+        <translation>Закрито</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Draft</masterLabel>
+        <translation>Створення</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Created</masterLabel>
+        <translation>Замовлення створено</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Processing</masterLabel>
+        <translation>В роботі</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sent</masterLabel>
+        <translation>Надіслано</translation>
+    </picklistValues>
+</CustomFieldTranslation>

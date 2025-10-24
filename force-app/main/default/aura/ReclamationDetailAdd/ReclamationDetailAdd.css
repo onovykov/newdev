@@ -1,0 +1,55 @@
+.THIS {
+}
+
+.THIS .slds-card__body {
+    height: 500px;
+    overflow-y: auto;
+}
+.THIS .input{
+    border-radius: 0px;
+    border: none;
+    border-bottom: 3px solid lightgray;
+}
+
+.THIS .uiInput--input .THIS .input, .THIS .uiInput--input.input {
+    border-radius: 0px;
+    border: none;
+    border-bottom: 3px solid lightgray;
+}
+
+.THIS.container2{
+    max-width: 1736px !important;
+    width: 95% !important;
+    margin: 0 auto !important;
+}
+
+.THIS .pipe-btn svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.THIS input,  .THIS select, .THIS .slds-input .THIS .slds-combobox__input{
+    border-radius: 0px;
+    border: none;
+    border-bottom: 3px solid lightgray;
+}
+
+.THIS input:focus ,.THIS .input:focus, .THIS .uiInput--input.input:focus, .THIS select:focus{
+    border: none;
+    border-bottom: 3px solid #555;
+    outline: none;
+}
+
+@media (max-width: 600px) {
+    .THIS span {
+      font-size: 12px !important;
+    }
+    .THIS .slds-form-element__label{
+        font-size: 12px !important;
+      }
+      .THIS .slds-card__body {
+        min-height: 434px;
+        overflow-y: auto;
+        height: auto;
+    }
+  }

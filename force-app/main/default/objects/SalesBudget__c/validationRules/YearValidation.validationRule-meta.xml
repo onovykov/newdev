@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>YearValidation</fullName>
+    <active>true</active>
+    <description>Must be current or next year only</description>
+    <errorConditionFormula>Or(Year__c &lt; Year(TODAY()), Year__c &gt; Year(Today()) + 1)</errorConditionFormula>
+    <errorMessage>You only can change budgets for current or next year.</errorMessage>
+</ValidationRule>

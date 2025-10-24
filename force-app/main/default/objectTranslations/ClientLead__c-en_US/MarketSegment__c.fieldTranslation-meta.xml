@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Market Segment --></label>
+    <name>MarketSegment__c</name>
+    <picklistValues>
+        <masterLabel>Americas</masterLabel>
+        <translation><!-- Americas --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CIS</masterLabel>
+        <translation><!-- CIS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customs Union</masterLabel>
+        <translation><!-- Customs Union --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ETA</masterLabel>
+        <translation><!-- ETA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Europe</masterLabel>
+        <translation><!-- Europe --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IPS</masterLabel>
+        <translation><!-- IPS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>KLW</masterLabel>
+        <translation><!-- KLW --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MENA</masterLabel>
+        <translation><!-- MENA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Machinery</masterLabel>
+        <translation><!-- Machinery --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Recycled Scrap</masterLabel>
+        <translation><!-- Recycled Scrap --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Steel</masterLabel>
+        <translation><!-- Steel --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ukraine</masterLabel>
+        <translation><!-- Ukraine --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Vallourec</masterLabel>
+        <translation><!-- Vallourec --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

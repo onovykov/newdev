@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <label>Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Draft</fullName>
+                <default>true</default>
+                <label>Draft</label>
+            </value>
+            <value>
+                <fullName>Sended</fullName>
+                <default>false</default>
+                <label>Sended</label>
+            </value>
+            <value>
+                <fullName>_1</fullName>
+                <default>false</default>
+                <label>Registered</label>
+            </value>
+            <value>
+                <fullName>_2</fullName>
+                <default>false</default>
+                <label>Is being considered</label>
+            </value>
+            <value>
+                <fullName>_8</fullName>
+                <default>false</default>
+                <label>Rejected</label>
+            </value>
+            <value>
+                <fullName>_9</fullName>
+                <default>false</default>
+                <label>Accepted</label>
+            </value>
+            <value>
+                <fullName>_5</fullName>
+                <default>false</default>
+                <label>Director decision</label>
+            </value>
+            <value>
+                <fullName>Accepted_PendingCompensation</fullName>
+                <default>false</default>
+                <label>Accepted  (pending compensation)</label>
+            </value>
+            <value>
+                <fullName>AcceptedPartially_PendingCompensation</fullName>
+                <default>false</default>
+                <label>Accepted partially (pending compensation)</label>
+            </value>
+            <value>
+                <fullName>AcceptedPartially</fullName>
+                <default>false</default>
+                <label>Accepted partially</label>
+            </value>
+            <value>
+                <fullName>OnHold</fullName>
+                <default>false</default>
+                <label>On Hold</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

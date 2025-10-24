@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Match_Result</fullName>
+    <columns>NAME</columns>
+    <columns>SourceName__c</columns>
+    <columns>account1Id__c</columns>
+    <columns>ID_ERP_Acc1__c</columns>
+    <columns>account2Id__c</columns>
+    <columns>ID_ERP_Acc2__c</columns>
+    <columns>matchIndex__c</columns>
+    <columns>Verdict__c</columns>
+    <columns>DuplicateName__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Mine</filterScope>
+    <label>All Match Result</label>
+</ListView>

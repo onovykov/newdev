@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Enquiries_Portal_Users</fullName>
+    <columns>NAME</columns>
+    <columns>AccountId__c</columns>
+    <columns>SalesRepId__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Status__c</columns>
+    <columns>OpportunityId__c</columns>
+    <columns>OrderId__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Customer Enquiries</label>
+</ListView>

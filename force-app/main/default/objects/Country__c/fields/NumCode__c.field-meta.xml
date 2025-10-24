@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NumCode__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <description>Country code according to ISO numeric codes for countries.</description>
+    <externalId>true</externalId>
+    <inlineHelpText>Country code according to ISO numeric codes for countries.</inlineHelpText>
+    <label>Numeric Code</label>
+    <length>3</length>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

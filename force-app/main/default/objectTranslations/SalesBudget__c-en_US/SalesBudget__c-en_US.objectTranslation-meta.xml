@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Sales Budget</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Sales Budgets</value>
+    </caseValues>
+    <layouts>
+        <layout>Sales Budget Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Quantity and Prices --></label>
+            <section>Quantity and Prices</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- You only can change budgets for current or next year. --></errorMessage>
+        <name>YearValidation</name>
+    </validationRules>
+</CustomObjectTranslation>

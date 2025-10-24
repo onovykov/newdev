@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Active</fullName>
+        <default>false</default>
+        <label>Active</label>
+    </customValue>
+    <customValue>
+        <fullName>Potential</fullName>
+        <default>true</default>
+        <label>Potential</label>
+    </customValue>
+    <customValue>
+        <fullName>Inactive</fullName>
+        <default>false</default>
+        <label>Inactive</label>
+    </customValue>
+    <customValue>
+        <fullName>Cancelled</fullName>
+        <default>false</default>
+        <label>Cancelled</label>
+    </customValue>
+    <customValue>
+        <fullName>Banned</fullName>
+        <default>false</default>
+        <label>Banned</label>
+    </customValue>
+    <customValue>
+        <fullName>Unknown</fullName>
+        <default>false</default>
+        <label>Unknown</label>
+    </customValue>
+    <customValue>
+        <fullName>Dormant</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Dormant</label>
+    </customValue>
+    <customValue>
+        <fullName>Freezed</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Freezed</label>
+    </customValue>
+    <customValue>
+        <fullName>Lost</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Lost</label>
+    </customValue>
+    <customValue>
+        <fullName>Not Active</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Not Active</label>
+    </customValue>
+    <masterLabel>Account Activity Types</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

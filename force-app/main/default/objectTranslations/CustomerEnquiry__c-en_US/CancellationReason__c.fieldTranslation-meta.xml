@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Please, provide a reason for cancelling your enquiry. --></help>
+    <label><!-- Cancellation Reason --></label>
+    <name>CancellationReason__c</name>
+    <picklistValues>
+        <masterLabel>High prices</masterLabel>
+        <translation><!-- High prices --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Inappropriate delivery terms</masterLabel>
+        <translation><!-- Inappropriate delivery terms --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No such products</masterLabel>
+        <translation><!-- No such products --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

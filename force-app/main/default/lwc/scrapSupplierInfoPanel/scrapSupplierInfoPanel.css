@@ -1,0 +1,928 @@
+:host { display:block; }
+
+/* Layout */
+.sp-wrapper {
+    display:grid;
+    grid-template-columns: 320px 1fr;
+    gap:16px;
+    margin:0 auto;
+    padding:24px;
+    box-sizing:border-box;
+}
+
+/* Left pane */
+.sp-left {
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:12px;
+    box-shadow:0 0 8px rgba(0,0,0,.05);
+    padding:12px;
+    /*max-height: calc(100vh - 160px);*/
+    overflow:auto;
+}
+
+.sp-left-head { position:sticky; top:0; background:#fff; padding-bottom:8px; z-index:1; }
+.sp-search {
+    width:100%;
+    padding:8px 12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
+    font-size:14px;
+}
+.sp-search:focus { border-color:#ffdd00; box-shadow:0 0 0 3px rgba(255,221,0,.25); }
+
+.sp-group { margin-top:8px; }
+.sp-group-row {
+    display:flex; align-items:center; gap:8px;
+    padding:8px 6px; border-radius:8px; cursor:pointer;
+}
+.sp-group-row:hover { background:#fafafa; }
+.sp-group-title { font-size:13px; font-weight:700; margin:0; }
+
+.caret {
+    width:0; height:0;
+    border-left:6px solid #666;
+    border-top:4px solid transparent;
+    border-bottom:4px solid transparent;
+    transform:rotate(0deg);
+    transition:transform .15s ease;
+}
+.caret.open { transform:rotate(90deg); }
+
+.sp-list { list-style:none; margin:6px 0 0 16px; padding:0; }
+.sp-item {
+    display: block;
+    padding: 8px 10px;
+    margin: 4px 0;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: transparent;          /* було #fff */
+    cursor: pointer;
+    font-size: 13px;
+    transition: background .15s ease, border-color .15s ease;
+}
+.sp-item:hover    { background: #fffbe6; }
+.sp-item.active   { border-color:#ffdd00; background:#fffbe6; font-weight:600; }
+
+
+/* Right pane */
+.sp-right {
+    min-height:420px;
+}
+
+.placeholder {
+    color:#666; text-align:center;
+    padding:40px 12px; border-radius:12px; background:#fafafa;
+}
+
+/* Card */
+.card {
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:12px;
+    box-shadow:0 0 8px rgba(0,0,0,.05);
+    padding:16px; margin-bottom:16px;
+}
+
+.head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; }
+.title h2 { margin:0; font-size:20px; font-weight:700; }
+.meta { margin-top:6px; display:flex; gap:8px; flex-wrap:wrap; }
+.pill { padding:4px 10px; border-radius:12px; background:#f5f5f5; font-size:12px; font-weight:600; }
+.pill.rating { background:#fffbe6; border:1px solid #ffdd00; }
+.pill.type { background:#f3f3f3; }
+
+.actions { display:flex; gap:8px; }
+.main-button, .secondary-button {
+    padding:8px 14px; font-size:14px; font-weight:600;
+    border:none; border-radius:6px; cursor:pointer; transition: .2s ease;
+}
+.main-button { background:#ffdd00; color:#000; }
+.secondary-button { background:#f3f3f3; color:#333; }
+.main-button:hover, .secondary-button:hover { opacity:.9; transform:scale(1.02); }
+.main-button:active, .secondary-button:active { transform:scale(.98); }
+.main-button:active { background:#e6c800; }
+
+/* Content grid in details */
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.block { background:#fafafa; border:1px solid #eee; border-radius:10px; padding:12px; display: flex; flex-direction: column; gap:8px; }
+
+/* Tables */
+.table .head { margin-bottom:8px; }
+.tbl-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+.action-row { display:flex; gap:8px; }
+
+.table-wrapper {
+    border-radius:12px;
+    box-shadow:0 0 8px rgba(0,0,0,.05);
+    border:1px solid #ddd; background:#fff;
+    text-align: center;
+    height: auto;
+    overflow: visible;
+}
+
+.limits-table {
+    width:100%; border-collapse:separate; border-spacing:0;
+    font-size:14px; background:#fff; text-align:center;
+}
+.limits-table thead tr { background:#f5f5f5; font-weight:600; }
+.limits-table th, .limits-table td {
+    padding:12px 16px; border:1px solid #e0e0e0; white-space:nowrap;
+}
+.left { background:#fffbe6; font-weight:700; }
+.sp-empty-row { color:#666; background:#fafafa; }
+
+.manual-grid {
+    display:grid; grid-template-columns: repeat(3, minmax(220px, 1fr)); gap:12px;
+    margin:8px 0 12px 0;
+}
+.sub-actions { display:flex; gap:8px; justify-content:flex-end; margin-bottom:8px; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .sp-wrapper { grid-template-columns: 280px 1fr; }
+    .grid { grid-template-columns: 1fr; }
+    .manual-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+    .sp-wrapper { grid-template-columns: 1fr; }
+    .sp-left { max-height:none; }
+    .manual-grid { grid-template-columns: 1fr; }
+}
+
+.sp-group-row {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 4px 8px;
+    user-select: none;
+}
+
+.caret {
+    display: inline-block;
+    margin-right: 6px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 6px solid #444; /* колір стрілки */
+    transition: transform 0.2s ease;
+}
+
+.caret-down {
+    transform: rotate(90deg); /* розгортає вправо-вниз */
+}
+
+.status-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    line-height: 18px;
+    border: 1px solid #dddddd;
+    background: #f7f7f7;
+}
+.status-pill { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 12px; line-height: 18px; border: 1px solid #dddddd; background: #f7f7f7; }
+.status-green { color: #1e7d32; background: #e8f5e9; border-color: #c8e6c9; }
+.status-gray  { color: #555555; background: #f2f2f2; border-color: #e0e0e0; }
+
+/*для модального вікна редагування supplier */
+
+.modal-backdrop {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    width: 80%;
+    max-width: 1200px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #222;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1rem;
+}
+
+.section-list {
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.section-list h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.section-list ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin: 0;
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.primary-button,
+.secondary-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.primary-button {
+    background-color: #ffdd00;
+    color: #000;
+}
+
+.secondary-button {
+    background-color: #f3f3f3;
+    color: #333;
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.primary-button:active,
+.secondary-button:active {
+    transform: scale(0.98);
+    background-color: #e6c800;
+}
+
+.primary-button:focus,
+.secondary-button:focus {
+    outline: 2px solid #333;
+    outline-offset: 2px;
+}
+
+.drivers-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    background-color: #fff;
+}
+
+.drivers-table th,
+.drivers-table td {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.drivers-table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
+.drivers-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.link-button {
+    background: none;
+    border: none;
+    color: #0070d2;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    padding: 0;
+    text-decoration: underline;
+}
+
+.link-button.yellow {
+    color: #a37b00;
+}
+
+.link-button:hover {
+    text-decoration: none;
+}
+
+.manual-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* ← фіксовано 3 колонки */
+    gap: 1rem;
+    margin-top: 1rem;
+    background-color: #fdfdfd;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.section-list .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.section-list .primary-button,
+.section-list .secondary-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.section-list .primary-button {
+    background-color: #ffdd00;
+    color: #000;
+}
+
+.section-list .secondary-button {
+    background-color: #f3f3f3;
+    color: #333;
+}
+
+.section-list .primary-button:hover,
+.section-list .secondary-button:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.section-list .primary-button:active,
+.section-list .secondary-button:active {
+    transform: scale(0.98);
+    background-color: #e6c800;
+}
+
+.section-list .primary-button:focus,
+.section-list .secondary-button:focus {
+    outline: 2px solid #333;
+    outline-offset: 2px;
+}
+
+
+.add-inline-button {
+    background-color: #ffdd00;
+    color: #000;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.add-inline-button:hover {
+    background-color: #e6c800;
+    transform: scale(1.02);
+}
+
+.add-button-container {
+    text-align: right;
+    margin-top: 0.5rem;
+}
+
+
+.add-inline-button:active {
+    transform: scale(0.98);
+    background-color: #d4b700;
+}
+
+.add-inline-button:focus {
+    outline: 2px solid #333;
+    outline-offset: 2px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.info-field {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.95rem;
+    background-color: #f9f9f9;
+    padding: 0.75rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.info-field label {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #555;
+}
+
+/* червоний стан позначеного на видалення рядка */
+.row-marked td {
+    background-color: rgba(220, 38, 38, 0.12);
+    border-top: 1px solid #dc2626;
+    border-bottom: 1px solid #dc2626;
+    color: #7f1d1d;
+}
+
+/* клітинка з дією */
+.actions-cell {
+    width: 48px;
+    text-align: center;
+    white-space: nowrap;
+    padding: 0 8px;
+}
+
+/* кнопка-іконка */
+.icon-button {
+    background: transparent;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+.icon-button:focus {
+    outline: 2px solid #333333;
+    outline-offset: 2px;
+}
+.icon-button:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+/* уніфікований розмір іконок */
+.icon-24 {
+    width: 24px;
+    height: 24px;
+}
+
+.main-edit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+.span-2 {
+    grid-column: 1 / -1;
+}
+
+.row-marked  { background: #ffe8e8; }
+.row-editing { background: #fff7d6; }
+
+.icon-20 { width: 24px; height: 24px;  }
+.icon-button {
+    background: transparent; border: 0; padding: 4px; cursor: pointer;
+}
+.chip-save {
+    padding: 4px 10px; border-radius: 6px; border: 0;
+    background: #ffdd00; font-weight: 600; cursor: pointer;
+}
+.actions-cell { white-space: nowrap; text-align: center; }
+
+/* NEW: підсвітка «чернеток» */
+.row-pending {
+    background: #e0f2ff; /* світло-блакитний */
+}
+
+/* (необов’язково) щоб візуально відрізняти в таблиці */
+.row-pending td {
+    box-shadow: inset 0 0 0 1px rgba(0,120,212,0.12);
+}
+.name-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: .5rem;
+}
+
+/*Для машини*/
+.lookup-wrap { display: grid; gap: 0.75rem; }
+.row { display: flex; gap: 0.5rem; align-items: center; }
+.suggest { list-style: none; padding: 0; margin: 0.25rem 0; }
+.suggest-item {
+    width: 100%; text-align: left; padding: .5rem .75rem; border: 1px solid #e5e7eb;
+    border-radius: .5rem; background: white; cursor: pointer;
+}
+.suggest-item:hover { background: #f9fafb; }
+.plate { font-weight: 600; margin-right: .5rem; }
+.meta { color: #6b7280; margin-left: .5rem; font-size: .85rem; }
+.create-box { padding: .75rem; border: 1px dashed #d1d5db; border-radius: .5rem; }
+.actions { display:flex; gap:.5rem; margin-top:.5rem; }
+.hint { color: #6b7280; font-size: .9rem; }
+
+.tab-header {
+    margin-bottom: 1rem;
+    padding: 1rem 1.5rem;
+    background: #fffbea; /* м’який жовтий відтінок */
+    border-left: 5px solid #ffc200; /* бренд-жовтий */
+    border-radius: 8px;
+}
+
+.tab-title {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #222;
+}
+
+.tab-subtitle {
+    margin: 0.5rem 0 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #444;
+}
+
+/* бейджики */
+.descr-badge {
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.descr-badge.proposed {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.descr-badge.approved {
+    background: #d9fbe5;
+    color: #166534;
+}
+
+.descr-badge.factual {
+    background: #dceeff;
+    color: #1e3a8a;
+}
+
+.descr-badge.remain {
+    background: #fff3c4;
+    color: #92400e;
+}
+
+.head-row { display:flex; align-items:center; gap:8px; }
+.sp-tools { display:flex; gap:6px; }
+
+.icon-btn{
+    background:#ffffff; border:1px solid #d7dbe0; border-radius:8px;
+    padding:6px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center;
+}
+.icon-btn:hover{ background:#f4f7fb; }
+.icon-btn:disabled{ opacity:0.5; cursor:default; }
+
+.icon-btn svg{ width:16px; height:16px; color:#2b2f36; }
+
+.limits-matrix {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+.limits-matrix thead th {
+    background: #f3f4f6;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+.limits-matrix tbody th.left {
+    text-align: center;
+    background: #f9fafb;
+    font-weight: 600;
+}
+.limits-matrix td, .limits-matrix th {
+    padding: 12px;
+    border-bottom: 1px solid #eef2f7;
+}
+
+.limits-matrix {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+    text-align: center;       /* центруємо всі значення */
+}
+
+.limits-matrix thead th {
+    background: #f3f4f6;
+    font-weight: 600;
+    text-align: center !important;       /* центруємо хедер */
+    padding: 10px 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.limits-matrix tbody th.left {
+    text-align: center;         /* для заголовків рядків лишаємо зліва */
+    background: #f9fafb;
+    font-weight: 600;
+}
+
+.limits-matrix td, .limits-matrix th {
+    padding: 12px;
+    border-bottom: 1px solid #eef2f7;
+    vertical-align: middle;   /* по центру по вертикалі */
+    text-align: center;
+}
+
+/* Ряди */
+.row-proposed  { background: #ffffff; }
+.row-approved  { background: #ecfdf5; }   /* ніжно-зелений */
+.row-used      { background: #fefce8; }   /* жовтуватий */
+.row-remain    { background: #fffaf0; }   /* кремовий */
+
+/* Підсвітка для залишку */
+.cell-ok    { }
+.cell-zero  { color: #dc2626; font-weight: 700; }  /* 0 → червоний */
+.cell-bad   { color: #b91c1c; font-weight: 700; }  /* <0 → темно-червоний */
+
+/* базова сітка таблиць уже є; лише трохи для історії */
+.slots-accordion { display: grid; gap: 16px; }
+
+.slots-month { border: 1px solid #eef2f7; border-radius: 10px; overflow: hidden; background: #fff; }
+.slots-month__head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 14px; background: #f9fafb; border-bottom: 1px solid #eef2f7;
+}
+.slots-month__title { margin: 0; font-size: 16px; font-weight: 700; }
+
+.slots-month__totals { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill { background: #eef2ff; padding: 4px 10px; border-radius: 999px; font-size: 12px; }
+.pill-red { background: #fee2e2; }
+
+.slots-table { text-align: center; table-layout: fixed; }
+.slots-table th, .slots-table td { padding: 10px 12px; vertical-align: middle; }
+.slots-table td.left { text-align: left; }
+.row-cancelled { opacity: .6; }
+.status-pill { padding: 4px 10px; border-radius: 999px; font-size: 12px; }
+.status-blue { background:#e0f2fe; }
+.status-green { background:#dcfce7; }
+.status-red { background:#fee2e2; }
+
+.cell-zero { color:#dc2626; font-weight:700; }
+.cell-bad  { color:#b91c1c; font-weight:700; }
+.meta {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    flex-wrap: wrap;
+}
+.pill {
+    display: inline-flex;
+    align-items: center;
+    padding: .18rem .5rem;
+    border-radius: 999px;
+    background: #f5f7fb;
+    border: 1px solid #e1e6ef;
+    font-weight: 600;
+    color: #334155;
+}
+.pill.type {
+    background: #ffe01922;
+    border-color: #ffe019;
+    color: #222;
+}
+
+.active-toggle {
+    --slds-c-toggle-color-background: #e2e8f0;
+    --slds-c-toggle-color-border: #ffe019;
+    margin-left: .25rem;
+}
+
+/* Модалка підтвердження */
+.modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(15,23,42,.45);
+    display: grid; place-items: center;
+    z-index: 9999;
+}
+.modal-window {
+    width: min(520px, 92vw);
+    background: #fff;
+    border-radius: 12px;
+    padding: 1rem 1.25rem 1.25rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,.15);
+}
+.modal-window h3 { margin: 0 0 .5rem 0; font-size: 1.1rem; }
+.modal-window p  { margin: 0 0 1rem 0; color: #334155; }
+.modal-actions   { display: flex; gap: .5rem; justify-content: flex-end; }
+.btn-danger {
+    background: #e11d48; color: #fff; border: none;
+    border-radius: 8px; padding: .5rem .9rem; cursor: pointer; font-weight: 700;
+}
+.btn-danger:hover { background: #be123c; }
+.btn-secondary {
+    background: #f4f6f9; color: #111; border: 1px solid #d9dde3;
+    border-radius: 8px; padding: .5rem .9rem; cursor: pointer; font-weight: 700;
+}
+.btn-secondary:hover { background: #eef1f6; }
+
+.row-marked {
+    background: #fff3f3;
+    opacity: .75;
+}
+
+/* scrapSupplierInfoPanel.css */
+.combo-wrap {
+    overflow: visible;           /* критично */
+    position: relative;
+    z-index: 3;                  /* вище за “шапку” таблиці/карти */
+}
+
+/* якщо у контейнера таблиці було overflow:hidden — вимкніть його */
+.vehicles-table-wrapper {
+    overflow: visible;           /* або unset */
+}
+/* Щоб спінер був завжди по центру в модалці */
+.modal-content {
+    position: relative; /* треба для absolute позиціювання спінера */
+}
+
+/* Власне контейнер спінера */
+.modal-content lightning-spinner {
+    position: absolute;
+    inset: 0;             /* top:0; right:0; bottom:0; left:0 */
+    margin: auto;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.65); /* напівпрозорий білий фон */
+    border-radius: 8px;
+    backdrop-filter: blur(1px);
+}
+
+/* Модалка — щоб оверлей прив’язався до меж модалки */
+.modal-content {
+    position: relative;
+}
+
+/* Напівпрозорий оверлей поверх всього контенту модалки */
+.spinner-overlay {
+    position: absolute;
+    inset: 0;                     /* top/right/bottom/left = 0 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+    background: rgba(255, 255, 255, 0.65);
+    z-index: 999;                 /* поверх усього всередині модалки */
+    cursor: progress;
+    pointer-events: all;          /* блокує кліки по контенту під оверлеєм */
+    backdrop-filter: blur(1px);
+    border-radius: 8px;           /* на випадок, якщо у модалки заокруглення */
+}
+
+/* Сам "колесик" */
+.spinner {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 4px solid #e5e7eb;                  /* світло-сіра основа */
+    border-top-color: #0176d3;                  /* бренд-синій SFDC */
+    animation: spin .8s linear infinite;
+}
+
+/* Підпис під спінером */
+.spinner-text {
+    font-size: 0.95rem;
+    color: #111827;
+}
+
+/* Анімація обертання */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Трохи повільніше для користувачів з reduce motion */
+@media (prefers-reduced-motion: reduce) {
+    .spinner { animation-duration: 1.6s; }
+}
+/* Модалка — батько для абсолютного оверлея */
+.modal-content {
+    position: relative;
+}
+
+/* Напівпрозорий шар, що перекриває модалку */
+.spinner-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+    background: rgba(255, 255, 255, 0.65);
+    z-index: 999;
+    pointer-events: all;      /* блокує кліки під час збереження */
+    backdrop-filter: blur(1px);
+    border-radius: 8px;       /* якщо модалка з радіусом */
+}
+
+/* Колесо */
+.spinner {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 4px solid #e5e7eb;
+    border-top-color: #0176d3;
+    animation: spin .8s linear infinite;
+}
+
+.spinner-text {
+    font-size: 0.95rem;
+    color: #111827;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .spinner { animation-duration: 1.6s; }
+}
+/* Модалка у стані збереження */
+.modal-content { position: relative; }
+.modal-content.is-saving { pointer-events: none; } /* блокує всі кліки всередині */
+.modal-content.is-saving::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,.55);
+    backdrop-filter: blur(2px);
+    z-index: 1000;               /* завіса поверх контенту */
+}
+
+/* Оверлей зі спінером */
+.saving-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1001;               /* поверх завіси */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.saving-text {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+/* Візуально «задизейблені» кнопки */
+.primary-button[disabled],
+.secondary-button[disabled],
+.icon-button[disabled] {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/* Додатково приглушимо все, коли saving */
+.modal-content.is-saving .modal-body,
+.modal-content.is-saving .modal-footer {
+    filter: grayscale(.1);
+    opacity: .85;
+}
+
+/* (необов’язково) якщо десь є ікон-кнопки без disabled — зробимо їх не клікабельними */
+.modal-content.is-saving .icon-button {
+    pointer-events: none;
+}

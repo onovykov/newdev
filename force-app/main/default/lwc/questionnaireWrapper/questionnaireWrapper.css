@@ -1,0 +1,188 @@
+.questionnaire-wrapper {
+    padding: 20px 25px;
+    background-color: #f5f5f5;
+    min-width: 50%;
+    max-width: 800px;
+    min-height: 700px;
+    box-shadow: 0px 3px 14px 1px rgba(0,0,0,0.68);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.header .logo-and-name{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+}
+.header .logo-and-name .name{
+    display: flex;
+    align-items: flex-end;
+    font-size: 20px;
+    line-height: 16px;
+    color: #37aff0;
+}
+.header .horizontal-line {
+    border: none;
+    height: 1px;
+    background-color: #37aff0;
+    margin-top: 10px;
+  }
+.header .logo img {
+    width: 180px;
+    height: 35px;
+}
+.section-additional-info{
+    font-size: 18px;
+    margin-top: 20px;
+    text-shadow: 0px 0px 1px black;
+}
+.radio-group-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem; 
+    width: 100%;
+}
+.required-marker{
+    color: red;
+}
+.progress-bar {
+    width: 100%;
+    height: 25px;
+    background-color: #dedede;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.progress-fill {
+    text-align: center;
+    height: 100%;
+    border-radius: 4px;
+    background-color: #37aff0;
+    width: 0%; /* Це значення буде змінюватися для відображення прогресу */
+    transition: width 2.0s ease;
+}
+.progress-text {
+    /* color: rgb(1, 255, 1); */
+    color: #FFDD00;
+    font-weight: bold;
+    font-size: 18px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 1.5);
+}
+
+.question{
+    margin-top: 20px;
+}
+.question label{
+    font-size: 16px;
+}
+.navigation{
+    height: 50px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+.navigation button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #FFDD00;
+    border-radius: 18px;
+    border: none;
+    width: 33%;
+    font-size: 20px;
+    transition: all 0.3s ease-out;
+}
+.navigation button{
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: all 0.3s ease-out;
+}
+.navigation button:disabled{
+    display: none;
+}
+
+
+.slds-required {
+    color: transparent !important;
+}
+
+.final-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh; /* this will center the content vertically */
+    text-align: center;
+}
+
+.final-message h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.final-message p {
+    font-size: 16px;
+    max-width: 600px;
+}
+
+.start-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.closed-page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.language-selection{
+    display: flex;
+    justify-content: space-around;
+}
+.language-icon {
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+    cursor: pointer;
+    margin: 5px;
+    transition: transform 0.3s ease;
+}
+
+.selected {
+    transform: scale(1.5);
+    /* border: 2px solid rgba(0, 0, 255, 0.158); */
+}
+.icon-with-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.lang-button {
+    background-color: #f0f0f0; /* Light grey background */
+    border: 1px solid #dcdcdc; /* Light grey border */
+    border-radius: 6px;
+    padding: 10px 20px; /* Padding inside the button */
+    cursor: pointer; /* Change mouse cursor on hover */
+    outline: none; /* Remove outline */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth background color and transform transition */
+}
+
+.lang-button:hover {
+    background-color: #e0e0e0; /* Slightly darker grey on hover */
+}
+
+.lang-button.pressed {
+    background-color: #007bff; /* Blue background for pressed state */
+    color: white; /* White text color */
+    border-color: #007bff; /* Blue border */
+    transform: scale(0.98); /* Slightly smaller scale for a "pressed" effect */
+}

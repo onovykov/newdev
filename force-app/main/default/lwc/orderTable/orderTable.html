@@ -1,0 +1,272 @@
+<!-- sldsValidatorIgnore -->
+<template>
+
+        <div class="lgc-bg" if:true={isSeaShipment}>
+            <h3 class="slds-text-heading_medium ">Booking Information</h3>
+            <table class="slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr>
+                        <th>Sea Booking</th>
+                        <th>Departure Date</th>
+                        <th>Departed From</th>
+                        <th>Sea Status</th>
+                        <th>Destination</th>
+                        <th>{arrivalDateLabel}</th>
+                        <th>Shipment Tracking</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={bookingData} for:item="row">
+                        <tr key={row.seaBooking}>
+                            <td data-label="Sea Booking">{row.seaBooking}</td>
+                            <td data-label="Departure Date" >
+                                <lightning-formatted-date-time
+                                    value={row.departureDate}  
+                                    year="numeric"
+                                    month="numeric"
+                                    day="numeric"
+                                    time-zone="UTC">
+                                </lightning-formatted-date-time>
+                            </td>
+                            <td data-label="Departed From">{row.departedFrom}</td>
+                            <td data-label="Sea Status">{row.seaStatus}</td>
+                            <td data-label="Destination">{row.destination}</td>
+                            <td data-label={arrivalDateLabel} >
+                                <lightning-formatted-date-time
+                                    value={row.estimatedArrivalDate}  
+                                    year="numeric"
+                                    month="numeric"
+                                    day="numeric"
+                                    time-zone="UTC">
+                                </lightning-formatted-date-time>
+                            </td>
+                            <td data-label="Shipment Tracking">
+                                <a href={row.shipmentTracking} target="_blank">
+                                    <template lwc:if={row.shipmentTracking}>
+                                        CLICK HERE
+                                    </template>
+                                </a>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+            <div if:true={existHistory}>
+                <h3 class="hisHeader"><b>History</b></h3>
+                <template for:each={history} for:item="hisItem">
+                    <p key={hisItem.Dt} style="padding-left: 5px;">{hisItem.Dt}   -  {hisItem.Description}</p>
+                </template>
+            </div>
+        </div>
+        <div class="lgc-bg" if:false={isSeaShipment}>
+            <h3 class="slds-text-heading_medium ">Delivery Information</h3>
+            <table class="slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Item #</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={bookingData} for:item="row">
+                        <tr key={row.iteNumber}>
+                            <td data-label="Product Name">{row.NameProduct}</td>
+                            <td data-label="Item #">{row.iteNumber}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+
+
+        <lightning-datatable if:false={isSeaShipment}
+        key-field="key"
+        data={getMyData}
+        columns={dynamicColumns}
+        show-row-number-column="true"
+        min-column-width="100"
+        onrowaction={handleRowAction}
+        class="desktop-datatable"
+        onrowselection={handleSelected}
+        selected-rows={selectedRows}
+        style="max-height: none;"
+    ></lightning-datatable>
+
+    <lightning-tree-grid if:true={isSeaShipment}
+        columns={dynamicColumns}
+        data={orderItemsTotals}
+        key-field="key"
+        min-column-width="100"
+        onrowaction={handleRowAction}
+        class="desktop-datatable"
+        onrowselection={handleSelected}
+        selected-rows={selectedRows}
+        style="max-height: none;"
+    ></lightning-tree-grid>
+
+    <div if:false={isSeaShipment} class="mobile-datatable">
+        <table>
+            <thead>
+            <tr>
+                <th>Car #</th>
+                <template if:true={isUkraineUser}>
+                    <th>Date of shipment</th>
+                </template>
+                <template if:false={isUkraineUser}>
+                    <th>Date/time of shipment</th>
+                </template>
+                <th>Get Certificate</th>
+                <th>Qty (pcs)</th>
+                <th>Qty (t), netto</th>
+                <th>Length, m</th>
+                <template if:true={isUkraineUser}>
+                    <th>Date GPS</th>
+                </template>
+                <template if:false={isUkraineUser}>
+                    <th>Date/Time GPS</th>
+                </template>
+                <th>Country</th>
+                <th>Place</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <template for:each={getMyData} for:item="row">
+                <tr key={row.id}>
+                    <td data-label="Car #">{row.NOM_VM}</td>
+
+                    <template if:true={isUkraineUser}>
+                        <td data-label="Date of shipment">{row.DATE_OTGR}</td>
+                    </template>
+                    <template if:false={isUkraineUser}>
+                        <td data-label="Date/time of shipment">{row.DEPARTURE_TIME}</td>
+                    </template>
+
+                    <td data-label="Get Certificate">
+                        <button data-id={row.ITENumber__c} onclick={handleViewCertificate}>{row.NOMSERT}</button>
+                    </td>
+                    <td data-label="Qty (pcs)">{row.QTY_PCS}</td>
+                    <td data-label="Qty (t), netto">{row.QTY_T_NETTO}</td>
+                    <td data-label="Length, m">{row.LENGTH_M}</td>
+
+                    <template if:true={isUkraineUser}>
+                        <td data-label="Date GPS">{row.STATUSDT}</td>
+                    </template>
+
+                    <template if:false={isUkraineUser}>
+                        <td data-label="Date/Time GPS">{row.COORD_DT}</td>
+                    </template>
+
+                    <td data-label="Country">{row.COUNTRY}</td>
+                    <td data-label="Place"><a href={row.GPS_LOCATION} target="_blank">{row.PLACE}</a></td>
+                    <td data-label="Status">{row.STATUS_NAME}</td>
+
+                    <!--                    <td data-label="Car #">{row.NOM_VM}</td>-->
+<!--                    <td data-label="Date/time of shipment">{row.DEPARTURE_TIME}</td>-->
+<!--                    <td data-label="Get Certificate">-->
+<!--                        <button data-id={row.ITENumber__c} onclick={handleViewCertificate}>-->
+<!--                            {row.NOMSERT}-->
+<!--                        </button>-->
+<!--                    </td>-->
+<!--                    <td data-label="Qty (pcs)">{row.QTY_PCS}</td>-->
+<!--                    &lt;!&ndash; <td data-label="Qty (t), brutto">{row.QTY_T_BRUTTO}</td> &ndash;&gt;-->
+<!--                    <td data-label="Qty (t), netto">{row.QTY_T_NETTO}</td>-->
+<!--                    <td data-label="Length, m">{row.LENGTH_M}</td>-->
+<!--                    <td data-label="Date/Time GPS">{row.COORD_DT}</td>-->
+<!--                    <td data-label="Country">{row.COUNTRY}</td>-->
+<!--                    <td data-label="Place">-->
+<!--                        <a href={row.GPS_LOCATION} target="_blank">{row.PLACE}</a>-->
+<!--                    </td>-->
+<!--                    <td data-label="Status">{row.STATUS_NAME}</td>-->
+                </tr>
+            </template>
+            </tbody>
+        </table>
+    </div>
+    <div if:true={isSeaShipment} class="mobile-datatable">
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Get Certificate</th>
+                <th>Qty (pcs)</th>
+                <th>Qty (t), netto</th>
+                <th>Length, m</th>
+            </tr>
+            </thead>
+            <tbody>
+            <template for:each={getMyData} for:item="row">
+                <tr key={row.id}>
+                    <td data-label="Name">{row.NameProduct}</td>
+                    <td data-label="Get Certificate">
+                        <button data-id={row.ITENumber__c} onclick={handleViewCertificate}>
+                            {row.NOMSERT}
+                        </button>
+                    </td>
+                    <td data-label="Qty (pcs)">{row.QTY_PCS}</td>
+                    <td data-label="Qty (t), netto">{row.QTY_T_NETTO}</td>
+                    <td data-label="Length, m">{row.LENGTH_M}</td>
+                </tr>
+            </template>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Detail view modal start -->
+    <template if:true={bShowModal}>
+
+
+        <section role="dialog" tabindex="-1"
+                 aria-labelledby="modal-heading-01"
+                 aria-modal="true"
+                 aria-describedby="modal-content-id-1"
+                 class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+
+                <div if:true={showSpinner} class="exampleHolder slds-align_absolute-center"
+                     style="height:6rem;position:absolute;left: 50%">
+                    <lightning-spinner alternative-text="Loading" size="small" variant="brand"></lightning-spinner>
+                </div>
+
+                <!-- modal header start -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                                        size="small"></lightning-icon>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Certificate Detail</h2>
+                </header>
+                <!-- modal body start -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+
+                    <div class="exampleHolder" if:true={showSpinner}>
+                        <p class="slds-text-heading_medium slds-hyphenate">Waiting for response</p>
+                    </div>
+
+                    <div if:true={showCertificate}>
+                        <a download={nameFile} href={b64} class="slds-button slds-button_brand">Download PDF
+                            document</a>
+                    </div>
+
+                    <div if:true={showError}>
+                        <p class="slds-text-heading_medium slds-hyphenate">Can't find certificate</p>
+                    </div>
+
+
+                </div>
+                <!-- modal footer start-->
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="brand"
+                                      label="Close"
+                                      title="Close"
+                                      onclick={closeModal}
+                    ></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <!-- Detail view modal end -->
+
+</template>

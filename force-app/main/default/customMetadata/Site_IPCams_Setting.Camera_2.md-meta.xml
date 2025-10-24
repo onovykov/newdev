@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Camera_2</label>
+    <protected>false</protected>
+    <values>
+        <field>Camera_Id__c</field>
+        <value xsi:type="xsd:double">2.0</value>
+    </values>
+    <values>
+        <field>Description__c</field>
+        <value xsi:type="xsd:string">Pipe rolling shop #5 (Dnipro)</value>
+    </values>
+    <values>
+        <field>IP_Camera_URL__c</field>
+        <value xsi:type="xsd:string">https://motionntz.interpipe.biz/picture/2/current/</value>
+    </values>
+    <values>
+        <field>Preview_IMG__c</field>
+        <value xsi:type="xsd:string">cam2.png</value>
+    </values>
+</CustomMetadata>

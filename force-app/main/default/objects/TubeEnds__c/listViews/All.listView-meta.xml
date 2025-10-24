@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>ShortName__c</columns>
+    <columns>Type__c</columns>
+    <columns>ID_ERP__c</columns>
+    <columns>NameRus__c</columns>
+    <columns>TubingEnds__c</columns>
+    <columns>CasingEnds__c</columns>
+    <columns>OCTGEnds__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Obsolete__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>All (Not Obsolete)</label>
+</ListView>

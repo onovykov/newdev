@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION" description="Event template" >
+	<aura:attribute name="label" type="String" />
+	<aura:attribute name="value" type="String" />
+	<aura:attribute name="sourceId" type="String" />
+</aura:event>

@@ -1,0 +1,101 @@
+<template>
+    <div class="tab-header">
+        <h1 class="tab-title">План приймання брухту</h1>
+        <p class="tab-subtitle">
+            Тут відображаються <b>заброньовані слоти</b> на <b>поточну декаду</b>.
+            Кожен день має коротке зведення; деталі для минулих днів згорнуті.
+        </p>
+
+    </div>
+
+    <div class="orders-container">
+        <template for:each={groupedData} for:item="group" for:index="index">
+            <section key={group.date} class="orders-day-block">
+
+                <!-- НОВИЙ компактний заголовок дня -->
+                <header class="day-head">
+                    <div class="day-title">
+                        <span class="day-chip" title="День тижня">{group.dayLabel}</span>
+                        <span class="date-chip" title="Дата">{group.date}</span>
+                    </div>
+                    <!-- опційно: короткий підзаголовок праворуч -->
+                    <div class="day-meta">
+                        <span class="meta-item">
+                            Слотів: <b>{group.records.length}</b>
+                        </span>
+                    </div>
+                </header>
+
+                <!-- ✅ Summary: завжди показуємо -->
+                <div class="summary-table-wrapper">
+                    <table class="summary-table">
+                        <thead>
+                        <tr>
+                            <th>Тип брухту</th>
+                            <th>Загальний тоннаж</th>
+                            <th>Кількість слотів</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <template for:each={group.summary} for:item="s">
+                            <tr key={s.scrapType}>
+                                <td>{s.scrapType}</td>
+                                <td>{s.totalTons} т</td>
+                                <td>{s.count}</td>
+                            </tr>
+                        </template>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 🔘 Кнопка під summary -->
+                <button class="accordion-btn"
+                        data-index={index}
+                        aria-expanded={group.open}
+                        onclick={toggleSection}>
+                    <template if:true={group.open}>▲ Сховати детальне відображення слотів</template>
+                    <template if:false={group.open}>▼ Детальне відображення слотів</template>
+                </button>
+
+                <!-- 🔽 Детальні слоти -->
+                <template if:true={group.open}>
+                    <div class="table-wrapper" style="margin-top: 1rem;">
+                        <table class="orders-table">
+                            <thead>
+                            <tr>
+                                <th>Перепустка</th>
+                                <th>Постачальник</th>
+                                <th>Тип брухту</th>
+                                <th>Машина</th>
+                                <th>Тоннаж</th>
+                                <th>Водій</th>
+<!--                                <th>Контракт</th>-->
+<!--                                <th>Адреса</th>-->
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <template for:each={group.records} for:item="res">
+                                <tr key={res.id}
+                                    data-id={res.id}
+                                    data-pass={res.passNumber}
+                                    data-supplier={res.supplier}
+                                    data-type={res.scrapType}
+                                    onclick={handleClick}>
+                                    <td>{res.passNumber}</td>
+                                    <td>{res.supplier}</td>
+                                    <td>{res.scrapType}</td>
+                                    <td>{res.truck}</td>
+                                    <td>{res.tons}</td>
+                                    <td>{res.driver}</td>
+<!--                                    <td>{res.contract}</td>-->
+<!--                                    <td>{res.address}</td>-->
+                                </tr>
+                            </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </template>
+            </section>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,200 @@
+<template>
+
+    <!-- Modal/Popup starts here -->
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header slds-modal__header_empty modal-header">
+                    <div class="slds-grid slds-wrap slds-grid_align-end">
+                        <div class="slds-col">
+                            <button class="slds-button slds-button_icon slds-button_icon-inverse slds-p-around_small" title="Close" onclick={closeModal}>
+                                <lightning-icon icon-name="action:remove"
+                                    alternative-text="close"
+                                    variant="inverse"
+                                    size="small" ></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                        </div>
+                    </div>
+                  </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content modal-content" id="modal-content-id-1">
+                   <!-- <div class="slds-grid slds-wrap slds-grid_align-end">
+                        <div class="slds-col">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse slds-p-around_x-large" title="Close" onclick={closeModal}>
+                                <lightning-icon icon-name="action:remove"
+                                    alternative-text="close"
+                                    variant="inverse"
+                                    size="small" ></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                        </div>
+                    </div>-->
+                   
+                    <c-site-reclamation-detail get-selected-reclamation={selectedReclamationid} onaddproduct={handleAddProduct}></c-site-reclamation-detail>
+                </div>
+                <lightning-spinner
+                if:false={modalContainer}
+                class="slds-is-absolute slds-align_absolute-center"
+                alternative-text="Loading Details..."
+                size="medium"
+                variant="brand"
+            >
+            </lightning-spinner>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <div class="container">
+        <lightning-spinner
+                if:true={showGenPdfSpinner}
+                class="slds-is-absolute slds-align_absolute-center"
+                alternative-text="Loading Generated PDF..."
+                size="medium"
+                variant="brand"
+            >
+            </lightning-spinner>
+        <div>
+            <div class="datatable-tabs">
+                <ul class="slds-tabs_default__nav" role="tablist">
+                    <div class="li-wrapper">
+                    <li class="slds-tabs_default__item slds-is-active"  role="presentation" data-id="tab-default-1__item">
+                    <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-defaultItem-1" data-id="tab-default-1__item">{labels.All_Reclamations}
+                        <div class="amount">{amountAllClaims}</div> </a>
+                    </li>
+                    </div>
+                    <div class="li-wrapper">
+                    <li class="slds-tabs_default__item"  role="presentation"  data-id="tab-default-3__item" >
+                        <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-defaultItem-3" data-id="tab-default-3__item">{labels.Stage_Registered}
+                            <div class="amount">{amountRegisteredClaims}</div>
+                        </a>
+                    </li>
+                    </div>
+                    <div class="li-wrapper">
+                    <li class="slds-tabs_default__item"  role="presentation"  data-id="tab-default-4__item" >
+                        <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-defaultItem-4" data-id="tab-default-4__item">{labels.Stage_Considered}
+                            <div class="amount">{amountConsideredClaims}</div> </a>
+                    </li>
+                    </div>
+                    <div class="li-wrapper">
+                    <li class="slds-tabs_default__item"  role="presentation"  data-id="tab-default-5__item" >
+                        <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-defaultItem-5" data-id="tab-default-5__item">{labels.Stage_Rejected}
+                            <div class="amount">{amountRejectedClaims}</div>
+                        </a>
+                    </li>
+                    </div>
+                    <div class="li-wrapper">
+                    <li class="slds-tabs_default__item"  role="presentation"  data-id="tab-default-6__item" >
+                        <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-defaultItem-6" data-id="tab-default-6__item">{labels.Stage_Accepted}
+                            <div class="amount">{amountAcceptedClaims}</div>
+                        </a>
+                    </li>
+                    </div>
+                    <div class="li-wrapper">
+                        <li class="slds-tabs_default__item"  role="presentation"  data-id="tab-default-7__item" >
+                            <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-defaultItem-7" data-id="tab-default-7__item">{labels.Stage_OnHold}
+                                <div class="amount">{amountOnHoldClaims}</div>
+                            </a>
+                        </li>
+                        </div>
+                    <div class="li-wrapper">
+                    <li class="slds-tabs_default__item" role="presentation" data-id="tab-default-2__item">
+                    <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-defaultItem-2" data-id="tab-default-2__item">{labels.Stage_Draft}
+                        <div class="amount">{amountDraftClaims}</div>
+                    </a>
+                    </li>
+                    </div>
+                </ul>
+            </div>
+
+            <div class="datatable-tabs-mobile">
+                <div class="dropdown" tabindex="0">
+                    <button class="dropdown-toggle" lwc:ref="dropdownBtn" aria-expanded={dropdownOpen} onclick={toggleDropdown}>{selectedOption}
+                        <div class="arrow-down"></div>  
+                    </button>
+                    <ul if:true={dropdownOpen} lwc:ref="dropdownList" class="dropdown-menu">
+                        <template for:each={optionsToDisplay} for:item="option">
+                            <li key={option.id} onclick={handleOptionClick} data-id={option.id}>
+                                <a onclick={handleOptionClick} data-id={option.id}>{option.label}
+                                    <!-- <div class="amount">{option.amount}</div> -->
+                                </a>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="datatable-menu">
+                <div class="blank-space" style="width: 256px;"><!-- onclick={generatePdf} -->
+                    <!-- <img src={printImg} alt="" class="print-icon"> 
+                    <p class="print-text">{print}</p> -->
+                </div>
+                <div class="calendar">
+                    <p class="calendar-choose-date">{chooseADate}: </p>
+                    <p class="calendar-from">{from}</p>
+                    <div class="calendar-start-date">
+                        <lightning-input  type ="date" onchange={setStartDate} ></lightning-input>
+                    </div>
+                    <p class="calendar-to">{to}</p>
+                    <div class="calendar-end-date" >
+                        <lightning-input type ="date"  onchange={setEndDate}></lightning-input>
+                    </div>
+                </div>
+                <div class="searchbox">
+                    <lightning-input class="search-input" id="textfield1" type="search"  onchange={handleSearch}></lightning-input>
+                    <div class="refresh-btn" onclick={refreshSearch}>
+                        <img  class="refresh-btn-img" src={refresh}  alt="" >
+                    </div>
+                </div>
+            </div>
+            
+            <div class="datatable">
+                <table>
+                    <thead>
+                        <tr class="datatable-header">
+                            <th>{labels.Site_th_number}
+                                <img  class="sort-icon" data-id="numberSortIcon" onclick={filterByNumber} src={sortIcon}  alt="" >
+                            </th>
+                            <th>{labels.Site_th_erpNumber}</th>
+                            <th>{labels.Site_th_dateReclamation}
+                                <img  class="sort-icon" data-id="dateSortIcon" onclick={filterByDate} src={sortIcon}  alt="" >
+                            </th>
+                            <th>{labels.Site_th_Stage}
+                                <img  class="sort-icon" data-id="stageSortIcon" onclick={filterByStage} src={sortIcon}  alt="" >
+                            </th>
+                            <th>{labels.Site_th_Owner}</th>
+                            <!-- <th>{labels.Site_th_Refund}</th> -->
+                        </tr>
+                    </thead>
+                    <template for:each= {filteredReclamationsList} for:item="item">
+                        <tr key = {item.Id}>
+                            <td class="reclamation-number" onclick={openModal} data-id={item.Id}> {item.Name} </td>
+                            <td data-label ={labels.Site_th_erpNumber} class="reclamation-number" >{item.ERP_Number__c}</td>
+                            <td data-label ={labels.Site_th_dateReclamation}> 
+                                <lightning-formatted-date-time
+                                        value= {item.CreatedDate} 
+                                        year="numeric"
+                                        month="numeric"
+                                        day="numeric"
+                                        time-zone="UTC">
+                                </lightning-formatted-date-time>
+                            </td>
+                            <td data-label ={labels.Site_th_Stage}> {item.Status__c} </td>
+                            <td data-label ={labels.Site_th_Owner}> {item.Owner.Name} </td>
+                            <!-- <td class="refund"> 
+                                <img class="refund-Img" src={item.refundImg} alt="">
+                                {item.Refund} 
+                            </td> -->
+                        </tr>
+                    </template>
+                </table>
+            </div>
+            <div class="print-btn"   onclick={generatePdf} > 
+                <img src={printImg} alt="" class="print-icon"> 
+                <p class="print-text">{print}</p>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Mistmatch SubType --></label>
+    <name>Mistmatch_SubType__c</name>
+    <picklistValues>
+        <masterLabel>BWW</masterLabel>
+        <translation><!-- BWW --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Error in order (planning)</masterLabel>
+        <translation><!-- Error in order (planning) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Vehicles downtime</masterLabel>
+        <translation><!-- Vehicles downtime --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>assembly leak</masterLabel>
+        <translation><!-- assembly leak --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>bandages</masterLabel>
+        <translation><!-- bandages --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>chemical composition</masterLabel>
+        <translation><!-- chemical composition --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>coating / packaging</masterLabel>
+        <translation><!-- coating / packaging --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>column breaks</masterLabel>
+        <translation><!-- column breaks --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>defects</masterLabel>
+        <translation><!-- defects --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>defects after machining</masterLabel>
+        <translation><!-- defects after machining --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>defects after processing</masterLabel>
+        <translation><!-- defects after processing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>delivery period</masterLabel>
+        <translation><!-- delivery period --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>delivery period (Logistic)</masterLabel>
+        <translation><!-- delivery period (Logistic) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>demerge</masterLabel>
+        <translation><!-- demerge --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>documentation</masterLabel>
+        <translation><!-- documentation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>documentation (Commercial)</masterLabel>
+        <translation><!-- documentation (Commercial) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>geometry</masterLabel>
+        <translation><!-- geometry --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>marketable condition</masterLabel>
+        <translation><!-- marketable condition --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>marking / stamping</masterLabel>
+        <translation><!-- marking / stamping --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>mechanical damage</masterLabel>
+        <translation><!-- mechanical damage --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>mechanical damage (Logistic)</masterLabel>
+        <translation><!-- mechanical damage (Logistic) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>mechanical properties</masterLabel>
+        <translation><!-- mechanical properties --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ordering</masterLabel>
+        <translation><!-- ordering --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>others</masterLabel>
+        <translation><!-- others --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>others (Commercial)</masterLabel>
+        <translation><!-- others (Commercial) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>others (Logistic)</masterLabel>
+        <translation><!-- others (Logistic) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>others (Maintenance)</masterLabel>
+        <translation><!-- others (Maintenance) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>place of delivery (Logistic)</masterLabel>
+        <translation><!-- place of delivery (Logistic) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>price</masterLabel>
+        <translation><!-- price --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>production planning</masterLabel>
+        <translation><!-- production planning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>quantity</masterLabel>
+        <translation><!-- quantity --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>salt</masterLabel>
+        <translation><!-- salt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>simple vehicle</masterLabel>
+        <translation><!-- simple vehicle --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>technical expertise</masterLabel>
+        <translation><!-- technical expertise --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>wheels</masterLabel>
+        <translation><!-- wheels --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,110 @@
+<template>
+
+    <div if:true={dataLoaded} class="slds-p-around_small slds-grid slds-wrap">
+        <div class="slds-col slds-size_12-of-12 slds-p-around_small">
+            <span class="card-header">Case: </span>
+            <span class="card-header"> <b>{currentCase.CaseNumber}</b></span>
+        </div>     
+    </div>
+
+    <div class="slds-tabs_default">
+        <ul class="slds-tabs_default__nav tabs-desktop" role="tablist">
+            <li class="slds-tabs_default__item slds-is-active" title="Item One" role="presentation"
+                data-id="tab-defaultItem-1__item" id="test1">
+                <a onclick={toggleSubtabs} class="slds-tabs_default__link tab-header" href="#" role="tab" tabindex="0"
+                    aria-selected="true" aria-controls="tab-defaultItem-1"
+                    data-id="tab-defaultItem-1">{labels.card_details}</a>
+            </li>
+            <li class="slds-tabs_default__item" title="Item Two" role="presentation" data-id="tab-defaultItem-2">
+                <a onclick={toggleSubtabs} class="slds-tabs_default__link tab-header" href="#" role="tab" tabindex="-1"
+                    aria-selected="false" aria-controls="tab-defaultItem-2"
+                    data-id="tab-defaultItem-2">{labels.card_files}</a>
+            </li>      
+        </ul>
+        <div class="datatable-tabs-mobile">
+            <div class="dropdown" tabindex="0">
+                <button class="dropdown-toggle" lwc:ref="dropdownBtn" aria-expanded={dropdownOpen} onclick={toggleDropdown}>
+                    {selectedOption}
+                    <div class="arrow-down"></div>
+                </button>
+                <ul if:true={dropdownOpen} lwc:ref="dropdownList" class="dropdown-menu">
+                    <template for:each={optionsToDisplay} for:item="option">
+                        <li key={option.id} onclick={handleOptionClick} data-id={option.id}>
+                            <a onclick={handleOptionClick} data-id={option.id}>{option.label}
+                                <!-- <div class="amount">{option.amount}</div> -->
+                            </a>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+        <div data-id="tab-defaultItem-1" class="slds-tabs_default__content slds-show" role="tabpanel"
+            aria-labelledby="tab-defaultItem-1__item">
+            <template if:true={dataLoaded}>
+                <div class="slds-col slds-size_12-of-12 slds-p-around_x-small">
+                    <div
+                        class="slds-grid slds-wrap slds-grid_vertical-align-center slds-m-top_medium slds-m-bottom_medium">
+                        <div class="slds-col slds-size_6-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <p class="label-detail">{labels.subject}</p>
+                            <p class="description-detail border-bottom-gray"><b>{currentCase.Subject}</b></p>
+                        </div>
+
+                        <div class="slds-col slds-size_6-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <p class="label-detail">{labels.Status}</p>
+                            <p class="description-detail border-bottom-gray"><b>{currentCase.Status}</b></p>
+                        </div>
+
+                        <div class="slds-col slds-size_6-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <p class="label-detail">{labels.Creation_date}</p>
+                            <p class="description-detail border-bottom-gray"><b>{currentCase.CreatedDate}</b></p>
+                        </div>
+
+                        <div class="slds-col slds-size_6-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <p class="label-detail">{labels.Status_date}</p>
+                            <p class="description-detail border-bottom-gray"><b>{currentCase.Status_Date__c}</b></p>
+                        </div>
+
+                        <div class="slds-col slds-size_12-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <p class="label-detail">{labels.Support_description}</p>
+                            <p class="description-detail border-bottom-gray"><textarea disabled style="width: 100%; resize: none;" rows="4">{currentCase.Description}</textarea></p>
+                        </div>
+                    
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <div data-id="tab-defaultItem-2" class="slds-tabs_default__content slds-hide" role="tabpanel"
+            aria-labelledby="tab-defaultItem-2__item">     
+            <div class="datatable">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{labels.scf_name}</th>
+                            <th>{labels.scf_owner}</th>
+                            <th>{labels.scf_lastChange}</th>
+                            <th>{labels.scf_size}</th>
+                            
+                        </tr>
+                    </thead>
+                    <template for:each={caseFiles} for:item="item">
+                        <tr key={item.ContentDocumentId}>
+                            <td data-label={labels.scf_name} class="reclamation-number" onclick={openFile} data-id={item.Id}>
+                                {item.ContentDocument.Title}</td>
+                            <td data-label={labels.scf_owner}>{item.ContentDocument.Owner.Name}</td>
+                            <td data-label={labels.scf_lastChange}>
+                                <lightning-formatted-date-time value={item.ContentDocument.ContentModifiedDate}
+                                    year="numeric" month="numeric" day="numeric">
+                                </lightning-formatted-date-time>
+                            </td>
+                            <td data-label={labels.scf_size}>{item.fileSize}</td>                          
+                        </tr>
+                    </template>
+                </table>
+            </div> 
+            
+            
+        </div>      
+    </div>
+    
+</template>

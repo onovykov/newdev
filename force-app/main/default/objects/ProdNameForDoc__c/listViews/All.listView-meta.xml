@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>ID__c</columns>
+    <columns>NameEN__c</columns>
+    <columns>NameUA__c</columns>
+    <columns>NameRU__c</columns>
+    <columns>IsActive__c</columns>
+    <columns>Classifier__c</columns>
+    <columns>OBJECT_ID</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>IsActive__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>All</label>
+</ListView>

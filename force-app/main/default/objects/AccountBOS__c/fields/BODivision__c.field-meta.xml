@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BODivision__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(TEXT(User__r.BusinesDivision__c),
+&apos;Pipes&apos;,&apos;Pipe Products&apos;,
+&apos;Railway&apos;,&apos;Railway Products&apos;,
+&apos;Steel&apos;,&apos;Steel Products&apos;,
+&apos;PRD&apos;,&apos;Product &amp; Resource Dept.&apos;,
+&apos;Marketing&apos;,&apos;Marketing&apos;,
+&apos;IT&apos;,&apos;IT Department&apos;,
+&apos;TOP&apos;,&apos;Top Management&apos;,
+&apos;Customer&apos;,&apos;Customer&apos;,
+&apos;&apos;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>BO Business Division</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

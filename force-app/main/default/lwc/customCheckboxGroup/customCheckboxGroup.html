@@ -1,0 +1,16 @@
+<template>
+    <!-- <abbr if:true={required} class="required-marker">*</abbr> -->
+    <div class="custom-checkbox-group slds-grid slds-wrap slds-p-around_x-small">
+        <template for:each={options} for:item="option">
+            <div key={option.value} class="slds-col slds-size_1-of-2">
+                <c-custom-checkbox-item
+                    label={option.label}
+                    value={option.value}
+                    is-checked={option.isChecked}
+                    onchange={handleCheckboxChange}
+                ></c-custom-checkbox-item>
+            </div>
+        </template>
+        <p if:true={showValidity} style="color: red; font-size: 12px;">Complete this field.</p>
+    </div>
+</template>

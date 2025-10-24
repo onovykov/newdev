@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Prod Plan Type --></label>
+    <name>ProdPlanType__c</name>
+    <picklistValues>
+        <masterLabel>253</masterLabel>
+        <translation><!-- 253 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>254</masterLabel>
+        <translation><!-- 254 --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

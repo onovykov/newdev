@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Respondent Language --></label>
+    <name>Respondent_Language__c</name>
+    <picklistValues>
+        <masterLabel>English</masterLabel>
+        <translation><!-- English --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Russian</masterLabel>
+        <translation><!-- Russian --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ukrainian</masterLabel>
+        <translation><!-- Ukrainian --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

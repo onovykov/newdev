@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MENA_Price_Approval_Requests</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Stage__c</columns>
+    <columns>StageERP__c</columns>
+    <columns>Quantity_t__c</columns>
+    <columns>Price_t__c</columns>
+    <columns>Margin_t__c</columns>
+    <columns>Margin__c</columns>
+    <columns>Transportation__c</columns>
+    <columns>FED__c</columns>
+    <columns>Turnover__c</columns>
+    <columns>SalesRep__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>BOSpecialist__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>MarketSegment__c</field>
+        <operation>equals</operation>
+        <value>00002</value>
+    </filters>
+    <label>MENA Price Approval Requests</label>
+    <sharedTo>
+        <role>CSO_MENA_UKR</role>
+        <role>SalesManager_MENA</role>
+        <role>SeniorSM_MENA</role>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+     <apiVersion>55.0</apiVersion>
+    <isExposed>true</isExposed>
+     <targets>
+      <target>lightningCommunity__Default</target>
+      <target>lightningCommunity__Page</target>
+      <target>lightningCommunity__Page_Layout</target>
+      <target>lightningCommunity__Theme_Layout</target>
+  </targets>
+  <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="Image1" type="String"  label="Enter static resource name for News Images"></property>
+            <property name="mainDate" type="String"  label="Enter main  date"></property>
+            <property name="mainHeader" type="String"  label="Enter main Header EN"></property>
+            <property name="mainDescription" type="String"  label="Enter main Description EN"></property>
+            <property name="mainLink" type="String"  label="Enter main Link EN"></property>
+            <property name="mainHeaderUA" type="String"  label="Enter main Header UA"></property>
+            <property name="mainDescriptionUA" type="String"  label="Enter main Description UA"></property>
+            <property name="mainLinkUA" type="String"  label="Enter main Link UA"></property>
+            <property name="mainHeaderRU" type="String"  label="Enter main Header RU"></property>
+            <property name="mainDescriptionRU" type="String"  label="Enter main Description RU"></property>
+            <property name="mainLinkRU" type="String"  label="Enter main Link RU"></property>
+            
+            <property name="Item1Date" type="String"  label="Enter date for item #1 "></property>
+            <property name="Item1Header" type="String"  label="Enter Header for item #1 EN"></property>
+            <property name="Item1Link" type="String"  label="Enter Link for item #1 EN"></property>
+            <property name="Item1HeaderUA" type="String"  label="Enter Header for item #1 UA"></property>
+            <property name="Item1LinkUA" type="String"  label="Enter Link for item #1 UA"></property>
+            <property name="Item1HeaderRU" type="String"  label="Enter Header for item #1 RU"></property>
+            <property name="Item1LinkRU" type="String"  label="Enter Link for item #1 RU"></property>
+
+
+            <property name="Item2Date" type="String"  label="Enter date for item #2"></property>
+            <property name="Item2Header" type="String"  label="Enter Header for item #2 EN"></property>
+            <property name="Item2Link" type="String"  label="Enter Link for item #2 EN"></property>
+            <property name="Item2HeaderUA" type="String"  label="Enter Header for item #2 UA"></property>
+            <property name="Item2LinkUA" type="String"  label="Enter Link for item #2 UA"></property>
+            <property name="Item2HeaderRU" type="String"  label="Enter Header for item #2 RU"></property>
+            <property name="Item2LinkRU" type="String"  label="Enter Link for item #2 RU"></property>
+
+
+            <property name="Item3Date" type="String"  label="Enter date for item #3"></property>
+            <property name="Item3Header" type="String"  label="Enter Header for item #3 EN"></property>
+            <property name="Item3Link" type="String"  label="Enter Link for item #3 EN"></property>
+            <property name="Item3HeaderUA" type="String"  label="Enter Header for item #3 UA"></property>
+            <property name="Item3LinkUA" type="String"  label="Enter Link for item #3 UA"></property>
+            <property name="Item3HeaderRU" type="String"  label="Enter Header for item #3 RU"></property>
+            <property name="Item3LinkRU" type="String"  label="Enter Link for item #3 RU"></property>
+        </targetConfig>
+  </targetConfigs>
+</LightningComponentBundle>

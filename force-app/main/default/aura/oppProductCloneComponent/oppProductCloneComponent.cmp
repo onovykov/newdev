@@ -1,0 +1,4 @@
+<aura:component controller="OpportunityLineItemControllerExtension" implements="force:lightningQuickAction,force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId">
+	<aura:attribute name="oppProduct" type="OpportunityLineItem"/>
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+</aura:component>

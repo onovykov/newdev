@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Check_Reset_Birthday_System_Box</fullName>
+        <field>Reset_Birthday_Email_System__c</field>
+        <literalValue>1</literalValue>
+        <name>Check Reset Birthday System Box</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Reset_Next_Birthday</fullName>
+        <field>Next_Birthday__c</field>
+        <formula>IF(DATE(YEAR(TODAY()),MONTH(Birthdate),DAY(Birthdate)) &lt;= TODAY(), 
+			DATE(YEAR(TODAY())+1,MONTH(Birthdate),DAY(Birthdate)),
+			DATE(YEAR(TODAY()),MONTH(Birthdate),DAY(Birthdate)))</formula>
+        <name>Reset Next Birthday</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Reset_update2</fullName>
+        <field>Reset_Birthday_Email_System__c</field>
+        <literalValue>0</literalValue>
+        <name>Reset Birthday to false</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Birthday Change</fullName>
+        <actions>
+            <name>Check_Reset_Birthday_System_Box</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>MONTH(Birthdate) &lt;&gt; MONTH(Next_Birthday__c)  || DAY(Birthdate) &lt;&gt; DAY(Next_Birthday__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Reset Birthday</fullName>
+        <actions>
+            <name>Reset_Next_Birthday</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Reset_update2</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Contact.Reset_Birthday_Email_System__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <timeLength>0</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+</Workflow>

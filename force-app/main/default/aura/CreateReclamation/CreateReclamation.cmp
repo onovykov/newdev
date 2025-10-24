@@ -1,0 +1,268 @@
+<aura:component
+    implements="lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId"
+    access="global" controller='CreateReclamationController'>
+
+    <!-- <aura:html tag="style">
+        .slds-modal__container{
+        width: 70% !important;
+        max-width: 70% !important;
+        }
+        .modal-body{
+        height : 80% !important;
+
+        max-height: 80% !important;
+        }
+
+        .slds-docked-form-footer {
+        bottom: 12.1% !important;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+    </aura:html> -->
+    <lightning:navigation aura:id="navService" />
+    <aura:attribute name="showReclamationDetail" type="Boolean" default="true" access="PRIVATE" />
+    <aura:attribute name="noReturning" type="Boolean" default='false' />
+    <aura:attribute name="client" type="String" />
+    <aura:attribute name="date" type="String" />
+    <aura:attribute name="dateContract" type="String" default='' />
+    <aura:attribute name="segment" type="String" />
+    <aura:attribute name="currency" type="String" />
+    <aura:attribute name="currencies" type="list" default="[]" />
+    <aura:attribute name="reclSum" type="String" />
+    <aura:attribute name="orderNumber" type="String" />
+    <aura:attribute name="mapOrderItems" type="object" />
+    <aura:attribute name="deleteOrder" type="String" default='Delete order ' />
+    <aura:attribute name="deletedFileId" type="String" default='' />
+    <aura:attribute name="today" type="Date" />
+    <!--Controller Field-->
+    <aura:attribute name="listControllingValues" type="list" default="[]"
+        description="to store controller field values" />
+    <aura:attribute name="listDependingValues" type="list" default="['--- None ---']"
+        description="to store dependent field values" />
+    <aura:attribute name="depnedentFieldMap" type="map"
+        description="map to store dependent values with controlling value" />
+    <aura:attribute name="bDisabledDependentFld" type="boolean" default="true" />
+    <aura:attribute name="objDetail" type="Reclamation_Detail__c" default="{'sobjectType' : 'Reclamation_Detail__c'}" />
+    <aura:attribute name="controllingFieldAPI" type="string" default="Mistmatch_Type__c"
+        description="store field API name of Controller field" />
+    <aura:attribute name="dependingFieldAPI" type="string" default="Mistmatch_SubType__c"
+        description="store field API name of dependent field" />
+    <!--Controller Field-->
+    <aura:attribute name="dataArray" type="List" />
+    <aura:attribute name="stateList" type="List" />
+    <aura:attribute name="stateCityMap" type="Object" />
+
+    <aura:attribute name="filetype" type="List"
+        default="['.png', '.jpg', '.jpeg','.pdf','.doc','.docx','.xls','.xlsx','.txt','.rtf']" />
+    <aura:attribute name="fileId" type="String[]" />
+    <aura:attribute name="fileNames" type="List" default="[]" />
+    <aura:attribute name="recordId" type="String" />
+
+    <aura:attribute name="isModalOpen" type="boolean" default="false" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:handler name="sendOrder" event="c:sendChoosenOrder" action="{!c.catchEvent}" />
+    <aura:attribute name="parentAction" type="Aura.Action"/>
+    <!--First modal window-->
+
+    <aura:if isTrue="{! v.showReclamationDetail}">
+        <div class="row">
+            <h2 class="slds-text-heading_large slds-text-align_center">{!$Label.c.site_createReclamation}</h2>
+            <div class="slds-grid">
+                    <div class="slds-col slds-size_6-of-12 slds-p-around_small">
+                    <lightning:input name="input2" label="{!$Label.c.Reclamation_Date}" value="{!v.date}" disabled="true" />
+                    <lightning:input name="input3" label="{!$Label.c.Reclamation_Account}" value="{!v.client}"
+                        disabled="true" />
+                    <lightning:input name="input4" label="{!$Label.c.Reclamation_Segment}" value="{!v.segment}"
+                        disabled="true" />
+                    <!--<lightning:input name="input5" label="{!$Label.c.Reclamation_Currency}" value="{!v.currency}"/>-->
+                    <lightning:select aura:id='inputCurrency' label="{!$Label.c.Reclamation_Currency}">
+                        <aura:iteration items="{!v.currencies}" var="Var">
+                            <option text="{!Var}" />
+                        </aura:iteration>
+                    </lightning:select>
+                </div>
+            
+
+                <div class="slds-col slds-size_6-of-12 slds-p-around_small">
+                    <lightning:input name="input6" aura:id="contractNumber" label="{!$Label.c.Contract_Number}"
+                        value="{!v.orderNumber}" />
+                    <ui:inputDate aura:id="dateContractId" value="" displayDatePicker="true" format="MM/dd/yyyy"
+                        label="{!$Label.c.Reclamation_Contract_Date}" />
+                    <lightning:input class="slds-m-top_medium" type="checkbox" label="{!$Label.c.Reclamation_No_Refund}"
+                        name="input7" onchange="{!c.changeNoReturning}" />
+                    <lightning:input class="slds-m-top_large " name="input8" aura:id="reclamationSum" label="{!$Label.c.Reclamation_Summary}"
+                        value="{!v.reclSum}" />
+                </div>
+            </div>
+
+        </div>
+
+        <lightning:fileUpload label="" name="fileUploader" multiple="true"
+            accept="{!v.filetype}" recordId="{!v.recordId}" onuploadfinished="{!c.handleUploadFinished}" />
+
+        <aura:iteration items="{!v.fileNames}" var="name">
+            <div>
+                <p class="slds-text-heading_small slds-m-vertical_xx-small" style="display: inline-block;">{!name.name}
+                    - {!$Label.c.CustomerSupportFileLoaded}</p>
+                <lightning:buttonIcon iconName="utility:close" class="slds-m-left_x-small slds-m-bottom_xx-small"
+                    variant="bare" onclick="{! c.openModel }" alternativeText="Delete" title="Delete"
+                    value="{!name.documentId}" />
+            </div>
+
+        </aura:iteration>
+
+        
+
+        <div class="slds-grid slds-grid_align-end">
+            <div class="slds-col">
+                <lightning:button variant="destructive" label="{!$Label.c.Cancel}"
+                onclick="{!v.parentAction}" />
+              </div>
+              <div class="slds-col slds-m-left_medium">
+                <lightning:button variant="brand" label="{!$Label.c.Reclamation_Next_Button}" onclick="{!c.showDetail}" />
+              </div>
+        </div>
+
+        <aura:if isTrue="{!v.isModalOpen}">
+
+            <!-- Modal/Popup Box starts here-->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box Header Starts here-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close" onclick="{! c.closeModel }"
+                            alternativeText="close" variant="bare-inverse" class="slds-modal__close" />
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Delete file</h2>
+                    </header>
+                    <!--Modal/Popup Box Body Starts here-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <p><b>Are you sure to delete this file from list?
+                            </b>
+                        </p>
+                    </div>
+                    <!--Modal/Popup Box Footer Starts here-->
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral" label="Cancel" title="Cancel" onclick="{! c.closeModel }" />
+                        <lightning:button variant="brand" label="OK" title="OK" onclick="{!c.deleteFile}" />
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+    </aura:if>
+
+    <!--Second modal window-->
+    <aura:if isTrue="{! !v.showReclamationDetail}">
+        <lightning:card >
+            <aura:set attribute="title">
+            <c:lookupField objectAPIName="Order" label="{!$Label.c.Select_Order}" returnFields="['AdditionalNumber__c','Name']"
+                queryFields="['AdditionalNumber__c','Name']" />
+            </aura:set>    
+            <div aura:id="parent-aura-div-id">
+                <aura:iteration items="{!v.mapOrderItems}" var="mapKey" indexVar="key">
+                    <strong>
+                        <p> Order : {!mapKey.value[0].OrderPONumber}</p>
+                    </strong>
+                    <lightning:button variant="destructive"
+                        label="{!v.deleteOrder+mapKey.value[0].OrderPONumber}" value="{!key}"
+                        onclick="{!c.deleteOrder}" />
+                    <lightning:accordion allowMultipleSectionsOpen="true">
+                        <lightning:accordionSection name="{!key}" label="{!mapKey.value[0].Order.OrderNumber}">
+                            <div style="width:50%;margin-top:0px;margin-left:0px;">
+                                <table class="slds-table slds-table_bordered slds-table_col-bordered ">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:10px;">#</th>
+                                            <th style="width:20px;">{!$Label.c.Site_th_Name}</th>
+                                            <th style="width:20px;">{!$Label.c.site_th_orderQuantity}</th>
+                                            <th style="width:20px;">{!$Label.c.Site_th_MeasurementUnit}</th>
+                                            <th style="width:20px;">{!$Label.c.Site_th_OrderPrice}</th>
+                                            <th style="width:20px;">{!$Label.c.site_th_reclamationQuantity}</th>
+                                            <th style="width:20px;">{!$Label.c.Site_th_ClaimSum}</th>
+
+                                            <th style="width:20px;"
+                                                title="&#013; Manufacturing - is defined as the creation of new products, either from raw materials or components.
+                                                    &#013; Logistic - is used more broadly to refer to the process of coordinating and moving resources – people, materials, inventory.
+                                                    &#013; Commercial - is an advertisement for a business. Commercial activity is selling goods or services for-profit.
+                                                    &#013; Maintenance - the process of preserving a condition or situation or the state of being preserved 
+                                                    &#013; Exploitation - the action or fact of treating someone unfairly in order to benefit from their work. &#013;">
+                                                    {!$Label.c.Site_th_MistmatchType} ❓</th>
+                                            <th style="width:20px;">{!$Label.c.Site_th_MistmatchSubType}</th>
+                                            <th style="width:20px;">{!$Label.c.Site_th_MistmatchDate}</th>
+                                            <th style="width:20px;">{!$Label.c.scd_Comment}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <aura:iteration items="{!mapKey.value}" var="dataVar" indexVar="index">
+                                            <tr style="{!dataVar.selected == true ? 'background:#90ee90;' : ''}">
+                                                <td>
+                                                    <div class="slds-form-element">
+                                                        <div class="slds-form-element__control">
+                                                            <label class="slds-checkbox">
+                                                                <ui:inputCheckbox value="{!dataVar.selected}"
+                                                                    change="{!c.checkboxSelect}" />
+                                                                <span class="slds-checkbox_faux"></span>
+                                                                <span class="slds-form-element__label text"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>{!dataVar.Name}</td>
+                                                <td>{!dataVar.InquiryQuantity}</td>
+                                                <td>{!dataVar.InquiryUnit}</td>
+                                                <td id="{!dataVar.Id + '_uniPrice'}">{!dataVar.UnitPrice}</td>
+                                                <td><input class="slds-input" type="number" style="width:90px;"
+                                                        id="{!dataVar.Id + '_claimQ'}" label="Номер"
+                                                        onchange="{!c.claimChanged}" value="{!dataVar.claimQty}"
+                                                        oninput="this.value = Math.abs(this.value)" /></td>
+                                                <td><input class="slds-input" type="number" style="width:90px;"
+                                                        id="{!dataVar.Id + '_claimSum'}"
+                                                        value="{!dataVar.claimSum == null? 0:dataVar.claimSum}">0</input>
+                                                </td>
+
+                                                <td id="{! dataVar.Id + '_state_td'}">
+                                                    <select class="slds-select" id="{! dataVar.Id + '_state'}"
+                                                        onchange="{!c.controlFieldChanged}" value="Logistic">
+                                                        <aura:iteration items="{!v.listControllingValues}" var="stateVar">
+                                                            <option text="{!stateVar}" />
+                                                        </aura:iteration>
+                                                    </select>
+                                                </td>
+                                                <td id="{! dataVar.Id +'_city_td'}">
+                                                    <select class="slds-select" id="{! dataVar.Id + '_city'}">
+                                                    </select>
+                                                </td>
+                                                <td> <input type="date" class="slds-input" id="{! dataVar.Id + '_date'}"
+                                                        value="{!v.today}"></input></td>
+                                                <td> <input type="text" class="slds-input" id="{! dataVar.Id + '_comment'}"
+                                                        style="width:140px;"></input></td>
+                                            </tr>
+                                        </aura:iteration>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </lightning:accordionSection>
+                    </lightning:accordion>
+                </aura:iteration>
+
+                
+            </div>
+            <aura:set attribute="footer">
+                
+                    <lightning:button variant="destructive" label="{!$Label.c.Cancel}" onclick="{!v.parentAction}" />
+                    <lightning:button variant="brand" label="{!$Label.c.site_createReclamation}"
+                        onclick="{!c.createReclamationAndDetail}" />
+
+               
+            </aura:set>
+        </lightning:card>   
+    </aura:if>
+
+
+
+</aura:component>

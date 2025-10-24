@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>CEO</fullName>
+        <default>false</default>
+        <label>Chief Executive Officer</label>
+    </customValue>
+    <customValue>
+        <fullName>BO Director</fullName>
+        <default>false</default>
+        <label>Back Office Director</label>
+    </customValue>
+    <customValue>
+        <fullName>BO Manager</fullName>
+        <default>false</default>
+        <label>Back Office Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>BO Specialist</fullName>
+        <default>false</default>
+        <label>Back Office Specialist</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Division Head</fullName>
+        <default>false</default>
+        <label>Head of Sales Division</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Chief Officer</fullName>
+        <default>false</default>
+        <label>Chief Sales Officer</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Senior</fullName>
+        <default>false</default>
+        <label>Senior Sales Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Manager</fullName>
+        <default>false</default>
+        <label>Sales Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>Chief PM</fullName>
+        <default>false</default>
+        <label>Chief Project Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>PRM Director</fullName>
+        <default>false</default>
+        <label>Product and Resource Management Director</label>
+    </customValue>
+    <customValue>
+        <fullName>Marketing Chief</fullName>
+        <default>false</default>
+        <label>Chief Marketing Officer</label>
+    </customValue>
+    <customValue>
+        <fullName>Marketing Specialist</fullName>
+        <default>false</default>
+        <label>Marketing Specialist</label>
+    </customValue>
+    <customValue>
+        <fullName>Chief Product Manager</fullName>
+        <default>false</default>
+        <label>Chief Product Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>Product Manager</fullName>
+        <default>false</default>
+        <label>Product Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>Analytics Dept Head</fullName>
+        <default>false</default>
+        <label>Head of the Analytics and Planning Department</label>
+    </customValue>
+    <customValue>
+        <fullName>Analytics Manager</fullName>
+        <default>false</default>
+        <label>Analytics and Planning Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>PR Director</fullName>
+        <default>false</default>
+        <label>PR Department Director</label>
+    </customValue>
+    <customValue>
+        <fullName>PR Group Manager</fullName>
+        <default>false</default>
+        <label>PR Group Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>PR Manager</fullName>
+        <default>false</default>
+        <label>PR Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>Sys Admin</fullName>
+        <default>false</default>
+        <label>System Administrator</label>
+    </customValue>
+    <customValue>
+        <fullName>Outsource Developer</fullName>
+        <default>false</default>
+        <label>Outsource Developer</label>
+    </customValue>
+    <customValue>
+        <fullName>Support Director</fullName>
+        <default>false</default>
+        <label>Support Chief Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>App Admin</fullName>
+        <default>false</default>
+        <label>Application Admin</label>
+    </customValue>
+    <customValue>
+        <fullName>Helpdesk</fullName>
+        <default>false</default>
+        <label>Support Specialist</label>
+    </customValue>
+    <masterLabel>Job Titles</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

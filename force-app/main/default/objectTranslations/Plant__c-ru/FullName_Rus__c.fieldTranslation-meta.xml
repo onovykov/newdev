@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Full name of the plant in Russian for using in official documents. --></help>
+    <label><!-- Full Name (Rus) --></label>
+    <name>FullName_Rus__c</name>
+</CustomFieldTranslation>

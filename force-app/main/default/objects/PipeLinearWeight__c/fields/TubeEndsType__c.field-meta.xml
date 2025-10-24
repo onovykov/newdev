@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TubeEndsType__c</fullName>
+    <label>Ends Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>NU</fullName>
+                <default>false</default>
+                <label>NU</label>
+            </value>
+            <value>
+                <fullName>EU</fullName>
+                <default>false</default>
+                <label>EU</label>
+            </value>
+            <value>
+                <fullName>PE</fullName>
+                <default>false</default>
+                <label>PE</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

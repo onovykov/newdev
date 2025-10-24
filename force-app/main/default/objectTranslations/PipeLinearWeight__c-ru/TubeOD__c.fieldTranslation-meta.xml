@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Tube outside diameter --></help>
+    <label>Внешний диаметр</label>
+    <name>TubeOD__c</name>
+    <relationshipLabel><!-- Pipes Linear Weights --></relationshipLabel>
+</CustomFieldTranslation>

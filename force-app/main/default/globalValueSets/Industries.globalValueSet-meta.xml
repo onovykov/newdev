@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Oil&amp;Gas</fullName>
+        <default>false</default>
+        <label>Oil&amp;Gas</label>
+    </customValue>
+    <customValue>
+        <fullName>Energy</fullName>
+        <default>false</default>
+        <label>Energy</label>
+    </customValue>
+    <customValue>
+        <fullName>Infrastructure</fullName>
+        <default>false</default>
+        <label>Infrastructure</label>
+    </customValue>
+    <customValue>
+        <fullName>Residential Construction</fullName>
+        <default>false</default>
+        <label>Residential Construction</label>
+    </customValue>
+    <customValue>
+        <fullName>Non-residential Construction</fullName>
+        <default>false</default>
+        <label>Non-residential Construction</label>
+    </customValue>
+    <customValue>
+        <fullName>Machinery</fullName>
+        <default>false</default>
+        <label>Machinery</label>
+    </customValue>
+    <customValue>
+        <fullName>Locomotive</fullName>
+        <default>false</default>
+        <label>Locomotive</label>
+    </customValue>
+    <customValue>
+        <fullName>Freight</fullName>
+        <default>false</default>
+        <label>Freight</label>
+    </customValue>
+    <customValue>
+        <fullName>Passenger</fullName>
+        <default>false</default>
+        <label>Passenger</label>
+    </customValue>
+    <customValue>
+        <fullName>Fabrication</fullName>
+        <default>false</default>
+        <label>Fabrication</label>
+    </customValue>
+    <customValue>
+        <fullName>Distribution</fullName>
+        <default>false</default>
+        <label>Distribution</label>
+    </customValue>
+    <description>Opportunity Industry</description>
+    <masterLabel>Industries</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

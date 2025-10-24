@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Support Team</name>
+    <queueMembers>
+        <users>
+            <user>sfadmin@interpipe.biz</user>
+            <user>dmitriy.zapisetskiy@interpipe.biz</user>
+            <user>serhii.rolenko@interpipe.biz</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Task</sobjectType>
+    </queueSobject>
+</Queue>

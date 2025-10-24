@@ -1,0 +1,23 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" controller="ClientDeliveryStatus">
+	
+	<aura:attribute name="Errors" type="String" default=""/>
+	<aura:attribute name="Data" type="Object"/>
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+	<aura:renderIf isTrue="{!$Browser.formFactor == 'DESKTOP'}">
+		<!-- For testing purpose
+		<div style="font-size: 2rem; background-color: aliceblue;">
+			Phone View
+		</div>
+		<c:ClientDeliveryStatusPhoneView Data="{!v.Data}"/>
+		<div style="font-size: 2rem; background-color: aliceblue;">
+			Desktop View
+		</div>
+		-->
+		<c:ClientDeliveryStatusDesktopView Data="{!v.Data}"/>
+    <aura:set attribute="else">
+		<c:ClientDeliveryStatusPhoneView Data="{!v.Data}"/>
+    </aura:set>
+	</aura:renderIf>
+</aura:component>

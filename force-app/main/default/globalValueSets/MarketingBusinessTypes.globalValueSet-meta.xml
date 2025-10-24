@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Distributor</fullName>
+        <default>false</default>
+        <label>Distributor</label>
+    </customValue>
+    <customValue>
+        <fullName>Non-distributor</fullName>
+        <default>false</default>
+        <label>Non-distributor</label>
+    </customValue>
+    <masterLabel>Marketing Business Types</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

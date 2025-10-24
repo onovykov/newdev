@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NewDriver__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>NewDriver</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Slot Changes (NewDriver)</relationshipLabel>
+    <relationshipName>Slot_Changes1</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

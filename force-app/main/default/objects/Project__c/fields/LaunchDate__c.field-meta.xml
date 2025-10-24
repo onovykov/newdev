@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LaunchDate__c</fullName>
+    <description>Launch date of the project</description>
+    <inlineHelpText>When the project was launched by its owner</inlineHelpText>
+    <label>Launch Date</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transportation__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Is the transportation cost calculated by Logistic Department</description>
+    <inlineHelpText>Is the transportation cost calculated by Logistic Department</inlineHelpText>
+    <label>Transportation Cost</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

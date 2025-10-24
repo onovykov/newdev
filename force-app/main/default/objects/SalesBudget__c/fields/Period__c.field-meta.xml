@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Period__c</fullName>
+    <externalId>false</externalId>
+    <formula>Case(Type__c,
+					&apos;Y&apos;, Text(Year__c) + &apos;: Year Initial&apos;,
+					&apos;HY1&apos;, Text(Year__c) + &apos;: First Half Year&apos;,
+					&apos;HY2&apos;, Text(Year__c) + &apos;: Second Half Year&apos;,
+					&apos;Q1&apos;, Text(Year__c) + &apos;: Q1 Corrected&apos;,
+					&apos;Q2&apos;, Text(Year__c) + &apos;: Q2 Corrected&apos;,
+					&apos;Q3&apos;, Text(Year__c) + &apos;: Q3 Corrected&apos;,
+					&apos;Q4&apos;, Text(Year__c) + &apos;: Q4 Corrected&apos;,
+					null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Period</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

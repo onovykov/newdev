@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>INTERPIPE ME FZE</label>
+    <protected>false</protected>
+    <values>
+        <field>Additional_Marking_On_Delivery_Rus__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;указать при оформлении заказа&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Additional_Marking_On_Delivery_Ukr__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;зазначати під час оформлення замовлення&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Additional_Terms_On_Delivery_Rus__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;указать при оформлении заказа&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Additional_Terms_On_Delivery_Ukr__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;зазначати під час оформлення замовлення&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Additional_Terms_Rus__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;- Предложение относится к общему количеству в заказе. Если заказывается частичное количество, мы оставляем за собой право принять или отклонить заказ.&lt;br/&gt;- Срок изготовления и поставки указан с учетом текущих резервов и возможностей производства. Окончательный график доставки оговаривается и согласовывается при подписании контракта.&lt;br/&gt;- Любые поправки к дополнительным условиям должны подлежать предварительному одобрению и согласованию сторон.&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Additional_Terms_Ukr__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;- Пропозиція стосується загальної кількості замовлення. Якщо замовлена часткова кількість, ми залишаємо за собою право прийняти або відхилити замовлення.&lt;br/&gt;- Час виробництва та доставки вказано з урахуванням поточної резервної позиції; Графік доставки взаємно обговорюються та узгоджується під час підписання контракту.&lt;br/&gt;- Будь-які зміни до умов повинні бути попередньо схвалені.&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Additional_Terms_Wheels_Rus__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;- Гарантийные обязательства согласно требованиям стандарта выше (напр.5 лет). Все вопросы касательно гарантийных обязательств должны быть указаны в заказе / или подтверждении заказа.&lt;br/&gt;- Предложение действует на чертежи, спецификации и количество продукции указанные выше. Если вносятся изменения в запрос, изменения должны быть указаны в предложении.&lt;br/&gt;- Техническая спецификация и чертежи должны быть подписаны Клиентом перед началом производства.&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Additional_Terms_Wheels_Ukr__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;- Гарантійні зобов&apos;язання відповідно до вимог стандарту вище (напр. 5 років). Всі питання щодо гарантійних зобов&apos;язань повинні бути вказані в замовленні / або під час підтвердження замовлення.&lt;br/&gt;- Пропозиція є чинною стосовно креслень, специфікацій і кількості продукції, які подано вище. Якщо вносяться зміни в запит, зміни мають бути вказані в пропозиції.&lt;br/&gt;- Технічна специфікація та креслення мають бути підписані Клієнтом перед початком виробництва.&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Additional_Terms_Wheels__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;- The warranty period is as per the standard above (5 years). All the issues concerning the warranty details should be specified in the order/order confirmation.&lt;br/&gt;- The offer is valid only for the drawings, specifications and quantities specified above. If any changes are made it is subject for a change in offer.&lt;br/&gt;- The technical specification and drawings need to be signed by the customer before manufacturing can start.&lt;br/&gt;- All other conditions are according to our GTC.&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Additional_Terms__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;a) The offer is for total quantity, if partial quantity is ordered, we reserve the right to accept or reject the order.&lt;br/&gt; b) Production and Delivery time is given considering current mill booking position; A firm delivery schedule will be mutually discussed &amp; agreed upon at the time of contract signing.&lt;br/&gt; c) Any amendments of a.m. conditions must be subject to prior approval.&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>BottomText__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;Length Tolerance:                                                                          +0/-1% For Each item in Meters &lt;/p&gt;&lt;p&gt;Production Time:                                                                           &lt;/p&gt;&lt;p&gt;               &lt;/p&gt;&lt;p&gt;Production Schedule&lt;/p&gt;&lt;p&gt;Item 1, 6, 7 – August 2017 Item 2 – February 2018&lt;/p&gt;&lt;p&gt;Item 3 – October 2017&lt;/p&gt;&lt;p&gt;Item 4 – May 2018&lt;/p&gt;&lt;p&gt;Item 5 – September 2017&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Delivery Term:                                                                                FOB Any Port in Ukraine or CIF LIFO Alexandria Port&lt;/p&gt;&lt;p&gt;Shipment Method:                                                                        Open Top Containers&lt;/p&gt;&lt;p&gt;Partial Shipment:                                                                            Acceptable &lt;/p&gt;&lt;p&gt;Port of Shipment:                                                                          Odessa or Ilyichevsk, Ukraine&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Payment Term:                                                               100% L/C within 45 days from Bill of Lading Date&lt;/p&gt;&lt;p&gt;Validity:                                                                                              120 Days from Bid Closing Date &lt;/p&gt;&lt;p&gt;Price Basis:                                                                                         Prices are offered both on FOB and CIF LIFO Incoterms&lt;/p&gt;&lt;p&gt;Other Terms &amp;amp; Conditions:&lt;/p&gt;&lt;p&gt;-         Acceptance of terms &amp;amp; conditions under the Tender No. 04/4574 For Tubing - VERIFY&lt;/p&gt;&lt;p&gt;-         Acceptance of Inspection Terms under the Tender No. 04/4574 For Tubing&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Details__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;&lt;b&gt;Bank Details:&lt;/b&gt;&lt;br/&gt;
+Receiver: &lt;b&gt;INTERPIPE ME FZE&lt;/b&gt;&lt;br/&gt;
+LB19 Office No. 1008,&lt;br/&gt;
+PO BOX 262810, Jebel Ali, Dubai, UAE&lt;br/&gt;
+Bank Account &lt;b&gt;Emirates NBD Bank&lt;/b&gt;&lt;br/&gt;
+Main Branch, Baniyas Road, PO Box 777, Dubai, UAE, Account in USD: 1022499389102, Swift code: EBILAEAD&lt;br/&gt;
+
+We hope you will find our offer complete and competitive. We look forward to receiving your response.&lt;br/&gt;
+Thanking and assuring you best of our services at all times.&lt;br/&gt;
+Best Regards,&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>HeaderText__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;Dear Sirs,&lt;br/&gt;We thankfully acknowledge receipt of your inquiry and we are pleased to submit our offer for supply of seamless pipe material confirming to standard requirements with the following additional details:&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Marking_Rus__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;по согласованию при размещении заказа&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Marking_Ukr__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;за узгодженням під час розміщення замовлення&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Marking__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;To be agreed during order placement.&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Packing_Rus__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;согласно стандартам завода-производителя&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Packing_Ukr__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;згідно зі стандартом завода-виробника&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Packing__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;According to Mills Standard, suitable for Sea transportation (max 3Mt per bundle)&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Plastic_Caps_Rus__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;согласно стандартам завода-производителя&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Plastic_Caps_Ukr__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;згідно зі стандартом завода-виробника&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Production_Delivery_Details__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;Subject to receipt of purchase order, signed contract and appendix.&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Shipping_Marks__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;To be advised in the Purchase order.&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Special_Shipping_Requirements__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;-Max age of vessel and flag restrictions - None &lt;br/&gt;
+
+-Any additional Vessel Certificates required - None &lt;br/&gt;
+
+-Dunnage Material - No Restriction &lt;br/&gt;
+
+-Advise any special shipping requirements for confirmation&lt;br/&gt;&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Third_party_Inspection_Rus__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;просим указать при размещении заказа если требуется проведение инспекции&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Third_party_Inspection_Ukr__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;просимо зазначати під час розміщення замовлення, якщо проведення інспекції є потрібним&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Third_party_Inspection__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;In case applicable, please mention in the PO the inspection scope and the name of the third party inspection agency. Cost on inspection on buyers account&lt;/p&gt;</value>
+    </values>
+    <values>
+        <field>Tolerance__c</field>
+        <value xsi:type="xsd:string">&lt;p&gt;+3%/-3%&lt;/p&gt;</value>
+    </values>
+</CustomMetadata>

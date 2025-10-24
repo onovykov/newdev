@@ -1,0 +1,220 @@
+<aura:component
+    implements="lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:hasRecordId,force:lightningQuickActionWithoutHeader"
+    access="global" controller='CreateReclamationController'>
+
+    <aura:html tag="style">
+        
+        @media (max-width: 600PX) {
+            .slds-modal__container{
+                margin: 0;
+                box-shadow: inset -1px 3px 300px 200px rgba(0,0,0,0.83);
+                }
+            }
+        <!-- .slds-modal__container{
+        width: 90% !important;
+        max-width: 90% !important;
+        }
+        .modal-body{
+        height: 80% !important;
+        max-height: 80% !important;
+        }
+        .addBackground{
+        background: white;
+        }
+
+        .table {
+
+        display: block;
+
+        overflow: scroll;
+        }
+
+        .slds-docked-form-footer {
+        bottom: 12.3% !important;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+
+        .slds-table{
+        width: 1300px !important;
+
+        }
+        th{
+        padding:5px;
+        font-family: Arial, Helvetica, sans-serif !important;
+        text-align: center;
+        }
+        td{
+        padding:5px;
+        }
+
+        @media (max-width: 1450px) {
+        .slds-table{
+        width: 1150px !important;
+
+        }
+
+        @media (max-width: 1320px) {
+        .slds-table{
+        width: 1000px !important;
+
+        }
+
+        }
+
+        @media (max-width: 1150px) {
+        .slds-table{
+        width: 900px !important;
+
+        }
+
+
+
+        } -->
+
+    </aura:html>
+
+    <lightning:navigation aura:id="navService" />
+    <aura:attribute name="showReclamationDetail" type="Boolean" default="false" access="PRIVATE" />
+    <aura:attribute name="noReturning" type="Boolean" default='false' />
+    <aura:attribute name="client" type="String" />
+    <aura:attribute name="date" type="String" />
+    <aura:attribute name="dateContract" type="String" default='' />
+    <aura:attribute name="segment" type="String" />
+    <aura:attribute name="currency" type="String" />
+    <aura:attribute name="currencies" type="list" default="[]" />
+    <aura:attribute name="reclSum" type="String" />
+    <aura:attribute name="orderNumber" type="String" />
+    <aura:attribute name="mapOrderItems" type="object" />
+    <aura:attribute name="deleteOrder" type="String" default='Delete order ' />
+    <aura:attribute name="today" type="Date" />
+    <!--Controller Field-->
+    <aura:attribute name="listControllingValues" type="list" default="[]"
+        description="to store controller field values" />
+    <aura:attribute name="listDependingValues" type="list" default="['--- None ---']"
+        description="to store dependent field values" />
+    <aura:attribute name="depnedentFieldMap" type="map"
+        description="map to store dependent values with controlling value" />
+    <aura:attribute name="bDisabledDependentFld" type="boolean" default="true" />
+    <aura:attribute name="objDetail" type="Reclamation_Detail__c" default="{'sobjectType' : 'Reclamation_Detail__c'}" />
+    <aura:attribute name="controllingFieldAPI" type="string" default="Mistmatch_Type__c"
+        description="store field API name of Controller field" />
+    <aura:attribute name="dependingFieldAPI" type="string" default="Mistmatch_SubType__c"
+        description="store field API name of dependent field" />
+    <!--Controller Field-->
+    <aura:attribute name="dataArray" type="List" />
+    <aura:attribute name="stateList" type="List" />
+    <aura:attribute name="stateCityMap" type="Object" />
+
+    <aura:attribute name="filetype" type="List" default="['.png', '.jpg', '.jpeg','.pdf','.doc']" />
+    <aura:attribute name="fileId" type="String[]" />
+    <aura:attribute name="fileNames" type="List" default="[]" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="buttonConfirmActive" type="Boolean" default='false' />
+    <aura:attribute name="parentAction" type="Aura.Action" />
+    <aura:attribute name="reloadPageParent" type="Aura.Component" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:handler name="sendOrder" event="c:sendChoosenOrder" action="{!c.catchEvent}" />
+    
+
+    <aura:if isTrue="{! !v.showReclamationDetail}">
+        <lightning:card>
+            <c:lookupField objectAPIName="Order" label="Select Order" returnFields="['AdditionalNumber__c','Name']"
+                queryFields="['AdditionalNumber__c','Name']" />
+            <div aura:id="parent-aura-div-id" class='addBackground'>
+                <aura:iteration items="{!v.mapOrderItems}" var="mapKey" indexVar="key">
+
+                    <strong>
+                        <p> Order : {!mapKey.value[0].OrderPONumber}</p>
+                    </strong>
+
+                    <lightning:button variant="destructive" label="{!v.deleteOrder+mapKey.value[0].Order.OrderNumber}"
+                        value="{!key}" onclick="{!c.deleteOrder}" />
+
+                    <lightning:accordion allowMultipleSectionsOpen="true">
+                        <lightning:accordionSection name="{!key}" label="{!mapKey.value[0].Order.OrderNumber}">
+
+                            <div style="width:50%;margin-top:0px;margin-left:0px;">
+                                <table class="slds-table slds-table_bordered slds-table_col-bordered ">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:10px;">#</th>
+                                            <th style="width:20px;">{!$Label.c.Site_th_Name}</th>
+                                            <th style="width:20px;">{!$Label.c.site_th_orderQuantity}</th>
+                                            <th style="width:20px;">{!$Label.c.Site_th_MeasurementUnit}</th>
+                                            <th style="width:20px;">{!$Label.c.Site_th_OrderPrice}</th>
+                                            <th style="width:20px;">{!$Label.c.site_th_reclamationQuantity}</th>
+                                            <th style="width:20px;">{!$Label.c.Site_th_ClaimSum}</th>
+
+                                            <th style="width:20px;">{!$Label.c.Site_th_MistmatchType}</th>
+                                            <th style="width:20px;">{!$Label.c.Site_th_MistmatchSubType}</th>
+                                            <th style="width:20px;">{!$Label.c.Site_th_MistmatchDate}</th>
+                                            <th style="width:20px;">{!$Label.c.scd_Comment}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <aura:iteration items="{!mapKey.value}" var="dataVar" indexVar="index">
+                                            <tr style="{!dataVar.selected == true ? 'background:#90ee90;' : ''}">
+                                                <td>
+                                                    <div class="slds-form-element">
+                                                        <div class="slds-form-element__control">
+                                                            <label class="slds-checkbox">
+                                                                <ui:inputCheckbox value="{!dataVar.selected}"
+                                                                    change="{!c.checkboxSelect}" />
+                                                                <span class="slds-checkbox_faux"></span>
+                                                                <span class="slds-form-element__label text"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>{!dataVar.Name}</td>
+                                                <td>{!dataVar.InquiryQuantity}</td>
+                                                <td>{!dataVar.InquiryUnit}</td>
+                                                <td id="{!dataVar.Id + '_uniPrice'}">{!dataVar.UnitPrice}</td>
+                                                <td><input class="slds-input" type="number" style="width:90px;"
+                                                        id="{!dataVar.Id + '_claimQ'}" label="Номер"
+                                                        onchange="{!c.claimChanged}" value="{!dataVar.claimQty}"
+                                                        oninput="this.value = Math.abs(this.value)" /></td>
+                                                <td><input class="slds-input" type="number" style="width:90px;"
+                                                        id="{!dataVar.Id + '_claimSum'}"
+                                                        value="{!dataVar.claimSum == null? 0:dataVar.claimSum}">0</input>
+                                                </td>
+
+                                                <td id="{! dataVar.Id + '_state_td'}">
+                                                    <select class="slds-select" id="{! dataVar.Id + '_state'}"
+                                                        onchange="{!c.controlFieldChanged}" value="Logistic">
+                                                        <aura:iteration items="{!v.listControllingValues}"
+                                                            var="stateVar">
+                                                            <option text="{!stateVar}" />
+                                                        </aura:iteration>
+                                                    </select>
+                                                </td>
+                                                <td id="{! dataVar.Id +'_city_td'}">
+                                                    <select class="slds-select" id="{! dataVar.Id + '_city'}">
+                                                    </select>
+                                                </td>
+                                                <td> <input type="date" class="slds-input" id="{! dataVar.Id + '_date'}"
+                                                        value="{!v.today}"></input></td>
+                                                <td> <input type="text" class="slds-input"
+                                                        id="{! dataVar.Id + '_comment'}" style="width:140px;"></input>
+                                                </td>
+                                            </tr>
+                                        </aura:iteration>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </lightning:accordionSection>
+                    </lightning:accordion>
+                </aura:iteration>
+            </div>
+            <aura:set attribute="footer">
+                    <lightning:button variant="destructive" label="Cancel" onclick="{!v.parentAction}" />
+                    <lightning:button variant="brand" disabled="{!v.buttonConfirmActive}" label="Add products"
+                        onclick="{!c.createReclamationAndDetail}" />              
+            </aura:set>
+        </lightning:card>
+    </aura:if>
+</aura:component>

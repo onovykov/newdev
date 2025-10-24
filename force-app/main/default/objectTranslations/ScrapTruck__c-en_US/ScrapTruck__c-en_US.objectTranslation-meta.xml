@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ScrapTruck</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>ScrapTruck</value>
+    </caseValues>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Потрібно вибрати Аккаунт (поле «Власник»). --></errorMessage>
+        <name>Require_Account_On_Create</name>
+    </validationRules>
+</CustomObjectTranslation>

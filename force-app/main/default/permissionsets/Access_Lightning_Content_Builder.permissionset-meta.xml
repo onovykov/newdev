@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Access Lightning Content Builder(Email Template Builder)</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Access Lightning Content Builder</label>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>AccessContentBuilder</name>
+    </userPermissions>
+</PermissionSet>

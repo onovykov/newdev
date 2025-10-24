@@ -1,0 +1,32 @@
+.slds-th__action{
+    background-color: #FFDD00;
+}
+.slds-th__action:hover{
+    background-color: #FFDD00;
+}
+
+/* Styling for buttons in the table */
+
+  
+  /* Styling for buttons on hover */
+  button:hover {
+    background-color: #ffdd00d7;
+  }.slds-th__action{
+    background-color:#FFDD00;
+}
+.slds-th__action:hover{
+    background-color:#FFDD00;
+}
+tbody tr:last-child .slds-row-number {
+    display: none;
+}
+
+tbody tr:last-child .slds-checkbox {
+display: none
+}
+tbody tr:last-child button {
+display: none
+}
+lightning-base-formatted-text{
+color: black;
+}

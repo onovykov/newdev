@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Stage --></label>
+    <name>Stage__c</name>
+    <picklistValues>
+        <masterLabel>Additional Review</masterLabel>
+        <translation><!-- Additional Review --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Costing</masterLabel>
+        <translation><!-- Costing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Draft</masterLabel>
+        <translation><!-- Draft --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Prod &amp; Resr dept</masterLabel>
+        <translation><!-- Prod &amp; Resr dept --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Resolved</masterLabel>
+        <translation><!-- Resolved --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sales Rep Confirmation</masterLabel>
+        <translation><!-- Sales Rep Confirmation --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

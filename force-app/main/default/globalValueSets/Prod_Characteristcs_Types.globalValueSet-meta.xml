@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>ASSEMBLY</fullName>
+        <default>false</default>
+        <label>ASSEMBLY</label>
+    </customValue>
+    <customValue>
+        <fullName>AXLEBOX</fullName>
+        <default>false</default>
+        <label>AXLEBOX</label>
+    </customValue>
+    <customValue>
+        <fullName>AXLOAD</fullName>
+        <default>false</default>
+        <label>AXLOAD</label>
+    </customValue>
+    <customValue>
+        <fullName>BEARING</fullName>
+        <default>false</default>
+        <label>BEARING</label>
+    </customValue>
+    <customValue>
+        <fullName>COVER</fullName>
+        <default>false</default>
+        <label>COVER</label>
+    </customValue>
+    <customValue>
+        <fullName>COVERTYPE</fullName>
+        <default>false</default>
+        <label>COVERTYPE</label>
+    </customValue>
+    <customValue>
+        <fullName>HUB</fullName>
+        <default>false</default>
+        <label>HUB</label>
+    </customValue>
+    <customValue>
+        <fullName>HUBBORE</fullName>
+        <default>false</default>
+        <label>HUBBORE</label>
+    </customValue>
+    <customValue>
+        <fullName>IMBALANCE</fullName>
+        <default>false</default>
+        <label>IMBALANCE</label>
+    </customValue>
+    <customValue>
+        <fullName>INSPECTION</fullName>
+        <default>false</default>
+        <label>INSPECTION</label>
+    </customValue>
+    <customValue>
+        <fullName>MARKTYPE</fullName>
+        <default>false</default>
+        <label>MARKTYPE</label>
+    </customValue>
+    <customValue>
+        <fullName>PACKTYPE</fullName>
+        <default>false</default>
+        <label>PACKTYPE</label>
+    </customValue>
+    <customValue>
+        <fullName>PARTPRODUCER</fullName>
+        <default>false</default>
+        <label>PART PRODUCER</label>
+    </customValue>
+    <customValue>
+        <fullName>PLUG</fullName>
+        <default>false</default>
+        <label>PLUG</label>
+    </customValue>
+    <customValue>
+        <fullName>PURPOSE</fullName>
+        <default>false</default>
+        <label>PURPOSE</label>
+    </customValue>
+    <customValue>
+        <fullName>Shapes</fullName>
+        <default>false</default>
+        <label>Shapes</label>
+    </customValue>
+    <customValue>
+        <fullName>Steel Grade</fullName>
+        <default>false</default>
+        <label>Steel Grade</label>
+    </customValue>
+    <customValue>
+        <fullName>Tube OD</fullName>
+        <default>false</default>
+        <label>Tube OD</label>
+    </customValue>
+    <customValue>
+        <fullName>Wheel Diameter</fullName>
+        <default>false</default>
+        <label>Wheel Diameter</label>
+    </customValue>
+    <customValue>
+        <fullName>Tube Ends</fullName>
+        <default>false</default>
+        <label>Tube Ends</label>
+    </customValue>
+    <customValue>
+        <fullName>Tube WT</fullName>
+        <default>false</default>
+        <label>Tube WT</label>
+    </customValue>
+    <masterLabel>Prod Characteristcs Types</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

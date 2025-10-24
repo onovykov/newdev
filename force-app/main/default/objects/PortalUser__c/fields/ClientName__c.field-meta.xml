@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ClientName__c</fullName>
+    <externalId>false</externalId>
+    <formula>Account__r.Name + IF( NOT ISBLANK(Account__r.HoldingGroup__c), &apos; (&apos;+Account__r.HoldingGroup__r.Name+&apos; Holding)&apos;, &apos;&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Client Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

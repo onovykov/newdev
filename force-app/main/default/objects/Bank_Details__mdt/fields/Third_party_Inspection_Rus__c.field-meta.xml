@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Third_party_Inspection_Rus__c</fullName>
+    <defaultValue>&quot;просим указать при размещении заказа если требуется проведение инспекции&quot;</defaultValue>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Third party Inspection (Rus)</label>
+    <length>32768</length>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

@@ -1,0 +1,52 @@
+<!-- file: lwc/currencyRatesLite/currencyRatesLite.html -->
+<template>
+  <lightning-card icon-name="utility:currency" title={title}>
+    <div class="slds-p-around_small">
+      <template if:true={hasData}>
+        <div class="slds-text-color_weak slds-m-bottom_x-small last-refreshed">
+          Last refreshed:&nbsp;
+          <lightning-formatted-date-time
+            value={generatedAt}
+            year="numeric" month="2-digit" day="2-digit"
+            hour="2-digit" minute="2-digit">
+          </lightning-formatted-date-time>
+        </div>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout rates-table">
+          <thead>
+            <tr>
+              <th class="col-iso">ISO</th>
+              <th class="col-rate">Rate</th>
+              <th class="col-mod">Last change</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template for:each={data} for:item="row">
+              <tr key={row.id}>
+                <td class="iso">{row.iso}</td>
+                <td class="rate">{row.rate}</td>
+                <td class="lm">
+                  <lightning-formatted-date-time
+                    value={row.lastModified}
+                    year="numeric" month="2-digit" day="2-digit"
+                    hour="2-digit" minute="2-digit">
+                  </lightning-formatted-date-time>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </template>
+      <template if:false={hasData}>
+        <div class="slds-text-color_weak">No active currencies to display.</div>
+      </template>
+    </div>
+
+    <div slot="actions">
+      <lightning-button label="Refresh" onclick={handleRefresh} variant="neutral"></lightning-button>
+    </div>
+
+    <template if:true={refreshing}>
+      <lightning-spinner alternative-text="Refreshing..." size="small"></lightning-spinner>
+    </template>
+  </lightning-card>
+</template>

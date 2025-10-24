@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Create_Production_Quote</name>
+        <label>Create Production Quote</label>
+        <locationX>747</locationX>
+        <locationY>436</locationY>
+        <actionName>FlowTriggerProductionQuoteCreate</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>ids</name>
+            <value>
+                <elementReference>SaleBudgetId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowTriggerProductionQuoteCreate</nameSegment>
+    </actionCalls>
+    <apiVersion>54.0</apiVersion>
+    <environments>Default</environments>
+    <formulas>
+        <name>waiting_time</name>
+        <dataType>DateTime</dataType>
+        <expression>{!$Flow.CurrentDateTime} + ( 5/1440)</expression>
+    </formulas>
+    <interviewLabel>Create Production Quotes {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Create Production Quotes</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>623</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Wait_some_time</targetReference>
+        </connector>
+    </start>
+    <status>Draft</status>
+    <variables>
+        <name>GetSalesBudgetId</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>SaleBudgetId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <waits>
+        <name>Wait_some_time</name>
+        <label>Wait some time</label>
+        <locationX>748</locationX>
+        <locationY>227</locationY>
+        <defaultConnectorLabel>Default Path</defaultConnectorLabel>
+        <waitEvents>
+            <name>waiting</name>
+            <conditionLogic>and</conditionLogic>
+            <connector>
+                <targetReference>Create_Production_Quote</targetReference>
+            </connector>
+            <eventType>AlarmEvent</eventType>
+            <inputParameters>
+                <name>AlarmTime</name>
+                <value>
+                    <elementReference>waiting_time</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>TimeOffset</name>
+            </inputParameters>
+            <inputParameters>
+                <name>TimeOffsetUnit</name>
+            </inputParameters>
+            <label>waiting</label>
+        </waitEvents>
+    </waits>
+</Flow>

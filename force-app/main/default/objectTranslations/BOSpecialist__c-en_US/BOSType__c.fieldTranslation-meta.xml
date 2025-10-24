@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- BO Specialist Type --></label>
+    <name>BOSType__c</name>
+    <picklistValues>
+        <masterLabel>Additional BO Specialist</masterLabel>
+        <translation><!-- Additional BO Specialist --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Assigned BO Specialist</masterLabel>
+        <translation><!-- Assigned BO Specialist --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

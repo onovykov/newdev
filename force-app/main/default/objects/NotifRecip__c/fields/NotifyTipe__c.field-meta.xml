@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NotifyTipe__c</fullName>
+    <label>Notify Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Apex Exception</fullName>
+                <default>false</default>
+                <label>Apex Exception</label>
+            </value>
+            <value>
+                <fullName>Callout Exception</fullName>
+                <default>false</default>
+                <label>Callout Exception</label>
+            </value>
+            <value>
+                <fullName>DML Exception</fullName>
+                <default>false</default>
+                <label>DML Exception</label>
+            </value>
+            <value>
+                <fullName>Limit Exception</fullName>
+                <default>false</default>
+                <label>Limit Exception</label>
+            </value>
+            <value>
+                <fullName>Opportunity Data</fullName>
+                <default>false</default>
+                <label>Opportunity Data</label>
+            </value>
+            <value>
+                <fullName>Opportunity Info</fullName>
+                <default>false</default>
+                <label>Opportunity Info</label>
+            </value>
+            <value>
+                <fullName>Opportunity Stage</fullName>
+                <default>false</default>
+                <label>Opportunity Stage</label>
+            </value>
+            <value>
+                <fullName>Order Items Error</fullName>
+                <default>false</default>
+                <label>Order Items Error</label>
+            </value>
+            <value>
+                <fullName>PAR Error</fullName>
+                <default>false</default>
+                <label>PAR Error</label>
+            </value>
+            <value>
+                <fullName>Duplicate Detected</fullName>
+                <default>false</default>
+                <label>Duplicate Detected</label>
+            </value>
+            <value>
+                <fullName>General Error</fullName>
+                <default>false</default>
+                <label>General Error</label>
+            </value>
+            <value>
+                <fullName>Payment 3 days</fullName>
+                <default>false</default>
+                <label>Payment 3 days</label>
+            </value>
+            <value>
+                <fullName>Payment 7 days</fullName>
+                <default>false</default>
+                <label>Payment 7 days</label>
+            </value>
+            <value>
+                <fullName>Payment 15 days</fullName>
+                <default>false</default>
+                <label>Payment 15 days</label>
+            </value>
+            <value>
+                <fullName>Opportunity Fault</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Opportunity Fault</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Наименование бюджета продаж в ERP системе</help>
+    <label>Наименование бюджета продаж в ERP</label>
+    <name>Name_ERP__c</name>
+</CustomFieldTranslation>

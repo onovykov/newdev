@@ -1,0 +1,32 @@
+.admin-panel-container {
+    padding: 1rem;
+}
+
+.tab-content {
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-top: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tab-content h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.limits-tab {
+    border-left: 5px solid #0070d2;
+}
+
+.reserves-tab {
+    border-left: 5px solid #5e5e5e;
+}
+
+.access-tab {
+    border-left: 5px solid #2e844a;
+}
+
+.summary-tab {
+    border-left: 5px solid #e04e39;
+}

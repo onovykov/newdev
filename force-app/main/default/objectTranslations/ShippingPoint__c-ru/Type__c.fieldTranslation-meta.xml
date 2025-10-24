@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Тип</label>
+    <name>Type__c</name>
+    <picklistValues>
+        <masterLabel>Avia</masterLabel>
+        <translation><!-- Avia --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Locality</masterLabel>
+        <translation><!-- Locality --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Railway station</masterLabel>
+        <translation><!-- Railway station --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Seaport</masterLabel>
+        <translation><!-- Seaport --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>UNKNOWN</masterLabel>
+        <translation><!-- UNKNOWN --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

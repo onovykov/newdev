@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Debt Type --></label>
+    <name>DebtType__c</name>
+    <picklistValues>
+        <masterLabel>Including Overdue Debt</masterLabel>
+        <translation><!-- Including Overdue Debt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Total Debt</masterLabel>
+        <translation><!-- Total Debt --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

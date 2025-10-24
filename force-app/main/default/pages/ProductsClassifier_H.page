@@ -1,0 +1,5 @@
+<apex:page >
+    <script>
+        window.location = '/{!$Label.ProductsClassifier_H}';
+    </script>
+</apex:page>

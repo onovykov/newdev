@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Truck__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Автомобіль</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>ScrapTruck__c.TruckType__c</field>
+            <operation>equals</operation>
+            <value>Тягач</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>ScrapTruck__c</referenceTo>
+    <relationshipName>ScrapSlotReserve</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

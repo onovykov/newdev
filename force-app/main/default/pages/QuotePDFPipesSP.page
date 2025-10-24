@@ -1,0 +1,343 @@
+<apex:page showHeader="false" extensions="QuotePDF"
+		standardcontroller="Quote" standardstylesheets="false" renderAs="pdf" 
+           applybodytag="false" applyhtmltag="false" >
+	<head>
+        <style>
+            @page {
+                size: portrait;
+
+                @top-center {
+                    content: element(header);
+                }
+            }
+
+
+
+            @page :left {
+                margin: 140px 0 2.5cm 0;
+            }
+
+            @page :right {
+                margin: 140px 0 2.5cm 0;
+            }
+
+            body {
+                margin: 0 2.5cm 0 2cm;
+                font-family: Arial Unicode MS, Calibri, Geneva, Arial, Helvetica, sans-serif;
+                font-size: 12px;
+            }
+
+            .heading {
+                text-align: center;
+                font-weight: bold;
+                font-family: Arial Unicode MS Bold, Calibri, Geneva, Arial, Helvetica, sans-serif;
+                font-size: 17px;
+                text-decoration: underline;
+                margin-left: 1cm;
+                margin-top: 1cm;
+                margin-bottom: 0;
+            }
+
+
+
+            .footerheading {
+                font-family: Helvetica, sans-serif;
+                font-size: 18px;
+                color: gray;
+                margin-left: 95px;
+            }
+
+            .footertext {
+                font-family: Geneva, sans-serif;
+                font-size: 11px;
+                color: gray;
+                margin-left: 95px;
+            }
+
+            b {
+                font-weight: bold;
+                font-family: Arial Unicode MS Bold, Calibri, Geneva, Arial, Helvetica, sans-serif;
+            }
+
+            p {
+                margin: 0;
+            }
+
+            caption {
+                text-align: left;
+                padding-top: 30px;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                page-break-inside: avoid;
+            }
+
+            td, th {
+                text-align: center;
+            }
+
+            div.header {
+                position: running(header);
+            }
+
+                div.header:after {
+                    background: url('{!$Resource.Logo100}') no-repeat center center;
+                    height: 100px;
+                    width: 100px;
+                    text-align: center;
+                    position: absolute;
+                    top: 45px;
+                    right: 70px;
+                    content: " ";
+                    display: block;
+                }
+
+
+
+            tr.tableHeader th {
+                background-color: gray;
+                color: white;
+            }
+
+            tr.odd {
+                background-color: #ffffff;
+                z-index: 10;
+            }
+
+            tr.even {
+                background-color: #efefef;
+                z-index: 10;
+            }
+
+            tr.totals > td {
+                border-top: 1px solid black;
+                border-right: none;
+            }
+
+            td {
+                /*position: relative;
+            	z-index: 10;*/
+                border-right: 1px solid black;
+                /*padding: 0px;
+            	margin: 0px;*/
+            }
+                /*td:after{
+			    content: " ";
+			    width: 1px;
+			    height: 100%;
+			    position: absolute;
+			    right: 0;
+			    top: 0;
+			    background-color: black;
+			    display: block;
+			    z-index: 999999;
+            }*/
+                td.lastCell {
+                    border-right: none;
+                }
+
+                td.alignRight {
+                    text-align: right;
+                }
+
+            .grandTotalCapture {
+                background-color: transparent !important;
+                border-left: 0px solid black !important;
+                border-top: 0px solid black !important;
+                border-bottom: 0px solid black !important;
+                border-right: 1px solid black !important;
+                color: black !important;
+                text-align: right !important;
+            }
+
+            table.grandTotals tr .allBorders {
+                border: 1px solid black;
+            }
+
+            .fixedWidth {
+                width: 100px;
+            }
+
+            .tabulation {
+                margin-left: 2cm;
+            }
+
+            th {
+                min-width: 1cm;
+            }
+        </style>
+    </head>
+    <body>
+    	<div class="header"></div>
+
+        <b>Referencia: {!numPdfs}</b><br/>
+		<b>Fecha de la oferta:  
+		<apex:outputtext value="{0, date, MMMM dd, yyyy}">
+            <apex:param value="{!TODAY()}" />
+        </apex:outputtext>
+        </b>
+		<br/><br/><br/>
+		<div class="heading">Oferta Técnica y Comercial</div>
+        <br/><br/><br/>
+        <b>Tema: {!quote.Name}</b><br/>
+		<b>Referencia: {!quote.QuoteNumber}</b><br/>
+        
+		<br/>
+        <br/><br/><br/>
+		
+        <apex:outputText escape="false" value="Estimada/o {!sirName},<br/><br/><br/>Agradecemos el recibo de su consulta y nos 
+                complace presentar nuestra oferta para el suministro de acuerdo con los 
+                requisitos estándar con los detalles adjuntos.<br/><br/>
+                Esperamos que nuestra oferta sea completa y competitiva.<br/><br/>
+                Quedamos a la espera de recibir su respuesta.<br/><br/>
+                Agradeciendo y asegurándole lo mejor de nuestros servicios en todo momento.<br/><br/>Saludos cordiales." /><br/>
+          <br/><br/><br/><br/><br/>
+        <apex:outputText escape="false" value="{!curUser.Name}<br/>
+                Gerente de Ventas Regional <br/>
+                Tel: {!curUser.Phone}<br/>
+                Email: {!userEmail}<br/>
+                www.interpipe.biz"/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/>
+
+		<apex:variable var="cnt" value="{!1}" />
+		<apex:variable var="countTable" value="{!0}" />
+		<apex:variable var="showNotForMT" value="{true}"/>
+		<apex:variable var="labelToApiMap" value="{!apinameToLabelMap}"/>
+		<apex:variable var="keyList" value="{!groupKeys}"/>
+		<apex:variable value="{!0}" var="index" />
+		
+		
+
+		<!-- Iterate over groups of line items -->
+		<apex:repeat var="tableI" value="{!listOpps}">
+			<apex:variable var="show" value="{!tableI[0].Product2.Type__c=='Tube'}" />
+            <apex:variable var="showLBFT" value="{!showLB_FTForTables[countTable]}" />
+            <apex:variable var="showWT" value="{!showWTForTables[countTable]}" />
+			<apex:variable var="showNotForMT" value="{!tableI[0].InquiryUnit__c!='34'}" />
+			<div style="display:{!if(show,"","none")};" >
+
+				<!-- Table for tubes -->
+				<table cellpadding="0">	
+					<caption>	
+						<b>Descripción de items &amp; Precios:</b>
+					</caption>	
+					<tr class="tableHeader">
+						<th rowspan="2">#</th>					
+						<th>OD</th>
+						<th>WT</th>				
+						<th>Peso<br/>Lineal<br/>(PPF)</th>	
+		                <th>Largo</th>
+		                <th rowspan="2">Extremo</th>				
+		                <th rowspan="2">Grado<br/>de<br/>Acero</th>			
+		                <th>Cantidad</th>					
+		                <th>Precio<br/>entregado en</th>
+		                <th class="fixedWidth">Valor<br/>Total</th>
+		            </tr>
+		            <tr>
+                        <th>pulgadas</th>
+                        <th>pulgadas</th>
+                        <th>lb/ft</th>
+                        <th>m</th>
+                        <th>{!metricName}</th>
+                        <th>{!quote.Opportunity.CurrencyISOCode}/{!metricName}</th>
+                        <th>{!quote.Opportunity.CurrencyISOCode}</th>
+                    </tr>
+		        	<!-- Iterate over rows -->
+		        	<apex:variable var="localCounter" value="{!1}"/>
+					<apex:repeat value="{!tableI}" var="line">
+			            <tr class="{!if(mod(localCounter,2)==0, 'odd', 'even')}">
+			            	<td><apex:OutputText value="{!cnt}"/></td>					
+			              	<td>{!line.TubeOD__r.OD_inch__c}</td>		
+			              	<td>{!line.TubeWT__r.WT_inch__c}</td>			
+			              	<td>{!line.Weight_ppf__c}</td>	
+			              	<td>{!line.TubeLengthSize__r.ShortName__c}</td>
+			              	<td>{!line.TubeEnds__r.ShortName__c}</td>
+                            <td>{!line.SteelGrade__r.ShortName__c}</td>	
+                            <td>{!oliIdToFormattedDataMap[line.Id][$CurrentPage.parameters.Quantity]}</td>
+			              	
+			              	<td>{!oliIdToFormattedDataMap[line.Id].InquiryUnitPrice__c}</td>
+
+			              	<td class="lastCell alignRight fixedWidth">{!oliIdToFormattedDataMap[line.Id].TotalPrice}</td>
+			            </tr>
+			            <apex:variable var="cnt" value="{!if(show,cnt+1,cnt)}"/>
+			            <apex:variable var="localCounter" value="{!localCounter+1}"/>       
+			        </apex:repeat>
+		        </table>
+
+		        <br/><br/>
+	        </div>
+			<apex:variable var="countTable" value="{!countTable+1}"/>
+		</apex:repeat>
+		
+        <br/>
+
+        <apex:variable var="showNotForMTInTotal" value="{!listOpps[0][0].InquiryUnit__c!='34'}" />
+        
+        <br/>
+
+        <b>Tubos fabricados:</b>
+        <ul Style="list-style-type:none">
+            <li>-<b>  Origen: </b><apex:outputText escape="false" value="{!quote.Country_of_Origin__c}" /></li>
+            <li>-<b>  Estandars: </b><apex:outputText value="{!tolerance}" />  </li>
+        </ul>
+        <b>Marcas Estenciladas de los tubos: </b>
+        <apex:outputText escape="false" value="{!quoteMarking}" /><br/>
+        <b>Embalaje de los tubos: </b>
+        <apex:outputText escape="false" value="{!quotePacking}" /><br/>
+        <b>Protectores de extremos: </b>
+        <apex:outputText escape="false" value="{!quote.Protection__c}" /><br/>
+        <b>Tipo de Inspección de los tubos: </b>
+        <apex:outputText escape="false" value="{!quoteThirdPartyInspection}" /><br/>
+        <b>Tolerancia de Facturación y despacho: </b>
+        <apex:outputText escape="false" value="{!quote.Invoicing__c} {!quote.Special_Shipping_Requirements__c}" /><br/>
+        <b>Términos y Condiciones de Despacho: </b>
+        <apex:outputText escape="false" value="{!quote.DeliveryTerms__r.Name}" />
+        <ul Style="list-style-type:none" Class="tabulation">
+            <li>-	Avisar cualquier requerimiento especial de confirmación de despacho.</li>
+            <li>-	Marcas Estenciladas de los tubos: tendrán que ser requeridas en la orden de compra</li>
+            <li>-	Marcas Estenciladas de los tubos: {!shippingMarks}</li>
+        </ul>
+        <b>Término de pago: </b>
+        <apex:outputText escape="false" value="{!quotePaymentTermsNameFull}" /><br/>
+        <b>Otros Términos: </b><br/>
+        <ul Style="list-style-type:none">
+            <li>- Impuestos: el Comprador es responsable de todos los impuestos a las ventas aplicables y / o 
+                  relacionados con la transacción, cuya jurisdicción este a 
+                    posteriori del Incoterm definido para esta transaccion.</li>
+            <li>- Los Términos y condiciones de Interpipe son parte 
+                integral de nuestra propuesta (consulte el documento adjunto).<br/>Adjunto, se anexan los Términos y 
+                condiciones de Interpipe. Los Términos y Condiciones de Interpipe reemplazan cualquier acuerdo escrito pasado, 
+                presente o futuro con respecto a los términos y condiciones relacionados con las transacciones entre el Vendedor 
+                y el Comprador, a menos y hasta que Interpipe haya reconocido y aprobado 
+                por escrito las modificaciones, adiciones o eliminaciones.</li>
+            <li>-	En caso de terminación de la Orden de compra por conveniencia, 
+                el VENDEDOR debe ser compensado no solo por la cantidad de Bienes entregados y aceptados por el COMPRADOR, 
+                sino también por los costos de las tuberías que todavía están en posesión del VENDEDOR o en el proceso de 
+                fabricación de acuerdo con un plan preestablecido de precios. En esta medida, el COMPRADOR pagará al 
+                VENDEDOR: (1) el monto neto adeudado, determinado con respecto a las tuberías entregadas y aceptadas 
+                por el COMPRADOR hasta la fecha de terminación; más (2) los montos resultantes de los siguientes porcentajes 
+                de los precios acordados para aquellos tubos solicitados por el COMPRADOR y que todavía están en posesión del 
+                VENDEDOR o en el proceso de fabricación:
+                <ol Style="list-style-type: lower-alpha; ">
+                    <li>Material antes del colado de acero 10%</li>
+                    <li>Material antes del proceso de laminación 40%</li>
+                    <li>Material antes del tratamiento térmico 70%</li>
+                    <li>Material antes del proceso de terminación 90%</li>
+                    <li>Producto terminado 100%</li>
+                </ol></li>
+            </ul>
+            
+                Los materiales por los cuales el COMPRADOR paga conforme a este Artículo estarán disponibles 
+        EXW para su retiro durante un período de treinta (30) días a partir de la recepción del aviso de disponibilidad. 
+        La oferta es por cantidad total, si se ordena una cantidad parcial, nos reservamos el derecho de aceptar o rechazar el pedido.    
+        <ul Style="list-style-type:none">
+            <li>-	El tiempo de entrega se da considerando la posición actual de reserva del fabricante; 
+                    un cronograma de entrega firme será discutido y acordado mutuamente al momento de la firma del contrato.</li>
+            <li>-	Cualquier modificación de las condiciones arriba mencionadas, debe estar sujeta a aprobación previa.</li>
+        </ul>
+        <br/>Validez de la oferta:
+        <apex:outputText escape="false" value="{!expirationDateDays} días desde la fecha de emisión de la oferta." /><br/><br/>
+    </body>
+</apex:page>

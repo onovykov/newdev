@@ -1,0 +1,65 @@
+.THIS .slds-modal__container {
+    width: 75%;
+}
+
+/* Imoportant -> styling for every modal */
+.THIS #modal1{
+    width: 80%;
+}
+.THIS #modal2{
+    width: 80%;
+}
+
+
+
+
+
+
+
+.THIS .modal-header{
+    font-size: 28px;
+}
+
+.THIS .modal-header::after{
+    content: '';
+    background-color: rgba(99, 106, 114, 0.49);
+    height: 2px;
+    display: block;
+}
+
+.THIS .slds-card__header-title{
+    display: block !important;
+}
+.THIS .slds-form-element__label{
+    font-size: 1.25rem !important;
+}
+.THIS span{
+    font-size: 1.25rem !important;
+}
+
+.THIS .select-rt{
+    display: flex;
+    align-items: center;
+}
+.THIS .record-type-radios{
+    display: flex;
+    align-items: center;
+}
+
+
+ .THIS .slds-file-selector__dropzone .slds-file-selector__text{
+    display: none;
+}
+
+.THIS .slds-card__header-title{
+    display: block !important;
+}
+.THIS .slds-form-element__label{
+    font-size: 1.25rem !important;
+}
+.THIS span{
+    font-size: 1.25rem !important;
+}
+.THIS .slds-file-selector__dropzone .slds-file-selector__text{
+    display: none;
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Whether the record is obsolete (not in use anymore). --></help>
+    <label>Устаревшее название</label>
+    <name>Obsolete__c</name>
+</CustomFieldTranslation>

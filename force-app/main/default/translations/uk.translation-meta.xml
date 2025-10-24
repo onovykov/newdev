@@ -1,0 +1,2248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customApplications>
+        <label><!-- Administration --></label>
+        <name>Administration</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Lead Generation --></label>
+        <name>Lead_Generation</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Marketing --></label>
+        <name>LightningMarketing</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Management --></label>
+        <name>Management</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- PR --></label>
+        <name>PR</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Quotas --></label>
+        <name>Quotas</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Relationship Management --></label>
+        <name>Relationship_Management</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Sales Leadership --></label>
+        <name>Sales_Leadership</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Sales Operations --></label>
+        <name>Sales_Operations</name>
+    </customApplications>
+    <customTabs>
+        <label><!-- All Prices --></label>
+        <name>All_Prices</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- All Routes Quotas --></label>
+        <name>All_Routes_Quotes</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Календар --></label>
+        <name>Decades_Calendar</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- PRODUCTS CLASSIFIER --></label>
+        <name>PRODUCTS_CLASSIFIER</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Market Intel --></label>
+        <name>Power_BI</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Price List --></label>
+        <name>Price_List</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Панель Адміністратора --></label>
+        <name>Scrap_Admin_Panel</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- World Countries --></label>
+        <name>World_Countries</name>
+    </customTabs>
+    <flowDefinitions>
+        <flows>
+            <textTemplates>
+                <name>emailnotification7daystemplate</name>
+            </textTemplates>
+        </flows>
+        <fullName>Account_Blocked_Notification</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Account_Inserted_Send_email_notification</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Auto_Populating_Comments_from_the_Head_of_Sales</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>Reason_cancel</name>
+                </fields>
+                <name>Select_reason_of_cancel</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>not_cancelled_text</name>
+                </fields>
+                <name>This_Opportunity_can_not_be_cancelled</name>
+            </screens>
+        </flows>
+        <fullName>Cancel_Opportunity</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>Cancel_Reason</name>
+                </fields>
+                <fields>
+                    <name>Cancel_Reason_Details</name>
+                </fields>
+                <name>Specify_cancelling_reason</name>
+            </screens>
+        </flows>
+        <fullName>Cancel_Opportunity_Product</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>FailedTest</name>
+                </fields>
+                <name>FalseAllert</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>sended_text_to_bo</name>
+                </fields>
+                <name>Sended_Text</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>Cancel_Reason</name>
+                </fields>
+                <fields>
+                    <name>Cancel_Reason_Details</name>
+                </fields>
+                <fields>
+                    <name>test</name>
+                </fields>
+                <name>Specify_cancelling_reason</name>
+            </screens>
+        </flows>
+        <fullName>Cancel_Opportunity_Product_2</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Change_Status_Date_in_Case</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Clear_IT_Ids_on_Opportunity</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>text_reclamation</name>
+                </fields>
+                <name>Confirm_Reclamation</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>test_1</name>
+                </fields>
+                <name>test</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>lableErroe</name>
+                </fields>
+                <name>test2</name>
+            </screens>
+            <textTemplates>
+                <name>Full_text_error_occur</name>
+            </textTemplates>
+        </flows>
+        <fullName>Confirm_Reclamation</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>Display_Text_0</name>
+                </fields>
+                <fields>
+                    <name>Yes_I_am_sure</name>
+                </fields>
+                <name>Copy_Production_Amount_in_Quotas_0</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>DontHaveAccess</name>
+                </fields>
+                <name>Dont_Have_Access</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>Error_Message</name>
+                </fields>
+                <name>Error</name>
+            </screens>
+        </flows>
+        <fullName>Copy_Production_Amount_in_Quotas</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Create_Account_Business_Divisions</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Create_Account_Share</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Create_Account_Share_Custom</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Create_Drawing_WS_Link</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Create_Opportunity_For_Customer_Enquiries</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Create_Order_Item_Child_Records</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Create_Parent_Account_Relationship_records</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Create_Production_Quotes</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Create_Spec_WS_Link</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Custommer_Support_Notification</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Delete_Account_Share</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Delete_Account_Share_Custom</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Email_Alert_Notifying_that_Opportunity_is_Closed_Won</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Email_Alert_Opportunity_Stage_Changed_to_Closed_Won</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Email_Alert_Opportunity_Stage_Created_with_Closed_Won_Stage</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>OpportunityFieldAutopopulation</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Opportunity_Cancellation_Email</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Opportunity_Closed_Won_Stage</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Opportunity_Deletion</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Order_Fields_Autopopulation</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Populate_Market_Segment_for_Price</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Populate_Market_Segment_for_Price_List_H</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>DBERROR</name>
+                </fields>
+                <name>ErrorDB</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>ExpirationDate</name>
+                </fields>
+                <fields>
+                    <name>QuoteName</name>
+                </fields>
+                <fields>
+                    <name>StatusField</name>
+                </fields>
+                <name>QuoteCreationScreen</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>StageisnotCorrect</name>
+                </fields>
+                <name>Stage_is_not_correct</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>SuccesCreate</name>
+                </fields>
+                <name>Success</name>
+            </screens>
+        </flows>
+        <fullName>QuoteCreationFlow</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <name>Recover_Opportunity_Product</name>
+            </screens>
+        </flows>
+        <fullName>Recover_Cancelled_Opportunity_Product</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <textTemplates>
+                <name>Email_body</name>
+            </textTemplates>
+        </flows>
+        <fullName>Report_Date_Notification</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Send_Adjustment_Quota_Request</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Stop_List_Warning</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Task_creation</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Test_Email_Alert_Opportunity_Stage_Changed_to_Closed_Won</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Test_Opportunity_Email_Alert_for_Support</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Update_Related_Items_Of_Production_Quote_3</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Update_Related_Items_Of_Production_Quote_4</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Update_Related_Items_Of_Production_Quote_5</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Update_Related_Items_Of_Production_Quote_6</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>User_Details_Section1</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>width</name>
+                        <value/>
+                    </inputParameters>
+                    <name>User_Details_Section1_Column1</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>width</name>
+                        <value/>
+                    </inputParameters>
+                    <name>User_Details_Section1_Column2</name>
+                </fields>
+                <fields>
+                    <name>txtFrozen</name>
+                </fields>
+                <fields>
+                    <name>txtMismatchedEmails</name>
+                </fields>
+                <fields>
+                    <name>txtPasswordLockout</name>
+                </fields>
+                <fields>
+                    <name>txtUserDetails</name>
+                </fields>
+                <fields>
+                    <name>txtUserInactive</name>
+                </fields>
+                <name>User_Details</name>
+            </screens>
+            <textTemplates>
+                <name>ttUserDetails</name>
+            </textTemplates>
+        </flows>
+        <fullName>User_Details_Custom</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>q_c6e0cb12_1298_4524_b5cc_0673bb3b1e32</name>
+                </fields>
+                <fields>
+                    <name>q_d961b2c7_7525_4924_bb0b_345db0746217</name>
+                </fields>
+                <name>p_104f781d_8e45_4f39_9295_9ca66cc05873</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_9378917c_5fa1_485b_929f_bd28355dc108</name>
+                </fields>
+                <name>p_1342e498_c314_4c74_a55d_d498dc370b3a</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_e8af99d9_5cf4_45f4_a77e_32123ceec84b</name>
+                </fields>
+                <fields>
+                    <name>q_ea4137d7_48f7_4443_96d0_32104e82fee8</name>
+                </fields>
+                <name>p_265188d3_f4f4_4b72_9174_cab61334aa0a</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_6400b11f_2cc0_4c44_97dc_61735b25794e</name>
+                </fields>
+                <fields>
+                    <name>q_c6ca52e2_7aa2_4e7b_acfd_07303df235f3</name>
+                </fields>
+                <name>p_5d083743_d494_4f67_aba3_d89c3a40c8a6</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_2a3f4ed2_e27e_492a_a6c8_466ec971cb1a</name>
+                </fields>
+                <fields>
+                    <name>q_62bad3e1_184a_48d3_a5f9_a9cf3272a8cf</name>
+                </fields>
+                <name>p_7d29d9d0_b9b9_47a2_a346_538e57275d0b</name>
+            </screens>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <name>welcome_question</name>
+                </fields>
+                <name>welcome_page</name>
+            </screens>
+            <textTemplates>
+                <name>thankYouDescriptionTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouLabelTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_lref_tt</name>
+            </textTemplates>
+        </flows>
+        <fullName>cc_survey</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>q_c6e0cb12_1298_4524_b5cc_0673bb3b1e32</name>
+                </fields>
+                <fields>
+                    <name>q_d961b2c7_7525_4924_bb0b_345db0746217</name>
+                </fields>
+                <name>p_104f781d_8e45_4f39_9295_9ca66cc05873</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_9378917c_5fa1_485b_929f_bd28355dc108</name>
+                </fields>
+                <name>p_1342e498_c314_4c74_a55d_d498dc370b3a</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_e8af99d9_5cf4_45f4_a77e_32123ceec84b</name>
+                </fields>
+                <fields>
+                    <name>q_ea4137d7_48f7_4443_96d0_32104e82fee8</name>
+                </fields>
+                <name>p_265188d3_f4f4_4b72_9174_cab61334aa0a</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_6400b11f_2cc0_4c44_97dc_61735b25794e</name>
+                </fields>
+                <fields>
+                    <name>q_c6ca52e2_7aa2_4e7b_acfd_07303df235f3</name>
+                </fields>
+                <name>p_5d083743_d494_4f67_aba3_d89c3a40c8a6</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_2a3f4ed2_e27e_492a_a6c8_466ec971cb1a</name>
+                </fields>
+                <fields>
+                    <name>q_62bad3e1_184a_48d3_a5f9_a9cf3272a8cf</name>
+                </fields>
+                <name>p_7d29d9d0_b9b9_47a2_a346_538e57275d0b</name>
+            </screens>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <name>welcome_question</name>
+                </fields>
+                <name>welcome_page</name>
+            </screens>
+            <textTemplates>
+                <name>thankYouDescriptionTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouLabelTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_lref_tt</name>
+            </textTemplates>
+        </flows>
+        <fullName>cc_survey_02_05_2023</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>q_c6e0cb12_1298_4524_b5cc_0673bb3b1e32</name>
+                </fields>
+                <fields>
+                    <name>q_d961b2c7_7525_4924_bb0b_345db0746217</name>
+                </fields>
+                <name>p_104f781d_8e45_4f39_9295_9ca66cc05873</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_9378917c_5fa1_485b_929f_bd28355dc108</name>
+                </fields>
+                <name>p_1342e498_c314_4c74_a55d_d498dc370b3a</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_e8af99d9_5cf4_45f4_a77e_32123ceec84b</name>
+                </fields>
+                <fields>
+                    <name>q_ea4137d7_48f7_4443_96d0_32104e82fee8</name>
+                </fields>
+                <name>p_265188d3_f4f4_4b72_9174_cab61334aa0a</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_6400b11f_2cc0_4c44_97dc_61735b25794e</name>
+                </fields>
+                <fields>
+                    <name>q_c6ca52e2_7aa2_4e7b_acfd_07303df235f3</name>
+                </fields>
+                <name>p_5d083743_d494_4f67_aba3_d89c3a40c8a6</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_2a3f4ed2_e27e_492a_a6c8_466ec971cb1a</name>
+                </fields>
+                <fields>
+                    <name>q_62bad3e1_184a_48d3_a5f9_a9cf3272a8cf</name>
+                </fields>
+                <name>p_7d29d9d0_b9b9_47a2_a346_538e57275d0b</name>
+            </screens>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <name>welcome_question</name>
+                </fields>
+                <name>welcome_page</name>
+            </screens>
+            <textTemplates>
+                <name>thankYouDescriptionTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouLabelTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_lref_tt</name>
+            </textTemplates>
+        </flows>
+        <fullName>cc_survey_12_05_2023</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>q_c6e0cb12_1298_4524_b5cc_0673bb3b1e32</name>
+                </fields>
+                <fields>
+                    <name>q_d961b2c7_7525_4924_bb0b_345db0746217</name>
+                </fields>
+                <name>p_104f781d_8e45_4f39_9295_9ca66cc05873</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_e8af99d9_5cf4_45f4_a77e_32123ceec84b</name>
+                </fields>
+                <fields>
+                    <name>q_ea4137d7_48f7_4443_96d0_32104e82fee8</name>
+                </fields>
+                <name>p_265188d3_f4f4_4b72_9174_cab61334aa0a</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_ef75347a_3240_45bb_907e_698f636bd388</name>
+                </fields>
+                <name>p_3d05ff4a_34df_49c3_b90d_07740c9a2442</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_6400b11f_2cc0_4c44_97dc_61735b25794e</name>
+                </fields>
+                <fields>
+                    <name>q_c6ca52e2_7aa2_4e7b_acfd_07303df235f3</name>
+                </fields>
+                <name>p_5d083743_d494_4f67_aba3_d89c3a40c8a6</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_2a3f4ed2_e27e_492a_a6c8_466ec971cb1a</name>
+                </fields>
+                <fields>
+                    <name>q_62bad3e1_184a_48d3_a5f9_a9cf3272a8cf</name>
+                </fields>
+                <name>p_7d29d9d0_b9b9_47a2_a346_538e57275d0b</name>
+            </screens>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <name>welcome_question</name>
+                </fields>
+                <name>welcome_page</name>
+            </screens>
+            <textTemplates>
+                <name>thankYouDescriptionTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouLabelTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_lref_tt</name>
+            </textTemplates>
+        </flows>
+        <fullName>cc_survey_bkp</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <choices>
+                <name>c_06af6388_825d_4be1_9552_df33cf543bcc</name>
+            </choices>
+            <choices>
+                <name>c_14925c2b_efe0_44df_a78d_ebc5e9c5b965</name>
+            </choices>
+            <choices>
+                <name>c_1a99d55f_2310_4d8b_baa8_d0f8f3c510bf</name>
+            </choices>
+            <choices>
+                <name>c_2870d206_a716_4d26_94e5_38c743be0ce2</name>
+            </choices>
+            <choices>
+                <name>c_29e1ddec_d8cc_49e6_9b4d_6f98b227db4b</name>
+            </choices>
+            <choices>
+                <name>c_2e8271d0_6215_4c92_ac8f_629fe8e3f6f8</name>
+            </choices>
+            <choices>
+                <name>c_2fcc1c07_3281_4bb9_996c_e5fa4b5685bd</name>
+            </choices>
+            <choices>
+                <name>c_3e06452b_133a_41cf_86d0_15601e030516</name>
+            </choices>
+            <choices>
+                <name>c_4bb6d0c9_1124_46cc_9f38_38d4d28e98c1</name>
+            </choices>
+            <choices>
+                <name>c_5480f190_27d3_41c0_8a67_1cfd561331c6</name>
+            </choices>
+            <choices>
+                <name>c_577f22e3_4d52_4f4d_bba2_d714693e2711</name>
+            </choices>
+            <choices>
+                <name>c_5bca3347_b121_4c1e_8559_277c96c4a2ea</name>
+            </choices>
+            <choices>
+                <name>c_6685d5dd_0e99_448b_b750_803a56eada6a</name>
+            </choices>
+            <choices>
+                <name>c_77c541ae_21b2_402c_8421_b94e4c3faa47</name>
+            </choices>
+            <choices>
+                <name>c_78d7ef63_219e_4f2c_b642_b35fa1d8e91d</name>
+            </choices>
+            <choices>
+                <name>c_79670f1e_2969_41f1_9890_d173ead5c429</name>
+            </choices>
+            <choices>
+                <name>c_7da288c7_8eda_4a87_b749_93f366408ade</name>
+            </choices>
+            <choices>
+                <name>c_8551fb85_ecae_41fc_894b_bd695e9839f3</name>
+            </choices>
+            <choices>
+                <name>c_8fceea46_f2b6_4283_9f78_38ac76d1c458</name>
+            </choices>
+            <choices>
+                <name>c_9ac79aed_b1e5_4138_a6cb_2b86c4c7cb35</name>
+            </choices>
+            <choices>
+                <name>c_9f8d9e14_236f_4df5_b60d_d605b5312092</name>
+            </choices>
+            <choices>
+                <name>c_a3f1f814_4cc4_40e8_9795_7f81645a36b7</name>
+            </choices>
+            <choices>
+                <name>c_da77effd_54cc_450e_bdc2_6af11f2bbb7e</name>
+            </choices>
+            <choices>
+                <name>c_dcabfd85_69b4_46b2_a37a_ab15c5657cf8</name>
+            </choices>
+            <choices>
+                <name>c_df969bd9_4b85_47ab_a5fd_ade930bc6b54</name>
+            </choices>
+            <choices>
+                <name>c_e7cba206_d756_408c_870a_bbca495f55e3</name>
+            </choices>
+            <choices>
+                <name>c_ed7cc802_30e1_40ba_bad4_a0c1cbe1563b</name>
+            </choices>
+            <choices>
+                <name>c_eefdfa65_0f1a_4b73_ac34_d525176f14a7</name>
+            </choices>
+            <choices>
+                <name>c_f20a5424_03fd_45a9_9799_3076654c9996</name>
+            </choices>
+            <choices>
+                <name>c_f35f7ee5_f12a_4678_a25b_ea953a679666</name>
+            </choices>
+            <choices>
+                <name>c_f4ef9f45_79cb_40a0_9838_7c4a86a8eeda</name>
+            </choices>
+            <choices>
+                <name>c_f6153c74_0faf_44fa_9d96_84b38ee9a6d5</name>
+            </choices>
+            <choices>
+                <name>c_f6fd4ecc_b065_42d5_b856_b0bb929c7239</name>
+            </choices>
+            <choices>
+                <name>c_f81ab116_e26c_4664_8a2e_fc9bc447407a</name>
+            </choices>
+            <choices>
+                <name>c_f9805762_6943_4128_b07e_f20c1fc37210</name>
+            </choices>
+            <choices>
+                <name>c_f9f66b52_5a91_4457_95e3_105c718bb5ce</name>
+            </choices>
+            <screens>
+                <fields>
+                    <name>q_488e30e8_0238_418e_91d5_8cdbadf2997d</name>
+                </fields>
+                <fields>
+                    <name>q_a51c7099_e40a_4629_a831_974202670b0e</name>
+                </fields>
+                <name>p_2e09c82e_2567_4198_891d_266ca7c84d6d</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_0d0864e2_4f29_450c_b343_47430886aea6</name>
+                </fields>
+                <fields>
+                    <name>q_71437e0d_a9b5_4988_9133_86bfd2e87303</name>
+                </fields>
+                <name>p_671aee6a_54a7_440b_8498_29b73796b0ea</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_19f01189_23d2_4881_842a_65ccbc666a55</name>
+                </fields>
+                <fields>
+                    <name>q_69100620_d887_4047_8b9c_3383d3340b96</name>
+                </fields>
+                <name>p_887baea7_8cef_4ced_948a_0af952b5d4bc</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_718d760a_8cc1_4f20_8829_0d5e7743d5f0</name>
+                </fields>
+                <fields>
+                    <name>q_b94b1c61_8a22_4467_9ecb_768c1e91cfa9</name>
+                </fields>
+                <name>p_e430a2f2_2ecb_4dbd_ad87_32c7975ef0cc</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_11c44630_e3be_49e1_81e1_9a3dda9007a5</name>
+                </fields>
+                <fields>
+                    <name>q_82e6b8c9_0c1b_468e_9245_13c4b16239a6</name>
+                </fields>
+                <fields>
+                    <name>q_ac3b5fe1_a1df_48cc_ba61_70ca6dd71a5b</name>
+                </fields>
+                <name>p_ec5da2d6_2b71_4166_a6b5_0c2ff8ea7a64</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>q_162827d2_a281_4e94_9e1c_356c4c7c4d2b</name>
+                </fields>
+                <fields>
+                    <name>q_2de2ad14_2b44_4eb6_8d48_8d30ee0a099a</name>
+                </fields>
+                <name>p_ff3f20f5_35b0_4fba_811e_e180d3454b4f</name>
+            </screens>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>description</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <name>welcome_question</name>
+                </fields>
+                <name>welcome_page</name>
+            </screens>
+            <textTemplates>
+                <name>thankYouDescriptionTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouLabelTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_dref_tt</name>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_lref_tt</name>
+            </textTemplates>
+        </flows>
+        <fullName>certificates_survey</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <label>Опитування клієнтів</label>
+            <screens>
+                <fields>
+                    <name>q_6400b11f_2cc0_4c44_97dc_61735b25794e</name>
+                </fields>
+                <fields>
+                    <name>q_c6ca52e2_7aa2_4e7b_acfd_07303df235f3</name>
+                </fields>
+                <name>p_5d083743_d494_4f67_aba3_d89c3a40c8a6</name>
+                <pausedText>Щоб продовжити з того місця, де ви зупинилися, оновіть цю сторінку або відкрийте опитування знову</pausedText>
+            </screens>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <name>welcome_question</name>
+                </fields>
+                <name>welcome_page</name>
+                <pausedText>Щоб продовжити з того місця, де ви зупинилися, оновіть цю сторінку або відкрийте опитування знову</pausedText>
+            </screens>
+            <textTemplates>
+                <name>thankYouDescriptionTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouLabelTextTemplate</name>
+                <text>&lt;p&gt;Дякуємо за Ваші відповіді&lt;/p&gt;</text>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_lref_tt</name>
+                <text>&lt;p&gt;Дякуємо, що надали нам можливість краще обслуговувати вас. Будь ласка, допоможіть нам, приділивши кілька хвилин, щоб розповісти нам про досвід, який ви отримали у 2021 році. Ми цінуємо ваш бізнес і хочемо переконатися, що виправдаємо ваші очікування&lt;/p&gt;</text>
+            </textTemplates>
+        </flows>
+        <fullName>client_satisfaction_survey</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <choices>
+                <name>S_4e40db4f_b51c_40d6_bf46_d03475cbac74</name>
+            </choices>
+            <choices>
+                <name>S_551cba8e_0497_4106_84c7_acb9304bdc0c</name>
+            </choices>
+            <choices>
+                <name>S_572ba435_baee_4fee_9d98_db533945fbc5</name>
+            </choices>
+            <choices>
+                <name>S_68673405_5879_4200_a87a_6ecfc7021b62</name>
+            </choices>
+            <choices>
+                <name>S_9ec5ce68_f0ca_4c5a_b6c2_d8d4c443bfb7</name>
+            </choices>
+            <screens>
+                <fields>
+                    <name>S_ae1a0f1a_073b_44e5_8989_f30012b7ec6d</name>
+                </fields>
+                <fields>
+                    <name>S_e92755dc_c5d7_48f4_b8de_254e4c74583c</name>
+                </fields>
+                <name>surveyQuestionPage</name>
+            </screens>
+            <textTemplates>
+                <name>thankYouDescriptionTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouLabelTextTemplate</name>
+            </textTemplates>
+        </flows>
+        <fullName>customer_satisfaction</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>S_d1ad4f1d_d0ee_4f1d_9713_5cf96a2d8bcb</name>
+                </fields>
+                <fields>
+                    <name>S_e786bece_4ed4_40ec_8150_8a37c30ca729</name>
+                </fields>
+                <name>surveyQuestionPage</name>
+            </screens>
+            <textTemplates>
+                <name>thankYouDescriptionTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouLabelTextTemplate</name>
+            </textTemplates>
+        </flows>
+        <fullName>net_promoter_score</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <choices>
+                <name>c_0ed54e96_9fad_4158_8432_4647e84b8df5</name>
+            </choices>
+            <choices>
+                <name>c_123eb9b2_5dc6_496e_bd9c_040fde8dfdf1</name>
+            </choices>
+            <choices>
+                <name>c_f6db797a_e538_4d4f_99bd_98496b29b391</name>
+            </choices>
+            <label>Тест2</label>
+            <screens>
+                <fields>
+                    <name>q_d727ce29_5179_420c_a09f_1e74b1674359</name>
+                </fields>
+                <fields>
+                    <name>q_ee29ba55_76f2_4ff5_a4cf_9f28153539c2</name>
+                </fields>
+                <name>p_319ada81_c7e1_4c60_b8b9_6e5770e48323</name>
+            </screens>
+            <screens>
+                <fields>
+                    <fieldText>&lt;p&gt;Чи вам подобається наш продукт?&lt;/p&gt;</fieldText>
+                    <name>q_c5e62278_d710_4b9b_9c28_07434a79982a</name>
+                </fields>
+                <name>p_ee36687d_b8a0_46f5_bb2f_434ba093b840</name>
+                <pausedText>Тест</pausedText>
+            </screens>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>description</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <name>welcome_question</name>
+                </fields>
+                <name>welcome_page</name>
+                <pausedText>Тест</pausedText>
+            </screens>
+            <textTemplates>
+                <name>q_c5e62278_d710_4b9b_9c28_07434a79982a_bnlref_tt</name>
+                <text>Ні</text>
+            </textTemplates>
+            <textTemplates>
+                <name>q_c5e62278_d710_4b9b_9c28_07434a79982a_bplref_tt</name>
+                <text>Так</text>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouDescriptionTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouLabelTextTemplate</name>
+                <text>&lt;p&gt;Дякуємо&lt;/p&gt;</text>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_dref_tt</name>
+                <text>Це тестове опитування</text>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_lref_tt</name>
+                <text>&lt;p&gt;Ласкаво просимо&lt;/p&gt;</text>
+            </textTemplates>
+        </flows>
+        <fullName>test_2</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <label>Test 20-03-2023</label>
+            <screens>
+                <fields>
+                    <fieldText>&lt;p&gt;Дата&lt;/p&gt;</fieldText>
+                    <name>q_79290de4_df19_4918_9fcb_8ace5a6e73e3</name>
+                </fields>
+                <name>p_f8dcd20b_a33d_48ae_ad5d_8bf6aed81e67</name>
+                <pausedText>Тест УКР</pausedText>
+            </screens>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <name>welcome_question</name>
+                </fields>
+                <name>welcome_page</name>
+                <pausedText>Тест УКР</pausedText>
+            </screens>
+            <textTemplates>
+                <name>thankYouDescriptionTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouLabelTextTemplate</name>
+                <text>&lt;p&gt;Дякую&lt;/p&gt;</text>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_lref_tt</name>
+                <text>&lt;p&gt;Привіт&lt;/p&gt;</text>
+            </textTemplates>
+        </flows>
+        <fullName>test_20_03_2023</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <choices>
+                <name>c_21f1b5eb_72c9_4fa9_a566_c2880dae7150</name>
+            </choices>
+            <choices>
+                <name>c_2a47e9d3_c04d_49a8_afc1_772427131686</name>
+            </choices>
+            <choices>
+                <name>c_71bd191f_e65c_4ba1_82d2_14bdf9144f53</name>
+            </choices>
+            <choices>
+                <name>c_75df9198_6699_4ce9_a4a9_5d499d52cc6c</name>
+            </choices>
+            <choices>
+                <name>c_8a632da5_7748_4c41_83e8_04f40f36ed21</name>
+            </choices>
+            <choices>
+                <name>c_9fe630b0_6f4b_43fc_b045_f8a2847fc917</name>
+            </choices>
+            <choices>
+                <name>c_cb40acb8_9d55_471f_83fe_0210ae2e951a</name>
+            </choices>
+            <choices>
+                <name>c_d04ffe3d_1424_4ad2_852a_96764610d92d</name>
+            </choices>
+            <choices>
+                <name>c_dd5d0b00_7c0d_44dd_b3bd_aadd1fef899d</name>
+            </choices>
+            <choices>
+                <name>c_e2eff6ca_9f08_4473_8ce6_14e3519a95cd</name>
+            </choices>
+            <choices>
+                <name>c_ee1196d2_e465_4ef5_ba71_33c2a4c02773</name>
+            </choices>
+            <screens>
+                <fields>
+                    <name>q_07b37e5c_cc8d_4ff9_a719_e2f02915f15a</name>
+                </fields>
+                <fields>
+                    <name>q_0ec52e57_d6c0_45e1_b9ab_013540e0160e</name>
+                </fields>
+                <fields>
+                    <name>q_1070dea5_ce27_4bb5_92f2_426e63ad4d5f</name>
+                </fields>
+                <fields>
+                    <name>q_36248947_f71e_4bf8_b262_4d505e5428f7</name>
+                </fields>
+                <fields>
+                    <name>q_4f1f78b2_91a4_4c09_9269_153b7651fbe3</name>
+                </fields>
+                <fields>
+                    <name>q_532fc857_3b16_4fdb_9e00_4fa6d6b9fad8</name>
+                </fields>
+                <fields>
+                    <name>q_70856d91_82b7_470c_8c28_10e1896a4eb6</name>
+                </fields>
+                <fields>
+                    <name>q_9b1351fd_8440_4a68_8064_7a4465fe1278</name>
+                </fields>
+                <fields>
+                    <name>q_b51598dd_8ef3_442d_a2c1_6acf0a07be1c</name>
+                </fields>
+                <name>p_8db3c929_89a9_4811_be1b_8fbabea82f03</name>
+            </screens>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>description</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <name>welcome_question</name>
+                </fields>
+                <name>welcome_page</name>
+            </screens>
+            <textTemplates>
+                <name>q_4f1f78b2_91a4_4c09_9269_153b7651fbe3_bnlref_tt</name>
+            </textTemplates>
+            <textTemplates>
+                <name>q_4f1f78b2_91a4_4c09_9269_153b7651fbe3_bplref_tt</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouDescriptionTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouLabelTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_dref_tt</name>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_lref_tt</name>
+            </textTemplates>
+        </flows>
+        <fullName>test_3</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>q_cf6c5787_07e0_44c4_be21_6784548ad13a</name>
+                </fields>
+                <name>p_09783e90_e442_4753_abcd_f01d324a92d8</name>
+            </screens>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <name>welcome_question</name>
+                </fields>
+                <name>welcome_page</name>
+            </screens>
+            <textTemplates>
+                <name>thankYouDescriptionTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouLabelTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_lref_tt</name>
+            </textTemplates>
+        </flows>
+        <fullName>test_4</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <choices>
+                <name>c_00e21238_fb34_4c2e_88f6_ca30f3305489</name>
+            </choices>
+            <choices>
+                <name>c_326fd184_8092_42f0_8561_3d5ec41f41ea</name>
+            </choices>
+            <choices>
+                <name>c_4e92059f_6ea9_4fa6_9cfb_9b03286db395</name>
+            </choices>
+            <choices>
+                <name>c_524c6f5a_d0ce_4f47_b34a_cd43c8ec14ee</name>
+            </choices>
+            <choices>
+                <name>c_544595ef_4d88_4d7f_8742_3fa4f2b6d5e2</name>
+            </choices>
+            <choices>
+                <name>c_7fa02bdb_85b1_437a_83b7_a3fcab80d14a</name>
+            </choices>
+            <choices>
+                <name>c_95211106_c775_465b_9335_8ff4d8aeb342</name>
+            </choices>
+            <choices>
+                <name>c_9a4a1e54_4ce1_4447_a2e8_156b29d161e7</name>
+            </choices>
+            <choices>
+                <name>c_ec4d2aa6_8ee7_4835_a509_6afa56fa5a17</name>
+            </choices>
+            <choices>
+                <name>c_efc42d53_bef3_4426_9ab3_a2e11e2478d3</name>
+            </choices>
+            <screens>
+                <fields>
+                    <name>q_2300b00d_9de9_475f_962f_129137d30048</name>
+                </fields>
+                <fields>
+                    <name>q_50275b27_038b_46e1_b59a_58e662c17b0e</name>
+                </fields>
+                <fields>
+                    <name>q_6eafb744_36a1_4e94_a131_ff1e74d84cb0</name>
+                </fields>
+                <fields>
+                    <name>q_72e31fb3_636f_4f82_85b5_c2cd0951a764</name>
+                </fields>
+                <fields>
+                    <name>q_8842ab18_bd84_4bdf_9c2f_ccb4c7814700</name>
+                </fields>
+                <fields>
+                    <name>q_a51775de_6232_4e41_8a45_3d08aba59a86</name>
+                </fields>
+                <name>p_9479985c_7c9a_4cf0_9527_4fa00ea24d4e</name>
+            </screens>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <name>welcome_question</name>
+                </fields>
+                <name>welcome_page</name>
+            </screens>
+            <textTemplates>
+                <name>q_72e31fb3_636f_4f82_85b5_c2cd0951a764_bnlref_tt</name>
+            </textTemplates>
+            <textTemplates>
+                <name>q_72e31fb3_636f_4f82_85b5_c2cd0951a764_bplref_tt</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouDescriptionTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouLabelTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_lref_tt</name>
+            </textTemplates>
+        </flows>
+        <fullName>test_5</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <choices>
+                <name>c_124dce25_1d81_427b_b6a1_c68b905d4652</name>
+            </choices>
+            <choices>
+                <name>c_20e52ebe_442a_4f35_bfc4_35e9acbe9cc6</name>
+            </choices>
+            <choices>
+                <name>c_6d0d9f28_a6a2_43bf_a3dc_a83dcd41b0c9</name>
+            </choices>
+            <choices>
+                <name>c_77ed7913_92d9_4de3_b969_b1a0e9166a3c</name>
+            </choices>
+            <choices>
+                <name>c_9cb018bd_af3e_4339_ae3a_3a5167622818</name>
+            </choices>
+            <choices>
+                <name>c_df470a3a_5e19_4627_a1d5_7104af7237d6</name>
+            </choices>
+            <choices>
+                <name>c_f61cacb5_dcd5_4045_a3b5_e413fcc59168</name>
+            </choices>
+            <screens>
+                <fields>
+                    <name>q_75a2ec44_4292_43af_9803_8fdc59fa6f00</name>
+                </fields>
+                <fields>
+                    <name>q_8ee19cb0_17af_407f_8a71_1d3f72eec235</name>
+                </fields>
+                <fields>
+                    <name>q_fbc1efc3_6b31_4709_8e69_35a6fd29ef70</name>
+                </fields>
+                <name>p_ebfbc59f_ff68_497e_9093_7bf36be11cea</name>
+            </screens>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <name>welcome_question</name>
+                </fields>
+                <name>welcome_page</name>
+            </screens>
+            <textTemplates>
+                <name>q_75a2ec44_4292_43af_9803_8fdc59fa6f00_bnlref_tt</name>
+            </textTemplates>
+            <textTemplates>
+                <name>q_75a2ec44_4292_43af_9803_8fdc59fa6f00_bplref_tt</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouDescriptionTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouLabelTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_lref_tt</name>
+            </textTemplates>
+        </flows>
+        <fullName>test_6</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>q_8876d067_81de_444a_ae17_cfae44f91250</name>
+                </fields>
+                <name>p_5df2a6f8_b4b7_46a1_b831_438be865e9e9</name>
+            </screens>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <name>welcome_question</name>
+                </fields>
+                <name>welcome_page</name>
+            </screens>
+            <textTemplates>
+                <name>thankYouDescriptionTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouLabelTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_lref_tt</name>
+            </textTemplates>
+        </flows>
+        <fullName>test_pl</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <label>Test UK</label>
+            <screens>
+                <fields>
+                    <fieldText>&lt;p&gt;Питання&lt;/p&gt;</fieldText>
+                    <name>q_8dc1b2e9_860f_4d3d_ad25_63fb8bdb3739</name>
+                </fields>
+                <name>p_c2fb71c0_c6d2_4e58_9fb6_606700673b80</name>
+                <pausedText>Українська</pausedText>
+            </screens>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <name>welcome_question</name>
+                </fields>
+                <name>welcome_page</name>
+                <pausedText>Українська</pausedText>
+            </screens>
+            <textTemplates>
+                <name>thankYouDescriptionTextTemplate</name>
+            </textTemplates>
+            <textTemplates>
+                <name>thankYouLabelTextTemplate</name>
+                <text>&lt;p&gt;Дякую&lt;/p&gt;</text>
+            </textTemplates>
+            <textTemplates>
+                <name>welcome_question_lref_tt</name>
+                <text>&lt;p&gt;Привіт&lt;/p&gt;</text>
+            </textTemplates>
+        </flows>
+        <fullName>test_uk</fullName>
+    </flowDefinitions>
+    <quickActions>
+        <label><!-- Follow Up --></label>
+        <name>Follow_Up</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Guest Community Case --></label>
+        <name>GuestCommunityCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- LogACall --></label>
+        <name>LogACall</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewAccount --></label>
+        <name>NewAccount</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewCase --></label>
+        <name>NewCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Community Case --></label>
+        <name>NewCommunityCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewContact --></label>
+        <name>NewContact</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewEvent --></label>
+        <name>NewEvent</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewGroup --></label>
+        <name>NewGroup</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewLead --></label>
+        <name>NewLead</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Opportunity --></label>
+        <name>NewOpportunity</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewTask --></label>
+        <name>NewTask</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SendEmail --></label>
+        <name>SendEmail</name>
+    </quickActions>
+    <reportTypes>
+        <description><!-- Acc_Opp_Orders --></description>
+        <label><!-- Acc_Opp_Orders --></label>
+        <name>Acc_Opp_Orders</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <name>Opportunities</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Acc_Opps --></description>
+        <label><!-- Acc_Opps --></label>
+        <name>Acc_Opps</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <name>Opportunities</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Account Add Users --></description>
+        <label><!-- Account Add Users --></label>
+        <name>Account_Add_Users</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Additional Account Users --></label>
+            <name>Additional Account Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Account Delivery Report --></description>
+        <label><!-- Account Delivery Report --></label>
+        <name>Account_Delivery_Report</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Order Products --></label>
+            <name>Order Products</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+        <sections>
+            <label><!-- Production Journal Records --></label>
+            <name>Production Journal Records</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Account and Sales Segmentation --></description>
+        <label><!-- Account and Sales Segmentation --></label>
+        <name>Account_and_Sales_Segmentation</name>
+        <sections>
+            <label><!-- Account Sales Segmentation --></label>
+            <name>Account Sales Segmentation</name>
+        </sections>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Account with orders --></description>
+        <label><!-- Account with orders --></label>
+        <name>Account_with_orders</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts Debts --></description>
+        <label><!-- Accounts Debts --></label>
+        <name>Accounts_Debts</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Invoice Order Debts --></label>
+            <name>Invoice Order Debts</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts Divisions &amp; Segments --></description>
+        <label><!-- Accounts Divisions &amp; Segments --></label>
+        <name>Accounts_Divisions_Segments</name>
+        <sections>
+            <label><!-- Account Business Divisions --></label>
+            <name>Account Business Divisions</name>
+        </sections>
+        <sections>
+            <label><!-- Account Sales Segmentation --></label>
+            <name>Account Sales Segmentation</name>
+        </sections>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts Order Debts --></description>
+        <label><!-- Accounts Order Debts --></label>
+        <name>Accounts_Order_Debts</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Invoice Order Debts --></label>
+            <name>Invoice Order Debts</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts Orders Opps --></description>
+        <label><!-- Accounts Orders Opps --></label>
+        <name>Accounts_Orders_Opps</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <name>Opportunities</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Accounts in Budgets and Actual Sales --></description>
+        <label><!-- Accounts in Budgets and Actual Sales --></label>
+        <name>Accounts_in_Budgets_and_Actual_Sales</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Sales Plan and Fact --></label>
+            <name>Sales Plan and Fact</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Activities --></description>
+        <label><!-- Activities --></label>
+        <name>Activities</name>
+        <sections>
+            <label><!-- Activities --></label>
+            <name>Activities</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Activities with Accounts and Opportunities --></description>
+        <label><!-- Activities with Accounts and Opportunities --></label>
+        <name>Activities_with_Accounts_and_Opportunities</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Activities --></label>
+            <name>Activities</name>
+        </sections>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <name>Opportunities</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Questionnaire Answers --></description>
+        <label><!-- Questionnaire Answers --></label>
+        <name>Answers</name>
+        <sections>
+            <label><!-- Answers --></label>
+            <name>Answers</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Approval Requests --></description>
+        <label><!-- Approval Requests --></label>
+        <name>Approval_Requests</name>
+        <sections>
+            <label><!-- Process Instance --></label>
+            <name>Process Instance</name>
+        </sections>
+        <sections>
+            <label><!-- Process Instance Node --></label>
+            <name>Process Instance Node</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Budget --></description>
+        <label><!-- Budget --></label>
+        <name>Budget</name>
+        <sections>
+            <label><!-- Sales Budget Records --></label>
+            <name>Sales Budget Records</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Budget vs Order --></description>
+        <label><!-- Budget vs Order --></label>
+        <name>Budget_vs_Order</name>
+        <sections>
+            <label><!-- Sales Budget Records --></label>
+            <name>Sales Budget Records</name>
+        </sections>
+        <sections>
+            <label><!-- Sales Budgets --></label>
+            <name>Sales Budgets</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Customer Portal Users (Custom) --></description>
+        <label><!-- Customer Portal Users (Custom) --></label>
+        <name>Customer_Portal_Users</name>
+        <sections>
+            <label><!-- Account Relationships --></label>
+            <name>Account Relationships</name>
+        </sections>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Contacts --></label>
+            <name>Contacts</name>
+        </sections>
+        <sections>
+            <label><!-- Relationships --></label>
+            <name>Relationships</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Delivery Terms --></description>
+        <label><!-- Delivery Terms --></label>
+        <name>Delivery_Terms</name>
+        <sections>
+            <label><!-- Delivery Terms --></label>
+            <name>Delivery Terms</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Dynamic Dashboards Review --></description>
+        <label><!-- Dynamic Dashboards Review --></label>
+        <name>Dynamic_Dashboards_Review</name>
+        <sections>
+            <label><!-- Dashboards --></label>
+            <name>Dashboards</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Enquires --></description>
+        <label><!-- Enquires --></label>
+        <name>Enquires</name>
+        <sections>
+            <label><!-- Customer Enquiries --></label>
+            <name>Customer Enquiries</name>
+        </sections>
+        <sections>
+            <label><!-- Customer Enquiry Products --></label>
+            <name>Customer Enquiry Products</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- News from the market --></description>
+        <label><!-- News from the market --></label>
+        <name>News_from_the_market</name>
+        <sections>
+            <label><!-- Activities --></label>
+            <name>Activities</name>
+        </sections>
+        <sections>
+            <label><!-- News from the Market --></label>
+            <name>News from the Market</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Opportunities Orders and Price Approval Requests --></description>
+        <label><!-- Opportunities Orders and Price Approval Requests --></label>
+        <name>Opportunities_Orders_and_Price_Approval_Requests</name>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <name>Opportunities</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+        <sections>
+            <label><!-- Price Approval Request Items --></label>
+            <name>Price Approval Request Items</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Opportunities With Products and Account info --></description>
+        <label><!-- Opportunities With Products and Account info --></label>
+        <name>Opportunities_With_Products_and_Account_info</name>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <name>Opportunities</name>
+        </sections>
+        <sections>
+            <label><!-- Products --></label>
+            <name>Products</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Opportunities with Historical Trending --></description>
+        <label><!-- Opportunities with Historical Trending --></label>
+        <name>Opportunities_with_Historical_Trending</name>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <name>Opportunities</name>
+        </sections>
+        <sections>
+            <label><!-- Opportunity (Historical) --></label>
+            <name>Opportunity (Historical)</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Opportunities without orders --></description>
+        <label><!-- Opportunities without orders --></label>
+        <name>Opportunities_without_orders</name>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <name>Opportunities</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Order Prod Lots --></description>
+        <label><!-- Order Prod Lots --></label>
+        <name>Order_Prod_Lots</name>
+        <sections>
+            <label><!-- Order Products --></label>
+            <name>Order Products</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+        <sections>
+            <label><!-- Production Lots --></label>
+            <name>Production Lots</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Orders with Products and Journal Records --></description>
+        <label><!-- Orders with Products and Journal Records --></label>
+        <name>Orders_with_Products_and_Journal_Records</name>
+        <sections>
+            <label><!-- Order Products --></label>
+            <name>Order Products</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+        <sections>
+            <label><!-- Production Journal Records --></label>
+            <name>Production Journal Records</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Payment Terms --></description>
+        <label><!-- Payment Terms --></label>
+        <name>Payment_Terms</name>
+        <sections>
+            <label><!-- Payment Terms --></label>
+            <name>Payment Terms</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Pharos Logs --></description>
+        <label><!-- Pharos Logs --></label>
+        <name>PharosLogs</name>
+        <sections>
+            <label><!-- Issues --></label>
+            <name>Issues</name>
+        </sections>
+        <sections>
+            <label><!-- Logs --></label>
+            <name>Logs</name>
+        </sections>
+        <sections>
+            <label><!-- Related Issues --></label>
+            <name>Related Issues</name>
+        </sections>
+        <sections>
+            <label><!-- Trace Results --></label>
+            <name>Trace Results</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Pipe Benchmarks --></description>
+        <label><!-- Pipe Benchmarks --></label>
+        <name>Pipe_Benchmarks</name>
+        <sections>
+            <label><!-- Pipe Benchmarks --></label>
+            <name>Pipe Benchmarks</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Portal Users --></description>
+        <label><!-- Portal Users --></label>
+        <name>Portal_Users</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Contacts --></label>
+            <name>Contacts</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Price Approvals --></description>
+        <label><!-- Price Approvals --></label>
+        <name>Price_Approvals</name>
+        <sections>
+            <label><!-- Price Approval Request --></label>
+            <name>Price Approval Request</name>
+        </sections>
+        <sections>
+            <label><!-- Price Approval Request Products --></label>
+            <name>Price Approval Request Products</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Prod Quotas, Quote Types and Sales Plan and Fact --></description>
+        <label><!-- Prod Quotas, Quote Types and Sales Plan and Fact --></label>
+        <name>Prod_Quotas_Quote_Types_and_Sales_Plan_and_Fact</name>
+        <sections>
+            <label><!-- Quotas Types --></label>
+            <name>Quotas Types</name>
+        </sections>
+        <sections>
+            <label><!-- Sales Plan and Fact --></label>
+            <name>Sales Plan and Fact</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Production Journal Records --></description>
+        <label><!-- Production Journal Records --></label>
+        <name>Production_Journal_Records</name>
+        <sections>
+            <label><!-- Production Journal Records --></label>
+            <name>Production Journal Records</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Projects with Opportunities --></description>
+        <label><!-- Projects with Opportunities --></label>
+        <name>Projects_with_Opportunities</name>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <name>Opportunities</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Product --></label>
+                <name>Product</name>
+            </columns>
+            <label><!-- Opportunity Products --></label>
+            <name>Opportunity Products</name>
+        </sections>
+        <sections>
+            <label><!-- Projects --></label>
+            <name>Projects</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Questionnaires NEW --></description>
+        <label><!-- Questionnaires NEW --></label>
+        <name>QuestionnairesNEW</name>
+        <sections>
+            <label><!-- Answers --></label>
+            <name>Answers</name>
+        </sections>
+        <sections>
+            <label><!-- Questionnaire Responses --></label>
+            <name>Questionnaire Responses</name>
+        </sections>
+        <sections>
+            <label><!-- Questionnaires --></label>
+            <name>Questionnaires</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Quotes Structures --></description>
+        <label><!-- Quotes Structures --></label>
+        <name>QuotesQuotes</name>
+        <sections>
+            <label><!-- Quotes Structures --></label>
+            <name>Quotes Structures</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Raw Materials --></description>
+        <label><!-- Raw Materials --></label>
+        <name>Raw_Materials</name>
+        <sections>
+            <label><!-- Raw Materials --></label>
+            <name>Raw Materials</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Sales Plan &amp; Fact --></description>
+        <label><!-- Sales Plan &amp; Fact --></label>
+        <name>SalesPlanFact</name>
+        <sections>
+            <columns>
+                <label><!-- Plant --></label>
+                <name>Plant</name>
+            </columns>
+            <columns>
+                <label><!-- Product Family --></label>
+                <name>Product Family</name>
+            </columns>
+            <label><!-- Sales Plan and Fact --></label>
+            <name>Sales Plan and Fact</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Sales Budget &amp; Budget Records --></description>
+        <label><!-- Sales Budget &amp; Budget Records --></label>
+        <name>Sales_Budget_and_Budget_Records</name>
+        <sections>
+            <label><!-- Sales Budget Records --></label>
+            <name>Sales Budget Records</name>
+        </sections>
+        <sections>
+            <label><!-- Sales Budgets --></label>
+            <name>Sales Budgets</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Supplier Limits Corrections --></description>
+        <label><!-- Supplier Limits Corrections --></label>
+        <name>Supplier_Limits_Corrections</name>
+        <sections>
+            <label><!-- ScrapSupplierLimit --></label>
+            <name>ScrapSupplierLimit</name>
+        </sections>
+        <sections>
+            <label><!-- SupplierLimitDetails --></label>
+            <name>SupplierLimitDetails</name>
+        </sections>
+        <sections>
+            <label><!-- SupplierLimitEdit --></label>
+            <name>SupplierLimitEdit</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Surveys Report --></description>
+        <label><!-- Surveys Report --></label>
+        <name>Surveys_Report</name>
+        <sections>
+            <label><!-- Survey Invitations --></label>
+            <name>Survey Invitations</name>
+        </sections>
+        <sections>
+            <label><!-- Survey Question Responses --></label>
+            <name>Survey Question Responses</name>
+        </sections>
+        <sections>
+            <label><!-- Survey Responses --></label>
+            <name>Survey Responses</name>
+        </sections>
+        <sections>
+            <label><!-- Surveys --></label>
+            <name>Surveys</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Surveys Reports --></description>
+        <label><!-- Surveys Reports --></label>
+        <name>Surveys_Reports</name>
+        <sections>
+            <label><!-- Survey Question Responses --></label>
+            <name>Survey Question Responses</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Trade Data --></description>
+        <label><!-- Trade Data --></label>
+        <name>Trade_Data</name>
+        <sections>
+            <label><!-- Trade Data --></label>
+            <name>Trade Data</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- User ID in ERP --></description>
+        <label><!-- User ID in ERP --></label>
+        <name>User_ID_in_ERP</name>
+        <sections>
+            <label><!-- User IDs in ERP --></label>
+            <name>User IDs in ERP</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users --></description>
+        <label><!-- Users --></label>
+        <name>Users</name>
+        <sections>
+            <label><!-- User IDs in ERP --></label>
+            <name>User IDs in ERP</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users and Opportunities --></description>
+        <label><!-- Users and Opportunities --></label>
+        <name>Users_and_Opportunities</name>
+        <sections>
+            <label><!-- Opportunities --></label>
+            <name>Opportunities</name>
+        </sections>
+        <sections>
+            <label><!-- Opportunities (Opportunity Owner) --></label>
+            <name>Opportunities (Opportunity Owner)</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users and SPF --></description>
+        <label><!-- Users and SPF --></label>
+        <name>Users_and_SPF</name>
+        <sections>
+            <label><!-- Sales Plan and Fact --></label>
+            <name>Sales Plan and Fact</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Orchestration Run Logs Spring &apos;24 --></description>
+        <label><!-- Orchestration Run Logs Spring &apos;24 --></label>
+        <name>flow_orchestration_log_ootb_crt_two_four_eight</name>
+        <sections>
+            <label><!-- Orchestration Run Log --></label>
+            <name>Orchestration Run Log</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Orchestration Runs Spring &apos;24 --></description>
+        <label><!-- Orchestration Runs Spring &apos;24 --></label>
+        <name>flow_orchestration_run_ootb_crt_two_four_eight</name>
+        <sections>
+            <label><!-- Orchestration Runs --></label>
+            <name>Orchestration Runs</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Orchestration Stage Runs Spring &apos;24 --></description>
+        <label><!-- Orchestration Stage Runs Spring &apos;24 --></label>
+        <name>flow_orchestration_stage_run_ootb_crt_two_four_eight</name>
+        <sections>
+            <label><!-- Orchestration Stage Runs --></label>
+            <name>Orchestration Stage Runs</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Orchestration Step Runs Spring &apos;24 --></description>
+        <label><!-- Orchestration Step Runs Spring &apos;24 --></label>
+        <name>flow_orchestration_step_run_ootb_crt_two_four_eight</name>
+        <sections>
+            <label><!-- Orchestration Step Runs --></label>
+            <name>Orchestration Step Runs</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Orchestration Work Items Spring &apos;24 --></description>
+        <label><!-- Orchestration Work Items Spring &apos;24 --></label>
+        <name>flow_orchestration_work_item_ootb_crt_two_four_eight</name>
+        <sections>
+            <columns>
+                <label><!-- Orchestration Step Run: Label --></label>
+                <name>Orchestration Step Run: Label</name>
+            </columns>
+            <columns>
+                <label><!-- Orchestration Step Run: Name --></label>
+                <name>Orchestration Step Run: Name</name>
+            </columns>
+            <columns>
+                <label><!-- Orchestration Step Run: Status --></label>
+                <name>Orchestration Step Run: Status</name>
+            </columns>
+            <label><!-- Orchestration Step Runs --></label>
+            <name>Orchestration Step Runs</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Assigned Group or Queue --></label>
+                <name>Assigned Group or Queue</name>
+            </columns>
+            <columns>
+                <label><!-- Assigned User --></label>
+                <name>Assigned User</name>
+            </columns>
+            <label><!-- Orchestration Work Items --></label>
+            <name>Orchestration Work Items</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Screen Flows --></description>
+        <label><!-- Screen Flows --></label>
+        <name>screen_flows_prebuilt_crt</name>
+        <sections>
+            <label><!-- Flow Interview Log Entries --></label>
+            <name>Flow Interview Log Entries</name>
+        </sections>
+        <sections>
+            <label><!-- Flow Interview Logs --></label>
+            <name>Flow Interview Logs</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- test --></description>
+        <label><!-- test --></label>
+        <name>test</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+    </reportTypes>
+</Translations>

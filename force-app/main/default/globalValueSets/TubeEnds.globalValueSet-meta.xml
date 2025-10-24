@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>BE</fullName>
+        <default>false</default>
+        <label>BE</label>
+    </customValue>
+    <customValue>
+        <fullName>BTC</fullName>
+        <default>false</default>
+        <label>BTC</label>
+    </customValue>
+    <customValue>
+        <fullName>Chamfer</fullName>
+        <default>false</default>
+        <label>Chamfer</label>
+    </customValue>
+    <customValue>
+        <fullName>Chamfer 30-35’</fullName>
+        <default>false</default>
+        <label>Chamfer 30-35’</label>
+    </customValue>
+    <customValue>
+        <fullName>EUE</fullName>
+        <default>false</default>
+        <label>EUE</label>
+    </customValue>
+    <customValue>
+        <fullName>EU with upset</fullName>
+        <default>false</default>
+        <label>EU with upset</label>
+    </customValue>
+    <customValue>
+        <fullName>JFEBEAR</fullName>
+        <default>false</default>
+        <label>JFEBEAR</label>
+    </customValue>
+    <customValue>
+        <fullName>LTC</fullName>
+        <default>false</default>
+        <label>LTC</label>
+    </customValue>
+    <customValue>
+        <fullName>PE</fullName>
+        <default>false</default>
+        <label>PE</label>
+    </customValue>
+    <customValue>
+        <fullName>Quench and Temper</fullName>
+        <default>false</default>
+        <label>Quench and Temper</label>
+    </customValue>
+    <customValue>
+        <fullName>TCBC-HT</fullName>
+        <default>false</default>
+        <label>TCBC-HT</label>
+    </customValue>
+    <customValue>
+        <fullName>UPJ</fullName>
+        <default>false</default>
+        <label>UPJ</label>
+    </customValue>
+    <customValue>
+        <fullName>UPJ-M</fullName>
+        <default>false</default>
+        <label>UPJ-M</label>
+    </customValue>
+    <customValue>
+        <fullName>ОГ1М</fullName>
+        <default>false</default>
+        <label>ОГ1М</label>
+    </customValue>
+    <customValue>
+        <fullName>ОТТГ</fullName>
+        <default>false</default>
+        <label>ОТТГ</label>
+    </customValue>
+    <customValue>
+        <fullName>ОТТМ</fullName>
+        <default>false</default>
+        <label>ОТТМ</label>
+    </customValue>
+    <description>Possible tube ends</description>
+    <masterLabel>Tube Ends</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

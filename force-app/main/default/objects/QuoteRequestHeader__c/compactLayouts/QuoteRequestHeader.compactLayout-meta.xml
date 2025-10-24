@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>QuoteRequestHeader</fullName>
+    <fields>Request_Name__c</fields>
+    <fields>MarketSegment__c</fields>
+    <fields>Month__c</fields>
+    <fields>Year__c</fields>
+    <fields>Quote_t__c</fields>
+    <fields>NewQuote_t__c</fields>
+    <fields>AddQty_t__c</fields>
+    <label>Quote Request Header</label>
+</CompactLayout>

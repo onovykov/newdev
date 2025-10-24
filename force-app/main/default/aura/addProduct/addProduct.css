@@ -1,0 +1,15 @@
+.THIS .my-height{
+	min-height: calc(2.125rem + 2px);
+}
+.THIS .my-height1{
+	min-height: 2rem;
+}
+
+.THIS .my-margin{
+	margin-right: 2px;
+	margin-left: 2px;
+}
+
+.THIS .slds-form-element__label {
+    margin-bottom: 0px;
+}

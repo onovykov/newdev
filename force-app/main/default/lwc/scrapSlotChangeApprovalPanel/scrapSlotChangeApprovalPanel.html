@@ -1,0 +1,193 @@
+<template>
+    <div class="tab-header">
+        <h1 class="tab-title">Погодження змін у слотах</h1>
+        <p class="tab-subtitle">
+            Перевірте <span class="descr-badge proposed">Старе → Нове</span> та натисніть
+            <b>«Підтвердити»</b> або <b>«Відхилити»</b>. Закриті заявки відкривати не можна.
+        </p>
+    </div>
+
+    <!-- Фільтри -->
+    <div class="toolbar">
+        <lightning-combobox
+                class="status-filter"
+                label="Статус"
+                value={statusFilter}
+                options={statusOptions}
+                onchange={handleStatusFilterChange}>
+        </lightning-combobox>
+
+        <lightning-input
+                type="search"
+                class="search-box"
+                label="Пошук (постачальник/водій/машина/перепустка)"
+                value={query}
+                onchange={handleQueryChange}>
+        </lightning-input>
+
+        <lightning-button variant="neutral" label="Оновити" onclick={refreshClick}></lightning-button>
+    </div>
+
+    <div class="request-table-container" style="position:relative;">
+        <template if:true={loading}>
+            <lightning-spinner alternative-text="Завантаження..." size="medium"></lightning-spinner>
+        </template>
+
+        <table class="request-table">
+            <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Постачальник</th>
+                <th class="num">Тоннаж</th>
+                <th>Водій</th>
+                <th>Тягач</th>
+                <th>Причіп</th>
+                <th>Тип брухту</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <template if:true={visibleRows.length}>
+                <template for:each={visibleRows} for:item="row">
+                    <tr key={row.id} class={row.rowClass}>
+                        <td class="nowrap">{row.date}</td>
+                        <td>{row.supplier}</td>
+                        <td class="num">{row.tonnage}</td>
+
+                        <!-- Водій -->
+                        <td class={row.driverCellClass}>
+                            <div class="diffline">
+                                <span class="old">{row.driverOld}</span>
+                                <template if:true={row.driverChanged}>
+                                    <span class="arrow">→</span>
+                                    <span class="new">{row.driverNew}</span>
+                                </template>
+                            </div>
+                        </td>
+
+                        <!-- Тягач -->
+                        <td class={row.truckCellClass}>
+                            <div class="diffline">
+                                <span class="old">{row.truckOld}</span>
+                                <template if:true={row.truckChanged}>
+                                    <span class="arrow">→</span>
+                                    <span class="new">{row.truckNew}</span>
+                                </template>
+                            </div>
+                        </td>
+
+                        <!-- Причіп -->
+                        <td class={row.trailerCellClass}>
+                            <div class="diffline">
+                                <span class="old">{row.trlrOld}</span>
+                                <template if:true={row.trailerChanged}>
+                                    <span class="arrow">→</span>
+                                    <span class="new">{row.trlrNew}</span>
+                                </template>
+                            </div>
+                        </td>
+
+                        <!-- Тип брухту: повна назва (Name) -->
+                        <td>{row.scrapType}</td>
+
+                        <td class="btn-cell nowrap">
+                            <template if:true={row.isOpen}>
+                                <button class="approve-btn" title="Переглянути/погодити"
+                                        data-id={row.id} onclick={openModal}>
+                                    Переглянути
+                                </button>
+                            </template>
+                            <template if:false={row.isOpen}>—</template>
+                        </td>
+                    </tr>
+                </template>
+            </template>
+            <template if:false={visibleRows.length}>
+                <tr><td colspan="8"><div class="empty-state">Нічого не знайдено</div></td></tr>
+            </template>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Модалка (залишаємо як була) -->
+    <template if:true={isModalOpen}>
+        <div class="modal-backdrop">
+            <div class="modal-content" style="position:relative;">
+                <template if:true={actionBusy}>
+                    <lightning-spinner alternative-text="Відправляємо до ERP..." size="small"></lightning-spinner>
+                </template>
+
+                <div class="modal-header">
+                    <h2>Перевірка та підтвердження змін</h2>
+                </div>
+
+                <template if:false={erpWait}>
+                    <div class="modal-body">
+                        <div class="kv">
+                            <div><span class="k">Постачальник:</span><span class="v">{selected.supplier}</span></div>
+                            <div><span class="k">Дата:</span><span class="v">{selected.date}</span></div>
+                            <div><span class="k">Тип брухту:</span><span class="v">{selected.scrapType}</span></div>
+                            <div><span class="k">Тоннаж:</span><span class="v">{selected.tonnage}</span></div>
+                        </div>
+
+                        <div class="pair-grid">
+                            <div class="pair-col">
+                                <div class="pair-title">Старі дані</div>
+                                <div class="pair-block">
+                                    <div class="pair-row">
+                                        <span class="label">Водій:</span>
+                                        <span class={selected.driverOldClass}>{selected.oldData.driverName}</span>
+                                    </div>
+                                    <div class="pair-row">
+                                        <span class="label">Телефон:</span>
+                                        <span class={selected.driverOldClass}>{selected.oldData.driverPhone}</span>
+                                    </div>
+                                    <div class="pair-row">
+                                        <span class="label">Тягач:</span>
+                                        <span class={selected.truckOldClass}>{selected.oldData.tractorPlate}</span>
+                                        <span class="sub">(<span class={selected.truckOldClass}>{selected.oldData.tractorModel}</span>)</span>
+                                    </div>
+                                    <div class="pair-row">
+                                        <span class="label">Причіп:</span>
+                                        <span class={selected.trailerOldClass}>{selected.oldData.trailerPlate}</span>
+                                        <span class="sub">(<span class={selected.trailerOldClass}>{selected.oldData.trailerModel}</span>)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="pair-col">
+                                <div class="pair-title">Нові дані (запит постачальника)</div>
+                                <div class="pair-block">
+
+                                    <div class="pair-row"><span class="label">Водій:</span> <span class={selected.driverNewClass}>{selected.newData.driverName}</span></div>
+                                    <div class="pair-row"><span class="label">Телефон:</span> <span class={selected.driverNewClass}>{selected.newData.driverPhone}</span></div>
+                                    <div class="pair-row"><span class="label">Тягач:</span> <span class={selected.truckNewClass}>{selected.newData.tractorPlate}</span> <span class="sub">(<span class={selected.truckNewClass}>{selected.newData.tractorModel}</span>)</span></div>
+                                    <div class="pair-row"><span class="label">Причіп:</span> <span class={selected.trailerNewClass}>{selected.newData.trailerPlate}</span> <span class="sub">(<span class={selected.trailerNewClass}>{selected.newData.trailerModel}</span>)</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <template if:true={selected.comment}>
+                            <div class="modal-note">Коментар постачальника: “{selected.comment}”</div>
+                        </template>
+                    </div>
+                </template>
+                <template if:true={erpWait}>
+                    <div style="display:grid;place-items:center;min-height:260px;">
+                        <lightning-spinner alternative-text="Відправляємо до ERP..." size="medium"></lightning-spinner>
+                        <div class="muted" style="margin-top:10px;">Очікуємо відповідь ERP…</div>
+                    </div>
+                </template>
+
+
+                <div class="modal-footer">
+                    <button class="secondary-button" onclick={closeModal} disabled={actionBusy}>Скасувати</button>
+                    <button class="danger-button" onclick={handleReject} disabled={actionBusy}>Відхилити</button>
+                    <button class="primary-button" onclick={handleApprove} disabled={actionBusy}>Підтвердити</button>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

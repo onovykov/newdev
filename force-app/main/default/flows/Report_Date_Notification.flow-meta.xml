@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Emails</name>
+        <label>Send Emails</label>
+        <locationX>696</locationX>
+        <locationY>557</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>Email_body</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <stringValue>NPoddubnyak@m.interpipe.biz,Nikita.Poddubnyak@m.interpipe.biz,Aleksandr.Novikov@m.interpipe.biz,Evgeniy.Zavrayskiy@m.interpipe.biz</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Report date notification</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>54.0</apiVersion>
+    <decisions>
+        <name>Check_if_first_day_of_month</name>
+        <label>Check if first day of month</label>
+        <locationX>743</locationX>
+        <locationY>349</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>First_day</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Check_first_day_month</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Emails</targetReference>
+            </connector>
+            <label>First day</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>Check_first_day_month</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+DAY(TODAY()) = 1
+)</expression>
+    </formulas>
+    <formulas>
+        <name>Four_month_ago_date</name>
+        <dataType>Date</dataType>
+        <expression>DATE( Year(ADDMONTHS(TODAY(),2)),MONTH( ADDMONTHS(TODAY(),2)),1 ) -1 - 120</expression>
+    </formulas>
+    <formulas>
+        <name>Last_day_next_month</name>
+        <dataType>Date</dataType>
+        <expression>DATE( Year(ADDMONTHS(TODAY(),2)),MONTH( ADDMONTHS(TODAY(),2)),1 ) -1</expression>
+    </formulas>
+    <formulas>
+        <name>Notification_body_email</name>
+        <dataType>String</dataType>
+        <expression>{!Email_body}</expression>
+    </formulas>
+    <interviewLabel>Report Date Notification {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Report Date Notification</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>623</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Check_if_first_day_of_month</targetReference>
+        </connector>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2025-04-30</startDate>
+            <startTime>00:15:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Email_body</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Please, change dates in report. First date - &lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!Last_day_next_month}. Last date - {!Four_month_ago_date}&lt;/span&gt;&lt;/p&gt;</text>
+    </textTemplates>
+</Flow>

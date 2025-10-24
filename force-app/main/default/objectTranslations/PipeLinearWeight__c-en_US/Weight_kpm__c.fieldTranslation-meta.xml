@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Linear weight (kilograms per meter) --></help>
+    <label><!-- Weight (kpm) --></label>
+    <name>Weight_kpm__c</name>
+</CustomFieldTranslation>

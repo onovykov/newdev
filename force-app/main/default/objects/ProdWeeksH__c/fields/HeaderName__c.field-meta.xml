@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HeaderName__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Level__c,
+  2, Name + &apos; &apos; + TEXT(Year__c),
+  3, Name + &apos;:  &apos; + CASE (TEXT(Month__c),
+		&apos;1&apos;,&apos;JANUARY&apos;,
+		&apos;2&apos;,&apos;FEBRUARY&apos;,
+		&apos;3&apos;,&apos;MARCH&apos;,
+		&apos;4&apos;,&apos;APRIL&apos;,
+		&apos;5&apos;,&apos;MAY&apos;,
+		&apos;6&apos;,&apos;JUNE&apos;,
+		&apos;7&apos;,&apos;JULY&apos;,
+		&apos;8&apos;,&apos;AUGUST&apos;,
+		&apos;9&apos;,&apos;SEPTEMBER&apos;,
+		&apos;10&apos;,&apos;OCTOBER&apos;,
+		&apos;11&apos;,&apos;NOVEMBER&apos;,
+		&apos;12&apos;,&apos;DECEMBER&apos;,
+		&apos;N/A&apos;)+ &apos; &apos; + TEXT(Year__c),
+	Name
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>HeaderName</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

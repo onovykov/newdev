@@ -1,0 +1,235 @@
+/* =========================
+   Base / tokens
+   ========================= */
+:host {
+    --c-bg: #fff;
+    --c-text: #1e1e1e;
+    --c-muted: #666;
+    --c-border: #e6e6e6;
+    --c-border-soft: #f0f0f0;
+    --c-shadow: 0 8px 20px rgba(0,0,0,.08);
+
+    --c-brand: #ffdd00;
+    --c-brand-ink: #111;
+
+    --c-info-bg: #fffbf3;
+    --c-info-accent: #ffc200;
+
+    color: var(--c-text);
+    font-size: 14px;
+}
+
+/* Helpers */
+.nowrap { white-space: nowrap; }
+.muted { color: var(--c-muted); }
+
+/* =========================
+   Header
+   ========================= */
+.tab-header {
+    margin: 0 0 12px;
+    padding: 14px 18px;
+    background: var(--c-info-bg);
+    border-left: 6px solid var(--c-info-accent);
+    border-radius: 10px;
+}
+.tab-title { margin: 0; font: 700 1.35rem/1.2 system-ui, -apple-system, "Segoe UI", Arial, sans-serif; color:#222; }
+.tab-subtitle { margin: 6px 0 0; font-size: .95rem; line-height: 1.45; color:#444; }
+.descr-badge {
+    padding: 2px 8px; border-radius: 6px; font-size: .8rem; font-weight: 700;
+    background: #f2f2f2; color:#333; white-space: nowrap;
+}
+
+/* =========================
+   Toolbar
+   ========================= */
+.toolbar {
+    display: grid; grid-template-columns: 240px 1fr auto;
+    gap: 12px; padding: 0 18px 10px; align-items: end;
+}
+.status-filter, .search-box { --slds-c-input-radius-border: 8px; }
+lightning-button { --slds-c-button-radius-border: 8px; }
+
+/* =========================
+   Table
+   ========================= */
+.request-table-container { padding: 0 18px 14px; }
+.request-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--c-bg);
+    border: 1px solid var(--c-border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--c-shadow);
+    text-align: center; /* 🔹 вирівнювання всього контенту */
+}
+.request-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #f0f0f0;            /* 🔹 більш контрастний фон */
+    border-bottom: 2px solid #d0d0d0;
+    font-weight: 800;               /* 🔹 жирний текст */
+    color: #222;                    /* 🔹 темніший колір */
+    text-align: center;             /* 🔹 по центру */
+    padding: 8px 10px;              /* 🔹 компактні відступи */
+    font-size: 14px;
+}
+.request-table th,
+.request-table td {
+    padding: 8px 10px;              /* 🔹 менші відступи ніж раніше */
+    border-right: 1px solid var(--c-border-soft);
+    vertical-align: middle;         /* 🔹 вирівнювання по центру по вертикалі */
+    text-align: center;             /* 🔹 по центру */
+    background: #fff;
+}
+.request-table th:last-child, .request-table td:last-child { border-right: 0; }
+.request-table tbody tr { transition: background-color .16s ease; }
+.request-table tbody tr:hover { background: #fafcff; }
+.request-table tbody tr + tr td { border-top: 1px solid var(--c-border-soft); }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* row states (індикативно) */
+.row-approved td { background: #f6fdf9; }
+.row-rejected td { background: #fff7f7; }
+.row-changed  td { background: #fbfdff; }
+
+/* ======= Комбіновані лінії "старе → нове" ======= */
+.diffline { display:flex; align-items:center; gap:8px; line-height:1.5; }
+.diffline .old   { color:#374151; }
+.diffline .arrow { color:#9ca3af; }
+.diffline .new   { color:#111; font-weight:700; }
+.diffline .new.changed {
+    background:#fff9e0; padding:1px 6px; border-radius:6px;
+    box-shadow: inset 0 0 0 1px #ffe6a6;
+}
+
+/* Кнопка у таблиці */
+.btn-cell { text-align:center; }
+.approve-btn {
+    appearance:none; border:1px solid var(--c-border); background:#fff; color:#111;
+    padding:6px 10px; border-radius:8px; cursor:pointer; font-weight:700;
+    transition: transform .1s ease, box-shadow .15s ease, border-color .15s;
+}
+.approve-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,.08); border-color:#ddd; }
+.approve-btn:active { transform: translateY(0); box-shadow: none; }
+
+/* Порожній стан */
+.empty-state {
+    padding: 14px; color:#666; background: #f7f7f7;
+    text-align: center; border-radius: 10px; border: 1px dashed #ddd; font-size: 15px;
+}
+
+/* =========================
+   Modal
+   ========================= */
+.modal-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,.45);
+    display: grid; place-items: center; z-index: 1000;
+    animation: fadeIn .12s ease-out;
+}
+@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+
+.modal-content {
+    width: min(980px, 92vw); max-height: 90vh; overflow: auto;
+    background: #fff; border-radius: 14px; box-shadow: 0 16px 40px rgba(0,0,0,.25);
+    padding: 16px; display: flex; flex-direction: column; gap: 12px;
+    transform: translateY(6px); animation: pop .14s ease-out forwards;
+}
+@keyframes pop { to { transform: translateY(0) } }
+
+.modal-header h2 {
+    font: 800 1.35rem/1.2 system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    text-align: center; margin: 4px 0 6px;
+}
+.modal-body { display: grid; gap: 14px; }
+.modal-footer { display: flex; justify-content: center; gap: 10px; margin-top: 6px; }
+
+/* key/values */
+.kv {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr; /* перша широка, інші три вузькі */
+    gap: 8px 14px;
+}
+.kv .k { color:#777; margin-right: 6px; }
+.kv .v { font-weight: 700; }
+
+/* Old vs New grid */
+.pair-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.pair-col { background:#fafafa; border:1px solid #eee; border-radius: 10px; padding: 12px; }
+.pair-title { font-weight: 800; margin-bottom: 8px; }
+.pair-block .pair-row { display: flex; gap: 8px; line-height: 1.6; }
+.pair-block .label { width: 120px; color:#666; }
+.pair-block .sub { color:#777; }
+
+/* note */
+.modal-note {
+    padding: 10px 12px; border-radius: 10px;
+    background: #fff9e6; border: 1px solid #f3cf87; color: #7a4e00;
+}
+
+/* modal buttons */
+.primary-button, .secondary-button, .danger-button {
+    border: 0; border-radius: 10px; padding: 10px 14px; font-weight: 800; cursor: pointer;
+    transition: transform .08s ease, box-shadow .15s ease, opacity .15s;
+}
+.primary-button   { background: var(--c-brand); color: var(--c-brand-ink); }
+.secondary-button { background: #f3f3f3; color: #333; }
+.danger-button    { background: #ffe2e2; color: #7a1520; }
+.primary-button:hover, .secondary-button:hover, .danger-button:hover { transform: translateY(-1px); box-shadow: var(--c-shadow); }
+.primary-button:active, .secondary-button:active, .danger-button:active { transform: translateY(0); box-shadow: none; }
+.primary-button:focus, .secondary-button:focus, .danger-button:focus { outline: 2px solid #333; outline-offset: 2px; }
+.primary-button[disabled], .secondary-button[disabled], .danger-button[disabled] { opacity: .55; cursor: not-allowed; box-shadow: none; transform: none; }
+
+/* =========================
+   Focus & Accessibility
+   ========================= */
+.request-table button:focus,
+.approve-btn:focus { outline: 2px solid #111; outline-offset: 2px; }
+
+/* =========================
+   Responsive
+   ========================= */
+@media (max-width: 1024px){
+    .kv { grid-template-columns: repeat(3, minmax(120px,1fr)); }
+}
+@media (max-width: 760px){
+    .toolbar { grid-template-columns: 1fr; align-items: stretch; }
+    .kv { grid-template-columns: 1fr 1fr; }
+    .pair-grid { grid-template-columns: 1fr; }
+    .request-table th, .request-table td { padding: 8px 10px; }
+}
+@media (max-width: 480px){
+    .kv { grid-template-columns: 1fr; }
+    .tab-title { font-size: 1.2rem; }
+}
+
+/* ===== Highlight changed tokens (word-diff) ===== */
+/* лінія A → B */
+.diffline { display:flex; align-items:center; gap:8px; line-height:1.5; }
+.diffline .old   { color:#374151; }
+.diffline .arrow { color:#9ca3af; }
+.diffline .new   { font-weight:700; }
+
+/* підсвітка зміненої клітинки */
+.cell-changed {
+    background:#fff9e0 !important;
+    box-shadow: inset 0 0 0 1px #ffe6a6;
+    border-radius: 6px;
+}
+
+/* підсвітка змін у модалці: старі (червоні), нові (зелені) */
+.changed-old {
+    color:#b91c1c;
+    background:#fee2e2;
+    border-radius:6px;
+    padding:0 4px;
+}
+.changed-new {
+    color:#065f46;
+    background:#d1fae5;
+    border-radius:6px;
+    padding:0 4px;
+}

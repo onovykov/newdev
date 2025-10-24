@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- Customer Enquiry Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- Customer Enquiry Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Customer Enquiry Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Customer Enquiry Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Customer Enquiry Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Customer Enquiry Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- Customer Enquiry Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- Customer Enquiry Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>false</plural>
+        <value><!-- Customer Enquiry Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>true</plural>
+        <value><!-- Customer Enquiry Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>false</plural>
+        <value><!-- Customer Enquiry Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>true</plural>
+        <value><!-- Customer Enquiry Product --></value>
+    </caseValues>
+    <gender><!-- Neuter --></gender>
+    <nameFieldLabel><!-- Customer Enquiry Product Name --></nameFieldLabel>
+    <recordTypes>
+        <description><!-- Tubular product (pipe, coupling, joint, etc.) --></description>
+        <label><!-- Tube --></label>
+        <name>Tube</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Railway product (wheel, axle, wheel set, etc.) --></description>
+        <label><!-- Wheel --></label>
+        <name>Wheel</name>
+    </recordTypes>
+</CustomObjectTranslation>

@@ -1,0 +1,309 @@
+<template>
+    <lightning-spinner
+                if:true={spinner}
+                class="slds-is-absolute slds-align_absolute-center"
+                alternative-text="Loading Details..."
+                size="medium"
+                variant="brand">
+    </lightning-spinner>
+    <c-custom-toast-lwc auto-close-time="8000"></c-custom-toast-lwc>
+
+    <!-- Modal/Popup starts here -->
+    <template if:true={modalReclamation}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header slds-modal__header_empty modal-header">
+                    <div class="slds-grid slds-wrap slds-grid_align-end">
+                        <div class="slds-col">
+                            <button class="slds-button slds-button_icon slds-button_icon-inverse slds-p-around_small" title="Close" onclick={closeModal}>
+                                <lightning-icon icon-name="action:remove"
+                                    alternative-text="close"
+                                    variant="inverse"
+                                    size="small" ></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                        </div>
+                    </div>
+                  </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content modal-content" id="modal-content-id-1">
+                    <div class="slds-grid slds-grid_align-center slds-m-top_medium">
+                        <div class="slds-col card-subheader"><p>{modalText}</p></div>                        
+                    </div>
+                       
+                    <div class="slds-grid slds-grid_align-center slds-m-top_x-large slds-m-bottom_medium">
+                        <div class="slds-col slds-size_3-of-12 center">
+                          <button class="print-btn card-subheader " onclick={closeModal}>{labels.No}</button>
+                        </div>
+                        <div class="slds-col slds-size_3-of-12 center">
+                            <button class="print-btn card-subheader " onclick={confirmReclamationModal}>{labels.Yes}</button>
+                        </div>                      
+                      </div>      
+                </div>              
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <c-custom-toast-lwc auto-close-time="8000"></c-custom-toast-lwc>
+    <div if:true={reclamation} class="slds-p-around_small slds-grid slds-wrap">
+        <div class="slds-col slds-size_12-of-12 slds-p-around_small">
+            <span class="card-header">{labels.site_reclamation}: </span>
+            <span class="card-header"> <b>{reclamation.ID_in_ERP__c}</b></span>
+        </div>
+
+        <!-- <div class="slds-col slds-size_3-of-12 slds-p-around_small">
+            <img src={UA}/>
+            <span class="card-subheader slds-m-left_small">{ownerFullName}</span>
+        </div> -->
+
+        <div class="slds-col slds-size_12-of-12 slds-small-size_6-of-12 slds-p-around_small">
+            <span class="card-subheader">{labels.scd_stage}: </span>
+            <span class="card-subheader"> <b>{reclamation.Status__c}</b></span>
+        </div>
+
+        <div class="slds-col slds-size_12-of-12 slds-small-size_3-of-12 slds-p-around_xx-small">
+            <button onclick={openConfirmReclamationModal} class="print-btn card-subheader">{labels.site_ConfirmReclamation}</button>
+        </div>
+
+        <div class="slds-col slds-size_12-of-12 slds-small-size_3-of-12 slds-p-around_xx-small">
+            <button onclick={openDeleteReclamationModal} class="print-btn card-subheader">{labels.site_DeleteReclamation}</button>
+        </div>
+        
+    </div>
+
+    <div class="slds-grid slds-wrap slds-grid_vertical-align-center slds-m-bottom_medium"  if:true={reclamation}>
+        
+        
+    </div>
+
+    <div class="slds-tabs_default">
+        <div class="datatable-tabs-mobile">
+            <div class="dropdown" tabindex="0">
+                <button class="dropdown-toggle" lwc:ref="dropdownBtn" aria-expanded={dropdownOpen} onclick={toggleDropdown}>{selectedOption}
+                    <div class="arrow-down"></div>  
+                </button>
+                <ul if:true={dropdownOpen} lwc:ref="dropdownList" class="dropdown-menu">
+                    <template for:each={optionsToDisplay} for:item="option">
+                        <li key={option.id} onclick={handleOptionClick} data-id={option.id}>
+                            <a onclick={handleOptionClick} data-id={option.id}>{option.label}
+                                <!-- <div class="amount">{option.amount}</div> -->
+                            </a>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+        <div class="datatable-tabs-desktop">
+            <ul class="slds-tabs_default__nav" role="tablist">
+                <li class="slds-tabs_default__item slds-is-active" title="Item One" role="presentation" data-id="tab-defaultItem-1__item" id="test1">
+                  <a  onclick={toggleSubtabs} class="slds-tabs_default__link tab-header" href="#" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-defaultItem-1" data-id="tab-defaultItem-1">{labels.card_related}</a>
+                </li>
+                <li class="slds-tabs_default__item" title="Item Two" role="presentation" data-id="tab-defaultItem-2__item">
+                  <a onclick={toggleSubtabs} class="slds-tabs_default__link tab-header" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-defaultItem-2" data-id="tab-defaultItem-2">{labels.card_details}</a>
+                </li>
+                
+                <li class="slds-tabs_default__item" title="Item Three" role="presentation" >
+                  <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-defaultItem-3" data-id="tab-defaultItem-3">{labels.card_files}</a>
+                </li>
+                
+              </ul>
+        </div>
+        <div data-id="tab-defaultItem-1" class="slds-tabs_default__content slds-show" role="tabpanel" aria-labelledby="tab-defaultItem-1__item">
+
+            <div class="slds-grid slds-grid_align-end">
+                <div class="slds-col">
+                    <button onclick={addProduct} class="print-btn card-subheader slds-m-right_x-large">{labels.site_btn_AddProduct}</button> 
+                </div>
+            </div>
+           
+            <div class="datatable slds-size_1-of-1 slds-p-around_small">
+                <table>
+                    <thead>
+                        <tr>
+                            <!-- <th>{labels.site_th_Product}</th>-->
+                             <th>{labels.site_th_Product}</th>
+                             <th>{labels.site_th_orderQuantity} </th>
+                             <th>{labels.site_th_MeasurementUnit}</th>
+                             <th>{labels.site_th_reclamationQuantity}</th>                    
+                             <th>{labels.site_th_type}</th>
+                             <th>{labels.site_th_subtype}</th>
+                             <th>{labels.site_th_delete}</th>
+                             
+                             <th>{labels.site_th_edit}</th>
+                         </tr>    
+                    </thead>
+                                                
+                    <template for:each= {reclamationItemsList} for:item="item">
+                        <tr key = {item.Id}>
+                           <!-- <td class="order-number">{item.PO_Number__c}</td>-->
+                            <td data-label={labels.site_th_Product} > {item.OrderItemID__r.Name__c} </td>
+                            <td data-label={labels.site_th_orderQuantity} > {item.OrderQty__c} </td>
+                            <td data-label={labels.site_th_MeasurementUnit} > {item.MeasurementUnit__c} </td>
+                            <td data-label={labels.site_th_reclamationQuantity} > <input data-id={item.Id} type="number" name="userPhone" value={item.ClaimQty__c} class="edit" disabled> </td>                     
+                            <td data-label={labels.site_th_type} > <span data-id={item.Id}>{item.Mistmatch_Type__c}</span>
+                                <select class="displayNone" onchange={controlFieldChanged} data-id={item.Id}>
+                                                    
+                                                    <template for:each={mistmatchType} for:item="item">
+                                                            <option key={item} value={item}>{item}</option>
+                                                    </template>  
+                                </select>                          
+                            </td>
+                            <td data-label={labels.site_th_subtype} ><span data-id={item.Id}> {item.Mistmatch_SubType__c}</span>
+                                <select class="displayNone" data-id={item.Id} onchange={checkSelected}>
+                                    <template for:each={firstDependentValueArr} for:item="item">
+                                        <option key={item} value={item}>{item}</option>
+                                    </template> 
+                                </select>
+                            </td>
+                            <td  data-label={labels.site_th_delete} ><lightning-button-icon icon-name="utility:delete" onclick={openDeleteItemModal} data-id={item.Id}    alternative-text="Delete"   class="slds-m-left_xx-small" title="Delete"></lightning-button-icon></td>
+                            
+                            <td data-label={labels.site_th_edit} >
+                                <lightning-button-icon icon-name="action:edit" onclick={edit} data-id={item.Id}  class="slds-m-left_xx-small" title=""></lightning-button-icon>
+                            <div data-id={item.Id} class="displayNone">
+                                <lightning-button-icon icon-name="action:approval" onclick={yesEdit} data-id={item.Id}  class="slds-m-left_xx-small" title=""></lightning-button-icon>
+                                <lightning-button-icon icon-name="action:close" onclick={noEdit} data-id={item.Id}      class="slds-m-left_xx-small" title=""></lightning-button-icon>
+                            </div>
+                            </td>
+                        </tr>
+                    </template>
+                   
+                </table>
+            </div>          
+        </div>
+        <div data-id="tab-defaultItem-2" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-defaultItem-2__item" >
+            
+            <div class="slds-grid slds-wrap datatable" if:true={reclamation}>
+                <div  class="slds-col slds-size_3-of-12 slds-p-around_large">
+                    <p class="header-detail">{labels.site_request}</p>
+                </div>
+                <div  class="slds-col slds-size_12-of-12 slds-small-size_9-of-12 slds-p-around_x-small">
+                    <div class="slds-grid slds-wrap slds-grid_vertical-align-center slds-m-top_medium slds-m-bottom_medium">
+                        <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <p class="label-detail">{labels.reclamationNumber}</p>
+                            <p class="description-detail border-bottom-gray"><b>{reclamation.Name}</b></p>
+                        </div>
+        
+                        <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <p class="label-detail">{labels.dateOfCreation}</p>
+                            <p class="description-detail border-bottom-gray"><b>{reclamation.CreationDate__c}</b></p>
+                        </div>
+        
+                        <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <p class="label-detail">{labels.scd_account}</p>
+                            <!-- Changed below -> {reclamation.Account__r.Name} -->
+                            <p class="description-detail border-bottom-gray"><b>{accData.Name}</b></p> 
+                        </div>
+
+                        <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <p class="label-detail">{labels.scd_erpNumber}</p>
+                            <p class="description-detail border-bottom-gray"><b>{reclamation.ID_in_ERP__c}</b></p>
+                        </div>
+        
+                        <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <p class="label-detail">{labels.scd_contractNumber}</p>
+                            <p class="description-detail border-bottom-gray"><b>{ContractNumber}</b></p>
+                        </div>
+        
+                        <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <p class="label-detail">{labels.scd_contractDate}</p>
+                            <p class="description-detail border-bottom-gray"><b>{ContractDate}</b></p>
+                        </div>
+
+                        <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <p class="label-detail">{labels.scd_currency}</p>
+                            <p class="description-detail border-bottom-gray"><b>{reclamation.CurrencyIsoCode}</b></p>
+                        </div>
+        
+                        <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <p class="label-detail">{labels.scd_stage}</p>
+                            <p class="description-detail border-bottom-gray"><b>{reclamation.Status__c}</b></p>
+                        </div>
+
+                        <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">                             
+                            <div class="slds-grid"> 
+                              <span class="slds-text-heading_medium slds-m-right_small no-refund">{labels.scd_noRefund}</span>         
+                              <input type="checkbox" id="switch" disabled checked={noRefund}/><label for="switch">Toggle</label>
+                            </div>                
+                    </div>
+        
+                        <div  class="slds-col slds-size_12-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <p class="label-detail">{labels.scd_Comment}</p>
+                            <p class="description-detail border-bottom-gray"><b>{Comment}</b></p>
+                        </div>
+
+                        
+                        <!--
+                        <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">                             
+                                <div class="slds-grid"> 
+                                 <span class="slds-text-heading_medium slds-m-right_small">Другий вибір</span>         
+                                  <input type="checkbox" id="switch" disabled checked={secondChoice}/><label for="switch">Toggle</label>
+                                </div>                
+                        </div>
+                        -->
+                    </div>
+                </div>
+            </div>                 
+        </div>
+        <div data-id="tab-defaultItem-3" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-defaultItem-3__item">
+            <div class="container">
+
+                <div class="slds-grid slds-grid_align-end">
+                    <div class="slds-col slds-m-right_x-large">
+                        <div class="slds-form-element__control ">
+                            <div class="slds-file-selector slds-file-selector_files ">
+                                <div class="slds-file-selector__dropzone slds-has-drag-over " id="buttonid">
+                                    <input type="file" multiple
+                                        class="slds-file-selector__input slds-assistive-text input-file"
+                                        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.doc,application/pdf,image/png, image/gif, image/jpeg,text/plain"
+                                        id="file-upload-input-01" onchange={handleFileSelect}
+                                        aria-labelledby="file-selector-primary-label file-selector-secondary-label" />
+                                    <label class="slds-file-selector__body" for="file-upload-input-01"
+                                        id="file-selector-secondary-label">
+                                        <span
+                                            class="slds-file-selector__button slds-button slds-button_neutral attach-file-button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14"
+                                                class="attach-svg">
+                                                <use xlink:href={attach}></use>
+                                            </svg>
+                                            {labels.Upload_file}
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="datatable">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>{labels.scf_name}</th>
+                                <th>{labels.scf_owner}</th>
+                                <th>{labels.scf_lastChange}</th>
+                                <th>{labels.scf_size}</th>
+                                <th>{labels.site_th_delete}</th>
+                            </tr>
+                        </thead>
+                        <template for:each= {reclamationFiles} for:item="item">
+                            <tr key = {item.ContentDocumentId}>
+                                <td data-label={labels.scf_name} class="reclamation-number" onclick={openFile} data-id={item.Id}>{item.ContentDocument.Title}</td>
+                                <td data-label={labels.scf_owner}>{item.ContentDocument.Owner.Name}</td>
+                                <td data-label={labels.scf_lastChange}>
+                                    <lightning-formatted-date-time
+                                        value= {item.ContentDocument.ContentModifiedDate}
+                                        year="numeric"
+                                        month="numeric"
+                                        day="numeric">
+                                    </lightning-formatted-date-time>
+                            </td>
+                                <td data-label={labels.scf_size}>{item.fileSize}</td>
+                                <td data-label={labels.site_th_delete} ><lightning-button-icon icon-name="utility:delete" onclick={openDeleteFileModal} data-id={item.ContentDocumentId}    alternative-text="Delete"   class="slds-m-left_xx-small" title="Delete"></lightning-button-icon></td>
+                            </tr>
+                        </template>
+                    </table>
+                </div>
+        </div>
+        </div>
+      </div>
+</template>

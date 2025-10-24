@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Тип</label>
+    <name>Type__c</name>
+    <picklistValues>
+        <masterLabel>Corrected HY1</masterLabel>
+        <translation><!-- Corrected HY1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Corrected HY2</masterLabel>
+        <translation><!-- Corrected HY2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Corrected Q1</masterLabel>
+        <translation><!-- Corrected Q1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Corrected Q2</masterLabel>
+        <translation><!-- Corrected Q2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Corrected Q3</masterLabel>
+        <translation><!-- Corrected Q3 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Corrected Q4</masterLabel>
+        <translation><!-- Corrected Q4 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Year Initial</masterLabel>
+        <translation><!-- Year Initial --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

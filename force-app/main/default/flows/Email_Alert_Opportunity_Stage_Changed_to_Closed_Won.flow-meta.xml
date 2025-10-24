@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Email_Notifying_that_Opportunity_is_Closed_Won</name>
+        <label>Email Notifying that Opportunity is Closed Won</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <actionName>Opportunity.Email_Alert_Notifying_that_Opportunity_is_Closed_Won</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Opportunity.Email_Alert_Notifying_that_Opportunity_is_Closed_Won</nameSegment>
+    </actionCalls>
+    <apiVersion>52.0</apiVersion>
+    <description>Notify Europe Sales Directors that the Opportunity Stage has been changed to Closed Won</description>
+    <environments>Default</environments>
+    <interviewLabel>Email Alert Opportunity Stage Changed to Closed Won {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Email Alert Opportunity Stage Changed to Closed Won</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Email_Notifying_that_Opportunity_is_Closed_Won</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>MarketSegment__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>00004</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>LastModifiedById</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>0050Y000003T77CQAS</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>StageName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Closed Won</stringValue>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

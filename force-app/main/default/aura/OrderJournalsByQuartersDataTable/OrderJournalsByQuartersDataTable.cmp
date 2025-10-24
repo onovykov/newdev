@@ -1,0 +1,95 @@
+<aura:component>
+	<aura:attribute name="DataTable" type="Object"/>
+
+	<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+	  <thead>
+		<tr class="slds-line-height_reset">
+		  <th class="first-table-column" style="width: 30%; min-width: 16rem;" scope="col">
+			<div class="slds-truncate" title="Table Name">{!v.DataTable.TableName}</div>
+		  </th>
+		  <th class="" scope="col">
+			<div class="slds-truncate" title="Q1">Q1<br/>Jan-Mar</div>
+		  </th>
+		  <th class="" scope="col">
+			<div class="slds-truncate" title="Q2">Q2<br/>Apr-Jun</div>
+		  </th>
+		  <th class="" scope="col">
+			<div class="slds-truncate" title="Q3">Q3<br/>Jul-Sep</div>
+		  </th>
+		  <th class="" scope="col">
+			<div class="slds-truncate" title="Q4">Q4<br/>Oct-Dec</div>
+		  </th>
+		  <th class="" scope="col">
+			<div class="slds-truncate" title="Total">Total</div>
+		  </th>	
+		</tr>
+	  </thead>
+	  <tbody>
+		<!-- New Orders -->
+		<tr class="slds-hint-parent">
+		  <th data-label="Table Name" scope="row">
+			<div class="slds-truncate">{!v.DataTable.TileToNumberOfJournalsByQuarters2018}</div>
+		  </th>
+		  <td data-label="Q1">
+			<div class="slds-truncate">{!v.DataTable.NumberOfJournalsByQuarters2018[0]}</div>
+		  </td>
+		  <td data-label="Q2">
+			<div class="slds-truncate">{!v.DataTable.NumberOfJournalsByQuarters2018[1]}</div>
+		  </td>
+		  <td data-label="Q3">
+			<div class="slds-truncate">{!v.DataTable.NumberOfJournalsByQuarters2018[2]}</div>
+		  </td>
+		  <td data-label="Q4">
+			<div class="slds-truncate">{!v.DataTable.NumberOfJournalsByQuarters2018[3]}</div>
+		  </td>
+		  <td data-label="Total">
+			<div class="slds-truncate">{!v.DataTable.TotalNumberOfJournalsByQuarters2018}</div>
+		  </td>
+		</tr>
+
+		<!-- Backlog -->
+		<tr class="slds-hint-parent">
+		  <th data-label="Table Name" scope="row">
+			<div class="slds-truncate">{!v.DataTable.TileToNumberOfJournalsByQuarters2017}</div>
+		  </th>
+		  <td data-label="Q1">
+			<div class="slds-truncate">{!v.DataTable.NumberOfJournalsByQuarters2017[0]}</div>
+		  </td>
+		  <td data-label="Q2">
+			<div class="slds-truncate">{!v.DataTable.NumberOfJournalsByQuarters2017[1] == -1 ? '-' : v.DataTable.NumberOfJournalsByQuarters2017[1]}</div>
+		  </td>
+		  <td data-label="Q3">
+			<div class="slds-truncate">{!v.DataTable.NumberOfJournalsByQuarters2017[2] == -1 ? '-' : v.DataTable.NumberOfJournalsByQuarters2017[2]}</div>
+		  </td>
+		  <td data-label="Q4">
+			<div class="slds-truncate">{!v.DataTable.NumberOfJournalsByQuarters2017[3] == -1 ? '-' : v.DataTable.NumberOfJournalsByQuarters2017[3]}</div>
+		  </td>
+		  <td data-label="Total">
+			<div class="slds-truncate">{!v.DataTable.TotalNumberOfJournalsByQuarters2017}</div>
+		  </td>
+		</tr>
+
+		<!-- Totals -->
+		<tr class="slds-hint-parent">
+		  <th data-label="Table Name" scope="row">
+			<div class="slds-truncate">{!v.DataTable.TileToTotals}</div>
+		  </th>
+		  <td data-label="Q1">
+			<div class="slds-truncate">{!v.DataTable.TotalNumberOfJournalsByQuarters[0]}</div>
+		  </td>
+		  <td data-label="Q2">
+			<div class="slds-truncate">{!v.DataTable.TotalNumberOfJournalsByQuarters[1]}</div>
+		  </td>
+		  <td data-label="Q3">
+			<div class="slds-truncate">{!v.DataTable.TotalNumberOfJournalsByQuarters[2]}</div>
+		  </td>
+		  <td data-label="Q4">
+			<div class="slds-truncate">{!v.DataTable.TotalNumberOfJournalsByQuarters[3]}</div>
+		  </td>
+		  <td data-label="Total">
+			<div class="slds-truncate">{!v.DataTable.TotalOfTotals}</div>
+		  </td>
+		</tr>
+	  </tbody>
+	</table>
+</aura:component>

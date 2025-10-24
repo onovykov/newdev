@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ModifiedDateTime__c</fullName>
+    <externalId>false</externalId>
+    <formula>TEXT(DATEVALUE(LastModifiedDate)) &amp; &quot; &quot; &amp;
+LPAD(TEXT(HOUR(TIMEVALUE(LastModifiedDate))), 2, &quot;0&quot;) &amp; &quot;:&quot; &amp;
+LPAD(TEXT(MINUTE(TIMEVALUE(LastModifiedDate))), 2, &quot;0&quot;) &amp; &quot;:&quot; &amp;
+LPAD(TEXT(SECOND(TIMEVALUE(LastModifiedDate))), 2, &quot;0&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Коли змінено</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

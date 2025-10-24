@@ -1,0 +1,58 @@
+.form-control {
+    font-size: 0.8rem;
+    line-height: 1.1;
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.7em;
+    margin-top: 10px;
+  }
+  
+  .form-control + .form-control {
+    margin-top: 1em;
+  }
+  
+  .form-control--disabled {
+    color: var(--form-control-disabled);
+    cursor: not-allowed;
+  }
+  
+  input[type="checkbox"] {
+    padding: 7px;
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+    background-color: var(--form-background);
+    /* Not removed via appearance */
+    margin: 0;
+  
+    font: inherit;
+    color: #FFDD00;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid #bcaa309e;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+  
+    display: grid;
+    place-content: center;
+  }
+  /* swoosh */
+  input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+    background-color: #37aff0;
+  }
+  input[type="checkbox"]:checked{
+    /* background-color: #37aff0; */
+  }
+  input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }

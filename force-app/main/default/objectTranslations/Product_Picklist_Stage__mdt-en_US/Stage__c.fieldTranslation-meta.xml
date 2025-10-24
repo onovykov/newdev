@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Stage --></label>
+    <name>Stage__c</name>
+    <picklistValues>
+        <masterLabel>Cancelled(_5)</masterLabel>
+        <translation><!-- Cancelled(_5) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Closed(_10)</masterLabel>
+        <translation><!-- Closed(_10) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Closed(_46)</masterLabel>
+        <translation><!-- Closed(_46) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_1)</masterLabel>
+        <translation><!-- Drafting(_1) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_12)</masterLabel>
+        <translation><!-- Drafting(_12) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_13)</masterLabel>
+        <translation><!-- Drafting(_13) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_15)</masterLabel>
+        <translation><!-- Drafting(_15) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_16)</masterLabel>
+        <translation><!-- Drafting(_16) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_17)</masterLabel>
+        <translation><!-- Drafting(_17) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_18)</masterLabel>
+        <translation><!-- Drafting(_18) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_19)</masterLabel>
+        <translation><!-- Drafting(_19) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_2)</masterLabel>
+        <translation><!-- Drafting(_2) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_20)</masterLabel>
+        <translation><!-- Drafting(_20) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_21)</masterLabel>
+        <translation><!-- Drafting(_21) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_22)</masterLabel>
+        <translation><!-- Drafting(_22) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_23)</masterLabel>
+        <translation><!-- Drafting(_23) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_24)</masterLabel>
+        <translation><!-- Drafting(_24) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_25)</masterLabel>
+        <translation><!-- Drafting(_25) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_26)</masterLabel>
+        <translation><!-- Drafting(_26) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_27)</masterLabel>
+        <translation><!-- Drafting(_27) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_28)</masterLabel>
+        <translation><!-- Drafting(_28) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_29)</masterLabel>
+        <translation><!-- Drafting(_29) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_3)</masterLabel>
+        <translation><!-- Drafting(_3) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_30)</masterLabel>
+        <translation><!-- Drafting(_30) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_31)</masterLabel>
+        <translation><!-- Drafting(_31) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_32)</masterLabel>
+        <translation><!-- Drafting(_32) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_33)</masterLabel>
+        <translation><!-- Drafting(_33) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_34)</masterLabel>
+        <translation><!-- Drafting(_34) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_35)</masterLabel>
+        <translation><!-- Drafting(_35) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_36)</masterLabel>
+        <translation><!-- Drafting(_36) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_37)</masterLabel>
+        <translation><!-- Drafting(_37) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_40)</masterLabel>
+        <translation><!-- Drafting(_40) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_42)</masterLabel>
+        <translation><!-- Drafting(_42) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_43)</masterLabel>
+        <translation><!-- Drafting(_43) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_44)</masterLabel>
+        <translation><!-- Drafting(_44) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_47)</masterLabel>
+        <translation><!-- Drafting(_47) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_48)</masterLabel>
+        <translation><!-- Drafting(_48) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_49)</masterLabel>
+        <translation><!-- Drafting(_49) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_50)</masterLabel>
+        <translation><!-- Drafting(_50) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_53)</masterLabel>
+        <translation><!-- Drafting(_53) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_54)</masterLabel>
+        <translation><!-- Drafting(_54) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drafting(_7)</masterLabel>
+        <translation><!-- Drafting(_7) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hold(_52)</masterLabel>
+        <translation><!-- Hold(_52) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Placed(_14)</masterLabel>
+        <translation><!-- Placed(_14) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Placed(_38)</masterLabel>
+        <translation><!-- Placed(_38) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Placed(_39)</masterLabel>
+        <translation><!-- Placed(_39) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Placed(_4)</masterLabel>
+        <translation><!-- Placed(_4) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Placed(_41)</masterLabel>
+        <translation><!-- Placed(_41) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Placed(_45)</masterLabel>
+        <translation><!-- Placed(_45) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Placed(_51)</masterLabel>
+        <translation><!-- Placed(_51) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Placed(_6)</masterLabel>
+        <translation><!-- Placed(_6) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Placed(_8)</masterLabel>
+        <translation><!-- Placed(_8) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Placed(_9)</masterLabel>
+        <translation><!-- Placed(_9) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Shipped(_11)</masterLabel>
+        <translation><!-- Shipped(_11) --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

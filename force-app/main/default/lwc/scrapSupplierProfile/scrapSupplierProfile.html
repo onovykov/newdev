@@ -1,0 +1,408 @@
+<template>
+    <div class="scrap-profile">
+        <template if:true={showUrgentPanel}>
+            <div class="urgent-panel">
+                <div class="urgent-title">Увага! Немає лімітів</div>
+                <p class="urgent-text">
+                    Потрібно терміново <b>заповнити ліміти на поточний місяць</b> та
+                    <b>внести заявку на наступний місяць</b>.
+                </p>
+                <div class="urgent-actions">
+                    <button class="main-button" onclick={handleAddCurrentLimit}>
+                        Заповнити ліміти на поточний місяць
+                    </button>
+                </div>
+            </div>
+        </template>
+
+        <template if:true={showCurrentTable}>
+            <div class="limits-container">
+                <h2 class="title">
+                    Ліміти постачальника <span class="supplier-name">{supplierInfo.name}</span> — {cur.monthLabel}
+                </h2>
+
+                <div class="table-wrapper">
+                    <table class="limits-table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>1 декада</th>
+                            <th>2 декада</th>
+                            <th>3 декада</th>
+                            <th>Місяць</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <template if:true={cur.hasProposed}>
+                            <tr>
+                                <td>Заявлений план</td>
+                                <td>{cur.proposed.d1}</td>
+                                <td>{cur.proposed.d2}</td>
+                                <td>{cur.proposed.d3}</td>
+                                <td>{cur.proposed.month}</td>
+                            </tr>
+                        </template>
+
+                        <template if:true={cur.hasApproved}>
+                            <tr class="agreed">
+                                <td>Узгоджений план</td>
+                                <td>{cur.approved.d1}</td>
+                                <td>{cur.approved.d2}</td>
+                                <td>{cur.approved.d3}</td>
+                                <td>{cur.approved.month}</td>
+                            </tr>
+
+                            <tr class="left">
+                                <td>Залишок</td>
+                                <td>{curRemD1}</td>
+                                <td>{curRemD2}</td>
+                                <td>{curRemD3}</td>
+                                <td>{curRemMonth}</td>
+                            </tr>
+                        </template>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Якщо є лише заявлений, і немає узгодженого — показуємо ремарку -->
+                <template if:true={cur.hasProposed}>
+                    <template if:false={cur.hasApproved}>
+                        <div class="contract-warning yellow" style="margin-top: 8px;">
+                            Узгоджений ліміт на розгляді у адміністратора.
+                        </div>
+                    </template>
+                </template>
+
+                <!-- Якщо взагалі нічого немає на поточний місяць -->
+                <template if:false={cur.hasProposed}>
+                    <template if:false={cur.hasApproved}>
+                        <div class="empty-state" style="margin-top: 8px;">
+                            Немає лімітів на поточний місяць.
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </template>
+
+        <template if:true={showNextTable}>
+            <div class="limits-container">
+                <h2 class="title">
+                    Ліміти постачальника <span class="supplier-name">{supplierInfo.name}</span> — {nxt.monthLabel}
+                </h2>
+
+                <div class="table-wrapper">
+                    <table class="limits-table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>1 декада</th>
+                            <th>2 декада</th>
+                            <th>3 декада</th>
+                            <th>Місяць</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <template if:true={nxt.hasProposed}>
+                            <tr>
+                                <td>Заявлений план</td>
+                                <td>{nxt.proposed.d1}</td>
+                                <td>{nxt.proposed.d2}</td>
+                                <td>{nxt.proposed.d3}</td>
+                                <td>{nxt.proposed.month}</td>
+                            </tr>
+                        </template>
+
+                        <template if:true={nxt.hasApproved}>
+                            <tr class="agreed">
+                                <td>Узгоджений план</td>
+                                <td>{nxt.approved.d1}</td>
+                                <td>{nxt.approved.d2}</td>
+                                <td>{nxt.approved.d3}</td>
+                                <td>{nxt.approved.month}</td>
+                            </tr>
+                        </template>
+                        </tbody>
+                    </table>
+                </div>
+
+                <template if:true={showNextPendingNote}>
+                    <div class="contract-warning yellow" style="margin-top: 8px;">
+                        Узгоджений ліміт на розгляді у адміністратора.
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- NEXT: немає жодних лімітів → показуємо лише кнопку, без заголовка -->
+        <template if:true={showNextCTA}>
+            <div class="approve-next-button-container">
+                <button class="main-button" onclick={openApproveModal}>
+                    Внести заявку на ліміт на наступний місяць
+                </button>
+            </div>
+        </template>
+
+        <template if:true={hasContractBanners}>
+            <div class="contract-warnings">
+                <template for:each={contractBanners} for:item="c">
+                    <div key={c.id} class={c.className}>
+                        <span class="warning-icon">⚠</span>
+                        {c.text}
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- Профіль постачальника -->
+        <div class="supplier-info-container">
+            <h3>Інформація про постачальника</h3>
+            <lightning-spinner if:true={isLoadingSupplier}
+                               size="small"
+                               alternative-text="Завантаження профілю…"></lightning-spinner>
+            <p><strong>Назва:</strong> {supplierInfo.name}</p>
+            <p><strong>Контактна особа:</strong> {supplierInfo.contactPerson}</p>
+            <p><strong>Телефон:</strong> {supplierInfo.phone}</p>
+
+            <div class="accordion-block">
+                <div class="accordion-header" data-target="unloads" onclick={handleAccordionToggle}>
+                    <svg viewBox="0 0 24 24" fill="none" class="accordion-toggle" data-icon="unloads">
+                        <path d="M9 6L15 12L9 18" stroke="#333" stroke-width="2"></path>
+                    </svg>
+                    <span><strong>Місця завантаження:</strong> {supplierInfo.unloadLocations.length}</span>
+                </div>
+                <div class="accordion-body" data-body="unloads">
+                    <template if:true={hasUnloadLocations}>
+                        <ul>
+                            <template for:each={supplierInfo.unloadLocations} for:item="loc">
+                                <li key={loc}>{loc}</li>
+                            </template>
+                        </ul>
+                    </template>
+                    <template if:false={hasUnloadLocations}>
+                        <div class="empty-state">Немає визначених місць завантаження.</div>
+                    </template>
+                </div>
+            </div>
+
+            <div class="accordion-block">
+                <div class="accordion-header" data-target="drivers" onclick={handleAccordionToggle}>
+                    <svg viewBox="0 0 24 24" fill="none" class="accordion-toggle" data-icon="drivers">
+                        <path d="M9 6L15 12L9 18" stroke="#333" stroke-width="2"></path>
+                    </svg>
+                    <span><strong>Доступні водії:</strong> {supplierInfo.availableDrivers.length}</span>
+                </div>
+                <div class="accordion-body" data-body="drivers">
+                    <template if:true={hasDrivers}>
+                        <ul class="info-list">
+                            <template for:each={supplierInfo.availableDrivers} for:item="d">
+                                <li key={d.id}>
+                                    <span class="info-name">{d.name}</span>
+                                    <span class="info-sep">|</span>
+                                    <span class="info-meta">{d.phone}</span>
+                                </li>
+                            </template>
+                        </ul>
+                    </template>
+                    <template if:false={hasDrivers}>
+                        <div class="empty-state">Немає доступних водіїв.</div>
+                    </template>
+                </div>
+            </div>
+
+            <div class="accordion-block">
+                <div class="accordion-header" data-target="managers" onclick={handleAccordionToggle}>
+                    <svg viewBox="0 0 24 24" fill="none" class="accordion-toggle" data-icon="managers">
+                        <path d="M9 6L15 12L9 18" stroke="#333" stroke-width="2"></path>
+                    </svg>
+                    <span><strong>Менеджери:</strong> {supplierInfo.managers.length}</span>
+                </div>
+                <div class="accordion-body" data-body="managers">
+                    <template if:true={hasManagers}>
+                        <ul class="info-list">
+                            <template for:each={supplierInfo.managers} for:item="m">
+                                <li key={m.id}>
+                                    <span class="info-name">{m.name}</span>
+                                    <template if:true={m.role}>
+                                        <span class="info-sep">|</span>
+                                        <span class="info-meta">{m.role}</span>
+                                    </template>
+                                    <template if:true={m.phone}>
+                                        <span class="info-sep">|</span>
+                                        <span class="info-meta">{m.phone}</span>
+                                    </template>
+                                    <template if:true={m.portalUser}>
+                                        <span class="badge">Портал</span>
+                                    </template>
+                                    <template if:true={m.isPrimary}>
+                                        <span class="badge primary">Контактна особа</span>
+                                    </template>
+                                </li>
+                            </template>
+                        </ul>
+                    </template>
+                    <template if:false={hasManagers}>
+                        <div class="empty-state">Немає менеджерів.</div>
+                    </template>
+                </div>
+            </div>
+
+            <div class="accordion-block">
+                <div class="accordion-header" data-target="trucks" onclick={handleAccordionToggle}>
+                    <svg viewBox="0 0 24 24" fill="none" class="accordion-toggle" data-icon="trucks">
+                        <path d="M9 6L15 12L9 18" stroke="#333" stroke-width="2"></path>
+                    </svg>
+                    <span><strong>Доступні машини:</strong> {supplierInfo.availableTrucks.length}</span>
+                </div>
+                <div class="accordion-body" data-body="trucks">
+                    <template if:true={hasTrucks}>
+                        <ul class="info-list">
+                            <template for:each={supplierInfo.availableTrucks} for:item="t">
+                                <li key={t.id}>
+                                    <span class="info-name">{t.model}</span>
+                                    <span class="info-sep">|</span>
+                                    <span class="info-meta">{t.capacity} т</span>
+                                </li>
+                            </template>
+                        </ul>
+                    </template>
+                    <template if:false={hasTrucks}>
+                        <div class="empty-state">Немає доступних ТЗ.</div>
+                    </template>
+                </div>
+
+
+            </div>
+
+            <button class="edit-button secondary-button" onclick={openEditSupplierModal}>Редагувати</button>
+        </div>
+        <!-- ENTRY POPUPS -->
+        <div class="contract-block-popup">
+            <!-- 1) Контракт завершився → жорстке блокування -->
+            <template if:true={showContractBlock}>
+                <section class="popup-backdrop" role="dialog" aria-modal="true">
+                    <div class="popup-modal">
+                        <h2>Доступ заблоковано</h2>
+                        <p>Строк дії вашого контракту завершився. Подальше користування кабінетом неможливе.</p>
+                        <p>Будь ласка, зверніться до адміністратора:</p>
+                        <ul>
+                            <li>Email: <strong>support@interpipe.ua</strong></li>
+                            <li>Телефон: <strong>+380 44 123 45 67</strong></li>
+                        </ul>
+                        <button class="secondary-button" onclick={handleCloseContractBlock}>Закрити</button>
+                    </div>
+                </section>
+            </template>
+
+            <!-- 1.1) Контракт скоро завершується -->
+            <template if:true={showContractWarning}>
+                <section class="popup-backdrop" role="dialog" aria-modal="true">
+                    <div class="popup-modal">
+                        <h2>Увага: контракт скоро завершується</h2>
+                        <p>Строк дії вашого контракту закінчується найближчим часом. Будь ласка, зв’яжіться з адміністратором для оновлення документів.</p>
+                        <button class="secondary-button" onclick={handleCloseContractWarning}>Закрити</button>
+                    </div>
+                </section>
+            </template>
+
+            <!-- 2) Немає лімітів на поточний місяць (новий попап) -->
+            <template if:true={showNoLimitsBlock}>
+                <section class="popup-backdrop" role="dialog" aria-modal="true">
+                    <div class="popup-modal">
+                        <h2>Немає лімітів на поточний місяць</h2>
+                        <p>Щоб почати роботу, потрібно <b>внести заявлені ліміти</b> на поточний місяць.</p>
+                        <div class="actions">
+                            <button class="main-button" onclick={handleAddCurrentLimit}>Внести ліміти</button>
+                            <button class="secondary-button" onclick={handleCloseNoLimitsBlock}>Пізніше</button>
+                        </div>
+                    </div>
+                </section>
+            </template>
+
+            <!-- 3) Нагадування: зарезервувати ліміти на наступний -->
+            <template if:true={showReserveReminder}>
+                <section class="popup-backdrop" role="dialog" aria-modal="true">
+                    <div class="popup-modal">
+                        <h2>Нагадування про резервування лімітів</h2>
+                        <p>До {RESERVE_DEADLINE_DAY}-го числа необхідно зарезервувати ліміти постачання брухту на наступний місяць.</p>
+                        <div class="actions">
+                            <button class="main-button" onclick={openApproveModal}>Внести заявку</button>
+                            <button class="secondary-button" onclick={handleCloseReserveReminder}>Пізніше</button>
+                        </div>
+                    </div>
+                </section>
+            </template>
+
+            <!-- 4) Нагадування: відправити на узгодження -->
+            <template if:true={showApproveReminder}>
+                <section class="popup-backdrop" role="dialog" aria-modal="true">
+                    <div class="popup-modal">
+                        <h2>Потрібне затвердження лімітів</h2>
+                        <p>Ви вже внесли ліміти на наступний місяць. Будь ласка, відправте їх на узгодження для подальшої обробки.</p>
+                        <div class="actions">
+                            <button class="main-button" onclick={openApproveModal}>Відправити</button>
+                            <button class="secondary-button" onclick={handleCloseApproveReminder}>Пізніше</button>
+                        </div>
+                    </div>
+                </section>
+            </template>
+        </div>
+
+
+        <!-- Модал: узгодження лімітів -->
+        <template if:true={showApproveModal}>
+            <div class="modal-overlay">
+                <div class="modal-window wide">
+                    <h2>{modalTitle}</h2>
+
+                    <lightning-spinner if:true={isSubmitting} alternative-text="Надсилання..." size="small"></lightning-spinner>
+
+                    <table class="modal-table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>1 декада</th>
+                            <th>2 декада</th>
+                            <th>3 декада</th>
+                            <th>Місяць</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><strong>Ваш план, т</strong></td>
+                            <td><input type="number" class="modal-input" min="1" step="1"
+                                       value={limit1Display} data-index="0" oninput={handleLimitInput} /></td>
+                            <td><input type="number" class="modal-input" min="1" step="1"
+                                       value={limit2Display} data-index="1" oninput={handleLimitInput} /></td>
+                            <td><input type="number" class="modal-input" min="1" step="1"
+                                       value={limit3Display} data-index="2" oninput={handleLimitInput} /></td>
+                            <td><strong>{totalLimit}</strong></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="modal-actions limits-actions">
+                        <button class="secondary-button" onclick={closeApproveModal}>Скасувати</button>
+                        <button class="main-button" onclick={handleSaveLimits} disabled={disableSave}>Зберегти</button>
+                        <button class="main-button" onclick={submitModal} disabled={isSubmitDisabled}>{submitBtnLabel}</button>
+                    </div>
+
+                </div>
+            </div>
+        </template>
+
+<!--        <template if:true={showEditSupplierModal}>-->
+<!--&lt;!&ndash;            <c-edit-supplier-modal class="modal" onclose={handleCloseEditSupplierModal}></c-edit-supplier-modal>&ndash;&gt;-->
+<!--            <c-supplier-editor-panel class="modal" onclose={handleCloseEditSupplierModal}></c-supplier-editor-panel>-->
+<!--        </template>-->
+
+        <template if:true={showEditSupplierModal}>
+            <section class="modal-overlay" role="dialog" aria-modal="true">
+                <div class="modal-window wide">
+                    <c-supplier-editor-panel onclose={handleCloseEditSupplierModal} account-id={selectedAccountId}></c-supplier-editor-panel>
+                </div>
+            </section>
+        </template>
+
+    </div>
+</template>

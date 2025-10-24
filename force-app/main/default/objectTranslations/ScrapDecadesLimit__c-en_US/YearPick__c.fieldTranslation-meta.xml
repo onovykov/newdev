@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Рік --></label>
+    <name>YearPick__c</name>
+    <picklistValues>
+        <masterLabel>2025</masterLabel>
+        <translation><!-- 2025 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2026</masterLabel>
+        <translation><!-- 2026 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2027</masterLabel>
+        <translation><!-- 2027 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2028</masterLabel>
+        <translation><!-- 2028 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2029</masterLabel>
+        <translation><!-- 2029 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2030</masterLabel>
+        <translation><!-- 2030 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2031</masterLabel>
+        <translation><!-- 2031 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2032</masterLabel>
+        <translation><!-- 2032 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2033</masterLabel>
+        <translation><!-- 2033 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2034</masterLabel>
+        <translation><!-- 2034 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2035</masterLabel>
+        <translation><!-- 2035 --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

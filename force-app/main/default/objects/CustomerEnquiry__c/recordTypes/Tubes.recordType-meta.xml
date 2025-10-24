@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tubes</fullName>
+    <active>true</active>
+    <description>Tubular products (pipes, couplings, joints, etc.)</description>
+    <label>Tubes</label>
+    <picklistValues>
+        <picklist>CancellationReason__c</picklist>
+        <values>
+            <fullName>High prices</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inappropriate delivery terms</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No such products</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>MeasurementUnit__c</picklist>
+        <values>
+            <fullName>20</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>34</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>43</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>74</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Draft</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Created</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Processing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sent</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

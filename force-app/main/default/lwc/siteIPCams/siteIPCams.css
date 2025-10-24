@@ -1,0 +1,108 @@
+.container {
+    max-width: 1736px;
+    width: 95%;
+    margin: 0 auto;
+}
+.container .header{
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+.main {
+    display: flex;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+.video-section {
+    position: relative;
+    flex: 70%;
+    padding: 0 10px;
+    background: #282828;
+    display: flex;
+    justify-content: center;
+}
+.primary-video {
+    width: auto !important;
+    height: auto;
+    max-height: 400px;
+}
+
+.video-title {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.5em;
+    color: #fff;
+    border-radius: 0.3em;
+}
+
+.camera-list {
+    flex: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.camera-item {
+    padding: 1em;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+.camera-item img {
+    width: 50%;
+}
+.camera-item .description{
+    background-color: #ccc;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
+.camera-item.selected {
+    background-color: #e0e0e0;
+    border-color: #000;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #FFDD00;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  @media (max-width:767.98px){
+    .main {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .camera-item img{
+        width: 20%;
+    }
+    .video-section{
+        padding: 0;
+        background: gray;
+    }
+    .video-title {
+        padding: 0;
+    }
+
+  }

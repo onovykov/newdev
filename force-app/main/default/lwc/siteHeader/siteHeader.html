@@ -1,0 +1,172 @@
+<!-- Site Header Lwc -->
+<template>
+   <template if:true={modalQuit} class="modal-quit">
+      <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+         <div class="slds-modal__container">
+            <header class="slds-modal__header slds-modal__header_empty modal-header">
+               <div class="slds-grid slds-wrap slds-grid_align-end">
+                  <div class="slds-col">
+                     <button class="slds-button slds-button_icon slds-button_icon-inverse slds-p-around_small" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="action:remove"
+                           alternative-text="close"
+                           variant="inverse"
+                           size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                     </button>
+                  </div>
+               </div>
+            </header>
+            <!-- Modal/Popup Box LWC body starts here -->
+            <div class="slds-modal__content modal-content" id="modal-content-id-1">
+               <div class="slds-grid slds-grid_align-center slds-m-top_medium">
+                  <div class="slds-col card-subheader">
+                     <p class="modal-text">{modalText}</p>
+                  </div>
+               </div>
+               <div class="slds-grid slds-grid_align-center slds-m-top_x-large slds-m-bottom_medium exit-btns" style="gap:15px;">
+                  <div class="slds-col slds-size_3-of-12 center">
+                     <button class="print-btn card-subheader " onclick={closeModal}> {labels.No}</button>
+                  </div>
+                  <div class="slds-col slds-size_3-of-12 center">
+                     <button class="print-btn card-subheader " onclick={confirmModal}>{labels.Yes}</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open"></div>
+   </template>
+   <div if:true={showSwitch} class="backdrop" onclick={handleCloseSwitch}></div>
+   <div class="header">
+      <div class="container">
+         <div class="logo">
+            <a href="/NewCustomerRoom/s/" >
+            <img  alt="SiteLogo" src={siteLogo} class="img-logo"/>
+            </a> 
+         </div>
+         
+            <div class="header-menu desktop-menu">
+               <ul>
+                  <li><a href="/NewCustomerRoom/s/enquiries">{enq}</a></li>
+                  <li><a href="/NewCustomerRoom/s/orders">{ord}</a></li>
+                  <li><a href="/NewCustomerRoom/s/financialbalance">{fin}</a></li>
+                  <li><a href="/NewCustomerRoom/s/claims/">{cla}</a></li>
+                  <li><a href="/NewCustomerRoom/s/support">{sup}</a></li>
+                  <li><a href="/NewCustomerRoom/s/files">{fil}</a></li>
+
+                  <!-- <li><a href="/CustomerRoom/s/dealing-status/">{del}</a></li> -->
+                  <li >
+                     <lightning-button-menu class="burger" icon-name="utility:chevrondown" variant="border-filled" alternative-text="More" onselect={handleMenuSelect}>
+                        <lightning-menu-item class="burger-item" label= {labels.About_Interpipe} value="About Interpipe"> </lightning-menu-item>
+                        <lightning-menu-item class="burger-item" label= {labels.Production} value="Production"> </lightning-menu-item>
+                        <lightning-menu-item class="burger-item" label= {labels.Certificates} value="Certificates"></lightning-menu-item>
+                        <lightning-menu-item class="burger-item" label= {labels.Contacts} value="Contacts"></lightning-menu-item>
+                        <lightning-menu-item if:true={isProdOnlineVisible} class="burger-item" label= {labels.Production_online} value="IP-Cameras"></lightning-menu-item>
+                     </lightning-button-menu>
+                  </li>
+               </ul>
+            </div>
+            <div class="LanguageAndProfile desktop-menu">
+               <div if:true={selectedLanguage} class="switch-lang">
+                  <div class="current-lang " id="langSwitch" onclick={handleClick}>
+                     <img class="lang-flag" src={selectedLanguage.src}/>
+                     <p class="lang-text">{selectedLanguage.name}</p>
+                  </div>
+                  <div if:true={showSwitch} class="class1" data-id="divblock" id="divblock" >
+                     <template for:each={languages} for:item="lang">
+                        <div class="selecting-lang"  key = {lang.name} data-lang-value = {lang.value} data-lang-name = {lang.name} data-lang-src = {lang.src} onclick={handleLangSelect}>
+                           <img class="lang-flag" src={lang.src}/>
+                           <p class="lang-text">{lang.name}</p>
+                        </div>
+                     </template>
+                  </div>
+               </div>
+               <a href="/NewCustomerRoom/s/account/" >
+                  <div class="userProfile" >
+                     <img  src={CurrentUserImgUrl}/>
+                     <p class="userProfileName">{userInfo.lastName}</p>
+                  </div>
+               </a>
+               <div class="logout" onclick={openExitModal} >
+                  <!-- <a href={logoutLink} > -->
+                  <div>
+                     <img class="logout-img" src={logout}/>
+                  </div>
+                  <!-- </a> -->
+               </div>
+            </div>
+         <div class="burger-menu">
+            <button class="burger-menu-button" onclick={handleBurgerMenuClick}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+            <div class="burger-menu-content">
+               <div class="header-menu">
+            
+                  <ul>
+                      <li><a  class="cc-link" href="/NewCustomerRoom/s/enquiries">{enq}</a></li>
+                      <li><a  class="cc-link" href="/NewCustomerRoom/s/orders">{ord}</a></li>
+                      <li><a  class="cc-link" href="/NewCustomerRoom/s/financialbalance">{fin}</a></li>
+                      <li><a  class="cc-link" href="/NewCustomerRoom/s/claims/">{cla}</a></li>
+                      <li><a  class="cc-link" href="/NewCustomerRoom/s/support">{sup}</a></li>
+                      <li><a  class="cc-link" href="/NewCustomerRoom/s/files">{fil}</a></li>
+
+                      
+                      <!-- <li><a href="/CustomerRoom/s/dealing-status/">{del}</a></li> -->
+                      <!-- <li > 
+                         <lightning-button-menu class="burger" icon-name="utility:chevrondown" variant="border-filled" alternative-text="More" onselect={handleMenuSelect}>
+                            <lightning-menu-item class="burger-item" label= {labels.About_Interpipe} value="About Interpipe"> </lightning-menu-item>
+                            <lightning-menu-item class="burger-item" label= {labels.Production} value="Production"> </lightning-menu-item>
+                            <lightning-menu-item class="burger-item" label= {labels.Certificates} value="Certificates"></lightning-menu-item>
+                            <lightning-menu-item class="burger-item" label= {labels.Contacts} value="Contacts"></lightning-menu-item>
+                         </lightning-button-menu>
+                      </li> -->
+    
+                  </ul>
+                  <div class="line"></div>
+                  <ul>
+                      <li><a  class="external-link" target=”_blank” href="https://interpipe.biz/en/">{labels.About_Interpipe}</a></li>
+                      <li><a  class="external-link" target=”_blank” href="https://interpipe.biz/en/production/">{labels.Production}</a></li>
+                      <li><a  class="external-link" target=”_blank” href="https://interpipe.biz/en/clients/certificates">{labels.Certificates}</a></li>
+                      <li><a  class="external-link" target=”_blank” href="https://interpipe.biz/en/contacts/contacts/#s9">{labels.Contacts}</a></li>
+                      <li if:true={isProdOnlineVisible}><a  class="external-link" target=”_blank” href="/NewCustomerRoom/s/ip-cameras">{labels.Production_online}</a></li>
+                  </ul>
+              </div>
+              <a href="/NewCustomerRoom/s/account/" >
+               <div class="userProfile" >
+                   <img  src={CurrentUserImgUrl}/>
+                   <p class="userProfileName">{userInfo.lastName}</p>
+               </div>
+             </a>
+              <div class="LanguageAndProfile">
+                  <div if:true={selectedLanguage} class="switch-lang">
+                      <div class="current-lang " onclick={handleClick}> 
+                          <img class="lang-flag" src={selectedLanguage.src}/>
+                          <p class="lang-text">{selectedLanguage.name}</p>
+                      </div>
+                      <div if:true={showSwitch} class="class1" data-id="divblock" >
+                         <template for:each={languages} for:item="lang">
+                          <div class="selecting-lang"  key = {lang.name} data-lang-value = {lang.value} data-lang-name = {lang.name} data-lang-src = {lang.src} onclick={handleLangSelect}>
+                              <img class="lang-flag" src={lang.src}/>
+                              <p class="lang-text">{lang.name}</p>
+                          </div>
+                        </template>
+                         
+                      </div>
+                  </div>
+                  
+                <div class="logout" onclick={openExitModal} >
+                  <!-- <a href={logoutLink} > -->
+                    <div>
+                        <img class="logout-img" src={logout}/>
+                    </div>
+                  <!-- </a> -->
+                </div>
+              </div>    
+            </div>
+          </div>
+      </div>
+      
+   </div>
+</template>

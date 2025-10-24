@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Main Lead --></label>
+    <name>MainLead__c</name>
+    <relationshipLabel><!-- Lead Duplicates (Lead) (Main Lead) --></relationshipLabel>
+</CustomFieldTranslation>

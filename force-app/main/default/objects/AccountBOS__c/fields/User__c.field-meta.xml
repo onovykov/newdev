@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>User__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>BO Specialist</label>
+    <lookupFilter>
+        <active>false</active>
+        <booleanFilter>(1 OR 2) AND (3 OR 4) AND 5</booleanFilter>
+        <filterItems>
+            <field>User.Profile.Name</field>
+            <operation>equals</operation>
+            <value>Chatter Free User</value>
+        </filterItems>
+        <filterItems>
+            <field>User.Profile.Name</field>
+            <operation>equals</operation>
+            <value>Back Office Specialist</value>
+        </filterItems>
+        <filterItems>
+            <field>User.Department</field>
+            <operation>equals</operation>
+            <value>Sales Support Department</value>
+        </filterItems>
+        <filterItems>
+            <field>User.Department</field>
+            <operation>equals</operation>
+            <value>Back Office</value>
+        </filterItems>
+        <filterItems>
+            <field>User.IsActive</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Account_BO_Specialists</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

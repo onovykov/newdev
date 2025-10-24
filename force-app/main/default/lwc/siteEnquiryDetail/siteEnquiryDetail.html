@@ -1,0 +1,234 @@
+<template>
+    <lightning-spinner
+                if:true={spinner}
+                class="slds-is-absolute slds-align_absolute-center"
+                alternative-text="Loading Details..."
+                size="medium"
+                variant="brand">
+    </lightning-spinner>
+    <c-custom-toast-lwc auto-close-time="90000"></c-custom-toast-lwc>
+
+    <!-- Modal/Popup starts here -->
+    <template if:true={modalEnquiry}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header slds-modal__header_empty modal-header">
+                    <div class="slds-grid slds-wrap slds-grid_align-end">
+                        <div class="slds-col">
+                            <button class="slds-button slds-button_icon slds-button_icon-inverse slds-p-around_small" title="Close" onclick={closeModal}>
+                                <lightning-icon icon-name="action:remove"
+                                    alternative-text="close"
+                                    variant="inverse"
+                                    size="small" ></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                        </div>
+                    </div>
+                  </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content modal-content" id="modal-content-id-1">
+                    <div class="slds-grid slds-grid_align-center slds-m-top_medium">
+                        <div class="slds-col modal-text"><p>{modalText}</p></div>                        
+                    </div>
+                       
+                    <div class="slds-grid slds-grid_align-center slds-m-top_x-large slds-m-bottom_medium">
+                        <div class="slds-col slds-size_3-of-12 center">
+                          <button class="print-btn " onclick={closeModal}>{labels.No}</button>
+                        </div>
+                        <div class="slds-col slds-size_3-of-12 center">
+                            <button class="print-btn " onclick={confirmEnquiryModal}>{labels.Yes}</button>
+                        </div>                      
+                      </div>      
+                </div>              
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <c-custom-toast-lwc auto-close-time="8000"></c-custom-toast-lwc>
+    <div if:true={wiresLoaded} class="slds-p-around_small slds-grid slds-wrap">
+        <div class="slds-col slds-size_12-of-12 slds-p-around_small">
+            <span class="card-header">{labels.Enquiry}: </span>
+            <span class="card-header"> <b>{enquiry.Name}</b></span>
+        </div>
+
+        <!-- <div class="slds-col slds-size_3-of-12 slds-p-around_small">
+            <img src={UA}/>
+            <span class="card-subheader slds-m-left_small">{ownerFullName}</span>
+        </div> -->
+
+        <div class="slds-col slds-size_12-of-12 slds-small-size_6-of-12 slds-p-around_small">
+            <span class="card-subheader">{labels.Status}: </span>
+            <span class="card-subheader"> <b>{enquiry.Status__c}</b></span>
+        </div>
+
+        <div class="slds-col slds-size_7-of-12 slds-small-size_2-of-12 slds-p-around_x-small">
+            <button onclick={editEnquiry} class="print-btn">{labels.Site_th_Edit}</button>
+        </div>
+
+        <div class="slds-col slds-size_7-of-12 slds-small-size_2-of-12 slds-p-around_x-small">
+            <button  class="print-btn confirm" onclick={openConfirmEnquiryModal}>{labels.Confirm}</button>
+        </div>
+
+        <div class="slds-col slds-size_7-of-12 slds-small-size_2-of-12 slds-p-around_x-small">
+            <button  class="print-btn delete" onclick={openDeleteEnquiryModal}>{labels.Site_th_delete}</button>
+        </div>
+        
+
+    </div>
+        
+
+    <div if:true={wiresLoaded} class="slds-tabs_default">
+        <div class="datatable-tabs-mobile">
+            <div class="dropdown" tabindex="0">
+                <button class="dropdown-toggle" lwc:ref="dropdownBtn" aria-expanded={dropdownOpen} onclick={toggleDropdown}>{selectedOption}
+                    <div class="arrow-down"></div>  
+                </button>
+                <ul if:true={dropdownOpen} lwc:ref="dropdownList" class="dropdown-menu">
+                    <template for:each={optionsToDisplay} for:item="option">
+                        <li key={option.id} onclick={handleOptionClick} data-id={option.id}>
+                            <a onclick={handleOptionClick} data-id={option.id}>{option.label}
+                                <!-- <div class="amount">{option.amount}</div> -->
+                            </a>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+        <div class="datatable-tabs-desktop">
+            <ul class="slds-tabs_default__nav" role="tablist">
+                <li class="slds-tabs_default__item slds-is-active" title="Item Two" role="presentation" data-id="tab-defaultItem-2__item">
+                  <a onclick={toggleSubtabs} class="slds-tabs_default__link tab-header" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-defaultItem-2" data-id="tab-defaultItem-2">{labels.card_details}</a>
+                </li>
+                
+                <li class="slds-tabs_default__item" title="Item Three" role="presentation" >
+                  <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-defaultItem-3" data-id="tab-defaultItem-3">{labels.card_files}</a>
+                </li>
+                
+              </ul>
+        </div>
+        <div data-id="tab-defaultItem-2" class="slds-tabs_default__content " role="tabpanel" aria-labelledby="tab-defaultItem-2__item" >
+            
+            <div class="slds-grid slds-wrap datatable" if:true={enquiry}>
+                <div  class="slds-col slds-size_3-of-12 slds-p-around_large">
+                    <p class="header-detail">{labels.Enquiry}</p>
+                </div>
+                <div  class="slds-col slds-size_12-of-12 slds-small-size_9-of-12 slds-p-around_x-small">
+                    <div class="slds-grid slds-wrap slds-grid_vertical-align-center slds-m-top_medium">
+                        <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large non-editable">
+                            <p class="label-detail">{labels.Enquiry_number} </p>
+                            <p class="description-detail border-bottom-gray"><b>{enquiry.Name}</b></p>
+                        </div>
+        
+                        <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large non-editable">
+                            <p class="label-detail">{labels.Site_orderDetail_TypeOfProducts}</p>
+                            <p class="description-detail border-bottom-gray"><b>{enquiry.RecordType.DeveloperName}</b></p>
+                        </div>
+        
+                        <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large non-editable">
+                            <p class="label-detail">{labels.Manager}</p>
+                            <!-- Changed below -> {enquiry.Account__r.Name} -->
+                            <p class="description-detail border-bottom-gray"><b>{enquiry.SalesRepId__r.Name}</b></p> 
+                        </div>
+
+                        <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large non-editable">
+                            <p class="label-detail">{labels.Site_orderDetail_Country}</p>
+                            <p class="description-detail border-bottom-gray"><b>{enquiry.Country__r.Name}</b></p>
+                        </div>
+                        <form class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <label for="totalQuntity" class="label-detail">{labels.Site_th_Quantity}</label>
+                            <input class ="input-field total-quantity" type="number" id="totalQuntity" name="totalQuntity" value={enquiry.TotalQuantity__c} disabled>                      
+                        </form>
+                        <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                        <label for="id_select"> {labels.Site_th_MeasurementUnit} </label>
+                        <template if:true={showMeasUnit}> 
+                            <select id="id_select" class="select slds-select input-field " data-label='timeFrames' onchange={handleMeasUnit} disabled >
+                                <template for:each={picklist} for:item="item">
+                                    <option class="measUnit" key={item.label} value={item.value} selected={item.userValue}>{item.label}</option>
+                                </template>
+                            </select>
+                        </template>
+                        </div>
+                        <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <label for="total-quantity-tons" class="label-detail">{labels.Total_quantity_in_tons}</label>
+                            <input class ="input-field total-quantity-tons" type="number" id="total-quantity-tons" name="total-quantity-tons" value={enquiry.TotalQuantity_t__c} disabled>
+                        </div>
+
+                        <div  class="slds-col slds-size_12-of-12 slds-p-around_x-small slds-m-bottom_large">
+                            <label for="description" class="label-detail">{labels.Support_description}</label>
+                            <input class ="input-field description" type="text" id="description" name="description" value={enquiry.Description__c} disabled>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_6-of-12 slds-small-size_2-of-12 slds-p-around_small">
+                        <button onclick={saveChanges}  class="print-btn save display-none">{labels.Save}</button>
+                    </div>
+                    <div class="slds-col slds-size_6-of-12 slds-small-size_2-of-12 slds-p-around_small">
+                        <button onclick={cancelChanges}  class="print-btn cancel display-none">{labels.Cancel}</button>
+                    </div>
+                </div>
+                </div>
+            </div>                 
+        </div>
+        <div data-id="tab-defaultItem-3" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-defaultItem-3__item">
+            <div class="container">
+
+                <div class="slds-grid slds-grid_align-end">
+                    <div class="slds-col slds-m-right_x-large">
+                        <div class="slds-form-element__control ">
+                            <div class="slds-file-selector slds-file-selector_files ">
+                                
+                                    <input type="file" multiple
+                                        class="slds-file-selector__input slds-assistive-text input-file"
+                                        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.doc,application/pdf,image/png, image/gif, image/jpeg,text/plain"
+                                        id="file-upload-input-01" onchange={handleFileSelect}
+                                        aria-labelledby="file-selector-primary-label file-selector-secondary-label" />
+                                    <label class="slds-file-selector__body" for="file-upload-input-01"
+                                        id="file-selector-secondary-label">
+                                        <span style="display: flex; flex-direction: row; gap: 5px; "
+                                            class="slds-file-selector__button slds-button slds-button_neutral attach-file-button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14"
+                                                class="attach-svg">
+                                                <use xlink:href={attach}></use>
+                                            </svg>
+                                            {labels.Upload_file}
+                                        </span>
+                                    </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="datatable">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>{labels.scf_name}</th>
+                                <th>{labels.scf_owner}</th>
+                                <th>{labels.scf_lastChange}</th>
+                                <th>{labels.scf_size}</th>
+                                <th>{labels.site_th_delete}</th>
+                            </tr>
+                        </thead>
+                        
+                        <template for:each= {enquiryFiles} for:item="item">
+                            <tr key = {item.ContentDocumentId}>
+                                <td data-label={labels.scf_name} class="reclamation-number" onclick={openFile} data-id={item.Id}>{item.ContentDocument.Title}</td>
+                                <td data-label={labels.scf_owner} >{item.ContentDocument.Owner.Name}</td>
+                                <td data-label={labels.scf_lastChange} >
+                                    <lightning-formatted-date-time
+                                        value= {item.ContentDocument.ContentModifiedDate}
+                                        year="numeric"
+                                        month="numeric"
+                                        day="numeric">
+                                    </lightning-formatted-date-time>
+                            </td>
+                                <td data-label={labels.scf_size} >{item.fileSize}</td>
+                                <td data-label={labels.site_th_delete}  ><lightning-button-icon icon-name="utility:delete" onclick={openDeleteFileModal} data-id={item.ContentDocumentId}    alternative-text="Delete"   class="slds-m-left_xx-small" title="Delete"></lightning-button-icon></td>
+                            </tr>
+                        </template>
+                    </table>
+                </div>
+        </div>
+        </div>
+      </div>
+</template>

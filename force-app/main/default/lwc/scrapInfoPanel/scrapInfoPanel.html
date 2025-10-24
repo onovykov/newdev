@@ -1,0 +1,295 @@
+<template>
+    <div class="tab-header">
+        <h1 class="tab-title">Види брухту</h1>
+        <p class="tab-subtitle">
+            У цій вкладці ви керуєте <b>видами брухту</b>.
+            Ліворуч можна обрати потрібний вид (комерційний чи корпоративний),
+            а у вікні праворуч відкриється картка з описом, кодом ERP та статусом активності.
+            Тут також можна <b>редагувати опис</b>, <b>вмикати або вимикати активність</b>,
+            переглядати залишки лімітів і перевіряти доступність для постачальників.
+        </p>
+    </div>
+
+
+    <div class="sp-wrapper">
+        <!-- Ліва панель -->
+        <aside class="sp-left">
+            <div class="sp-left-head">
+                <div class="head-row">
+                    <input type="search"
+                           class="sp-search"
+                           placeholder="Пошук брухту…"
+                           value={searchQueryString}
+                           oninput={handleSearchInput}/>
+
+                    <div class="sp-tools">
+                        <!-- Розгорнути все -->
+                        <button class="icon-btn"
+                                title="Розгорнути все"
+                                aria-label="Розгорнути все"
+                                onclick={expandAll}>
+                            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                                 fill="currentColor" aria-hidden="true" class="bi bi-arrows-expand">
+                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zM7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10z"></path>
+                            </svg>
+                        </button>
+
+                        <!-- Згорнути все -->
+                        <button class="icon-btn"
+                                title="Згорнути все"
+                                aria-label="Згорнути все"
+                                onclick={collapseAll}>
+                            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                                 fill="currentColor" aria-hidden="true" class="bi bi-arrows-collapse">
+                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- Комерційний брухт -->
+            <section class="sp-group">
+                <div class="sp-group-row" data-key="commercial" onclick={toggleBranchOpen}>
+                    <span class={commercialCaretCss}></span>
+                    <h3 class="sp-group-title">КОМЕРЦІЙНИЙ БРУХТ</h3>
+                </div>
+                <template if:true={commercialBranchOpen}>
+                    <ul class="sp-list">
+                        <template for:each={commercialRenderedGroups} for:item="groupView">
+                            <li key={groupView.groupId} class="group-li">
+                                <div class="group-row" data-group-id={groupView.groupId} onclick={toggleGroupOpen}>
+                                    <span class={groupView.caretCss}></span>
+                                    <span class="group-title">{groupView.groupName}</span>
+                                </div>
+                                <template if:true={groupView.open}>
+                                    <ul class="items-list">
+                                        <template for:each={groupView.items} for:item="it">
+                                            <li key={it.Id}>
+                                                <div class={it.itemCss}
+                                                     data-id={it.Id}
+                                                     onclick={handleSelectItem}>
+                                                    <span class="item-name">{it.Name}</span>
+                                                    <span class="item-code">{it.ScrapTypeCode__c}</span>
+                                                </div>
+                                            </li>
+                                        </template>
+                                        <template if:true={groupView.showEmpty}>
+                                            <li class="sp-empty">Нічого не знайдено</li>
+                                        </template>
+                                    </ul>
+                                </template>
+                            </li>
+                        </template>
+                        <template if:true={commercialEmpty}>
+                            <li class="sp-empty">Немає даних</li>
+                        </template>
+                    </ul>
+                </template>
+            </section>
+
+            <!-- Корпорація -->
+            <section class="sp-group">
+                <div class="sp-group-row" data-key="corporate" onclick={toggleBranchOpen}>
+                    <span class={corporateCaretCss}></span>
+                    <h3 class="sp-group-title">КОРПОРАЦІЯ</h3>
+                </div>
+                <template if:true={corporateBranchOpen}>
+                    <ul class="sp-list">
+                        <template for:each={corporateRenderedGroups} for:item="groupView">
+                            <li key={groupView.groupId} class="group-li">
+                                <div class="group-row" data-group-id={groupView.groupId} onclick={toggleGroupOpen}>
+                                    <span class={groupView.caretCss}></span>
+                                    <span class="group-title">{groupView.groupName}</span>
+                                </div>
+                                <template if:true={groupView.open}>
+                                    <ul class="items-list">
+                                        <template for:each={groupView.items} for:item="it">
+                                            <li key={it.Id}>
+                                                <div class={it.itemCss}
+                                                     data-id={it.Id}
+                                                     onclick={handleSelectItem}>
+                                                    <span class="item-name">{it.Name}</span>
+                                                    <span class="item-code">{it.ScrapTypeCode__c}</span>
+                                                </div>
+                                            </li>
+                                        </template>
+                                        <template if:true={groupView.showEmpty}>
+                                            <li class="sp-empty">Нічого не знайдено</li>
+                                        </template>
+                                    </ul>
+                                </template>
+                            </li>
+                        </template>
+                        <template if:true={corporateEmpty}>
+                            <li class="sp-empty">Немає даних</li>
+                        </template>
+                    </ul>
+                </template>
+            </section>
+        </aside>
+
+        <!-- Права панель -->
+        <main class="sp-right">
+            <template if:true={selectedRecordDetails}>
+                <div class="card">
+                    <div class="head">
+                        <div class="title">
+                            <h2 class="record-name">{selectedRecordDetails.Name}</h2>
+                            <div class="meta">
+                                <span class="badge code-badge">{selectedRecordDetails.ScrapTypeCode__c}</span>
+                                <span class={statusBadgeCss}>{statusBadgeText}</span>
+                                <lightning-input type="toggle"
+                                                 class="is-active-toggle"
+                                                 checked={selectedRecordDetails.IsActive__c}
+                                                 onchange={handleToggleActive}
+                                                 message-toggle-active="Активний"
+                                                 message-toggle-inactive="Неактивний">
+                                </lightning-input>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Короткі атрибути -->
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <div class="stat-label">Код ресурсу (ERP)</div>
+                            <div class="stat-value">{selectedRecordDetails.ID_ERP__c}</div>
+                        </div>
+<!--                        <div class="stat-card">-->
+<!--                            <div class="stat-label">Рівень</div>-->
+<!--                            <div class="stat-value">{selectedRecordDetails.Level__c}</div>-->
+<!--                        </div>-->
+                        <div class="stat-card">
+                            <div class="stat-label">Тип</div>
+                            <div class="stat-value">{selectedParentName}</div>
+                        </div>
+                    </div>
+
+                    <div class="grid">
+                        <div class="block">
+                            <div class="block-head">
+                                <h3 class="block-title">Опис</h3>
+                                <button class="icon-btn"
+                                        onclick={toggleDescEdit}
+                                        title={descEditLabel}
+                                        aria-label={descEditLabel}>
+                                    <!-- іконка олівця -->
+                                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005Z"
+                                              stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13"
+                                              stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <template if:false={editDesc}>
+                                <p class="description-text">{selectedRecordDetails.Description__c}</p>
+                            </template>
+
+                            <template if:true={editDesc}>
+                                <lightning-textarea class="desc-textarea"
+                                                    value={descriptionDraft}
+                                                    onchange={handleDescInput}
+                                                    label="Редагування опису">
+                                </lightning-textarea>
+
+                                <div class="btn-row">
+                                    <button class="primary-button"
+                                            onclick={handleDescSave}>Зберегти
+                                    </button>
+                                    <button class="secondary-button" onclick={handleDescCancel}>Скасувати</button>
+                                </div>
+                            </template>
+                        </div>
+
+
+                        <!-- НОВИЙ БЛОК: Залишок лімітів брухту -->
+                        <div class="block limits-summary">
+                            <h3 class="block-title">Залишок лімітів брухту</h3>
+                            <table class="limits-mini-table">
+                                <tbody>
+                                <tr>
+                                    <td class="limits-label">На поточну добу</td>
+                                    <td class="limits-value">{formattedRemainingTonsDay}</td>
+                                </tr>
+                                <tr>
+                                    <td class="limits-label">На поточну декаду</td>
+                                    <td class="limits-value">{formattedRemainingTonsDecade}</td>
+                                </tr>
+                                <tr>
+                                    <td class="limits-label">На поточний місяць</td>
+                                    <td class="limits-value">{formattedRemainingTonsMonth}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <!-- Заглушка: Доступність для постачальників -->
+                <div class="card">
+                    <div class="head">
+                        <h3 class="tbl-title">Доступність для постачальників</h3>
+                        <input type="search"
+                               class="sp-search small"
+                               placeholder="Пошук постачальника…"
+                               value={supplierSearch}
+                               oninput={handleSupplierSearch}/>
+                    </div>
+
+                    <template if:false={accessLoaded}>
+                        <div class="placeholder-block">
+                            <div class="placeholder-icon"></div>
+                            <div>
+                                <div class="placeholder-title">Завантаження…</div>
+                                <div class="placeholder-desc">Зачекайте, отримуємо список постачальників.</div>
+                            </div>
+                        </div>
+                    </template>
+
+                    <template if:true={accessLoaded}>
+                        <div class="table-wrapper">
+                            <table class="limits-table suppliers-table">
+                                <thead>
+                                <tr>
+                                    <th>Постачальник</th>
+                                    <th>Категорія</th>
+                                    <th>ERP код</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <template for:each={permittedSuppliers} for:item="s">
+                                    <tr key={s.id}>
+                                        <td><div class="supplier-name">{s.name}</div></td>
+                                        <td><span class="supplier-cat">{s.category}</span></td>
+                                        <td><span class="mono">{s.erpCode}</span></td>
+                                    </tr>
+                                </template>
+                                <template if:true={suppliersEmpty}>
+                                    <tr><td colspan="3" class="muted">Немає записів</td></tr>
+                                </template>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </template>
+                </div>
+
+            </template>
+
+            <template if:false={selectedRecordDetails}>
+                <div class="intro-placeholder">
+                    Оберіть вид брухту ліворуч.
+                </div>
+            </template>
+        </main>
+    </div>
+</template>

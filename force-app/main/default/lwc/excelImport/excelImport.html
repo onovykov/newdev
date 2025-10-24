@@ -1,0 +1,94 @@
+<template>
+   <!--     <lightning-file-upload>
+                label="Attach receipt"
+                name="fileUploader"
+                onuploadfinished={handleFileSelect}
+
+        </lightning-file-upload>-->
+
+    <div class="slds-form-element" style=" background-color:white; padding: 10px; border-radius: 5px; margin: 0 auto;">
+        <p class="slds-form-element__label" id="file-selector-primary-label" style="font-size: 20px; font-weight:bold; max-width: 300px; margin:0 auto; display:block; border-bottom: 2px; border-style:none none inset none; border-color: lightblue; text-align:center;">Upload Marketing Data</p>
+        <div class="slds-form-element__control" style="display: flex; justify-content: center; margin-top: 15px;">
+            <div class="slds-file-selector slds-file-selector_files">
+                <div class="slds-file-selector__dropzone slds-has-drag-over" style="border-color: white; box-shadow: none;" id="buttonid">
+                    <input type="file"  class="slds-file-selector__input slds-assistive-text"  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" id="file-upload-input-01" onchange={handleFileSelect}  aria-labelledby="file-selector-primary-label file-selector-secondary-label" />
+                    <label class="slds-file-selector__body" for="file-upload-input-01" id="file-selector-secondary-label">
+          <span class="slds-file-selector__button slds-button slds-button_neutral">
+            Upload File
+            </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="spinner">
+            <template if:true={isLoading}>
+                 <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+                 </lightning-spinner>
+            </template>
+        </div>
+        <div class="RecordsCount" style=" min-height: 1px;background-color:white; display: block;">
+           
+        </div>  
+    </div>
+
+    <div  class="slds-box slds-theme_shade" style=" min-height: 1px;">
+        
+    <template if:true={showData} for:each={settings} for:item="setting">
+        
+        <lightning-card key={setting.Id}
+                        title={setting.sheetName}
+                        
+                        >
+                        <!-- <h1> Count Of Records:  {dataLength}</h1> -->
+            <lightning-button label="Save"
+                              data-objectname={setting.objectApiName}
+                              data-sheetname={setting.sheetName}
+                              slot="actions"
+                              onclick={handleSaveClick}
+                              data-id="saveButton"
+
+            ></lightning-button>
+
+            <!--filter-->
+            <lightning-layout if:true={setting.filters} class="slds-p-around_small">
+                <template for:each={setting.filters} for:item="filter">
+                    <lightning-layout-item key={filter.fieldApiName} style="margin-left: 5px;">
+                        <lightning-input
+                            key={filter.fieldApiName}
+                            value=''
+                            data-sheetname={setting.sheetName} 
+                            data-field-api-name={filter.fieldApiName} 
+                            type={filter.type} 
+                            label={filter.label}
+                            onchange={handleFilterFieldsChange}>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+            <!--filter end-->
+
+
+            <div style="max-height: 150px;" class="slds-scrollable_y">
+            <lightning-datatable key={setting.Id}   
+                                 key-field="Id"
+                                 data={setting.data}
+                                 columns={setting.columns}
+                                 hide-checkbox-column="true"
+                                 show-row-number-column="true"
+                                 
+                                 
+            ></lightning-datatable>
+            </div>
+            <!-- <div class="spinner">
+                <template if:true={Spinner}>
+                     <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+                     </lightning-spinner>
+                </template>
+            </div> -->
+        </lightning-card>
+    </template>
+    </div>
+    <template if:true={error}>
+        {error.message}
+    </template>
+</template>

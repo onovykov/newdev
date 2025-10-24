@@ -1,0 +1,50 @@
+.nps-container {
+    text-align: center;
+    font-family: Arial, sans-serif; /* Use a custom or more appropriate font */
+    background: white; /* Consider using a background to make it stand out from the page */
+    border-radius: 8px; /* Rounded corners for modern look */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 20px;
+    display: inline-block;
+    margin: 10px;
+}
+
+.nps-container span {
+    font-weight: bold; /* Make the digit bold */
+    font-size: 72px; /* Large size for the digit */
+    display: block;
+    margin-bottom: 10px;
+    animation: pop-in 0.5s ease-out both; /* Animation for the digit */
+}
+
+.nps-container p {
+    font-size: 18px;
+    color: #333; /* Subdued color for the descriptive text */
+    margin: 0;
+}
+
+@keyframes pop-in {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    80% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.red {
+    color: #e74c3c; /* A more toned shade of red */
+}
+
+.orange {
+    color: #f39c12; /* A more toned shade of orange */
+}
+
+.green {
+    color: #2ecc71; /* A more toned shade of green */
+}

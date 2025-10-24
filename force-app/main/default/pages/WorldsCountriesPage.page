@@ -1,0 +1,5 @@
+<apex:page >
+    <script>
+        window.location = '/{!$Label.World_Countries_record_Id}';
+    </script>
+</apex:page>

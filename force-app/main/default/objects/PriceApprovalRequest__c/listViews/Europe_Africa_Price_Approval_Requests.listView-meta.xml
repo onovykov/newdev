@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Europe_Africa_Price_Approval_Requests</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Stage__c</columns>
+    <columns>StageERP__c</columns>
+    <columns>Quantity_t__c</columns>
+    <columns>Price_t__c</columns>
+    <columns>Margin__c</columns>
+    <columns>Margin_t__c</columns>
+    <columns>Transportation__c</columns>
+    <columns>FED__c</columns>
+    <columns>Turnover__c</columns>
+    <columns>SalesRep__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>BOSpecialist__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>MarketSegment__c</field>
+        <operation>equals</operation>
+        <value>00004</value>
+    </filters>
+    <label>Europe Price Approval Requests</label>
+    <sharedTo>
+        <roleAndSubordinatesInternal>Sales_Manager_EU_Africa</roleAndSubordinatesInternal>
+        <roleAndSubordinatesInternal>Senior_Sales_Manager_Europe_Africa</roleAndSubordinatesInternal>
+    </sharedTo>
+</ListView>

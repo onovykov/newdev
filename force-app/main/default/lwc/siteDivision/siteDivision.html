@@ -1,0 +1,30 @@
+<template>
+    <div class="container">
+        <h1>{div}</h1>
+        <div class="items">
+            <!-- <iframe src="https://player.vimeo.com/video/838428763?h=535a0b066c" width="800" height="600" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/36YnV9STBqc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+            <div class="item">
+                <h2 class="label">{FinalLabel1}</h2>
+                <img src={img1URL} alt="">
+                <p class="description">{FinalText1}</p>
+                <!-- <div class="more"><a href={Item1Link}  class="btnText">Більше</a><i class="arrow right"></i></div> -->
+                <div class="more"><a href={Item1Link} target="_blank" class="btnText">{mor}</a><i class="arrow right"></i></div>
+            </div>
+            <div class="item">
+                <h2 class="label">{FinalLabel2}</h2>
+                <img src={img2URL} alt="">
+                <p class="description">{FinalText2}</p>
+                <!-- <div class="more"><a href={Item2Link}  class="btnText">Більше</a><i class="arrow right"></i></div> -->
+                <div class="more"><a href={Item2Link} target="_blank" class="btnText">{mor}</a><i class="arrow right"></i></div>
+            </div>
+            <div class="item">
+                <h2 class="label">{FinalLabel3}</h2>
+                <img src={img3URL} alt="">
+                <p class="description">{FinalText3}</p>
+                <!-- <div class="more"><a href={Item3Link}  class="btnText">Більше</a><i class="arrow right"></i></div> -->
+                <div class="more"><a href={Item3Link} target="_blank" class="btnText">{mor}</a><i class="arrow right"></i></div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,136 @@
+/* Styling for the table headers */
+.lgc-bg{
+  padding: 10px;
+  margin-bottom: 15px;
+}
+.lgc-bg h3 {
+  text-align: center;
+  background: #0058ff69;
+}
+.lgc-bg th {
+  background-color:#FFDD00;
+  color: black;
+  padding: 5px;
+  text-align: left;
+}
+
+.lgc-bg td {
+  padding: 5px; /* Padding for the cells */
+  border-bottom: 1px solid #ddd; /* Light grey border at the bottom of each cell */
+}
+.lgc-bg table {
+  width: 100%; /* Щоб таблиця займала всю доступну ширину */
+  table-layout: fixed; /* Щоб ширина стовпців була фіксованою */
+}
+
+.lgc-bg th, td {
+  width: 20%;
+}
+
+/* Styling for the table rows on hover */
+.lgc-bg tr:hover {
+  background-color: #f5f5f5; /* Light grey background on hover */
+}
+
+/* General styling for the table */
+.lgc-bg table {
+  width: 100%; /* Full width */
+  border-collapse: collapse; /* Collapse borders */
+}
+
+/* Styling for links in the table to make them stand out */
+.lgc-bg a {
+  color: #0070d2; /* Salesforce blue for links */
+  text-decoration: none; /* No underline */
+}
+
+/* Styling for buttons in the table */
+.lgc-bg button {
+  display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 28px;
+    gap: 12px;
+    width: auto;
+    height: 20px;
+    background: #FFDD00;
+    border-radius: 18px;
+}
+
+/* Styling for buttons on hover */
+.lgc-bg button:hover {
+  /* background-color: #ffdd00d7; */
+}
+
+
+
+.mobile-datatable{
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    .desktop-datatable{
+        display: none;
+    }
+    .mobile-datatable{
+        margin-top: 5px;
+        height: auto;
+        overflow-y:hidden;
+        display: block;
+        padding: 20px;
+    }
+.lgc-bg th, td {
+  width: auto;
+}  
+table {
+  border: 0;
+}
+
+table caption {
+  font-size: 1.3em;
+}
+
+table thead {
+  border: none;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+table tr {
+  border-bottom: 3px solid #ddd;
+  display: block;
+  margin-bottom: .625em;
+}
+
+table td {
+  border-bottom: 1px solid #ddd;
+  display: block;
+  font-size: .8em;
+  text-align: right;
+}
+
+table td::before {
+  /*
+  * aria-label has no advantage, it won't be read inside a table
+  content: attr(aria-label);
+  */
+  content: attr(data-label);
+  float: left;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+table td:last-child {
+  border-bottom: 0;
+}
+}
+
+.hisHeader{
+  margin: 10px 0 5px 0;
+}

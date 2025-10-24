@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Mistmatch SubType --></label>
+    <name>Mistmatch_SubType__c</name>
+    <picklistValues>
+        <masterLabel>BWW</masterLabel>
+        <translation>КДО</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Error in order (planning)</masterLabel>
+        <translation>Помилка замовлення (планування)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Vehicles downtime</masterLabel>
+        <translation>перестій ТЗ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>assembly leak</masterLabel>
+        <translation>Протікання при збиранні</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>bandages</masterLabel>
+        <translation>бандажі</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>chemical composition</masterLabel>
+        <translation>Хім. Склад</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>coating / packaging</masterLabel>
+        <translation>покриття / пакування</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>column breaks</masterLabel>
+        <translation>обривання колони</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>defects</masterLabel>
+        <translation>дефекти</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>defects after machining</masterLabel>
+        <translation>дефекти після мех. обробки</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>defects after processing</masterLabel>
+        <translation>дефекти після обробки</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>delivery period</masterLabel>
+        <translation>термін довозу</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>delivery period (Logistic)</masterLabel>
+        <translation>термін постачання (Лоґістичні)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>demerge</masterLabel>
+        <translation>демердж</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>documentation</masterLabel>
+        <translation>документи</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>documentation (Commercial)</masterLabel>
+        <translation>документи (комерційні)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>geometry</masterLabel>
+        <translation>геометрія</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>marketable condition</masterLabel>
+        <translation>товарний вигляд</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>marking / stamping</masterLabel>
+        <translation>маркування / таврування</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>mechanical damage</masterLabel>
+        <translation>мех.ушкодження</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>mechanical damage (Logistic)</masterLabel>
+        <translation>мех.ушкодження (Лоґістичні)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>mechanical properties</masterLabel>
+        <translation>мех.властивості</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ordering</masterLabel>
+        <translation>оформлення замовлення</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>others</masterLabel>
+        <translation>інші</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>others (Commercial)</masterLabel>
+        <translation>інші (комерційні)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>others (Logistic)</masterLabel>
+        <translation>інші (Лоґістичні)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>others (Maintenance)</masterLabel>
+        <translation>інші (Супровід)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>place of delivery (Logistic)</masterLabel>
+        <translation>місце постачання (Лоґістичні)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>price</masterLabel>
+        <translation>ціна</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>production planning</masterLabel>
+        <translation>планування виробництва</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>quantity</masterLabel>
+        <translation>кількість</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>salt</masterLabel>
+        <translation>сіль</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>simple vehicle</masterLabel>
+        <translation>перестій ТЗ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>technical expertise</masterLabel>
+        <translation>тех. експертиза</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>wheels</masterLabel>
+        <translation>колеса</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,28 @@
+.confirmation-dialog {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    max-width: auto;
+    margin: 0 auto;
+}
+
+.confirmation-message {
+    margin-bottom: 16px;
+    font-size: 16px;
+    text-align: center;
+}
+.button-container{
+    display: flex;
+    justify-content: space-around;
+}
+.button-container lightning-button[variant="brand"] {
+    background-color: #0070d2;
+    color: #ffffff;
+    margin-right: 8px;
+}
+
+.button-container lightning-button[variant="neutral"] {
+    background-color: #ffffff;
+    color: #0070d2;
+}

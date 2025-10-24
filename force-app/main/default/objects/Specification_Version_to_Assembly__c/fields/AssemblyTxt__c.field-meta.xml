@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AssemblyTxt__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(Specification_Version__r.SpecBase__r.Country__r.Name=&apos;Ukraine&apos;,  Assembly__r.NameUKR__c,  Assembly__r.NameENG__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Assembly</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,34 @@
+.container{
+
+    max-width: 1736px;
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 75px;
+}
+.bannerText{
+     
+    font-style: normal;
+    font-weight: 400;
+    font-size: 76px;
+    line-height: 56px;
+    padding-left: 148px;
+}
+@media (min-width: 576px) and (max-width: 992px){
+    .bannerText{
+        padding-left: 40px;
+    }
+}
+
+@media (max-width: 575.98px){
+    .bannerText{
+        padding-left: 0;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .container{
+        margin-top: 32px;
+    }
+
+}

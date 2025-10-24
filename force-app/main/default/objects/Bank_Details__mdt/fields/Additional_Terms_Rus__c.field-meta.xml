@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Additional_Terms_Rus__c</fullName>
+    <defaultValue>&quot;- Предложение относится к общему количеству в заказе. Если заказывается частичное количество, мы оставляем за собой право принять или отклонить заказ.&quot; +
+&quot;&lt;br/&gt;- Срок изготовления и поставки указан с учетом текущих резервов и возможностей производства. Окончательный график доставки оговаривается и согласовывается при подписании контракта.&quot; +
+&quot;&lt;br/&gt;- Любые поправки к дополнительным условиям должны подлежать предварительному одобрению и согласованию сторон.&quot;</defaultValue>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Additional Terms (Rus)</label>
+    <length>32768</length>
+    <type>LongTextArea</type>
+    <visibleLines>5</visibleLines>
+</CustomField>

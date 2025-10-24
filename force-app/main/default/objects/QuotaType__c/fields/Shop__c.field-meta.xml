@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shop__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Production shop that the quota relates to</description>
+    <inlineHelpText>Production shop that the quota relates to</inlineHelpText>
+    <label>Shop</label>
+    <referenceTo>Shop__c</referenceTo>
+    <relationshipLabel>Quotas Types</relationshipLabel>
+    <relationshipName>QuotasTypes</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

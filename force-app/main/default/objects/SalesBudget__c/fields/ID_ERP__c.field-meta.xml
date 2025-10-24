@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ID_ERP__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <description>Sales budget ID in the ERP system.</description>
+    <externalId>true</externalId>
+    <inlineHelpText>Sales budget ID in the ERP system.</inlineHelpText>
+    <label>ID in ERP</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

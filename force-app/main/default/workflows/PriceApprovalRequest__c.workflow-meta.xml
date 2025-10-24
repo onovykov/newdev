@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>PAR_Confirmation_Alert</fullName>
+        <description>PAR Confirmation Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>administrator@sf.interpipe.biz</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>aleksandr.novikov@interpipe.biz</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/PAR_Confirmation_by_Sales_Rep</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Move_PAR_to_the_next_stage</fullName>
+        <description>Move Price Approval Request to the next stage</description>
+        <field>Stage__c</field>
+        <name>Move PAR to the next stage</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>NextValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Move_PAR_to_the_previous_stage</fullName>
+        <field>Stage__c</field>
+        <name>Move PAR to the previous stage</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>PreviousValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_PAR_Approved_by_CEO</fullName>
+        <field>ApprovalResolution__c</field>
+        <literalValue>CEO:1</literalValue>
+        <name>Set PAR Approved by CEO</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_PAR_Approved_by_PRM_Director</fullName>
+        <field>ApprovalResolution__c</field>
+        <literalValue>PRMDirector:1</literalValue>
+        <name>Set PAR Approved by PRM Director</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_PAR_Approved_by_Sales_Rep</fullName>
+        <field>ApprovalResolution__c</field>
+        <literalValue>SalesRep:1</literalValue>
+        <name>Set PAR Approved by Sales Rep</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_PAR_Rejected_by_CEO</fullName>
+        <field>ApprovalResolution__c</field>
+        <literalValue>CEO:-1</literalValue>
+        <name>Set PAR Rejected by CEO</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_PAR_Rejected_by_PRM_Director</fullName>
+        <field>ApprovalResolution__c</field>
+        <literalValue>PRMDirector:-1</literalValue>
+        <name>Set PAR Rejected by PRM Director</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_PAR_Rejected_by_Sales_Rep</fullName>
+        <field>ApprovalResolution__c</field>
+        <literalValue>SalesRep:-1</literalValue>
+        <name>Set PAR Rejected by Sales Rep</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_PAR_Returned_by_CEO</fullName>
+        <field>ApprovalResolution__c</field>
+        <literalValue>CEO:0</literalValue>
+        <name>Set PAR Returned by CEO</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_PAR_Returned_by_PRM_Director</fullName>
+        <field>ApprovalResolution__c</field>
+        <literalValue>PRMDirector:0</literalValue>
+        <name>Set PAR Returned by PRM Director</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_PAR_Returned_by_Sales_Rep</fullName>
+        <field>ApprovalResolution__c</field>
+        <literalValue>SalesRep:0</literalValue>
+        <name>Set PAR Returned by Sales Rep</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+</Workflow>

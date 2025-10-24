@@ -1,0 +1,435 @@
+<template>
+    <div class="tab-header">
+        <h1 class="tab-title">Декади</h1>
+        <p class="tab-subtitle">
+            У цій вкладці ви керуєте <b>календарем декад</b>.
+            Ліворуч можна обрати рік, місяць або конкретну декаду чи дату,
+            а у вікні праворуч відкриється детальна інформація.
+            Також тут ви <b>керуєте лімітами подекадно</b> — можна вписувати ліміти,
+            а також переглядати дані про надходження та залишки.
+        </p>
+    </div>
+
+
+    <div class="sp-wrapper">
+        <!-- Ліва панель -->
+        <!-- Ліва панель -->
+        <aside class="sp-left">
+            <div class="sp-left-head">
+                <div class="head-row">
+                    <input type="search"
+                           class="sp-search"
+                           placeholder="Пошук…"
+                           value={searchQuery}
+                           oninput={handleSearchInput}/>
+                    <div class="sp-tools">
+                        <button class="icon-btn" title="Розгорнути все" onclick={expandAll}>
+                            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zM7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10z"/>
+                            </svg>
+                        </button>
+                        <button class="icon-btn" title="Згорнути все" onclick={collapseAll}>
+                            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1-.708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Група: поточний рік (у тебе це yearNode) -->
+            <section class="sp-group">
+                <template if:true={yearNode}>
+                    <!-- стало -->
+                    <div class="group-row" data-id={yearNode.id} onclick={handleSelectNode}>
+                        <!-- клік по кареті лишається для розгортання; stopPropagation вже є у toggleNode -->
+                        <span class={yearNode.caretClass} data-id={yearNode.id} onclick={toggleNode}></span>
+                        <span class="group-title">{yearNode.name}</span>
+                    </div>
+
+
+
+                    <template if:true={yearNode.open}>
+                        <ul class="sp-list">
+                            <!-- Місяці -->
+                            <template for:each={yearNode.children} for:item="m">
+                                <li key={m.id} class="group-li">
+                                    <div class={m.rowClass} data-id={m.id} onclick={handleSelectNode}>
+                                        <span class={m.caretClass} data-id={m.id} onclick={toggleNode}></span>
+                                        <span class="group-title">{m.name}</span>
+                                    </div>
+
+                                    <!-- Декади -->
+                                    <template if:true={m.open}>
+                                        <ul class="items-list">
+                                            <template for:each={m.children} for:item="d">
+                                                <li key={d.id}>
+                                                    <div class={d.rowClass} data-id={d.id} onclick={handleSelectNode}>
+                                                        <span class={d.caretClass} data-id={d.id} onclick={toggleNode}></span>
+                                                        <span class="group-title">{d.name}</span>
+                                                    </div>
+
+                                                    <!-- Дні -->
+                                                    <template if:true={d.open}>
+                                                        <ul class="items-list">
+                                                            <template for:each={d.children} for:item="day">
+                                                                <li key={day.id}>
+                                                                    <div class={day.itemClass} data-id={day.id} onclick={handleSelectNode}>
+                                                                        <span class="item-name">{day.name}</span>
+                                                                    </div>
+                                                                </li>
+                                                            </template>
+                                                        </ul>
+                                                    </template>
+                                                </li>
+                                            </template>
+                                        </ul>
+                                    </template>
+                                </li>
+                            </template>
+                        </ul>
+                    </template>
+                </template>
+            </section>
+        </aside>
+
+        <!-- Права панель -->
+        <!-- ПРАВА ПАНЕЛЬ -->
+        <main class="sp-right">
+            <template if:false={selectedNode}>
+                <div class="intro-placeholder">Оберіть місяць / декаду / день ліворуч.</div>
+            </template>
+
+            <template if:true={selectedNode}>
+                <!-- компактна шапка праворуч -->
+                <!-- === Рівень: День — перегляд лімітів === -->
+                <!-- === Рівень: МІСЯЦЬ — перегляд сум по декадах === -->
+                <!-- === Рівень: РІК — перегляд сум по місяцях === -->
+                <template if:true={isYear}>
+                    <div class="card table-card">
+                        <div class="card-head">
+                            <h3 class="card-title">Суми лімітів за рік</h3>
+                            <div class="info-bar">
+                                <span class="pill">Активних видів: <b>{yearCount}</b></span>
+                                <template if:true={yearLoadedAtStr}>
+                                    <span class="pill light">Оновлено: {yearLoadedAtStr}</span>
+                                </template>
+                            </div>
+                        </div>
+
+                        <template if:true={loadingYearTotals}>
+                            <div class="table-skeleton">
+                                <div class="sk-row"></div>
+                                <div class="sk-row"></div>
+                            </div>
+                        </template>
+
+                        <template if:false={loadingYearTotals}>
+                            <div class="table-wrapper">
+                                <table class="nice-table">
+                                    <thead>
+                                    <tr>
+                                        <th class="left">Вид брухту</th>
+                                        <th class="col-limit">Ліміт, т. <br>(сума за рік)</th>
+                                        <th class="col-incoming">Надходження, т.</th>
+                                        <th class="col-remaining">Залишок, т.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <template for:each={yearTotals} for:item="r">
+                                        <tr key={r.id}>
+                                            <td class="left sticky-col">{r.name}</td>
+                                            <td class="col-limit">{r.totalValue}</td>
+                                            <td class="col-incoming">{r.incoming}</td>
+                                            <td class="col-remaining">{r.remaining}</td>
+                                        </tr>
+                                    </template>
+
+                                    <template if:true={yearTotalsEmpty}>
+                                        <tr>
+                                            <td colspan="4" class="empty-cell">Немає активних видів брухту.</td>
+                                        </tr>
+                                    </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+
+                <template if:true={isMonth}>
+                    <div class="card table-card">
+                        <div class="card-head">
+                            <h3 class="card-title">Суми лімітів за місяць</h3>
+                            <div class="info-bar">
+                                <span class="pill">Активних видів: <b>{monthCount}</b></span>
+                                <span class="pill ok">Заповнено: <b>{monthFilled}</b></span>
+                                <span class="pill warn">Порожніх: <b>{monthEmpty}</b></span>
+                                <template if:true={monthLoadedAtStr}>
+                                    <span class="pill light">Оновлено: {monthLoadedAtStr}</span>
+                                </template>
+                            </div>
+                        </div>
+
+                        <template if:true={loadingMonthTotals}>
+                            <div class="table-skeleton">
+                                <div class="sk-row"></div>
+                                <div class="sk-row"></div>
+                            </div>
+                        </template>
+
+                        <template if:false={loadingMonthTotals}>
+                            <div class="table-wrapper">
+                                <table class="nice-table">
+                                    <thead>
+                                    <tr>
+                                        <th class="left">Вид брухту</th>
+                                        <th class="col-limit">Ліміт, т. <br>(сума за місяць)</th>
+                                        <th class="col-incoming">Надходження, т.</th>
+                                        <th class="col-remaining">Залишок, т.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <template for:each={monthTotals} for:item="r">
+                                        <tr key={r.id}>
+                                            <td class="left sticky-col">{r.name}</td>
+                                            <td class="col-limit">{r.totalValue}</td>
+                                            <td class="col-incoming">{r.incoming}</td>
+                                            <td class="col-remaining">{r.remaining}</td>
+                                        </tr>
+                                    </template>
+
+                                    <template if:true={monthTotalsEmpty}>
+                                        <tr>
+                                            <td colspan="4" class="empty-cell">Немає активних видів брухту.</td>
+                                        </tr>
+                                    </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+
+                <!-- === Рівень: ДЕКАДА — перегляд сум (read-only) === -->
+                <template if:true={isDecade}>
+                    <div class="card table-card">
+                        <div class="card-head">
+                            <h3 class="card-title">Суми лімітів за декаду</h3>
+                            <div class="info-bar">
+                                <span class="pill">Активних видів: <b>{decadeCount}</b></span>
+                                <span class="pill ok">Заповнено: <b>{decadeFilled}</b></span>
+                                <span class="pill warn">Порожніх: <b>{decadeEmpty}</b></span>
+                                <template if:true={hasAnyDecadeTotals}>
+                                    <span class="pill light">Останнє оновлення: {decadeLoadedAtStr}</span>
+                                </template>
+                            </div>
+                        </div>
+
+                        <template if:true={loadingDecadeTotals}>
+                            <div class="table-skeleton">
+                                <div class="sk-row"></div>
+                                <div class="sk-row"></div>
+                                <div class="sk-row"></div>
+                            </div>
+                        </template>
+
+                        <template if:false={loadingDecadeTotals}>
+                            <div class="table-wrapper">
+                                <table class="nice-table">
+                                    <thead>
+                                    <tr>
+                                        <th class="left">Вид брухту</th>
+                                        <th class="col-limit">Ліміт, т. <br>(сума за декаду)</th>
+                                        <th class="col-incoming">Надходження, т.</th>
+                                        <th class="col-remaining">Залишок, т.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <template for:each={decadeTotals} for:item="r">
+                                        <tr key={r.id}>
+                                            <td class="left sticky-col">{r.name}</td>
+                                            <td class="col-limit">{r.totalValue}</td>
+                                            <td class="col-incoming">{r.incoming}</td>
+                                            <td class="col-remaining">{r.remaining}</td>
+                                        </tr>
+                                    </template>
+
+                                    <template if:true={decadeTotalsEmpty}>
+                                        <tr>
+                                            <td colspan="4" class="empty-cell">Немає активних видів брухту.</td>
+                                        </tr>
+                                    </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+
+                <template if:true={isDay}>
+                    <div class="card table-card">
+                        <div class="card-head">
+                            <h3 class="card-title">Ліміти на {selectedDateFormatted}</h3>
+
+                            <div class="info-bar">
+                                <button class="secondary-button" onclick={openCopyModal}>
+                                    Скопіювати на інші дні декади
+                                </button>
+
+                                <lightning-input
+                                        type="checkbox"
+                                        label="Лише заповнені"
+                                        checked={onlyFilled}
+                                        onchange={toggleOnlyFilled}>
+                                </lightning-input>
+
+                                <lightning-input
+                                        type="checkbox"
+                                        label="Лише порожні"
+                                        checked={onlyEmpty}
+                                        onchange={toggleOnlyEmpty}>
+                                </lightning-input>
+
+                                <span class="pill">Активних видів: <b>{dayCount}</b></span>
+                                <span class="pill ok">Заповнено: <b>{dayFilled}</b></span>
+                                <span class="pill warn">Порожніх: <b>{dayEmpty}</b></span>
+                                <template if:true={hasAnyLimits}>
+                                    <span class="pill light">Останнє оновлення: {dayLoadedAtStr}</span>
+                                </template>
+
+                                <template if:false={isEditingDay}>
+                                    <button class="primary-button" onclick={startEditDay}>Внести ліміти</button>
+                                </template>
+
+                                <template if:true={isEditingDay}>
+                                    <div class="btn-row">
+                                        <button class="secondary-button" onclick={cancelEditDay}>Скасувати</button>
+                                        <button class="primary-button" onclick={saveDayLimits} disabled={loadingDayLimits}>Зберегти</button>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
+
+                        <template if:true={loadingDayLimits}>
+                            <div class="table-skeleton">
+                                <div class="sk-row"></div>
+                                <div class="sk-row"></div>
+                                <div class="sk-row"></div>
+                            </div>
+                        </template>
+
+                        <template if:false={loadingDayLimits}>
+                            <div class="table-wrapper">
+                                <table class="nice-table">
+                                    <thead>
+                                    <tr>
+                                        <th class="left">Вид брухту</th>
+                                        <th class="col-limit">Ліміт, т.</th>
+                                        <th class="col-incoming">Надходження, т.</th>
+                                        <th class="col-remaining">Залишок, т.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <template for:each={filteredDayTableRows} for:item="r">
+                                        <tr key={r.id} class={r.rowClass}>
+                                            <td class="left sticky-col">{r.name}</td>
+                                            <td class="col-limit">
+                                                <template if:false={isEditingDay}>
+                                                    {r.limitText}
+                                                </template>
+                                                <template if:true={isEditingDay}>
+                                                    <lightning-input
+                                                            type="text"
+                                                            variant="label-hidden"
+                                                            value={r.inputValue}
+                                                            data-id={r.id}
+                                                            pattern="^\d+(\.\d)?$"
+                                                            message-when-pattern-mismatch="Введіть число або число з одним десятковим знаком"
+                                                            onchange={handleEditInputChange}>
+                                                    </lightning-input>
+                                                </template>
+                                            </td>
+                                            <td class="col-incoming">{r.incoming}</td>
+                                            <td class="col-remaining">{r.remaining}</td>
+
+                                        </tr>
+                                    </template>
+
+                                    <template if:true={dayLimitsEmpty}>
+                                        <tr>
+                                            <td colspan="4" class="empty-cell">Немає активних видів брухту або ліміти відсутні.</td>
+                                        </tr>
+                                    </template>
+                                    </tbody>
+
+
+                                </table>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </template>
+        </main>
+
+
+
+    </div>
+
+    <!-- COPY MODAL -->
+    <template if:true={showCopyModal}>
+        <div class="modal-overlay">
+            <div class="modal-window">
+                <h2>Скопіювати ліміти на інші дні декади</h2>
+
+                <template if:true={isModalBusy}>
+                    <div class="modal-loading">
+                        <lightning-spinner size="small" alternative-text="Завантаження…"></lightning-spinner>
+
+                        <!-- Текст показуємо тільки під час копіювання -->
+                        <template if:true={copying}>
+                            <span class="loading-msg">Зачекайте, встановлюються ліміти…</span>
+                        </template>
+                    </div>
+                </template>
+
+
+
+                <template if:false={copyLoading}>
+                    <p class="mt-8">Оберіть дні цієї декади, на які скопіювати значення з <b>{selectedDateFormatted}</b>:</p>
+
+                    <div class="mt-16" style="max-height: 60vh; overflow: auto;">
+                        <template for:each={siblingDays} for:item="d">
+                            <div key={d.id} class="info-list" style="padding:4px 0;">
+                                <lightning-input
+                                        type="checkbox"
+                                        label={d.label}
+                                        checked={d.checked}
+                                        data-id={d.id}
+                                        onchange={handleTargetCheckbox}>
+                                </lightning-input>
+                                <template if:true={d.hasLimits}>
+                                    <span class="pill light" style="margin-left:8px;">має ліміти</span>
+                                </template>
+                            </div>
+                        </template>
+
+                        <template if:true={siblingDaysEmpty}>
+                            <div class="empty-state mt-8">Немає інших днів у цій декаді.</div>
+                        </template>
+                    </div>
+
+                    <div class="modal-actions mt-16">
+                        <button class="secondary-button" onclick={selectAllTargets}>Вибрати всі</button>
+                        <button class="secondary-button" onclick={clearAllTargets}>Очистити</button>
+                        <span style="flex:1"></span>
+                        <button class="secondary-button" onclick={closeCopyModal}>Скасувати</button>
+                        <button class="main-button" onclick={submitCopy} disabled={submitCopyDisabled}>Скопіювати</button>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </template>
+
+</template>

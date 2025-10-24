@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>LP/GU</fullName>
+        <default>false</default>
+        <label>LP/GU</label>
+    </customValue>
+    <customValue>
+        <fullName>OCTG</fullName>
+        <default>false</default>
+        <label>OCTG</label>
+    </customValue>
+    <customValue>
+        <fullName>Mechanical</fullName>
+        <default>false</default>
+        <label>Mechanical</label>
+    </customValue>
+    <customValue>
+        <fullName>Welded</fullName>
+        <default>false</default>
+        <label>Welded</label>
+    </customValue>
+    <customValue>
+        <fullName>Billet</fullName>
+        <default>false</default>
+        <label>Billet</label>
+    </customValue>
+    <customValue>
+        <fullName>Wheels</fullName>
+        <default>false</default>
+        <label>Wheels</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <customValue>
+        <fullName>Cold drawn</fullName>
+        <default>false</default>
+        <label>Cold drawn</label>
+    </customValue>
+    <customValue>
+        <fullName>High grade mechanical</fullName>
+        <default>false</default>
+        <label>High grade mechanical</label>
+    </customValue>
+    <customValue>
+        <fullName>Special pipes</fullName>
+        <default>false</default>
+        <label>Special pipes</label>
+    </customValue>
+    <customValue>
+        <fullName>Second choice</fullName>
+        <default>false</default>
+        <label>Second choice</label>
+    </customValue>
+    <masterLabel>Product Family</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

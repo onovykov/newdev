@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FED__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Is Financial-Economic Department resolution retrieved</description>
+    <inlineHelpText>Is Financial-Economic Department resolution retrieved</inlineHelpText>
+    <label>FED Resolution</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

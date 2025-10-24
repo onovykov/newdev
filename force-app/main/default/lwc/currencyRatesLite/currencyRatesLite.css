@@ -1,0 +1,5 @@
+/* file: lwc/currencyRatesLite/currencyRatesLite.css */
+/* Intentionally minimal to keep Salesforce default font sizes */
+.rates-table .iso { font-weight: 600; width: 90px; }
+.rates-table .rate { font-weight: 700; }
+.last-refreshed { /* keep subtle style without changing size */ }

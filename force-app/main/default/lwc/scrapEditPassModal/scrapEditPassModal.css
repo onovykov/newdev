@@ -1,0 +1,208 @@
+:host{
+    display:block;
+    color:#111;
+    --brand:#ffdd00;
+    --brand-ink:#000;
+    --ink:#111;
+    --ink-sub:#5a5a5a;
+    --ink-soft:#7d7d7d;
+    --bg:#fff;
+    --bg-soft:#fafafa;
+    --border:#e8e8e8;
+    --radius:16px;
+    --pad:16px;
+    --blue:#005bbb;
+    font:14px/1.45 "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+
+/* === Overlay & Window === */
+.modal-overlay{
+    position:fixed; inset:0; z-index:9999;
+    background: rgba(0,0,0,.45);
+    -webkit-backdrop-filter: blur(3px) saturate(1.05);
+    backdrop-filter: blur(3px) saturate(1.05);
+    display:flex; align-items:center; justify-content:center;
+    padding:18px;
+}
+.modal-window{
+    width:1100px; max-width:96vw; max-height:92vh;
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:22px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.18);
+    overflow:auto;
+    padding:22px;
+}
+.modal-window.modal-wide{ width:1100px; }
+
+/* === Header === */
+.modal-header{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px; padding-bottom:12px; margin-bottom:12px;
+    border-bottom:1px solid var(--border);
+}
+.modal-header h2{
+    margin:0; font-weight:900; font-size:20px; letter-spacing:.2px; color:#1b1b1b;
+}
+.status-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:6px 10px; border-radius:999px;
+    background:#fff7cc; color:#3a3000; border:1px solid #ffe57a;
+    font-weight:800; font-size:12px;
+}
+
+/* === Cards === */
+.card{
+    border:1px solid var(--border);
+    background:#fff;
+    border-radius:18px;
+    padding:16px;
+    margin-top:14px;
+}
+.card-title{
+    margin:0 0 12px;
+    font-size:15px; font-weight:900; color:#1b1b1b;
+}
+
+/* === Summary grid === */
+.summary{
+    border:1px solid var(--border);
+    border-radius:14px;
+    background: var(--bg-soft);
+    padding:4px 0;
+}
+.summary.two-col .row{
+    display:grid; grid-template-columns: 180px 1fr;
+    gap:10px; padding:10px 14px;
+    border-top:1px solid var(--border);
+}
+.summary .row:first-child{ border-top:none; }
+.summary .label{ color:var(--ink-sub); font-weight:800; }
+.summary .value{ color:var(--ink); font-weight:700; }
+
+/* === Info strips (supplier / driver) === */
+.info-strip{
+    display:flex; align-items:flex-start; gap:12px;
+    border:1px solid var(--border);
+    border-radius:14px; padding:12px 14px; background:#fff;
+}
+.mt-12{ margin-top:12px; }
+.info-strip .icon{
+    width:40px; height:40px; flex:0 0 40px;
+    border-radius:50%;
+    background: var(--bg-soft);
+    border:1px solid var(--border);
+    display:grid; place-items:center;
+    font-weight:900; color:#2a2a2a;
+}
+.info-strip .body{ flex:1 1 auto; min-width:0; }
+.info-strip .title{
+    font-weight:900; color:#1d1d1d; margin:0 0 2px; font-size:14px;
+}
+.info-strip .meta{
+    display:flex; flex-wrap:wrap; gap:8px; color:var(--ink-soft);
+}
+.badge{
+    display:inline-flex; align-items:center; gap:6px;
+    border:1px solid var(--border);
+    background:#fff;
+    border-radius:999px; padding:4px 10px; font-weight:700; font-size:12px;
+}
+.plate{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    letter-spacing:1px; text-transform:uppercase; font-weight:900;
+    border:2px solid #222; border-radius:8px; padding:2px 8px; background:#f8f8f8;
+}
+
+/* === Mini-table (current transport) === */
+.mini-table{
+    margin:10px 0 12px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    background:#fff;
+}
+.mini-row{
+    display:grid;
+    grid-template-columns: 140px 1fr 120px 1fr 120px 1fr;
+}
+.mini-cell{
+    padding:10px 12px;
+    border-top:1px solid #f3f3f3;
+    border-right:1px solid #f6f6f6;
+    display:flex; align-items:center; min-height:40px;
+}
+.mini-row .mini-cell:nth-child(-n+6){ border-top:none; }
+.mini-row .mini-cell:last-child{ border-right:none; }
+.mini-cell.key{ background:#fffbe8; font-weight:900; color:#2a2a2a; }
+.mini-cell.strong{ font-weight:900; color:#111; }
+.empty{ color:#9a9a9a; font-weight:600; }
+.muted{ color:#6d6d6d; }
+
+/* === Forms === */
+.form{ margin-top:12px; }
+.form.onecol{ display:grid; grid-template-columns:1fr; gap:12px; }
+.form.twocol{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media (max-width: 880px){ .form.twocol{ grid-template-columns:1fr; } }
+
+.field{ display:flex; flex-direction:column; gap:6px; }
+.field label{ font-size:12.5px; color:#2a2a2a; font-weight:900; letter-spacing:.2px; }
+/* Прибрати "опційно", навіть якщо залишилось у тексті */
+.field label::after{ content:""; }
+
+/* Inputs */
+.text, .lookup-input, .select{
+    --h: 38px;
+    height:var(--h);
+    min-height:var(--h);
+    border-radius:10px;
+    border:1px solid #cfcfcf;
+    background:#fff;
+    font-size:14px; color:#111;
+    box-sizing:border-box;
+}
+.text::placeholder{ color:#a8a8a8; }
+.text:focus, .lookup-input:focus, .select:focus{
+    border-color: var(--blue);
+    outline: 2px solid rgba(0,91,187,.2);
+    outline-offset:0;
+}
+
+/* Checkbox row */
+.check{ display:flex; align-items:center; gap:8px; font-weight:700; }
+.check input[type="checkbox"]{ width:16px; height:16px; accent-color: var(--blue); }
+
+/* === Actions === */
+.actions{
+    margin-top:18px; padding-top:12px; border-top:1px solid var(--border);
+    display:flex; gap:10px; justify-content:flex-end;
+}
+.main-button, .secondary-button{
+    padding:10px 16px; font-size:14px; font-weight:900;
+    border:none; border-radius:10px; cursor:pointer;
+    transition: transform .12s ease, opacity .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.main-button{ background:var(--brand); color:var(--brand-ink); }
+.secondary-button{ background:#f3f3f3; color:#222; }
+.main-button:hover:not(:disabled), .secondary-button:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+}
+.main-button:disabled{ opacity:.6; cursor:not-allowed; }
+
+/* Notes */
+.note{ margin-top:6px; color:var(--ink-soft); font-size:12.5px; }
+
+/* === Responsive tweaks === */
+@media (max-width: 1020px){
+    .modal-window{ padding:18px; }
+    .summary.two-col .row{ grid-template-columns:150px 1fr; }
+    .mini-row{ grid-template-columns: 120px 1fr 110px 1fr 110px 1fr; }
+}
+@media (max-width: 720px){
+    .summary.two-col .row{ grid-template-columns:120px 1fr; }
+    .mini-row{ grid-template-columns: 120px 1fr 110px 1fr; }
+}
+@media (max-width: 520px){
+    .mini-row{ grid-template-columns: 120px 1fr; }
+}

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- PersonalInfo_EPIM --></label>
+        <name>PersonalInfo_EPIM</name>
+    </fieldSets>
+    <layouts>
+        <layout>Community Member Layout</layout>
+        <layoutType>CommunityMemberLayout</layoutType>
+        <sections>
+            <label><!-- Basic Information --></label>
+            <section>Basic Information</section>
+        </sections>
+        <sections>
+            <label><!-- Chatter Settings --></label>
+            <section>Chatter Settings</section>
+        </sections>
+        <sections>
+            <label><!-- Language And Locale Settings --></label>
+            <section>Language And Locale Settings</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>User Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>User Profile Layout</layout>
+        <layoutType>UserAlt</layoutType>
+        <sections>
+            <label><!-- About --></label>
+            <section>About</section>
+        </sections>
+        <sections>
+            <label><!-- Contact --></label>
+            <section>Contact</section>
+        </sections>
+        <sections>
+            <label><!-- Default Values --></label>
+            <section>Default Values</section>
+        </sections>
+        <sections>
+            <label><!-- User Address --></label>
+            <section>User Address</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>User Profile Layout Short</layout>
+        <layoutType>UserAlt</layoutType>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Employee Number and ID ERP  fields are required --></errorMessage>
+        <name>Required_Employee_Number_and_Id_Erp</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Customer Community User can not contain empty Manager field --></errorMessage>
+        <name>Required_Manager_For_Customer_User</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Required Field --></errorMessage>
+        <name>Required_Sale_Division</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can&apos;t change sale division for Sale Managers. If it necessary required, please disable validation rule. --></errorMessage>
+        <name>Sale_Division_Changed_For_Managers</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Employee Number must be same like id ERP --></errorMessage>
+        <name>Same_Employee_number_and_id_ERP</name>
+    </validationRules>
+</CustomObjectTranslation>

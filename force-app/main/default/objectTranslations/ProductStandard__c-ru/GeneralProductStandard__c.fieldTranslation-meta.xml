@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Стандарт</label>
+    <name>GeneralProductStandard__c</name>
+    <relationshipLabel><!-- Product Standards --></relationshipLabel>
+</CustomFieldTranslation>

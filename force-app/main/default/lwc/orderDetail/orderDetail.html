@@ -1,0 +1,427 @@
+<template>
+    <!--
+    <div class="slds-grid slds-wrap slds-grid_align-end">
+        <div class="slds-col">
+            <lightning-icon icon-name="action:remove" alternative-text="Close" title="Close" size="small"></lightning-icon>
+        </div>
+    </div>
+    -->
+
+    <template if:true={isModalDeliveryOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                 aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header slds-modal__header_empty">
+                </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content " id="modal-content-id-1">
+                    <div class="slds-grid slds-wrap slds-grid_align-end">
+                        <div class="slds-col">
+                            <button
+                                class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse slds-p-around_x-large"
+                                title="Close" onclick={closeModalDelivery}>
+                                <lightning-icon icon-name="action:remove"
+                                                alternative-text="close"
+                                                variant="inverse"
+                                                size="small"></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <c-order-delivery record-id={orderDeliveryId}></c-order-delivery>
+                </div>
+                <lightning-spinner
+                    if:false={modalContainer}
+                    class="slds-is-absolute slds-align_absolute-center"
+                    alternative-text="Loading Details..."
+                    size="medium"
+                    variant="brand"
+                >
+                </lightning-spinner>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open">
+        </div>
+    </template>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-2" class="slds-modal slds-fade-in-open slds-modal_large mobile-header ">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header slds-modal__header_empty modal-header">
+                    <div class="slds-grid slds-wrap slds-grid_align-end modal-header">
+                        <div class="slds-col">
+                            <button class="slds-button slds-button_icon slds-button_icon-inverse slds-p-around_small" title="Close" onclick={closeModal}>
+                                <lightning-icon icon-name="action:remove"
+                                    alternative-text="close"
+                                    variant="inverse"
+                                    size="small" ></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                        </div>
+                    </div>
+                </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content modal-content" id="modal-content-id-2">
+                    <c-order-product-specification get-selected-order-item={selectedOrderItemId}></c-order-product-specification>
+                </div>
+                <div>
+                    <lightning-spinner
+                        if:false={modalContainer}
+                        class="slds-is-absolute slds-align_absolute-center"
+                        alternative-text="Loading Details..."
+                        size="medium"
+                        variant="brand"
+                        >
+                    </lightning-spinner>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+    <div if:true={order} class="slds-p-around_small slds-grid slds-wrap">
+        <div class="slds-col slds-size_6-of-12 slds-p-around_small">
+            <span class="card-header">{labels.site_orderDetail_Order} </span>
+            <span class="card-header"> <b>{order.AdditionalNumber__c}</b></span>
+        </div>
+        <div class="slds-col slds-size_6-of-12 slds-p-around_small">
+
+        </div>
+    </div>
+
+    <div class="slds-grid slds-wrap slds-grid_vertical-align-center slds-m-bottom_medium" if:true={order}>
+        <div class="slds-col slds-small-size_4-of-12 slds-size_12-of-12  slds-p-around_small ">
+            <button onclick={openModalDelivery} class="print-btn card-subheader">
+                {labels.site_orderDetail_DeliveryStatus}
+            </button>
+        </div>
+        <!-- <div class="slds-col slds-size_4-of-12 slds-p-around_small">
+            <img src={UA}/>
+            <span class="card-subheader slds-m-left_small">{ownerFullName}</span>
+        </div> -->
+        <div class="slds-col slds-small-size_4-of-12 slds-size_12-of-12 slds-p-around_small">
+            <span class="card-subheader">{labels.site_orderDetail_Stage}: </span>
+            <span class="card-subheader"> <b>{order.Status}</b></span>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap slds-grid_vertical-align-center slds-m-bottom_medium">
+        <div class=" slds-col slds-small-size_4-of-12 slds-size_12-of-12 slds-p-around_small">
+
+
+            <div class="print-btn " onclick={genPDF}>
+                <img src={printImg} alt="" class="print-icon">
+                <p class="print-text">{labels.print}</p>
+            </div>
+        </div>
+
+
+        <div class="slds-col slds-small-size_4-of-12 slds-size_12-of-12 slds-p-around_small">
+            <div class="print-btn" onclick={generateXLSX}>
+                <img src={xlsxIcon} alt="" class="xlsx-icon">
+                <p class="print-text">Excel</p>
+            </div>
+
+        </div>
+    <div class="datatable-tabs-mobile">
+        <div class="dropdown" tabindex="0">
+            <button class="dropdown-toggle" lwc:ref="dropdownBtn" aria-expanded={dropdownOpen} onclick={toggleDropdown}>
+                {selectedOption}
+                <div class="arrow-down"></div>
+            </button>
+            <ul if:true={dropdownOpen} lwc:ref="dropdownList" class="dropdown-menu">
+                <template for:each={optionsToDisplay} for:item="option">
+                    <li key={option.id} onclick={handleOptionClick} data-id={option.id}>
+                        <a onclick={handleOptionClick} data-id={option.id}>{option.label}
+                            <!-- <div class="amount">{option.amount}</div> -->
+                        </a>
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </div>
+
+   
+    </div>
+    <div class="">
+        <div class="slds-tabs_default">
+            <ul class="slds-tabs_default__nav tabs-desktop" role="tablist">
+                <li class="slds-tabs_default__item slds-is-active" title="Item One" role="presentation"
+                    data-id="tab-defaultItem-1__item" id="test1">
+                    <a onclick={toggleSubtabs} class="slds-tabs_default__link tab-header" href="#" role="tab"
+                       tabindex="0" aria-selected="true" aria-controls="tab-defaultItem-1" data-id="tab-defaultItem-1">{labels.site_orderDetail_OrderProducts}</a>
+                </li>
+                <li class="slds-tabs_default__item" title="Item Two" role="presentation"
+                    data-id="tab-defaultItem-2__item">
+                    <a onclick={toggleSubtabs} class="slds-tabs_default__link tab-header" href="#" role="tab"
+                       tabindex="-1" aria-selected="false" aria-controls="tab-defaultItem-2"
+                       data-id="tab-defaultItem-2">{labels.site_orderDetail_Details}</a>
+                </li>
+                <!--
+                <li class="slds-tabs_default__item" title="Item Three" role="presentation" >
+                  <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-defaultItem-3" id="tab-defaultItem-3__item">Пов'язане</a>
+                </li>
+                -->
+            </ul>
+            <div data-id="tab-defaultItem-1" class="slds-tabs_default__content slds-show" role="tabpanel"
+                 aria-labelledby="tab-defaultItem-1">
+
+                <div class="datatable slds-size_1-of-1 slds-p-around_small">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>{labels.site_th_Product}</th>
+                            <th if:true={isAmericanUser}>OD, Inch</th>
+                            <th if:true={isAmericanUser}>WT, Inch</th>
+                            <th if:true={isAmericanUser}>Min Length, ft</th>
+                            <th if:true={isAmericanUser}>Max Length, ft</th>
+                            <!-- <th>{labels.site_th_Name}</th>
+                            <th>Standart</th> -->
+
+                            <th if:true={isKLWUser}>{labels.site_th_Quantity} {labels.site_orderDetail_pcs}</th>
+                            <th>{labels.site_th_Quantity} {labels.site_orderDetail_t}</th>
+                            <th>{labels.site_th_Stage}</th>
+                            <th if:true={isKLWUser}>{labels.site_th_ProducedQuantity} {labels.site_orderDetail_pcs}</th>
+                            <th>{labels.site_th_ProducedQuantity} {labels.site_orderDetail_t}</th>
+                            <th if:true={isKLWUser}>{labels.site_th_DispatchedQuantity} {labels.site_orderDetail_pcs}</th>
+                            <th>{labels.site_th_DispatchedQuantity} {labels.site_orderDetail_t}</th>
+                            <th if:true={isKLWUser}>{labels.site_th_ShippedQuantity} {labels.site_orderDetail_pcs}</th>
+                            <th>{labels.site_th_ShippedQuantity} {labels.site_orderDetail_t}</th>
+                            <th>{labels.site_th_UnitPrice}</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <template for:each={filteredOrdersItemsList} for:item="item">
+                            <tr key={item.Id}>
+                                <td if:false={item.HasSpecification} data-label={labels.site_th_Product} class="order-number">{item.Name__c}</td>
+                                <td if:true={item.HasSpecification}  data-label={labels.site_th_Product} class="order-number order-number-spec" onclick={openModal} data-id={item.Id}>{item.Name__c}
+                                </td>
+                                <td data-label="OD, Inch" if:true={isAmericanUser}>{item.TubeOD__r.OD_inch__c}</td>
+                                <td data-label="WT, Inch" if:true={isAmericanUser}>{item.TubeWT__r.WT_inch__c}</td>
+                                <td data-label="Min Length, ft" if:true={isAmericanUser}>
+                                    {item.TubeLengthSize__r.MinLength__c}
+                                </td>
+                                <td data-label="Max Length, ft" if:true={isAmericanUser}>
+                                    {item.TubeLengthSize__r.MaxLength__c}
+                                </td>
+                                <!-- <td data-label={labels.site_th_Name}> {item.Product2.Name}</td>
+                                <td data-label="Standart">{item.ProductStandard__r.Name}</td> -->
+                                <td data-label={labels.site_th_Quantity} if:true={isKLWUser}>{item.Quantity_pcs__c}</td>
+                                <td data-label={labels.site_th_Quantity}> {item.Quantity}</td>
+                                <td data-label={labels.site_th_Stage}> {item.Stage__c}</td>
+                                <td data-label={labels.site_th_Quantity} if:true={isKLWUser}>{item.ProducedQuantity_pcs__c}</td>
+                                <td data-label={labels.site_th_ProducedQuantity}> {item.ProducedQuantity__c}</td>
+                                <td data-label={labels.site_th_Quantity} if:true={isKLWUser}>{item.DispatchedQuantity_pcs__c}</td>
+                                <td data-label={labels.site_th_DispatchedQuantity}> {item.DispatchedQuantity__c}</td>
+                                <td data-label={labels.site_th_Quantity} if:true={isKLWUser}>{item.ShippedQuantity_pcs__c}</td>
+                                <td data-label={labels.site_th_ShippedQuantity}> {item.ShippedQuantity__c}</td>
+                                <td data-label={labels.site_th_UnitPrice}> {item.unitPrice} {order.CurrencyIsoCode}</td>
+                            </tr>
+                        </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div data-id="tab-defaultItem-2" class="slds-tabs_default__content slds-hide" role="tabpanel"
+                 aria-labelledby="tab-defaultItem-2">
+
+                <div class="slds-grid slds-wrap" if:true={order}>
+                    <div class="slds-col slds-size_3-of-12 slds-p-around_large">
+                        <p class="header-detail">{labels.site_orderDetail_Order}</p>
+                    </div>
+                    <div class="slds-col slds-small-size_9-of-12 slds-size_12-of-12 slds-p-around_x-small">
+                        <div
+                            class="slds-grid slds-wrap slds-grid_vertical-align-center slds-m-top_medium slds-m-bottom_medium">
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_OrderNumber}</p>
+                                <p class="description-detail border-bottom-gray"><b>{order.AdditionalNumber__c}</b></p>
+                            </div>
+
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_TypeOfProducts}</p>
+                                <p class="description-detail border-bottom-gray"><b>{typeProducts}</b></p>
+                            </div>
+
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_Account}</p>
+                                <p class="description-detail border-bottom-gray"><b>{order.Account.Name}</b></p>
+                            </div>
+
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_PONumber}</p>
+                                <p class="description-detail border-bottom-gray"><b>{POnumber}</b></p>
+                            </div>
+
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_Country}</p>
+                                <p class="description-detail border-bottom-gray"><b>{order.Country__r.Name}</b></p>
+                            </div>
+
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_PhoneNumber}</p>
+                                <p class="description-detail border-bottom-gray"><b>{ownerPhone}</b></p>
+                            </div>
+
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_ITENumber}</p>
+                                <p class="description-detail border-bottom-gray"><b>{order.ITENumber__c}</b></p>
+                            </div>
+
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_Stage}</p>
+                                <p class="description-detail border-bottom-gray"><b>{order.Status}</b></p>
+                            </div>
+
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_OrderOwner}</p>
+                                <p class="description-detail border-bottom-gray"><b>{ownerFullName}</b></p>
+                            </div>
+
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_Date1}</p>
+                                <p class="description-detail border-bottom-gray"><b>{activatedData}</b></p>
+                            </div>
+
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_Date2}</p>
+                                <p class="description-detail border-bottom-gray"><b>{order.EffectiveDate}</b></p>
+                            </div>
+
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_Date3}</p>
+                                <p class="description-detail border-bottom-gray"><b>{orderEndDate}</b></p>
+                            </div>
+                            <!--
+                            <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                    <div class="slds-grid">
+                                     <span class="slds-text-heading_medium slds-m-right_small">Другий вибір</span>
+                                      <input type="checkbox" id="switch" disabled checked={secondChoice}/><label for="switch">Toggle</label>
+                                    </div>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-grid slds-wrap" if:true={order}>
+                    <div class="slds-col slds-size_3-of-12 slds-p-around_large">
+                        <p class="header-detail">{labels.site_orderDetail_ExecutionStatus}</p>
+                    </div>
+                    <div class="slds-col slds-small-size_9-of-12 slds-size_12-of-12 slds-p-around_x-small">
+                        <div
+                            class="slds-grid slds-wrap slds-grid_vertical-align-center slds-m-top_medium slds-m-bottom_medium">
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_Produced}
+                                    {labels.site_orderDetail_t}</p>
+                                <p class="description-detail border-bottom-gray"><b>{order.ProducedQuantity__c}</b></p>
+                            </div>
+
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_Dispatched}
+                                    {labels.site_orderDetail_t}</p>
+                                <p class="description-detail border-bottom-gray"><b>{order.DispatchedQuantity__c}</b>
+                                </p>
+                            </div>
+
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_Shipped}
+                                    {labels.site_orderDetail_t}</p>
+                                <p class="description-detail border-bottom-gray"><b>{order.ShippedQuantity__c}</b></p>
+                            </div>
+
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_Produced} (%)</p>
+                                <p class="description-detail border-bottom-gray"><b>{order.ProducedPercentage__c}</b>
+                                </p>
+                            </div>
+
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_Dispatched} (%)</p>
+                                <p class="description-detail border-bottom-gray"><b>{order.DispatchedPercentage__c}</b>
+                                </p>
+                            </div>
+
+                            <div class="slds-col slds-size_4-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_Shipped} (%)</p>
+                                <p class="description-detail border-bottom-gray"><b>{order.ShippedPercentage__c}</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-grid slds-wrap" if:true={order}>
+                    <div class="slds-col slds-size_3-of-12 slds-p-around_large">
+                        <p class="header-detail">{labels.site_orderDetail_Quantity}</p>
+                    </div>
+                    <div class="slds-col slds-small-size_9-of-12 slds-size_12-of-12 slds-p-around_x-small">
+                        <div
+                            class="slds-grid slds-wrap slds-grid_vertical-align-center slds-m-top_medium slds-m-bottom_medium">
+                            <div class="slds-col slds-size_6-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_Quantity}
+                                    {labels.site_orderDetail_t}</p>
+                                <p class="description-detail border-bottom-gray"><b>{order.TotalOrderQuantity__c}</b>
+                                </p>
+                            </div>
+
+                            <div class="slds-col slds-size_6-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_Currency}</p>
+                                <p class="description-detail border-bottom-gray"><b>{order.CurrencyIsoCode}</b></p>
+                            </div>
+
+                            <div class="slds-col slds-size_6-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_Amount}</p>
+                                <p class="description-detail border-bottom-gray"><b>{order.TotalAmount}</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-grid slds-wrap" if:true={order}>
+                    <div class="slds-col slds-size_3-of-12 slds-p-around_large">
+                        <p class="header-detail">{labels.site_orderDetail_Address}</p>
+                    </div>
+                    <div class="slds-col slds-small-size_9-of-12 slds-size_12-of-12 slds-p-around_x-small">
+                        <div
+                            class="slds-grid slds-wrap slds-grid_vertical-align-center slds-m-top_medium slds-m-bottom_medium">
+                            <div class="slds-col slds-size_6-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_BillingAddress}</p>
+                                <p class="description-detail border-bottom-gray"><b>{billingAddress}</b></p>
+                            </div>
+
+                            <div class="slds-col slds-size_6-of-12 slds-p-around_x-small slds-m-bottom_large">
+                                <p class="label-detail">{labels.site_orderDetail_ShippingAddress}</p>
+                                <p class="description-detail border-bottom-gray"><b>{shippingAddress}</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                <div class="slds-grid slds-wrap slds-grid_vertical-align-center slds-m-top_medium slds-m-bottom_medium">
+                    <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small">
+                        <p class="slds-text-heading_small">Номер замовлення</p>
+                        <p class="slds-text-heading_medium"><b>#6700978</b></p>
+                    </div>
+
+                    <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small">
+                        <p class="slds-text-heading_small">Номер замовлення</p>
+                        <p class="slds-text-heading_medium"><b>#6700978</b></p>
+                    </div>
+
+                    <div  class="slds-col slds-size_4-of-12 slds-p-around_x-small">
+                        <p class="slds-text-heading_small">Номер замовлення</p>
+                        <p class="slds-text-heading_medium"><b>#6700978</b></p>
+                    </div>
+                </div>
+                -->
+
+            </div>
+            <div data-id="tab-defaultItem-3" class="slds-tabs_default__content slds-hide" role="tabpanel"
+                 aria-labelledby="tab-defaultItem-3__item">Item Three Content
+            </div>
+        </div>
+    </div>
+</template>

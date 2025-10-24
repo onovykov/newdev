@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Type --></label>
+    <name>Type__c</name>
+    <picklistValues>
+        <masterLabel>Budget</masterLabel>
+        <translation><!-- Budget --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Corrected Budget</masterLabel>
+        <translation><!-- Corrected Budget --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fact</masterLabel>
+        <translation><!-- Fact --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Initial Budget</masterLabel>
+        <translation><!-- Initial Budget --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Open Orders</masterLabel>
+        <translation><!-- Open Orders --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Open Orders &amp; Opps</masterLabel>
+        <translation><!-- Open Orders &amp; Opps --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Plan</masterLabel>
+        <translation><!-- Plan --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

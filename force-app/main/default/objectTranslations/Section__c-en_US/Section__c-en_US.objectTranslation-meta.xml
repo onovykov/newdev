@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Section</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Sections</value>
+    </caseValues>
+    <layouts>
+        <layout>Section Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Hiding Conditions --></label>
+            <section>Hiding Conditions</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Value must be specified --></errorMessage>
+        <name>Value_must_be_specified_in_hiding_cond</name>
+    </validationRules>
+</CustomObjectTranslation>

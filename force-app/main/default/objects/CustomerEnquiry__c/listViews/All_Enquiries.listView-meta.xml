@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Enquiries</fullName>
+    <columns>NAME</columns>
+    <columns>AccountId__c</columns>
+    <columns>SalesRepId__c</columns>
+    <columns>TotalPrice__c</columns>
+    <columns>Status__c</columns>
+    <columns>OpportunityId__c</columns>
+    <columns>OrderId__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Enquiries</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

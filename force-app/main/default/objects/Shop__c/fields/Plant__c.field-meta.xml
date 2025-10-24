@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Plant__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>Production plant where the shop is located.</description>
+    <inlineHelpText>Production plant where the shop is located.</inlineHelpText>
+    <label>Plant</label>
+    <referenceTo>Plant__c</referenceTo>
+    <relationshipLabel>Shops</relationshipLabel>
+    <relationshipName>Shops</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

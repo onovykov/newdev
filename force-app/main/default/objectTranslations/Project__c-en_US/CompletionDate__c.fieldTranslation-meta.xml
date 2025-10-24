@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- When it is expected to complete the project --></help>
+    <label><!-- Completion Date --></label>
+    <name>CompletionDate__c</name>
+</CustomFieldTranslation>

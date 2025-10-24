@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EPCId__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Engineering, procurement, construction and commissioning company</description>
+    <inlineHelpText>Engineering, procurement, construction and commissioning company</inlineHelpText>
+    <label>EPC</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Projects (EPC)</relationshipLabel>
+    <relationshipName>Projects1</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Additional_Terms_Ukr__c</fullName>
+    <defaultValue>&quot;- Пропозиція стосується загальної кількості замовлення. Якщо замовлена часткова кількість, ми залишаємо за собою право прийняти або відхилити замовлення.&quot; + 
+&quot;&lt;br/&gt;- Час виробництва та доставки вказано з урахуванням поточної резервної позиції; Графік доставки взаємно обговорюються та узгоджується під час підписання контракту.&quot; + 
+&quot;&lt;br/&gt;- Будь-які зміни до умов повинні бути попередньо схвалені.&quot;</defaultValue>
+    <description>General Additional terms in Ukrainian</description>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Additional Terms (Ukr)</label>
+    <length>32768</length>
+    <type>LongTextArea</type>
+    <visibleLines>5</visibleLines>
+</CustomField>

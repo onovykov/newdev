@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Account Sharing (Custom)</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Accounts Sharings (Custom)</value>
+    </caseValues>
+    <layouts>
+        <layout>Account Sharing (Users)</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- User or Group can not be updated --></errorMessage>
+        <name>User_and_Group_can_not_be_updated</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can fill in either a user or a group --></errorMessage>
+        <name>User_or_Group_can_be_populated</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- User or Group must be populated --></errorMessage>
+        <name>User_or_Group_must_be_populated</name>
+    </validationRules>
+</CustomObjectTranslation>

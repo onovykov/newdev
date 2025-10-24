@@ -1,0 +1,353 @@
+.container{
+    max-width: 1736px;
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
+/* Таби */
+
+.slds-is-active>a{
+    text-decoration: none;
+    background: white;
+    border-radius: 4px;
+    margin-top: 2px;
+    margin-bottom: -2px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    
+}
+
+.li-wrapper{
+    background: #E2E2E2;
+}
+
+.li-wrapper:first-child{
+    border-top-left-radius: 20px;
+}
+.li-wrapper:last-child{
+    border-top-right-radius: 20px;
+}
+
+li>a{
+    padding: 0 15px;
+     
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 34px;
+}
+
+li{
+    background: #E2E2E2;
+    padding: 0 3px;
+    transition: all 0.4s ;
+}
+
+li:hover{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background:rgb(206, 206, 206);
+}
+.amount{
+    
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 12px;
+
+    width: 32px;
+    height: 32px;
+    pointer-events: none;
+    background: #B5B5B5;
+    color: #EFEFEF;;
+    border-radius: 37px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    margin-left: 10px;
+}
+.slds-is-active>a>.amount{
+    pointer-events: none;
+    background: #FFDD00;
+    color: black;
+}
+.slds-tabs_default__nav{
+--slds-c-tabs-item-color-border-hover:none;
+--slds-c-tabs-item-color-border-active:none;
+border: none;
+}
+.datatable-tabs::after{
+    content: '';
+    background-color: #EFEFEF;
+    height: 2px;
+    display:  block;
+}
+
+.slds-tabs_default__item:first-child{
+ border-top-left-radius: 20px;
+}
+
+.slds-tabs_default__item:last-child{
+    border-top-right-radius: 20px;
+}
+
+
+
+
+/* Меню над таблицею */
+
+.datatable-menu{
+    height: 58px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.print-btn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 28px;
+    gap: 12px;
+    width: 256px;
+    height: 58px;
+    margin-top: 20px;
+    background: #FFDD00;
+    border-radius: 18px;
+}
+
+.delivery-status-btn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 28px;
+    gap: 12px;
+    height: 36px;
+    background: #FFDD00;
+    border-radius: 18px;
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.delivery-status-btn:hover{
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.print-btn:hover{
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.print-text{
+     
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 22px;
+}
+.calendar{
+    height: 58px;
+    width: 707px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+.calendar-choose-date{
+     
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+}
+.calendar-from{
+     
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    }
+.calendar-to{
+     
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    }
+.calendar-start-date{
+    width: 128px;
+}
+.calendar-end-date{
+    width: 128px;
+}
+.searchbox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.slds-form-element{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-input{
+    max-width: 450px;
+    height: 58px;
+    margin-right: 12px;
+}
+.refresh-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    background: #FFFFFF;
+    border: 1px solid #B5B5B5;
+    border-radius: 9px;
+}
+
+.refresh-btn:hover{
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.refresh-btn-img{
+    width: 16.27px;
+    height: 16.27px;
+}
+
+
+
+/* Таблиця */
+.datatable{
+    margin-top: 5px;
+    height: auto;
+    overflow-y: auto;
+}
+
+
+.datatable-header{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+    background: #FFDD00;
+    /* box-shadow: inset 0 2px 0 #939393, inset 0 -2px 0 #939393; */
+}
+th {
+    min-width: 15vh;
+    height: 52px;
+    text-align: center;
+    padding: 0px 15px 0px 15px; 
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: black;
+}
+/* .csa{
+    box-sizing: border-box;
+
+width: 1920px;
+height: 0px;
+left: 0px;
+top: 52px;
+
+border: 2px solid #E2E2E2;
+} */
+
+
+
+tr:hover{
+    border: 1px solid #FFDD00 ;
+    border-right: none;
+}
+tr:first-child:hover{
+    border: none;
+}
+td{
+    height: 52px;
+    text-align: center;
+    padding: 0px 15px 0px 15px; 
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    box-shadow: 0px 2px 0px 0px #EFEFEF inset;
+-webkit-box-shadow: 0px 2px 0px 0px #EFEFEF inset;
+-moz-box-shadow: 0px 2px 0px 0px #EFEFEF inset;
+
+}
+
+tr:nth-child(even){
+    background-color: #EFEFEF;
+}
+
+.sort-icon{
+    margin-left: 13px;
+}
+.sort-icon-rotate{
+    transform : rotate(180deg);
+}
+.sort-icon:hover{
+    cursor: pointer;
+
+}
+
+.order-number{
+     
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 22px;
+     
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+
+}
+.order-number:hover{
+    cursor: pointer;
+
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #FFDD00;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+.modal-header{
+    margin-bottom: -4px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+.modal-content {
+    border-bottom-left-radius: 20px !important;
+}

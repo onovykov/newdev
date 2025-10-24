@@ -1,0 +1,235 @@
+:host { display: block; font-family: Arial, sans-serif; }
+.access-panel { position: relative; margin: 0 auto; padding: 24px; }
+
+/* Spinner overlay */
+.spinner-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+}
+
+/* Header + actions */
+.header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+.title { font-size: 20px; font-weight: 600; margin: 0; }
+.actions { display: flex; align-items: center; gap: 12px; }
+
+/* Mini buttons */
+.mini-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    line-height: 1;
+    border: 1px solid #000;
+    border-radius: 8px;
+    background: #ffdd00;
+    cursor: pointer;
+}
+.mini-btn.secondary { background: #fff; }
+
+/* Search (як було) */
+.search { position: relative; }
+.search-input { width: 300px; padding: 8px 12px; border-radius: 8px; border: 1px solid #ddd; outline: none; transition: border-color .15s ease, box-shadow .15s ease; font-size: 14px; background: #fff; }
+.search-input:focus { border-color: #ffdd00; box-shadow: 0 0 0 3px rgba(255,221,0,0.25); }
+.search-dropdown { position: absolute; top: 38px; left: 0; right: 0; max-height: 260px; overflow-y: auto; background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); list-style: none; margin: 6px 0 0; padding: 6px; z-index: 10; }
+.search-item { padding: 8px 10px; border-radius: 8px; cursor: pointer; }
+.search-item:hover { background: #fffbe6; }
+.search-empty { padding: 8px 10px; color: #666; }
+
+/* Toggle mode button (як було) */
+.icon-button { width: 36px; height: 36px; padding: 4px; border-radius: 8px; background-color: #ffdd00; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .2s ease; }
+.icon-button:hover { opacity: .9; transform: scale(1.05); }
+.icon-button:active { background-color: #e6c800; transform: scale(.95); }
+.icon-button svg { width: 20px; height: 20px; fill: #000; }
+
+/* List (як було) */
+.list-container { border-radius: 12px; overflow: hidden; box-shadow: 0 0 8px rgba(0,0,0,0.05); border: 1px solid #ddd; background-color: #fff; }
+.row { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #e0e0e0; }
+.row:nth-child(odd) { background-color: #fafafa; }
+.row:last-child { border-bottom: none; }
+.name { font-size: 14px; line-height: 20px; max-width: 70%; word-break: break-word; }
+
+.empty { padding: 20px; text-align: center; color: #666; }
+
+@media (max-width: 768px) {
+    .header { flex-direction: column; align-items: stretch; gap: 12px; }
+    .actions { justify-content: space-between; }
+    .search-input { width: 100%; }
+}
+.title-block { display: flex; flex-direction: column; gap: 4px; }
+.subtitle {
+    margin: 0;
+    font-size: 12px;
+    line-height: 16px;
+    color: #555;
+    max-width: 820px;
+}
+
+.tab-header {
+    margin-bottom: 1rem;
+    padding: 1rem 1.5rem;
+    background: #fffbea; /* м’який жовтий відтінок */
+    border-left: 5px solid #ffc200; /* бренд-жовтий */
+    border-radius: 8px;
+}
+
+.tab-title {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #222;
+}
+
+.tab-subtitle {
+    margin: 0.5rem 0 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #444;
+}
+
+/* бейджики */
+.descr-badge {
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.descr-badge.proposed {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.descr-badge.approved {
+    background: #d9fbe5;
+    color: #166534;
+}
+
+.descr-badge.factual {
+    background: #dceeff;
+    color: #1e3a8a;
+}
+
+.descr-badge.remain {
+    background: #fff3c4;
+    color: #92400e;
+}
+
+/* ===== ФІЛЬТРИ В ХЕДЕРІ (пошук + чекбокси) ===== */
+.actions { flex-wrap: wrap; gap: 12px; }
+
+.filters {
+    display: flex;
+    gap: 12px;
+    padding: 6px 8px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background: #fafafa;
+}
+
+.search-input.small {
+    width: 280px;
+    padding: 6px 10px;
+    font-size: 13px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: #fff;
+}
+
+.checks {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checks lightning-input {
+    /* робимо компактніше без втручання у внутрішній Shadow DOM */
+    margin: 0;
+}
+
+/* на маленьких екранах фільтри в стовпчик */
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    .search-input.small { width: 100%; }
+}
+
+/* ===== СЕКЦІЙНІ ЗАГОЛОВКИ У СПИСКУ (Активовані / Неактивні) ===== */
+.group-header {
+    position: sticky;
+    top: 0;                       /* «прилипає» зверху контейнера */
+    z-index: 1;
+    padding: 8px 12px;
+    background: #fffbea;          /* м’який жовтий під бренд */
+    border-bottom: 1px solid #f2eac2;
+    border-left: 4px solid #ffc200;
+    font-weight: 700;
+    font-size: 13px;
+    color: #333;
+}
+
+.list-container .group-header + .row {
+    border-top: none;             /* прибираємо подвійний бордер після хедера */
+}
+
+/* легке відділення груп одна від одної */
+.group-header:not(:first-child) {
+    margin-top: -1px;
+}
+
+/* ===== РЯДОК СПИСКУ ===== */
+.row {
+    transition: background-color .12s ease;
+}
+.row:hover {
+    background-color: #fffdf3;
+}
+
+.row .name {
+    font-size: 14px;
+    line-height: 20px;
+    max-width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* вирівнювання тумблерів */
+.row lightning-input {
+    min-width: 70px;   /* щоб тумблер не «стрибав» */
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ===== ДРОПДАУН ПОШУКУ (верхній) — піднятий над усім ===== */
+.search { position: relative; }
+.search-dropdown { z-index: 50; }
+
+/* ===== СПІННЕР-ПЕРЕКРИТТЯ (видиміше на строкатому тлі) ===== */
+.spinner-backdrop {
+    backdrop-filter: blur(1px);
+}
+
+/* ===== КНОПКИ МАСОВИХ ДІЙ (дрібні акценти) ===== */
+.mini-btn {
+    border-color: #f0d200;
+    background: #ffdd00;
+}
+.mini-btn:hover { filter: brightness(0.98); }
+.mini-btn:active { transform: translateY(1px); }
+.mini-btn.secondary {
+    background: #fff;
+    border-color: #ddd;
+}
+
+/* ===== ДРІБНІ ПРАВКИ АДАПТИВУ ===== */
+@media (max-width: 768px) {
+    .actions { gap: 10px; }
+    .icon-button { order: 3; }   /* щоб іконка перемикача режиму не з’їдала місце */
+}

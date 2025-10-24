@@ -1,0 +1,29 @@
+<template>
+    <div class="container">
+        <h1 class="header">{labels.header}</h1>
+        <div class="main">
+            
+            <div class="video-section">
+                <div if:true={isLoading} class="slds-spinner_container">
+                    <div class="slds-spinner slds-spinner--medium slds-spinner_brand" role="status">
+                        <span class="slds-assistive-text">Loading</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>                
+                <img class="primary-video" src={selectedCameraUrl} alt="Primary Camera Feed" style="width: 100%; height: auto;">
+                <div class="video-title">{selectedCameraName}</div>
+            </div>
+            <div class="camera-list">
+                <template for:each={cameraList} for:item="camera">
+                    <div key={camera.id} class="camera-item" onclick={handleCameraSelection} data-id={camera.id}>
+                        <img src={camera.thumbnail} alt="Camera Thumbnail" />
+                        <div class="description">
+                            <p>{camera.name}</p>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

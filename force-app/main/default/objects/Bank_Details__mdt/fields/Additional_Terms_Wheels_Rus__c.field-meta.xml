@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Additional_Terms_Wheels_Rus__c</fullName>
+    <defaultValue>&quot;- Гарантийные обязательства согласно требованиям стандарта выше (напр.5 лет). Все вопросы касательно гарантийных обязательств должны быть указаны в заказе / или подтверждении заказа.&quot; +
+&quot;&lt;br/&gt;- Предложение действует на чертежи, спецификации и количество продукции указанные выше. Если вносятся изменения в запрос, изменения должны быть указаны в предложении.&quot; +
+&quot;&lt;br/&gt;- Техническая спецификация и чертежи должны быть подписаны Клиентом перед началом производства.&quot;</defaultValue>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Additional Terms Wheels (Rus)</label>
+    <length>32768</length>
+    <type>LongTextArea</type>
+    <visibleLines>7</visibleLines>
+</CustomField>

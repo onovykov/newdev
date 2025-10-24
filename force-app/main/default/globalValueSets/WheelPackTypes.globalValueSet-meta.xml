@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>1</fullName>
+        <default>false</default>
+        <label>Однородные пакеты</label>
+    </customValue>
+    <customValue>
+        <fullName>2</fullName>
+        <default>false</default>
+        <label>Без упаковки</label>
+    </customValue>
+    <customValue>
+        <fullName>3</fullName>
+        <default>false</default>
+        <label>Деревянные полуящики</label>
+    </customValue>
+    <customValue>
+        <fullName>4</fullName>
+        <default>false</default>
+        <label>Деревянные паллеты</label>
+    </customValue>
+    <customValue>
+        <fullName>5</fullName>
+        <default>false</default>
+        <label>Металлические кассеты или деревянные паллеты</label>
+    </customValue>
+    <customValue>
+        <fullName>A</fullName>
+        <default>false</default>
+        <label>Проволочные кассеты</label>
+    </customValue>
+    <customValue>
+        <fullName>G</fullName>
+        <default>false</default>
+        <label>Навал</label>
+    </customValue>
+    <customValue>
+        <fullName>H</fullName>
+        <default>false</default>
+        <label>Деревянные ящики + бумага</label>
+    </customValue>
+    <customValue>
+        <fullName>I</fullName>
+        <default>false</default>
+        <label>Деревянные ящики</label>
+    </customValue>
+    <customValue>
+        <fullName>Q</fullName>
+        <default>false</default>
+        <label>Металлические кассеты</label>
+    </customValue>
+    <customValue>
+        <fullName>R</fullName>
+        <default>false</default>
+        <label>Металлические кассеты (24 колеса)</label>
+    </customValue>
+    <customValue>
+        <fullName>S</fullName>
+        <default>false</default>
+        <label>Специальная</label>
+    </customValue>
+    <customValue>
+        <fullName>U</fullName>
+        <default>false</default>
+        <label>Комплектация колёс пробками</label>
+    </customValue>
+    <masterLabel>Wheel Pack Types</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

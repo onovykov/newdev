@@ -1,0 +1,33 @@
+<template>
+    <div class="container">
+        <h1>{news}</h1>
+        <div class="news">
+            <div class="leftSection">
+                <p class="createdDate">{mainDate}</p>
+                <h2>
+                    {finalmainHeader}
+                </h2>
+                <p class ="newsDescription">{finalmainDescription}</p>
+                <a href={finalmainLink} target="_blank" class="more">{more}</a>
+                <lightning-formatted-rich-text value={img1URL}></lightning-formatted-rich-text>
+            </div>
+            <div class="rightSection">
+                <div class="newsItem">
+                    <p class="createdDate">{Item1Date}</p>
+                    <h2>{finalItem1Header}</h2>
+                    <a href={finalItem1Link} target="_blank" class="more">{read}</a>
+                </div>
+                <div class="newsItem">
+                    <p class="createdDate">{Item2Date}</p>
+                    <h2>{finalItem2Header}</h2>
+                    <a href={finalItem2Link} target="_blank" class="more">{read}</a>
+                </div>
+                <div class="newsItem">
+                    <p class="createdDate">{Item3Date}</p>
+                    <h2>{finalItem3Header}</h2>
+                    <a href={finalItem3Link} target="_blank" class="more">{read}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>GeneralProductStandard__c</columns>
+    <columns>CalculationGroup__c</columns>
+    <columns>TubeOD__c</columns>
+    <columns>TubeWT__c</columns>
+    <columns>TubeEndsType__c</columns>
+    <columns>Weight_kpm__c</columns>
+    <columns>Weight_ppf__c</columns>
+    <columns>KeyField__c</columns>
+    <columns>OBJECT_ID</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Value_must_be_specified_in_hiding_cond</fullName>
+    <active>true</active>
+    <errorConditionFormula>Controlling_Question__c &lt;&gt; null &amp;&amp; 
+Value__c == null</errorConditionFormula>
+    <errorDisplayField>Value__c</errorDisplayField>
+    <errorMessage>Value must be specified</errorMessage>
+</ValidationRule>

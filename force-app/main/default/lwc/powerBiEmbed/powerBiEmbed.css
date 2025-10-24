@@ -1,0 +1,70 @@
+:host {
+    display: block;
+    /*height: 100%;*/
+    background-color: #ffffff; /* Білий фон для всього компонента */
+    border-radius: 6px;
+    height: 80vh;
+}
+
+.container {
+    height: 71.5vh; /* Займає всю висоту в'юпорту */
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff; /* Білий фон для області з iframe */
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+.powerbi-frame {
+    flex-grow: 1;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff; /* Явно задати білий фон */
+}
+
+
+.error-box {
+    display: flex;
+    align-items: flex-start;
+    border-left: 6px solid;
+    border-radius: 6px;
+    padding: 1rem;
+    font-size: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.error-box .icon {
+    font-size: 1.8rem;
+    margin-right: 12px;
+    line-height: 1.2;
+}
+
+.message p {
+    margin: 0;
+    padding-bottom: 4px;
+}
+
+code {
+    background-color: #f0f0f0;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 90%;
+    color: #333;
+}
+
+/* 🟥 Для помилки */
+.error-box.error {
+    background-color: #fdecea;
+    border-color: #e03131;
+    color: #842029;
+}
+
+/* 🟨 Для попередження */
+.error-box.warning {
+    background-color: #fff3cd;
+    border-color: #ffcc00;
+    color: #664d03;
+}

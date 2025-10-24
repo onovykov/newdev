@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Africa</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Share records info related to Africa region (excluding Egypt and Sales Managers from MENA)</description>
+        <label>Africa</label>
+        <sharedTo>
+            <role>Sales_Manager_EU_Africa</role>
+        </sharedTo>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
+        <criteriaItems>
+            <field>Region__c</field>
+            <operation>equals</operation>
+            <value>Africa</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ShippingCountry</field>
+            <operation>notEqual</operation>
+            <value>a010Y00000hPQGfQAO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>notEqual</operation>
+            <value>0050Y000003T798QAC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>notEqual</operation>
+            <value>0050Y000003T78tQAC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>notEqual</operation>
+            <value>0051n000005mO3aAAE</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>notEqual</operation>
+            <value>0050Y000000nfxCQAQ</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>BillingCountry</field>
+            <operation>notEqual</operation>
+            <value>a010Y00000hPQGfQAO</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Egypt_Iraq</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Egypt, Iraq</label>
+        <sharedTo>
+            <role>SeniorSM_MENA</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>equals</operation>
+            <value>0050Y000003T798QAC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MarketSegment__c</field>
+            <operation>equals</operation>
+            <value>MENA</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Egypt_Order_Sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Egypt Order Sharing</label>
+        <sharedTo>
+            <group>Egypt</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Region__c</field>
+            <operation>equals</operation>
+            <value>Africa</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MarketSegment__c</field>
+            <operation>equals</operation>
+            <value>MENA</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Europe_Africa</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Sharing Rule for Senior Sales Manager EU&amp;Africa to view orders related to these regions</description>
+        <label>Europe&amp;Africa</label>
+        <sharedTo>
+            <role>Senior_Sales_Manager_Europe_Africa</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>EndDate</field>
+            <operation>equals</operation>
+            <value>1/1/2021</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Region__c</field>
+            <operation>equals</operation>
+            <value>Africa,Europe</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ShippingCountry</field>
+            <operation>notEqual</operation>
+            <value>Egypt</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Europe_OCTG</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Europe OCTG</label>
+        <sharedTo>
+            <role>SeniorSM_MENA</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>OwnerId__c</field>
+            <operation>equals</operation>
+            <value>0051n000005mO52AAE</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MarketSegment__c</field>
+            <operation>equals</operation>
+            <value>MENA</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Europe_Wld_UA</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Europe Wld UA</label>
+        <sharedTo>
+            <role>Senior_Sales_Manager_Ukraine</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>OwnerId__c</field>
+            <operation>equals</operation>
+            <value>0051n000005mO52AAE</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MarketSegment__c</field>
+            <operation>equals</operation>
+            <value>Ukraine</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Orders_to_Back_Office_Americas</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>All back office personnel should have &apos;read&apos; access to all opportunities and orders of their sales department segment.</description>
+        <label>Orders to Back Office (Americas)</label>
+        <sharedTo>
+            <roleAndSubordinates>BOManager_MENA</roleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>MarketSegment__c</field>
+            <operation>equals</operation>
+            <value>Americas</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CrossMarketSegment__c</field>
+            <operation>equals</operation>
+            <value>Americas</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Orders_to_Back_Office_MENA</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>All back office personnel should have &apos;read&apos; access to all opportunities and orders of their sales department segment.</description>
+        <label>Orders to Back Office (MENA)</label>
+        <sharedTo>
+            <roleAndSubordinates>BOManager_MENA</roleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>MarketSegment__c</field>
+            <operation>equals</operation>
+            <value>MENA</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CrossMarketSegment__c</field>
+            <operation>equals</operation>
+            <value>MENA</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Orders_to_Back_Office_Ukraine</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>All back office personnel should have &apos;read&apos; access to all opportunities and orders of their sales department segment.</description>
+        <label>Orders to Back Office (Ukraine)</label>
+        <sharedTo>
+            <roleAndSubordinates>BOManager_Ukraine</roleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>MarketSegment__c</field>
+            <operation>equals</operation>
+            <value>Ukraine</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CrossMarketSegment__c</field>
+            <operation>equals</operation>
+            <value>Ukraine</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Orders_to_Senior_SM_Americas_Segment</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Senior Sales Manager should have &apos;read&apos; access to all opportunities and orders of his market segment.</description>
+        <label>Orders to Senior SM (Americas Segment)</label>
+        <sharedTo>
+            <role>SeniorSM_Americas</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>MarketSegment__c</field>
+            <operation>equals</operation>
+            <value>Americas</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CrossMarketSegment__c</field>
+            <operation>equals</operation>
+            <value>Americas</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Orders_to_Senior_SM_MENA_Segment</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Senior Sales Manager should have &apos;read&apos; access to all opportunities and orders of his market segment.</description>
+        <label>Orders to Senior SM (MENA Segment)</label>
+        <sharedTo>
+            <role>SeniorSM_MENA</role>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>MarketSegment__c</field>
+            <operation>equals</operation>
+            <value>MENA</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CrossMarketSegment__c</field>
+            <operation>equals</operation>
+            <value>MENA</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Share_Orders_with_Help_Desk</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share Orders with Help Desk</label>
+        <sharedTo>
+            <role>Help_Desk_Spec</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>OrderNumber</field>
+            <operation>notEqual</operation>
+            <value></value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>Cross_Segment_Senior_Sales_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Senior Sales Manager UA can view all records of other Sales Manager (UA Segment)</description>
+        <label>Cross Segment Senior Sales Manager</label>
+        <sharedTo>
+            <role>Senior_Sales_Manager_Ukraine</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>SalesManager_Ukraine</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Israel_Order</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Share of Israel orders in MENA segment with Back Office Ukraine</description>
+        <label>Israel (Order)</label>
+        <sharedTo>
+            <roleAndSubordinates>BODirector</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <group>Israel</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Orders_to_Back_Office_Director</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Back Office Director should have &apos;read&apos; access to all opportunities and orders across entire organization.</description>
+        <label>Orders to Back Office Director</label>
+        <sharedTo>
+            <role>BODirector</role>
+        </sharedTo>
+        <sharedFrom>
+            <allInternalUsers></allInternalUsers>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Orders_to_CFO</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>CFO should have &apos;read&apos; access to all opportunities and orders across entire organization.</description>
+        <label>Orders to CFO</label>
+        <sharedTo>
+            <role>CFO</role>
+        </sharedTo>
+        <sharedFrom>
+            <allInternalUsers></allInternalUsers>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Orders_to_Marketing_Dept</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Marketing dept personnel should have &apos;read&apos; access to all orders across entire organization.</description>
+        <label>Orders to Marketing Dept</label>
+        <sharedTo>
+            <roleAndSubordinates>CMO</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <allInternalUsers></allInternalUsers>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Orders_to_PRM_Director</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Product and Resource Management Director should have &apos;read&apos; access to all opportunities and orders across entire organization.</description>
+        <label>Orders to PRM Director</label>
+        <sharedTo>
+            <role>PRM_Director</role>
+        </sharedTo>
+        <sharedFrom>
+            <allInternalUsers></allInternalUsers>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Orders_to_Senior_SM_Americas_Users</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Senior Sales Manager should have &apos;read&apos; access to all opportunities and orders owned by other Sales Managers of his department.</description>
+        <label>Orders to Senior SM (Americas Users)</label>
+        <sharedTo>
+            <role>SeniorSM_Americas</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>SalesManager_Americas</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Orders_to_Senior_SM_MENA_Users</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Senior Sales Manager should have &apos;read&apos; access to all opportunities and orders owned by other Sales Managers of his department.</description>
+        <label>Orders to Senior SM (MENA Users)</label>
+        <sharedTo>
+            <role>SeniorSM_MENA</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>SalesManager_MENA</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Sales_Manager_EU_Africa</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Sales Manager EU&amp;Africa</label>
+        <sharedTo>
+            <role>Senior_Sales_Manager_Europe_Africa</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Sales_Manager_EU_Africa</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

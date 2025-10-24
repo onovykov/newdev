@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>0001</fullName>
+        <default>false</default>
+        <label>Prepayment invoice date</label>
+    </customValue>
+    <customValue>
+        <fullName>0002</fullName>
+        <default>false</default>
+        <label>Invoice date</label>
+    </customValue>
+    <customValue>
+        <fullName>0003</fullName>
+        <default>false</default>
+        <label>Sending shipping documents</label>
+    </customValue>
+    <customValue>
+        <fullName>0004</fullName>
+        <default>false</default>
+        <label>Customs Declaration Date</label>
+    </customValue>
+    <customValue>
+        <fullName>0005</fullName>
+        <default>false</default>
+        <label>Order Confirmation Date</label>
+    </customValue>
+    <customValue>
+        <fullName>0006</fullName>
+        <default>false</default>
+        <label>Arrival</label>
+    </customValue>
+    <customValue>
+        <fullName>0007</fullName>
+        <default>false</default>
+        <label>Special date before</label>
+    </customValue>
+    <customValue>
+        <fullName>0008</fullName>
+        <default>false</default>
+        <label>Special date from</label>
+    </customValue>
+    <customValue>
+        <fullName>0009</fullName>
+        <default>false</default>
+        <label>Ready for shipment</label>
+    </customValue>
+    <customValue>
+        <fullName>0010</fullName>
+        <default>false</default>
+        <label>Actual date of shipment</label>
+    </customValue>
+    <customValue>
+        <fullName>0011</fullName>
+        <default>false</default>
+        <label>Date of the Work Completion Certificate</label>
+    </customValue>
+    <customValue>
+        <fullName>0012</fullName>
+        <default>false</default>
+        <label>Date of Specification/Appendix signing</label>
+    </customValue>
+    <customValue>
+        <fullName>0013</fullName>
+        <default>false</default>
+        <label>Delivery fact</label>
+    </customValue>
+    <customValue>
+        <fullName>0014</fullName>
+        <default>false</default>
+        <label>Shipping documents received</label>
+    </customValue>
+    <customValue>
+        <fullName>0015</fullName>
+        <default>false</default>
+        <label>Shipping document date</label>
+    </customValue>
+    <customValue>
+        <fullName>0016</fullName>
+        <default>false</default>
+        <label>Date of the Commissioning Certificate</label>
+    </customValue>
+    <customValue>
+        <fullName>0020</fullName>
+        <default>false</default>
+        <label>Date of goods arrival at the customs terminal</label>
+    </customValue>
+    <customValue>
+        <fullName>0021</fullName>
+        <default>false</default>
+        <label>Date of Customs Declaration of the sending country</label>
+    </customValue>
+    <customValue>
+        <fullName>0022</fullName>
+        <default>false</default>
+        <label>Actual date of shipment from transshipment</label>
+    </customValue>
+    <customValue>
+        <fullName>0024</fullName>
+        <default>false</default>
+        <label>Receipt of goods at the warehouse</label>
+    </customValue>
+    <customValue>
+        <fullName>0031</fullName>
+        <default>false</default>
+        <label>Date of stamp on the railway receipt</label>
+    </customValue>
+    <customValue>
+        <fullName>0032</fullName>
+        <default>false</default>
+        <label>Actual date contract signing</label>
+    </customValue>
+    <customValue>
+        <fullName>0033</fullName>
+        <default>false</default>
+        <label>Last date of the month of ownership transfer</label>
+    </customValue>
+    <customValue>
+        <fullName>0034</fullName>
+        <default>false</default>
+        <label>Date of the acceptance certificate</label>
+    </customValue>
+    <customValue>
+        <fullName>0035</fullName>
+        <default>false</default>
+        <label>CMR date</label>
+    </customValue>
+    <customValue>
+        <fullName>0037</fullName>
+        <default>false</default>
+        <label>B/L date</label>
+    </customValue>
+    <customValue>
+        <fullName>15</fullName>
+        <default>false</default>
+        <label>Work completion date</label>
+    </customValue>
+    <masterLabel>Payment Events</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

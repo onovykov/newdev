@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NameForDoc__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Order__r.Region__c,
+  &apos;13&apos;, OrderProduct__r.NameForDoc__r.NameUA__c,
+  &apos;19&apos;, OrderProduct__r.NameForDoc__r.NameRU__c,
+		&apos;20&apos;, OrderProduct__r.NameForDoc__r.NameRU__c,
+  OrderProduct__r.NameForDoc__r.NameEN__c
+) + &apos; &apos; +  SpecVersion__r.Type__r.Name</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Name for Docs</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

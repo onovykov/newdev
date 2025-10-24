@@ -1,0 +1,16 @@
+<aura:component controller="deleteLeadController" implements="force:lightningQuickActionWithoutHeader,force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId">
+	
+	<br></br>
+	<br></br>
+	<div class="slds-text-align_center">
+		<div class="slds-text-heading_medium">
+			Are you sure you want to add this email to ignored list and delete this lead?
+		</div>
+	</div>
+	<br></br>
+	<br></br>
+	<div class = "slds-align_absolute-center" style="margin-top: 10px;">
+        <lightning:button variant="brand" label="No" onclick="{!c.cancel}"/>
+        <lightning:button variant="brand" label="Yes" onclick="{!c.delete}"/>
+    </div>
+</aura:component>

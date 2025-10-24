@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Sewage</fullName>
+        <default>false</default>
+        <label>Sewage</label>
+    </customValue>
+    <customValue>
+        <fullName>Firefighting</fullName>
+        <default>false</default>
+        <label>Firefighting</label>
+    </customValue>
+    <customValue>
+        <fullName>Chilled Water</fullName>
+        <default>false</default>
+        <label>Chilled Water</label>
+    </customValue>
+    <customValue>
+        <fullName>Structural</fullName>
+        <default>false</default>
+        <label>Structural</label>
+    </customValue>
+    <masterLabel>Application</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

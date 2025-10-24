@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Sales budget ID in the ERP system. --></help>
+    <label><!-- ID in ERP --></label>
+    <name>ID_ERP__c</name>
+</CustomFieldTranslation>

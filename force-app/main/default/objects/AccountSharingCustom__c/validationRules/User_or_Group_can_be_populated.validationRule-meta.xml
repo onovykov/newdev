@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>User_or_Group_can_be_populated</fullName>
+    <active>true</active>
+    <errorConditionFormula>User__c &lt;&gt; NULL &amp;&amp; RegularGroup__c &lt;&gt; NULL</errorConditionFormula>
+    <errorMessage>You can fill in either a user or a group</errorMessage>
+</ValidationRule>

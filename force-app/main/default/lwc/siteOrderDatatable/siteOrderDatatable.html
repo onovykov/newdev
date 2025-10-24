@@ -1,0 +1,544 @@
+<template>
+    <!-- Modal/Popup starts here -->
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large mobile-header ">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header slds-modal__header_empty modal-header">
+                    <div class="slds-grid slds-wrap slds-grid_align-end modal-header">
+                        <div class="slds-col">
+                            <button class="slds-button slds-button_icon slds-button_icon-inverse slds-p-around_small" title="Close" onclick={closeModal}>
+                                <lightning-icon icon-name="action:remove"
+                                                alternative-text="close"
+                                                variant="inverse"
+                                                size="small" ></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                        </div>
+                    </div>
+                </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content modal-content" id="modal-content-id-1">
+                    <!-- <div class="slds-grid slds-wrap slds-grid_align-end">
+                        <div class="slds-col">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse slds-p-around_x-large" title="Close" onclick={closeModal}>
+                                <lightning-icon icon-name="action:remove"
+                                    alternative-text="close"
+                                    variant="inverse"
+                                    size="small" ></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                        </div>
+                        </div>-->
+                    <c-order-detail get-selected-order={selectedOrderid}></c-order-detail>
+                </div>
+                <lightning-spinner
+                        if:false={modalContainer}
+                        class="slds-is-absolute slds-align_absolute-center"
+                        alternative-text="Loading Details..."
+                        size="medium"
+                        variant="brand"
+                >
+                </lightning-spinner>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <div class="container">
+        <lightning-spinner
+                if:true={showGenPdfSpinner}
+                class="slds-is-absolute slds-align_absolute-center"
+                alternative-text="Loading Generated PDF..."
+                size="medium"
+                variant="brand"
+        >
+        </lightning-spinner>
+        <div>
+            <template if:true={isPortal}>
+            <div class="datatable-tabs not-stock-selected">
+                <ul class="slds-tabs_default__nav" role="tablist">
+                        <div class="li-wrapper">
+                            <li class="slds-tabs_default__item slds-is-active"  role="presentation" data-id="tab-default-3__item">
+                                <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="0" aria-selected="false" aria-controls="tab-default-3" data-id="tab-default-3__item">{allOrdersTxt}
+                                    <div class="amount">{amountAllOrders}</div>
+                                </a>
+                            </li>
+                        </div>
+                        <div class="li-wrapper">
+                            <li class="slds-tabs_default__item " role="presentation" data-id="tab-default-1__item">
+                                <a  onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="true" aria-controls="tab-default-1" data-id="tab-default-1__item">{active}
+                                    <div class="amount">{amountActiveOrders}</div>
+                                </a>
+                            </li>
+                        </div>
+                        <div class="li-wrapper">
+                            <li class="slds-tabs_default__item"  role="presentation"  data-id="tab-default-5__item" >
+                                <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-5" data-id="tab-default-5__item">{shipped}
+                                    <div class="amount">{amountShippedOrders}</div>
+                                </a>
+                            </li>
+                        </div>
+                        <div class="li-wrapper">
+                            <li class="slds-tabs_default__item" role="presentation" data-id="tab-default-2__item">
+                                <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" data-id="tab-default-2__item">{closed}
+                                    <div class="amount">{amountClosedOrders}</div>
+                                </a>
+                            </li>
+                        </div>
+                        <div class="li-wrapper">
+                            <li class="slds-tabs_default__item"  role="presentation"  data-id="tab-default-4__item" >
+                                <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-4" data-id="tab-default-4__item">{draft}
+                                    <div class="amount">{amountDraftOrders}</div>
+                                </a>
+                            </li>
+                        </div>
+                        <div if:true={isStockVisible} class="li-wrapper">
+                            <li class="slds-tabs_default__item"  role="presentation"  data-id="tab-default-6__item" >
+                                <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-6" data-id="tab-default-6__item">{Stock}
+                                </a>
+                            </li>
+                        </div>
+                    <div if:true={isProdPlanVisible} class="li-wrapper">
+                        <li class="slds-tabs_default__item"  role="presentation"  data-id="tab-default-7__item" >
+                            <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-7" data-id="tab-default-7__item">{productionPlan}
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+            </template>
+
+
+            <div class="datatable-tabs-mobile">
+                <div class="dropdown" tabindex="0">
+                    <button class="dropdown-toggle" lwc:ref="dropdownBtn" aria-expanded={dropdownOpen} onclick={toggleDropdown}>{selectedOption}
+                        <div class="arrow-down"></div>
+                    </button>
+                    <ul if:true={dropdownOpen} lwc:ref="dropdownList" class="dropdown-menu">
+                        <template for:each={optionsToDisplay} for:item="option">
+                            <li key={option.id} onclick={handleOptionClick} data-id={option.id}>
+                                <a onclick={handleOptionClick} data-id={option.id}>{option.label}
+                                    <!-- <div class="amount">{option.amount}</div> -->
+                                </a>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="datatable-menu not-stock-selected" if:false={isProductionPlan}>
+                <div if:false={isProductionPlan} class="blank-space" style="width: 256px;"><!-- onclick={generatePdf} -->
+                    <!-- <img src={printImg} alt="" class="print-icon">
+                    <p class="print-text">{print}</p> -->
+                </div>
+
+<!--                <div if:true={isProdPlanOnDesktop} class="calendar">-->
+<!--                    <p class="calendar-choose-date">{productionDates}: </p>-->
+<!--                    <p class="calendar-from">{startDateProd}</p>-->
+<!--                    <div class="calendar-start-date">-->
+<!--                        <lightning-input type="date" value={prodPlanStartDate} disabled="true"></lightning-input>-->
+<!--                    </div>-->
+<!--                    <p class="calendar-to">{endDateProd}</p>-->
+<!--                    <div class="calendar-end-date">-->
+<!--                        <lightning-input type="date" value={prodPlanEndDate} disabled="true"></lightning-input>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+                <div class="calendar" if:false={isProductionPlan}>
+                    <p class="calendar-choose-date">{chooseADate}: </p>
+                    <p class="calendar-from">{from}</p>
+                    <div class="calendar-start-date">
+                        <lightning-input type="date" value={startDate} onchange={setStartDate}></lightning-input>
+                    </div>
+                    <p class="calendar-to">{to}</p>
+                    <div class="calendar-end-date">
+                        <lightning-input type="date" value={endDate} onchange={setEndDate}></lightning-input>
+                    </div>
+                </div>
+                <p class="calendar-choose-date-mobile">{chooseADate}: </p>
+
+                <div class="searchbox">
+                    <lightning-input class="search-input" id="textfield1" type="search"  onchange={handleSearch}></lightning-input>
+                    <div class="refresh-btn" onclick={refreshSearch}>
+                        <img  class="refresh-btn-img" src={refresh}  alt="" >
+                    </div>
+                </div>
+            </div>
+
+<!--            <div if:true={isProdPlanNotOnDesktop} class="datatable-menu not-stock-selected">-->
+<!--                <div if:true={isProdPlanOnMobile} class="calendar">-->
+<!--                    <p class="calendar-to">{endDateProd}</p>-->
+<!--                    <div class="calendar-end-date">-->
+<!--                        <lightning-input type="date" value={prodPlanEndDate} disabled="true"></lightning-input>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="calendar">-->
+<!--                    <p class="calendar-choose-date">{productionDates}: </p>-->
+<!--                    <p class="calendar-from">{startDateProd}</p>-->
+<!--                    <div class="calendar-start-date">-->
+<!--                        <lightning-input type="date" value={prodPlanStartDate} disabled="true"></lightning-input>-->
+<!--                    </div>-->
+<!--                    <p if:false={isProdPlanOnMobile} class="calendar-to">{endDateProd}</p>-->
+<!--                    <div if:false={isProdPlanOnMobile} class="calendar-end-date">-->
+<!--                        <lightning-input type="date" value={prodPlanEndDate} disabled="true"></lightning-input>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <p if:true={isProductionPlan} class="calendar-choose-date-mobile">{productionDates}: </p>-->
+<!--            </div>-->
+
+            <div class="datatable not-stock-selected" if:false={isProductionPlan}>
+                <table>
+                    <thead>
+                    <tr class="datatable-header">
+                        <th if:true={isStockOrProdPlan} scope="col">
+                            <img class="extend-btn-img" src={plusIcon} style="cursor:pointer;"  alt="" onclick={openAllOrderItems} data-id="headerIconPlusMinus" data-state="extended">
+                            <input class="selectAllRows" type="checkbox" onchange={selectAllRowsForXSLX}>
+                        </th>
+                        <th if:false={isProductionPlan} scope="col" >{number}
+                            <img  class="sort-icon" data-id="numberSortIcon" onclick={filterByNumber}  src={sortIcon}  alt="" >
+                        </th>
+                        <th if:true={isProductionPlan} scope="col" >{OrderNumberforProdPlan}</th>
+                        <th if:false={isStockOrProdPlan} scope="col" >PO#</th>
+                        <th if:true={isAllDivisions} scope="col" >Prod. Type</th>
+                        <th if:false={isStockOrProdPlan} scope="col" >{deliveryStatus}</th>
+                        <th if:false={isStockOrProdPlan} scope="col" >{date}
+                            <img  class="sort-icon" data-id="dateSortIcon" onclick={filterByDate} src={sortIcon}  alt="" >
+                        </th>
+                        <th if:false={isStockOrProdPlan} scope="col" >{status}
+                            <img  class="sort-icon" data-id="stageSortIcon" onclick={filterByStage} src={sortIcon}  alt="" >
+                        </th>
+                        <th if:true={isKLWSegment} scope="col" >{quantity} {pcs}</th>
+
+                        <th scope="col" >{quantity}{tons}</th>
+                        <th if:true={isKLWSegment} scope="col" >{prodQuantity} {pcs}</th>
+
+                        <th if:false={isStockOrProdPlan} scope="col" >{prodQuantity}{tons}</th>
+                        <th if:true={isKLWSegment} scope="col" >{dispQuantity} {pcs}</th>
+                        <th if:false={isStockOrProdPlan} scope="col" >{dispQuantity}{tons}</th>
+                        <th if:true={isKLWSegment} scope="col" >{shippedQuantity} {pcs}</th>
+                        <th if:false={isStockOrProdPlan} scope="col" >{shippedQuantity}{tons}</th>
+                        <th if:true={isStockOrders} scope="col" >{BalanceforShipment}{tons}</th>
+                        <th if:true={isStockOrders} scope="col" >{Stock}{tons}</th>
+                        <th if:true={isProductionPlan} scope="col" >{BalanceforProduction}</th>
+                        <th if:true={isProductionPlan} scope="col" >{MonthlyProdPlan}</th>
+                        <th if:true={isProductionPlan} scope="col" >{WeeklyProdPlan}</th>
+                        <th if:true={isProductionPlan} scope="col" >{EstimatedProdBalance}</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <template for:each= {filteredOrdersList} for:item="item">
+
+                        <tr key = {item.Id} data-id={item.id}>
+                            <td if:true={isStockOrProdPlan}>
+                                <img  class="extend-btn-img" src={plusIcon} style="cursor:pointer;"  alt="" onclick={openOrderItem} data-id={item.Id} data-icontype="subicon" data-state="extended">
+                                <input class="selectRow" type="checkbox" onchange={selectRowForXSLX} data-id={item.Id}>
+                            </td>
+                            <td if:false={isProductionPlan} class="order-number" onclick={openModal} data-id={item.Id}>{item.AdditionalNumber__c}
+                            </td>
+                            <td if:true={isProductionPlan} class="order-number" onclick={openModal} data-id={item.Id}>{item.OrderNumberProdPlan}
+                            </td>
+                            <td if:false={isStockOrProdPlan} data-label ="PO#" > {item.PO_Number__c}
+                            </td>
+                            <td if:true={isAllDivisions} data-label ="Prod. Type" > {item.Prod_Type__c}
+                            </td>
+                            <td if:false={isStockOrProdPlan}  data-label ={deliveryStatus} data-id={item.Id}>
+                                <div class="delivery-status-btn" data-id={item.Id} onclick={openModalDelivery}>
+                                    {view}
+                                </div>
+                            </td>
+                            <td if:false={isStockOrProdPlan} data-label ={date} >
+                                <lightning-formatted-date-time
+                                        value= {item.EffectiveDate}
+                                        year="numeric"
+                                        month="numeric"
+                                        day="numeric"
+                                        time-zone="UTC">
+                                </lightning-formatted-date-time>
+                            </td>
+                            <td if:false={isStockOrProdPlan} data-label ={status} > {item.Status}
+                            </td>
+                            <td if:true={isKLWSegment}>{item.Quantity_pcs__c}</td>
+                            <td data-label={quantity} > {item.TotalOrderQuantity__c} </td>
+                            <td if:true={isKLWSegment}>{item.ProducedQuantity_pcs__c}</td>
+                            <td if:false={isStockOrProdPlan} data-label ={prodQuantity} > {item.ProducedQuantity__c} </td>
+                            <td if:true={isKLWSegment}>{item.DispatchedQuantity_pcs__c}</td>
+                            <td if:false={isStockOrProdPlan} data-label ={dispQuantity} > {item.DispatchedQuantity__c} </td>
+                            <td if:true={isKLWSegment}>{item.DeliveredQuantity_pcs__c}</td>
+                            <td if:false={isStockOrProdPlan} data-label ={shippedQuantity} > {item.ShippedQuantity__c} </td>
+                            <td if:true={isStockOrders}> {item.BalanceForShipment} </td>
+                            <td if:true={isStockOrders}> {item.Stock} </td>
+                            <td if:true={isProductionPlan}> {item.BalanceForProduction} </td>
+                            <td if:true={isProductionPlan}> {item.MonthlyProdPlan} </td>
+                            <td if:true={isProductionPlan}> {item.WeeklyProdPlan} </td>
+                            <td if:true={isProductionPlan}> {item.EstimatedProdBalance} </td>
+
+                        </tr>
+                        <tr if:true={item.expandDocuments} key={item.Id} class="slds-hint-parent">
+                            <td colspan="20">
+                                <div class="form-container">
+                                    <table if:true={isStockOrders}>
+                                        <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <th  scope="col">
+                                            </th>
+                                            <th scope="col">
+                                                {productName}
+                                            </th>
+                                            <th scope="col">
+                                                {quantity}{tons}
+                                            </th>
+                                            <th scope="col">
+                                                {BalanceforShipment}{tons}
+                                            </th>
+                                            <th scope="col">
+                                                {Stock}{tons}
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody if:true={item.OrderItems}>
+                                        <template for:each={item.OrderItems} for:item="item">
+                                            <tr key={item.Id} class="slds-hint-parent">
+                                                <th data-label="No." scope="row">
+
+                                                </th>
+                                                <th data-label="No." scope="row">
+
+                                                    {item.Name__c}
+                                                </th>
+                                                <td>
+                                                    {item.Quantity}
+                                                </td>
+                                                <td>
+                                                    {item.BalanceForShipment}
+                                                </td>
+                                                <td>
+                                                    {item.Stock}
+                                                </td>
+                                            </tr>
+                                        </template>
+                                        </tbody>
+                                    </table>
+                                    <table if:true={isProductionPlan}>
+                                        <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <th  scope="col">
+                                            </th>
+                                            <th scope="col">
+                                                {productName}
+                                            </th>
+                                            <th scope="col">
+                                                {quantity}{tons}
+                                            </th>
+                                            <th scope="col" >
+                                                {BalanceforProduction}
+                                            </th>
+                                            <th scope="col" >
+                                                {MonthlyProdPlan}
+                                            </th>
+                                            <th scope="col" >
+                                                {WeeklyProdPlan}
+                                            </th>
+                                            <th scope="col" >
+                                                {EstimatedProdBalance}
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody if:true={item.OrderItemsForProdPlan}>
+                                        <template for:each={item.OrderItemsForProdPlan} for:item="item">
+                                            <tr key={item.Id} class="slds-hint-parent">
+                                                <th data-label="No." scope="row">
+
+                                                </th>
+                                                <th data-label="No." scope="row">
+
+                                                    {item.Name__c}
+                                                </th>
+                                                <td>
+                                                    {item.Quantity}
+                                                </td>
+                                                <th>
+                                                    {item.BalanceForProduction__c}
+                                                </th>
+                                                <th>
+                                                    {item.MonthlyProdPlan__c}
+                                                </th>
+                                                <th>
+                                                    {item.WeeklyProdPlan__c}
+                                                </th>
+                                                <th>
+                                                    {item.Estimated_Prod_Balance__c}
+                                                </th>
+                                            </tr>
+                                        </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </template>
+                    </tbody>
+                </table>
+            </div>
+            <template if:true={isProductionPlan} >
+                <template if:true={structuredPlans.length}>
+
+                    <div class={containerClass}>
+                        <table class="slds-table slds-table_bordered production-plan_table">
+                            <thead>
+                            <tr class="pp_table-header_row">
+                                <th class="pp_table-header_item col-item">Item</th>
+                                <th class="pp_table-header_item">Balance for Production (t)</th>
+                                <th class="pp_table-header_item">Monthly Plan Qty (t)</th>
+                                <th class="pp_table-header_item">Fact Qty (t)</th>
+                                <th class="pp_table-header_item">Plan Date</th>
+                                <th class="pp_table-header_item">Fact Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                                <template for:each={structuredPlans} for:item="order">
+                                    <tr key={order.orderId} class="pp_row order-row" onclick={toggleOrder} data-id={order.orderId}>
+                                        <td class="left-align order-header-cell" data-id={order.orderId}>
+                                        <span class="accordion-icon order-icon" data-id={order.orderId}>
+                                            <svg viewBox="0 0 24 24" fill="none">
+                                                <path d="M9 6L15 12L9 18" stroke="#333" stroke-width="2"></path>
+                                            </svg>
+                                        </span>
+                                            <strong>{order.orderName}</strong>
+                                        </td>
+                                        <td>{order.totalBalance}</td>
+                                        <td>{order.totalPlanQty}</td>
+                                        <td>{order.totalFactQty}</td>
+                                        <td>{order.latestPlanDate}</td>
+                                        <td>{order.latestFactDate}</td>
+                                    </tr>
+
+                                    <template for:each={order.items} for:item="oi">
+                                        <tr key={oi.orderItemId} class="pp_row order-item-row hidden" data-order-id={order.orderId} data-id={oi.orderItemId} onclick={toggleItem}>
+                                            <td class="left-align order-item-cell truncate-cell" title={oi.itemName}>
+                                            <span class="accordion-icon item-icon" data-id={oi.orderItemId}>
+                                                <svg viewBox="0 0 24 24" fill="none">
+                                                    <path d="M9 6L15 12L9 18" stroke="#333" stroke-width="2"></path>
+                                                </svg>
+                                            </span>
+                                                {oi.itemName}
+                                            </td>
+                                            <td>{oi.balance}</td>
+                                            <td>{oi.planQty}</td>
+                                            <td>{oi.factQty}</td>
+                                            <td>{oi.planDate}</td>
+                                            <td>{oi.factDate}</td>
+                                        </tr>
+
+                                        <template for:each={oi.months} for:item="month">
+                                            <tr key={month.key} class="pp_row month-row hidden" data-item-id={oi.orderItemId} data-month-key={month.key} onclick={toggleMonth}>
+                                                <td class="left-align month-indent">
+                                                <span class="accordion-icon month-icon" data-item-id={oi.orderItemId} data-month-key={month.key}>
+                                                    <svg viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="#333" stroke-width="2"></path></svg>
+                                                </span>
+                                                    {month.label}
+                                                </td>
+                                                <td>{month.balance}</td>
+                                                <td>{month.planQty}</td>
+                                                <td>{month.factQty}</td>
+                                                <td>{month.planDate}</td>
+                                                <td>{month.factDate}</td>
+                                            </tr>
+
+                                            <template for:each={month.weeks} for:item="week">
+                                                <tr key={week.label} class="pp_row week-row hidden" data-item-id={oi.orderItemId} data-month-key={month.key}>
+                                                    <td class="left-align week-indent">{week.label}</td>
+                                                    <td>{week.balance}</td>
+                                                    <td>{week.planQty}</td>
+                                                    <td>{week.factQty}</td>
+                                                    <td>{week.planDate}</td>
+                                                    <td>{week.factDate}</td>
+                                                </tr>
+                                            </template>
+                                        </template>
+                                    </template>
+                                </template>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </template>
+                <template if:false={structuredPlans.length}>
+                    <div class="slds-text-align_center slds-m-around_medium">
+                        <p class="no-plan-message">{label.NO_PLAN_DATA}</p>
+                    </div>
+                </template>
+            </template>
+
+
+            <div class="btns" if:true={isPortal}>
+                <div if:false={isProductionPlan} class="print-btn"   onclick={genPDF} >
+                    <img src={printImg} alt="" class="print-icon">
+                    <p class="print-text">{print}</p>
+                </div>
+
+
+                <div if:false={isStockOrProdPlan} class="print-btn"    onclick={generateAllOrdersXLSX} >
+                    <img src={xlsxIcon} alt="" class="xlsx-icon">
+                    <p class="print-text">Excel</p>
+                </div>
+
+                <div if:true={isStockOrders} class="print-btn" onclick={generateXLSX} >
+                    <img src={xlsxIcon} alt="" class="xlsx-icon">
+                    <p class="print-text">Excel</p>
+                </div>
+
+<!--                <div if:true={isProductionPlan} class="print-btn"   onclick={generateXLSXforProdPlan} >-->
+<!--                    <img src={xlsxIcon} alt="" class="xlsx-icon">-->
+<!--                    <p class="print-text">Excel</p>-->
+<!--                </div>-->
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <template if:true={isModalDeliveryOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header slds-modal__header_empty">
+
+                </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content " id="modal-content-id-2">
+                    <div class="slds-grid slds-wrap slds-grid_align-end">
+                        <div class="slds-col">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse slds-p-around_x-large" title="Close" onclick={closeModalDelivery}>
+                                <lightning-icon icon-name="action:remove"
+                                                alternative-text="close"
+                                                variant="inverse"
+                                                size="small" ></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div if:false={isOrderDispatched} class="slds-m-around_medium">
+                        <p class="slds-text-heading_medium">{nonDeliveryInfo}</p>
+                    </div>
+
+                    <c-order-delivery if:true={isOrderDispatched} record-id={orderDeliveryId}></c-order-delivery>
+                </div>
+                <!-- <lightning-spinner
+                if:false={modalContainer}
+                class="slds-is-absolute slds-align_absolute-center"
+                alternative-text="Loading Details..."
+                size="medium"
+                variant="brand"
+            > -->
+                </lightning-spinner>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open">
+        </div>
+    </template>
+
+
+</template>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- AssignedBOS --></label>
+    <name>AssignedBOS__c</name>
+    <relationshipLabel><!-- Sale BO Account Relations (AssignedBOS) --></relationshipLabel>
+</CustomFieldTranslation>

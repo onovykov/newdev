@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <label>Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Apex Exception</fullName>
+                <default>false</default>
+                <label>Apex Exception</label>
+            </value>
+            <value>
+                <fullName>DML Exception</fullName>
+                <default>false</default>
+                <label>DML Exception</label>
+            </value>
+            <value>
+                <fullName>Limit Exception</fullName>
+                <default>false</default>
+                <label>Limit Exception</label>
+            </value>
+            <value>
+                <fullName>Callout Exception</fullName>
+                <default>false</default>
+                <label>Callout Exception</label>
+            </value>
+            <value>
+                <fullName>Flow</fullName>
+                <default>false</default>
+                <label>Flow</label>
+            </value>
+            <value>
+                <fullName>LWC</fullName>
+                <default>false</default>
+                <label>LWC</label>
+            </value>
+            <value>
+                <fullName>Aura</fullName>
+                <default>false</default>
+                <label>Aura</label>
+            </value>
+            <value>
+                <fullName>Jobs</fullName>
+                <default>false</default>
+                <label>Jobs</label>
+            </value>
+            <value>
+                <fullName>Security</fullName>
+                <default>false</default>
+                <label>Security</label>
+            </value>
+            <value>
+                <fullName>Account Blocked</fullName>
+                <default>false</default>
+                <label>Account Blocked</label>
+            </value>
+            <value>
+                <fullName>General</fullName>
+                <default>false</default>
+                <label>General</label>
+            </value>
+            <value>
+                <fullName>Integration</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Integration</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

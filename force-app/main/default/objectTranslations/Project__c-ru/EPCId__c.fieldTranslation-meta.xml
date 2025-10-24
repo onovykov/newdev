@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Инженерно-заготовительная и строительно-наладочная компания</help>
+    <label>Подрядчик</label>
+    <name>EPCId__c</name>
+    <relationshipLabel>Проекты (EPC)</relationshipLabel>
+</CustomFieldTranslation>

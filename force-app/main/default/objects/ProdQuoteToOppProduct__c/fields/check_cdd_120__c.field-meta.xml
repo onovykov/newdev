@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>check_cdd_120__c</fullName>
+    <formula>AND(CDD__c &lt; Last_Day_NextMonth__c  ,CDD__c &gt; Date_Four_Month_Ago__c  )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Check cdd 120</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

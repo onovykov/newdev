@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Quantity of the product in metric tons. --></help>
+    <label>Кількість (т.)</label>
+    <name>Quantity_t__c</name>
+</CustomFieldTranslation>

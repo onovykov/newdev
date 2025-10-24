@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MarketSegment__c</fullName>
+    <label>Market Segment</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>BusinessDivision__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>00002</fullName>
+                <default>false</default>
+                <label>MENA</label>
+            </value>
+            <value>
+                <fullName>00001</fullName>
+                <default>false</default>
+                <label>Americas</label>
+            </value>
+            <value>
+                <fullName>00004</fullName>
+                <default>false</default>
+                <label>Europe</label>
+            </value>
+            <value>
+                <fullName>00010</fullName>
+                <default>false</default>
+                <label>CIS</label>
+            </value>
+            <value>
+                <fullName>00011</fullName>
+                <default>false</default>
+                <label>Ukraine</label>
+            </value>
+            <value>
+                <fullName>00006</fullName>
+                <default>false</default>
+                <label>KLW</label>
+            </value>
+            <value>
+                <fullName>00016</fullName>
+                <default>false</default>
+                <label>Customs Union</label>
+            </value>
+            <value>
+                <fullName>00020</fullName>
+                <default>false</default>
+                <label>ETA</label>
+            </value>
+            <value>
+                <fullName>00021</fullName>
+                <default>false</default>
+                <label>Machinery</label>
+            </value>
+            <value>
+                <fullName>00019</fullName>
+                <default>false</default>
+                <label>Vallourec</label>
+            </value>
+            <value>
+                <fullName>00005</fullName>
+                <default>false</default>
+                <label>IPS</label>
+            </value>
+            <value>
+                <fullName>00100</fullName>
+                <default>false</default>
+                <label>Steel</label>
+            </value>
+            <value>
+                <fullName>00099</fullName>
+                <default>false</default>
+                <label>Recycled Scrap</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Pipe Products</controllingFieldValue>
+            <valueName>00002</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pipe Products</controllingFieldValue>
+            <valueName>00001</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pipe Products</controllingFieldValue>
+            <valueName>00004</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pipe Products</controllingFieldValue>
+            <valueName>00010</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pipe Products</controllingFieldValue>
+            <valueName>00011</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Railway Products</controllingFieldValue>
+            <valueName>00006</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Steel Products</controllingFieldValue>
+            <valueName>00100</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

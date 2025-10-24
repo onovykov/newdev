@@ -1,0 +1,204 @@
+<template>
+    <div class="tab-header">
+        <h1 class="tab-title">Позапланові слоти</h1>
+        <p class="tab-subtitle">
+            Тут відображаються <b>заявки поза лімітом</b>. Постачальник просить прийняти слот,
+            хоча <b>місячний ліміт вичерпано</b> (або буде перевищено). Перевірте дані та прийміть рішення.
+        </p>
+    </div>
+    <div class="toolbar-count">Знайдено: {visibleRows.length}</div>
+
+    <!-- Фільтри -->
+    <div class="toolbar">
+        <lightning-combobox
+                class="status-filter"
+                label="Статус"
+                value={statusFilter}
+                options={statusOptions}
+                onchange={handleStatusFilterChange}>
+        </lightning-combobox>
+
+        <lightning-input
+                class="search-box"
+                type="search"
+                label="Пошук (постачальник, машина, водій, тип брухту)"
+                value={query}
+                onchange={handleQueryChange}>
+        </lightning-input>
+    </div>
+
+    <div class="request-table-container">
+        <table class="request-table">
+            <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Постачальник</th>
+                <th>Тип брухту</th>
+                <th>Тоннаж слоту</th>
+
+                <!-- МІСЯЦЬ -->
+                <th>Ліміт місяця</th>
+                <th>Використано</th>
+                <th>Залишок</th>
+                <th>Перевищення</th>
+
+                <!-- ДЕКАДА -->
+                <th>Ліміт декади</th>
+                <th>Використано (декада)</th>
+                <th>Залишок (декада)</th>
+                <th>Перевищення (декада)</th>
+
+                <th>Статус</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <template if:true={visibleRows.length}>
+                <template for:each={visibleRows} for:item="row" for:index="index">
+                    <tr key={row.id} class={row.rowClass}>
+                        <td>{row.date}</td>
+                        <td>{row.supplier}</td>
+                        <td>{row.scrapType}</td>
+                        <td class="num">{row.fixedWeightDisplay}</td>
+
+                        <!-- МІСЯЦЬ -->
+                        <td class="num">{row.monthLimit}</td>
+                        <td class="num">{row.used}</td>
+                        <td class={row.leftClass}>{row.leftDisplay}</td>
+                        <td class={row.overClass}>{row.overDisplay}</td>
+
+                        <!-- ДЕКАДА -->
+                        <td class="num">{row.decLimit}</td>
+                        <td class="num">{row.decUsed}</td>
+                        <td class={row.decLeftClass}>{row.decLeftDisplay}</td>
+                        <td class={row.decOverClass}>{row.decOverDisplay}</td>
+
+                        <td>
+                            <span class={row.statusBadgeClass}>{row.statusLabel}</span>
+                        </td>
+                        <td class="btn-cell nowrap">
+                            <button class="approve-btn" title="Переглянути"
+                                    data-index={index} onclick={openModal}>
+                                <!-- іконка залишилась як була -->
+                                <svg viewBox="0 0 20 20" class="approve-icon">
+                                    <path d="M 6 1 L 6 4 L 7 4 L 7 2 L 9 2 L 9 1 L 6 1 z M 11 1 L 11 2 L 14 2 L 14 1 L 11 1 z M 16 1 L 16 2 L 18 2 L 18 4 L 19 4 L 19 1 L 16 1 z M 1 6 L 1 19 L 14 19 L 14 6 L 1 6 z M 18 6 L 18 9 L 19 9 L 19 6 L 18 6 z M 2 7 L 13 7 L 13 18 L 2 18 L 2 7 z M 11.035156 9.3183594 L 6.0859375 14.267578 L 3.9648438 12.146484 L 3.2578125 12.853516 L 6.0859375 15.681641 L 11.742188 10.025391 L 11.035156 9.3183594 z M 18 11 L 18 13 L 16 13 L 16 14 L 19 14 L 19 11 z"></path>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                </template>
+            </template>
+            <template if:false={visibleRows.length}>
+                <tr><td colspan="14"><div class="empty-state">Немає записів за обраними фільтрами</div></td></tr>
+            </template>
+            </tbody>
+
+        </table>
+    </div>
+
+    <template if:true={isLoading}>
+        <div class="table-loading">
+            <lightning-spinner alternative-text="Завантаження…" size="medium"></lightning-spinner>
+        </div>
+    </template>
+
+
+    <!-- Модалка -->
+    <template if:true={isModalOpen}>
+        <div class="modal-backdrop">
+            <div class="modal-content">
+                <template if:true={isSending}>
+                    <div class="modal-spinner-overlay">
+                        <lightning-spinner alternative-text="Надсилаємо в ERP…" size="large" variant="brand"></lightning-spinner>
+                    </div>
+                </template>
+
+                <div class="modal-header">
+                    <h2>Перевірка позапланового слоту</h2>
+                </div>
+
+                <div class="modal-body">
+                    <!-- Загальні дані -->
+                    <div class="kv kv-one">
+                        <div class="kv-row"><span class="k">Постачальник:</span><span class="v">{selected.supplier}</span></div>
+                        <div class="kv-row"><span class="k">Дата:</span><span class="v">{selected.date}</span></div>
+                        <div class="kv-row"><span class="k">Тип брухту:</span><span class="v">{selected.scrapType}</span></div>
+                    </div>
+
+                    <!-- Тонажі (запитано / дозволити) -->
+                    <div class="pill-set">
+                        <span class="pill pill-neutral">Запитано: <b>{selRequestedWeight}</b> т</span>
+                        <span class={approvedPillClass}>Дозволити: <b>{selApprovedWeight}</b> т</span>
+                    </div>
+
+                    <!-- Коригування адміном -->
+                    <div class="card">
+                        <div class="card-title">Коригування тоннажу</div>
+                        <lightning-combobox
+                                label="Дозволити до приймання, т"
+                                options={fixedWeightOptions}
+                                value={selFixedWeight}
+                                onchange={handleApprovedWeightChange}>
+                        </lightning-combobox>
+
+                        <p class="hint">Доступні варіанти: 10 / 20 / 25 т.</p>
+                    </div>
+
+                    <!-- Ліміти (однією колонкою) -->
+                    <div class="estimate_card">
+                    <div class="card">
+                        <div class="card-title">Поточний місяць</div>
+                        <div class="limit-row"><span>Ліміт:</span><b>{selected.monthLimit}</b></div>
+                        <div class="limit-row"><span>Використано:</span><b>{selected.used}</b></div>
+                        <div class="limit-row">
+                            <span>Залишок:</span>
+                            <b class={selLeftClass}>{selLeftDisplay}</b>
+                        </div>
+                        <div class="limit-row">
+                            <span>Перевищення:</span>
+                            <b class={selOverClass}>{selOverDisplay}</b>
+                        </div>
+                        <template if:true={hasOverLimit}>
+                            <div class="modal-alert">
+                                Дозволений тоннаж все ще <b>перевищує</b> ліміт.
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Картка декади в модалці -->
+                    <div class="card">
+                        <div class="card-title">Поточна декада</div>
+                        <div class="limit-row"><span>Ліміт (декада):</span><b>{selected.decLimit}</b></div>
+                        <div class="limit-row"><span>Використано (декада):</span><b>{selected.decUsed}</b></div>
+                        <div class="limit-row">
+                            <span>Залишок (декада):</span>
+                            <b class={selDecLeftClass}>{selDecLeftDisplay}</b>
+                        </div>
+                        <div class="limit-row">
+                            <span>Перевищення:</span>
+                            <b class={selDecOverClass}>{selDecOverDisplay}</b>
+                        </div>
+                    </div>
+                    </div>
+
+                    <!-- Транспорт і водій (тільки перегляд) -->
+<!--                    <div class="card">-->
+<!--                        <div class="card-title">Транспорт і водій</div>-->
+<!--                        <div class="kv kv-one">-->
+<!--                            <div class="kv-row"><span class="k">Водій:</span><span class="v">{selected.driverName}</span></div>-->
+<!--                            <div class="kv-row"><span class="k">Телефон:</span><span class="v">{selected.driverPhone}</span></div>-->
+<!--                            <div class="kv-row"><span class="k">Машина:</span><span class="v">{selected.truckModel} • {selected.truckNumber}</span></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+
+                <div class="modal-footer">
+                    <button class="secondary-button" onclick={closeModal}>Закрити</button>
+                    <button class="danger-button" onclick={handleReject}>Відхилити</button>
+                    <button class="primary-button" onclick={handleApprove}>Підтвердити</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+</template>
