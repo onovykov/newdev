@@ -1,16 +1,14 @@
-// CrossMarketNotifierQ.cls
 public class CrossMarketNotifierQ implements Queueable {
-    private final List<Id> oppIds;
 
+    private final List<Id> oppIds;
     public CrossMarketNotifierQ(List<Id> oppIds) {
-        // defensive copy + null-safe
         this.oppIds = (oppIds == null) ? new List<Id>() : new List<Id>(oppIds);
     }
 
     public void execute(QueueableContext qc) {
         if (oppIds.isEmpty()) return;
 
-        // 1) Витягуємо необхідні поля Opp
+        // 1) Витягуємо потрібні Opp
         List<Opportunity> opps = [
             SELECT Id, Name, OwnerId,
                    CrossMarketManager__c,
@@ -21,20 +19,37 @@ public class CrossMarketNotifierQ implements Queueable {
         ];
         if (opps.isEmpty()) return;
 
-        // 2) Формуємо повідомлення (по одному на кожного отримувача)
+        // 2) Разово зчитуємо BO-групу та її користувачів
+        Id boGroupId = null;
+        List<Group> grList = [SELECT Id FROM Group WHERE Name='CrossMarketBO' AND Type='Regular' LIMIT 1];
+        if (!grList.isEmpty()) boGroupId = grList[0].Id;
+
+        Set<Id> boUserIds = new Set<Id>();
+        if (boGroupId != null) {
+            for (GroupMember gm : [SELECT UserOrGroupId FROM GroupMember WHERE GroupId = :boGroupId]) {
+                // залишаємо лише користувачів
+                String idStr = String.valueOf(gm.UserOrGroupId);
+                if (idStr != null && idStr.startsWith('005')) {
+                    boUserIds.add((Id)gm.UserOrGroupId);
+                }
+            }
+        }
+
+        // 3) Готуємо листи
         List<Messaging.SingleEmailMessage> allMsgs = new List<Messaging.SingleEmailMessage>();
-        List<Id> msgOppIds = new List<Id>(); // паралельний список для мапування результатів
+        List<Id> msgOppIds = new List<Id>();
 
         for (Opportunity o : opps) {
             Set<Id> recipients = new Set<Id>();
             if (o.CrossMarketManager__c != null) recipients.add(o.CrossMarketManager__c);
             if (o.OwnerId != null)               recipients.add(o.OwnerId);
+            if (!boUserIds.isEmpty())            recipients.addAll(boUserIds);
 
             if (recipients.isEmpty()) continue;
 
             for (Id uid : recipients) {
                 Messaging.SingleEmailMessage msg = new Messaging.SingleEmailMessage();
-                msg.setTargetObjectId(uid);          // email береться з User.Email
+                msg.setTargetObjectId(uid);
                 msg.setSaveAsActivity(false);
                 msg.setSubject('Cross-market on Opportunity ' + o.Name);
                 msg.setPlainTextBody(
@@ -46,16 +61,16 @@ public class CrossMarketNotifierQ implements Queueable {
                 msgOppIds.add(o.Id);
             }
         }
+
         if (allMsgs.isEmpty()) return;
 
-        // 3) Відправляємо батчами по 10 (ліміт SingleEmailMessage у транзакції)
-        Set<Id> oppsWithSuccess = new Set<Id>();
+        // 4) Відправляємо батчами по 10 і збираємо, де було успішно
         final Integer BATCH = 10;
-        Integer i = 0;
-        while (i < allMsgs.size()) {
+        Set<Id> oppsWithSuccess = new Set<Id>();
+
+        for (Integer i = 0; i < allMsgs.size(); ) {
             List<Messaging.SingleEmailMessage> chunkMsgs = new List<Messaging.SingleEmailMessage>();
             List<Id> chunkOppIds = new List<Id>();
-
             Integer taken = 0;
             while (i < allMsgs.size() && taken < BATCH) {
                 chunkMsgs.add(allMsgs[i]);
@@ -66,17 +81,16 @@ public class CrossMarketNotifierQ implements Queueable {
             Messaging.SendEmailResult[] results = Messaging.sendEmail(chunkMsgs);
             for (Integer j = 0; j < results.size(); j++) {
                 if (results[j].isSuccess()) oppsWithSuccess.add(chunkOppIds[j]);
-                // за потреби: обробити results[j].getErrors()
             }
         }
 
-        // 4) Позначаємо Notified, якщо був хоча б один успішний лист по оппі
+        // 5) Позначаємо Opp
         if (!oppsWithSuccess.isEmpty()) {
             List<Opportunity> toUpdate = new List<Opportunity>();
             for (Id oid : oppsWithSuccess) {
                 toUpdate.add(new Opportunity(
                     Id = oid,
-                    CrossMarketNotified__c = true,
+                    CrossMarketNotified__c   = true,
                     CrossMarketNotifiedAt__c = System.now()
                 ));
             }

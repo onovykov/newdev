@@ -44,6 +44,52 @@ public class CrossMarket_TestDataFactory {
         return null;
     }
 
+    // ========= Допоміжний тип і метод для вибору двох сегментів =========
+    public class SegPair {
+        public String mainApi;
+        public String crossApi;
+        public SegPair(String mainApi, String crossApi) {
+            this.mainApi  = mainApi;
+            this.crossApi = crossApi;
+        }
+    }
+
+    public static String firstActiveOppMainSegmentApi() {
+        Schema.DescribeFieldResult dfr =
+            Schema.getGlobalDescribe().get('Opportunity')
+                  .getDescribe().fields.getMap().get('MarketSegment__c').getDescribe();
+        for (Schema.PicklistEntry pe : dfr.getPicklistValues()) {
+            if (pe.isActive()) return pe.getValue();
+        }
+        return null;
+    }
+
+    public static SegPair pickTwoDistinctSegments() {
+        String mainApi  = firstActiveOppMainSegmentApi();
+        System.assertNotEquals(null, mainApi,
+            'Opportunity.MarketSegment__c має мати хоч одне активне значення');
+
+        String crossApi = firstActiveOppSegmentApiNotEqual(mainApi);
+        System.assertNotEquals(null, crossApi,
+            'Opportunity.CrossMarketSegment__c має мати хоч одне активне значення');
+
+        if (crossApi == mainApi) {
+            Schema.DescribeFieldResult dfr =
+                Schema.getGlobalDescribe().get('Opportunity')
+                      .getDescribe().fields.getMap().get('CrossMarketSegment__c').getDescribe();
+            for (Schema.PicklistEntry pe : dfr.getPicklistValues()) {
+                if (pe.isActive() && pe.getValue() != mainApi) {
+                    crossApi = pe.getValue();
+                    break;
+                }
+            }
+        }
+        System.assertNotEquals(mainApi, crossApi,
+            'Для тестів потрібні різні значення mainApi та crossApi');
+
+        return new SegPair(mainApi, crossApi);
+    }
+
     // ========= Profiles =========
     private static Id profileId(Boolean isAdmin){
         return [
@@ -69,8 +115,8 @@ public class CrossMarket_TestDataFactory {
             ProfileId=profileId(isAdmin),
             IsActive=true,
             JobTitle__c         = jtApi,   // picklist API (User)
-            BusinesDivision__c = bdApi,   // 🔸 контрольне поле — СПОЧАТКУ!
-            SalesDivision__c    = salesDivisionApi // 🔸 dependent picklist — ПІСЛЯ контролера
+            BusinesDivision__c  = bdApi,   // контрольне поле
+            SalesDivision__c    = salesDivisionApi // dependent picklist
         );
         insert u;
         return u;
@@ -95,7 +141,8 @@ public class CrossMarket_TestDataFactory {
             MarketSegment__c      = mainMarketSegApi,   // головний сегмент
             CrossMarketSegment__c = crossMarketSegApi,  // крос-сегмент (інший)
             CrossMarketManager__c = crossMgrId,
-            CrossMarketShare__c   = crossShare
+            CrossMarketShare__c   = crossShare,
+            ExpectedDelivDate__c = Date.today().addDays(30) // ✅ required field
         );
         insert o;
         return o;
