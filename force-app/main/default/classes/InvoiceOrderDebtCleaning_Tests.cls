@@ -26,7 +26,7 @@ private class InvoiceOrderDebtCleaning_Tests {
         // Дані: 2 старі, 1 свіжий
         List<InvoiceOrderDebt__c> all = makeDebts(3);
 
-        // Явно сформуємо групи без subList
+        // Явно сформуємо групи
         List<InvoiceOrderDebt__c> oldOnes = new List<InvoiceOrderDebt__c>{ all[0], all[1] };
         List<InvoiceOrderDebt__c> freshOnes = new List<InvoiceOrderDebt__c>{ all[2] };
 

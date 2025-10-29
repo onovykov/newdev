@@ -1,123 +1,119 @@
-@IsTest(SeeAllData=false)
+@IsTest
 private class InvoiceOrderDebtBatchTest {
 
-    @isTest
-    static void testProcessMessage_basicSmoke() {
-        // minimally valid JSON
-        String requestBody = '{\"Metadata\":{\"MsgType\":\"ERP-SF_Debit\",\"MsgTypeVersion\":0,\"MsgTimestamp\":\"2023-09-25T22:03:40.0652227+03:00\",\"PartNumber\":1,\"TotalParts\":1},\"Data\":[]}';
-        ERPMessageParser.ErpToSfMessage_Debit parsed =
-            (ERPMessageParser.ErpToSfMessage_Debit) JSON.deserialize(requestBody, ERPMessageParser.ErpToSfMessage_Debit.class);
-
-        Test.startTest();
-        ERPMessageHandlerDebit.MessageProcessingResult res =
-            ERPMessageHandlerDebit.ProcessMessage(parsed, requestBody);
-        Test.stopTest();
-
-        System.assertEquals('ERP-SF_Debit', res.MessageType, 'MsgType should pass through');
+    // Той самий формат, що й у прод-коді
+    private static String buildKey(Id acc, Id pu, String ccy, String debtType) {
+        String accStr = acc == null ? '' : String.valueOf(acc);
+        String puStr  = pu  == null ? '' : String.valueOf(pu);
+        String ccyStr = ccy == null ? '' : ccy;
+        String dtStr  = debtType == null ? '' : debtType;
+        return accStr + '|' + puStr + '|' + ccyStr + '|' + dtStr;
     }
 
-    @isTest
-    static void testInvoiceOrderDebtBatch_endToEnd() {
-        // Accounts
-        Account acc = new Account(Name = 'Main Account', ID_ERP__c = '39');
-        insert acc;
+    @IsTest
+    static void should_Rebuild_Summaries_Upsert_And_Prune() {
+        // A1, A2 мають борги; A3 — «сміттєвий» підсумок для prune
+        Account a1 = new Account(Name = 'A1');
+        Account a2 = new Account(Name = 'A2');
+        Account a3 = new Account(Name = 'A3');
+        insert new List<Account>{ a1, a2, a3 };
 
-        Account internalAcc = new Account(Name = 'Internal Account', ID_ERP__c = '21833');
-        insert internalAcc;
+        // Борги:
+        // A1 USD: 100 (current) + 40 (overdue)
+        // A2 EUR: 70 (current)
+        insert new List<InvoiceOrderDebt__c>{
+            new InvoiceOrderDebt__c(Account__c = a1.Id, CurrencyIsoCode = 'USD', NetAmount__c = 100, DaysOverdue__c = 0),
+            new InvoiceOrderDebt__c(Account__c = a1.Id, CurrencyIsoCode = 'USD', NetAmount__c =  40, DaysOverdue__c = 5),
+            new InvoiceOrderDebt__c(Account__c = a2.Id, CurrencyIsoCode = 'EUR', NetAmount__c =  70, DaysOverdue__c = 0)
+        };
 
-        // Pricebook (standard)
-        Pricebook2 standardPricebook = new Pricebook2(
-            Id = Test.getStandardPricebookId(),
-            IsActive = true
+        // Сміттєвий запис (валідне значення пікліста), для акаунта без боргів → має бути видалений
+        InvoiceDebtSummary__c garbage = new InvoiceDebtSummary__c(
+            Account__c      = a3.Id,
+            CurrencyIsoCode = 'USD',
+            DebtType__c     = 'Total Debt',
+            SumDebt__c      = 999
         );
-        update standardPricebook;
-
-        // Order (ВАЖЛИВО: виставляємо ID_ERP__c, який батч мапить з UNDOC_ORDER)
-        Order ord = new Order(
-            Name = 'Test Order',
-            AccountId = acc.Id,
-            Status = 'Draft',
-            EffectiveDate = Date.today(),
-            Pricebook2Id = standardPricebook.Id
-        );
-        insert ord;
-        // Якщо поле custom і writeable — краще одразу перед insert; якщо ні — робимо update:
-        ord.ID_ERP__c = '22061972';
-        update ord;
-
-        // PortalUser__c (кастомний об'єкт) + Contact, який на нього дивиться
-        PortalUser__c portalUser = new PortalUser__c(Name = acc.Name);
-        insert portalUser;
-
-        Contact contact = new Contact(
-            LastName = 'Test Contact',
-            AccountId = acc.Id,
-            PortalUser__c = portalUser.Id,
-            MailingCountry = 'Ukraine'
-        );
-        insert contact;
-
-        // Дані для батча
-        ERPMessageParser.InvoiceOrderDebtMessageData rec = new ERPMessageParser.InvoiceOrderDebtMessageData();
-        rec.ORG         = '39';
-        rec.ORG_K       = '21833';
-        rec.ORG_K_NAME  = 'Internal Account';
-        rec.UNDOC_ORDER = '22061972';
-        rec.NDM_INVOCE  = 'INV-001';
-        rec.DT_OUT      = -1000.0;
-        rec.NET_AMNT    = 900.0;
-        rec.VAT_AMNT    = 100.0;
-        rec.DAYS        = 15;
-        rec.DUE_DATE    = '2023-12-15T00:00:00';
-        rec.DDM         = '2023-12-01T00:00:00';
-        rec.VAL         = 'USD'; // Переконайся, що USD валідна в org
-        rec.Contract    = 'CONTRACT-123';
-
-        List<ERPMessageParser.InvoiceOrderDebtMessageData> data = new List<ERPMessageParser.InvoiceOrderDebtMessageData>{ rec };
+        garbage.CompositeKey__c = buildKey(a3.Id, null, 'USD', 'Total Debt');
+        insert garbage;
 
         Test.startTest();
-        Database.executeBatch(new InvoiceOrderDebtBatch(data), 1);
+        Database.executeBatch(new InvoiceOrderDebtBatch(), 1);
         Test.stopTest();
 
-        // Перевіряємо вставлену заборгованість
-        List<InvoiceOrderDebt__c> invoices = [
-            SELECT Id, Name, Account__c, InternalAccount__c, Order__c, NetAmount__c, PortalUser__c, CurrencyIsoCode, Contract__c, DaysOverdue__c
-            FROM InvoiceOrderDebt__c
-        ];
-        System.assertEquals(1, invoices.size(), 'Expected one InvoiceOrderDebt__c');
-        InvoiceOrderDebt__c inv = invoices[0];
-        System.assertEquals('INV-001', inv.Name);
-        System.assertEquals(acc.Id, inv.Account__c);
-        System.assertEquals(internalAcc.Id, inv.InternalAccount__c);
-        System.assertEquals(ord.Id, inv.Order__c, 'Order__c should be linked via ID_ERP__c mapping');
-        System.assertEquals(portalUser.Id, inv.PortalUser__c, 'PortalUser__c should be mapped from Contact');
-        System.assertEquals('USD', inv.CurrencyIsoCode);
-        System.assertEquals('CONTRACT-123', inv.Contract__c);
-        System.assertEquals(15, inv.DaysOverdue__c);
-
-        // Перевіряємо підсумкові таблиці (finish())
-        // AccountDebtSum__c: очікуємо два записи (Overdue та Total), або мінімум наявність обох типів.
-        List<AccountDebtSum__c> debtSums = [
-            SELECT Id, DebtType__c, Account__c, CurrencyIsoCode, SumDebt__c
-            FROM AccountDebtSum__c
-            WHERE Account__c = :acc.Id
-        ];
-        System.assert(debtSums.size() > 0, 'AccountDebtSum__c should be created');
-        Set<String> adsTypes = new Set<String>();
-        for (AccountDebtSum__c d : debtSums) adsTypes.add(d.DebtType__c);
-        System.assert(adsTypes.contains('Summary Overdue Debt'), 'Expect Summary Overdue Debt row');
-        System.assert(adsTypes.contains('Summary Total Debt'), 'Expect Summary Total Debt row');
-
-        // InvoiceDebtSummary__c: Total Debt та Overdue Debt по PortalUser/Account/Currency
-        List<InvoiceDebtSummary__c> summaries = [
-            SELECT Id, DebtType__c, Account__c, PortalUser__c, CurrencyIsoCode, SumDebt__c
+        // Очікуємо:
+        // A1 USD Total = 140, A1 USD Overdue = 40, A2 EUR Total = 70
+        InvoiceDebtSummary__c a1UsdTotal = [
+            SELECT SumDebt__c
             FROM InvoiceDebtSummary__c
-            WHERE Account__c = :acc.Id AND PortalUser__c = :portalUser.Id
+            WHERE Account__c = :a1.Id AND CurrencyIsoCode = 'USD' AND DebtType__c = 'Total Debt'
+            LIMIT 1
         ];
-        System.assert(summaries.size() > 0, 'InvoiceDebtSummary__c should be created');
-        Set<String> idsTypes = new Set<String>();
-        for (InvoiceDebtSummary__c s : summaries) idsTypes.add(s.DebtType__c);
-        System.assert(idsTypes.contains('Total Debt'),   'Expect Total Debt summary');
-        System.assert(idsTypes.contains('Overdue Debt'), 'Expect Overdue Debt summary');
+        InvoiceDebtSummary__c a1UsdOverdue = [
+            SELECT SumDebt__c
+            FROM InvoiceDebtSummary__c
+            WHERE Account__c = :a1.Id AND CurrencyIsoCode = 'USD' AND DebtType__c = 'Overdue Debt'
+            LIMIT 1
+        ];
+        InvoiceDebtSummary__c a2EurTotal = [
+            SELECT SumDebt__c
+            FROM InvoiceDebtSummary__c
+            WHERE Account__c = :a2.Id AND CurrencyIsoCode = 'EUR' AND DebtType__c = 'Total Debt'
+            LIMIT 1
+        ];
+
+        System.assertEquals(140, a1UsdTotal.SumDebt__c,   'A1 USD Total should be 140');
+        System.assertEquals( 40, a1UsdOverdue.SumDebt__c, 'A1 USD Overdue should be 40');
+        System.assertEquals( 70, a2EurTotal.SumDebt__c,   'A2 EUR Total should be 70');
+
+        // Переконаємося, що сміттєвий запис видалено
+        Integer garbageCnt = [
+            SELECT COUNT()
+            FROM InvoiceDebtSummary__c
+            WHERE Account__c = :a3.Id AND CurrencyIsoCode = 'USD' AND DebtType__c = 'Total Debt'
+        ];
+        System.assertEquals(0, garbageCnt, 'Garbage summary (A3) must be pruned');
+    }
+
+    @IsTest
+    static void should_Upsert_And_Create_Overdue_On_First_Run_When_Existing_Summary_Present() {
+        Account a = new Account(Name = 'A');
+        insert a;
+
+        // Існуючий підсумок (імітує попередній стан), але без відповідних вихідних боргів
+        InvoiceDebtSummary__c existing = new InvoiceDebtSummary__c(
+            Account__c      = a.Id,
+            CurrencyIsoCode = 'USD',
+            DebtType__c     = 'Total Debt',
+            SumDebt__c      = 50
+        );
+        existing.CompositeKey__c = buildKey(a.Id, null, 'USD', 'Total Debt');
+        insert existing;
+
+        // Реальні борги, які бачить батч: 20 current + 10 overdue => Total має стати 30
+        insert new List<InvoiceOrderDebt__c>{
+            new InvoiceOrderDebt__c(Account__c = a.Id, CurrencyIsoCode = 'USD', NetAmount__c = 20, DaysOverdue__c = 0),
+            new InvoiceOrderDebt__c(Account__c = a.Id, CurrencyIsoCode = 'USD', NetAmount__c = 10, DaysOverdue__c = 2)
+        };
+
+        Test.startTest();
+        Database.executeBatch(new InvoiceOrderDebtBatch(), 1);
+        Test.stopTest();
+
+        InvoiceDebtSummary__c total = [
+            SELECT SumDebt__c
+            FROM InvoiceDebtSummary__c
+            WHERE Account__c = :a.Id AND CurrencyIsoCode = 'USD' AND DebtType__c = 'Total Debt'
+            LIMIT 1
+        ];
+        InvoiceDebtSummary__c overdue = [
+            SELECT SumDebt__c
+            FROM InvoiceDebtSummary__c
+            WHERE Account__c = :a.Id AND CurrencyIsoCode = 'USD' AND DebtType__c = 'Overdue Debt'
+            LIMIT 1
+        ];
+
+        System.assertEquals(30, total.SumDebt__c,   'Total must reflect source data (20+10)');
+        System.assertEquals(10, overdue.SumDebt__c, 'Overdue should be 10');
     }
 }
