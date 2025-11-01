@@ -18,6 +18,7 @@
         <offset>0</offset>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <environments>Default</environments>
     <interviewLabel>Test Email Alert Opportunity Stage Changed to Closed Won {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Test Email Alert Opportunity Stage Changed to Closed Won</label>

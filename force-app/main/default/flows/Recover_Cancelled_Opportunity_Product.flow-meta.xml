@@ -22,6 +22,7 @@
         </outputParameters>
     </actionCalls>
     <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Copy_Product_Fields</name>
         <label>Copy Product Fields</label>

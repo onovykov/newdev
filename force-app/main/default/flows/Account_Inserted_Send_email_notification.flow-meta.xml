@@ -17,6 +17,7 @@
         <nameSegment>AccountInsertedEmailNotification</nameSegment>
     </actionCalls>
     <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <environments>Default</environments>
     <interviewLabel>Account Inserted Send email notification {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Account Inserted Send email notification</label>

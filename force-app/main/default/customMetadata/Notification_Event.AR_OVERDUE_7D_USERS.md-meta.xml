@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>AR_OVERDUE_7D_USERS</label>
+    <protected>false</protected>
+    <values>
+        <field>Active__c</field>
+        <value xsi:type="xsd:boolean">True</value>
+    </values>
+    <values>
+        <field>BatchSize__c</field>
+        <value xsi:type="xsd:int">200</value>
+    </values>
+    <values>
+        <field>Channel__c</field>
+        <value xsi:type="xsd:string">EmailUsers</value>
+    </values>
+    <values>
+        <field>RecipientGroups__c</field>
+        <value xsi:type="xsd:string">BACKOFFICE_BY_SEGMENT,ACCOUNT_OWNER</value>
+    </values>
+    <values>
+        <field>SaveAsActivity__c</field>
+        <value xsi:type="xsd:boolean">True</value>
+    </values>
+    <values>
+        <field>TemplateApiName__c</field>
+        <value xsi:type="xsd:string">AR_Overdue_7D_Internal</value>
+    </values>
+    <values>
+        <field>ThrottleMinutes__c</field>
+        <value xsi:type="xsd:int">60</value>
+    </values>
+</CustomMetadata>

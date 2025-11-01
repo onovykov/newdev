@@ -17,6 +17,7 @@
         <nameSegment>Opportunity.Email_Alert_Notifying_that_Opportunity_is_Closed_Won</nameSegment>
     </actionCalls>
     <apiVersion>52.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <description>Notify Europe Sales Directors that the created Opportunity Stage is Closed Won</description>
     <interviewLabel>Email Alert Opportunity Stage Created with Closed Won Stage {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Email Alert Opportunity Stage Created with Closed Won Stage</label>

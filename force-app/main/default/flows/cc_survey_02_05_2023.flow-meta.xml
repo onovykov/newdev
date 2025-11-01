@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>pageNamesInOrder_Assignment</name>
         <label>pageNamesInOrder_Assignment</label>
@@ -140,6 +141,14 @@
             <fieldType>ComponentInput</fieldType>
             <isRequired>false</isRequired>
             <scale>0</scale>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <processMetadataValues>
@@ -153,6 +162,14 @@
             <fieldText>&lt;p&gt;&lt;em style=&quot;font-size: 22px;&quot;&gt;What do you think we can add or change in this section to make it easier for you to use?&lt;/em&gt;&lt;strong style=&quot;font-size: 18px;&quot;&gt;&lt;em&gt;&lt;span class=&quot;ql-cursor&quot;&gt;&lt;/span&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <pausedText>To pick up where you left off, refresh this page, or open the survey again.</pausedText>
         <showFooter>true</showFooter>
@@ -178,6 +195,14 @@
             <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 22px;&quot;&gt;&lt;span class=&quot;ql-cursor&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;em style=&quot;font-size: 22px;&quot;&gt;What do you think we can add or change in our &lt;/em&gt;&lt;strong style=&quot;font-size: 22px;&quot;&gt;&lt;em&gt;Customer Community Portal&lt;/em&gt;&lt;/strong&gt;&lt;em style=&quot;font-size: 22px;&quot;&gt; &lt;/em&gt;&lt;strong style=&quot;font-size: 22px;&quot;&gt;&lt;em&gt;in general&lt;/em&gt;&lt;/strong&gt;&lt;em style=&quot;font-size: 22px;&quot;&gt; to make it easier for you to use?&lt;/em&gt;&lt;/p&gt;</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <pausedText>To pick up where you left off, refresh this page, or open the survey again.</pausedText>
         <showFooter>true</showFooter>
@@ -226,6 +251,14 @@
             <fieldType>ComponentInput</fieldType>
             <isRequired>false</isRequired>
             <scale>0</scale>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <processMetadataValues>
@@ -239,6 +272,14 @@
             <fieldText>&lt;p&gt;&lt;em style=&quot;font-size: 22px;&quot;&gt;What do you think we can add or change in this section to make it easier for you to use?&lt;/em&gt;&lt;strong style=&quot;font-size: 18px;&quot;&gt;&lt;em&gt;&lt;span class=&quot;ql-cursor&quot;&gt;&lt;/span&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <pausedText>To pick up where you left off, refresh this page, or open the survey again.</pausedText>
         <showFooter>true</showFooter>
@@ -287,6 +328,14 @@
             <fieldType>ComponentInput</fieldType>
             <isRequired>false</isRequired>
             <scale>0</scale>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <processMetadataValues>
@@ -300,6 +349,14 @@
             <fieldText>&lt;p&gt;&lt;em style=&quot;font-size: 22px;&quot;&gt;What do you think we can add or change in this section to make it easier for you to use?&lt;/em&gt;&lt;strong style=&quot;font-size: 18px;&quot;&gt;&lt;em&gt;&lt;span class=&quot;ql-cursor&quot;&gt;&lt;/span&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <pausedText>To pick up where you left off, refresh this page, or open the survey again.</pausedText>
         <showFooter>true</showFooter>
@@ -348,6 +405,14 @@
             <fieldType>ComponentInput</fieldType>
             <isRequired>false</isRequired>
             <scale>0</scale>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <processMetadataValues>
@@ -361,6 +426,14 @@
             <fieldText>&lt;p&gt;&lt;em style=&quot;font-size: 22px;&quot;&gt;What do you think we can add or change in this section to make it easier for you to use?&lt;/em&gt;&lt;strong style=&quot;font-size: 18px;&quot;&gt;&lt;em&gt;&lt;span class=&quot;ql-cursor&quot;&gt;&lt;/span&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <pausedText>To pick up where you left off, refresh this page, or open the survey again.</pausedText>
         <showFooter>true</showFooter>
@@ -388,6 +461,14 @@
                 </value>
             </inputParameters>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>

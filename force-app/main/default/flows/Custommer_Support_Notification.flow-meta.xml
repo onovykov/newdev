@@ -62,6 +62,7 @@
         <nameSegment>emailSimple</nameSegment>
     </actionCalls>
     <apiVersion>52.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <interviewLabel>Custommer Support Notification {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Customer Support Notification</label>
     <processMetadataValues>

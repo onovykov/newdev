@@ -11,6 +11,7 @@
         <nameSegment>FlowUpdateProdQuotesRelatedList</nameSegment>
     </actionCalls>
     <apiVersion>55.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <environments>Default</environments>
     <interviewLabel>Update Related Items Of Production Quote {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Copy Production Amount in Quotas 5</label>

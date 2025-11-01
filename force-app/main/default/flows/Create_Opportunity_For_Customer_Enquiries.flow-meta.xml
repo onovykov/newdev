@@ -33,6 +33,7 @@
         <nameSegment>SendPostFromFlow</nameSegment>
     </actionCalls>
     <apiVersion>52.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Copy_Customer_Enquiry</name>
         <label>Copy  Customer Enquiry</label>

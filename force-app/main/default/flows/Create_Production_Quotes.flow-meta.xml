@@ -17,6 +17,7 @@
         <nameSegment>FlowTriggerProductionQuoteCreate</nameSegment>
     </actionCalls>
     <apiVersion>54.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <environments>Default</environments>
     <formulas>
         <name>waiting_time</name>

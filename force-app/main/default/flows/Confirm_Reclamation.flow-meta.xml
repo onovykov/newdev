@@ -27,6 +27,7 @@
         </outputParameters>
     </actionCalls>
     <apiVersion>53.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <interviewLabel>Confirm Reclamation {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Confirm Reclamation 4</label>
     <processMetadataValues>
@@ -63,6 +64,14 @@
             <name>text_reclamation</name>
             <fieldText>&lt;p&gt;Are you sure to confirm reclamation?&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Confrim</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -80,6 +89,14 @@
             <name>test_1</name>
             <fieldText>&lt;p&gt;{!text}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -96,6 +113,14 @@
             <name>lableErroe</name>
             <fieldText>&lt;p&gt;Error occure:&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>

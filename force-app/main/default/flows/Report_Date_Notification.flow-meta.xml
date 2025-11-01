@@ -36,6 +36,7 @@
         <offset>0</offset>
     </actionCalls>
     <apiVersion>54.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
         <name>Check_if_first_day_of_month</name>
         <label>Check if first day of month</label>

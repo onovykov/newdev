@@ -1,0 +1,6 @@
+DeveloperName,Kind__c,Definition__c,IncludeInactive__c,Notes__c
+OPP_OWNER,Users,OPP_OWNER,False,Opportunity owner user(s)
+ACCOUNT_OWNER,Users,ACCOUNT_OWNER,False,Account owner user(s)
+BACKOFFICE_BY_SEGMENT,Users,BACKOFFICE_BY_SEGMENT,False,Public Group BACKOFFICE_<Account.MarketSegment__c>
+SYSADMINS,Users,SYSADMINS,False,All active users with Profile.Name = System Administrator
+IT_ADMIN_INTERPIPE_UA,Contacts,IT_ADMIN_INTERPIPE_UA,False,Contacts with Type__c = IT-Admin on Account 0011n00002MXoKYAA1

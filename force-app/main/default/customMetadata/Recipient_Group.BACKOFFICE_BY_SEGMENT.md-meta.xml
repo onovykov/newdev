@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>BACKOFFICE_BY_SEGMENT</label>
+    <protected>false</protected>
+    <values>
+        <field>Definition__c</field>
+        <value xsi:type="xsd:string">BACKOFFICE_BY_SEGMENT</value>
+    </values>
+    <values>
+        <field>IncludeInactive__c</field>
+        <value xsi:type="xsd:boolean">False</value>
+    </values>
+    <values>
+        <field>Kind__c</field>
+        <value xsi:type="xsd:string">Users</value>
+    </values>
+    <values>
+        <field>Notes__c</field>
+        <value xsi:type="xsd:string">Public Group BACKOFFICE_&lt;Account.MarketSegment__c&gt;</value>
+    </values>
+</CustomMetadata>

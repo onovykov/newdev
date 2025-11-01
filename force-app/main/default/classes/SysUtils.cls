@@ -208,8 +208,10 @@ public class SysUtils {
     }
     //Метод для перекодування ієрархічного ParentId згідно зі структурою ієрархії зовнішніх ключів
     public static void updateHierarchy(String objectName, String itemIdField, String parentIdField, String lookupField) {
-        // 1. Отримуємо всі записи об'єкта з необхідними полями
-        String query = 'SELECT Id, ' + itemIdField + ', ' + parentIdField + ' FROM ' + objectName;
+        // 1. Отримуємо всі записи об'єкта з необхідними полями, в якого немає парента (Parent__c=null)
+        String query = 'SELECT Id, ' + itemIdField + ', ' + 
+                        parentIdField + ' FROM ' + objectName + 
+                        ' WHERE Parent__c=null';
         List<SObject> records = Database.query(query);
 
         // 2. Створюємо мапу ItemId -> RecordId

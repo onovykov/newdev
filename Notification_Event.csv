@@ -1,0 +1,5 @@
+DeveloperName,Active__c,Channel__c,RecipientGroups__c,TemplateApiName__c,SaveAsActivity__c,ThrottleMinutes__c,BatchSize__c
+OPP_CLOSED_WON_USERS,True,EmailUsers,"OPP_OWNER,ACCOUNT_OWNER",Opp_ClosedWon_Internal,True,10,100
+ERR_INT_OPPDATA_ERPMSGHANDLER_USERS,True,EmailUsers,SYSADMINS,Err_Internal_Tech,False,5,100
+ERR_INT_OPPDATA_ERPMSGHANDLER_CONTACTS,True,EmailContacts,IT_ADMIN_INTERPIPE_UA,Err_Client_IT_Notice,True,5,200
+AR_OVERDUE_7D_USERS,True,EmailUsers,"BACKOFFICE_BY_SEGMENT,ACCOUNT_OWNER",AR_Overdue_7D_Internal,True,60,200

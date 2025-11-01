@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>ERR_INT_OPPDATA_ERPMSGHANDLER_CONTACTS</label>
+    <protected>false</protected>
+    <values>
+        <field>Active__c</field>
+        <value xsi:type="xsd:boolean">True</value>
+    </values>
+    <values>
+        <field>BatchSize__c</field>
+        <value xsi:type="xsd:int">200</value>
+    </values>
+    <values>
+        <field>Channel__c</field>
+        <value xsi:type="xsd:string">EmailContacts</value>
+    </values>
+    <values>
+        <field>RecipientGroups__c</field>
+        <value xsi:type="xsd:string">IT_ADMIN_INTERPIPE_UA</value>
+    </values>
+    <values>
+        <field>SaveAsActivity__c</field>
+        <value xsi:type="xsd:boolean">True</value>
+    </values>
+    <values>
+        <field>TemplateApiName__c</field>
+        <value xsi:type="xsd:string">Err_Client_IT_Notice</value>
+    </values>
+    <values>
+        <field>ThrottleMinutes__c</field>
+        <value xsi:type="xsd:int">5</value>
+    </values>
+</CustomMetadata>

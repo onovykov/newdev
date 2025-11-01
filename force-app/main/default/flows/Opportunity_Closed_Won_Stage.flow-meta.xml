@@ -23,6 +23,7 @@
         <nameSegment>Opportunity.Email_Alert_Notifying_that_Opportunity_is_Closed_Won</nameSegment>
     </actionCalls>
     <apiVersion>52.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
         <processMetadataValues>
             <name>index</name>

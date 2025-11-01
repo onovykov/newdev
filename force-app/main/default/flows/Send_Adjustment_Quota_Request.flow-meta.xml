@@ -18,6 +18,7 @@
         <offset>0</offset>
     </actionCalls>
     <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <environments>Default</environments>
     <interviewLabel>Send Adjustment Quota Request {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Send Adjustment Quota Request</label>
