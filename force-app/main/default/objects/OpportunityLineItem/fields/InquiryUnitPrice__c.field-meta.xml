@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>InquiryUnitPrice__c</fullName>
+    <description>Product price per inquiry measurement unit.</description>
+    <inlineHelpText>Product price per inquiry measurement unit.</inlineHelpText>
+    <label>Price per Unit</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Currency</type>
+</CustomField>

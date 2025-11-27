@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SteelGrade__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>Steel grade</description>
+    <inlineHelpText>Steel grade</inlineHelpText>
+    <label>Steel Grade</label>
+    <referenceTo>SteelGrade__c</referenceTo>
+    <relationshipLabel>Opportunity Product</relationshipLabel>
+    <relationshipName>Opportunity_Product</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

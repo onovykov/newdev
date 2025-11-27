@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Weight_ppf__c</fullName>
+    <description>Pipe linear weight - pounds per foot (lb/ft)</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Pipe linear weight - pounds per foot (lb/ft)</inlineHelpText>
+    <label>Linear Weight (ppf)</label>
+    <precision>8</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

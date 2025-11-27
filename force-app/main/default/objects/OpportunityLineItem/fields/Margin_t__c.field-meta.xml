@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Margin_t__c</fullName>
+    <description>The difference between a product 1 ton selling revenue and its cost of production, that is calculated by finance department in price approval process.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The difference between a product 1 ton selling revenue and its cost of production, that is calculated by finance department in price approval process.</inlineHelpText>
+    <label>Margin/t (USD)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

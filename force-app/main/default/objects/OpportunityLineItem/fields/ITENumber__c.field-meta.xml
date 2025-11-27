@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ITENumber__c</fullName>
+    <description>Number of the related order item in the IT-Enterprise system.</description>
+    <externalId>true</externalId>
+    <inlineHelpText>Number of the related order item in the IT-Enterprise system.</inlineHelpText>
+    <label>ITE Number</label>
+    <length>20</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

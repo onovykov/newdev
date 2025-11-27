@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ShipmentAllowed__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Whether shipment of products is allowed.</description>
+    <inlineHelpText>Whether shipment of products is allowed.</inlineHelpText>
+    <label>Shipment Allowed</label>
+    <type>Checkbox</type>
+</CustomField>

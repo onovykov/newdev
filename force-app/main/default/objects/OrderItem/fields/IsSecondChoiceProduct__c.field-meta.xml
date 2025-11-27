@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsSecondChoiceProduct__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>The value of this field is auto-populated depending on Product Standard, and the field is referenced in the parent object&apos;s rollup summary field. We cannot use a formula field instead, because in that case we couldn&apos;t reference it in rollup-summary field.</description>
+    <label>Second Choice Product</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

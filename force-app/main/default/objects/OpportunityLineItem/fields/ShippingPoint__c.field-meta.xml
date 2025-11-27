@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ShippingPoint__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Shipping point where to deliver products</description>
+    <inlineHelpText>Shipping point where to deliver products</inlineHelpText>
+    <label>Shipping Point</label>
+    <referenceTo>ShippingPoint__c</referenceTo>
+    <relationshipLabel>Opportunity Product</relationshipLabel>
+    <relationshipName>Opportunity_Product</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

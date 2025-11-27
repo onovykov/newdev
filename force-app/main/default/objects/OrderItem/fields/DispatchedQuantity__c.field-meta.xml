@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DispatchedQuantity__c</fullName>
+    <description>Dispatched quantity of product in metric tons</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Dispatched quantity of product in metric tons</inlineHelpText>
+    <label>Shipped (t)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

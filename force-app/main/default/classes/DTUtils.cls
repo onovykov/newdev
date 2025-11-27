@@ -54,7 +54,9 @@ global without sharing class DTUtils {
         }
 
         List<ProdWeeksH__c> results = [
-            SELECT Id, WeekNum__c, DateFrom__c, DateTo__c
+            SELECT Id, Name, WeekNum__c, DateFrom__c, DateTo__c,
+                    Parent__c, Parent__r.Name,
+                    Parent__r.Parent__c, Parent__r.Parent__r.Name            
             FROM ProdWeeksH__c
             WHERE DateFrom__c <= :Day AND DateTo__c >= :Day
             LIMIT 1

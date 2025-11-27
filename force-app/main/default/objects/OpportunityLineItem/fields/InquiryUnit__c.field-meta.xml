@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>InquiryUnit__c</fullName>
+    <description>Measuring unit for the product in the customer&apos;s inquiry.</description>
+    <inlineHelpText>Measuring unit for the product in the customer&apos;s inquiry.</inlineHelpText>
+    <label>Measurement Unit</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>34</fullName>
+                <default>false</default>
+                <label>t</label>
+            </value>
+            <value>
+                <fullName>20</fullName>
+                <default>false</default>
+                <label>m</label>
+            </value>
+            <value>
+                <fullName>74</fullName>
+                <default>false</default>
+                <label>ft</label>
+            </value>
+            <value>
+                <fullName>43</fullName>
+                <default>false</default>
+                <label>pcs</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

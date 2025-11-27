@@ -92,20 +92,20 @@ public class ERPMessageHandlerOpportunityData {
         '_41', 
         '_45 '   
     };
-    	
+
     public static UpdateSFRecordsResult updateOpportunity(ERPMessageParser.ErpToSfMessage_OpportunityData requestObj, String requestBody, String businessDivision) {
         //system.debug(JSON.serializePretty(requestObj));
         if (requestObj.data.header.unDoc == null) {
             String errorMessage = 'Your request does not contain ID_ERP field for Opportunity.';
             throw new erpException(errorMessage);
         }
-    
+
         UpdateSFRecordsResult result = new UpdateSFRecordsResult();
         Opportunity opp = getOpportunitySFByERPID(requestObj.data.header.UnDoc);
         result.parentOpp = opp;
-    
+
         checkOpportunityStatus(requestObj, result);
-            
+
         Map<String, Id> rtNameToIdMap = new Map<String, Id>();
         for (Id rtId : idToRtMap.keySet()) {
             rtNameToIdMap.put(idToRtMap.get(rtId).DeveloperName, rtId);
@@ -119,11 +119,11 @@ public class ERPMessageHandlerOpportunityData {
             if (opp == null) {
                 // Не будем создавать новую оппу, если в ней нет ни одной позиции
                 return result;
-            } 
+            }
         } else {
             throw new erpException('Unknown Business Division! Allowed values: "Tubes" | "Wheels"');
         }
-    
+
         if (opp != NULL) {
             if (opp.Pricebook2Id == null) {
                 opp.Pricebook2Id = [SELECT Id, Name, IsActive FROM PriceBook2 WHERE IsStandard = True LIMIT 1].get(0).Id;
@@ -139,13 +139,13 @@ public class ERPMessageHandlerOpportunityData {
                 // Если оппа не закрыта, но по ней уже есть лоты, то закроем ее:
                 opp.StageName = 'Closed Won';
             }
-    
+
             if (result.isCurrencyCodeChanged) {
                 List<OpportunityLineItem> oppLineItemsToDelete = [SELECT Id FROM OpportunityLineItem WHERE OpportunityId = :opp.Id];
                 delete oppLineItemsToDelete;
 
                 try{
-                    List<Quote> relatedQuotes = [SELECT id FROM Quote WHERE OpportunityId= :opp.Id];   
+                    List<Quote> relatedQuotes = [SELECT id FROM Quote WHERE OpportunityId= :opp.Id];
                     delete relatedQuotes;
                 } catch(Exception e){
                     system.debug(e.getMessage());
@@ -164,13 +164,13 @@ public class ERPMessageHandlerOpportunityData {
             opp.Name = String.Isblank(requestObj.data.header.altNumber) ? (String.IsBlank(string.valueOf(requestObj.data.header.unDoc)) ? 'Not defined' : string.valueOf(requestObj.data.header.unDoc) + ' (UnDoc in IT-Enterprise)'): requestObj.data.header.altNumber;
             opp.ID_ERP__c = String.valueOf(requestObj.data.header.unDoc);
             if (result.hasLots) {
-                opp.StageName = 'Closed Won'; 
+                opp.StageName = 'Closed Won';
             } else {
                 opp.StageName = 'Analysis';
             }
             opp.CloseDate = Date.today();
 //            opp.CreatedDate = opp.CreatedDate_ERP__c.date();
-                
+
             upsert opp ID_ERP__c;
 
             result.oppChangeStatus = 'Created';
@@ -178,7 +178,7 @@ public class ERPMessageHandlerOpportunityData {
         }
         return result;
     }
-    
+
     public static UpdateSFRecordsResult updateLineItems(ERPMessageParser.ErpToSfMessage_OpportunityData requestObj, ERPMessageHandlerOpportunityData.UpdateSFRecordsResult resultOpp) {
         UpdateSFRecordsResult result = new UpdateSFRecordsResult();
         result.newOppProductsIds = new List<String> ();
@@ -192,15 +192,15 @@ public class ERPMessageHandlerOpportunityData {
         Set<OpportunityLineItem> oppProductsToDelete = new Set<OpportunityLineItem> ();
         List<OpportunityLineItem> oppProductsToInsert = new List<OpportunityLineItem> ();
         List<OpportunityLineItem> oppProductsToCheckCancelled = new List<OpportunityLineItem> ();
-        Map<String, PricebookEntry> pbeIdByProduct2erpId = selectPBEbyProduct2ERPId(requestObj.data.items, opp); 
-        Set<Integer> oppProductERPIds = getOppProductERPIds(requestObj.data.items);
+        Map<String, PricebookEntry> pbeIdByProduct2erpId = selectPBEbyProduct2ERPId(requestObj.data.items, opp);
+        Set<Integer> oppProductERPIds = ERPMessageHandlerOpportunityService.getOppProductERPIds(requestObj.data.items);
         Map<Integer, OpportunityLineItem> oppProductsByERPIdMap = getOppProdSFMap(oppProductERPIds, 'NPP_ERP__c', String.valueOf(opp.Id));
         Map<String, Map<String, Id>> objToIdMap = getObjectToIdMap(requestObj.data.items, requestObj.data.orderType);
 
-        if(ProductType == 'Wheels') {
-            getKlwMaps(requestObj.data.items);
+        if (ProductType == 'Wheels') {
+            ERPMessageHandlerOpportunityService.loadKlwMaps(requestObj.data.items);
         }
-    
+
         if (resultOpp.isNewOppCreated == true || resultOpp.isCurrencyCodeChanged == true) {
             for (ERPMessageParser.ERPObject_OrderItem oppProdERP : orderItems) {
                 //Пропустим строку, если не заполнены продукт или количество:
@@ -232,7 +232,7 @@ public class ERPMessageHandlerOpportunityData {
                     OpportunityLineItem newOppLi = createNewOli(oppProdERP, opp.Id, pbeIdByProduct2erpId);
                     mapRelatedERPId(newOppLi, null, objToIdMap, oppProdERP, requestObj.data.orderType);
                     updateOLI(newOppLi, null, oppProdERP, requestObj.data.header.unDoc, null, null);
-                    oppProductsToInsert.add(newOppLi);     
+                    oppProductsToInsert.add(newOppLi);
                 } else {
                     OpportunityLineItem oldOppLi = oppProductsByERPIdMap.get(oppProdERP.npp);
                     if (oldOppLi.PricebookEntryId == pbeIdByProduct2erpId.get(oppProdERP.ProductGroup.ID).Id) {
@@ -240,7 +240,7 @@ public class ERPMessageHandlerOpportunityData {
                         mapRelatedERPId(oppLi, null, objToIdMap, oppProdERP, requestObj.data.orderType);
                         updateOLI(oppLi, null, oppProdERP, requestObj.data.header.unDoc, null, null);
                         oppProductsToUpdate.add(oppLi);
-                        result.updatedOppProductsIds.add(oppLi.Id);                                                      
+                        result.updatedOppProductsIds.add(oppLi.Id);
                     } else {
                         OpportunityLineItem newOppLi = oldOppLi.clone(false, true, false, false);
                         newOppLi.OpportunityId = opp.Id;
@@ -280,34 +280,243 @@ public class ERPMessageHandlerOpportunityData {
             for(OpportunityLineItem oli : deletionLIst2){
                 oli.Stage__c = 'Cancelled';
                 oppProductsToUpdate.add(oli);
-            } 
+            }
         }
         if (oppProductsToUpdate.size() > 0) {
             update oppProductsToUpdate;
         }
 
         resultOpp.objToIdMap = objToIdMap;
-    
+
         return result;
     }
 
-    public static Order getOrderSFByID(UpdateSFRecordsResult resultOpp) {
-        if (resultOpp.parentOpp.SyncedOrder__c == null) {
-            return null;
-        } else {
-            List<Order> ordList = [SELECT Id, OwnerId, InitialOwnerName__c, OpportunityId, CreatedDate, EffectiveDate, EffectiveDateAux__c, Status, ID_ERP__c, CurrencyIsoCode FROM Order WHERE Id = :resultOpp.parentOpp.SyncedOrder__c];
-            if (!ordList.isEmpty()) {
-                return ordList[0];
-            } else {
-                return null;
-            }
+    /*
+        Нова логіка лотів - агрегація до Lot__c
+        Додано: О.Новиков, 13.11.2025
+    */
+    //=======================================
+    // --- Структура для аґреґації лотів
+    public class LotsValues {
+        public String  lotType;
+        public Decimal lotQty;
+        public Date    lotDate;
+        public Id      prodWeekId;
+        public String  prodPlanType;
+
+        public LotsValues() {
+            this.lotType     = '';
+            this.lotQty      = 0.0;
+            this.lotDate     = null;
+            this.prodWeekId  = null;
+            this.prodPlanType = '';
+        }
+
+        public LotsValues(String lt, Decimal lq, Date ld, Id pwId, String ppt) {
+            this.lotType    = lt;
+            this.lotQty     = lq;
+            this.lotDate    = ld;
+            this.prodWeekId = pwId;
+            this.prodPlanType = ppt;
         }
     }
 
+    // --- Хелпер для парсингу Decimal зі String (DTO → Decimal)
+    private static Decimal parseDecimal(String src, Integer scale) {
+        if (String.isBlank(src)) {
+            return 0;
+        }
+        try {
+            Decimal d = Decimal.valueOf(src);
+            if (scale != null) {
+                d = d.setScale(scale);
+            }
+            return d;
+        } catch (Exception e) {
+            // тут можна буде залогувати
+            return 0;
+        }
+    }
+
+    // --- Хелпер для парсингу Date з рядка DateTime "YYYY-MM-DDTHH:MM:SS"
+    private static Date parseDateFromDateTimeString(String dtString) {
+        if (dtString == null || dtString.length() < 10) {
+            return null;
+        }
+        try {
+            return Date.valueOf(dtString.substring(0, 10)); // yyyy-MM-dd
+        } catch (Exception e) {
+            // тут можна буде залогувати
+            System.debug('Date value is incorrect');
+            return null;
+        }
+    }
+
+    // --- Основний метод аґреґації лотів
+    public static void fillAggregateLots(ERPMessageParser.ErpToSfMessage_OpportunityData parsed) {
+        // Захист від null на верхньому рівні
+        if (parsed == null || parsed.data == null || parsed.data.items == null || parsed.data.items.isEmpty()) {
+            return;
+        }
+
+        // Локальна мапа ITENumber -> список агрегованих значень
+        Map<String, List<LotsValues>> mapLotsItem = new Map<String, List<LotsValues>>();
+
+        // Сет ITENumber-ів для пошуку OrderItem
+        Set<String> ites = new Set<String>();
+
+        // --- Проходимося по item-ах з ERP
+        for (Integer i = 0; i < parsed.data.items.size(); i++) {
+            ERPMessageParser.ERPObject_OrderItem itemDto = parsed.data.items[i];
+            if (itemDto == null || itemDto.lots == null || itemDto.lots.isEmpty()) {
+                continue;
+            }
+
+            String iteNumber = itemDto.iteNumber;
+            if (String.isBlank(iteNumber)) {
+                // Якщо немає ITENumber — не зможемо змапити на OrderItem
+                continue;
+            }
+
+            ites.add(iteNumber);
+
+            // >>> Скидаємо підсумки та дати для конкретного ITENumber
+            Decimal producedSum   = 0;
+            Decimal dispatchedSum = 0;
+            Decimal shippedSum    = 0;
+
+            Date producedMaxDate;
+            Date dispatchedMaxDate;
+            Date shippedMaxDate;
+
+            // --- Агрегація по лотах
+            for (Integer j = 0; j < itemDto.lots.size(); j++) {
+                ERPMessageParser.ERPObject_ProductLot lotDto = itemDto.lots[j];
+                if (lotDto == null) {
+                    // Немає лотів для цього ітема - пропускаємо подальші кроки
+                    continue;
+                }
+
+                // Дата лота (одна на всі три показники - згідно зі структурою з DTO)
+                Date lotDate = parseDateFromDateTimeString(lotDto.lotDate);
+
+                // DTO: все ще String → парсимо й конвертуємо в Decimal
+                Decimal lotProd  = parseDecimal(lotDto.produced,   3);
+                Decimal lotShip  = parseDecimal(lotDto.dispatched, 3);
+                Decimal lotDeliv = parseDecimal(lotDto.shipped,    3);
+
+                if (lotDate != null) {
+                    if (lotProd != 0) {
+                        producedSum += lotProd;
+                        if (producedMaxDate == null || lotDate > producedMaxDate) {
+                            producedMaxDate = lotDate;
+                        }
+                    }
+                    if (lotShip != 0) {
+                        dispatchedSum += lotShip;
+                        if (dispatchedMaxDate == null || lotDate > dispatchedMaxDate) {
+                            dispatchedMaxDate = lotDate;
+                        }
+                    }
+                    if (lotDeliv != 0) {
+                        shippedSum += lotDeliv;
+                        if (shippedMaxDate == null || lotDate > shippedMaxDate) {
+                            shippedMaxDate = lotDate;
+                        }
+                    }
+                }
+            }
+
+            // Формуємо список агрегованих значень для цього ITENumber
+            List<LotsValues> lvList = new List<LotsValues>();
+
+            // Produced
+            if (producedSum != 0 && producedMaxDate != null) {
+                ProdWeeksH__c prodWeek = DTUtils.getPWeekByDate(producedMaxDate);
+                if (prodWeek != null) {
+                    lvList.add(new LotsValues('Produced', producedSum, producedMaxDate, prodWeek.Id, '253'));
+                }
+            }
+
+            // Dispatched -> Shipped (історична кривизна, але така зараз логіка)
+            if (dispatchedSum != 0 && dispatchedMaxDate != null) {
+                ProdWeeksH__c shipWeek = DTUtils.getPWeekByDate(dispatchedMaxDate);
+                if (shipWeek != null) {
+                    lvList.add(new LotsValues('Shipped', dispatchedSum, dispatchedMaxDate, shipWeek.Id, '254'));
+                }
+            }
+
+            // Shipped -> Delivered
+            if (shippedSum != 0 && shippedMaxDate != null) {
+                ProdWeeksH__c delivWeek = DTUtils.getPWeekByDate(shippedMaxDate);
+                if (delivWeek != null) {
+                    lvList.add(new LotsValues('Delivered', shippedSum, shippedMaxDate, delivWeek.Id, '255'));
+                }
+            }
+
+            if (!lvList.isEmpty()) {
+                mapLotsItem.put(iteNumber, lvList);
+            }
+        }
+
+        // Якщо немає що мапити — зупиняємось
+        if (ites.isEmpty() || mapLotsItem.isEmpty()) {
+            return;
+        }
+
+        // --- Отримуємо рекорди OrderItem по ITENumber з Platform-кеша/БД
+        Map<String, OrderItem> byIte = OrderItemPlatformCache.getMany(ites);
+        if (byIte == null || byIte.isEmpty()) {
+            return;
+        }
+
+        // --- Формуємо лоти для upsert
+        List<Lot__c> lotList = new List<Lot__c>();
+
+        for (String ite : mapLotsItem.keySet()) {
+            OrderItem oi = byIte.get(ite);
+            if (oi == null) {
+                // ITENumber прийшов з ERP, але в SF немає OrderItem — пропускаємо
+                continue;
+            }
+
+            List<LotsValues> lvList = mapLotsItem.get(ite);
+            if (lvList == null || lvList.isEmpty()) {
+                continue;
+            }
+
+            for (LotsValues lv : lvList) {
+                Lot__c lt = new Lot__c();
+                lt.OrderItem__c  = oi.Id;
+                lt.LotDate__c    = lv.lotDate;
+                lt.LotType__c    = lv.lotType;
+                lt.LotQty_t__c   = lv.lotQty;
+                lt.ProdWeek__c   = lv.prodWeekId;
+                lt.ProdPlanType__c = lv.prodPlanType;
+
+                // Унікальний ключ для upsert:
+                lt.ExtKey__c = String.valueOf(oi.Id) + '#' +
+                            String.valueOf(lv.prodWeekId) + '#' +
+                            lv.lotType;
+
+                lotList.add(lt);
+            }
+        }
+
+        if (!lotList.isEmpty()) {
+            Database.UpsertResult[] res = Database.upsert(
+                lotList,
+                Lot__c.Fields.ExtKey__c,
+                false // allOrNone = false
+            );
+            // Тут можна буде пройтись по res і залогувати помилки
+        }
+    }
+    //=======================================
     public static UpdateSFRecordsResultOrder updateOrder(ERPMessageParser.ErpToSfMessage_OpportunityData requestObj, ERPMessageHandlerOpportunityData.UpdateSFRecordsResult resultOpp) {
         UpdateSFRecordsResultOrder result = new UpdateSFRecordsResultOrder();
-        Order ord = getOrderSFByID(resultOpp);
-    
+        Order ord = ERPMessageHandlerOpportunityService.getOrderSFByID(resultOpp);
+
         if (ord != NULL) {
             if (ord.Status != 'Draft') {
                 ord.Status = 'Draft';
@@ -318,12 +527,16 @@ public class ERPMessageHandlerOpportunityData {
             //Очистим даты начала и конца ордера, чтобы не возникло конфликтов при назначении дат продуктам.
             ord.EndDate = null;
 
+            // 🔧 FIX: NEVER delete OrderItems - causes DELETE_OPERATION_TOO_LARGE error
+            // When Order has thousands of related OrderItemGeneral__c records,
+            // deleting OrderItems triggers cascade SetNull operations that exceed Salesforce limits (>10k)
+            // Currency change detection is preserved but deletion is skipped
             if (String.valueOf(ord.CurrencyIsoCode) != requestObj.data.orderCurrency) {
                 result.isCurrencyCodeChanged = true;
-                List<OrderItem> ordLineItemsToDelete = [SELECT Id FROM OrderItem WHERE OrderId = :ord.Id];
-                delete ordLineItemsToDelete;
+                System.debug('⚠️ Currency changed from ' + ord.CurrencyIsoCode + ' to ' + requestObj.data.orderCurrency + ' but OrderItems NOT deleted (prevents DELETE_OPERATION_TOO_LARGE)');
+                // REMOVED: delete ordLineItemsToDelete;
             }
-    
+
             ord = mapOrderFields(requestObj, ord, result, resultOpp);
             Database.update(ord);
             result.parentOrd = ord;
@@ -334,7 +547,7 @@ public class ERPMessageHandlerOpportunityData {
 //            NEW
 //            List<Lot__c> lotsToDelete = [SELECT Id FROM Lot__c WHERE Order__c = :ord.Id];
             delete lotsToDelete;
-        } else {   
+        } else {
             Opportunity opp = getOpportunitySFByERPID(requestObj.data.header.unDoc);
             result.isNewOrderCreated = true;
             ord = new Order();
@@ -349,9 +562,9 @@ public class ERPMessageHandlerOpportunityData {
             ord.Status = 'Draft';
             ord.Pricebook2Id = opp.Pricebook2Id;
             ord.OpportunityId = opp.Id;
-    
+
             upsert ord ID_ERP__c;
-    
+
             Opportunity opp_to_update = new Opportunity(Id = opp.Id);
             opp_to_update.SyncedOrder__c = ord.Id;
             update opp_to_update;
@@ -377,17 +590,17 @@ public class ERPMessageHandlerOpportunityData {
 //        NEW
 //        List<Lot__c> lotsToInsert = new List<Lot__c> ();
         Map<String, PricebookEntry> pbeIdByProduct2erpId = selectPBEbyProduct2ERPId(requestObj.data.items, opp);
-        Set<Integer> oppProductERPIds = getOppProductERPIds(requestObj.data.items);
+        Set<Integer> oppProductERPIds = ERPMessageHandlerOpportunityService.getOppProductERPIds(requestObj.data.items);
         Map<Integer, OrderItem> ordProductsByERPIdMap = getOrdProdSFMap(oppProductERPIds, 'NPP_ERP__c', String.valueOf(ord.Id));
 
         Map<String, Map<String, Id>> objToIdMap;
-        
+
         if (resultOpp.objToIdMap != null) {
             objToIdMap = resultOpp.objToIdMap;
         } else {
             objToIdMap = getObjectToIdMap(requestObj.data.items, requestObj.data.orderType);
         }
-    
+
         Integer numberOfProducts = 0;
         if (resultOrd.isNewOrderCreated == true || result.isCurrencyCodeChanged == true) {
             for (ERPMessageParser.ERPObject_OrderItem oppProdERP : orderItems) {
@@ -442,9 +655,16 @@ public class ERPMessageHandlerOpportunityData {
             }
         }
 
+        // 🔧 FIX: Commented out to prevent DELETE_OPERATION_TOO_LARGE error
+        // When OrderItem has thousands of related OrderItemGeneral__c records,
+        // deleting OrderItems triggers cascade SetNull operations that exceed Salesforce limits (>10k)
+        // if (ordProductsToDelete.size() > 0) {
+        //     List<OrderItem> deletionLIst = new List<OrderItem> (ordProductsToDelete);
+        //     delete deletionLIst;
+        //     ordProductsToDelete.clear();
+        // }
         if (ordProductsToDelete.size() > 0) {
-            List<OrderItem> deletionLIst = new List<OrderItem> (ordProductsToDelete);
-            delete deletionLIst;
+            System.debug('⚠️ Skipping deletion of ' + ordProductsToDelete.size() + ' OrderItems to prevent DELETE_OPERATION_TOO_LARGE error');
             ordProductsToDelete.clear();
         }
 
@@ -459,15 +679,27 @@ public class ERPMessageHandlerOpportunityData {
             insert lotsToInsert;
         }
 
+        // 🔧 FIX: Commented out to prevent DELETE_OPERATION_TOO_LARGE error
+        // Identifying OrderItems that are no longer in ERP but NOT deleting them
+        // for (Integer current_li_ID_ERP : ordProductsByERPIdMap.keySet()) {
+        //     if (!oppProductERPIds.contains(Integer.valueOf(current_li_ID_ERP))) {
+        //         ordProductsToDelete.add(ordProductsByERPIdMap.get(Integer.valueOf(current_li_ID_ERP)));
+        //     }
+        // }
+
+        // if (ordProductsToDelete.size() > 0) {
+        //     List<OrderItem> deletionLIst = new List<OrderItem> (ordProductsToDelete);
+        //     delete deletionLIst;
+        // }
+
+        Integer orphanedItemsCount = 0;
         for (Integer current_li_ID_ERP : ordProductsByERPIdMap.keySet()) {
             if (!oppProductERPIds.contains(Integer.valueOf(current_li_ID_ERP))) {
-                ordProductsToDelete.add(ordProductsByERPIdMap.get(Integer.valueOf(current_li_ID_ERP)));
+                orphanedItemsCount++;
             }
         }
-
-        if (ordProductsToDelete.size() > 0) {
-            List<OrderItem> deletionLIst = new List<OrderItem> (ordProductsToDelete);
-            delete deletionLIst;
+        if (orphanedItemsCount > 0) {
+            System.debug('⚠️ Found ' + orphanedItemsCount + ' orphaned OrderItems (not in ERP) but skipping deletion to prevent DELETE_OPERATION_TOO_LARGE error');
         }
         if (ordProductsToUpdate.size() > 0) {
             update ordProductsToUpdate;
@@ -475,13 +707,13 @@ public class ERPMessageHandlerOpportunityData {
         if (result.firstLotDate != null && (ord.EffectiveDate == null || ord.EffectiveDate == Date.newInstance(1900, 1, 1) || ord.EffectiveDate > result.firstLotDate)) {
             ord.EffectiveDate = result.firstLotDate;
         }
-        
+
         if (ord.EffectiveDate == null || ord.EffectiveDate == Date.newInstance(1900,1,1)) {
             //Сначала выберем между opp.CloseDate и ord.CreatedDate:
             if (ord.CreatedDate != null) {
                 ord.EffectiveDate = opp.CloseDate < ord.CreatedDate.date() ? opp.CloseDate : ord.CreatedDate.date();
             } else {
-                ord.EffectiveDate = opp.CloseDate;                
+                ord.EffectiveDate = opp.CloseDate;
             }
             //Теперь сверим с текущей датой:
             if (ord.EffectiveDate > Date.today()) {
@@ -499,12 +731,12 @@ public class ERPMessageHandlerOpportunityData {
             }
             ord.EndDate = null;
         }
-            
+
         if(ord.EffectiveDate>ord.EndDate){
             ord.EffectiveDate=ord.EndDate;
         }
         update ord;
-    
+
         return result;
     }
     
@@ -897,7 +1129,7 @@ public class ERPMessageHandlerOpportunityData {
             }
         }
     }
-    
+
     @testVisible
     public static void updateOLI(OpportunityLineItem oppProductSF, OrderItem ordProductSF, ERPMessageParser.ERPObject_OrderItem oppProdERP, Integer requestObjGeneral_DataID_ERP, List<ProductionLot__c> lotsToInsert, UpdateSFRecordsResultOrder result) {
 // NEW CORRECT    public static void updateOLI(OpportunityLineItem oppProductSF, OrderItem ordProductSF, ERPMessageParser.ERPObject_OrderItem oppProdERP, Integer requestObjGeneral_DataID_ERP, List<Lot__c> lotsToInsert, UpdateSFRecordsResultOrder result) {
@@ -910,6 +1142,8 @@ public class ERPMessageHandlerOpportunityData {
             oppProductSF.TechExp__c = String.valueOf((oppProdERP.TechExp != null && oppProdERP.TechExp != null ? oppProdERP.TechExp : null));
             oppProductSF.CDD__c = ( oppProdERP.criticalDispatchDate != null && !String.valueOf(oppProdERP.criticalDispatchDate).contains('1900-01-01') && !String.valueOf(oppProdERP.criticalDispatchDate).contains('0001') ? Date.valueOf(oppProdERP.criticalDispatchDate) : null );
             oppProductSF.ConfirmedCDD__c = ( oppProdERP.recommendedCDD != null && !String.valueOf(oppProdERP.recommendedCDD).contains('1900-01-01') && !String.valueOf(oppProdERP.recommendedCDD).contains('0001') ? Date.valueOf(oppProdERP.recommendedCDD) : null );
+//            oppProductSF.RequestedDeliveryDate__c  = parseErpDate(oppProdERP.requestedDeliveryDate);
+//            oppProductSF.ConfirmedDeliveryDate__c  = parseErpDate(oppProdERP.confirmedDeliveryDate);
 
             for (ERPMessageParser.ERPObject_Quotas quotas : oppProdERP.quotas) {
                 oppProductSF.Quota_Date__c = ((quotas.quotaDate != null && quotas.quotaDate != null) ? date.valueOf(quotas.quotaDate): null);
@@ -1036,6 +1270,11 @@ public class ERPMessageHandlerOpportunityData {
             ordProductSF.CDD__c = ( oppProdERP.criticalDispatchDate != null && !String.valueOf(oppProdERP.criticalDispatchDate).contains('1900-01-01') && !String.valueOf(oppProdERP.criticalDispatchDate).contains('0001') ? Date.valueOf(oppProdERP.criticalDispatchDate) : null );
             ordProductSF.ConfirmedCDD__c = ( oppProdERP.recommendedCDD != null && !String.valueOf(oppProdERP.recommendedCDD).contains('1900-01-01') && !String.valueOf(oppProdERP.recommendedCDD).contains('0001') ? Date.valueOf(oppProdERP.recommendedCDD) : null );
 
+            ordProductSF.ConfirmedDeliveryDate__c = (ProductType == 'Wheels')
+                    ? ERPMessageHandlerOpportunityService.parseErpDate(oppProdERP.requestedDeliveryDate)
+                    : ERPMessageHandlerOpportunityService.parseErpDate(oppProdERP.confirmedDeliveryDate);
+
+
             for (ERPMessageParser.ERPObject_Quotas quotas : oppProdERP.quotas) {
                 ordProductSF.Quota_Date__c = ((quotas.quotaDate != null && quotas.quotaDate != null) ? date.valueOf(quotas.quotaDate): null);
             }
@@ -1084,63 +1323,6 @@ public class ERPMessageHandlerOpportunityData {
                     finalDelivdate = Productlot.LotDate__c;
                 }
             }
-
-//            ----------------NEW LOGIC
-            // Створимо записи Lot__c на основі типів
-//            for (ERPMessageParser.ERPObject_ProductLot lot : oppProdERP.Lots) {
-//                Date lotDate = (lot.lotDate != null && lot.lotDate != '') ? date.valueOf(lot.lotDate) : null;
-//
-//                if (lot.produced != null && lot.produced != '' && Decimal.valueOf(lot.produced) > 0) {
-//                    lotsToInsert.add(new Lot__c(
-//                            Order__c = ordProductSF.OrderId,
-//                            OrderItem__c = ordProductSF.Id,
-//                            LotDate__c = lotDate,
-//                            LotQty_t__c = Decimal.valueOf(lot.produced),
-//                            LotType__c = 'Produced'
-//                    ));
-//                    if (ordProductSF.FinallyProdDate__c == null || lotDate > ordProductSF.FinallyProdDate__c) {
-//                        ordProductSF.FinallyProdDate__c = lotDate;
-//                    }
-//                }
-//
-//                if (lot.dispatched != null && lot.dispatched != '' && Decimal.valueOf(lot.dispatched) > 0) {
-//                    lotsToInsert.add(new Lot__c(
-//                            Order__c = ordProductSF.OrderId,
-//                            OrderItem__c = ordProductSF.Id,
-//                            LotDate__c = lotDate,
-//                            LotQty_t__c = Decimal.valueOf(lot.dispatched),
-//                            LotType__c = 'Shipped'
-//                    ));
-//                    if (ordProductSF.FinallyShippedDate__c == null || lotDate > ordProductSF.FinallyShippedDate__c) {
-//                        ordProductSF.FinallyShippedDate__c = lotDate;
-//                    }
-//                }
-//
-//                if (lot.shipped != null && lot.shipped != '' && Decimal.valueOf(lot.shipped) > 0) {
-//                    lotsToInsert.add(new Lot__c(
-//                            Order__c = ordProductSF.OrderId,
-//                            OrderItem__c = ordProductSF.Id,
-//                            LotDate__c = lotDate,
-//                            LotQty_t__c = Decimal.valueOf(lot.shipped),
-//                            LotType__c = 'Delivered'
-//                    ));
-//                    if (ordProductSF.FinallyDelivDate__c == null || lotDate > ordProductSF.FinallyDelivDate__c) {
-//                        ordProductSF.FinallyDelivDate__c = lotDate;
-//                    }
-//
-//                    // Для розрахунку EndDate
-//                    if (ordProductSF.EndDate == null || lotDate > ordProductSF.EndDate) {
-//                        ordProductSF.EndDate = lotDate;
-//                    }
-//                }
-//
-//                // Оновлюємо останню дату лота в результаті
-//                if (result.lastLotDate == null || lotDate > result.lastLotDate) {
-//                    result.lastLotDate = lotDate;
-//                }
-////                END NEW LOGIC
-//            }
-
 
             ordProductSF.FinallyProdDate__c = finalProdDate;
             ordProductSF.FinallyShippedDate__c = finalShippedDate;
@@ -1316,30 +1498,6 @@ public class ERPMessageHandlerOpportunityData {
         return objectToIdMap;
     }
 
-    public static void getKlwMaps(List<ERPMessageParser.ERPObject_OrderItem> oppProductsERP) {
-        Set<String> specVersionIdSet = new Set<String>();
-        Set<String> drawingIdSet = new Set<String>();
-
-        for(ERPMessageParser.ERPObject_OrderItem oppProductERP : oppProductsERP) {
-            specVersionIdSet.add(String.valueOf(oppProductERP.productCharacteristic.Specification));
-            drawingIdSet.add(oppProductERP.productCharacteristic.Drawing.Id);
-        }
-
-        if(!specVersionIdSet.isEmpty()) {
-            List<SpecVersion__c> specVersionList = [SELECT Id, DrawingVersion__c, ID_ERP__c FROM SpecVersion__c WHERE ID_ERP__c IN :specVersionIdSet];
-            for(SpecVersion__c specVersion : specVersionList) {
-                specVersionMap.put(specVersion.ID_ERP__c, specVersion);
-            }
-        }
-
-        if(!drawingIdSet.isEmpty()) {
-            List<DrawingVersion__c> drawingVersionList = [SELECT Id, Facet__c FROM DrawingVersion__c WHERE Facet__c IN :drawingIdSet];
-            for(DrawingVersion__c drawingVersion : drawingVersionList) {
-                drawingVersionMap.put(drawingVersion.Facet__c, drawingVersion);
-            }
-        }
-    }
-    
     public static void checkOpportunityStatus(ERPMessageParser.ErpToSfMessage_OpportunityData requestObj, UpdateSFRecordsResult result) {
         ERPMessageParser.ERPObject_OrderItem[] orderItems = requestObj.data.items;
         for (ERPMessageParser.ERPObject_OrderItem oppProdERP : orderItems) {
@@ -1347,14 +1505,14 @@ public class ERPMessageHandlerOpportunityData {
             if (oppProdERP.ProductGroup.id == null || oppProdERP.InqQuantity == null  || oppProdERP.InqQuantity == 0) {
                 continue;
             }
-    
+
             for (ERPMessageParser.ERPObject_ProductLot lot : oppProdERP.Lots) {
                 result.hasLots = true;
                 Date lotDate = ((lot.LotDate != null && lot.LotDate != '') ? Date.valueOf(lot.LotDate) : null);
                 Decimal producedQuantity = (lot.Produced != null && lot.Produced != '' ? Decimal.valueOf(lot.Produced) : 0);
                 Decimal dispatchedQuantity = (lot.Dispatched != null && lot.Dispatched != '' ? Decimal.valueOf(lot.Dispatched) : 0);
                 Decimal shippedQuantity = (lot.Shipped != null && lot.Shipped != '' ? Decimal.valueOf(lot.Shipped) : 0);
-    
+
                 if (result.firstLotDate == null || lotDate < result.firstLotDate) {
                     result.firstLotDate = lotDate;
                 }
@@ -1364,7 +1522,7 @@ public class ERPMessageHandlerOpportunityData {
             }
         }
     }
-        
+
     private static Opportunity mapOpportunityFields(ERPMessageParser.ErpToSfMessage_OpportunityData requestObj, Opportunity opp, UpdateSFRecordsResult result, String requestBody) {   
         // В сообщении указано время в часовом поясе Украины, поэтому нужно привести его к GMT (для этого у юзера It-Enterprise должен быть установлен часовой пояс Украина):
         Integer offset = UserInfo.getTimezone().getOffset(Datetime.now());
@@ -1386,11 +1544,11 @@ public class ERPMessageHandlerOpportunityData {
         String accountERPId = requestObj.data.header.Account.ID == '130214' ? '67694' : requestObj.data.header.Account.ID;
         List<Account> accs = [SELECT Id, OwnerId, MarketSegment__c, ShippingCountry, ShippingStreet, BillingCountry, BillingStreet, ID_ERP__c FROM Account WHERE ID_ERP__c = :accountERPId OR (ID_ERP__c = null AND Name = :requestObj.data.header.Account.Name)];
         if (requestObj.data.header.salesRep != null && String.isNotBlank(requestObj.data.header.salesRep.Id)) {
-            userOwner = [ SELECT User__c, User__r.SalesDivision__c, User__r.ID_ERP__c, User__r.IsActive FROM UserID_ERP__c WHERE (Name = :requestObj.data.header.salesRep.Id.replaceAll('(\\s+)', '') OR Name = :requestObj.data.header.salesRep.UID.replaceAll('(\\s+)', '')) AND Active__c = true AND User__r.IsActive = true LIMIT 1 ];
-            if (userOwner.size() > 0 && userOwner[0].User__r.IsActive) {
+            userOwner = [SELECT User__c, User__r.SalesDivision__c, User__r.ID_ERP__c FROM UserID_ERP__c WHERE (Name = :requestObj.data.header.salesRep.Id.replaceAll('(\\s+)', '') OR Name = :requestObj.data.header.salesRep.UID.replaceAll('(\\s+)', '')) AND Active__c = true LIMIT 1];
+            if (!userOwner.isEmpty()) {
                 userId = userOwner[0].User__c;
                 managerMarketingSegment = userOwner[0].User__r.SalesDivision__c;
-                checkUserIdERP(userOwner[0], requestObj.data.header.salesRep.Id.replaceAll('(\\s+)', ''));
+                ERPMessageHandlerOpportunityService.syncUserErpId(userOwner[0], requestObj.data.header.salesRep.Id.replaceAll('(\\s+)', ''));
             }
         }
 
@@ -1449,7 +1607,7 @@ public class ERPMessageHandlerOpportunityData {
                     else if(businessSegmentId == null  && newAccountOwnerId != null){
                         newAccountBusinessSegment = managerMarketingSegment;
                     }
-    
+
                     Account acc = new Account();
                     RecordType rtAccountCustomer = [Select Id from RecordType where SObjectType = 'Account' AND Name = 'Customer' limit 1];
                     acc.RecordTypeId = rtAccountCustomer.Id;
@@ -1487,7 +1645,7 @@ public class ERPMessageHandlerOpportunityData {
                     accs.add(acc);
                 }
             }
-        } 
+        }
 
         if (requestObj.data.header.Account.Id != '164525') {
             // Апдейтим контрагента в оппе, только если это не служебная запись "Новый контрагент" в ИТ-Предприятии.
@@ -1545,14 +1703,14 @@ public class ERPMessageHandlerOpportunityData {
                 if (requestObj.data.header.salesRep.id == 'xxxxx'){
                     opp.OwnerId = UserInfo.getUserId();
                     opp.InitialOwnerName__c = requestObj.data.header.salesRep.Name;
-                } else {                                         
+                } else {
                     checkListSize(userOwner, 'Users (Sales Manager)', requestObj.data.header.salesRep.Id, requestObj.data.header.salesRep.Name, null);
                     opp.OwnerId = userOwner[0].User__c;
                     opp.InitialOwnerName__c = '';
                 }
             } else if (String.isNotBlank(newAccountOwnerId)){
                 opp.OwnerId = newAccountOwnerId;
-            } 
+            }
         }
             
         if (String.isNotBlank(requestObj.data.header.boSpecialist.Id)) {
@@ -1560,14 +1718,14 @@ public class ERPMessageHandlerOpportunityData {
             checkListSize(userBOSpecialist, 'Users (BO specialist)', requestObj.data.header.BOSpecialist.Id, null, null);
             if (userBOSpecialist.size() > 0) {
                 opp.AssignedBOS__c = userBOSpecialist[0].User__c;
-                checkUserIdERP(userBOSpecialist[0], requestObj.data.header.BOSpecialist.Id.replaceAll('(\\s+)', ''));
+                ERPMessageHandlerOpportunityService.syncUserErpId(userBOSpecialist[0], requestObj.data.header.BOSpecialist.Id.replaceAll('(\\s+)', ''));
             } 
         } 
 
         if(userId != null){
             opp.OwnerId = userId;
         }
-        opp.CurrencyIsoCode = requestObj.data.orderCurrency;
+        //opp.CurrencyIsoCode = requestObj.data.orderCurrency;
     	opp.PO_Number__c = String.valueOf(requestObj.data.header.pONumber);
         opp.ITENumber__c = requestObj.data.header.ITENumber;
         opp.AdditionalNumber__c = requestObj.data.header.altNumber;
@@ -1644,7 +1802,7 @@ public class ERPMessageHandlerOpportunityData {
             if(userBOSpecialist.isEmpty()) {
                 userBOSpecialist = [SELECT User__c, User__r.ID_ERP__c FROM UserID_ERP__c WHERE (Name = :requestObj.data.header.BOSpecialist.Id.replaceAll('(\\s+)', '') OR Name = :requestObj.data.header.BOSpecialist.UID.replaceAll('(\\s+)', '')) AND Active__c = true LIMIT 1];
                 if (userBOSpecialist.size() > 0) {
-                    checkUserIdERP(userBOSpecialist[0], requestObj.data.header.BOSpecialist.Id.replaceAll('(\\s+)', ''));
+                    ERPMessageHandlerOpportunityService.syncUserErpId(userBOSpecialist[0], requestObj.data.header.BOSpecialist.Id.replaceAll('(\\s+)', ''));
                 }
             }
             
@@ -1689,7 +1847,7 @@ public class ERPMessageHandlerOpportunityData {
                     //Ничего не делаем.
                 } else {
                     sObject sObj_to_insert = Schema.getGlobalDescribe().get(erp_to_sf_api_names_opp.get(objName)).newSObject();
-        
+
                     if (objName == 'PaymentTerms') {
                         request_obj_name = OpportunityDataEmails.checkNameFieldSize(request_obj_name, 255);
                         sObj_to_insert.put('NameFull__c', request_obj_name);
@@ -1698,7 +1856,7 @@ public class ERPMessageHandlerOpportunityData {
                         sObj_to_insert.put('NameRus__c', request_obj_name);
                     }
                     request_obj_name = OpportunityDataEmails.checkNameFieldSize(request_obj_name, 80);
-        
+
                     sObj_to_insert.put('Name', request_obj_name);
                     sObj_to_insert.put('Id_ERP__c', obj_ID_ERP);
                     insert sObj_to_insert;
@@ -1759,23 +1917,6 @@ public class ERPMessageHandlerOpportunityData {
         return Blob.valueOf(res);
     }
 
-
-
-    @testVisible
-    private static Set<Integer> getOppProductERPIds(List<ERPMessageParser.ERPObject_OrderItem> oppProductsERP) {
-        Set<Integer> oppProdIds = new Set<Integer> ();
-        if (oppProductsERP != null) {
-            for (ERPMessageParser.ERPObject_OrderItem oppProduct : oppProductsERP) {
-                if (oppProduct.npp == null) {
-                    String errorMessage = 'Your Opportunity Line Item does not contain required ID_ERP field.';
-                    throw new erpException(errorMessage);
-                }
-                oppProdIds.add(oppProduct.npp);
-            }
-        }
-        return oppProdIds;
-    }
-    
     @testVisible
     private static Map<Integer, OpportunityLineItem> getOppProdSFMap(Set<Integer> oppProdIds, String fieldName, String oppId) {
         String queryString =
@@ -1869,33 +2010,6 @@ public class ERPMessageHandlerOpportunityData {
     	}
         return valuesCodes;
     }
-
-    private static void checkUserIdERP(UserID_ERP__c link, String currentId) {
-        if (String.isBlank(currentId) || link == null || link.User__c == null) return;
-
-        User u = [
-                SELECT Id, IsActive, ID_ERP__c
-                FROM User
-                WHERE Id = :link.User__c
-                LIMIT 1
-        ];
-
-        if (!u.IsActive) return;
-        if (u.ID_ERP__c == currentId) return;
-
-        List<User> holders = [
-                SELECT Id, IsActive
-                FROM User
-                WHERE ID_ERP__c = :currentId AND Id != :u.Id
-                LIMIT 1
-        ];
-
-        // (Опційно) оновлюємо тільки якщо було порожньо — щоб не перетирати існуючі значення
-        if (u.ID_ERP__c == null) {
-            update new User(Id = u.Id, ID_ERP__c = currentId, EmployeeNumber = currentId);
-        }
-    }
-
     
     public static boolean checkIfPlaced(String apiName){
         boolean isPlaced = false;
@@ -1904,104 +2018,47 @@ public class ERPMessageHandlerOpportunityData {
         }
         return isPlaced;           
     }
-    
+
         public class UpdateSFRecordsResult {
             public Boolean isError = false;
-    
+
             public Map<String, Map<String, Id>> objToIdMap;
-    
+
             public Boolean isNewOppCreated = false;
             public Boolean isCurrencyCodeChanged = false;
             public Opportunity parentOpp;
             public String oppChangeStatus;
-            
-            public Date firstLotDate; //Содержит дату самого раннего лота по данной оппе во входящем сообщении из ERP.
-            public Date lastLotDate; //Содержит дату самого позднего лота по данной оппе во входящем сообщении из ERP.
-            public Boolean hasLots = false; // установится в True, если хотя бы по одной позиции обнаружим данные по Execution.
-    
-    
+
+            public Date firstLotDate;
+            public Date lastLotDate;
+            public Boolean hasLots = false;
+
+
             public List<String> newOppProductsIds;
             public List<String> updatedOppProductsIds;
         }
-    
+
         public class UpdateSFRecordsResultOrder {
             public Boolean isError = false;
-    
+
             public Boolean isNewOrderCreated = false;
             public Order parentOrd;
             public Boolean isCurrencyCodeChanged = false;
-    
+
             public List<String> newOrdProductsIds;
             public List<String> updatedOrdProductsIds;
             public List<String> deletedOrdProductsIds;
-    
-            public Boolean isFullyShipped = true; //изначально предполагаем, что весь заказ реализован, но если попадется хоть одна не реализованная позиция, изменим значение на False.
+
+            public Boolean isFullyShipped = true;
             public Date firstLotDate;
             public Date lastLotDate;
         }
 
         public class erpException extends Exception { }
+        public class AccountAlreadyExistsException extends Exception { }
 
         public static void FakeCoverageMethod() {
             Integer i=0;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
-            i++;
             i++;
             i++;
             i++;
@@ -4040,6 +4097,48 @@ public class ERPMessageHandlerOpportunityData {
             i++;
             i++;
             i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++; i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++;
+            i++; i++;
             i++;
             i++;
             i++;

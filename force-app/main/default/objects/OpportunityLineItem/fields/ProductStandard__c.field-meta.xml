@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ProductStandard__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Technical standard that defines requirements to the product</description>
+    <inlineHelpText>Technical standard that defines requirements to the product</inlineHelpText>
+    <label>Product Standard</label>
+    <referenceTo>ProductStandard__c</referenceTo>
+    <relationshipLabel>Opportunity Product</relationshipLabel>
+    <relationshipName>OpportunityProduct</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

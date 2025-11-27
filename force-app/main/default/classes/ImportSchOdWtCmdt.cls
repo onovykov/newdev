@@ -1,49 +1,86 @@
-/**********************************************************************************
-* Перенесення довідників параметрів та характеристик продукції з об'єктів до CMDT * 
-***********************************************************************************/
-//=== 2. Імпортери з dry-run та “builder” методами
-//    2.3. Імпорт OD_SCH_WT__c до SCH_OD_WT__mdt
-//--- Зауваження:
-//      OD_SCH_WT__c - об'єкт зв'язку TubeOD__c та TubeWT__c з відповідними SCH
-//      Існує тільки на сенді NewDev, на проді немає
-//      Перед деплоєм на прод треба спочатку перенести об'єкт OD_SCH_WT__c
-//      та наповнити його даними (з перекодуванням відповідних лукапів)
-//-------------------------------------------------------------------------
-public with sharing class ImportSchOdWtCmdt implements Queueable, Database.AllowsCallouts {
-    private final ImportCmdtConfig cfg;
-    private final Boolean dryRun;
+public with sharing class ImportSchOdWtCmdt {
 
-    public ImportSchOdWtCmdt(Boolean dryRun){ this.dryRun = dryRun; this.cfg = new ImportCmdtConfig(); this.cfg.dryRun = dryRun; }
-    public ImportSchOdWtCmdt(ImportCmdtConfig cfg){ this.cfg = cfg; this.dryRun = cfg.dryRun; }   
-    //private final Boolean dryRun;
-    //public ImportSchOdWtCmdt(Boolean dryRun){ this.dryRun = dryRun; }
-    public void execute(QueueableContext qc){
-        List<Metadata.CustomMetadata> buf = new List<Metadata.CustomMetadata>();
-        for (OD_SCH_WT__c r : [
-            SELECT Id, Name, SCH__c, TubeOD__r.OD_mm__c, TubeWT__r.WT_mm__c
-            FROM OD_SCH_WT__c
-            WHERE TubeOD__c != null AND TubeWT__c != null
-            ORDER BY Name
-        ]){
-            buf.addAll(buildCmdtRows(new List<OD_SCH_WT__c>{ r }));
-            if (buf.size() >= CmdtDeployUtil.BATCH_SIZE){ CmdtDeployUtil.deploy(buf, dryRun); buf.clear(); }
+    // Приватний callback як звичайний внутрішній клас (жодних анонімних конструкцій)
+    private class DeployCb implements Metadata.DeployCallback {
+        public void handleResult(Metadata.DeployResult result,
+                                 Metadata.DeployCallbackContext context) {
+            System.debug('CMDT deploy finished. Success=' + result.success + ', status=' + result.status);
+            if (result.details != null && result.details.componentFailures != null) {
+                for (Metadata.DeployMessage m : result.details.componentFailures) {
+                    System.debug('FAIL in ' + m.fileName + ' :: ' + m.problem);
+                }
+            }
         }
-        CmdtDeployUtil.deploy(buf, dryRun);
     }
-    public static List<Metadata.CustomMetadata> buildCmdtRows(List<OD_SCH_WT__c> rows){
-        List<Metadata.CustomMetadata> out = new List<Metadata.CustomMetadata>();
-        for (OD_SCH_WT__c r: rows){
-            String odDev = CmdtDeployUtil.devNameForOd(r.TubeOD__r.OD_mm__c);
-            String wtDev = CmdtDeployUtil.devNameForWt(r.TubeWT__r.WT_mm__c);
-            String dev   = CmdtDeployUtil.devNameForSch(odDev, wtDev, r.SCH__c);
-            Map<String,Object> vals = new Map<String,Object>{
-                'TubeOD__c'   => 'Tube_OD__mdt.' + odDev,      // relationship value = "Type.DevName"
-                'TubeWT__c'   => 'Tube_WT__mdt.' + wtDev,
-                'SCH__c'      => r.SCH__c,                     // TEXT (STD, XS, …)
-                'IsActive__c' => true
-            };
-            out.add(CmdtDeployUtil.build('SCH_OD_WT__mdt', dev, r.Name, vals));
+
+    // Зручний helper для значень CMDT
+    private static Metadata.CustomMetadataValue cmv(String fieldApi, String val) {
+        Metadata.CustomMetadataValue v = new Metadata.CustomMetadataValue();
+        v.field = fieldApi;
+        v.value = val;
+        return v;
+    }
+
+    public static void runNow(ImportCmdtConfig cfg) {
+        System.debug('=== START SCH runCore ===');
+
+        // 1) Мапи SF_ID__c -> DeveloperName з батьківських CMDT
+        Map<String,String> odDevBySfId = new Map<String,String>();
+        for (Tube_OD__mdt r : [SELECT SF_ID__c, DeveloperName FROM Tube_OD__mdt WHERE SF_ID__c != null]) {
+            odDevBySfId.put(r.SF_ID__c, r.DeveloperName);
         }
-        return out;
+        Map<String,String> wtDevBySfId = new Map<String,String>();
+        for (Tube_WT__mdt r : [SELECT SF_ID__c, DeveloperName FROM Tube_WT__mdt WHERE SF_ID__c != null]) {
+            wtDevBySfId.put(r.SF_ID__c, r.DeveloperName);
+        }
+
+        // 2) Джерело
+        List<OD_SCH_WT__c> src = [
+            SELECT Id, TubeOD__c, TubeWT__c, SCH__c
+            FROM OD_SCH_WT__c
+            ORDER BY TubeOD__c, TubeWT__c, SCH__c
+        ];
+        System.debug('Rows fetched: ' + src.size());
+
+        Metadata.DeployContainer dc = new Metadata.DeployContainer();
+        Integer prepared = 0;
+
+        for (OD_SCH_WT__c s : src) {
+            String odSf = String.valueOf(s.TubeOD__c);
+            String wtSf = String.valueOf(s.TubeWT__c);
+            String odDev = odDevBySfId.get(odSf);
+            String wtDev = wtDevBySfId.get(wtSf);
+
+            Metadata.CustomMetadata cmd = new Metadata.CustomMetadata();
+            String devName = String.valueOf(s.Id);               // upsert-ключ
+            cmd.fullName = 'SCH_OD_WT__mdt.' + devName;
+            cmd.label    = devName;
+
+            List<Metadata.CustomMetadataValue> vals = new List<Metadata.CustomMetadataValue>();
+            vals.add(cmv('SF_ID__c',          devName));
+            vals.add(cmv('TubeOD_Lookup__c',  odSf));
+            vals.add(cmv('TubeWT_Lookup__c',  wtSf));
+            vals.add(cmv('SCH__c',            String.valueOf(s.SCH__c)));
+
+            // У metadata-lookup поля пишемо DEVNAME батьків
+            if (odDev != null) vals.add(cmv('TubeOD__c', odDev));
+            if (wtDev != null) vals.add(cmv('TubeWT__c', wtDev));
+
+            cmd.values = vals;
+            dc.addMetadata(cmd);
+            prepared++;
+        }
+
+        System.debug('Prepared CMDT rows: ' + prepared);
+
+        if (cfg != null && cfg.dryRun) {
+            System.debug('Dry-run: deploy is skipped');
+            System.debug('=== END SCH runCore ===');
+            return;
+        }
+
+        Id jobId = Metadata.Operations.enqueueDeployment(dc, new DeployCb());
+        System.debug('CMDT deploy enqueued: ' + jobId);
+        System.debug('=== END SCH runCore ===');
     }
 }

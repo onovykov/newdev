@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>QuotaType__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The type of quota that the item is related to.</description>
+    <inlineHelpText>The type of production shop quota that the item is related to.</inlineHelpText>
+    <label>Quota Type</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>QuotaType__c.Shop__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Shop__c</valueField>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>QuotaType__c</referenceTo>
+    <relationshipLabel>Opportunity Product</relationshipLabel>
+    <relationshipName>OpportunityProduct</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

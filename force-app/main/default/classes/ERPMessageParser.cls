@@ -215,11 +215,12 @@ public class ERPMessageParser {
 	public class ERPObject_OrderHeader {
 		public Integer unDoc;
 		public String iteNumber;
+		public String ID_SF;  // Salesforce Opportunity ID
 		public String altNumber;
         public String addNumber;
         public String pONumber;
 		public DateTime createdDate;
-		public DateTime orderDate;	
+		public DateTime orderDate;
 		public ERPObject account;
 		public String businessSegmentId;
 		public Integer regionId;
@@ -261,6 +262,8 @@ public class ERPMessageParser {
 		public DateTime criticalDispatchDate;
 		public DateTime quotaDate;
 		public DateTime recommendedCDD;
+		public String requestedDeliveryDate;
+		public String confirmedDeliveryDate;
 		public String finStatus;
 		public Integer finApproval;
 		public String stage;

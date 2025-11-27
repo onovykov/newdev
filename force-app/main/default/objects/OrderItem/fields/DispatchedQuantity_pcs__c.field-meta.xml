@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DispatchedQuantity_pcs__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  AND(
+    NOT(ISBLANK(Drawing__c)),
+    NOT(ISBLANK(Drawing__r.WeightKG__c))
+  ),
+  DispatchedQuantity__c * 1000 / Drawing__r.WeightKG__c,
+  IF(
+    AND(
+      NOT(ISBLANK(KLWSpec__c)),
+      NOT(ISBLANK(KLWSpec__r.WeightKG__c))
+    ),
+    DispatchedQuantity__c * 1000 / KLWSpec__r.WeightKG__c,
+    IF(
+      NOT(ISBLANK(Quantity_pcs__c)),
+      DispatchedQuantity__c / (Quantity / Quantity_pcs__c),
+      IF(
+        NOT(ISBLANK(Quantity_m__c)),
+        DispatchedQuantity__c / (Quantity / Quantity_m__c),
+        IF(
+          NOT(ISBLANK(Quantity_ft__c)),
+          DispatchedQuantity__c / (Quantity / Quantity_ft__c),
+          0
+        )
+      )
+    )
+  )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>DispatchedQuantity (pcs)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

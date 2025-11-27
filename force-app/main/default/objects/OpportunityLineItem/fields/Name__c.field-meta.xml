@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Name__c</fullName>
+    <description>Opportunity product full name, that will be displayed</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This name will be displayed on the list layouts, some reports, etc.</inlineHelpText>
+    <label>Product Name</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
