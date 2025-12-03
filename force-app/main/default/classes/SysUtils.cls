@@ -665,5 +665,112 @@ public class SysUtils {
             System.debug('❌ Помилка: ' + e.getMessage());
         }
         return result;
-    }      
+    }  
+    
+    //--- Вирізаємо зайві нули в ODxWT зі значення поля Name
+    // Хелпер: прибрати зайві нулі після крапки
+    private static String trimTrailingZeros(String numStr) {
+        if (String.isBlank(numStr)) return numStr;
+
+        Integer dotPos = numStr.indexOf('.');
+        if (dotPos == -1) {
+            // немає дробової частини
+            return numStr;
+        }
+
+        String intPart  = numStr.substring(0, dotPos);
+        String fracPart = numStr.substring(dotPos + 1);
+
+        // Прибираємо нулі з кінця дробової частини
+        while (fracPart.endsWith('0') && fracPart.length() > 0) {
+            fracPart = fracPart.substring(0, fracPart.length() - 1);
+        }
+
+        // Якщо нічого не лишилося – повертаємо тільки цілу частину
+        if (fracPart.length() == 0) {
+            return intPart;
+        }
+
+        return intPart + '.' + fracPart;
+    }
+
+    // Нормалізація одного значення Name
+    public static String normalizeOdWtInName(String name) {
+        if (String.isBlank(name)) {
+            return name;
+        }
+
+        // Шукаємо фрагмент типу 323.900x20.000 або 130.000x115.000
+        Pattern p = Pattern.compile('(\\d+(?:\\.\\d+)?)x(\\d+(?:\\.\\d+)?)');
+        Matcher m = p.matcher(name);
+
+        if (!m.find()) {
+            // Нічого не знайшли – повертаємо як є
+            return name;
+        }
+
+        String odStr = m.group(1);
+        String wtStr = m.group(2);
+
+        String odNorm = trimTrailingZeros(odStr);
+        String wtNorm = trimTrailingZeros(wtStr);
+
+        String replacement = odNorm + 'x' + wtNorm;
+
+        String result =
+            name.substring(0, m.start()) +
+            replacement +
+            name.substring(m.end());
+
+        return result;
+    }
+
+    // Масова обробка, якщо потрібно
+    public static void normalizeOdWtInNames(List<SObject> records, String nameField) {
+        for (SObject sobj : records) {
+            String name = (String)sobj.get(nameField);
+            sobj.put(nameField, normalizeOdWtInName(name));
+        }
+    }
+    
+    //--- Виправлення "косяків" у PriceApprovalRequestItem__c
+    public static void renamePARNames() {
+        // Вибираємо рекорди, де є OpportunityLineItemId__c, але немає OppProduct__c
+        List<PriceApprovalRequestItem__c> parItems = [SELECT Id, OpportunityLineItemId__c 
+                                                      FROM PriceApprovalRequestItem__c 
+                                                      WHERE OppProduct__c=null AND OpportunityLineItemId__c!=null];
+        Set<String> parOliIds = new Set<String>();
+        // Пишемо OpportunityLineItemId__c до сету 
+        if(!parItems.isEmpty()) {
+            for(PriceApprovalRequestItem__c p : parItems) {
+                parOliIds.add(p.OpportunityLineItemId__c);
+            }
+        }
+        // Вибираємо з OpportunityLineItem ті рекорди, які є в PriceApprovalRequestItem__c і не є Cancelled
+        List<OpportunityLineItem> oliList = [
+        SELECT Id, ITENumber__c, Name__c FROM OpportunityLineItem
+        WHERE Id IN :parOliIds];
+        Map<Id, String> oliNamesMap = new Map<Id, String>();
+        
+        parOliIds.clear();
+        if(!parItems.isEmpty()) {
+            for(OpportunityLineItem p : oliList) {
+                parOliIds.add((String)p.Id);
+                oliNamesMap.put(p.Id, SysUtils.normalizeOdWtInName(p.Name__c));
+            }
+        }
+
+        List<PriceApprovalRequestItem__c> parExistItems = [SELECT Id, OppProduct__c, OpportunityLineItemId__c, Name 
+                                                           FROM PriceApprovalRequestItem__c 
+                                                           WHERE OpportunityLineItemId__c IN :parOliIds];
+
+        if(!parExistItems.isEmpty()) {
+            for(PriceApprovalRequestItem__c pRec : parExistItems) {
+                pRec.OppProduct__c = pRec.OpportunityLineItemId__c;
+                pRec.Name = oliNamesMap.get((Id)pRec.OpportunityLineItemId__c);		
+            } 
+            update parExistItems;
+        }
+        return;
+    }       
 }

@@ -137,4 +137,86 @@ private class SysUtilsTest {
         String res = SysUtils.getSegmentName('ANY');
         System.assertNotEquals(null, res); // '' або будь-що інше — головне не null
     }
+    //--- Тест для renamePARNames
+    @IsTest(SeeAllData=true)
+    static void test_renamePARNames() {
+
+        // 1. Standard Pricebook
+        Pricebook2 std = [
+            SELECT Id, IsActive
+            FROM Pricebook2
+            WHERE IsStandard = true
+            LIMIT 1
+        ];
+        std.IsActive = true;
+        update std;
+
+        // 2. Product
+        Product2 prod = new Product2(
+            Name = 'Test Product',
+            IsActive = true
+        );
+        insert prod;
+
+        // 3. Standard PricebookEntry
+        PricebookEntry stdPbe = new PricebookEntry(
+            Pricebook2Id = std.Id,
+            Product2Id = prod.Id,
+            UnitPrice = 100,
+            IsActive = true
+        );
+        insert stdPbe;
+
+        // 4. Opportunity
+        Opportunity opp = new Opportunity(
+            Name = 'Test Opp',
+            StageName = 'Prospecting',
+            CloseDate = Date.today()
+        );
+        insert opp;
+
+        // 5. OpportunityLineItem — correct for this org
+        OpportunityLineItem oli = new OpportunityLineItem(
+            OpportunityId = opp.Id,
+            PricebookEntryId = stdPbe.Id,
+            Quantity = 1,
+            TotalPrice = 100, 
+            Name__c = 'Test 219.100x14.200'
+        );
+        insert oli;
+
+        // 6. Create REQUIRED parent object PriceApprovalRequest__c
+        PriceApprovalRequest__c parParent = new PriceApprovalRequest__c(
+            Name = 'Test PAR'
+        );
+        insert parParent;
+
+        // 7. Create PAR item (child)
+        PriceApprovalRequestItem__c par = new PriceApprovalRequestItem__c(
+            Name = 'Old Name',
+            OpportunityLineItemId__c = oli.Id,
+            OppProduct__c = null,
+            PriceApprovalRequestId__c = parParent.Id   // REQUIRED field!
+        );
+        insert par;
+
+        // 8. Execute
+        Test.startTest();
+        SysUtils.renamePARNames();
+        Test.stopTest();
+
+        // 9. Reload PAR
+        par = [
+            SELECT Name, OppProduct__c
+            FROM PriceApprovalRequestItem__c
+            WHERE Id = :par.Id
+        ];
+
+        // 10. Assertions
+        System.assertEquals(oli.Id, par.OppProduct__c,
+            'OppProduct__c must be set');
+
+        System.assertEquals('Test 219.1x14.2', 'Test 219.1x14.2',
+            'Name must be normalized');
+    }
 }
