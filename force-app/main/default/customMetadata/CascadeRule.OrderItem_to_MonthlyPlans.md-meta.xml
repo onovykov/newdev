@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>OrderItem_to_MonthlyPlans</label>
+    <protected>false</protected>
+    <values>
+        <field>ChildFields__c</field>
+        <value xsi:type="xsd:string">Order_Item__c</value>
+    </values>
+    <values>
+        <field>ChildLookupField__c</field>
+        <value xsi:type="xsd:string">Order_Item__c</value>
+    </values>
+    <values>
+        <field>ChildObject__c</field>
+        <value xsi:type="xsd:string">OrderItemMonthlyPlans__c</value>
+    </values>
+    <values>
+        <field>EnableUpdate__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>MasterObject__c</field>
+        <value xsi:type="xsd:string">OrderItem</value>
+    </values>
+    <values>
+        <field>Mode__c</field>
+        <value xsi:type="xsd:string">HARD_DELETE</value>
+    </values>
+    <values>
+        <field>ParentFields__c</field>
+        <value xsi:type="xsd:string">Id</value>
+    </values>
+    <values>
+        <field>ReassignParentId__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>SoftDeleteField__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>UpdateMapping__c</field>
+        <value xsi:nil="true"/>
+    </values>
+</CustomMetadata>

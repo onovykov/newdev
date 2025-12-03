@@ -126,7 +126,7 @@ public class ERPMessageHandlerOrderItemStage {
        
         for(OpportunityLineItem oli : oppItems){
             oli.Stage__c = stageName;
-            oli.Is_Placed__c = oli.Is_Placed__c==true?true:checkIfPlaced(stageCode);
+            oli.Is_Placed__c = oli.Is_Placed__c==true ? true : checkIfPlaced(stageCode);
         }
         return oppItems;
     }

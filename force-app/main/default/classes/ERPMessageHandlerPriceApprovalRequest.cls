@@ -115,7 +115,8 @@ public class ERPMessageHandlerPriceApprovalRequest  {
         usrIdErpList.add(parHeader.salesRep_EmpNum.Id.trim());
         usrIdErpList.add(parHeader.boSpecialist_EmpNum.Id.trim());
         usrIdErpList.add(parHeader.prmDirector_EmpNum.Id.trim());
-        List<UserID_ERP__c> usrList = [SELECT Id, Name, User__c, User__r.Name, User__r.ManagerId, User__r.isActive FROM UserID_ERP__c WHERE Name in :usrIdErpList];
+        List<UserID_ERP__c> usrList = [SELECT Id, Name, User__c, User__r.Name, User__r.ManagerId, User__r.isActive 
+                                       FROM UserID_ERP__c WHERE Name in :usrIdErpList];
         Map<String, UserID_ERP__c> usrIdMap = new Map<String, UserID_ERP__c>();
         For(UserID_ERP__c usrIdErp : usrList) {
             usrIdMap.put(usrIdErp.Name, usrIdErp);
@@ -208,6 +209,7 @@ public class ERPMessageHandlerPriceApprovalRequest  {
             fillName(parItem);
             OpportunityLineItem relatedOli = oliITENumberToObjMap.get(parItemERP.opportunityLineItemITENumber);
             parItem.OpportunityLineItemId__c = relatedOli?.Id;
+            parItem.OppProduct__c = relatedOli?.Id; //Added 03.12.2025
             parItem.InquiryQuantity__c = parItemERP.inqQuantity;
             parItem.InquiryUnit__c = String.valueOf(parItemERP.inqUnit);
             parItem.Quantity_t__c = parItemERP.quantity_Mt;
@@ -508,12 +510,17 @@ public class ERPMessageHandlerPriceApprovalRequest  {
     @testVisible
     private static Map<String, PriceApprovalRequestItem__c> getIdErpToParItemMap() {
         
-        List<PriceApprovalRequestItem__c> parItemsList =    [
-                                                                SELECT Id, ID_ERP__c, OpportunityId__c, OpportunityLineItemITENumber__c, NPP__c, Name, Shop__c, Shop__r.Id_ERP__c, Product2Id__c, Product2Id__r.Id_ERP__c,
-                                                                    TubeOD__c, TubeOD__r.Id_ERP__c, TubeWT__c, TubeWT__r.Id_ERP__c, Coating__c, Coating__r.ID_ERP__c, SteelGrade__c, SteelGrade__r.Id_ERP__c, TubeEnds__c, TubeEnds__r.ID_ERP__c, TubeLengthSize__c, TubeLengthSize__r.ID_ERP__c
-                                                                FROM PriceApprovalRequestItem__c
-                                                                WHERE PriceApprovalRequestId__c = :par.Id
-                                                            ];
+        List<PriceApprovalRequestItem__c> parItemsList = [
+                                                        SELECT Id, ID_ERP__c, OpportunityId__c, OpportunityLineItemITENumber__c, 
+                                                               NPP__c, Name, Shop__c, Shop__r.Id_ERP__c, Product2Id__c, 
+                                                               Product2Id__r.Id_ERP__c, OppProduct__c,
+                                                              TubeOD__c, TubeOD__r.Id_ERP__c, TubeWT__c, TubeWT__r.Id_ERP__c, 
+                                                              Coating__c, Coating__r.ID_ERP__c, SteelGrade__c, 
+                                                              SteelGrade__r.Id_ERP__c, TubeEnds__c, TubeEnds__r.ID_ERP__c, 
+                                                              TubeLengthSize__c, TubeLengthSize__r.ID_ERP__c
+                                                        FROM PriceApprovalRequestItem__c
+                                                        WHERE PriceApprovalRequestId__c = :par.Id
+                                                        ];
 
         Map<String, PriceApprovalRequestItem__c> parItemMap = new Map<String, PriceApprovalRequestItem__c> ();
         for (PriceApprovalRequestItem__c parItem : parItemsList) {
@@ -569,7 +576,8 @@ public class ERPMessageHandlerPriceApprovalRequest  {
             throw new erpException('All items of the Price Approval Request must have the same currency!');
         }
 
-        List<OpportunityLineItem> oliList = [SELECT Id, Name, ID_ERP__c, ITENumber__c, CDD__c, FinalCDD__c, Margin__c, Margin_t__c FROM OpportunityLineItem WHERE ITENumber__c in :oliITENumberSet];
+        List<OpportunityLineItem> oliList = [SELECT Id, Name, ID_ERP__c, ITENumber__c, CDD__c, FinalCDD__c, Margin__c, Margin_t__c 
+                                             FROM OpportunityLineItem WHERE ITENumber__c in :oliITENumberSet];
 
         Map<String, OpportunityLineItem> oliITENumberToObjMap = new Map<String, OpportunityLineItem>();
         for (OpportunityLineItem oli : oliList){
@@ -598,7 +606,9 @@ public class ERPMessageHandlerPriceApprovalRequest  {
                 if (String.isNotBlank((String) erpObject.get('id'))) {
                     System.debug('--- ' + (String) erpObject.get('id'));
                     if (key == 'shippingPoint') {
-                        // По какой-то причине если код символьный, то в справочнике он иногда сохраняется маленькими буквами, и затем не совпадает с тем, что приходит в файле. Поэтому явно приводим все коды к LowerCase() тут и во время проверки.
+                        // По какой-то причине если код символьный, то в справочнике он иногда сохраняется 
+                        // маленькими буквами, и затем не совпадает с тем, что приходит в файле. 
+                        // Поэтому явно приводим все коды к LowerCase() тут и во время проверки.
                         String objIdLowerCase = ((String) erpObject.get('id')).toLowerCase();
                         valuesSet.add((String) erpObject.get('spType') + '-' + objIdLowerCase);
                     }
@@ -625,7 +635,8 @@ public class ERPMessageHandlerPriceApprovalRequest  {
                     objectToIdMap.put(key, erpIdToIdMap);
                 }
                 when else {
-                    objectList = Database.query('SELECT Id, ID_ERP__c FROM ' + ERP_TO_SF_API_NAMES.get(key) + ' WHERE ID_ERP__c IN :setERPIds');
+                    objectList = Database.query('SELECT Id, ID_ERP__c FROM ' + ERP_TO_SF_API_NAMES.get(key) + 
+                                                ' WHERE ID_ERP__c IN :setERPIds');
                     for (sObject ob : objectList) {
                         if (key == 'shippingPoint') {
                             erpIdToIdMap.put(((String) ob.get('ID_ERP__c')).toLowerCase(), ob.Id);
@@ -643,7 +654,8 @@ public class ERPMessageHandlerPriceApprovalRequest  {
 
 
 
-    private static void mapRelatedERPId(PriceApprovalRequestItem__c parItem, Map<String, Map<String, Id>> objToIdMap, ERPMessageParser.PARItem parItemERP) {
+    private static void mapRelatedERPId(PriceApprovalRequestItem__c parItem, Map<String, Map<String, Id>> objToIdMap, 
+                                        ERPMessageParser.PARItem parItemERP) {
         List<String> fields = new List<String> { 'productGroup', 'shop', 'specLevel', 'steelGrade', 'standard', 'od', 'wt', 'lengthSize', 'ends', 'coating', 'shippingPoint', 'deliveryTerms' };
         Map<String, Object> productAsMap = (Map<String, Object>) JSON.deserializeUntyped(JSON.serialize(parItemERP));
 

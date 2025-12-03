@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Order Item Stages in IT-Enterprise</description>
+    <label>Order Item Stage</label>
+    <pluralLabel>Order Item Stages</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>
