@@ -42,7 +42,7 @@ public class UserRepository {
                 UserRoleId, UserRole.Name, UserRole.DeveloperName,
                 ProfileId, Profile.Name, Profile.UserLicense.Name,
                 LanguageLocaleKey, LocaleSidKey, AssignedBOS__c,
-                ManagerId, Manager.Name
+                ManagerId, Manager.Name, Email, JobTitle__c, User_Type__c
             FROM User
             WHERE IsActive=true
         ]) {

@@ -772,5 +772,29 @@ public class SysUtils {
             update parExistItems;
         }
         return;
-    }       
+    }  
+    //--- Повертає мапу статусів позицій замовлення <Status IT, Status SF>
+    //    Наприклад <'_4', 'Placed'>    
+	public static Map<String, String> getOrderItemStages() {
+		Map<String, String> resMap = new Map<String, String>();
+		List<OrderItemStage__mdt> oiStageList = [SELECT Code__c, StatusSF__c FROM OrderItemStage__mdt];
+		if(!oiStageList.isEmpty()) {
+			for(OrderItemStage__mdt ois : oiStageList) {
+				resMap.put(ois.Code__c, ois.StatusSF__c);
+			}
+		} 
+		return resMap;
+	}
+	//--- Повертає відповідний до статусу ІТ статус SF для позицій замовлення
+    //    Наприклад для значення '_4' повертає 'Placed'>
+	public static String getOIStageSF(String stageIT) {
+		String resStage = '';
+		if(!String.isBlank(stageIT)) {
+			Map<String, String> stagesMap = getOrderItemStages();
+			if(stagesMap.containsKey(stageIT)) {
+				resStage = stagesMap.get(stageIT);
+			}
+		}
+		return resStage;
+	}    
 }
