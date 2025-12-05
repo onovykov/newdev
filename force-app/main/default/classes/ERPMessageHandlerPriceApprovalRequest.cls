@@ -206,7 +206,8 @@ public class ERPMessageHandlerPriceApprovalRequest  {
             parItem.OpportunityId__c = oppIdErpToIdMap.get(String.valueOf(parItemERP.opportunityID_ERP));
             parItem.OpportunityLineItemITENumber__c = parItemERP.opportunityLineItemITENumber;
             parItem.NPP__c = String.valueOf(parItemERP.npp);
-            parItem.Name = fillName(parItem); // Changed 05.12.2025
+            fillName(parItem);
+            //parItem.Name = fillName(parItem); // Changed 05.12.2025
             OpportunityLineItem relatedOli = oliITENumberToObjMap.get(parItemERP.opportunityLineItemITENumber);
             parItem.OpportunityLineItemId__c = relatedOli?.Id;
             parItem.OppProduct__c = relatedOli?.Id; //Added 03.12.2025
@@ -791,7 +792,7 @@ public class ERPMessageHandlerPriceApprovalRequest  {
         }
         return fieldValue;
     }
-
+/*
     public static String fillName(PriceApprovalRequestItem__c parItem) {
         String sg = (sgMap.get(parItem.SteelGrade__c) != null ? sgMap.get(parItem.SteelGrade__c).Name + ' ' : '');
         String od = (odMap.get(parItem.TubeOD__c) != null ? String.valueOf(odMap.get(parItem.TubeOD__c).OD_mm__c) + 'x' : '');
@@ -799,8 +800,8 @@ public class ERPMessageHandlerPriceApprovalRequest  {
         String ls = (lsMap.get(parItem.TubeLengthSize__c) != null ? lsMap.get(parItem.TubeLengthSize__c).Name : '');
         return SysUtils.trimToNearestSlash(sg, 20) + ' ' + od + ' ' + wt + ' ' + ls;
     }
-    /* Changed by O.Novykov, 05.12.2025
-    *****
+*/
+
     public static void fillName(PriceApprovalRequestItem__c parItem) {
         String sg = (sgMap.get(parItem.SteelGrade__c) != null ? sgMap.get(parItem.SteelGrade__c).Name + ' ' : '');
         String od = (odMap.get(parItem.TubeOD__c) != null ? String.valueOf(odMap.get(parItem.TubeOD__c).OD_mm__c) + 'x' : '');
@@ -822,7 +823,6 @@ public class ERPMessageHandlerPriceApprovalRequest  {
         
         parItem.Name = strName;
     }
-    */
 
     static void syncApprovalHistory(ERPMessageParser.PARApprovalHistory[] parApprovalHistory) {
         
