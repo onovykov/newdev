@@ -399,9 +399,6 @@ public class SysUtils {
         return normalizeSpaces(outSql);
     }
 
-
-
-
     public static String trimToNearestSlash(String input, Integer maxLength) {
         // Сюди передаємо SteelGrade - як парметр String input
         if (String.isBlank(input) || maxLength <= 0) return '';
@@ -423,7 +420,7 @@ public class SysUtils {
             return '';
         }
 
-        return sub.substring(0, lastSlashIndex + 1); // включаємо останній слеш
+        return sub.substring(0, lastSlashIndex); // включаємо останній слеш
     }
 
     /**

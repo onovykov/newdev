@@ -71,7 +71,7 @@ public with sharing class ERPMessageHandlerOrderItemStage {
     /* ============================================================
        MAIN MESSAGE HANDLER (ASYNC-FRIENDLY)
        ============================================================ */
-    public static MessageProcessingResult processMessage(
+    public static MessageProcessingResult ProcessMessage(
         ERPMessageParser.ErpToSfMessage_OrderItemStage parsedMessage,
         String requestBody
     ) {

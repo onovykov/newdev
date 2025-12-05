@@ -10,23 +10,17 @@
 //      Надалі прикрутимо Pharos (навмисне структуру подібною тут зробив)
 //----------------------------------------------------------------------------------
 public with sharing class CmdtImportLogger {
+    
     public static void log(String type, String key, String message, String level, Boolean toObj/*, Boolean toEvt*/){
-        //if (toObj) {
+        // Поки що все закоментовую, бо це наразі не потрібно
+        /*
+        if (toObj) {
             CmdtImportLog__c row = new CmdtImportLog__c(
                 Type__c = type, RecordKey__c = key, Message__c = message, Level__c = level
             );
             try { insert row; } catch (Exception e) {}
-        //}
-        /*
-        if (toEvt) {
-            try {
-                CmdtImportIssue__e evt = new CmdtImportIssue__e(
-                    Type__c = type, RecordKey__c = key, Message__c = message, Level__c = level
-                );
-                Database.SaveResult r = EventBus.publish(evt);
-            } catch (Exception e) {}
         }
-        */
         System.debug((level=='ERROR'?LoggingLevel.ERROR:LoggingLevel.WARN), type+'['+key+']: '+message);
+        */
     }
 }
