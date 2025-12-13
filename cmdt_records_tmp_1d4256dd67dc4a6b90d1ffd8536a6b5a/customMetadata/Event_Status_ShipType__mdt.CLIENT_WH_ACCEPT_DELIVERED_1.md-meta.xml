@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<CustomMetadata
+    xmlns='http://soap.sforce.com/2006/04/metadata'
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+
+    <label>CLIENT_WH_ACCEPT_DELIVERED_1</label>
+    <fullName>Event_Status_ShipType__mdt.CLIENT_WH_ACCEPT_DELIVERED_1</fullName>
+
+    <values>
+        <field>ShipmentStatus__c</field>
+        <value xsi:type='xsd:string'>DELIVERED</value>
+    </values>
+    <values>
+        <field>Event_Status__c</field>
+        <value xsi:type='xsd:string'>CLIENT_WH_ACCEPT_DELIVERED</value>
+    </values>
+</CustomMetadata>

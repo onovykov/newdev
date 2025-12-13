@@ -1,0 +1,9 @@
+﻿
+Path                                                                                                                LineNumber Line                                                                                                                                                                                 
+----                                                                                                                ---------- ----                                                                                                                                                                                 
+C:\Users\aleksandr.novikov\InterpipeNewDev\force-app\main\default\classes\ERPMessageHandlerPAR.cls                         600         Map<Id, OpportunityPARRelationship__c> existingRels = new Map<Id, OpportunityPARRelationship__c>();                                                                          
+C:\Users\aleksandr.novikov\InterpipeNewDev\force-app\main\default\classes\ERPMessageHandlerPriceApprovalRequest.cls        320         List<OpportunityPARRelationship__c> relToInsert = new List<OpportunityPARRelationship__c>();                                                                                 
+C:\Users\aleksandr.novikov\InterpipeNewDev\force-app\main\default\classes\PARUpdateOpportunityBatch.cls                      7         List<aggregateresult> oppIds = [SELECT Opportunity__r.id FROM OpportunityPARRelationship__c where PriceApprovalRequest__r.stage__c = 'Resolved' group by Opportunity__r.id ];
+C:\Users\aleksandr.novikov\InterpipeNewDev\force-app\main\default\classes\PARUpdateOpportunityBatchTest.cls                148         OpportunityPARRelationship__c oppParRelation = new OpportunityPARRelationship__c();                                                                                          
+
+

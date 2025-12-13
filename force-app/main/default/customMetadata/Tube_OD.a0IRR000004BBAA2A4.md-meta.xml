@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>90.50</label>
+    <protected>false</protected>
+    <values>
+        <field>H_mm__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>ID_ERP__c</field>
+        <value xsi:type="xsd:string">0Э</value>
+    </values>
+    <values>
+        <field>IsActive__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>IsRound__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>L_mm__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>NPS__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Name__c</field>
+        <value xsi:type="xsd:string">90.50</value>
+    </values>
+    <values>
+        <field>OD_mm__c</field>
+        <value xsi:type="xsd:double">90.5</value>
+    </values>
+    <values>
+        <field>SF_ID__c</field>
+        <value xsi:type="xsd:string">a0IRR000004BBAA2A4</value>
+    </values>
+</CustomMetadata>

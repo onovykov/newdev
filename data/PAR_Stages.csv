@@ -1,0 +1,29 @@
+DeveloperName,MasterLabel,Code__c,StageName__c,ProcessName__c,IsApprovalRequired__c
+Initiator,Initiator,_1,Ініціатор,PAR_Approval_Generic,FALSE
+Rejected,Rejected,_10,Відмовлено,PAR_Approval_Generic,FALSE
+FES_calc_completed,FES_calc_completed,_11,Виконано розрахунок ФЕС,PAR_Approval_Generic,FALSE
+Transport_costs_set,Transport_costs_set,_12,Встановлено транспортні витрати,PAR_Approval_Generic,FALSE
+Turnover_checked,Turnover_checked,_13,Виконано перевірку оборотності,PAR_Approval_Generic,FALSE
+Add_approval_FES,Add_approval_FES,_14,Додаткове узгодження (від ФЕС),PAR_Approval_Generic,FALSE
+Add_approval_Logistics,Add_approval_Logistics,_15,Додаткове узгодження (від логістів),PAR_Approval_Generic,FALSE
+Add_approval_GPOffsite,Add_approval_GPOffsite,_16,Додаткове узгодження (ДП поза заводом),PAR_Approval_Generic,FALSE
+FES_control,FES_control,_17,Контроль ФЕС,PAR_Approval_Generic,FALSE
+PRD_Director,PRD_Director,_18,Директор УПР,PAR_Approval_Generic,TRUE
+Add_approval_Controlling,Add_approval_Controlling,_19,Додаткове узгодження (від Контролінгу),PAR_Approval_Generic,FALSE
+Add_approval_PRD,Add_approval_PRD,_2,Додаткове узгодження (від УПР),PAR_Approval_Generic,FALSE
+Add_approval_PRD_Director,Add_approval_PRD_Director,_20,Додаткове узгодження (від Директора УПР),PAR_Approval_Generic,FALSE
+Add_approval_CFO,Add_approval_CFO,_21,Додаткове узгодження (від CFO),PAR_Approval_Generic,FALSE
+CFO,CFO,_22,CFO,PAR_Approval_Generic,TRUE
+Archive,Archive,_23,Архів,PAR_Approval_Generic,FALSE
+CEO,CEO,_24,CEO,PAR_Approval_Generic,TRUE
+AutoEncoder,AutoEncoder,_25,Автокодувальник,PAR_Approval_Generic,FALSE
+Waiting_CDO,Waiting_CDO,_26,Очікування рекомендованого КДО,PAR_Approval_Generic,FALSE
+DivisionDirector,DivisionDirector,_27,Директор дивізіону,PAR_Approval_Generic,FALSE
+BoardChair,BoardChair,_28,Голова ради директорів,PAR_Approval_Generic,TRUE
+SalesManager,SalesManager,_3,Менеджер Sale,PAR_Approval_Generic,TRUE
+FES_Calc,FES_Calc,_4,Розрахунок ФЕС,PAR_Approval_Generic,FALSE
+TransportCosts,TransportCosts,_5,Транспортні витрати,PAR_Approval_Generic,FALSE
+PlantExternalCheck,PlantExternalCheck,_6,Перевірка ГП поза заводом,PAR_Approval_Generic,FALSE
+ParallelProcessing,ParallelProcessing,_7,Паралельна обробка,PAR_Approval_Generic,FALSE
+PRD,PRD,_8,УПР,PAR_Approval_Generic,TRUE
+Approved,Approved,_9,Узгоджено,PAR_Approval_Generic,FALSE

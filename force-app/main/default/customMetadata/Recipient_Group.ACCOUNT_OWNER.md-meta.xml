@@ -8,7 +8,7 @@
     </values>
     <values>
         <field>IncludeInactive__c</field>
-        <value xsi:type="xsd:boolean">False</value>
+        <value xsi:type="xsd:boolean">false</value>
     </values>
     <values>
         <field>Kind__c</field>

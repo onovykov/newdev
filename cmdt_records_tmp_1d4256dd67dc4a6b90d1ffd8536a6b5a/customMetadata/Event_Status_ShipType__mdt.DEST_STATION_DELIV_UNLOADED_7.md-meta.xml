@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<CustomMetadata
+    xmlns='http://soap.sforce.com/2006/04/metadata'
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+
+    <label>DEST_STATION_DELIV_UNLOADED_7</label>
+    <fullName>Event_Status_ShipType__mdt.DEST_STATION_DELIV_UNLOADED_7</fullName>
+
+    <values>
+        <field>ShipmentStatus__c</field>
+        <value xsi:type='xsd:string'>UNLOADED</value>
+    </values>
+    <values>
+        <field>Event_Status__c</field>
+        <value xsi:type='xsd:string'>DEST_STATION_DELIV_UNLOADED</value>
+    </values>
+</CustomMetadata>

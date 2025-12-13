@@ -745,15 +745,15 @@ public class ERPMessageHandlerPriceApprovalRequest  {
         parItem.Product2Id__c = productSfId;
         parItem.Shop__c = objToIdMap.get('shop').get(parItemERP.shop.id.trim());
 
-//        parItem.SteelGrade__c = objToIdMap.get('steelGrade').get(parItemERP.steelGrade.id.trim());
-//        parItem.ProductStandard__c = objToIdMap.get('standard').get(parItemERP.standard.id.trim());
-//        parItem.ProductSpecLevel__c = objToIdMap.get('specLevel').get(parItemERP.specLevel.id.trim());
-//        parItem.TubeOD__c = objToIdMap.get('od').get(parItemERP.od.id.trim());
-//        parItem.TubeWT__c = objToIdMap.get('wt').get(parItemERP.wt.id.trim());
-//        parItem.TubeLengthSize__c = objToIdMap.get('lengthSize').get(parItemERP.lengthSize.id.trim());
-//        parItem.TubeEnds__c = objToIdMap.get('ends').get(parItemERP.ends.id.trim());
-//        parItem.Coating__c = objToIdMap.get('coating').get(parItemERP.coating.id.trim());
-
+        parItem.SteelGrade__c = objToIdMap.get('steelGrade').get(parItemERP.steelGrade.id.trim());
+        parItem.ProductStandard__c = objToIdMap.get('standard').get(parItemERP.standard.id.trim());
+        parItem.ProductSpecLevel__c = objToIdMap.get('specLevel').get(parItemERP.specLevel.id.trim());
+        parItem.TubeOD__c = objToIdMap.get('od').get(parItemERP.od.id.trim());
+        parItem.TubeWT__c = objToIdMap.get('wt').get(parItemERP.wt.id.trim());
+        parItem.TubeLengthSize__c = objToIdMap.get('lengthSize').get(parItemERP.lengthSize.id.trim());
+        parItem.TubeEnds__c = objToIdMap.get('ends').get(parItemERP.ends.id.trim());
+        parItem.Coating__c = objToIdMap.get('coating').get(parItemERP.coating.id.trim());
+/*
         parItem.SteelGrade__c = null;
         parItem.ProductStandard__c = null;
         parItem.ProductSpecLevel__c = null;
@@ -762,7 +762,8 @@ public class ERPMessageHandlerPriceApprovalRequest  {
         parItem.TubeLengthSize__c = null;
         parItem.TubeEnds__c = null;
         parItem.Coating__c = null;
-        //parItem.QuotaType__c = objToIdMap.get('quotaType').get(parItemERP.quotaType.id.trim());
+*/
+        parItem.QuotaType__c = objToIdMap.get('quotaType').get(parItemERP.quotaType.id.trim());
         parItem.Country__c = objToIdMap.get('country').get(parItemERP.country.id.trim());
         String spId = parItemERP.shippingPoint.spType + '-' + parItemERP.shippingPoint.id.trim();
         parItem.ShippingPoint__c = objToIdMap.get('shippingPoint').get(spId.toLowerCase());
