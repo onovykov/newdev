@@ -154,6 +154,112 @@ public with sharing class CmdtRuntimeService {
 
         return deployId;
     }
+    // =========================
+    // BULK PUBLIC API
+    // =========================
+
+    public static Id insertCmdtRecords(
+        String cmdtName,
+        Map<String, Map<String, String>> records
+    ) {
+        return deployBulk(cmdtName, records, CmdtOperation.CREATE_REC);
+    }
+
+    public static Id updateCmdtRecords(
+        String cmdtName,
+        Map<String, Map<String, String>> records
+    ) {
+        return deployBulk(cmdtName, records, CmdtOperation.UPDATE_REC);
+    }
+
+    public static Id upsertCmdtRecords(
+        String cmdtName,
+        Map<String, Map<String, String>> records
+    ) {
+        return deployBulk(cmdtName, records, CmdtOperation.UPSERT_REC);
+    }
+
+    public static Id disableCmdtRecords(
+        String cmdtName,
+        List<String> developerNames
+    ) {
+        Map<String, Map<String, String>> records = new Map<String, Map<String, String>>();
+        for (String devName : developerNames) {
+            records.put(
+                devName,
+                new Map<String, String>{ 'IsActive__c' => 'false' }
+            );
+        }
+        return deployBulk(cmdtName, records, CmdtOperation.UPDATE_REC);
+    }
+
+    // =========================
+    // BULK CORE IMPLEMENTATION
+    // =========================
+    private static Id deployBulk(
+        String cmdtName,
+        Map<String, Map<String, String>> records,
+        CmdtOperation op
+    ) {
+        if (String.isBlank(cmdtName)) {
+            throw new IllegalArgumentException('cmdtName is required');
+        }
+        if (records == null || records.isEmpty()) {
+            throw new IllegalArgumentException('records must not be empty');
+        }
+
+        String typeName = normalizeCmdtTypeName(cmdtName);
+        Metadata.DeployContainer dc = new Metadata.DeployContainer();
+
+        for (String developerName : records.keySet()) {
+            Map<String, String> fields = records.get(developerName);
+
+            if (String.isBlank(developerName)) {
+                throw new IllegalArgumentException('DeveloperName must not be blank');
+            }
+            if (fields == null || fields.isEmpty()) {
+                throw new IllegalArgumentException(
+                    'Fields must not be empty for ' + developerName
+                );
+            }
+
+            Metadata.CustomMetadata md = new Metadata.CustomMetadata();
+            md.fullName = typeName + '.' + developerName;
+
+            String label = extractLabel(fields);
+            if (String.isBlank(label)) {
+                label = developerName.replace('_', ' ');
+            }
+            md.label = label;
+
+            for (String fieldName : fields.keySet()) {
+                if (isLabelKey(fieldName)) continue;
+
+                Metadata.CustomMetadataValue v =
+                    new Metadata.CustomMetadataValue();
+                v.field = fieldName;
+                v.value = coerceValue(fields.get(fieldName));
+                md.values.add(v);
+            }
+
+            dc.addMetadata(md);
+        }
+
+        Id deployId;
+        if (Test.isRunningTest()) {
+            deployId = (Id) '0Af000000000000AAA';
+        } else {
+            deployId = Metadata.Operations.enqueueDeployment(dc, null);
+        }
+
+        System.debug(LoggingLevel.INFO,
+            'CMDT BULK ' + op +
+            ' enqueued: ' + records.size() +
+            ' records, deployId=' + deployId
+        );
+
+        return deployId;
+    }
 
     // =========================
     // HELPERS

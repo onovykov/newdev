@@ -1,6 +1,10 @@
 @IsTest
 private class CmdtRuntimeService_Test {
 
+    // =========================
+    // SINGLE RECORD TESTS
+    // =========================
+
     @IsTest
     static void testInsertCmdtRecord() {
         Test.startTest();
@@ -16,11 +20,7 @@ private class CmdtRuntimeService_Test {
 
         Test.stopTest();
 
-        System.assertNotEquals(
-            null,
-            deployId,
-            'DeployId should not be null'
-        );
+        System.assertNotEquals(null, deployId);
     }
 
     @IsTest
@@ -36,7 +36,6 @@ private class CmdtRuntimeService_Test {
         );
 
         Test.stopTest();
-
         System.assertNotEquals(null, deployId);
     }
 
@@ -54,7 +53,6 @@ private class CmdtRuntimeService_Test {
         );
 
         Test.stopTest();
-
         System.assertNotEquals(null, deployId);
     }
 
@@ -68,12 +66,115 @@ private class CmdtRuntimeService_Test {
         );
 
         Test.stopTest();
+        System.assertNotEquals(null, deployId);
+    }
+
+    // =========================
+    // BULK TESTS
+    // =========================
+
+    @IsTest
+    static void testBulkInsertCmdtRecords() {
+        Map<String, Map<String, String>> records =
+            new Map<String, Map<String, String>>{
+                'REC_ONE' => new Map<String, String>{
+                    'MasterLabel' => 'Record One',
+                    'Code__c' => '1'
+                },
+                'REC_TWO' => new Map<String, String>{
+                    'MasterLabel' => 'Record Two',
+                    'Code__c' => '2'
+                }
+            };
+
+        Test.startTest();
+        Id deployId = CmdtRuntimeService.insertCmdtRecords(
+            'TestCmdt',
+            records
+        );
+        Test.stopTest();
 
         System.assertNotEquals(null, deployId);
     }
 
     @IsTest
-    static void testValidationErrors() {
+    static void testBulkUpdateCmdtRecords() {
+        Map<String, Map<String, String>> records =
+            new Map<String, Map<String, String>>{
+                'REC_ONE' => new Map<String, String>{
+                    'Name__c' => 'Updated One'
+                },
+                'REC_TWO' => new Map<String, String>{
+                    'Name__c' => 'Updated Two'
+                }
+            };
+
+        Test.startTest();
+        Id deployId = CmdtRuntimeService.updateCmdtRecords(
+            'TestCmdt',
+            records
+        );
+        Test.stopTest();
+
+        System.assertNotEquals(null, deployId);
+    }
+
+    @IsTest
+    static void testBulkUpsertCmdtRecords() {
+        Map<String, Map<String, String>> records =
+            new Map<String, Map<String, String>>{
+                'REC_UPSERT_1' => new Map<String, String>{
+                    'MasterLabel' => 'Upsert 1',
+                    'Code__c' => '10'
+                },
+                'REC_UPSERT_2' => new Map<String, String>{
+                    'MasterLabel' => 'Upsert 2',
+                    'Code__c' => '20'
+                }
+            };
+
+        Test.startTest();
+        Id deployId = CmdtRuntimeService.upsertCmdtRecords(
+            'TestCmdt',
+            records
+        );
+        Test.stopTest();
+
+        System.assertNotEquals(null, deployId);
+    }
+
+    @IsTest
+    static void testBulkDisableCmdtRecords() {
+        Test.startTest();
+
+        Id deployId = CmdtRuntimeService.disableCmdtRecords(
+            'TestCmdt',
+            new List<String>{ 'REC_ONE', 'REC_TWO' }
+        );
+
+        Test.stopTest();
+        System.assertNotEquals(null, deployId);
+    }
+
+    // =========================
+    // VALIDATION / NEGATIVE
+    // =========================
+
+    @IsTest
+    static void testBulkValidationErrors() {
+        try {
+            CmdtRuntimeService.insertCmdtRecords(
+                'TestCmdt',
+                new Map<String, Map<String, String>>()
+            );
+            System.assert(false, 'Exception expected');
+        } catch (IllegalArgumentException e) {
+            System.assert(true);
+        }
+    }
+
+    @IsTest
+    static void testSingleValidationErrors() {
         try {
             CmdtRuntimeService.insertCmdtRecord(
                 null,
