@@ -1,0 +1,279 @@
+//=== ЗАЛИТИ РЕКОРДИ В ГОТОВУ CMDT ===//
+
+C:\Users\aleksandr.novikov\CMDT_Tools\Generate-CMDT-Records.ps1 `
+  -CsvPath "C:\Users\aleksandr.novikov\DelivStatus\Shipment_Events_new.csv" `
+  -TypeName ShipmentEvent `
+  -TargetOrgAlias NewDev `
+  -Deploy
+
+//=== DELETE ===//
+C:\Users\aleksandr.novikov\CMDT_Tools\NEW\CMDT_DELETE_v2.ps1 `
+-CsvPath "C:\Users\aleksandr.novikov\DelivStatus\Test_Events_del.csv" `
+-TypeName ShipmentEvent__mdt `
+-TargetOrgAlias NewDev
+
+// Upsert Apex
+Map<String, Map<String, String>> events = new Map<String, Map<String, String>>{
+    'ARRIVED' => new Map<String, String>{
+        'MasterLabel' => 'Arrived',
+        'Code__c' => '4',
+        'IsActive__c' => 'true'
+    },
+    'EN_ROUTE' => new Map<String, String>{
+        'MasterLabel' => 'En route',
+        'Code__c' => '13'
+    }
+};
+
+Id deployId = CmdtRuntimeService.upsertCmdtRecords(
+    'ShipmentEvent',
+    events
+);
+
+// Inset Apex
+Map<String, Map<String, String>> events = new Map<String, Map<String, String>>{
+    'ARRIVED' => new Map<String, String>{
+        'MasterLabel' => 'Arrived',
+        'Code__c' => '444',
+        'IsActive__c' => 'true'
+    },
+    'EN_ROUTE' => new Map<String, String>{
+        'MasterLabel' => 'En route',
+        'Code__c' => '133'
+    }
+};
+
+Id deployId = CmdtRuntimeService.insertCmdtRecords(
+    'ShipmentEvent',
+    events
+);
+
+// Update Apex
+Map<String, Map<String, String>> events = new Map<String, Map<String, String>>{
+    'ARRIVED' => new Map<String, String>{
+        'MasterLabel' => 'Arrived_UPD',
+        'Code__c' => '444',
+        'IsActive__c' => 'true'
+    },
+    'EN_ROUTE' => new Map<String, String>{
+        'MasterLabel' => 'En route_UPD',
+        'Code__c' => '133'
+    }
+};
+
+Id deployId = CmdtRuntimeService.updateCmdtRecords(
+    'ShipmentEvent',
+    events
+);
+
+// Disable Records
+List<String> developerNames = new List<String>{'EN_ROUTE','ARRIVED'};
+
+Id deployId = CmdtRuntimeService.disableCmdtRecords(
+    'ShipmentEvent',
+    developerNames
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*******************************************************************************
+C:\Users\aleksandr.novikov\CMDT_Tools\CMDT_Create_Params.ps1 `
+ -CsvPath "C:\Users\aleksandr.novikov\CMDT_Tools\Test.csv" `
+ -TypeName Test `
+ -TargetOrgAlias NewDev `
+ -Force
+ 
+C:\Users\aleksandr.novikov\CMDT_Tools\CMDT_UPSERT.ps1 `
+-CsvPath "C:\Users\aleksandr.novikov\CMDT_Tools\Test.csv" `
+-TypeName Test `
+-TargetOrgAlias NewDev `
+-Deploy
+
+C:\Users\aleksandr.novikov\CMDT_Tools\CMDT_DELETE.ps1 `
+-CsvPath "C:\Users\aleksandr.novikov\CMDT_Tools\Test_del.csv" `
+-TypeName Test `
+-TargetOrgAlias NewDev
+
+C:\Users\aleksandr.novikov\CMDT_Tools\CMDT_UPDATE.ps1 `
+-CsvPath "C:\Users\aleksandr.novikov\CMDT_Tools\Test_upd.csv" `
+-TypeName Test `
+-TargetOrgAlias NewDev `
+-Deploy
+
+
+
+C:\CMDT_Tools\CMDT_UPDATE.ps1 `
+-CsvPath "C:\CMDT_Tools\AnyCmdt.csv" `
+-TypeName MyCmdt `
+-TargetOrgAlias NewDev `
+-Deploy
+
+ 
+C:\Users\aleksandr.novikov\CMDT_Tools\CMDT_DELETE_v2.ps1 `
+-CsvPath "C:\Users\aleksandr.novikov\DelivStatus\ESS_del.csv" `
+-TypeName Event_Status_ShipType__mdt `
+-TargetOrgAlias NewDev
+
+C:\Users\aleksandr.novikov\CMDT_Tools\CMDT_DELETE_v2.ps1 `
+-CsvPath "C:\Users\aleksandr.novikov\DelivStatus\EventStatus_del.csv" `
+-TypeName Event_Status__mdt `
+-TargetOrgAlias NewDev
+
+C:\Users\aleksandr.novikov\CMDT_Tools\CMDT_DELETE_v2.ps1 `
+-CsvPath "C:\Users\aleksandr.novikov\CMDT_Tools\ShipmentEvents_del.csv" `
+-TypeName ShipmentEvent__mdt `
+-TargetOrgAlias NewDev
+
+
+C:\Users\aleksandr.novikov\CMDT_Tools\CMDT_Create_Params.ps1 `
+ -CsvPath "C:\Users\aleksandr.novikov\DelivStatus\Event_new.csv" `
+ -TypeName ShipmentEvent `
+ -TargetOrgAlias NewDev `
+ -Force 
+// Додати рекорди
+C:\Users\aleksandr.novikov\CMDT_Tools\Generate-CMDT.ps1 `
+  -CsvPath C:\Users\aleksandr.novikov\DelivStatus\Event_new.csv `
+  -TypeName ShipmentEvent `
+  -TargetOrgAlias NewDev `
+  -Force
+
+
+C:\Users\aleksandr.novikov\CMDT_Tools\Generate-CMDT.ps1 `
+   -CsvPath C:\Users\aleksandr.novikov\DelivStatus\Event_new.csv `
+   -TypeName ShipmentEvent `
+   -TargetOrgAlias NewDev `
+   -Force `
+   -Deploy   
+-------------------------------------------------------------------------------
+ C:\Users\aleksandr.novikov\CMDT_Tools\CMDT_Create_Params.ps1 `
+ -CsvPath "C:\Users\aleksandr.novikov\DelivStatus\Shipment_Events_new.csv" `
+ -TypeName ShipmentEvent `
+ -TargetOrgAlias NewDev `
+ -Force 
+ ----------------------------------------
+String cmdtName = 'ShipmentStatus__mdt';
+String developerName = 'SHIPPED';
+Map<String, String> fieldsValues = new Map<String, String>{
+'Code__c' => 'SHIPPED_DEPT',
+'Name__c' => 'Відвантажено',
+'MasterLabel' => 'Shipped from departure point'
+};
+Id deployId = CmdtRuntimeUpdateService.updateCMDTCustomFields(cmdtName, developerName, fieldsValues);
+System.debug('DeployId=' + deployId);
+
+
+Дебаг вивів
+17:26:42:010 USER_DEBUG [9]|DEBUG|CMDT update failed: null
+
+
+updateCMDTCustomFieldsBulk(
+String cmdtName,
+Map<String, Map<String, String>> recordsFields
+)
+де:
+
+
+Map<
+DeveloperName,
+Map<FieldApiName, NewValue>
+>
+Приклад:
+
+"перепакувати updateCMDTCustomFieldsBulk так, щоб дані передавались JSON-ом" - гм... а це ідея...
+А ще ліпше, на мою думку, реалізувати перевизначений метод, який замість тих всіх параметрів приймає JSON, де Root - це cmdtName, а далі йде дерево ключів і масиви полів. І це буде красиво й логічно. І буде дві реалізації - на параметрах (String, Map) і на джсоні.
+Що ти на це скажеш? )))
+
+static Map<String, Map<String, String>> bulk = new Map<String, Map<String, String>>();
+Map<String, String> mapFld = new Map<String, String>();
+mapFld.put('Code__c','SHIPPED_DEPT');
+mapFld.put('Name__c','Відвантажено');
+bulk.put('SHIPPED',mapFld);
+mapFld.clear();
+mapFld.put('Code__c','DELIVERED_FINAL');
+mapFld.put('MasterLabel','Delivered acc. Incoterms');
+mapFld.put('Name__c','Доправлено до споживача');
+bulk.put('DELIVERED',mapFld);
+System.debug(bulk);
+
+Object bulk = new Map();
+Object mapFld = new Map();
+((Map)mapFld).put('Code__c','SHIPPED_DEPT');
+((Map)mapFld).put('Name__c','Відвантажено');
+((Map)bulk).put('SHIPPED',mapFld);
+((Map)mapFld).clear();
+((Map)mapFld).put('Code__c','DELIVERED_FINAL');
+((Map)mapFld).put('MasterLabel','Delivered acc. Incoterms');
+((Map)mapFld).put('Name__c','Доправлено до споживача');
+((Map)bulk)('DELIVERED',mapFld);
+System.debug(bulk);
+CmdtRuntimeUpdateService.updateCMDTCustomFieldsBulk(
+'ShipmentStatus__mdt',
+bulk
+);
+
+//------------------------------------------------------------------
+Map<String, Object> jsonStr = new Map<String, Object>{
+    'cmdt' => 'ShipmentStatus',
+    'records' => new Map<String, Object>{
+        'SHIPPED' => new Map<String, Object>{
+            'Code__c' => 'SHIPPED_DEPT',
+            'Name__c' => 'Відвантажено'
+        },
+        'DELIVERED' => new Map<String, Object>{
+            'Code__c' => 'DELIVERED_FINAL',
+            'Name__c' => 'Доправлено до споживача'
+        }
+    }
+};
+
+String payload = System.JSON.serialize(jsonStr);
+System.debug(payload);
+
+Id deployId = CmdtRuntimeUpdateService.updateCMDTCustomFieldsBulkJson(payload);
+System.debug('DeployId=' + deployId);
+//----------------------------------------------------------------------------------
+
+/****** Основний метод оновлення метаданих *****
+Параметри:
+String cmdtName - назва типу (наприклад, 'ShipmentStatus__mdt')
+String devName - DeveloperName (напр., 'SHIPPED')
+Map<String,String> fieldsValues - мапа поле/нове значення, наприклад
+<'Code__c','SHIPPED_DEPT'>
+<'Name__c','Відвантажено з пунту відправлення'>
+!!! Контроль типів данх - на програмісті.
+!!! Перевірити типи cmdt в коді ми не можемо
+Що ми робимо)
+- Забороняємо:
+порожні параметри
+зміну DeveloperName
+зміну Label через інше імʼя
+порожню мапу
+системні поля
+- Дозволяємо:
+тільки кастомні поля __c
+тільки update (не create / delete)
+тільки один record за раз
+*/
+
+
+
+
+
+
+
+
+
+
+
+
