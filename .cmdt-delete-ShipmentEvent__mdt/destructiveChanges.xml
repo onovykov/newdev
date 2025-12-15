@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>ShipmentEvent__mdt.ARRIVED_CUSTOM</members>
+        <members>ShipmentEvent__mdt.CARGO_LOAD_DEPT</members>
+        <members>ShipmentEvent__mdt.CLIENT_WH_ACCEPT</members>
+        <members>ShipmentEvent__mdt.CONSIGN_WH_DELIV</members>
+        <members>ShipmentEvent__mdt.DEPARTURED_CUSTOM</members>
+        <members>ShipmentEvent__mdt.DEPARTURED_TERMINAL</members>
+        <members>ShipmentEvent__mdt.DEST_PORT_DELIV</members>
+        <members>ShipmentEvent__mdt.DEST_STATION_DELIV</members>
+        <members>ShipmentEvent__mdt.SHIPMENT_FROM_MILL</members>
+        <members>ShipmentEvent__mdt.SHIPMENT_FROM_WH</members>
+        <members>ShipmentEvent__mdt.TRANSIT_FROM_ORIG_TO_DEST</members>
+        <members>ShipmentEvent__mdt.UNLOADED_DEST</members>
+        <members>ShipmentEvent__mdt.VESSEL_LOADING</members>
+        <name>CustomMetadata</name>
+    </types>
+    <version>59.0</version>
+</Package>

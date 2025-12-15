@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<CustomMetadata
+    xmlns='http://soap.sforce.com/2006/04/metadata'
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+
+    <label>VESSEL_LOADING</label>
+    <fullName>ShipmentEvent__mdt.VESSEL_LOADING</fullName>
+
+    <values>
+        <field>ShipmentEvent__c</field>
+        <value xsi:type='xsd:string'>Факт завантаження на судно</value>
+    </values>
+    <values>
+        <field>Code__c</field>
+        <value xsi:type='xsd:double'>6</value>
+    </values>
+</CustomMetadata>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Event_Status_ShipType__mdt.ARRIVED_CUSTOM_ON_BORDER_17</members>
+        <members>Event_Status_ShipType__mdt.ARRIVED_CUSTOM_TERMINAL_22</members>
+        <members>Event_Status_ShipType__mdt.CLIENT_WH_ACCEPT_DELIVERED_1</members>
+        <members>Event_Status_ShipType__mdt.CLIENT_WH_ACCEPT_DELIVERED_2</members>
+        <members>Event_Status_ShipType__mdt.CLIENT_WH_ACCEPT_DELIVERED_3</members>
+        <members>Event_Status_ShipType__mdt.CONSIGN_WH_DELIV_DELIVERED_4</members>
+        <members>Event_Status_ShipType__mdt.CONSIGN_WH_DELIV_DELIVERED_5</members>
+        <members>Event_Status_ShipType__mdt.CONSIGN_WH_DELIV_DELIVERED_6</members>
+        <members>Event_Status_ShipType__mdt.DEPARTURED_CUSTOM_CROSSED_BORDER_18</members>
+        <members>Event_Status_ShipType__mdt.DEPARTURED_CUSTOM_EN_ROUTE_23</members>
+        <members>Event_Status_ShipType__mdt.DEPARTURED_TERMINAL_EN_ROUTE_19</members>
+        <members>Event_Status_ShipType__mdt.DEPARTURED_TERMINAL_IN_TRANSIT_20</members>
+        <members>Event_Status_ShipType__mdt.DEPARTURED_TERMINAL_IN_TRANSIT_21</members>
+        <members>Event_Status_ShipType__mdt.DEST_PORT_DELIV_UNLOADED_9</members>
+        <members>Event_Status_ShipType__mdt.DEST_STATION_DELIV_UNLOADED_7</members>
+        <members>Event_Status_ShipType__mdt.DEST_STATION_DELIV_UNLOADED_8</members>
+        <members>Event_Status_ShipType__mdt.SHIPMENT_FROM_MILL_SHIPPED_11</members>
+        <members>Event_Status_ShipType__mdt.SHIPMENT_FROM_MILL_SHIPPED_12</members>
+        <members>Event_Status_ShipType__mdt.SHIPMENT_FROM_MILL_SHIPPED_13</members>
+        <members>Event_Status_ShipType__mdt.SHIPMENT_FROM_WH_SHIPPED_14</members>
+        <members>Event_Status_ShipType__mdt.SHIPMENT_FROM_WH_SHIPPED_15</members>
+        <members>Event_Status_ShipType__mdt.SHIPMENT_FROM_WH_SHIPPED_16</members>
+        <members>Event_Status_ShipType__mdt.VESSEL_LOADING_IN_CARGO_10</members>
+        <name>CustomMetadata</name>
+    </types>
+    <version>59.0</version>
+</Package>

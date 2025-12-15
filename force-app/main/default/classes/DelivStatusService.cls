@@ -1,7 +1,9 @@
 public class DelivStatusService {
+
     /**************** Хелпери ****************/
+
     // Коректність коду події
-    public static Boolean isEventCodeCorrect(Decimal eventCode) {
+    public static Boolean isEventCodeCorrect(Integer eventCode) {
         return ![
             SELECT Id
             FROM ShipmentEvent__mdt
@@ -9,7 +11,8 @@ public class DelivStatusService {
             LIMIT 1
         ].isEmpty();
     }
-    // Коректність коду типу транспорту Shipment Types
+
+    // Коректність коду типу транспорту
     public static Boolean isShipTypeCorrect(String shipTypeCode) {
         return ![
             SELECT Id
@@ -18,78 +21,102 @@ public class DelivStatusService {
             LIMIT 1
         ].isEmpty();
     }
+
+    /**************** Cached maps ****************/
+
     // Мапа типів транспорту
-    public static Map<String, String> mapShipTypes;
+    public static Map<String, String> mapShipTypes = new Map<String, String>();
     static {
-        mapShipTypes = new Map<String, String>();
-        for(ShipmentType__mdt st : [SELECT
-                                    ID__c, DeveloperName
-                                    FROM ShipmentType__mdt]) {
+        for (ShipmentType__mdt st : [
+            SELECT ID__c, DeveloperName
+            FROM ShipmentType__mdt
+        ]) {
             mapShipTypes.put(st.ID__c, st.DeveloperName);
         }
     }
-    // Мапа подій Shipmet Events
-    public static Map<Integer, String> mapEvents;
+
+    // Мапа подій
+    public static Map<Integer, String> mapEvents = new Map<Integer, String>();
     static {
-        mapEvents = new Map<Integer, String>();
-        for(ShipmentEvent__mdt se : [SELECT
-                                    Code__c, DeveloperName
-                                    FROM ShipmentEvent__mdt]) {
-            mapEvents.put(Integer.valueOf(se.Code__c), se.DeveloperName);
+        for (ShipmentEvent__mdt se : [
+            SELECT Code__c, DeveloperName
+            FROM ShipmentEvent__mdt
+        ]) {
+            if (se.Code__c != null) {
+                mapEvents.put(Integer.valueOf(se.Code__c), se.DeveloperName);
+            }
         }
     }
-    // Мапа дефолтних статусів для подій
-    public static Map<Integer, String> mapEventDefStatus;
-    static {
-        mapEventDefStatus = new Map<Integer, String>();
-        for(ShipmentEvent__mdt se : [SELECT
-                                    Code__c, DefaultStatus__c
-                                    FROM ShipmentEvent__mdt]) {
-            mapEventDefStatus.put(Integer.valueOf(se.Code__c), se.DefaultStatus__c);
-        }
-    } 
 
-    /**************** Основний метод  ***************/
+    // Мапа дефолтних статусів
+    public static Map<Integer, String> mapEventDefStatus = new Map<Integer, String>();
+    static {
+        for (ShipmentEvent__mdt se : [
+            SELECT Code__c, DefaultStatus__c
+            FROM ShipmentEvent__mdt
+        ]) {
+            if (se.Code__c != null) {
+                mapEventDefStatus.put(Integer.valueOf(se.Code__c), se.DefaultStatus__c);
+            }
+        }
+    }
+
+    /**************** Основний метод ****************/
+
     public static String getDelivStatusName(Integer eventCode, String shipTypeCode) {
-        String eventDevName = mapEvents.get(eventCode);
-        String shipTypeDevName = mapShipTypes.get(shipTypeCode);
-        // Справдимо, чи є коректними параметри
-        if (eventDevName == null || shipTypeDevName == null) {
-            System.debug(LoggingLevel.WARN,
-                String.format('Invalid parameters: eventCode={0}, shipTypeCode={1}',
+
+        String statusLabel = '';
+
+        // Валідація параметрів
+        if (!isEventCodeCorrect(eventCode) || !isShipTypeCorrect(shipTypeCode)) {
+            System.debug(
+                LoggingLevel.WARN,
+                String.format(
+                    'Invalid parameters: eventCode={0}, shipTypeCode={1}',
                     new List<Object>{ eventCode, shipTypeCode }
                 )
             );
-            return '';
+            return statusLabel;
         }
-        // Отримуємо перелік значень  Event_Status__r.DeveloperName -
-        // всі можливі поєднання Event-Status
+
+        // Отримуємо можливі Event_Status
         List<Event_Status__mdt> eventStatusList = [
             SELECT DeveloperName
             FROM Event_Status__mdt
-            WHERE ShipmentEvent__c = :eventDevName
+            WHERE ShipmentEvent__r.DeveloperName = :mapEvents.get(eventCode)
         ];
-        // Якщо лист порожній - повертаємо дефолтне значення статусу
-        if (eventStatusList.isEmpty()) {
+
+        Set<String> eventStatusSet = new Set<String>();
+        for (Event_Status__mdt ev : eventStatusList) {
+            eventStatusSet.add(ev.DeveloperName);
+        }
+
+        // Якщо немає статусів — одразу дефолт
+        if (eventStatusSet.isEmpty()) {
             return mapEventDefStatus.get(eventCode);
         }
-        // Формуємо сет Event_Status__mdt.DeveloperName для побудови реляцій
-        Set<String> eventStatusSet = new Set<String>();
-        for (Event_Status__mdt ev : eventStatusList) eventStatusSet.add(ev.DeveloperName);
 
-        // Формуємо остаточне значення статусу
+        // Отримуємо статус з урахуванням типу транспорту
         List<Event_Status_ShipType__mdt> mapList = [
-            SELECT Event_Status__r.ShipmentStatus__r.MasterLabel
+            SELECT
+                Event_Status__r.ShipmentStatus__r.MasterLabel,
+                Event_Status__r.ShipmentStatus__r.Code__c
             FROM Event_Status_ShipType__mdt
             WHERE Event_Status__r.DeveloperName IN :eventStatusSet
-              AND ShipmentType__c = :shipTypeDevName
+              AND ShipmentType__r.DeveloperName = :mapShipTypes.get(shipTypeCode)
             LIMIT 1
         ];
 
         if (!mapList.isEmpty()) {
-            return mapList[0].Event_Status__r.ShipmentStatus__r.MasterLabel;
+            statusLabel = mapList[0]
+                .Event_Status__r
+                .ShipmentStatus__r
+                .MasterLabel;
+        } else {
+            // fallback на дефолтний статус події
+            statusLabel = mapEventDefStatus.get(eventCode);
         }
 
-        return mapEventDefStatus.get(eventCode);
+        return statusLabel;
     }
 }

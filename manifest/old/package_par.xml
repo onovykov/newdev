@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    <!-- 1. Тип CMDT -->
+    <types>
+        <members>PARStage__mdt</members>
+        <name>CustomObject</name>
+    </types>
+
+    <!-- 2. Усі поля CMDT, включно зі стандартними -->
+    <types>
+        <members>PARStage__mdt.*</members>
+        <name>CustomField</name>
+    </types>
+
+    <!-- 3. Усі CMDT-записи (поки вони можуть бути відсутні — це ок) -->
+    <types>
+        <members>PARStage__mdt.*</members>
+        <name>CustomMetadata</name>
+    </types>
+
+    <!-- Обов'язковий API-рівень -->
+    <version>60.0</version>
+</Package>

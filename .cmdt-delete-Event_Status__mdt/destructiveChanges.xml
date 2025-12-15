@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Event_Status__mdt.ARRIVED_CUSTOM_TERMINAL</members>
+        <members>Event_Status__mdt.CLIENT_WH_ACCEPT_DELIVERED</members>
+        <members>Event_Status__mdt.CONSIGN_WH_DELIV_DELIVERED</members>
+        <members>Event_Status__mdt.DEPARTURED_CUSTOM_CROSSED_BORDER</members>
+        <members>Event_Status__mdt.DEPARTURED_CUSTOM_EN_ROUTE</members>
+        <members>Event_Status__mdt.DEPARTURED_TERMINAL_EN_ROUTE</members>
+        <members>Event_Status__mdt.DEPARTURED_TERMINAL_IN_TRANSIT</members>
+        <members>Event_Status__mdt.DEST_PORT_DELIV_UNLOADED</members>
+        <members>Event_Status__mdt.DEST_STATION_DELIV_UNLOADED</members>
+        <members>Event_Status__mdt.SHIPMENT_FROM_MILL_SHIPPED</members>
+        <members>Event_Status__mdt.SHIPMENT_FROM_WH_SHIPPED</members>
+        <members>Event_Status__mdt.VESSEL_LOADING_IN_CARGO</members>
+        <name>CustomMetadata</name>
+    </types>
+    <version>59.0</version>
+</Package>
