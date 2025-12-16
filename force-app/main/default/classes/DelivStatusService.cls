@@ -1,122 +1,225 @@
-public class DelivStatusService {
+public with sharing class DelivStatusService {
 
-    /**************** Хелпери ****************/
+    /* =========================
+     * Localization
+     * ========================= */
 
-    // Коректність коду події
-    public static Boolean isEventCodeCorrect(Integer eventCode) {
-        return ![
-            SELECT Id
-            FROM ShipmentEvent__mdt
-            WHERE Code__c = :eventCode
-            LIMIT 1
-        ].isEmpty();
+    private static Boolean isUkrainian() {
+        String locale = UserInfo.getLocale();
+        return locale != null && locale.toLowerCase().startsWith('uk');
     }
 
-    // Коректність коду типу транспорту
-    public static Boolean isShipTypeCorrect(String shipTypeCode) {
-        return ![
-            SELECT Id
-            FROM ShipmentType__mdt
-            WHERE ID__c = :shipTypeCode
-            LIMIT 1
-        ].isEmpty();
-    }
-
-    /**************** Cached maps ****************/
-
-    // Мапа типів транспорту
-    public static Map<String, String> mapShipTypes = new Map<String, String>();
-    static {
-        for (ShipmentType__mdt st : [
-            SELECT ID__c, DeveloperName
-            FROM ShipmentType__mdt
-        ]) {
-            mapShipTypes.put(st.ID__c, st.DeveloperName);
+    private static String resolveLabel(String enLabel, String uaLabel) {
+        if (isUkrainian() && String.isNotBlank(uaLabel)) {
+            return uaLabel;
         }
+        return enLabel;
     }
 
-    // Мапа подій
-    public static Map<Integer, String> mapEvents = new Map<Integer, String>();
-    static {
-        for (ShipmentEvent__mdt se : [
-            SELECT Code__c, DeveloperName
-            FROM ShipmentEvent__mdt
-        ]) {
-            if (se.Code__c != null) {
-                mapEvents.put(Integer.valueOf(se.Code__c), se.DeveloperName);
-            }
+    /* =========================
+     * Event groups
+     * ========================= */
+
+    // Події, де МОЖНА додавати транспорт
+    private static final Set<String> IN_THE_EVENTS = new Set<String>{
+        'LOADED',
+        'DISCHARGED'
+    };
+
+    // Transit-локації
+    private static final Set<String> TRANSIT_LOCATIONS = new Set<String>{
+        'IN_TRANSIT',
+        'EN_ROUTE'
+    };
+
+    /* =========================
+     * Public API
+     * ========================= */
+
+    public static String buildStatus(
+        String eventKey,
+        String locationKey,
+        String shipTypeKey
+    ) {
+        if (String.isBlank(eventKey) || String.isBlank(locationKey)) {
+            return null;
         }
-    }
 
-    // Мапа дефолтних статусів
-    public static Map<Integer, String> mapEventDefStatus = new Map<Integer, String>();
-    static {
-        for (ShipmentEvent__mdt se : [
-            SELECT Code__c, DefaultStatus__c
-            FROM ShipmentEvent__mdt
-        ]) {
-            if (se.Code__c != null) {
-                mapEventDefStatus.put(Integer.valueOf(se.Code__c), se.DefaultStatus__c);
-            }
-        }
-    }
+        String eventDevName    = resolveEventDeveloperName(eventKey);
+        String locationDevName = resolveLocationDeveloperName(locationKey);
+        String shipTypeDevName = resolveShipTypeDeveloperName(shipTypeKey);
 
-    /**************** Основний метод ****************/
-
-    public static String getDelivStatusName(Integer eventCode, String shipTypeCode) {
-
-        String statusLabel = '';
-
-        // Валідація параметрів
-        if (!isEventCodeCorrect(eventCode) || !isShipTypeCorrect(shipTypeCode)) {
-            System.debug(
-                LoggingLevel.WARN,
-                String.format(
-                    'Invalid parameters: eventCode={0}, shipTypeCode={1}',
-                    new List<Object>{ eventCode, shipTypeCode }
-                )
+        // ---------- 1. FULL: Event + Location + ShipType ----------
+        if (String.isNotBlank(shipTypeDevName)) {
+            EventLocation__mdt elFull = findEventLocation(
+                eventDevName, locationDevName, shipTypeDevName
             );
-            return statusLabel;
+
+            if (elFull != null) {
+                DeliveryEvent__mdt ev =
+                    DeliveryEvent__mdt.getInstance(elFull.Event__r.DeveloperName);
+
+                DeliveryLocation__mdt loc =
+                    DeliveryLocation__mdt.getInstance(elFull.Location__r.DeveloperName);
+
+                ShipmentType__mdt ship =
+                    ShipmentType__mdt.getInstance(elFull.ShipType__r.DeveloperName);
+
+                return buildStatusLabel(ev, loc, ship);
+            }
         }
 
-        // Отримуємо можливі Event_Status
-        List<Event_Status__mdt> eventStatusList = [
-            SELECT DeveloperName
-            FROM Event_Status__mdt
-            WHERE ShipmentEvent__r.DeveloperName = :mapEvents.get(eventCode)
-        ];
+        // ---------- 2. Event + Location (fallback, але ship дозволений) ----------
+        EventLocation__mdt elNoShip = findEventLocationNoShip(
+            eventDevName, locationDevName
+        );
 
-        Set<String> eventStatusSet = new Set<String>();
-        for (Event_Status__mdt ev : eventStatusList) {
-            eventStatusSet.add(ev.DeveloperName);
+        if (elNoShip != null) {
+            DeliveryEvent__mdt ev =
+                DeliveryEvent__mdt.getInstance(elNoShip.Event__r.DeveloperName);
+
+            DeliveryLocation__mdt loc =
+                DeliveryLocation__mdt.getInstance(elNoShip.Location__r.DeveloperName);
+
+            ShipmentType__mdt ship =
+                String.isNotBlank(shipTypeDevName)
+                    ? ShipmentType__mdt.getInstance(shipTypeDevName)
+                    : null;
+
+            return buildStatusLabel(ev, loc, ship);
         }
 
-        // Якщо немає статусів — одразу дефолт
-        if (eventStatusSet.isEmpty()) {
-            return mapEventDefStatus.get(eventCode);
+        // ---------- 3. Event-only ----------
+        DeliveryEvent__mdt ev = DeliveryEvent__mdt.getInstance(eventDevName);
+        if (ev != null) {
+            return resolveLabel(ev.MasterLabel, ev.LabelUA__c);
         }
 
-        // Отримуємо статус з урахуванням типу транспорту
-        List<Event_Status_ShipType__mdt> mapList = [
+        return null;
+    }
+
+    /* =========================
+     * Core logic (text builder)
+     * ========================= */
+
+    public static String buildStatusLabel(
+        DeliveryEvent__mdt eventMdt,
+        DeliveryLocation__mdt locationMdt,
+        ShipmentType__mdt shipTypeMdt
+    ) {
+        if (eventMdt == null || locationMdt == null) {
+            return null;
+        }
+
+        String eventDevName    = eventMdt.DeveloperName;
+        String locationDevName = locationMdt.DeveloperName;
+
+        String eventLabel = resolveLabel(
+            eventMdt.MasterLabel,
+            eventMdt.LabelUA__c
+        );
+
+        String locationLabel = resolveLabel(
+            locationMdt.MasterLabel,
+            locationMdt.LabelUA__c
+        );
+
+        // ----- DEPARTURED + TRANSIT -----
+        if (eventDevName == 'DEPARTURED'
+            && TRANSIT_LOCATIONS.contains(locationDevName)) {
+            return locationLabel;
+        }
+
+        // ----- Events with transport -----
+        if (IN_THE_EVENTS.contains(eventDevName)) {
+            String shipHuman = resolveShipTypeHuman(shipTypeMdt);
+
+            if (String.isNotBlank(shipHuman)) {
+                return eventLabel + ' ' + shipHuman + ' in the ' + locationLabel;
+            }
+            return eventLabel + ' in the ' + locationLabel;
+        }
+
+        // ----- ARRIVED -----
+        if (eventDevName == 'ARRIVED') {
+            return eventLabel + ' to the ' + locationLabel;
+        }
+
+        // ----- DEPARTURED (non-transit) -----
+        if (eventDevName == 'DEPARTURED') {
+            return eventLabel + ' from the ' + locationLabel;
+        }
+
+        return eventLabel + ' ' + locationLabel;
+    }
+
+    /* =========================
+     * Helpers
+     * ========================= */
+
+    private static String resolveShipTypeHuman(ShipmentType__mdt shipTypeMdt) {
+        if (shipTypeMdt == null) return null;
+
+        // EN → Name__c (cargo ship / truck / freight train)
+        if (!isUkrainian() && String.isNotBlank(shipTypeMdt.Name__c)) {
+            return shipTypeMdt.Name__c;
+        }
+
+        return shipTypeMdt.MasterLabel;
+    }
+
+    /* =========================
+     * CMDT lookup (SAFE)
+     * ========================= */
+
+    private static EventLocation__mdt findEventLocation(
+        String eventDevName,
+        String locationDevName,
+        String shipTypeDevName
+    ) {
+        List<EventLocation__mdt> rows = [
             SELECT
-                Event_Status__r.ShipmentStatus__r.MasterLabel,
-                Event_Status__r.ShipmentStatus__r.Code__c
-            FROM Event_Status_ShipType__mdt
-            WHERE Event_Status__r.DeveloperName IN :eventStatusSet
-              AND ShipmentType__r.DeveloperName = :mapShipTypes.get(shipTypeCode)
+                Event__r.DeveloperName,
+                Location__r.DeveloperName,
+                ShipType__r.DeveloperName
+            FROM EventLocation__mdt
+            WHERE Event__r.DeveloperName = :eventDevName
+              AND Location__r.DeveloperName = :locationDevName
+              AND ShipType__r.DeveloperName = :shipTypeDevName
             LIMIT 1
         ];
+        return rows.isEmpty() ? null : rows[0];
+    }
 
-        if (!mapList.isEmpty()) {
-            statusLabel = mapList[0]
-                .Event_Status__r
-                .ShipmentStatus__r
-                .MasterLabel;
-        } else {
-            // fallback на дефолтний статус події
-            statusLabel = mapEventDefStatus.get(eventCode);
-        }
+    private static EventLocation__mdt findEventLocationNoShip(
+        String eventDevName,
+        String locationDevName
+    ) {
+        List<EventLocation__mdt> rows = [
+            SELECT
+                Event__r.DeveloperName,
+                Location__r.DeveloperName
+            FROM EventLocation__mdt
+            WHERE Event__r.DeveloperName = :eventDevName
+              AND Location__r.DeveloperName = :locationDevName
+            LIMIT 1
+        ];
+        return rows.isEmpty() ? null : rows[0];
+    }
 
-        return statusLabel;
+    /* =========================
+     * Resolver stubs (ERP)
+     * ========================= */
+
+    private static String resolveEventDeveloperName(String eventKey) {
+        return eventKey;
+    }
+
+    private static String resolveLocationDeveloperName(String locationKey) {
+        return locationKey;
+    }
+
+    private static String resolveShipTypeDeveloperName(String shipTypeKey) {
+        return shipTypeKey;
     }
 }
