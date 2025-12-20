@@ -23,7 +23,11 @@ public with sharing class DelivStatusService {
     // Події, де МОЖНА додавати транспорт
     private static final Set<String> IN_THE_EVENTS = new Set<String>{
         'LOADED',
-        'DISCHARGED'
+        'DISCHARGED',
+        'LOADIND_COMPLETE',
+        'LOADING_START',
+        'UNLOADING_COMPLETE',
+        'UNLOADING_START'
     };
 
     // Transit-локації
@@ -147,7 +151,7 @@ public with sharing class DelivStatusService {
 
         // ----- DEPARTURED (non-transit) -----
         if (eventDevName == 'DEPARTURED') {
-            return eventLabel + ' from the ' + locationLabel;
+            return eventLabel + ' the ' + locationLabel;
         }
 
         return eventLabel + ' ' + locationLabel;
