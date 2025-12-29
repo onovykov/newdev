@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>UnifiedDictionary__mdt.IMBALANCE_1_WHEELS</members>
+        <members>UnifiedDictionary__mdt.IMBALANCE_2_WHEELS</members>
+        <members>UnifiedDictionary__mdt.IMBALANCE_3_WHEELS</members>
+        <members>UnifiedDictionary__mdt.IMBALANCE_4_WHEELS</members>
+        <name>CustomMetadata</name>
+    </types>
+    <version>59.0</version>
+</Package>

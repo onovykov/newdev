@@ -484,7 +484,7 @@
             <targetReference>Recover_Opportunity_Product</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <name>cancelledOpportunityProduct</name>
         <dataType>SObject</dataType>

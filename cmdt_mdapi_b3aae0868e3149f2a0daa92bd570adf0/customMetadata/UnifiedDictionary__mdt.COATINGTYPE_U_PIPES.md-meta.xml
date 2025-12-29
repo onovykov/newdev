@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<CustomMetadata
+    xmlns='http://soap.sforce.com/2006/04/metadata'
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+
+    <label>COATINGTYPE_U_PIPES</label>
+    <fullName>UnifiedDictionary__mdt.COATINGTYPE_U_PIPES</fullName>
+
+    <values>
+        <field>DictID__c</field>
+        <value xsi:type='xsd:string'>COATINGTYPE</value>
+    </values>
+    <values>
+        <field>Domain__c</field>
+        <value xsi:type='xsd:string'>PIPES</value>
+    </values>
+    <values>
+        <field>ERPCode__c</field>
+        <value xsi:type='xsd:string'>U</value>
+    </values>
+    <values>
+        <field>Label__c</field>
+        <value xsi:type='xsd:string'>Изоляция НМТЗ: внешнее черное 3х слойное полиэтиленовое покрытие</value>
+    </values>
+    <values>
+        <field>IsActive__c</field>
+        <value xsi:type='xsd:boolean'>true</value>
+    </values>
+</CustomMetadata>
