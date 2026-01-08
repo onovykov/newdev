@@ -79,7 +79,7 @@ public class LeadRepository {
 
         // ЄДИНИЙ запит
         List<ClientLead__c> rows = [
-            SELECT Id, Name, MarketSegment__c, Country__c, CityName__c, LeadStage__c, Account__c,
+            SELECT Id, Name, MarketSegment__c, Country__c, City__c, LeadStage__c, Account__c,
                    OwnerId, CreatedDate, CreatedById, Holding__c, ParentAccount__c, ChildAccount__c,
                    NormalizedName__c, PhoneticCode__c, MetaphonePrimary__c, MetaphoneAlternate__c,
                    NYSIISFirstCode__c, NYSIIS__c, SoundexFirst3Letters__c, SoundexFirstWord__c,

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>SteelFamily__mdt.ALLOY_42CRMO4</members>
+        <members>SteelFamily__mdt.STRUCTURAL_S355_SGMP</members>
+        <members>SteelFamily__mdt.STRUCTURAL_S355J2H</members>
+        <members>SteelFamily__mdt.WHEEL_ALLOY_R8T_RSMP</members>
+        <members>SteelFamily__mdt.WHEEL_CARBON_ER7_RSMP</members>
+        <members>SteelFamily__mdt.WHEEL_CARBON_ER8_RSMP</members>
+        <name>CustomMetadata</name>
+    </types>
+    <version>59.0</version>
+</Package>

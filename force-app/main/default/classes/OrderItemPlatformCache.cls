@@ -6,9 +6,9 @@ public with sharing class OrderItemPlatformCache {
     private static final Integer SHARD_COUNT = 20;
     private static final Integer IN_CHUNK    = 500;
 
-    // Мінімально потрібні поля (додайте свої — при зміні підніміть VERSION)
+    // Мінімально потрібні поля
     private static final List<String> FIELDS = new List<String>{
-        'Id','ITENumber__c','OrderId','Product2Id','Quantity','UnitPrice'
+        'Id','ID_ERP__c','ITENumber__c','OrderId','Product2Id','Quantity','UnitPrice'
     };
 
     // ===== Публічний API =====
@@ -138,7 +138,7 @@ public with sharing class OrderItemPlatformCache {
     }
 
     private static void putShardToCache(Integer shard, Map<String, OrderItem> data) {
-        // Пам'ятайте про ~100 kB ліміт на одне значення кешу.
+        // УВАГА: ~100 kB ліміт на одне значення кешу.
         part().put(cacheKey(shard), data, TTL_SECS);
     }
 
