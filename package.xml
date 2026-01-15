@@ -1,4 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-  <version>65.0</version>
+    <types>
+        <members>SteelGradeAlias__mdt.*</members>
+        <members>SteelGradeVariant__mdt.*</members>
+        <members>SteelGradeExtension__mdt.*</members>
+        <members>SteelFamily__mdt.*</members>
+        <name>CustomMetadata</name>
+    </types>
+    <version>65.0</version>
 </Package>

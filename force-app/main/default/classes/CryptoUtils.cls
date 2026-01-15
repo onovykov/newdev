@@ -34,4 +34,12 @@ public class CryptoUtils {
   
       return decoded;
     }
+
+      public static String sha1(String input) {
+        Blob b = Crypto.generateDigest(
+            'SHA1',
+            Blob.valueOf(input == null ? '' : input)
+        );
+        return EncodingUtil.convertToHex(b);
+    }  
   }
