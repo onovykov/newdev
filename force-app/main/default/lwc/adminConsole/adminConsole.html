@@ -1,0 +1,89 @@
+<template>
+  <lightning-card title="Admin Console">
+    <div class="slds-p-around_medium">
+      <lightning-textarea label="SOQL (SELECT only)" value={soql} onchange={onSoql}></lightning-textarea>
+
+      <div class="slds-m-top_small slds-grid slds-gutters">
+        <div class="slds-col">
+          <lightning-input type="number" label="Preview max rows" value={maxRows} onchange={onMaxRows}></lightning-input>
+        </div>
+        <div class="slds-col slds-align-bottom">
+          <lightning-button label="Preview" variant="brand" onclick={preview}></lightning-button>
+        </div>
+      </div>
+
+      <template if:true={previewMessage}>
+        <div class="slds-m-top_small slds-text-color_weak">{previewMessage}</div>
+      </template>
+
+      <template if:true={columns}>
+        <div class="slds-m-top_medium">
+          <lightning-datatable
+            key-field="Id"
+            data={rows}
+            columns={columns}
+            hide-checkbox-column>
+          </lightning-datatable>
+        </div>
+      </template>
+
+      <lightning-tabset class="slds-m-top_large">
+        <lightning-tab label="Execute Update">
+          <div class="slds-m-top_small">
+            <lightning-input label="sObjectApi" value={sObjectApi} onchange={onObj}></lightning-input>
+            <lightning-input label="WHERE (optional)" value={whereClause} onchange={onWhere}></lightning-input>
+            <lightning-input label="AsyncConfig DeveloperName" value={configName} onchange={onCfg}></lightning-input>
+            <lightning-input type="number" label="Snapshot LIMIT" value={snapshotLimit} onchange={onSnapLimit}></lightning-input>
+
+            <lightning-textarea
+              label="Set values JSON (e.g. {&quot;Type&quot;:&quot;Customer&quot;})"
+              value={setValuesJson}
+              onchange={onSetValues}>
+            </lightning-textarea>
+
+            <div class="slds-m-top_small slds-grid slds-gutters">
+              <div class="slds-col">
+                <lightning-button label="Dry-run Update" onclick={dryRunUpdate}></lightning-button>
+              </div>
+              <div class="slds-col">
+                <lightning-button variant="brand" label="Execute Update" onclick={executeUpdate}></lightning-button>
+              </div>
+            </div>
+          </div>
+        </lightning-tab>
+
+        <lightning-tab label="Execute Delete">
+          <div class="slds-m-top_small">
+            <lightning-input label="sObjectApi" value={sObjectApi} onchange={onObj}></lightning-input>
+            <lightning-input label="WHERE (optional)" value={whereClause} onchange={onWhere}></lightning-input>
+            <lightning-input label="AsyncConfig DeveloperName" value={configName} onchange={onCfg}></lightning-input>
+            <lightning-input type="number" label="Snapshot LIMIT" value={snapshotLimit} onchange={onSnapLimit}></lightning-input>
+
+            <div class="slds-m-top_small slds-grid slds-gutters">
+              <div class="slds-col">
+                <lightning-button label="Dry-run Delete" onclick={dryRunDelete}></lightning-button>
+              </div>
+              <div class="slds-col">
+                <lightning-button variant="destructive" label="Execute Delete" onclick={executeDelete}></lightning-button>
+              </div>
+            </div>
+          </div>
+        </lightning-tab>
+
+        <lightning-tab label="Rollback">
+          <div class="slds-m-top_small">
+            <lightning-input label="sObjectApi" value={sObjectApi} onchange={onObj}></lightning-input>
+            <lightning-input label="Snapshot ContentVersionId" value={snapshotId} onchange={onSnapshotId}></lightning-input>
+            <div class="slds-m-top_small">
+              <lightning-button variant="brand" label="Rollback from Snapshot" onclick={rollback}></lightning-button>
+            </div>
+          </div>
+        </lightning-tab>
+      </lightning-tabset>
+
+      <template if:true={execMessage}>
+        <div class="slds-m-top_medium">{execMessage}</div>
+      </template>
+    </div>
+  </lightning-card>
+</template>

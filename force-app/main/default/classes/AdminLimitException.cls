@@ -1,0 +1,1 @@
+public class AdminLimitException extends Exception {}

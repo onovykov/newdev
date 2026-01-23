@@ -1,146 +1,151 @@
 public with sharing class RSMPClassifier {
-    // ---------------------------
-    // DTO
-    // ---------------------------
 
-    public class Result {
-        public String baseCode;
-        public String baseRegex;
-
-        public String variantCode;
-        public String variantRegex;
-
-        public Set<String> extensionCodes = new Set<String>();
-        public Set<String> extensionRegexes = new Set<String>();
+    // =========================
+    // Result DTO
+    // =========================
+    public class ClassificationResult {
+        public String rawText;
+        public String resolutionType;   // GRADE / VARIANT / EXTENSION / TRASH / UNKNOWN
+        public String resolutionRule;   // regex або reason
+        public String standardText;     // ER7, 42CRMO4, EA1N
+        public String baseCode;         
 
         public Boolean isUnknown() {
-            return baseCode == null;
+            return resolutionType == 'UNKNOWN';
         }
 
-        public String getRule() {
-            List<String> parts = new List<String>();
-
-            if (baseRegex != null) parts.add('BASE:' + baseRegex);
-            if (variantRegex != null) parts.add('VARIANT:' + variantRegex);
-
-            for (String r : extensionRegexes) {
-                parts.add('EXT:' + r);
-            }
-
-            return String.join(parts, ' | ');
-        }
-
-        public String getStandardText() {
-            List<String> parts = new List<String>();
-
-            if (baseCode != null) parts.add(baseCode);
-            if (variantCode != null) parts.add(variantCode);
-            for (String e : extensionCodes) parts.add(e);
-
-            return String.join(parts, '|');
+        public Boolean isTrash() {
+            return resolutionType == 'TRASH';
         }
     }
 
-    // ---------------------------
-    // Cached patterns
-    // ---------------------------
-    private static List<PatternSetting__c> basePatterns;
-    private static List<PatternSetting__c> variantPatterns;
-    private static List<PatternSetting__c> extensionPatterns;
-
-    private static void loadPatterns() {
-        if (basePatterns != null) return;
-
-        List<PatternSetting__c> rows = [
-            SELECT Regex__c, Type__c
-            FROM PatternSetting__c
-            WHERE
-                ObjectType__c = 'SteelGrade'
-                AND Domain__c = 'Wheels'
-                AND ERP_FacetGroup__c = 'RSMP'
-        ];
-
-        basePatterns = new List<PatternSetting__c>();
-        variantPatterns = new List<PatternSetting__c>();
-        extensionPatterns = new List<PatternSetting__c>();
-
-        for (PatternSetting__c p : rows) {
-            if (p.Type__c == 'Base') {
-                basePatterns.add(p);
-            } else if (p.Type__c == 'Variant') {
-                variantPatterns.add(p);
-            } else if (p.Type__c == 'Extension') {
-                extensionPatterns.add(p);
-            }
-        }
-    }
-
-    // ---------------------------
+    // =========================
     // Public API
-    // ---------------------------
-    public static Result classify(String raw) {
-        loadPatterns();
-
-        Result r = new Result();
-        String text = raw == null ? '' : raw;
-
-        // -------------------
-        // BASE
-        // -------------------
-        for (PatternSetting__c p : basePatterns) {
-            String regex = '(?i)' + p.Regex__c;
-            if (Pattern.matches(regex, text)) {
-                r.baseRegex = p.Regex__c;
-                r.baseCode = extractMatchedText(p.Regex__c, text);
-                break; // exactly one base
-            }
+    // =========================
+    public ClassificationResult classify(String raw) {
+        if (matchesTrash(raw)) {
+            ClassificationResult r = new ClassificationResult();
+            r.rawText = raw;
+            r.resolutionType = 'TRASH';
+            r.resolutionRule = 'TRASH_PATTERN';
+            return r;
         }
 
-        // -------------------
-        // VARIANT
-        // -------------------
-        for (PatternSetting__c p : variantPatterns) {
-            String regex = '(?i)' + p.Regex__c;
-            if (Pattern.matches(regex, text)) {
-                r.variantRegex = p.Regex__c;
-                r.variantCode = extractMatchedText(p.Regex__c, text);
-                break; // RSMP supports single variant
-            }
+        ClassificationResult res = new ClassificationResult();
+
+        if (String.isBlank(raw)) {
+            return unknown();
         }
 
-        // -------------------
-        // EXTENSIONS
-        // -------------------
-        for (PatternSetting__c p : extensionPatterns) {
-            String regex = '(?i)' + p.Regex__c;
-            if (Pattern.matches(regex, text)) {
-                r.extensionRegexes.add(p.Regex__c);
-                r.extensionCodes.add(extractMatchedText(p.Regex__c, text));
-            }
+        String text = normalize(raw);
+
+        // 1️⃣ BASE (GRADE)
+        ClassificationResult base = matchBase(text);
+        if (base != null) {
+            return base;
         }
 
-        return r;
+        // 2️⃣ VARIANT / EXTENSION — буде наступним етапом
+        // (поки intentionally не робимо)
+
+        return unknown();
     }
 
-    // ---------------------------
-    // Utils
-    // ---------------------------
-    private static String extractMatchedText(String regex, String text) {
-        try {
-            Pattern p = Pattern.compile('(?i)' + regex);
-            Matcher m = p.matcher(text);
+    // =========================
+    // BASE resolution
+    // =========================
+    private ClassificationResult matchBase(String text) {
+
+        List<PatternSetting__c> patterns = PatternSettingCache.getRSMPBasePatterns();
+
+        for (PatternSetting__c p : patterns) {
+
+            if (String.isBlank(p.Regex__c)) {
+                continue;
+            }
+
+            Pattern pat = Pattern.compile(p.Regex__c);
+            Matcher m = pat.matcher(text);
 
             if (m.find()) {
-                return normalize(m.group(0));
+
+                String standard = extractStandardText(m);
+
+                if (String.isBlank(standard)) {
+                    continue; // не ризикуємо
+                }
+
+                ClassificationResult r = new ClassificationResult();
+                r.resolutionType = 'GRADE';
+                r.resolutionRule = 'BASE:' + p.Regex__c;
+                r.standardText = standard;
+
+                return r;
             }
-        } catch (Exception e) {
-            // bad regex should not break ingestion
         }
+
         return null;
     }
 
-    private static String normalize(String s) {
-        if (s == null) return null;
-        return s.trim().toUpperCase();
+    // =========================
+    // Helpers
+    // =========================
+    private static Boolean matchesTrash(String text) {
+        for (PatternSetting__c p : PatternSettingCache.getRSMPTrashPatterns()) {
+            if (Pattern.matches(p.Regex__c, text)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static ClassificationResult unknown() {
+        ClassificationResult r = new ClassificationResult();
+        r.resolutionType = 'UNKNOWN';
+        r.resolutionRule = 'NO_PATTERN_MATCH';
+        r.standardText = null;
+        return r;
+    }
+
+    /**
+     * Витягуємо StandardText ТІЛЬКИ з capture groups
+     * (ER)(7) → ER7
+     * (45)(Х)(Н) → 45ХН
+     */
+    private static String extractStandardText(Matcher m) {
+
+        List<String> parts = new List<String>();
+
+        Integer groupCount = m.groupCount();
+        for (Integer i = 1; i <= groupCount; i++) {
+            String g = m.group(i);
+            if (!String.isBlank(g)) {
+                parts.add(g.trim());
+            }
+        }
+
+        if (parts.isEmpty()) {
+            return null;
+        }
+
+        return String.join(parts, '');
+    }
+
+    /**
+     * Нормалізація вхідного тексту:
+     * - прибираємо [MS], [GMH] тощо
+     * - уніфікуємо пробіли
+     */
+    private static String normalize(String raw) {
+
+        String t = raw;
+
+        // викидаємо сміття в квадратних дужках
+        t = t.replaceAll('\\[[^\\]]+\\]', ' ');
+
+        // уніфікуємо пробіли
+        t = t.replaceAll('\\s+', ' ').trim();
+
+        return t;
     }
 }
