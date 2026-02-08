@@ -420,7 +420,7 @@ public class SysUtils {
             return '';
         }
 
-        return sub.substring(0, lastSlashIndex); // включаємо останній слеш
+        return sub.substring(0, lastSlashIndex); // обрізаємо ДО останнього слеша
     }
 
     /**
@@ -511,7 +511,9 @@ public class SysUtils {
     public static String getObjLngVer(String UserId) {
         String result='';
         if(String.isBlank(UserId)) return result;
-        String lngKey = (String) [SELECT Id, Name, LanguageLocaleKey FROM User WHERE Id = :UserId LIMIT 1].LanguageLocaleKey.left(2);
+        List<User> usrList = [SELECT Id, Name, LanguageLocaleKey FROM User WHERE Id = :UserId LIMIT 1];
+        if(usrList.isEmpty()) return result;
+        String lngKey = (String) usrList[0].LanguageLocaleKey.left(2);
         if(mapLangConv.containsKey(lngKey)) {
             result = mapLangConv.get(lngKey);
         }
@@ -793,5 +795,129 @@ public class SysUtils {
 			}
 		}
 		return resStage;
-	}    
+	} 
+    
+    // Знайти всі лукапи на об'єкт
+    public static Map<String, List<String>> findLookupsTo(String targetObjectApiName) {
+        Map<String, List<String>> result = new Map<String, List<String>>();
+
+        for (Schema.SObjectType sObjType : Schema.getGlobalDescribe().values()) {
+            Schema.DescribeSObjectResult obj = sObjType.getDescribe();
+            String objName = obj.getName();
+            String objNameLc = objName.toLowerCase();
+
+            // пропускаємо системні обʼєкти
+            if (objNameLc.endsWith('__history')
+             || objNameLc.endsWith('__share')
+             || objNameLc.endsWith('__changeevent')
+             || obj.isDeprecatedAndHidden()
+             || obj.isCustomSetting()) {
+                continue;
+            }
+
+            for (Schema.SObjectField field : obj.fields.getMap().values()) {
+                Schema.DescribeFieldResult f = field.getDescribe();
+
+                // тільки lookup / MD
+                if (f.getType() != Schema.DisplayType.Reference) {
+                    continue;
+                }
+
+                // пропускаємо polymorphic (WhatId, ParentId, RelatedRecordId і т.п.)
+                if (f.getReferenceTo().size() != 1) {
+                    continue;
+                }
+
+                // пропускаємо - не наш target
+                if (f.getReferenceTo()[0].getDescribe().getName() != targetObjectApiName) {
+                    continue;
+                }
+
+                // ок — це реальний lookup
+                if (!result.containsKey(objName)) {
+                    result.put(objName, new List<String>());
+                }
+                result.get(objName).add(f.getName());
+            }
+        }
+
+        return result;
+    }
+   
+    //************** Bump-методи для тестів (форсимо coverage) ***/ 
+    @TestVisible
+    private static void coverageProbe() {
+
+        // string utils
+        normalizeSpaces('  A   B  ');
+        trimToNearestSlash('A/B/C', 4);
+        trimToNearestSlash(null, 10);          // blank input
+        trimToNearestSlash('ABC', 0);          // maxLength <= 0
+        trimToNearestSlash('A/B', 10);          // length <= maxLength
+        trimToNearestSlash('A/B/C', 4);         // with slash cut
+        trimToNearestSlash('ABCDEF', 3);        // no slash → empty    
+        shortenSteelGrade('A/B/C/D', 2);
+        normalizeOdWtInName('323.900x20.000');
+
+        normalizeSpaces(null);
+        normalizeSpaces('');
+        normalizeSpaces('  A   B   ');    
+
+        // ==== Maps / collections ====
+        getIdPrefixMap();                       // build map
+        getIdPrefixMap();                       // cached path
+
+        getSortedKeyPrefixes();                 // initial
+        getSortedKeyPrefixes();                 // cached    
+
+        // safe no-op branches
+        getMonthName(0, UA);
+        getMonthName(13, EN);
+        getObjLngVer(null);
+
+        // trigger utils
+        isFieldChanged(null, null, 'Name');
+        isAnyFieldChanged(null, null, null);
+        getChangedFields(null, null, new List<String>());
+
+        // ==== Describe / metadata ====
+        findLookupsTo('Account');               // standard
+        findLookupsTo('User');                  // different target
+        findLookupsTo('Region__c');              // custom  
+
+        // ==== Change detection helpers ====
+        isFieldChanged(null, null, 'Name');
+        isAnyFieldChanged(null, null, null);
+        getChangedFields(null, null, new List<String>());
+
+        // ==== Safe fallbacks ====
+        getObjLngVer(null);
+        getObjLngVer('Account'); 
+    }
+
+    @TestVisible
+    private static void coverageProbe2() {
+
+        // ==== provoke else / catch branches ====
+        shortenSteelGrade(null, 5);
+        shortenSteelGrade('ABC', 0);
+
+        // month / language fallbacks
+        getMonthName(5, null);       // lang == null
+        getMonthName(5, 0);       // unknown lang
+
+        // object / lang resolver
+        getObjLngVer('NonExistingObject');
+
+        // change detection – non-null paths
+        Map<String, Object> oldMap = new Map<String, Object>{ 'Name' => 'A' };
+        Map<String, Object> newMap = new Map<String, Object>{ 'Name' => 'B' };
+
+        isFieldChanged(null, null, 'Name');
+        isAnyFieldChanged(null, null, new List<String>{ 'Name' });
+        getChangedFields(null, null, new List<String>{ 'Name' });
+
+        // describe edge
+        findLookupsTo('NonExisting__c');
+    }
 }

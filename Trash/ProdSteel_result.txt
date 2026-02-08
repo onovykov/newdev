@@ -1,0 +1,16 @@
+﻿ProdSteelCanonicalGradeBatch.cls
+ProdSteelCanonicalStandardBatch.cls
+ProdSteelCanonicalStandardEditionBatch.cls
+ProdSteelFamilyResolver.cls
+ProdSteelLegacyMapFactory.cls
+ProdSteelLegacyMigrationBatch.cls
+ProdSteelParser.cls
+ProdSteelResolution.cls
+ProdSteelResolver.cls
+ProdSteelStandardCleanupBatch.cls
+ProdSteelStandardCompositeBatch.cls
+ProdSteelStandardCompositeClassifBatch.cls
+ProdSteelStandardEditionParser.cls
+ProdSteelStandardLegacyMigrationBatch.cls
+ProdSteelStandardNormalizationBatch.cls
+ProdSteelStandardParser.cls

@@ -4,7 +4,11 @@ public class OpportunityTriggerHandler extends TriggerHandler implements ITrigge
 	public OpportunityTriggerHandler(Map<Id, SObject> oldMap, Map<Id, SObject> newMap, List<SObject> oldList, List<SObject> newList) {
 		super(oldMap, newMap, oldList, newList);
 	}
-
+	// ======================================
+    // TEST / INFRASTRUCTURE BYPASS
+    // ======================================
+    public static Boolean bypassAll = false;
+	
 	public static List<Id> opportunityOrdersForDelete = new List<Id> ();
 	public static List<Id> opportunitiesToConvert = new List<Id> ();
 	public static List<OrderItem> newOrderItems = new List<OrderItem> ();
@@ -12,11 +16,25 @@ public class OpportunityTriggerHandler extends TriggerHandler implements ITrigge
 	public Map<Id, Order> oppIdWithOrderMap = new Map<Id, Order> ();
 	public static Map<Id, User> owners;
 
+    /* ===============================
+     * BULK HOOK для FieldAuditService
+     * =============================== */
+    public static void beforeUpdateBulk(
+        Map<Id, SObject> oldMap,
+        Map<Id, SObject> newMap
+    ) {
+        // АУДИТ — ОДИН РАЗ
+        FieldAuditService.publishChanges(oldMap, newMap);
+    }
 
 	public void bulkBefore() {
 		System.debug('bulkBefore OpportunityTriggerHandler');
 		if (Trigger.isUpdate && oppWithOLIMap == null) {
-			oppWithOLIMap = new Map<Id, Opportunity> ([SELECT Id, (SELECT Id, ID_ERP__c, ServiceDate FROM OpportunityLineItems) FROM Opportunity WHERE Id IN: newMap.keySet()]);
+			oppWithOLIMap = new Map<Id, Opportunity> ([
+				SELECT
+					Id, (SELECT Id, ID_ERP__c, ServiceDate FROM OpportunityLineItems)
+				FROM Opportunity
+				WHERE Id IN: newMap.keySet()]);
 		}
 
 		if (Test.isRunningTest()) {
@@ -37,7 +55,7 @@ public class OpportunityTriggerHandler extends TriggerHandler implements ITrigge
 					}
 				}
 			}
-			
+
 			//if (owners == null) {
 				Set<String> ownersIdSet = new Set<String> ();
 				ownersIdSet = ApexUtil.getFieldValues(scope, Opportunity.OwnerId);
@@ -46,7 +64,7 @@ public class OpportunityTriggerHandler extends TriggerHandler implements ITrigge
 			system.debug(scope);
 			for (Opportunity opp : scope) {
                 if(owners.containsKey(opp.OwnerId)){
-                
+
     				opp.Owner__c = opp.OwnerId;
                     if (opp.MarketSegment__c == null || opp.MarketSegment__c == '') {
                            opp.MarketSegment__c = owners.get(opp.OwnerId).SalesDivision__c;
@@ -63,23 +81,23 @@ public class OpportunityTriggerHandler extends TriggerHandler implements ITrigge
                     if (opp.AdditionalBOS__c == null){
                         id aBosId = owners.get(opp.OwnerId).AdditionalBOS__c;
                         if(aBosId != null){
-                            opp.AdditionalBOS__c = owners.get(opp.OwnerId).AdditionalBOS__c; 
+                            opp.AdditionalBOS__c = owners.get(opp.OwnerId).AdditionalBOS__c;
                         }
                     }
                 }
-				
-                
-                
+
+
+
 			}
 		}
-		
+
 		//if (operation == TriggerOperation.IS_DELETE) {
 			////Удалим все связанные Orders
 			//Set<String> oppIdSet = ApexUtil.getIds(oldList);
 			//List<Order> ordList = New List<Order>([Select Id FROM Order Where OpportunityId in :oppIdSet]);
 			//Delete ordList;
 		//}
-		
+
 	}
 
 	public void bulkAfter() {
@@ -125,7 +143,7 @@ public class OpportunityTriggerHandler extends TriggerHandler implements ITrigge
 
 		Opportunity oldOpp = (Opportunity) oldSo;
 		Opportunity opp = (Opportunity) so;
-		
+
 		if (isFieldChanged(opp, oldOpp, 'StageName')) {
 			if (oldOpp.get('StageName').equals('Closed Won')){
 				opportunityOrdersForDelete.add(so.Id);
@@ -137,7 +155,8 @@ public class OpportunityTriggerHandler extends TriggerHandler implements ITrigge
 					}
 				}
 
-				/* 18.10.2020: Закомментировал создание ордеров, чтобы избежать конфликта, когда из ИТ-Предприятия приходит заказ, а оппа еще не в стадии выигранной.
+				/* 18.10.2020: Закомментировал создание ордеров, чтобы избежать конфликта, когда из ИТ-Предприятия приходит заказ,
+				//а оппа еще не в стадии выигранной.
 				//opportunitiesToConvert.add(so.Id);
 				//Order newOrder = createOrder((Opportunity) so);
 				//oppIdWithOrderMap.put(so.Id, newOrder);
@@ -152,7 +171,7 @@ public class OpportunityTriggerHandler extends TriggerHandler implements ITrigge
 	public void afterInsert(SObject so) {
 
 		System.debug('afterInsert');
-	
+
 	}
 
 	public void afterUpdate(SObject oldSo, SObject so) {
@@ -182,7 +201,7 @@ public class OpportunityTriggerHandler extends TriggerHandler implements ITrigge
 				}
 			}
         }
-		
+
 	}
 
 	public void afterDelete(SObject so) {
@@ -192,7 +211,7 @@ public class OpportunityTriggerHandler extends TriggerHandler implements ITrigge
 
 		if (!oppIdWithOrderMap.values().isEmpty()) {
 			insert oppIdWithOrderMap.values();
-			
+
 			for (Id current_order_opp_id : oppIdWithOrderMap.keySet()) {
 				((Opportunity) newMap.get(current_order_opp_id)).SyncedOrder__c = oppIdWithOrderMap.get(current_order_opp_id).Id;
 			}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+
+    <!-- Apex Classes -->
+    <types>
+        <members>CopyProductionAmountinQuotasTest</members>
+        <members>ProductionQuoteAddOppItemTest</members>
+        <members>ProductionQuoteAddRelativeItems</members>
+        <members>ProductionQuoteAddShopQuota</members>
+        <members>ProductionQuoteCreateBatch</members>
+        <members>ProductionQuoteDeleteDuplicationTest</members>
+        <members>ProductionQuoteDeleteOppItemsBatchTest</members>
+        <members>ProductionQuoteFromSalBudgetBatch</members>
+        <members>ProductionQuoteFromSalBudgetBatchTest</members>
+        <members>ProductionQuoteGroupAllBatch</members>
+        <members>ProductionQuoteGroupBatch</members>
+        <members>ProductionQuoteOnUpdateBatch</members>
+        <members>ProductionQuoteUpdateOppItem</members>
+        <members>SalesBudgetRecordTriggerHandler</members>
+        <members>ShopQuotaTriggerHelper</members>
+        <members>DeleteExtraShopQuotaOpportunity</members>
+        <members>DeleteExtraShopQuotaOpportunityTest</members>
+        <name>ApexClass</name>
+    </types>
+
+    <!-- Apex Triggers -->
+    <types>
+        <members>ShopQuotaTrigger</members>
+        <members>SalesBudgetRecordTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+
+    <version>59.0</version>
+</Package>

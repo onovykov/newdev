@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+
+    <types>
+        <members>ProdSteelCanonicalGradeBatch</members>
+        <members>ProdSteelCanonicalStandardBatch</members>
+        <members>ProdSteelCanonicalStandardEditionBatch</members>
+        <members>ProdSteelFamilyResolver</members>
+        <members>ProdSteelLegacyMapFactory</members>
+        <members>ProdSteelLegacyMigrationBatch</members>
+        <members>ProdSteelParser</members>
+        <members>ProdSteelResolution</members>
+        <members>ProdSteelResolver</members>
+        <members>ProdSteelStandardCleanupBatch</members>
+        <members>ProdSteelStandardCompositeBatch</members>
+        <members>ProdSteelStandardCompositeClassifBatch</members>
+        <members>ProdSteelStandardEditionParser</members>
+        <members>ProdSteelStandardLegacyMigrationBatch</members>
+        <members>ProdSteelStandardNormalizationBatch</members>
+        <members>ProdSteelStandardParser</members>
+        <name>ApexClass</name>
+    </types>
+
+    <version>59.0</version>
+</Package>

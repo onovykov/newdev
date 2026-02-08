@@ -1,4 +1,34 @@
 public class ERPMessageHandler  {
+    //public static final String NO_SUCH_OPPORTUNITY_MSG = 'There is no Opportunity with such ID_ERP ';
+    //public static final String NO_SUCH_OPPORTUNITY_ITEM_MSG = 'There is no OpportunityLineItem with such #';
+
+    public final static Map<Integer, String> HTTPSTATUSES = new Map<Integer, String> {
+            200 => 'OK',
+            201 => 'CREATED',
+            202 => 'ACCEPTED',
+            204 => 'NO CONTENT',
+            206 => 'PARTIAL CONTENT',
+            300 => 'MULTIPLE CHOICES',
+            301 => 'MOVED PERMANENTLY',
+            302 => 'FOUND',
+            304 => 'NOT MODIFIED',
+            400 => 'BAD REQUEST',
+            401 => 'UNAUTHORIZED',
+            403 => 'FORBIDDEN',
+            404 => 'NOT FOUND',
+            405 => 'METHOD NOT ALLOWED',
+            406 => 'NOT ACCEPTABLE',
+            409 => 'CONFLICT',
+            410 => 'GONE',
+            412 => 'PRECONDITION FAILED',
+            413 => 'REQUEST ENTITY TOO LARGE',
+            414 => 'REQUEST URI TOO LARGE',
+            415 => 'UNSUPPORTED MEDIA TYPE',
+            417 => 'EXPECTATION FAILED',
+            500 => 'INTERNAL SERVER ERROR',
+            503 => 'SERVER UNAVAILABLE'
+    };
+
     @TestVisible private static Boolean TEST_TREAT_MASTER_AS_ENQUIRY = false;
 
     public static void postCSTfromHelper(RestRequest request, RestResponse response) {
@@ -19,18 +49,42 @@ public class ERPMessageHandler  {
         } else {
             messageType = String.valueOf(parsedMap.get('MessageType'));
         }
-
-        System.debug('messageType: ' + messageType);
         String IDERPofOpportunity;
         Opportunity opp = null;
 
         switch on messageType {
+            /*=========================================
+                Додано 08.02.2026, Автор: O.Novykov
+                Обробка BidGuarantee inbound
+            ==========================================*/
+            when 'ERP-SF_OpportunityBidGuarantee' {
+
+                try {
+                    ERPBidGuaranteeInboundDTO dto =
+                        (ERPBidGuaranteeInboundDTO)
+                        JSON.deserialize(
+                            request.requestBody.toString(),
+                            ERPBidGuaranteeInboundDTO.class
+                        );
+
+                    ERPBidGuaranteeInboundResponseDTO resp =
+                        OpportunityBidGuaranteeInboundService.handle(dto);
+
+                    response.statusCode = 200;
+                    response.responseBody =
+                        Blob.valueOf(JSON.serialize(resp));
+
+                } catch (Exception e) {
+                    response.statusCode = 400;
+                    response.responseBody = Blob.valueOf(
+                        '{"status":"error","message":"Invalid BidGuarantee payload"}'
+                    );
+                }
+            }
+            /*==========================================*/
             when 'ERP-SF_OpportunityData' {
-                System.debug('=========ERP-SF_OpportunityData=========');
-                System.debug('request body: ' + requestBody);
                 // 1) Прийом/реєстрація транспортної частини
                 InboundBatchCoordinator.Result r = InboundBatchCoordinator.acceptPart(requestBody);
-                System.debug('InboundBatchCoordinator result: ' + r);
 
                 if (r.error != null) {
                     response.statusCode = 400;
@@ -48,9 +102,7 @@ public class ERPMessageHandler  {
                     return;
                 }
 
-                ERPMessageParser.ErpToSfMessage_OpportunityData parsed = 
-                (ERPMessageParser.ErpToSfMessage_OpportunityData) JSON.deserialize(requestBody, 
-                                                                                   ERPMessageParser.ErpToSfMessage_OpportunityData.class);
+                ERPMessageParser.ErpToSfMessage_OpportunityData parsed = (ERPMessageParser.ErpToSfMessage_OpportunityData) JSON.deserialize(requestBody, ERPMessageParser.ErpToSfMessage_OpportunityData.class);
 
                 try {
                     // =============================================
@@ -59,8 +111,6 @@ public class ERPMessageHandler  {
                     String strITENum = (parsed.data != null && parsed.data.header != null) ? parsed.data.header.iteNumber : null;
                     String oppIdSF = (parsed.data != null && parsed.data.header != null) ? parsed.data.header.ID_SF : null;
                     String strAccId = (parsed.data != null && parsed.data.header != null && parsed.data.header.account != null) ? parsed.data.header.account.Id : null;
-
-                    System.debug('📋 Extracted from message: ITENumber=' + strITENum + ', ID_SF=' + oppIdSF + ', AccountId=' + strAccId);
 
                     Boolean shouldConvertLead = false;
                     Boolean isEnquiry = false;   // ← дефолт
@@ -71,7 +121,6 @@ public class ERPMessageHandler  {
 
                     // Спочатку шукаємо по ITENumber (для зворотної сумісності)
                     if (String.isNotBlank(strITENum)) {
-                        System.debug('🔍 Searching by ITENumber: ' + strITENum);
                         List<Opportunity> oppList = [
                                 SELECT Id, RecordTypeId, Lead__c, ITENumber__c
                                 FROM Opportunity
@@ -80,7 +129,6 @@ public class ERPMessageHandler  {
                         ];
                         if (!oppList.isEmpty()) {
                             opp = oppList[0];
-                            System.debug('✅ Found by ITENumber: ' + opp.Id);
                         } else {
                             System.debug('❌ Not found by ITENumber');
                         }
@@ -88,7 +136,6 @@ public class ERPMessageHandler  {
 
                     // Якщо не знайдено по ITENumber - шукаємо по ID_SF (fallback)
                     if (opp == null && String.isNotBlank(oppIdSF)) {
-                        System.debug('🔍 Fallback: Searching by ID_SF: ' + oppIdSF);
                         List<Opportunity> oppList = [
                                 SELECT Id, RecordTypeId, Lead__c, ITENumber__c
                                 FROM Opportunity
@@ -97,18 +144,13 @@ public class ERPMessageHandler  {
                         ];
                         if (!oppList.isEmpty()) {
                             opp = oppList[0];
-                            System.debug('✅ Found by ID_SF: ' + opp.Id);
                         } else {
                             System.debug('❌ Not found by ID_SF');
                         }
                     }
 
                     if (opp != null) {
-                        System.debug('rtIdOpp: ' + rtIdOpp);
                         isEnquiry = (opp.RecordTypeId == rtIdOpp && opp.Lead__c != null);
-
-                        System.debug('📋 Opportunity found: Id=' + opp.Id + ', RecordType=' + opp.RecordTypeId + ', Lead__c=' + opp.Lead__c);
-                        System.debug('   Is Enquiry: ' + isEnquiry);
 
                         if (isEnquiry) {
                             // Перевірка чи Account ID валідний
@@ -132,16 +174,14 @@ public class ERPMessageHandler  {
                                         if (existingAcc != null) {
                                             // ❌ ПОМИЛКА: Для Enquiry з Lead НЕ можна використовувати існуючий Account
                                             String errorMsg = 'Account with ID_ERP=' + accountERPId + ' already exists (Account.Id=' + existingAcc.Id + ', Name="' + existingAcc.Name + '"). Cannot convert Lead for Enquiry Opportunity.';
-                                            System.debug('❌ ERROR: ' + errorMsg);
+                                            String detailsMsg = 'ID_ERP: ' + accountERPId + ', Account.Id: ' + existingAcc.Id + ', Opportunity.Id: ' + opp.Id + ', Lead.Id: ' + lead.Id;
 
-                                            // Логуємо в Triton
-                                            Triton.instance.addEvent(
-                                                    TritonTypes.Level.ERROR,
-                                                    TritonTypes.Type.AccountDuplicates,
-                                                    TritonTypes.Area.LeadConversion,
-                                                    'Account already exists during Enquiry Lead Conversion attempt',
-                                                    'ID_ERP: ' + accountERPId + ', Account.Id: ' + existingAcc.Id + ', Opportunity.Id: ' + opp.Id + ', Lead.Id: ' + lead.Id
-                                            );
+                                            // Логуємо через ErrorService
+                                            try {
+                                                throw new DmlException(errorMsg + '. ' + detailsMsg);
+                                            } catch (Exception dupEx) {
+                                                ErrorService.handle('ERR_LEADCONV_ACCOUNT_DUPLICATES', opp, dupEx);
+                                            }
 
                                             // Повертаємо помилку в ERP
                                             response.statusCode = 409;
@@ -149,12 +189,7 @@ public class ERPMessageHandler  {
                                             return;
                                         } else {
                                             shouldConvertLead = true;
-                                            System.debug('✅ All conditions met - will convert Lead BEFORE processing Opportunity');
-                                            System.debug('   - Enquiry Opportunity with Lead');
-                                            System.debug('   - Valid ERP Account ID');
-                                            System.debug('   - Not a SegmentAccount');
-                                            System.debug('   - Lead not converted yet');
-                                            System.debug('   - Account does NOT exist');
+
                                         }
                                     } else {
                                         System.debug('ℹ️ Skip conversion: Lead already converted or not found');
@@ -175,9 +210,7 @@ public class ERPMessageHandler  {
                     // =============================================
                     // КРОК 2: Якщо Enquiry - СПОЧАТКУ конвертуємо Lead (створюємо Account)
                     // =============================================
-                    System.debug('LeadConvertion: ' + shouldConvertLead);
                     if (shouldConvertLead) {
-                        System.debug('🚀 Step 1a: Converting Lead (creating Account)...');
                         LeadConvertion.LeadConvertResult convResult = LeadConvertion.convertLead(requestBody);
 
                         if (convResult == null || !convResult.accResult) {
@@ -195,14 +228,12 @@ public class ERPMessageHandler  {
                     // =============================================
                     // КРОК 3: Оновлюємо Opportunity (Account вже існує якщо це був Enquiry)
                     // =============================================
-                    System.debug('🚀 Step 1b: Processing Opportunity Data...');
 
                     Boolean hasItems = (parsed.data != null &&
                             parsed.data.items != null &&
                             !parsed.data.items.isEmpty());
 
                     if (isEnquiry && !hasItems) {
-                        System.debug('ℹ️ Enquiry без позицій – оновлювати line items / order не потрібно.');
                         response.statusCode = 200;
                         response.responseBody = Blob.valueOf(
                                 '{"status":"accepted","processed":true,"batchKey":"' + r.batchKey + '",' +
@@ -210,34 +241,9 @@ public class ERPMessageHandler  {
                                         ',"message":"Enquiry оброблено без позицій."}'
                         );
                     } else {
-                        // звичайний шлях – там де вже замовлення з позиціями
                         processOppoDataUpdated(parsed, response, requestBody, request);
                     }
-
-                    // Асинхронне оновлення статусу щоб уникнути SOQL limit (101 queries)
-//                        InboundBatchCoordinator.markProcessedAsync(r.batchKey, r.partNumber);
                     InboundBatchCoordinator.markProcessed(r.batchKey, r.partNumber);
-
-                    System.debug('✅ Step 2: Batch part queued for marking as processed (async)');
-
-
-                } catch (ERPMessageHandlerOpportunityData.AccountAlreadyExistsException e) {
-                    // Account з таким ID_ERP__c вже існує - повертаємо 409 Conflict
-                    InboundBatchCoordinator.markFailed(r.batchKey, r.partNumber, e.getMessage());
-                    response.statusCode = 409;
-                    response.responseBody = Blob.valueOf(
-                            '{"Status":"conflict","BatchKey":"' + r.batchKey + '","part":' + String.valueOf(r.partNumber) +
-                                    ',"error":"' + String.escapeSingleQuotes(e.getMessage()) + '"}'
-                    );
-
-                    Triton.instance.integrationError(
-                            TritonTypes.Type.ERPMessageHandler,
-                            TritonTypes.Area.OpportunityData,
-                            'Account already exists - batchKey=' + r.batchKey + ', part=' + String.valueOf(r.partNumber),
-                            e.getMessage(),
-                            request,
-                            response
-                    );
                 } catch (Exception e) {
                     InboundBatchCoordinator.markFailed(r.batchKey, r.partNumber, e.getMessage());
                     response.statusCode = 500;
@@ -248,14 +254,7 @@ public class ERPMessageHandler  {
                                     '. Details: ' + String.escapeSingleQuotes(e.getMessage()) + '"}'
                     );
 
-                    Triton.instance.integrationError(
-                            TritonTypes.Type.ERPMessageHandler,
-                            TritonTypes.Area.OpportunityData,
-                            'Part processing failed for batchKey=' + r.batchKey + ', part=' + String.valueOf(r.partNumber),
-                            e.getMessage(),
-                            request,
-                            response
-                    );
+                    ErrorService.handle('ERR_INT_OPPDATA_ERPMSGHANDLER', opp, e);
                     return;
                 }
 
@@ -265,7 +264,6 @@ public class ERPMessageHandler  {
                 ERPRequestParser.ExecuteResponce parsedIdResponse = (ERPRequestParser.ExecuteResponce) JSON.deserialize(requestBody, ERPRequestParser.ExecuteResponce.class);
                 IDERPofOpportunity = parsedIdResponse.Opportunity.ID_ERP;
                 processSyncedOppoDataUpdated(parsedIdResponse, response, requestBody);
-                System.debug('Recieved body parsed: ' + parsedIdResponse);
             }
             when 'ERP-SF_SetScrapWeight' {
                 try {
@@ -283,7 +281,6 @@ public class ERPMessageHandler  {
                 ERPRequestParser.ERPItemStage parsedItemStage = (ERPRequestParser.ERPItemStage) JSON.deserialize(requestBody, ERPRequestParser.ERPItemStage.class);
                 IDERPofOpportunity = parsedItemStage.Item_Stage.OpportunityID_ERP;
                 processChatterPostCreation(parsedItemStage, response, requestBody);
-                System.debug('Recieved body parsed: ' + parsedItemStage);
             }
             when 'ERP-SF_PAR' {
                 ERPMessageParser.ErpToSfMessage_PAR parsedMessage = (ERPMessageParser.ErpToSfMessage_PAR) JSON.deserialize(requestBody, ERPMessageParser.ErpToSfMessage_PAR.class);
@@ -313,26 +310,21 @@ public class ERPMessageHandler  {
             }
             when 'ERP-SF_OrderDelivery' {
                 ERPMessageParser.ErpToSfMessage_OrderDelivery parsedMessage = (ERPMessageParser.ErpToSfMessage_OrderDelivery) JSON.deserialize(requestBody, ERPMessageParser.ErpToSfMessage_OrderDelivery.class);
-                system.debug('ERPMessageParser.ErpToSfMessage_OrderDelivery---->  ' +json.serializePretty(parsedMessage));
             }
             when 'ERP-SF_ClaimStage' {
                 ERPMessageParser.ErpToSfMessage_ClaimStage parsedMessage = (ERPMessageParser.ErpToSfMessage_ClaimStage) JSON.deserialize(requestBody, ERPMessageParser.ErpToSfMessage_ClaimStage.class);
-                system.debug('ERPMessageParser.ErpToSfMessage_ReclamationStatus---->  ' +json.serializePretty(parsedMessage));
                 processReclamationStatus(parsedMessage, response, requestBody);
             }
 
             when 'ERP-SF_ClaimDoc' {
                 ERPMessageParser.ErpToSfMessage_ClaimDoc parsedMessage = (ERPMessageParser.ErpToSfMessage_ClaimDoc) JSON.deserialize(requestBody, ERPMessageParser.ErpToSfMessage_ClaimDoc.class);
-                system.debug('ERPMessageParser.ErpToSfMessage_ClaimDoc---->  ' +json.serializePretty(parsedMessage));
                 processReclamationDoc(parsedMessage, response, requestBody);
             }
             when 'ERP-SF_OrderItemStage' {
                 ERPMessageParser.ErpToSfMessage_OrderItemStage parsedMessage = (ERPMessageParser.ErpToSfMessage_OrderItemStage) JSON.deserialize(requestBody, ERPMessageParser.ErpToSfMessage_OrderItemStage.class);
-                system.debug('---->  ' +json.serializePretty(parsedMessage));
                 processOrderItemStage(parsedMessage, response, requestBody);
             }
             when 'ERP-SF_Debit' {
-                System.debug('-----ERP-SF_Debit-----');
                 ERPMessageParser.ErpToSfMessage_Debit parsedMessage = (ERPMessageParser.ErpToSfMessage_Debit) JSON.deserialize(requestBody, ERPMessageParser.ErpToSfMessage_Debit.class);
                 processDebit(parsedMessage, response, requestBody);
             }
@@ -358,10 +350,6 @@ public class ERPMessageHandler  {
             }
             when 'ERP-SF_QUOTAS_FamilyType' {
                 ERPMessageParser.ErpToSfMessage_FamilyType parsedMessage = (ERPMessageParser.ErpToSfMessage_FamilyType) JSON.deserialize(requestBody, ERPMessageParser.ErpToSfMessage_FamilyType.class);
-                system.debug('ERPMessageParser.ErpToSfMessage_ReclamationStatus---->  ' +requestBody);
-
-                system.debug('ERPMessageParser.ErpToSfMessage_ReclamationStatus---->  ' +json.serializePretty(parsedMessage));
-
                 processFamilyTypeMessage(parsedMessage, response, requestBody);
             }
             when 'ERP-SF_QUOTAS_Family' {
@@ -406,72 +394,6 @@ public class ERPMessageHandler  {
 
     }
 
-//        private static void processOppoDataUpdated(ERPMessageParser.ErpToSfMessage_OpportunityData generalData, RestResponse response, String requestBody, RestRequest request) {
-//            if(generalData.data.header.account.Id == '90342') { //ігноруємо Склади України
-//                response.statusCode = 200;
-//                response.responseBody = ERPMessageHandlerOpportunityData.generateResponseBodyOppUpdate(response.statusCode, null, null, null);
-//                return;
-//            }
-//
-//            //system.debug('generalData---------------->>>>>' + Json.serializePretty(generalData.data.items));
-//            String errorMsg = '';
-//            System.debug(generalData.data.items);
-//            OpportunityDataEmails.deleteCancelledItems(generalData);
-//
-//            Savepoint sp = Database.setSavepoint();
-//            try {
-//                String businessDivision = generalData.data.orderType; // Tubes | Wheels
-//                ERPMessageHandlerOpportunityData.UpdateSFRecordsResult resultOpp = ERPMessageHandlerOpportunityData.updateOpportunity(generalData, requestBody, businessDivision);
-//                if (resultOpp.parentOpp == null) {
-//                    response.statusCode = 200;
-//                    response.responseBody = ERPMessageHandlerOpportunityData.generateResponseBodyOppUpdate(response.statusCode, null, resultOpp, null);
-//                    return;
-//                }
-//                ERPMessageHandlerOpportunityData.UpdateSFRecordsResult resultOppLi;
-//                //if (!resultOpp.oppChangeStatus = 'Closed') {
-//                resultOppLi = ERPMessageHandlerOpportunityData.updateLineItems(generalData, resultOpp);
-//                //}
-//
-//                ERPMessageHandlerOpportunityData.UpdateSFRecordsResultOrder resultOrd = ERPMessageHandlerOpportunityData.updateOrder(generalData, resultOpp);
-//                ERPMessageHandlerOpportunityData.UpdateSFRecordsResultOrder resultOrdLi = ERPMessageHandlerOpportunityData.updateOrderLineItems(generalData, resultOpp, resultOrd);
-//
-//                response.statusCode = 200;
-//                response.responseBody = ERPMessageHandlerOpportunityData.generateResponseBodyOppUpdate(response.statusCode, null, resultOpp, resultOppLi);
-//
-//            } catch(Exception e) {
-//                Database.rollback(sp);
-//                response.statusCode = 500;
-//                response.responseBody = ERPMessageHandlerOpportunityData.generateResponseBody(response.statusCode, e.getMessage() + e.getStackTraceString());
-//
-//                if(e.getMessage().contains('DELETE_FAILED, unable to modify activated order')) {
-//                    try {
-//                        List<OrgWideEmailAddress> owea = [SELECT Id FROM OrgWideEmailAddress WHERE Address = 'aleksandr.novikov@m.interpipe.biz'];
-//                        String mailBody = 'The order synchronization operation failed. Changes that are not allowed for an active order were attempted. Order ITE Number: ' + generalData.data.header.ITENumber;
-//                        Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
-//                        List<String> toAddresses = new List<String> {generalData.data.header.SalesRep.Email,'Aleksandr.Novikov@m.interpipe.biz'};
-//                        email.setToAddresses(toAddresses);
-//                        email.setSubject('The order synchronization operation failed');
-//                        email.setPlainTextBody(mailBody);
-//                        if ( owea.size() > 0 ) {
-//                            email.setOrgWideEmailAddressId(owea.get(0).Id);
-//                        }
-//                        Messaging.sendEmail(new List<Messaging.SingleEmailMessage>{email});
-//                    } catch (Exception ex) {
-//                        System.debug('An error occurred while sending the email: ' + ex.getMessage());
-//                    }
-//                }
-//
-//                Triton.instance.integrationError(
-//                    TritonTypes.Type.ERPMessageHandler,
-//                    TritonTypes.Area.OpportunityData,
-//                    e.getMessage(),
-//                    e.getMessage(),
-//                    request,
-//                    response
-//                );
-//            }
-//        }
-
     private static void processOppoDataUpdated(
             ERPMessageParser.ErpToSfMessage_OpportunityData generalData,
             RestResponse response,
@@ -501,7 +423,6 @@ public class ERPMessageHandler  {
         }
 
         String errorMsg = '';
-        System.debug(generalData.data.items);
 
         OpportunityDataEmails.deleteCancelledItems(generalData);
 
@@ -515,9 +436,6 @@ public class ERPMessageHandler  {
 
             // якщо Opp не оновили/не знайшли — повертаємось раніше
             if (resultOpp == null || resultOpp.parentOpp == null) {
-                // ЧОМУ ТУТ 200 ПОВЕТАЄМО?
-                // Мусимо вернути 404 (NOT FOUND)
-                // Ми НЕ ЗНАЙШЛИ потрібний об'єкт - це помилка
                 response.statusCode = 200;
                 response.responseBody = ERPMessageHandlerOpportunityData.generateResponseBodyOppUpdate(200, null, resultOpp, null);
                 return;
@@ -550,17 +468,12 @@ public class ERPMessageHandler  {
 
             // далі твій спец-кейс з листом...
             if (e.getMessage() != null &&
-                    //!!! ЩО ЦЕ ТАКЕ???
-                    //    Який DELETE для ордера???!!!
                     e.getMessage().contains('DELETE_FAILED, unable to modify activated order')
             ) {
                 try {
                     List<OrgWideEmailAddress> owea = [
-                            SELECT Id, Address 
-                            FROM OrgWideEmailAddress
-                            WHERE DisplayName='Salesforce Interpipe'
-                            //*!!! НЕ ХАРКОДИМО ЕМЕЙЛИ
-                            //Address = 'aleksandr.novikov@m.interpipe.biz'
+                            SELECT Id FROM OrgWideEmailAddress
+                            WHERE Address = 'aleksandr.novikov@m.interpipe.biz'
                     ];
                     String mailBody =
                             'The order synchronization operation failed. Changes that are not allowed for an active order were attempted.' +
@@ -583,14 +496,8 @@ public class ERPMessageHandler  {
                 }
             }
 
-            Triton.instance.integrationError(
-                    TritonTypes.Type.ERPMessageHandler,
-                    TritonTypes.Area.OpportunityData,
-                    e.getMessage(),
-                    e.getMessage(),
-                    request,
-                    response
-            );
+            // Логуємо через ErrorService
+            ErrorService.handle('ERR_INT_OPPDATA_ERPMSGHANDLER', null, e);
         }
     }
 
@@ -624,41 +531,6 @@ public class ERPMessageHandler  {
         }
     }
 
-    // private static void processMonthPlanFactMessage(ERPRequestParser.MonthPlanFactMessage ParsedMessage, RestResponse response, String requestBody) {
-    //  String errorMsg = '';
-
-    //  Savepoint sp = Database.setSavepoint();
-    //  try {
-
-    //      ErpMessageHandlerMonthPlanFact.MessageProcessingResult res = ErpMessageHandlerMonthPlanFact.ProcessMessage(ParsedMessage, requestBody);
-    //      response.statusCode = 200;
-    //      response.responseBody = ErpMessageHandlerMonthPlanFact.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, NULL, res);
-    //  } catch(Exception e) {
-    //      Database.rollback(sp);
-    //      response.statusCode = 500;
-    //      String stackTrace = e.getStackTraceString();
-    //      stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-    //      //response.responseBody = ERPWebServiceHandler.generateResponseBody(response.statusCode, e.getMessage() + stackTrace);
-    //      response.responseBody = ErpMessageHandlerMonthPlanFact.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
-    //  }
-
-    //  // if (ParsedMessage.PackageNumber == ParsedMessage.TotalPackages) {
-    //  if (ParsedMessage.PackageNumber == ParsedMessage.TotalPackages) {
-
-    //      //Очистим предыдущие данные за нужный период, применив Batchable Apex:
-    //      String recType = ParsedMessage.MessageType == 'ERP-SF_MonthPlan' ? 'Plan' : 'Fact';
-    //      Date periodStart = Datetime.newInstance(Long.valueOf(parsedMessage.PeriodStart + '000')).date();
-    //      Date periodEnd = Datetime.newInstance(Long.valueOf(parsedMessage.PeriodEnd + '000')).date();
-    //      periodEnd = periodEnd.addMonths(1).toStartOfMonth().addDays(-1);
-    //      String messageTimeStamp = ParsedMessage.MessageTimestamp;
-    //      // PJRCleaning pjrc = new PJRCleaning(recType, periodStart, periodEnd, messageTimeStamp);
-    //      // Id pjrcBatchInstanceId = Database.executeBatch(pjrc);
-    //      SPFCleaning spfc = new SPFCleaning(recType, periodStart, periodEnd, messageTimeStamp, requestBody);
-    //      Id spfcBatchInstanceId = Database.executeBatch(spfc);
-    //      //---------------------------------------------------------
-    //  }
-    // }
-
     private static void processMonthPlanFactMessage(ERPRequestParser.MonthPlanFactMessage ParsedMessage, RestResponse response, String requestBody) {
         String errorMsg = '';
 
@@ -685,22 +557,21 @@ public class ERPMessageHandler  {
         try {
             ERPMessageHandlerSalesBudget.MessageProcessingResult res = ERPMessageHandlerSalesBudget.ProcessMessage(ParsedMessage, requestBody);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerSalesBudget.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, NULL, res);
+            response.responseBody = ERPMessageHandlerSalesBudget.generateResponseBody(HTTPSTATUSES, response.statusCode, NULL, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerSalesBudget.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerSalesBudget.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
 
-            Triton.instance.integrationError(TritonTypes.Type.ERPMessageHandler, TritonTypes.Area.SalesBudget, e.getMessage(), e.getMessage(), request, response);
+            // Логуємо через ErrorService
+            ErrorService.handle('ERR_INT_SALESBUDGET_ERPMSGHANDLER', null, e);
         }
 
         if (ParsedMessage.Metadata.partNumber == ParsedMessage.Metadata.totalParts) {
-            System.debug('------------------ParsedMessage.Metadata.partNumber == ParsedMessage.Metadata.totalParts--------------------');
             String budgetId = ParsedMessage.Data.BudgetId;
             Long messageTimeStamp =  parsedMessage.Metadata.MsgTimestamp.getTime();
-            System.debug('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'+ budgetId +' !!!!' + messageTimeStamp);
             SalesBudgetCleaning sbc = new SalesBudgetCleaning(budgetId, messageTimeStamp);
             Id sbcBatchInstanceId = Database.executeBatch(sbc);
         }
@@ -713,13 +584,13 @@ public class ERPMessageHandler  {
         try {
             ERPMessageHandlerReclamationStatus.MessageProcessingResult res = ERPMessageHandlerReclamationStatus.ProcessMessage(ParsedMessage, requestBody);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerReclamationStatus.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, NULL, res);
+            response.responseBody = ERPMessageHandlerReclamationStatus.generateResponseBody(HTTPSTATUSES, response.statusCode, NULL, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerSalesBudget.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerSalesBudget.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
     }
 
@@ -730,13 +601,13 @@ public class ERPMessageHandler  {
         try {
             ERPMessageHandlerReclamationDoc.MessageProcessingResult res = ERPMessageHandlerReclamationDoc.ProcessMessage(ParsedMessage, requestBody);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerReclamationDoc.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, NULL, res);
+            response.responseBody = ERPMessageHandlerReclamationDoc.generateResponseBody(HTTPSTATUSES, response.statusCode, NULL, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerReclamationDoc.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerReclamationDoc.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
     }
 
@@ -747,13 +618,13 @@ public class ERPMessageHandler  {
         try {
             ERPMessageHandlerDebit.MessageProcessingResult res = ERPMessageHandlerDebit.ProcessMessage(ParsedMessage, requestBody);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerDebit.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, res.error, res);
+            response.responseBody = ERPMessageHandlerDebit.generateResponseBody(HTTPSTATUSES, response.statusCode, res.error, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerDebit.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerDebit.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
     }
 
@@ -763,65 +634,62 @@ public class ERPMessageHandler  {
         try {
             ERPMessageHandlerProdPlanBalance.MessageProcessingResult res = ERPMessageHandlerProdPlanBalance.ProcessMessage(ParsedMessage, requestBody, recreatePlans);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerProdPlanBalance.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, res.error, res);
+            response.responseBody = ERPMessageHandlerProdPlanBalance.generateResponseBody(HTTPSTATUSES, response.statusCode, res.error, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerProdPlanBalance.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerProdPlanBalance.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
     }
 
     private static void proccessInvoicePDF(ERPMessageParser.ErpToSfMessage_InvoicePDF ParsedMessage, RestResponse response, String requestBody) {
         String errorMsg = '';
-        System.debug('-------------------parsed message-------:  ' + ParsedMessage);
         Savepoint sp = Database.setSavepoint();
         try {
             ERPMessageHandlerInvoicePDF.MessageProcessingResult res = ERPMessageHandlerInvoicePDF.ProcessMessage(ParsedMessage, requestBody);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerInvoicePDF.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, res.error, res);
+            response.responseBody = ERPMessageHandlerInvoicePDF.generateResponseBody(HTTPSTATUSES, response.statusCode, res.error, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerInvoicePDF.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerInvoicePDF.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
     }
 
     private static void proccessOrderProbability(ERPMessageParser.ERPToSfMessage_OrderProbabilityQuery ParsedMessage, RestResponse response, String requestBody) {
         String errorMsg = '';
-        System.debug('-------------------parsed message-------:  ' + ParsedMessage);
         Savepoint sp = Database.setSavepoint();
         try {
             ERPMessageHandlerOrderProbability.MessageProcessingResult res = ERPMessageHandlerOrderProbability.ProcessMessage(ParsedMessage, requestBody);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerOrderProbability.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, res.error, res);
+            response.responseBody = ERPMessageHandlerOrderProbability.generateResponseBody(HTTPSTATUSES, response.statusCode, res.error, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerProdPlanBalance.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerProdPlanBalance.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
     }
 
     private static void processOrderItemStage(ERPMessageParser.ErpToSfMessage_OrderItemStage ParsedMessage, RestResponse response, String requestBody){
-        system.debug(ParsedMessage);
         String errorMsg = '';
 
         Savepoint sp = Database.setSavepoint();
         try {
             ERPMessageHandlerOrderItemStage.MessageProcessingResult res = ERPMessageHandlerOrderItemStage.ProcessMessage(ParsedMessage, requestBody);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerOrderItemStage.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, NULL, res);
+            response.responseBody = ERPMessageHandlerOrderItemStage.generateResponseBody(HTTPSTATUSES, response.statusCode, NULL, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerSalesBudget.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerSalesBudget.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
     }
 
@@ -832,13 +700,13 @@ public class ERPMessageHandler  {
         try {
             ERPMessageHandlerPriceApprovalRequest.MessageProcessingResult res = ERPMessageHandlerPriceApprovalRequest.ProcessMessage(parsedMessage, requestBody);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerPriceApprovalRequest.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, NULL, res);
+            response.responseBody = ERPMessageHandlerPriceApprovalRequest.generateResponseBody(HTTPSTATUSES, response.statusCode, NULL, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerPriceApprovalRequest.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerPriceApprovalRequest.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
     }
 
@@ -849,13 +717,13 @@ public class ERPMessageHandler  {
         try {
             ERPMessageHandlerAccountsReceivable.MessageProcessingResult res = ERPMessageHandlerAccountsReceivable.ProcessMessage(parsedMessage, requestBody);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerAccountsReceivable.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, NULL, res);
+            response.responseBody = ERPMessageHandlerAccountsReceivable.generateResponseBody(HTTPSTATUSES, response.statusCode, NULL, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerAccountsReceivable.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerAccountsReceivable.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
     }
 
@@ -866,13 +734,13 @@ public class ERPMessageHandler  {
         try {
             ERPMessageHandlerRoute.MessageProcessingResult res = ERPMessageHandlerRoute.ProcessMessage(parsedMessage);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerRoute.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, res.error, res);
+            response.responseBody = ERPMessageHandlerRoute.generateResponseBody(HTTPSTATUSES, response.statusCode, res.error, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerRoute.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerRoute.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
     }
 
@@ -883,13 +751,13 @@ public class ERPMessageHandler  {
         try {
             ERPMessageHandlerFamilyType.MessageProcessingResult res = ERPMessageHandlerFamilyType.ProcessMessage(parsedMessage);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerFamilyType.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, res.error, res);
+            response.responseBody = ERPMessageHandlerFamilyType.generateResponseBody(HTTPSTATUSES, response.statusCode, res.error, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerFamilyType.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerFamilyType.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
     }
 
@@ -900,13 +768,13 @@ public class ERPMessageHandler  {
         try {
             ERPMessageHandlerFamily.MessageProcessingResult res = ERPMessageHandlerFamily.ProcessMessage(parsedMessage);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerFamily.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, res.error, res);
+            response.responseBody = ERPMessageHandlerFamily.generateResponseBody(HTTPSTATUSES, response.statusCode, res.error, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerFamily.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerFamily.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
     }
 
@@ -917,13 +785,13 @@ public class ERPMessageHandler  {
         try {
             ERPMessageHandlerRouteFamily.MessageProcessingResult res = ERPMessageHandlerRouteFamily.ProcessMessage(parsedMessage);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerRouteFamily.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, res.error, res);
+            response.responseBody = ERPMessageHandlerRouteFamily.generateResponseBody(HTTPSTATUSES, response.statusCode, res.error, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerRouteFamily.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerRouteFamily.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
     }
 
@@ -934,13 +802,13 @@ public class ERPMessageHandler  {
         try {
             ERPMessageHandlerStructQuotaConfig.MessageProcessingResult res = ERPMessageHandlerStructQuotaConfig.ProcessMessage(parsedMessage);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerStructQuotaConfig.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, res.error, res);
+            response.responseBody = ERPMessageHandlerStructQuotaConfig.generateResponseBody(HTTPSTATUSES, response.statusCode, res.error, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerStructQuotaConfig.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerStructQuotaConfig.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
     }
 
@@ -951,13 +819,13 @@ public class ERPMessageHandler  {
         try {
             ERPMessageHandlerRouteQuota.MessageProcessingResult res = ERPMessageHandlerRouteQuota.ProcessMessage(parsedMessage);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerRouteQuota.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, res.error, res);
+            response.responseBody = ERPMessageHandlerRouteQuota.generateResponseBody(HTTPSTATUSES, response.statusCode, res.error, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerRouteQuota.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerRouteQuota.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
     }
 
@@ -968,13 +836,13 @@ public class ERPMessageHandler  {
         try {
             ERPMessageHandlerStructQuota.MessageProcessingResult res = ERPMessageHandlerStructQuota.ProcessMessage(parsedMessage);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerStructQuota.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, res.error, res);
+            response.responseBody = ERPMessageHandlerStructQuota.generateResponseBody(HTTPSTATUSES, response.statusCode, res.error, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerStructQuota.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerStructQuota.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
     }
 
@@ -985,24 +853,14 @@ public class ERPMessageHandler  {
         try {
             ERPMessageHandlerKbSpec.MessageProcessingResult res = ERPMessageHandlerKbSpec.ProcessMessage(parsedMessage);
             response.statusCode = 200;
-            response.responseBody = ERPMessageHandlerKbSpec.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, res.error, res);
+            response.responseBody = ERPMessageHandlerKbSpec.generateResponseBody(HTTPSTATUSES, response.statusCode, res.error, res);
         } catch(Exception e) {
             Database.rollback(sp);
             response.statusCode = 500;
             String stackTrace = e.getStackTraceString();
             stackTrace = stackTrace == '()\n\n\n' ? '' : stackTrace;
-            response.responseBody = ERPMessageHandlerKbSpec.generateResponseBody(ERPMessageUtils.httpStatus, response.statusCode, e.getMessage() + stackTrace, null);
+            response.responseBody = ERPMessageHandlerKbSpec.generateResponseBody(HTTPSTATUSES, response.statusCode, e.getMessage() + stackTrace, null);
         }
-    }
-
-    public static void createInegrationLog(String errorMessage, RestRequest request, RestResponse response, TritonTypes.Area area) {
-        Triton.instance.integrationError(TritonTypes.Type.ERPMessageHandler,
-                area,
-                errorMessage,
-                errorMessage,
-                request,
-                response
-        );
     }
 
     public static void FakeCoverageMethod() {
