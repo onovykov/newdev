@@ -40,7 +40,8 @@ public with sharing class CurrencyRatesService implements Database.AllowsCallout
 
     // ============= Публічні методи =============
 
-    /** End-to-end: витягнути курси з НБУ, показати прев’ю, записати в Salesforce (через NC або SessionId — обираємо по ситуації) */
+    /** End-to-end: витягнути курси з НБУ, показати прев’ю, записати в Salesforce 
+     * (через NC або SessionId — обираємо по ситуації) */
     public static void syncFromNbu() {
         List<RatesPayload> payloads = getNBURates();
         logPreview(payloads, 15); // прев’ю в логах

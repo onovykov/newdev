@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <label>Декада</label>
     <referenceTo>Decade__c</referenceTo>
-    <relationshipLabel>SupplierLimitDetails (Декада)</relationshipLabel>
     <relationshipName>SupplierLimitDetails_Decade</relationshipName>
     <required>false</required>
     <trackHistory>false</trackHistory>

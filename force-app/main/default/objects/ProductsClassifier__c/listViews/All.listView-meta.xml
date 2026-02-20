@@ -5,8 +5,8 @@
     <columns>ID_ERP__c</columns>
     <columns>IsActive__c</columns>
     <columns>IsAccessory__c</columns>
+    <columns>Level__c</columns>
     <columns>Parent__c</columns>
-    <columns>OBJECT_ID</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

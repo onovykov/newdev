@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <label>ScrapTruck</label>
     <referenceTo>ScrapTruck__c</referenceTo>
-    <relationshipLabel>ScrapTrucksDrivers</relationshipLabel>
     <relationshipName>ScrapTrucksDrivers</relationshipName>
     <required>false</required>
     <trackHistory>false</trackHistory>

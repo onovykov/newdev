@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <label>MonthGroup</label>
     <referenceTo>Decade__c</referenceTo>
-    <relationshipLabel>ScrapDecadesLimit (MonthGroup)</relationshipLabel>
     <relationshipName>ScrapDecadesLimit_M</relationshipName>
     <required>false</required>
     <trackHistory>false</trackHistory>

@@ -153,7 +153,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>ScrapSupplierShippingPoint</label>
+    <label>Пункти відвантаження брухту</label>
     <nameField>
         <label>Name</label>
         <trackHistory>false</trackHistory>

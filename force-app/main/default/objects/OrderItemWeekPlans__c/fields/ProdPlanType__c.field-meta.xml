@@ -12,12 +12,12 @@
             <value>
                 <fullName>253</fullName>
                 <default>false</default>
-                <label>253</label>
+                <label>Production</label>
             </value>
             <value>
                 <fullName>254</fullName>
                 <default>false</default>
-                <label>254</label>
+                <label>Shipping</label>
             </value>
         </valueSetDefinition>
     </valueSet>

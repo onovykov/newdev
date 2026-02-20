@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AddParamKey__c</fullName>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>AddParamKey</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>AXIAL_LOAD</fullName>
+                <default>true</default>
+                <label>AXIAL_LOAD</label>
+            </value>
+            <value>
+                <fullName>WS_COMP_TYPE</fullName>
+                <default>false</default>
+                <label>WS_COMP_TYPE</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

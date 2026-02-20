@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CityProvince__c</fullName>
     <externalId>false</externalId>
-    <formula>CityName__r.Province__c</formula>
+    <formula>&apos;&apos;</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>City Province</label>
     <required>false</required>

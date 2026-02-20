@@ -6,6 +6,18 @@ public with sharing class OpportunityBidGuaranteeInboundService {
     public static ERPBidGuaranteeInboundResponseDTO handle(
         ERPBidGuaranteeInboundDTO dto
     ) {
+        //--- Check Inbound Enabled
+        if (!FieldAuditConfigProvider.isInboundEnabled(
+                'Opportunity',
+                'BidGuarantees__c'
+            )
+        ) {
+            return ERPBidGuaranteeInboundResponseDTO.rejected(
+                'INBOUND_DISABLED',
+                null
+            );
+        }
+
         // =========================
         // 1. Find Opportunity
         // =========================

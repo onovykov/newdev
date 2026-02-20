@@ -155,9 +155,10 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Lot</label>
     <nameField>
-        <label>Lot Name</label>
+        <displayFormat>{0}</displayFormat>
+        <label>Autonumber</label>
         <trackHistory>false</trackHistory>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Lots</pluralLabel>
     <searchLayouts></searchLayouts>

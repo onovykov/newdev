@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>PAR Stages Dictionary</description>
+    <label>PAR Stage</label>
+    <pluralLabel>PAR Stages</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

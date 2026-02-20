@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <label>Tube WT</label>
     <referenceTo>TubeWT__c</referenceTo>
-    <relationshipLabel>OD_SCH_WT</relationshipLabel>
     <relationshipName>OD_SCH_WT</relationshipName>
     <required>false</required>
     <trackHistory>false</trackHistory>

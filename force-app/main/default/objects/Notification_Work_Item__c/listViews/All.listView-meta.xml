@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Work_Status__c</columns>
+    <columns>Reaction_Time_Hours__c</columns>
+    <columns>Next_Reminder_At__c</columns>
+    <columns>Notification_Type__c</columns>
+    <columns>Reminder_Count__c</columns>
+    <columns>Resolution_Comment__c</columns>
+    <columns>Summary__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Work Items</label>
+</ListView>

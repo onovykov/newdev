@@ -411,6 +411,7 @@ public class OrderItemHandler extends TriggerHandler implements ITrigger {
 
 		String productName;
 		// Формування назви продукту в залежності від групи і сегменту
+		//---??? А чи не варто було би це винести в окремий клас?
 		if (prodFamily == 'OCTG') {
 			System.debug('Entering OCTG logic');
 			switch on segment {

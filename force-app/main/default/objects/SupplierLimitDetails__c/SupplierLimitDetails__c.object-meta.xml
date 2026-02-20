@@ -153,7 +153,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
-    <label>SupplierLimitDetails</label>
+    <label>Ліміти постачальників (детально)</label>
     <nameField>
         <displayFormat>{0}</displayFormat>
         <label>Autonumber</label>

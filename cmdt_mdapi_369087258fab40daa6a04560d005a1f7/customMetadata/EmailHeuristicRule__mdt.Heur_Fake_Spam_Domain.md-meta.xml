@@ -1,0 +1,34 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<CustomMetadata
+    xmlns='http://soap.sforce.com/2006/04/metadata'
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+
+    <label>Spam domain</label>
+    <fullName>EmailHeuristicRule__mdt.Heur_Fake_Spam_Domain</fullName>
+
+    <values>
+        <field>Pattern__c</field>
+        <value xsi:type='xsd:string'>mailforspam</value>
+    </values>
+    <values>
+        <field>MatchType__c</field>
+        <value xsi:type='xsd:string'>CONTAINS</value>
+    </values>
+    <values>
+        <field>ApplyTo__c</field>
+        <value xsi:type='xsd:string'>DOMAIN</value>
+    </values>
+    <values>
+        <field>Confidence__c</field>
+        <value xsi:type='xsd:string'>HIGH</value>
+    </values>
+    <values>
+        <field>IsActive__c</field>
+        <value xsi:type='xsd:boolean'>true</value>
+    </values>
+    <values>
+        <field>Description__c</field>
+        <value xsi:type='xsd:string'>Known fake/spam domain</value>
+    </values>
+</CustomMetadata>

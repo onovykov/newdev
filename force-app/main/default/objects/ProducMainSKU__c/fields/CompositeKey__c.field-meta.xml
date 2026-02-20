@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CompositeKey__c</fullName>
+    <caseSensitive>true</caseSensitive>
+    <description>Product SKU External Key. Створюється в тригері on insert / on update. Формат: набір кодів ID_ERP__c з рекордів об&apos;єктів Producr2 та значень відповідних ID_ERP__c складових частин SKU з об&apos;єкта ProdTechRefDetails__c. Значення записуються через символ &lt;space&gt; (для полегшення спліта в List&lt;String&gt; і джйона в String)</description>
+    <externalId>true</externalId>
+    <label>Composite Key</label>
+    <length>255</length>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

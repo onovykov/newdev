@@ -3,7 +3,6 @@
     <fullName>ScrapSupplierLimit__c</fullName>
     <label>Опис лиміту</label>
     <referenceTo>ScrapSupplierLimit__c</referenceTo>
-    <relationshipLabel>SupplierLimitDetails</relationshipLabel>
     <relationshipName>SupplierLimitDetails</relationshipName>
     <relationshipOrder>0</relationshipOrder>
     <reparentableMasterDetail>false</reparentableMasterDetail>

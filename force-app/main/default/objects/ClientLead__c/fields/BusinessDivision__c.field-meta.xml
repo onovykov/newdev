@@ -11,22 +11,22 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Pipe Products</fullName>
+                <fullName>Pipes</fullName>
                 <default>false</default>
                 <label>Pipe Products</label>
             </value>
             <value>
-                <fullName>Railway Products</fullName>
+                <fullName>Railway</fullName>
                 <default>false</default>
                 <label>Railway Products</label>
             </value>
             <value>
-                <fullName>Steel Products</fullName>
+                <fullName>Steel</fullName>
                 <default>false</default>
                 <label>Steel Products</label>
             </value>
             <value>
-                <fullName>Product &amp; Resource Dept.</fullName>
+                <fullName>PRD</fullName>
                 <default>false</default>
                 <label>Product &amp; Resource Dept.</label>
             </value>
@@ -36,7 +36,7 @@
                 <label>Marketing</label>
             </value>
             <value>
-                <fullName>IT Department</fullName>
+                <fullName>IT</fullName>
                 <default>false</default>
                 <label>IT Department</label>
             </value>
@@ -46,12 +46,12 @@
                 <label>Customer</label>
             </value>
             <value>
-                <fullName>Top Management</fullName>
+                <fullName>TOP</fullName>
                 <default>false</default>
                 <label>Top Management</label>
             </value>
             <value>
-                <fullName>Recycled Scrap</fullName>
+                <fullName>DVM</fullName>
                 <default>false</default>
                 <label>Recycled Scrap</label>
             </value>

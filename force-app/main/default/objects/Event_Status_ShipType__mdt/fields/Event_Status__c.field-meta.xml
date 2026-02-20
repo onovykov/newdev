@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Status__c</fullName>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Event_Status</label>
+    <referenceTo>Event_Status__mdt</referenceTo>
+    <relationshipLabel>Event_Status_ShipType</relationshipLabel>
+    <relationshipName>Event_Status_ShipType</relationshipName>
+    <required>false</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <label>Тип брухту</label>
     <referenceTo>ScrapType__c</referenceTo>
-    <relationshipLabel>ScrapDecadesLimit</relationshipLabel>
     <relationshipName>ScrapDecadesLimit_ScrapType</relationshipName>
     <required>false</required>
     <trackHistory>false</trackHistory>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NewView</fullName>
+    <columns>MasterLabel</columns>
+    <columns>DeveloperName</columns>
+    <columns>LngCode__c</columns>
+    <columns>LngFullName__c</columns>
+    <columns>LngName__c</columns>
+    <columns>IsDefault__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>NewView</label>
+    <language>en_US</language>
+</ListView>

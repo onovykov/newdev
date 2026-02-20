@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Unknown_Stage__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Чи є ця стадія ІТ невідомою (немає в CMDT мапингу стадій ІТ / статусів SF)</description>
+    <label>Is Unknown Stage</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

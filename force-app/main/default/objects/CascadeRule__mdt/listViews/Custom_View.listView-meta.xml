@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Custom_View</fullName>
+    <columns>MasterLabel</columns>
+    <columns>Mode__c</columns>
+    <columns>MasterObject__c</columns>
+    <columns>ChildObject__c</columns>
+    <columns>ChildLookupField__c</columns>
+    <columns>ParentFields__c</columns>
+    <columns>ChildFields__c</columns>
+    <columns>ReassignParentId__c</columns>
+    <columns>SoftDeleteField__c</columns>
+    <columns>EnableUpdate__c</columns>
+    <columns>UpdateMapping__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>Custom View</label>
+    <language>en_US</language>
+</ListView>

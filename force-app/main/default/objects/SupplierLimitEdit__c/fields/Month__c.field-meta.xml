@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <label>Month</label>
     <referenceTo>Decade__c</referenceTo>
-    <relationshipLabel>SupplierLimitEdit (Month)</relationshipLabel>
     <relationshipName>SupplierLimitEdit_Month</relationshipName>
     <required>false</required>
     <trackHistory>false</trackHistory>

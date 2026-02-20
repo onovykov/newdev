@@ -153,7 +153,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>ScrapTruckSupplier</label>
+    <label>Автомобілі постачальників</label>
     <nameField>
         <displayFormat>{0}</displayFormat>
         <label>Autonumber</label>

@@ -9,7 +9,7 @@ public with sharing class ProductsHelper {
     private static ProductMaterialDensity__mdt mockDensity;
 
    /****************************************************************************
-    *              Хелпери та службові методи для ProductsController           *
+    *              Хелпери та службові методи         *
    *****************************************************************************/
    //--- Простий конвертор mm->inch ---
    public static Decimal mmToInches(Decimal mm, Integer precision) {

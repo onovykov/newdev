@@ -78,31 +78,31 @@
             </value>
         </valueSetDefinition>
         <valueSettings>
-            <controllingFieldValue>Pipe Products</controllingFieldValue>
+            <controllingFieldValue>Pipes</controllingFieldValue>
             <valueName>00002</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Pipe Products</controllingFieldValue>
+            <controllingFieldValue>Pipes</controllingFieldValue>
             <valueName>00001</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Pipe Products</controllingFieldValue>
+            <controllingFieldValue>Pipes</controllingFieldValue>
             <valueName>00004</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Pipe Products</controllingFieldValue>
+            <controllingFieldValue>Pipes</controllingFieldValue>
             <valueName>00010</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Pipe Products</controllingFieldValue>
+            <controllingFieldValue>Pipes</controllingFieldValue>
             <valueName>00011</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Railway Products</controllingFieldValue>
+            <controllingFieldValue>Railway</controllingFieldValue>
             <valueName>00006</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Steel Products</controllingFieldValue>
+            <controllingFieldValue>Steel</controllingFieldValue>
             <valueName>00100</valueName>
         </valueSettings>
     </valueSet>

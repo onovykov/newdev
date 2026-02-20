@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Category</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>DMLOperation</fullName>
+                <default>true</default>
+                <label>DMLOperation</label>
+            </value>
+            <value>
+                <fullName>DataExchange</fullName>
+                <default>false</default>
+                <label>DataExchange</label>
+            </value>
+            <value>
+                <fullName>RestAPI</fullName>
+                <default>false</default>
+                <label>RestAPI</label>
+            </value>
+            <value>
+                <fullName>Apex</fullName>
+                <default>false</default>
+                <label>Apex</label>
+            </value>
+            <value>
+                <fullName>Flow</fullName>
+                <default>false</default>
+                <label>Flow</label>
+            </value>
+            <value>
+                <fullName>LWC</fullName>
+                <default>false</default>
+                <label>LWC</label>
+            </value>
+            <value>
+                <fullName>Aura</fullName>
+                <default>false</default>
+                <label>Aura</label>
+            </value>
+            <value>
+                <fullName>Batch/Queueable</fullName>
+                <default>false</default>
+                <label>Batch/Queueable</label>
+            </value>
+            <value>
+                <fullName>Limit Exception</fullName>
+                <default>false</default>
+                <label>Limit Exception</label>
+            </value>
+            <value>
+                <fullName>Scheduler</fullName>
+                <default>false</default>
+                <label>Scheduler</label>
+            </value>
+            <value>
+                <fullName>User Action</fullName>
+                <default>false</default>
+                <label>User Action</label>
+            </value>
+            <value>
+                <fullName>REST/SOAP API</fullName>
+                <default>false</default>
+                <label>REST/SOAP API</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

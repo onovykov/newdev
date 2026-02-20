@@ -181,6 +181,11 @@ public with sharing class DataQualityService {
         );
     }
 
+    //--- Резет кеша
+    public static void resetMappingCache() {
+        mappingCache = null;
+    }
+    
     private static String getFieldType(
         String objectApi,
         String fieldApi

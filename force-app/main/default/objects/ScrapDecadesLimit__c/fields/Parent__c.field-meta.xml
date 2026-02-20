@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <label>Parent</label>
     <referenceTo>ScrapDecadesLimit__c</referenceTo>
-    <relationshipLabel>ScrapDecadesLimit</relationshipLabel>
     <relationshipName>ScrapDecadesLimit_Parent</relationshipName>
     <required>false</required>
     <trackHistory>false</trackHistory>

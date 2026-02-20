@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ShipType__c</fullName>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>ShipType</label>
+    <referenceTo>ShipmentType__mdt</referenceTo>
+    <relationshipLabel>Event Locations</relationshipLabel>
+    <relationshipName>Event_Locations</relationshipName>
+    <required>false</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

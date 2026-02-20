@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AreaType__c</fullName>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Area Type</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ACCOUNT</fullName>
+                <default>true</default>
+                <label>ACCOUNT</label>
+            </value>
+            <value>
+                <fullName>CONTACTS</fullName>
+                <default>false</default>
+                <label>CONTACTS</label>
+            </value>
+            <value>
+                <fullName>LEADS</fullName>
+                <default>false</default>
+                <label>LEADS</label>
+            </value>
+            <value>
+                <fullName>OPPORTUNITY</fullName>
+                <default>false</default>
+                <label>OPPORTUNITY</label>
+            </value>
+            <value>
+                <fullName>ORDER</fullName>
+                <default>false</default>
+                <label>ORDER</label>
+            </value>
+            <value>
+                <fullName>PAR</fullName>
+                <default>false</default>
+                <label>PAR</label>
+            </value>
+            <value>
+                <fullName>PRICE LIST</fullName>
+                <default>false</default>
+                <label>PRICE LIST</label>
+            </value>
+            <value>
+                <fullName>PROD. QUOTAS</fullName>
+                <default>false</default>
+                <label>PROD. QUOTAS</label>
+            </value>
+            <value>
+                <fullName>PROD. PLAN</fullName>
+                <default>false</default>
+                <label>PROD. PLAN</label>
+            </value>
+            <value>
+                <fullName>SCRAP</fullName>
+                <default>false</default>
+                <label>SCRAP</label>
+            </value>
+            <value>
+                <fullName>USERS</fullName>
+                <default>false</default>
+                <label>USERS</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <label>SupplierLimitDetails</label>
     <referenceTo>SupplierLimitDetails__c</referenceTo>
-    <relationshipLabel>SupplierLimitEdit</relationshipLabel>
     <relationshipName>SupplierLimitEdit</relationshipName>
     <required>false</required>
     <trackHistory>false</trackHistory>

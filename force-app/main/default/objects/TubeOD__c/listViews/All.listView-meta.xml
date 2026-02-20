@@ -11,5 +11,9 @@
     <columns>IsRound__c</columns>
     <columns>DStr__c</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>NPS__c</field>
+        <operation>notEqual</operation>
+    </filters>
     <label>All</label>
 </ListView>

@@ -10,9 +10,5 @@
     <columns>ID_ERP__c</columns>
     <columns>Obsolete__c</columns>
     <filterScope>Everything</filterScope>
-    <filters>
-        <field>MaxLength__c</field>
-        <operation>notEqual</operation>
-    </filters>
     <label>All</label>
 </ListView>

@@ -8,6 +8,6 @@
     <type>Picklist</type>
     <valueSet>
         <restricted>true</restricted>
-        <valueSetName>Error_Source</valueSetName>
+        <valueSetName>errSource</valueSetName>
     </valueSet>
 </CustomField>

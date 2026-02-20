@@ -3,7 +3,6 @@
     <fullName>DecadeGroup__c</fullName>
     <label>DecadeGroup</label>
     <referenceTo>Decade__c</referenceTo>
-    <relationshipLabel>ScrapDecadesLimit</relationshipLabel>
     <relationshipName>ScrapDecadesLimit</relationshipName>
     <relationshipOrder>0</relationshipOrder>
     <reparentableMasterDetail>true</reparentableMasterDetail>

@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CityOnTheMap__c</fullName>
     <externalId>false</externalId>
-    <formula>HYPERLINK(&apos;https://www.google.com/maps?q=&apos; + CityName__r.Latitude__c + &apos;,&apos; + CityName__r.Longitude__c, &apos;View City Location in Google Maps&apos;, &apos;_blank&apos;)</formula>
+    <formula>&apos;&apos;</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>City on the Map</label>
     <required>false</required>

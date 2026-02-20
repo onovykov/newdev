@@ -3,7 +3,7 @@
     <fullName>UserGroup__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <label>User Group</label>
-    <referenceTo>UserGroup__c</referenceTo>
+    <referenceTo>RecipientGroup__c</referenceTo>
     <relationshipLabel>Notification Recipients</relationshipLabel>
     <relationshipName>Notification_Recipients</relationshipName>
     <required>false</required>

@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <label>Постачальник</label>
     <referenceTo>Account</referenceTo>
-    <relationshipLabel>ScrapSupplierLimit</relationshipLabel>
     <relationshipName>ScrapSupplierLimit</relationshipName>
     <required>false</required>
     <trackHistory>false</trackHistory>

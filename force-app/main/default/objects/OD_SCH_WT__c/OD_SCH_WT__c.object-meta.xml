@@ -153,7 +153,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>OD_SCH_WT</label>
+    <label>Pipe Diameter–Wall Thickness Mapping</label>
     <nameField>
         <displayFormat>{0}</displayFormat>
         <label>RowNum</label>

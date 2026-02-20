@@ -5,7 +5,6 @@
     <columns>A3Code__c</columns>
     <columns>NAME</columns>
     <columns>SysName__c</columns>
-    <columns>Currency__c</columns>
     <columns>Market_Segment__c</columns>
     <columns>Region__c</columns>
     <columns>PhoneCode__c</columns>

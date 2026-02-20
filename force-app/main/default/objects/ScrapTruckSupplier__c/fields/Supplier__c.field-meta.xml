@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <label>Supplier</label>
     <referenceTo>Account</referenceTo>
-    <relationshipLabel>ScrapTruckSupplier</relationshipLabel>
     <relationshipName>ScrapTruckSupplier</relationshipName>
     <required>false</required>
     <trackHistory>false</trackHistory>

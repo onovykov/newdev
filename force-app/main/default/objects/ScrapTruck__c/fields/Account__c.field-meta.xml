@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <label>Власник</label>
     <referenceTo>Account</referenceTo>
-    <relationshipLabel>ScrapTruck</relationshipLabel>
     <relationshipName>ScrapTruck</relationshipName>
     <required>false</required>
     <trackHistory>false</trackHistory>
