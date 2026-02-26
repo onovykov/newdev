@@ -40,7 +40,7 @@ private class UserRepositoryTest {
             EmailEncodingKey  = 'UTF-8',
             LanguageLocaleKey = 'en_US',
             CommunityNickname = 'nick_' + suffix,
-            // Кастомні поля з вашої орг
+            // Кастомні поля
             BusinesDivision__c = businessDivision,
             SalesDivision__c   = salesDivision,
             ID_ERP__c          = idErp,

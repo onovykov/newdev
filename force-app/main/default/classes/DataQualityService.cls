@@ -63,7 +63,37 @@ public with sharing class DataQualityService {
         '(?i)^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$'
     );
 
-    private static Boolean isInvalidEmail(String email) {
+    private static Map<String, List<InvalidPhoneEmail__mdt>> mappingsByObject;
+
+    public static List<InvalidPhoneEmail__mdt> getMappingsForObject(String objectApi) {
+        ensureMappingCache();
+
+        if (mappingsByObject.containsKey(objectApi)) {
+            return mappingsByObject.get(objectApi);
+        }
+        return new List<InvalidPhoneEmail__mdt>();
+    }
+
+    private static void ensureMappingCache() {
+        if (mappingsByObject != null) return;
+
+        mappingsByObject = new Map<String, List<InvalidPhoneEmail__mdt>>();
+
+        for (InvalidPhoneEmail__mdt m : [
+            SELECT ObjectAPI__c, FieldAPI__c, FieldNameParam__c
+            FROM InvalidPhoneEmail__mdt
+        ]) {
+            if (!mappingsByObject.containsKey(m.ObjectAPI__c)) {
+                mappingsByObject.put(
+                    m.ObjectAPI__c,
+                    new List<InvalidPhoneEmail__mdt>()
+                );
+            }
+            mappingsByObject.get(m.ObjectAPI__c).add(m);
+        }
+    }
+
+    public static Boolean isInvalidEmail(String email) {
         if (String.isBlank(email)) return false;
 
         String e = email.trim();
@@ -103,7 +133,7 @@ public with sharing class DataQualityService {
        Phone / Mobile validation
        ========================== */
 
-    private static Boolean isInvalidPhone(String phone) {
+    public static Boolean isInvalidPhone(String phone) {
         String p = phone
             .replace('+','')
             .replace(' ','')
@@ -123,7 +153,7 @@ public with sharing class DataQualityService {
        Website validation
        ========================== */
 
-    private static Boolean isInvalidWebsite(String url) {
+    public static Boolean isInvalidWebsite(String url) {
         String u = url.trim().toLowerCase();
 
         if (u.contains(' ')
@@ -185,7 +215,7 @@ public with sharing class DataQualityService {
     public static void resetMappingCache() {
         mappingCache = null;
     }
-    
+
     private static String getFieldType(
         String objectApi,
         String fieldApi
@@ -207,98 +237,110 @@ public with sharing class DataQualityService {
     }
 
     public static Boolean isSuspiciousEmail(String email) {
-        if (String.isBlank(email)) return false;
+        if (String.isBlank(email)) {
+            return false;
+        }
 
-        String e = email.toLowerCase().trim();
+        String e = email.trim().toLowerCase();
 
-        // invalid — не тут
-        if (isInvalidEmail(e)) return false;
+        // базовий захист
+        if (!e.contains('@')) {
+            return false;
+        }
 
-        // ----------------------------
-        // Parse email
-        // ----------------------------
-        List<String> parts = e.split('@');
-        if (parts.size() != 2) return false;
+        List<String> parts = e.split('@', 2);
+        if (parts.size() != 2) {
+            return false;
+        }
 
         String local = parts[0];
         String domain = parts[1];
 
-        List<String> domainLabels = domain.split('\\.');
-        String firstLabel = domainLabels.isEmpty() ? '' : domainLabels[0];
+        // -------------------------------
+        // 1) SAFE LOCAL WHITELIST
+        // -------------------------------
+        for (EmailSafeLocal__mdt safe : EmailSafeLocal__mdt.getAll().values()) {
+            if (!safe.IsActive__c) continue;
 
-        // ----------------------------
-        // SAFE LOCAL whitelist
-        // ----------------------------
-        Set<String> safeLocals = new Set<String>();
-        for (EmailSafeLocal__mdt s : [
-            SELECT LocalValue__c
-            FROM EmailSafeLocal__mdt
-            WHERE IsActive__c = true
-        ]) {
-            if (!String.isBlank(s.LocalValue__c)) {
-                safeLocals.add(s.LocalValue__c.toLowerCase());
+            if (local == safe.LocalValue__c.toLowerCase()) {
+                return false;
             }
         }
 
-        if (safeLocals.contains(local)) return false;
+        // -------------------------------
+        // 2) LEGACY RULES (EmailSuspiciousRule__mdt)
+        // -------------------------------
+        for (EmailSuspiciousRule__mdt r : EmailSuspiciousRule__mdt.getAll().values()) {
+            if (!r.IsActive__c) continue;
 
-        // ----------------------------
-        // Suspicious rules
-        // ----------------------------
-        for (EmailSuspiciousRule__mdt r : [
-            SELECT RuleType__c, Pattern__c
-            FROM EmailSuspiciousRule__mdt
-            WHERE IsActive__c = true
-        ]) {
-            String type = r.RuleType__c;
-            String rulePattern = r.Pattern__c;
-
-            // 1️. SHORT_LOCAL
-            if (type == 'SHORT_LOCAL') {
-                Integer maxLen;
-                try {
-                    maxLen = Integer.valueOf(rulePattern);
-                } catch (Exception ex) {
-                    continue;
+            if (r.RuleType__c == 'LOCAL_EQUALS_DOMAIN') {
+                String firstDomainLabel = domain.split('\\.')[0];
+                if (local == firstDomainLabel) {
+                    return true;
                 }
-                if (local.length() <= maxLen) return true;
+                continue;
             }
 
-            // 2️. LOCAL_EQUALS_DOMAIN
-            else if (type == 'LOCAL_EQUALS_DOMAIN') {
-                if (local == firstLabel) return true;
+            if (r.RuleType__c == 'NUMERIC_ONLY') {
+                if (Pattern.matches(r.Pattern__c, e)) {
+                    return true;
+                }
+                continue;
             }
 
-            // 3️. NUMERIC_ONLY
-            else if (type == 'NUMERIC_ONLY') {
-                if (!String.isBlank(rulePattern) &&
-                    System.Pattern.matches(rulePattern, local + '@' + domain)
-                ) {
+            if (r.RuleType__c == 'PLACEHOLDER' || r.RuleType__c == 'REPEAT_PATTERN') {
+                if (Pattern.matches(r.Pattern__c.toLowerCase(), local) ||
+                    Pattern.matches(r.Pattern__c.toLowerCase(), e)) {
                     return true;
                 }
             }
 
-            // 4️. PLACEHOLDER
-            else if (type == 'PLACEHOLDER') {
-                if (!String.isBlank(rulePattern) &&
-                    System.Pattern.matches(rulePattern, local + '@')
-                ) {
+            if (r.RuleType__c == 'SHORT_LOCAL') {
+                if (local.length() == 1) {
+                    return true;
+                }
+
+                String firstDomainLabel = domain.split('\\.')[0];
+                if (firstDomainLabel.length() <= 2) {
                     return true;
                 }
             }
+        }
 
-            // 5️. REPEAT_PATTERN
-            else if (type == 'REPEAT_PATTERN') {
-                if (!String.isBlank(rulePattern) &&
-                    System.Pattern.matches('.*' + rulePattern + '.*', local)
-                ) {
+        // -------------------------------
+        // 3) HEURISTIC RULES (EmailHeuristicRule__mdt)
+        // -------------------------------
+        for (EmailHeuristicRule__mdt h : EmailHeuristicRule__mdt.getAll().values()) {
+            if (!h.IsActive__c) continue;
+
+            String target;
+            if (h.ApplyTo__c == 'LOCAL') {
+                target = local;
+            } else if (h.ApplyTo__c == 'DOMAIN') {
+                target = domain;
+            } else { // FULL
+                target = e;
+            }
+
+            if (String.isBlank(target)) continue;
+
+            if (h.MatchType__c == 'CONTAINS') {
+                if (target.contains(h.Pattern__c.toLowerCase())) {
+                    return true;
+                }
+            } else if (h.MatchType__c == 'EXACT') {
+                if (target == h.Pattern__c.toLowerCase()) {
+                    return true;
+                }
+            } else if (h.MatchType__c == 'REGEX') {
+                if (Pattern.matches(h.Pattern__c, target)) {
                     return true;
                 }
             }
         }
 
         return false;
-}
+    }
 
     public static Boolean isSuspiciousPhone(String phone) {
         if (String.isBlank(phone)) {

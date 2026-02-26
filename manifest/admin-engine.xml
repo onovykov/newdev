@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+
+    <!-- ===================== -->
+    <!-- Apex Classes (Engine) -->
+    <!-- ===================== -->
+    <types>
+        <members>AsyncExecutor</members>
+        <members>AsyncConfigProvider</members>
+        <members>AsyncConfig</members>
+        <members>AsyncExecutorResult</members>
+        <members>AsyncExecutionMode</members>
+
+        <members>AdminFacade</members>
+        <members>QueryService</members>
+        <members>ExportService</members>
+        <members>DmlService</members>
+
+        <members>UpdateQueueable</members>
+        <members>UpdateBatch</members>
+        <members>DeleteQueueable</members>
+        <members>DeleteBatch</members>
+        <members>InsertQueueable</members>
+        <members>InsertBatch</members>
+
+        <members>AdminLimitException</members>
+        <members>AsyncConfigException</members>
+        <members>AdminLimits</members>
+
+        <members>TestDataFactory</members>
+
+        <!-- Tests -->
+        <members>AsyncExecutorTest</members>
+        <members>AdminFacadeTest</members>
+        <members>QueryServiceTest</members>
+        <members>ExportServiceTest</members>
+        <members>AsyncJobsSmokeTest</members>
+
+        <name>ApexClass</name>
+    </types>
+    <version>65.0</version>
+</Package>

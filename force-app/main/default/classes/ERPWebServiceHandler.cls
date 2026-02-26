@@ -1,4 +1,15 @@
 public class ERPWebServiceHandler {
+	/*--- Навіщо ЦЕ тут?
+		Salesforce має HttpResponse.getStatusCode()
+		Це все робиться елементарно, без жодних мап:
+		---
+		HttpResponse res = http.send(req);
+
+		Integer statusCode = res.getStatusCode();
+		String statusText = res.getStatus();   // ← ВЖЕ Є
+		String body = res.getBody();
+	*/
+	// ❌ в смітник
 	public final static Map<Integer, String> HTTPSTATUSES = new Map<Integer, String> {
 		200 => 'OK',
 		201 => 'CREATED',
@@ -25,7 +36,8 @@ public class ERPWebServiceHandler {
 		500 => 'INTERNAL SERVER ERROR',
 		503 => 'SERVER UNAVAILABLE'
 	};
-
+	// Боже.. Що ЦЕ????
+	// ❌ в смітник
 	private final static List<String> activeSegments = new List<String> {
 		'00001', // Americas
 		'00002', // MENA
@@ -37,6 +49,9 @@ public class ERPWebServiceHandler {
         '00021'  // Machinery   
 	};
 
+	// А DTO написати - релігія не дозволила?
+	// І парсити туди JSON
+	// ❌ в смітник
 	public final static Map<String, String> erp_to_sf_api_names = new Map<String, String> {
 		'ProductGroup' => 'Product2',
 		'QuotaType' => 'QuotaType__c',
@@ -56,14 +71,15 @@ public class ERPWebServiceHandler {
 		'WheelHub' => 'WheelHub__c',
 		'WheelDrawing' => 'WheelDrawing__c'
 	};
-
+	// ❌ в смітник
 	public final static Map<String, String> erp_to_sf_api_names_opp = new Map<String, String> {
 		'Country' => 'Country__c',
 		'PaymentTerms' => 'PaymentTerms__c',
 		'DeliveryTerms' => 'DeliveryTerms__c'
 	};
 
-
+	// 🤦🤦🤦🤦
+	// Тупо звалище ЧОГОСЬ...
 	public final static Country__c country_not_spec = [SELECT Id FROM Country__c WHERE NumCode__c = '0' LIMIT 1];
 	//public final static Id country_not_spec = RecordReference__mdt.UnspecifiedCountry.RecordId__c;
 	public final static Shop__c shop_not_cpec = [SELECT Id, Id_ERP__C, Name FROM Shop__c WHERE Id_ERP__C = '0' LIMIT 1];

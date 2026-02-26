@@ -42,7 +42,9 @@ public with sharing class UserKeySnapshotHook {
         }
 
         if (!logs.isEmpty()) {
-            insert logs;
+            System.enqueueJob(
+                new UserAuditLogQueueable(logs)
+            );
         }
     }
 }

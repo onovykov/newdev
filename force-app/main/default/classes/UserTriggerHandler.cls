@@ -19,6 +19,7 @@ public with sharing class UserTriggerHandler {
        ===================================================== */
     public static void afterInsert(List<User> newUsers) {
         if (Test.isRunningTest() && bypassUserIdErpCreation) {
+            System.debug('\nBypass is ON\n');
             return;
         }
 
@@ -37,8 +38,24 @@ public with sharing class UserTriggerHandler {
         }
 
         if (!recordsToInsert.isEmpty()) {
+            System.enqueueJob(
+                new UserIdErpQueueable(recordsToInsert)
+            );
+        }
+        /*
+        if (!recordsToInsert.isEmpty()) {
+            System.enqueueJob(
+                new InsertQueueable(
+                    new List<UserID_ERP__c>(recordsToInsert)
+                )
+            );
+        }
+            */
+        /*
+        if (!recordsToInsert.isEmpty()) {
             insert recordsToInsert;
         }
+            */
     }
 
     /* =====================================================

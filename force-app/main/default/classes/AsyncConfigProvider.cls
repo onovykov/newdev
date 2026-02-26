@@ -6,7 +6,7 @@ public with sharing class AsyncConfigProvider {
     public static AsyncConfig get() {
         return getDefault();
     }
-
+//
     /**
      * Default config (IsDefault__c = true)
      */

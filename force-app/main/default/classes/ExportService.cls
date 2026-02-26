@@ -65,4 +65,21 @@ public with sharing class ExportService {
         s = s.replace('"', '""');
         return '"' + s + '"';
     }
+
+    public static ContentVersion exportJsonToFile(
+        String fileName,
+        String jsonContent
+    ) {
+        if (jsonContent == null) {
+            jsonContent = '[]';
+        }
+
+        ContentVersion cv = new ContentVersion();
+        cv.Title        = fileName;
+        cv.PathOnClient = fileName + '.json';
+        cv.VersionData  = Blob.valueOf(jsonContent);
+
+        insert cv;
+        return cv;
+    }    
 }

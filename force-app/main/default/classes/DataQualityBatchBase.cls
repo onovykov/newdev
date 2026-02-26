@@ -1,155 +1,156 @@
-public abstract class DataQualityBatchBase
+global abstract class DataQualityBatchBase
     implements Database.Batchable<SObject>, Database.Stateful {
 
     protected final String objectApi;
     protected final Boolean dryRun;
 
-    // dry-run accumulator
+    // Результати для агрегації / JSON / нотифікацій
     public List<DataQualityFinding> findings = new List<DataQualityFinding>();
-
-    protected List<InvalidPhoneEmail__mdt> mappings;
 
     protected DataQualityBatchBase(String objectApi, Boolean dryRun) {
         this.objectApi = objectApi;
         this.dryRun = dryRun;
-        this.mappings = loadMappings(objectApi);
     }
 
-    public Database.QueryLocator start(Database.BatchableContext bc) {
+    /* =======================
+       START
+       ======================= */
+    global Database.QueryLocator start(Database.BatchableContext bc) {
 
-        Set<String> fields = new Set<String>{ 'Id', 'OwnerId' };
-        List<String> conditions = new List<String>();
+        List<InvalidPhoneEmail__mdt> mappings =
+            DataQualityService.getMappingsForObject(objectApi);
 
+        if (mappings.isEmpty()) {
+            return Database.getQueryLocator(
+                'SELECT Id FROM ' + objectApi + ' WHERE Id = null'
+            );
+        }
+
+        Set<String> fieldApis = new Set<String>();
         for (InvalidPhoneEmail__mdt m : mappings) {
-            fields.add(m.FieldAPI__c);
-            fields.add(getInvalidFlagField(m));
-            fields.add(getSuspiciousFlagField(m));
-            conditions.add(m.FieldAPI__c + ' != null');
+            fieldApis.add(m.FieldAPI__c);
         }
-
+        
+        String accId = '';
+        if(objectApi == 'Contact') accId = 'AccountId,';
+        
         String soql =
-            'SELECT ' + String.join(new List<String>(fields), ', ') +
+            'SELECT Id, OwnerId, ' + accId +
+            String.join(new List<String>(fieldApis), ',') +
             ' FROM ' + objectApi;
-
-        if (!conditions.isEmpty()) {
-            soql += ' WHERE (' + String.join(conditions, ' OR ') + ')';
-        }
 
         return Database.getQueryLocator(soql);
     }
 
-    public void execute(Database.BatchableContext bc, List<SObject> scope) {
+    /* =======================
+       EXECUTE (DO NOT OVERRIDE)
+       ======================= */
+    global void execute(Database.BatchableContext bc, List<SObject> scope) {
 
-        List<SObject> toUpdate = new List<SObject>();
+        // стандартні перевірки (email / phone / website)
+        processStandardChecks(scope);
 
-        for (SObject s : scope) {
-            Boolean changed = false;
+        // hook для спеціалізованих batch
+        afterStandardChecks(scope);
+    }
+
+    /* =======================
+       STANDARD CHECKS
+       ======================= */
+    protected void processStandardChecks(List<SObject> scope) {
+
+        List<InvalidPhoneEmail__mdt> mappings =
+            DataQualityService.getMappingsForObject(objectApi);
+
+        if (mappings.isEmpty()) return;
+
+        //List<SObject> toUpdate = new List<SObject>();
+        Map<Id, SObject> toUpdate = new Map<Id, SObject>();
+
+        for (SObject record : scope) {
+
+            Id ownerId = (Id) record.get('OwnerId');
 
             for (InvalidPhoneEmail__mdt m : mappings) {
 
                 String fieldApi = m.FieldAPI__c;
-                Object raw = s.get(fieldApi);
+                String logicalField = m.FieldNameParam__c;
+
+                Object raw = record.get(fieldApi);
                 if (raw == null) continue;
 
-                String val = String.valueOf(raw);
+                String value = String.valueOf(raw).trim();
+                if (value == '') continue;
 
-                Boolean invalid = DataQualityService.isInvalid(
-                    m.ObjectNameParam__c,
-                    m.FieldNameParam__c,
-                    s
-                );
+                Boolean isInvalid = false;
+                Boolean isSuspicious = false;
 
-                Boolean suspicious =
-                    !invalid && isSuspiciousByType(m, val);
-
-                // collect (dry-run / notifications)
-                if (invalid || suspicious) {
-                    DataQualityFinding f = new DataQualityFinding();
-                    f.ownerId  = (Id)s.get('OwnerId');
-                    f.objectApi = objectApi;
-                    f.recordId = (Id)s.get('Id');
-                    f.fieldApi = fieldApi;
-                    f.level    = invalid ? 'Invalid' : 'Suspicious';
-                    f.value    = val;
-                    findings.add(f);
+                if (logicalField == 'Email') {
+                    isInvalid = DataQualityService.isInvalidEmail(value);
+                    if (!isInvalid) {
+                        isSuspicious =
+                            DataQualityService.isSuspiciousEmail(value);
+                    }
+                } else if (logicalField == 'Phone' || logicalField == 'Mobile') {
+                    isInvalid = DataQualityService.isInvalidPhone(value);
+                    if (!isInvalid) {
+                        isSuspicious =
+                            DataQualityService.isSuspiciousPhone(value);
+                    }
+                } else if (logicalField == 'Website') {
+                    isInvalid = DataQualityService.isInvalidWebsite(value);
                 }
+
+                if (!isInvalid && !isSuspicious) continue;
+
+                // === finding ===
+                DataQualityFinding f = new DataQualityFinding();
+                f.objectApi = objectApi;
+                f.recordId  = record.Id;
+                f.fieldApi  = fieldApi;
+                f.value     = value;
+                f.level     = isInvalid ? 'Invalid' : 'Suspicious';
+                f.ownerId  = ownerId;
+
+                findings.add(f);
 
                 if (!dryRun) {
-                    if (invalid &&
-                        (Boolean)s.get(getInvalidFlagField(m)) != true) {
-
-                        s.put(getInvalidFlagField(m), true);
-                        changed = true;
-
-                    } else if (suspicious &&
-                        (Boolean)s.get(getSuspiciousFlagField(m)) != true) {
-
-                        s.put(getSuspiciousFlagField(m), true);
-                        changed = true;
+                    if (isInvalid) {
+                        record.put(
+                            logicalField + '_Is_Invalid__c',
+                            true
+                        );
                     }
+                    if (isSuspicious) {
+                        record.put(
+                            logicalField + '_Is_Suspicious__c',
+                            true
+                        );
+                    }
+                    //toUpdate.add(record);
+                    toUpdate.put(record.Id, record);
                 }
-            }
-
-            if (!dryRun && changed) {
-                toUpdate.add(s);
             }
         }
 
         if (!dryRun && !toUpdate.isEmpty()) {
-            update toUpdate;
+            //update toUpdate;
+            update toUpdate.values();
         }
     }
 
-    public void finish(Database.BatchableContext bc) {
-
-        if (!dryRun) return;
-        if (findings.isEmpty()) {
-            System.debug('DATA QUALITY: no issues found');
-            return;
-        }
-
-        Map<Id, DataQualityOwnerReport> byOwner =
-            DataQualityAggregator.aggregate(findings);
-
-        String json = System.JSON.serializePretty(byOwner);
-
-        System.debug('===== DATA QUALITY DRY RUN RESULT =====');
-        System.debug(json);
+    /* =======================
+       EXTENSION HOOK
+       ======================= */
+    public virtual void afterStandardChecks(List<SObject> scope) {
+        // default: nothing
+        // ContactDataQualityBatch override here
     }
 
-    // ------------------------------------------------------------
-    // helpers
-    // ------------------------------------------------------------
-
-    private static List<InvalidPhoneEmail__mdt> loadMappings(String obj) {
-        List<InvalidPhoneEmail__mdt> res = new List<InvalidPhoneEmail__mdt>();
-        for (InvalidPhoneEmail__mdt m : InvalidPhoneEmail__mdt.getAll().values()) {
-            if (m.ObjectAPI__c == obj) {
-                res.add(m);
-            }
-        }
-        return res;
-    }
-
-    private static String getInvalidFlagField(InvalidPhoneEmail__mdt m) {
-        return m.FieldAPI__c.replace('__c', '') + '_Is_Invalid__c';
-    }
-
-    private static String getSuspiciousFlagField(InvalidPhoneEmail__mdt m) {
-        return m.FieldAPI__c.replace('__c', '') + '_Is_Suspicious__c';
-    }
-
-    private static Boolean isSuspiciousByType(
-        InvalidPhoneEmail__mdt m,
-        String val
-    ) {
-        String f = m.FieldNameParam__c;
-        if (f == 'Email') {
-            return DataQualityService.isSuspiciousEmail(val);
-        }
-        if (f == 'Phone' || f == 'Mobile') {
-            return DataQualityService.isSuspiciousPhone(val);
-        }
-        return false;
+    /* =======================
+       FINISH
+       ======================= */
+    global void finish(Database.BatchableContext bc) {
+        // aggregation / notification / logging буде тут
     }
 }

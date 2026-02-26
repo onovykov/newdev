@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+
+    <!-- ========================= -->
+    <!-- CORE ENGINE CLASSES -->
+    <!-- ========================= -->
+    <types>
+        <members>AsyncExecutor</members>
+        <members>AsyncConfigProvider</members>
+        <members>AsyncConfig</members>
+        <members>AsyncExecutorResult</members>
+        <members>AsyncExecutionMode</members>
+
+        <members>AdminFacade</members>
+        <members>QueryService</members>
+        <members>ExportService</members>
+        <members>DmlService</members>
+
+        <members>InsertQueueable</members>
+        <members>InsertBatch</members>
+        <members>UpdateQueueable</members>
+        <members>UpdateBatch</members>
+        <members>DeleteQueueable</members>
+        <members>DeleteBatch</members>
+
+        <members>AdminLimits</members>
+        <members>AdminLimitException</members>
+        <members>AsyncConfigException</members>
+
+        <members>TestDataFactory</members>
+
+        <name>ApexClass</name>
+    </types>
+
+    <!-- ========================= -->
+    <!-- TESTS (ENGINE + MICRO) -->
+    <!-- ========================= -->
+    <types>
+        <!-- Core functional tests -->
+        <members>AsyncExecutorTest</members>
+        <members>AdminFacadeTest</members>
+        <members>QueryServiceTest</members>
+        <members>ExportServiceTest</members>
+        <members>AsyncJobsSmokeTest</members>
+
+        <!-- Coverage/branches tests -->
+        <members>AsyncExecutorCoverageTest</members>
+        <members>UpdateBatchCoverageTest</members>
+        <members>AdminFacadeCoverageTest</members>
+        <members>AsyncConfigProviderCoverageTest</members>
+        <members>AsyncExecutorMoreCoverageTest</members>
+        <members>AdminFacadeMoreCoverageTest</members>
+
+        <!-- DTO/enum/exceptions micro tests -->
+        <members>AsyncConfigExceptionTest</members>
+        <members>AdminLimitExceptionTest</members>
+        <members>AsyncExecutionModeTest</members>
+        <members>AsyncExecutorResultTest</members>
+        <members>AsyncExecutorResultCoverageTest</members>
+        <members>AsyncConfigTest</members>
+
+        <!-- Service micro tests -->
+        <members>DmlServiceTest</members>
+        <members>ExportServiceMicroTest</members>
+        <members>ExportServiceCoverageTest</members>
+
+        <!-- Async micro tests -->
+        <members>InsertQueueableTest</members>
+        <members>InsertBatchTest</members>
+        <members>DeleteQueueableTest</members>
+        <members>DeleteBatchTest</members>
+
+        <!-- Factory micro tests -->
+        <members>TestDataFactoryTest</members>
+        <members>TestDataFactoryCoverageTest</members>
+
+        <name>ApexClass</name>
+    </types>
+
+    <version>65.0</version>
+</Package>

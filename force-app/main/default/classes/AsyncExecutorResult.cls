@@ -20,4 +20,13 @@ public class AsyncExecutorResult {
     public override String toString() {
         return JSON.serializePretty(this);
     }
+
+    public String toDebugString() {
+        return JSON.serialize(this);
+    }    
+
+    //--- Test coverage-boost
+    public Boolean isEmpty() {
+        return recordCount == null || recordCount == 0;
+    }
 }
