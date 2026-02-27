@@ -33,14 +33,17 @@ private class UpdateQueueableCoverageTest {
 
     @IsTest
     static void coverExecute() {
-        List<Account> accs = TestDataFactory.createAccounts(1);
-        insert accs;
+        List<Account> accs = TestDataFactory.createAccounts(1); // already inserted
+        accs[0].Name = 'Updated';
 
         Test.startTest();
         System.enqueueJob(new UpdateQueueable(accs));
         Test.stopTest();
 
-        // якщо дійшли сюди — execute() відпрацював
+        Account a = [SELECT Name FROM Account WHERE Id = :accs[0].Id];
+        System.assertEquals('Updated', a.Name);
+
+        // cover TestVisible method
         System.assertEquals(true, UpdateQueueable.coveragePing());
-    }    
+    }
 }

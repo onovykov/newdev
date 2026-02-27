@@ -1,5 +1,4 @@
 public with sharing class InsertQueueable implements Queueable {
-
     private List<SObject> records;
 
     public InsertQueueable(List<SObject> records) {

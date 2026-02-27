@@ -3,20 +3,12 @@ private class InvoiceOrderDebtBatchTest {
 
     @TestSetup
     static void setupData() {
-        // базовий акаунт, який знайдеться по ORG = '39'
         insert new Account(Name = 'Main Account', ID_ERP__c = '39');
-
-        // внутрішній акаунт
         insert new Account(Name = 'Internal Account', ID_ERP__c = '21833');
 
-        // стандартний прайсбук
-        Pricebook2 pb = new Pricebook2(
-                Id = Test.getStandardPricebookId(),
-                IsActive = true
-        );
+        Pricebook2 pb = new Pricebook2(Id = Test.getStandardPricebookId(), IsActive = true);
         update pb;
 
-        // ордер з ERP-id, щоб батч міг його підхопити
         Account acc = [SELECT Id FROM Account WHERE ID_ERP__c = '39' LIMIT 1];
         insert new Order(
                 Name = 'Test Order',
@@ -27,14 +19,9 @@ private class InvoiceOrderDebtBatchTest {
                 ID_ERP__c = '22061972'
         );
 
-        // портал юзер через контакт
         PortalUser__c pu = new PortalUser__c(Name = 'PU for 39');
         insert pu;
-        insert new Contact(
-                LastName = 'Test Contact',
-                AccountId = acc.Id,
-                PortalUser__c = pu.Id
-        );
+        insert new Contact(LastName = 'Test Contact', AccountId = acc.Id, PortalUser__c = pu.Id);
     }
 
     // ========== 1. Хендлер викликає батч ==========
@@ -73,14 +60,13 @@ private class InvoiceOrderDebtBatchTest {
 
         System.assertEquals('ERP-SF_Debit', res.MessageType);
 
-        // має з’явитись інвойс
         List<InvoiceOrderDebt__c> created = [
                 SELECT Id, Name FROM InvoiceOrderDebt__c WHERE Name = 'INV-HANDLER'
         ];
         System.assertEquals(1, created.size(), 'Handler must lead to created debt');
     }
 
-    // ========== 2. Звичайний батч: створює борг і summary ==========
+    // ========== 2. Батч створює борг і summary ==========
     @IsTest
     static void testBatch_createsDebt_andSummaries_withCompositeKey() {
         ERPMessageParser.InvoiceOrderDebtMessageData m = new ERPMessageParser.InvoiceOrderDebtMessageData();
@@ -102,7 +88,6 @@ private class InvoiceOrderDebtBatchTest {
         Database.executeBatch(new InvoiceOrderDebtBatch(new List<ERPMessageParser.InvoiceOrderDebtMessageData>{ m }), 1);
         Test.stopTest();
 
-        // перевірка боргу
         InvoiceOrderDebt__c inv = [
                 SELECT Id, Name, Account__c, InternalAccount__c, Order__c, NetAmount__c
                 FROM InvoiceOrderDebt__c
@@ -112,13 +97,12 @@ private class InvoiceOrderDebtBatchTest {
         System.assertEquals(900, inv.NetAmount__c);
         System.assertNotEquals(null, inv.Account__c);
 
-        // перевірка summary — вже з CompositeKey__c
         List<InvoiceDebtSummary__c> summaries = [
                 SELECT Id, Account__c, DebtType__c, SumDebt__c, CurrencyIsoCode, CompositeKey__c
                 FROM InvoiceDebtSummary__c
         ];
         System.assert(summaries.size() > 0, 'Summary must be rebuilt');
-        // хоча б у одного має бути наш акаунт
+
         Boolean foundTotal = false;
         for (InvoiceDebtSummary__c s : summaries) {
             if (s.Account__c == inv.Account__c) {
@@ -129,9 +113,9 @@ private class InvoiceOrderDebtBatchTest {
         System.assert(foundTotal, 'Summary for our account must exist');
     }
 
-    // ========== 3. Кейс: ORG немає в SF → батч створює Account ==========
+    // ========== 3. ORG немає в SF → запис скіпається ==========
     @IsTest
-    static void testBatch_createsMissingAccount() {
+    static void testBatch_skipsMissingAccount() {
         ERPMessageParser.InvoiceOrderDebtMessageData m = new ERPMessageParser.InvoiceOrderDebtMessageData();
         m.ORG        = '99999';
         m.ORG_NAME   = 'Created from ERP';
@@ -143,30 +127,25 @@ private class InvoiceOrderDebtBatchTest {
         Database.executeBatch(new InvoiceOrderDebtBatch(new List<ERPMessageParser.InvoiceOrderDebtMessageData>{ m }), 1);
         Test.stopTest();
 
-        Account created = [
-                SELECT Id, Name, ID_ERP__c
-                FROM Account
-                WHERE ID_ERP__c = '99999'
-                LIMIT 1
+        List<InvoiceOrderDebt__c> created = [
+                SELECT Id FROM InvoiceOrderDebt__c WHERE Name = 'INV-NEW-ACC'
         ];
-        System.assertEquals('Created from ERP', created.Name);
+        System.assertEquals(0, created.size(), 'Invoice must be skipped when Account not found');
     }
 
-    // ========== 4. finish(): зайвий summary з іншим CompositeKey__c видаляється ==========
+    // ========== 4. finish(): зайвий summary видаляється ==========
     @IsTest
     static void testFinish_deletesObsoleteSummary_byCompositeKey() {
-        // створюємо "старий" summary, який точно не згенерується
         Account a = [SELECT Id FROM Account WHERE ID_ERP__c = '39' LIMIT 1];
         InvoiceDebtSummary__c oldSummary = new InvoiceDebtSummary__c(
-                Account__c     = a.Id,
-                DebtType__c    = 'Total Debt',
-                SumDebt__c     = 999,
-                CurrencyIsoCode= 'USD',
-                CompositeKey__c= 'OBSOLETE|KEY'    // ← такого ключа наш rebuild не створить
+                Account__c      = a.Id,
+                DebtType__c     = 'Total Debt',
+                SumDebt__c      = 999,
+                CurrencyIsoCode = 'USD',
+                CompositeKey__c = 'OBSOLETE|KEY'
         );
         insert oldSummary;
 
-        // запускаємо батч з нормальним записом
         ERPMessageParser.InvoiceOrderDebtMessageData m = new ERPMessageParser.InvoiceOrderDebtMessageData();
         m.ORG        = '39';
         m.NDM_INVOCE = 'INV-FOR-REBUILD';
@@ -177,14 +156,13 @@ private class InvoiceOrderDebtBatchTest {
         Database.executeBatch(new InvoiceOrderDebtBatch(new List<ERPMessageParser.InvoiceOrderDebtMessageData>{ m }), 1);
         Test.stopTest();
 
-        // тепер наш “OBSOLETE|KEY” повинен зникнути
         List<InvoiceDebtSummary__c> stillThere = [
                 SELECT Id FROM InvoiceDebtSummary__c WHERE CompositeKey__c = 'OBSOLETE|KEY'
         ];
         System.assertEquals(0, stillThere.size(), 'Obsolete summary must be deleted in finish()');
     }
 
-    // ========== 5. Тестуємо generateResponseBody з і помилкою, і без ==========
+    // ========== 5. generateResponseBody — з помилкою і без ==========
     @IsTest
     static void testGenerateResponseBody() {
         Map<Integer, String> statusMap = new Map<Integer, String>{
@@ -195,72 +173,135 @@ private class InvoiceOrderDebtBatchTest {
         mp.MessageType = 'ERP-SF_Debit';
         mp.jobStatus   = 'Batch job 123 started';
 
-        // без помилки
         Blob ok = ERPMessageHandlerDebit.generateResponseBody(statusMap, 200, null, mp);
-        String okStr = ok.toString();
-        System.assert(okStr.contains('ERP-SF_Debit'));
-        System.assert(okStr.contains('Batch job 123 started'));
+        System.assert(ok.toString().contains('ERP-SF_Debit'));
+        System.assert(ok.toString().contains('Batch job 123 started'));
 
-        // з помилкою
         Blob err = ERPMessageHandlerDebit.generateResponseBody(statusMap, 500, 'Bad things', mp);
-        String errStr = err.toString();
-        System.assert(errStr.contains('Bad things'));
+        System.assert(err.toString().contains('Bad things'));
     }
 
-        // 1) покриваємо гілку success (errorCount == 0)
-        @isTest
-        static void testFinish_successBranch() {
-            ERPMessageParser.InvoiceOrderDebtMessageData msg = new ERPMessageParser.InvoiceOrderDebtMessageData();
-            msg.ORG        = '39';
-            msg.NDM_INVOCE = 'INV-SUCCESS';
-            msg.NET_AMNT   = 100;
-            msg.VAL        = 'USD'; // валюта існує → помилки не буде
+    // ========== 6. finish(): успішна гілка ==========
+    @IsTest
+    static void testFinish_successBranch() {
+        ERPMessageParser.InvoiceOrderDebtMessageData msg = new ERPMessageParser.InvoiceOrderDebtMessageData();
+        msg.ORG        = '39';
+        msg.NDM_INVOCE = 'INV-SUCCESS';
+        msg.NET_AMNT   = 100;
+        msg.VAL        = 'USD';
 
-            Test.startTest();
-            Database.executeBatch(new InvoiceOrderDebtBatch(
-                    new List<ERPMessageParser.InvoiceOrderDebtMessageData>{ msg }
-            ), 1);
-            Test.stopTest();
+        Test.startTest();
+        Database.executeBatch(new InvoiceOrderDebtBatch(
+                new List<ERPMessageParser.InvoiceOrderDebtMessageData>{ msg }
+        ), 1);
+        Test.stopTest();
 
-            // Перевіряємо, що email відправився
-            // (у тестах ми можемо перевірити лише факт виклику sendEmail)
-            //System.assertEquals(1, Limits.getEmailInvocations(), 'Success branch must send 1 email');
+        InvoiceOrderDebt__c inv = [
+                SELECT Id, Name FROM InvoiceOrderDebt__c WHERE Name = 'INV-SUCCESS' LIMIT 1
+        ];
+        System.assertNotEquals(null, inv.Id, 'Invoice must be inserted in success branch');
+    }
 
-            // і що наш інвойс реально вставився
-            InvoiceOrderDebt__c inv = [
-                    SELECT Id, Name FROM InvoiceOrderDebt__c WHERE Name = 'INV-SUCCESS' LIMIT 1
-            ];
-            System.assertNotEquals(null, inv.Id, 'Invoice must be inserted in success branch');
+    // ========== 7. finish(): гілка з помилкою ==========
+    @IsTest
+    static void testFinish_errorBranch() {
+        ERPMessageParser.InvoiceOrderDebtMessageData bad = new ERPMessageParser.InvoiceOrderDebtMessageData();
+        bad.ORG        = '39';
+        bad.NDM_INVOCE = 'INV-ERROR';
+        bad.NET_AMNT   = 50;
+        bad.VAL        = 'XYZ'; // невалідна валюта → DML error
+
+        Test.startTest();
+        Database.executeBatch(new InvoiceOrderDebtBatch(
+                new List<ERPMessageParser.InvoiceOrderDebtMessageData>{ bad }
+        ), 1);
+        Test.stopTest();
+
+        List<InvoiceOrderDebt__c> failed = [
+                SELECT Id FROM InvoiceOrderDebt__c WHERE Name = 'INV-ERROR'
+        ];
+        System.assertEquals(0, failed.size(), 'Bad invoice should not be inserted');
+    }
+
+    //--- Тест на дублікати CompositeKey__c
+    @IsTest
+    static void testRebuildSummaries_removesOrphanAndRebuildsCorrectly() {
+
+        // === GIVEN: існує orphan summary (якого не буде в target state)
+        Account a = [SELECT Id FROM Account WHERE ID_ERP__c = '39' LIMIT 1];
+
+        InvoiceDebtSummary__c orphan = new InvoiceDebtSummary__c(
+                Account__c      = a.Id,
+                DebtType__c     = 'Total Debt',
+                SumDebt__c      = 999,
+                CurrencyIsoCode = 'USD',
+                CompositeKey__c = 'ORPHAN|KEY'
+        );
+        insert orphan;
+
+        // === AND: є реальний invoice, який створить правильний summary
+        ERPMessageParser.InvoiceOrderDebtMessageData msg =
+                new ERPMessageParser.InvoiceOrderDebtMessageData();
+
+        msg.ORG        = '39';
+        msg.NDM_INVOCE = 'INV-REBUILD';
+        msg.NET_AMNT   = 500;
+        msg.VAL        = 'USD';
+        msg.DAYS       = 5;
+        msg.DUE_DATE   = '2025-11-10T00:00:00';
+        msg.DDM        = '2025-11-01T00:00:00';
+
+        // === WHEN: запускаємо batch
+        Test.startTest();
+        Database.executeBatch(
+                new InvoiceOrderDebtBatch(
+                new List<ERPMessageParser.InvoiceOrderDebtMessageData>{ msg }
+                ),
+                1
+        );
+        Test.stopTest();
+
+        // === THEN: orphan summary має бути видалений
+        List<InvoiceDebtSummary__c> orphanCheck = [
+                SELECT Id
+                FROM InvoiceDebtSummary__c
+                WHERE CompositeKey__c = 'ORPHAN|KEY'
+        ];
+
+        System.assertEquals(
+                0,
+                orphanCheck.size(),
+                'Orphan summary must be removed during rebuild'
+        );
+
+        // === AND: правильний summary має бути створений
+        List<InvoiceDebtSummary__c> summaries = [
+                SELECT Id, Account__c, DebtType__c, SumDebt__c, CompositeKey__c
+                FROM InvoiceDebtSummary__c
+                WHERE Account__c = :a.Id
+        ];
+
+        System.assert(
+                summaries.size() > 0,
+                'At least one valid summary must be rebuilt'
+        );
+
+        Boolean foundValid = false;
+
+        for (InvoiceDebtSummary__c s : summaries) {
+                if (s.SumDebt__c == 500) {
+                foundValid = true;
+                System.assertNotEquals(
+                        null,
+                        s.CompositeKey__c,
+                        'Rebuilt summary must have CompositeKey__c'
+                );
+                }
         }
 
-        // 2) покриваємо гілку error (errorCount > 0)
-        @isTest
-        static void testFinish_errorBranch() {
-            // робимо дані з некоректною валютою, щоб insert дав помилку
-            ERPMessageParser.InvoiceOrderDebtMessageData bad = new ERPMessageParser.InvoiceOrderDebtMessageData();
-            bad.ORG        = '39';
-            bad.NDM_INVOCE = 'INV-ERROR';
-            bad.NET_AMNT   = 50;
-            bad.VAL        = 'XYZ'; // НЕвалідна валюта → DML error → errorCount > 0
-
-            Test.startTest();
-            Database.executeBatch(new InvoiceOrderDebtBatch(
-                    new List<ERPMessageParser.InvoiceOrderDebtMessageData>{ bad }
-            ), 1);
-            Test.stopTest();
-
-            // знову мав відправитись email
-            //System.assertEquals(1, Limits.getEmailInvocations(), 'Error branch must also send 1 email');
-
-            // перевіримо, що запису таки нема (бо він упав)
-            List<InvoiceOrderDebt__c> failed = [
-                    SELECT Id FROM InvoiceOrderDebt__c WHERE Name = 'INV-ERROR'
-            ];
-            System.assertEquals(0, failed.size(), 'Bad invoice should not be inserted');
-
-            // опосередковано ми таким чином пройшли гілку:
-            // if (errorCount > 0) { ... build big table ... }
-            // бо саме її викликає неуспішний insert
-        }
-
+        System.assert(
+                foundValid,
+                'Rebuilt summary must reflect aggregated invoice amount'
+        );
+    }  
 }

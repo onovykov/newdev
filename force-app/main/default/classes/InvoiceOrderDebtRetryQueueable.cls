@@ -1,8 +1,11 @@
 global with sharing class InvoiceOrderDebtRetryQueueable implements Queueable {
-    private List<ERPMessageParser.InvoiceOrderDebtMessageData> source;
-    private String origin;
-    private Integer retry;
-    private Integer retryMax;
+
+    // Off by default. A single test sets this to true, calls execute() directly,
+    // then immediately resets it to false so the chained queueable stays safe.
+    @TestVisible
+    private static Boolean allowEnqueueInTests = false;
+
+    private final InvoiceOrderDebtJobConfig cfg;
 
     public InvoiceOrderDebtRetryQueueable(
         List<ERPMessageParser.InvoiceOrderDebtMessageData> src,
@@ -10,14 +13,10 @@ global with sharing class InvoiceOrderDebtRetryQueueable implements Queueable {
         Integer retry,
         Integer retryMax
     ) {
-        this.source = src;
-        this.origin = String.isBlank(originLabel) ? 'unknown' : originLabel;
-        this.retry = (retry == null) ? 0 : retry;
-        this.retryMax = (retryMax == null) ? 6 : retryMax;
+        this.cfg = new InvoiceOrderDebtJobConfig(src, originLabel, retry, retryMax);
     }
 
     public void execute(QueueableContext qc) {
-        // чи біжить зараз наш батч?
         Boolean running = ![
             SELECT Id FROM AsyncApexJob
             WHERE JobType = 'BatchApex'
@@ -27,31 +26,25 @@ global with sharing class InvoiceOrderDebtRetryQueueable implements Queueable {
         ].isEmpty();
 
         if (!running) {
-            // вільно — запускаємо батч прямо зараз
             Database.executeBatch(
-                new InvoiceOrderDebtCleaning(source, origin + ' (retryQ ' + retry + ')', 0, 0, 10),
+                new InvoiceOrderDebtCleaning(cfg.source, cfg.origin + ' (retryQ ' + cfg.retry + ')', 0, 0),
                 1000
             );
             return;
         }
 
-        // ще зайнято — якщо можемо, перезапускаємо себе (self-chain)
-        if (retry < retryMax) {
-            Integer nextRetry    = retry + 1;
-            Integer nextRetryMax = retryMax;
-
-            // У тестовому рантаймі: не ланцюжимося (інакше можна зловити Maximum stack depth)
-            if (Test.isRunningTest()) {
+        if (cfg.retry < cfg.retryMax) {
+            if (Test.isRunningTest() && !allowEnqueueInTests) {
                 System.debug(LoggingLevel.INFO,
-                    'TEST: would enqueue retry (retry=' + retry + ', retryMax=' + retryMax + ')');
-                return; // <-- важливо: нічого не enqueue-имо в тестах
+                    'TEST: would enqueue retry (retry=' + cfg.retry + ', retryMax=' + cfg.retryMax + ')');
+                return;
             }
 
             System.enqueueJob(new InvoiceOrderDebtRetryQueueable(
-                source,
-                origin,
-                nextRetry,
-                nextRetryMax
+                cfg.source,
+                cfg.origin,
+                cfg.retry + 1,
+                cfg.retryMax
             ));
         }
     }

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+
+    <!-- ========================= -->
+    <!-- CORE FUNCTIONAL CLASSES   -->
+    <!-- ========================= -->
+    <types>
+		<members>AsyncConfigException</members>
+
+        <members>AsyncExecutor</members>
+        <members>AsyncExecutorResult</members>
+        <members>AsyncExecutionMode</members>
+        <members>AsyncConfig</members>
+        <members>AsyncConfigProvider</members>
+
+        <members>AdminFacade</members>
+        <members>AdminLimits</members>
+        <members>AdminLimitException</members>
+
+        <members>QueryService</members>
+        <members>DmlService</members>
+        <members>ExportService</members>
+
+        <members>UpdateQueueable</members>
+        <members>UpdateBatch</members>
+        <members>InsertQueueable</members>
+        <members>InsertBatch</members>
+        <members>DeleteQueueable</members>
+        <members>DeleteBatch</members>
+
+        <members>TestDataFactory</members>
+        <name>ApexClass</name>
+    </types>
+
+    <!-- ========================= -->
+    <!-- CORE TESTS (LOGIC)        -->
+    <!-- ========================= -->
+    <types>
+        <members>AsyncExecutorTest</members>
+        <members>AdminFacadeTest</members>
+        <members>QueryServiceTest</members>
+        <members>ExportServiceTest</members>
+        <members>AsyncJobsSmokeTest</members>
+        <name>ApexClass</name>
+    </types>
+
+    <!-- ========================= -->
+    <!-- COVERAGE-ONLY TESTS       -->
+    <!-- ========================= -->
+    <types>
+        <!-- Executor -->
+        <members>AsyncExecutorCoverageTest</members>
+        <members>AsyncExecutorFinalCoverageTest</members>
+
+        <!-- Executor Result / Enums -->
+        <members>AsyncExecutorResultTest</members>
+        <members>AsyncExecutorResultCoverageTest</members>
+        <members>AsyncExecutorResultFinalCoverageTest</members>
+        <members>AsyncExecutionModeTest</members>
+
+        <!-- Queue / Batch -->
+        <members>UpdateQueueableCoverageTest</members>
+        <members>UpdateQueueableFinalCoverageTest</members>
+        <members>UpdateBatchCoverageTest</members>
+
+        <members>InsertQueueableTest</members>
+        <members>InsertBatchTest</members>
+        <members>DeleteQueueableTest</members>
+        <members>DeleteBatchTest</members>
+
+        <!-- Facade -->
+        <members>AdminFacadeCoverageTest</members>
+        <members>AdminFacadeMoreCoverageTest</members>
+
+        <!-- Config / Exceptions -->
+        <members>AsyncConfigTest</members>
+        <members>AsyncConfigProviderCoverageTest</members>
+        <members>AsyncConfigExceptionTest</members>
+        <members>AdminLimitExceptionTest</members>
+
+        <!-- Utils -->
+        <members>DmlServiceTest</members>
+
+        <!-- Export -->
+        <members>ExportServiceMicroTest</members>
+        <members>ExportServiceCoverageTest</members>
+
+        <!-- Factory -->
+        <members>TestDataFactoryTest</members>
+        <members>TestDataFactoryCoverageTest</members>
+
+        <name>ApexClass</name>
+    </types>
+
+    <version>65.0</version>
+</Package>

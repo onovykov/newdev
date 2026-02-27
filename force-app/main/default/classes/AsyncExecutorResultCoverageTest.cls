@@ -1,77 +1,49 @@
 @IsTest
 public class AsyncExecutorResultCoverageTest {
+
     @IsTest
-    static void cover() {
+    static void coverBehaviorMethods() {
         AsyncExecutorResult r = new AsyncExecutorResult();
+
+        // empty
+        System.assertEquals(true, r.isEmpty());
+
+        // SYNC
         r.mode = AsyncExecutionMode.SYNC;
         r.recordCount = 1;
-        System.assertNotEquals(null, r.toDebugString());
+        System.assertEquals(false, r.isEmpty());
+        System.assertEquals(false, r.isAsync());
+        System.assertEquals(true, r.isSuccess());
+
+        // QUEUEABLE
+        r.mode = AsyncExecutionMode.QUEUEABLE;
+        System.assertEquals(true, r.isAsync());
+
+        // BATCH
+        r.mode = AsyncExecutionMode.BATCH;
+        System.assertEquals(true, r.isAsync());
+
+        // NOOP
+        r.mode = AsyncExecutionMode.NOOP;
+        System.assertEquals(false, r.isSuccess());
     }
 
     @IsTest
-    static void coverAllFields() {
-
+    static void coverSerialization() {
         AsyncExecutorResult r = new AsyncExecutorResult();
+
         r.mode = AsyncExecutionMode.SYNC;
         r.recordCount = 5;
         r.message = 'ok';
+        r.executedAt = System.now();
         r.asyncJobId = UserInfo.getUserId();
-        r.configName = 'Default';
-        r.executedAt = System.now();
+        r.configName = 'CFG';
 
-        String s = r.toDebugString();
-        System.assert(s.contains('SYNC'));
-    }  
-    
-    @IsTest
-    static void coverPojoAndToString() {
-        AsyncExecutorResult r = new AsyncExecutorResult();
-        r.mode = AsyncExecutionMode.SYNC;
-        r.recordCount = 3;
-        r.message = 'ok';
-        r.executedAt = DateTime.now();
-        r.configName = 'Default_Setting';
+        String s1 = r.toString();
+        String s2 = r.toDebugString();
 
-        System.assertEquals(3, r.recordCount);
-
-        // якщо в класі є toString() — це підніме coverage
-        String s = String.valueOf(r);
-        System.assertNotEquals(null, s);
+        System.assertNotEquals(null, s1);
+        System.assertNotEquals(null, s2);
+        System.assert(s2.contains('recordCount'));
     }
-    
-    @IsTest
-    static void coverAllFields2() {
-        AsyncExecutorResult r = new AsyncExecutorResult();
-
-        r.mode        = AsyncExecutionMode.SYNC;
-        r.recordCount = 123;
-        r.message     = 'ok';
-        r.asyncJobId  = '707000000000AAA';
-        r.executedAt  = DateTime.now();
-        r.configName  = 'CFG_TEST';
-
-        System.assertEquals(AsyncExecutionMode.SYNC, r.mode);
-        System.assertEquals(123, r.recordCount);
-        System.assertEquals('ok', r.message);
-        System.assertEquals('CFG_TEST', r.configName);
-    } 
-    
-    @IsTest
-    static void coverDto() {
-        AsyncExecutorResult r = new AsyncExecutorResult();
-
-        r.mode = AsyncExecutionMode.SYNC;
-        r.recordCount = 5;
-        r.message = 'ok';
-        r.asyncJobId = '707000000000001';
-        r.executedAt = System.now();
-        r.configName = 'Default';
-
-        System.assertEquals(5, r.recordCount);
-        System.assertEquals('ok', r.message);
-        System.assertEquals(
-            AsyncExecutionMode.SYNC,
-            r.mode
-        );
-    }    
 }

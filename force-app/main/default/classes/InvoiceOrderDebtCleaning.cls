@@ -1,44 +1,32 @@
 public with sharing class InvoiceOrderDebtCleaning
     implements Database.Batchable<SObject>, Database.Stateful {
 
-    private List<ERPMessageParser.InvoiceOrderDebtMessageData> source;
-    private String origin = 'unknown';
-    private Integer retry = 0, retryMax = 6, retryDelayMin = 10;
+    private final InvoiceOrderDebtJobConfig cfg;
 
-    // Лічильники для статистики
-    Integer deletedOk = 0, alreadyDeleted = 0, otherErr = 0;
+    private Integer deletedOk = 0, alreadyDeleted = 0, otherErr = 0;
 
-    // ЗВОРОТНО-СУМІСНИЙ КОНСТРУКТОР (старі виклики з одним аргументом)
-    // DO NOT REMOVE: лишаємо для сумісності зі старим кодом
+    // DO NOT REMOVE: зворотна сумісність зі старим кодом
     public InvoiceOrderDebtCleaning(List<ERPMessageParser.InvoiceOrderDebtMessageData> src) {
-        this(src, 'unknown', 0, 6, 10);
+        this(src, 'unknown', 0, 6);
     }
 
-    // Поточний з originLabel
     public InvoiceOrderDebtCleaning(
         List<ERPMessageParser.InvoiceOrderDebtMessageData> src,
         String originLabel
     ) {
-        this(src, originLabel, 0, 6, 10);
+        this(src, originLabel, 0, 6);
     }
 
-    // Базовий із усіма параметрами
     public InvoiceOrderDebtCleaning(
         List<ERPMessageParser.InvoiceOrderDebtMessageData> src,
         String originLabel,
         Integer retry,
-        Integer retryMax,
-        Integer retryDelayMin
+        Integer retryMax
     ) {
-        this.source = src;
-        this.origin = String.isBlank(originLabel) ? 'unknown' : originLabel;
-        this.retry = (retry == null) ? 0 : retry;
-        this.retryMax = (retryMax == null) ? 6 : retryMax;
-        this.retryDelayMin = (retryDelayMin == null) ? 10 : retryDelayMin;
+        this.cfg = new InvoiceOrderDebtJobConfig(src, originLabel, retry, retryMax);
     }
 
     public Database.QueryLocator start(Database.BatchableContext bc) {
-        // шукаємо інший активний job цього ж класу
         List<AsyncApexJob> others = [
             SELECT Id
             FROM AsyncApexJob
@@ -49,14 +37,12 @@ public with sharing class InvoiceOrderDebtCleaning
             LIMIT 1
         ];
         if (!others.isEmpty()) {
-            // План А: ретрі через Queueable
-            if (retry < retryMax) {
+            if (cfg.retry < cfg.retryMax) {
                 System.enqueueJob(
-                    new InvoiceOrderDebtRetryQueueable(source, origin, retry + 1, retryMax)
+                    new InvoiceOrderDebtRetryQueueable(cfg.source, cfg.origin, cfg.retry + 1, cfg.retryMax)
                 );
             }
-            // культурний вихід (порожній QueryLocator)
-            return Database.getQueryLocator([SELECT Id FROM InvoiceOrderDebt__c WHERE Id = null]);
+            return Database.getQueryLocator([SELECT Id FROM InvoiceOrderDebt__c WHERE Id = NULL]);
         }
 
         Datetime dt = Datetime.now().addMinutes(-15);
@@ -68,9 +54,6 @@ public with sharing class InvoiceOrderDebtCleaning
     }
 
     public void execute(Database.BatchableContext bc, List<SObject> scope) {
-        if (scope == null || scope.isEmpty()) return;
-
-        // Partial delete
         Database.DeleteResult[] results = Database.delete(scope, /* allOrNone */ false);
 
         for (Database.DeleteResult r : results) {
@@ -99,7 +82,6 @@ public with sharing class InvoiceOrderDebtCleaning
             LIMIT 1
         ];
 
-        // Шукаємо CronTrigger також у батьківському job (для scheduleBatch)
         CronTrigger ct;
         if (j.CronTriggerId != null) {
             ct = [
@@ -125,20 +107,8 @@ public with sharing class InvoiceOrderDebtCleaning
             }
         }
 
-        System.debug(LoggingLevel.INFO,
-            'InvoiceOrderDebtCleaning finish — origin=' + origin +
-            ', jobId=' + j.Id +
-            ', by=' + j.CreatedBy.Name +
-            ', jobType=' + j.JobType +
-            ', viaScheduler=' + (ct != null) +
-            (ct != null ? ', nextFire=' + ct.NextFireTime : '') +
-            '; stats: deleted=' + deletedOk +
-            ', alreadyDeleted=' + alreadyDeleted +
-            ', otherErrors=' + otherErr
-        );
-
-        if (source != null && !source.isEmpty()) {
-            Database.executeBatch(new InvoiceOrderDebtBatch(source), 1000);
+        if (cfg.source != null && !cfg.source.isEmpty()) {
+            Database.executeBatch(new InvoiceOrderDebtBatch(cfg.source), 1000);
         }
     }
 }

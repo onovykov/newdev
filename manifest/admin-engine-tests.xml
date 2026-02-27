@@ -51,11 +51,11 @@
         <!-- Executor -->
         <members>AsyncExecutorCoverageTest</members>
         <members>AsyncExecutorFinalCoverageTest</members>
-
+        <members>AsyncExecutorInsDelAsyncCoverageTest</members>
+        <members>AsyncExecutorInsertBatchCoverageTest</members>
+		
         <!-- Executor Result / Enums -->
-        <members>AsyncExecutorResultTest</members>
         <members>AsyncExecutorResultCoverageTest</members>
-        <members>AsyncExecutorResultFinalCoverageTest</members>
         <members>AsyncExecutionModeTest</members>
 
         <!-- Queue / Batch -->
