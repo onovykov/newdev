@@ -7,11 +7,11 @@ public class AccountCache {
             'local_AccountCache'
         );
 
-    public static Id getByExternalId(String extId) {
+    public static Id getOne(String extId) {
         return CACHE.getOne(extId);
     }
 
-    public static Map<String, Id> getByExternalIds(Set<String> extIds) {
+    public static Map<String, Id> getMany(Set<String> extIds) {
         return CACHE.getMany(extIds, true);
     }
 }

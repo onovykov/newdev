@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+
+    <types>
+        <members>ERPInboundController</members>
+        <members>ERPtoSF</members>
+        <members>InboundBatchCoordinator</members>
+        <members>InboundBatchAssembler</members>
+        <members>InboundBatchFinalizer</members>
+        <members>InboundBatchStatusProvider</members>
+        <members>AsyncConfigProvider</members>
+        <members>IntegrationOrchestrator</members>
+        <members>IntegrationContext</members>
+        <members>IntegrationDirection</members>
+        <members>IntegrationResolution</members>
+        <members>IntegrationDomainException</members>
+        <members>IIntegrationHandler</members>
+
+        <members>IntegrationResolutionTest</members>
+        <members>IntegrationOrchestratorTest</members>
+
+        <members>InboundBatchAssemblerTest</members>
+        <members>InboundBatchAssemblerOutOfOrderTest</members>
+
+        <members>InboundBatchCoordinatorTest</members>
+        <members>InboundBatchFinalizerTest</members>
+
+        <members>InboundBatchDuplicatePartTest</members>
+        <members>InboundBatchTimeoutTest</members>
+
+        <members>InboundBatchPoisonMessageTest</members>
+        <members>InboundBatchPartialProcessingTest</members>
+
+        <members>InboundBatchIdempotencyTest</members>
+        <members>AsyncConfigProviderTest</members>
+		
+        <members>InboundBatchStatusProviderTest</members>
+        <members>IntegrationContextTest</members>
+
+        <members>IntegrationPipelineTest</members>
+        <members>ERPInboundControllerTest</members>
+		
+        <members>ERPtoSFTest</members>
+
+        <name>ApexClass</name>
+    </types>
+
+    <version>65.0</version>
+</Package>

@@ -1,0 +1,1 @@
+public class StageEngineConfigurationException extends Exception {}

@@ -83,6 +83,7 @@ public class ERPMessageHandler  {
             }
             /*==========================================*/
             when 'ERP-SF_OpportunityData' {
+            /*
                 // 1) Прийом/реєстрація транспортної частини
                 InboundBatchCoordinator.Result r = InboundBatchCoordinator.acceptPart(requestBody);
 
@@ -257,8 +258,8 @@ public class ERPMessageHandler  {
                     ErrorService.handle('ERR_INT_OPPDATA_ERPMSGHANDLER', opp, e);
                     return;
                 }
-
-            }
+            */
+            } 
 
             when 'ERP-SF_Sync_Result' {
                 ERPRequestParser.ExecuteResponce parsedIdResponse = (ERPRequestParser.ExecuteResponce) JSON.deserialize(requestBody, ERPRequestParser.ExecuteResponce.class);

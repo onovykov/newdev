@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>OrderItemStagePriority__mdt__mdt.Cancelled</members>
+        <members>OrderItemStagePriority__mdt__mdt.Closed</members>
+        <members>OrderItemStagePriority__mdt__mdt.Drafting</members>
+        <members>OrderItemStagePriority__mdt__mdt.Hold</members>
+        <members>OrderItemStagePriority__mdt__mdt.Placed</members>
+        <name>CustomMetadata</name>
+    </types>
+    <version>59.0</version>
+</Package>

@@ -12,7 +12,7 @@ public with sharing class AsyncConfigProvider {
      */
     public static AsyncConfig getDefault() {
         List<Async_Config__mdt> cfgs = [
-            SELECT SyncLimit__c, QueueLimit__c, BatchSize__c
+            SELECT SyncLimit__c, QueueLimit__c, BatchSize__c, Timeout__c
             FROM Async_Config__mdt
             WHERE IsDefault__c = true
             LIMIT 1
@@ -22,7 +22,7 @@ public with sharing class AsyncConfigProvider {
             throw new AsyncConfigException(
                 'No default Async_Config__mdt found (IsDefault__c = true)'
             );
-        }
+        }       
 
         return toConfig(cfgs[0]);
     }
@@ -42,7 +42,7 @@ public with sharing class AsyncConfigProvider {
             throw new AsyncConfigException(
                 'Async_Config__mdt not found: ' + developerName
             );
-        }
+        }      
 
         return toConfig(cfg);
     }
@@ -56,6 +56,7 @@ public with sharing class AsyncConfigProvider {
         c.syncLimit  = (Integer) cfg.SyncLimit__c;
         c.queueLimit = (Integer) cfg.QueueLimit__c;
         c.batchSize  = (Integer) cfg.BatchSize__c;
+        c.timeout = (Integer) cfg.Timeout__c;
 
         validate(c);
         return c;
@@ -76,5 +77,9 @@ public with sharing class AsyncConfigProvider {
                 'syncLimit must be < queueLimit'
             );
         }
+
+        if (c.timeout == null || c.timeout <= 0) {
+            throw new AsyncConfigException('timeout must be > 0');
+        }          
     }
 }

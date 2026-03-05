@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>OrderStageBitmaskRule__mdt.Active</members>
+        <members>OrderStageBitmaskRule__mdt.Closed</members>
+        <members>OrderStageBitmaskRule__mdt.Draft</members>
+        <members>OrderStageBitmaskRule__mdt.Freezed</members>
+        <members>OrderStageBitmaskRule__mdt.Progress</members>
+        <members>OrderStageBitmaskRule__mdt.Refused</members>
+        <name>CustomMetadata</name>
+    </types>
+    <version>59.0</version>
+</Package>

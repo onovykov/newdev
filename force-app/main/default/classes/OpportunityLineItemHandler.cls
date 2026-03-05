@@ -269,6 +269,9 @@ public class OpportunityLineItemHandler extends TriggerHandler implements ITrigg
 	}
 
 	public void beforeInsert(SObject so) {
+        if (TriggerControl.isDisabled('OpportunityLineItemHandler')) {
+            return;
+        }		
 		System.debug('beforeInsertOLI');
 		OpportunityLineItem oli = (OpportunityLineItem) so;
 			
@@ -301,6 +304,14 @@ public class OpportunityLineItemHandler extends TriggerHandler implements ITrigg
 	}
 
 	public void beforeUpdate(SObject oldSo, SObject so) {
+        if (TriggerControl.isDisabled('OpportunityLineItemHandler')) {
+            return;
+        }
+				
+        if (TriggerControl.isDisabled('OpportunityLineItemHandler')) {
+            return;
+        }
+
 		System.debug('beforeUpdateOLI');
 		
 		OpportunityLineItem oli = (OpportunityLineItem) so;	
@@ -357,6 +368,8 @@ public class OpportunityLineItemHandler extends TriggerHandler implements ITrigg
 			}
 		}
 
+		//Boolean isRefused = so.ID_ERP__c.startsWith('Refused');
+		//fillNPP_ERP(oli, oli.ID_ERP__c.startsWith('Refused'));
 		fillNPP_ERP(oli);
 		calculateMargin(oli);
 		setSecondChoice(oli);
@@ -616,12 +629,22 @@ public class OpportunityLineItemHandler extends TriggerHandler implements ITrigg
 			}
 		}
     }
-
+	//--- Формування ID_ERP__c ітема оппи 
 	public void fillNPP_ERP(OpportunityLineItem oli) {		
-		if (oppMap2.size() > 0 && String.isNotBlank(oppMap2.get(oli.OpportunityId).ID_ERP__c) && String.isNotBlank(oli.NPP_ERP__c)) {
+		if (oppMap2.size() > 0 && String.isNotBlank(oppMap2.get(oli.OpportunityId).ID_ERP__c) && 
+		    String.isNotBlank(oli.NPP_ERP__c)) {
 			oli.ID_ERP__c = oppMap2.get(oli.OpportunityId).ID_ERP__c + '-' + oli.NPP_ERP__c;
 		}
 	}
+	//--- Перевизначений метод для Refused іткмів (заміна продукту)
+	public void fillNPP_ERP(OpportunityLineItem oli, Boolean isRefused) {
+		if(!isRefused)  {
+			if (oppMap2.size() > 0 && String.isNotBlank(oppMap2.get(oli.OpportunityId).ID_ERP__c) && 
+				String.isNotBlank(oli.NPP_ERP__c)) {
+				oli.ID_ERP__c = oppMap2.get(oli.OpportunityId).ID_ERP__c + '-' + oli.NPP_ERP__c;
+			}
+		}
+	}	
 		
 	public void calculateMargin(OpportunityLineItem oli) {
 		if (oli.Quantity != null && oli.Quantity > 0 && oli.Margin_t__c != null && oli.Margin_t__c > 0) {
@@ -862,17 +885,16 @@ public class OpportunityLineItemHandler extends TriggerHandler implements ITrigg
               //Id addProductionQuoteAddShopQuotaId = Database.executeBatch(addProductionQuoteAddShopQuota,1);  
             }
             
-            
+
             if(Trigger.isUpdate){
-                  DeleteExtraShopQuotaOpportunity deleteExtraShopQuotas = new DeleteExtraShopQuotaOpportunity(existingQuoteTypesIds,oppIds);
-				  ID jobID = System.enqueueJob(deleteExtraShopQuotas); 
+                  //DeleteExtraShopQuotaOpportunity deleteExtraShopQuotas = new DeleteExtraShopQuotaOpportunity(existingQuoteTypesIds,oppIds);
+				  //ID jobID = System.enqueueJob(deleteExtraShopQuotas); 
             }
         
             if(trigger.isDelete){
-                DeleteExtraShopQuotaOpportunity deleteExtraShopQuotas = new DeleteExtraShopQuotaOpportunity(existingQuoteTypesIds,deleteOliIdsPOpp);
-				  ID jobID3 = System.enqueueJob(deleteExtraShopQuotas); 
-     //       DeleteExtraShopQuotaOpportunityOnDelete deleteExtraShopQuotas = new DeleteExtraShopQuotaOpportunityOnDelete(deleteOliIds,deleteOliIdsPOpp);
-    //      ID jobID1 = System.enqueueJob(deleteExtraShopQuotas);
+                //DeleteExtraShopQuotaOpportunity deleteExtraShopQuotas = new DeleteExtraShopQuotaOpportunity(existingQuoteTypesIds,deleteOliIdsPOpp);
+				//  ID jobID3 = System.enqueueJob(deleteExtraShopQuotas); 
+			
             }
             
         	}catch(Exception e){

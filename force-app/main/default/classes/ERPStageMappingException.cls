@@ -1,0 +1,1 @@
+public class ERPStageMappingException extends Exception {}

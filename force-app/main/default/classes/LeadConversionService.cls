@@ -1,4 +1,4 @@
-//===== Сервіс консертації кастомного ліда - єдина точка відповідальності =====
+//===== Сервіс конвертації кастомного ліда - єдина точка відповідальності
 public with sharing class LeadConversionService {
 
     public static void convert(EnquiryContext ctx) {

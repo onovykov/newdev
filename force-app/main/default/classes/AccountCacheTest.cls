@@ -18,7 +18,7 @@ private class AccountCacheTest {
             LIMIT 1
         ];
 
-        Id id = AccountCache.getByExternalId(a.ID_ERP__c);
+        Id id = AccountCache.getOne(a.ID_ERP__c);
         System.assertEquals(a.Id, id);
     }
 }

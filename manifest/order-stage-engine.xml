@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>StageEngine</members>
+        <members>OrderStageMetadataCache</members>
+        <members>OrderStageProvider</members>
+        <members>OrderItemStageResolver</members>
+        <members>StageEngineConfigurationException</members>
+        <members>ERPStageMappingException</members>
+        <name>ApexClass</name>
+    </types>
+
+    <types>
+        <members>StageEngineTest</members>
+        <members>OrderStageMetadataCacheTest</members>
+        <members>OrderStageProviderTest</members>
+        <members>OrderItemStageResolverTest</members>
+        <members>StageEngineAllMasksTest</members>
+		<members>StageEngineConfigurationExceptionTest</members>
+        <name>ApexClass</name>
+    </types>
+
+    <version>61.0</version>
+
+</Package>
