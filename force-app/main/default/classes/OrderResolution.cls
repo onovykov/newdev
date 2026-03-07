@@ -1,4 +1,3 @@
-// OrderResolution.cls
 public class OrderResolution extends IntegrationResolution {
 
     public Order order { get; private set; }

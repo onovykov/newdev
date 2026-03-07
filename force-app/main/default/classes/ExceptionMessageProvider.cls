@@ -15,12 +15,19 @@ public class ExceptionMessageProvider {
             SELECT DeveloperName, Handler__c, MessageText__c
             FROM ExceptionMessages__mdt
         ]) {
+
+            // lookup by DeveloperName
             byDevName.put(m.DeveloperName, m);
 
-            String compositeKey =
-                m.Handler__c + '|' + m.MessageText__c;
+            // composite key: Handler + DeveloperName
+            if (!String.isBlank(m.Handler__c)
+                && !String.isBlank(m.DeveloperName)) {
 
-            byHandlerAndCode.put(compositeKey, m);
+                String compositeKey =
+                    m.Handler__c + '|' + m.DeveloperName;
+
+                byHandlerAndCode.put(compositeKey, m);
+            }
         }
     }
 
@@ -28,6 +35,10 @@ public class ExceptionMessageProvider {
     @TestVisible
     public static String getByDeveloperName(String devName) {
         ensureLoaded();
+
+        if (String.isBlank(devName)) {
+            return null;
+        }
 
         if (!byDevName.containsKey(devName)) {
             return devName; // safe fallback
@@ -37,12 +48,17 @@ public class ExceptionMessageProvider {
     }
 
     // ---------- DOMAIN + CODE ----------
-
     public static String getByHandlerAndCode(
         String handler,
         String code
     ) {
         ensureLoaded();
+
+        if (String.isBlank(handler)
+            || String.isBlank(code)) {
+
+            return handler + ':' + code;
+        }
 
         String key = handler + '|' + code;
 
@@ -54,7 +70,6 @@ public class ExceptionMessageProvider {
     }
 
     // ---------- BUILDERS ----------
-    /*** Приватний хелпер ***/
     private static String build(
         String base,
         String value,
@@ -70,7 +85,7 @@ public class ExceptionMessageProvider {
 
         return base + '=' + value;
     }
-    /*** Білдери ***/
+
     public static String buildByDeveloperName(
         String devName,
         String value,
