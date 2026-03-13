@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Americas</masterLabel>
+        <translation>Америка</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>CIS</masterLabel>
+        <translation>СНГ</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Customs Union</masterLabel>
+        <translation>ТС</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>ETA</masterLabel>
+        <translation><!-- ETA --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Europe</masterLabel>
+        <translation>Европа</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>KLW</masterLabel>
+        <translation>Колеса</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>MENA</masterLabel>
+        <translation>БВиСА</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Machinery</masterLabel>
+        <translation><!-- Machinery --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Salesforce Admins</masterLabel>
+        <translation><!-- Salesforce Admins --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Ukraine</masterLabel>
+        <translation>Украина</translation>
+    </valueTranslation>
+</GlobalValueSetTranslation>

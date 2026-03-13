@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Opportunities_CIS</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Country__c</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.QUANTITY</columns>
+    <columns>Margin__c</columns>
+    <columns>Owner__c</columns>
+    <columns>ITENumber__c</columns>
+    <columns>AdditionalNumber__c</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>MarketSegment__c</field>
+        <operation>equals</operation>
+        <value>00010</value>
+    </filters>
+    <label>All Opportunities (CIS)</label>
+    <sharedTo>
+        <group>CIS</group>
+    </sharedTo>
+</ListView>

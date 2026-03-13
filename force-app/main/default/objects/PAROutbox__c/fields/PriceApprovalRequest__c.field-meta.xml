@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PriceApprovalRequest__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Price Approval Request</label>
+    <referenceTo>PriceApprovalRequest__c</referenceTo>
+    <relationshipLabel>PAR Outbox</relationshipLabel>
+    <relationshipName>PAR_Outbox</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

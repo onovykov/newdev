@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Статус рассмотрения позиции Запроса финансовым отделом</help>
+    <label>Фин. статус</label>
+    <name>FinStatus__c</name>
+</CustomFieldTranslation>

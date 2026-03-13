@@ -98,7 +98,7 @@ public class LinkProductionLotsToProdWeeksQueueable implements Queueable, Databa
             ', toLink=' + linked + ', unchanged=' + unchanged +
             ', noMatchingWeek=' + skippedNoMatch);
 
-        // 5) DML по чанках
+        // 5) DML по чанках (без subList та end)
         if (!dryRun && !toUpdate.isEmpty()) {
             updateInChunks(toUpdate, 200);
         } else if (dryRun && !toUpdate.isEmpty()) {
@@ -122,7 +122,7 @@ public class LinkProductionLotsToProdWeeksQueueable implements Queueable, Databa
             Integer endIdx = i + chunkSize;
             if (endIdx > n) endIdx = n;
 
-            // формуємо "зріз" вручну
+            // формуємо "зріз" вручну (без subList)
             List<ProductionLot__c> slice = new List<ProductionLot__c>();
             for (Integer j = i; j < endIdx; j++) {
                 slice.add(rows[j]);

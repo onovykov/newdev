@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Informs assigned back office specialist that the opportunity was cancelled</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Opportunity Cancellation Email</name>
+    <style>none</style>
+    <subject>Opportunity was cancelled in SF</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

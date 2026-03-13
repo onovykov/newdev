@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Our_Inner_Firms</fullName>
+    <columns>ID_ERP__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>MarketSegment__c</columns>
+    <columns>ACCOUNT.ADDRESS1_COUNTRY_CODE</columns>
+    <columns>ACCOUNT.ADDRESS1_CITY</columns>
+    <columns>ACCOUNT.ADDRESS1_STREET</columns>
+    <columns>ACCOUNT.ADDRESS1_ZIP</columns>
+    <columns>Email__c</columns>
+    <columns>ACCOUNT.PHONE1</columns>
+    <columns>Activity_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ACCOUNT.TYPE</field>
+        <operation>equals</operation>
+        <value>Inner Firm</value>
+    </filters>
+    <filters>
+        <field>ID_ERP__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Activity_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Cancelled</value>
+    </filters>
+    <label>All Our Inner Firms</label>
+    <sharedTo>
+        <group>ADMIN</group>
+        <group>SeniorManagementTeam</group>
+    </sharedTo>
+</ListView>

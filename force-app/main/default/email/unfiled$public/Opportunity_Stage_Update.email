@@ -1,0 +1,13 @@
+Hi!
+
+The following Opportunity has been toggled to Closed Won Stage
+
+Opportunity Name: {!Opportunity.Name}
+Link: {!Opportunity.Link}
+Account: {!Opportunity.Account}
+Product: {!Opportunity.Product_Family__c}
+Quantity Mt: {!Opportunity.TotalOpportunityQuantity}
+Country: {!Opportunity.Country__c}
+Sales Manager: {!Opportunity.OwnerFullName}
+
+Have a great day!

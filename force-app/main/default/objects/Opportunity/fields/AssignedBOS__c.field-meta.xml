@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AssignedBOS__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Assigned back office specialist</description>
+    <inlineHelpText>Assigned back office specialist</inlineHelpText>
+    <label>Assigned BO specialist</label>
+    <lookupFilter>
+        <active>false</active>
+        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <filterItems>
+            <field>User.Profile.UserType</field>
+            <operation>notEqual</operation>
+            <value>CSPLitePortal</value>
+        </filterItems>
+        <filterItems>
+            <field>User.SalesDivision__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.MarketSegment__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>User.SalesDivision__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.CrossMarketSegment__c</valueField>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Opportunities_AssignedBOS</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

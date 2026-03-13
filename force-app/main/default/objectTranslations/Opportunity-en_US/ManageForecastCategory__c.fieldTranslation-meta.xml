@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If checked then user can manually assign forecast category to the opportunity disregarding its current stage (except closed). --></help>
+    <label><!-- Manage Forecast Category --></label>
+    <name>ManageForecastCategory__c</name>
+</CustomFieldTranslation>

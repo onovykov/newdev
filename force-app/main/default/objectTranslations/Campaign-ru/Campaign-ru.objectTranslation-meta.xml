@@ -5,4 +5,16 @@
         <label>Дочерняя кампания</label>
         <name>Child_Campaign</name>
     </quickActions>
+    <webLinks>
+        <label><!-- Mass_Delete_Records --></label>
+        <name>Mass_Delete_Records</name>
+    </webLinks>
+    <webLinks>
+        <label>Посмотреть всех участников кампании</label>
+        <name>ViewAllCampaignMembers</name>
+    </webLinks>
+    <webLinks>
+        <label>Просмотреть отчет действий кампании</label>
+        <name>ViewCampaignInfluenceReport</name>
+    </webLinks>
 </CustomObjectTranslation>

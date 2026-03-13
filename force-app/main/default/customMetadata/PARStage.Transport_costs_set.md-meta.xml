@@ -16,6 +16,6 @@
     </values>
     <values>
         <field>StageName__c</field>
-        <value xsi:type="xsd:string">Встановлено транспортні витрати</value>
+        <value xsi:type="xsd:string">Встановлено транспортні видатки</value>
     </values>
 </CustomMetadata>

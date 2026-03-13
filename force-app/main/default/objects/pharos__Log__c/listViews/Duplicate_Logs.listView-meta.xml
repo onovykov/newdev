@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Duplicate_Logs</fullName>
+    <columns>NAME</columns>
+    <columns>ITENumber__c</columns>
+    <columns>Account_Name__c</columns>
+    <columns>ID_ERP__c</columns>
+    <columns>pharos__Created_At__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account_Name__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>Duplicate Logs</label>
+</ListView>

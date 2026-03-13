@@ -27,6 +27,10 @@
                 <behavior>Edit</behavior>
                 <field>Comment__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>HistoryHash__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

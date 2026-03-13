@@ -56,4 +56,27 @@ public class QuestionTriggerHandlerTest {
 
         Assert.isTrue(expectedExceptionThrown, 'Exception should be thrown');
     }
+
+    @IsTest
+    static void testDeleteQuestion() {
+        Questionnaire__c questionnaire = new Questionnaire__c(Name = 'Test Name', Status__c = 'Draft');
+        insert questionnaire;
+
+        Question__c question = new Question__c(Name = 'Question Name', Questionnaire__c = questionnaire.Id);
+        insert question;
+
+        // Тест на Delete - не повинно бути помилки
+        Boolean expectedExceptionThrown = false;
+        try {
+            delete question;
+        } catch(Exception e) {
+            expectedExceptionThrown = true;
+        }
+
+        Assert.isFalse(expectedExceptionThrown, 'Delete should succeed without exception');
+
+        // Перевірити що запис видалено
+        List<Question__c> deletedQuestions = [SELECT Id FROM Question__c WHERE Id = :question.Id];
+        Assert.isTrue(deletedQuestions.isEmpty(), 'Question should be deleted');
+    }
 }

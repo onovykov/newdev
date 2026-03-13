@@ -207,6 +207,46 @@
             <field>Status__c</field>
             <table>Project__c.Opportunities__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CrossMarketComplete__c</field>
+            <table>Project__c.Opportunities__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CrossMarketTouched__c</field>
+            <table>Project__c.Opportunities__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CrossMarketNotified__c</field>
+            <table>Project__c.Opportunities__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CrossMarketWonNotified__c</field>
+            <table>Project__c.Opportunities__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CrossMarketWonNotifiedAt__c</field>
+            <table>Project__c.Opportunities__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CrossMarketNotifiedAt__c</field>
+            <table>Project__c.Opportunities__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BidGuarantees__c</field>
+            <table>Project__c.Opportunities__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>WheelContract__c</field>
+            <table>Project__c.Opportunities__r</table>
+        </columns>
         <masterLabel>Opportunities</masterLabel>
     </sections>
     <sections>
@@ -242,5 +282,13 @@
             <table>Project__c.Opportunities__r.OpportunityLineItems</table>
         </columns>
         <masterLabel>Opportunity Products</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>WheelContractLine__c</field>
+            <table>Project__c.Opportunities__r.OpportunityLineItems</table>
+        </columns>
+        <masterLabel>Opportunity Product</masterLabel>
     </sections>
 </ReportType>

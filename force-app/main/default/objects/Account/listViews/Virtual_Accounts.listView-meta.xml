@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Virtual_Accounts</fullName>
+    <columns>ID_ERP__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>FullName__c</columns>
+    <columns>MarketSegment__c</columns>
+    <columns>ACCOUNT.CURRENCY_ISO_CODE</columns>
+    <columns>Activity_Type__c</columns>
+    <columns>Under_Sanctions__c</columns>
+    <columns>ACCOUNT.TYPE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ACCOUNT.TYPE</field>
+        <operation>equals</operation>
+        <value>Virtual</value>
+    </filters>
+    <filters>
+        <field>Activity_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Unknown</value>
+    </filters>
+    <label>Virtual Accounts (New Clients)</label>
+    <sharedTo></sharedTo>
+</ListView>

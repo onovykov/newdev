@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_Admin_can_change_Activity_type</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    ISCHANGED(Activity_Type__c),
+    NOT($Profile.Name = &quot;System Administrator&quot;),
+    NOT($Profile.Name = &quot;ERP Integration Service&quot;)
+)</errorConditionFormula>
+    <errorMessage>You don&apos;t have permission to edit the Activity Type field.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Questionnaire Recall English</name>
+    <pageDevName>Questionnaire_Recall_English</pageDevName>
+    <relatedEntityType>Questionnaire_Response__c</relatedEntityType>
+    <style>none</style>
+    <subject>Interpipe Survey</subject>
+    <textOnly>&lt; https://interpipe.biz/en/ &gt; 
+
+ &lt; https://interpipe.biz/en/ &gt; 
+
+{{{Questionnaire_Response__c.Salutation__c}}} {{{Questionnaire_Response__c.Respondent__c}}},
+
+We have noticed that you haven’t filled out our Customer Satisfaction Survey yet. So this is a kind reminder as your responses are extremely important for us to improve and serve you better.
+
+Please simply follow the link below. The survey should take up to 10 minutes of your time. 
+
+In case you have any questions or troubles with the survey, please contact the marketing team in response to this email. 
+
+Respectfully, 
+
+Yuliya Kozachenko 
+
+________________ 
+
+Head of Marketing 
+
+Interpipe
+
+yuliya.kozachenko@m.interpipe.biz 
+
++38 (056) 7474 797
+
+Take Survey &lt; https://interpipe.my.site.com/NewCustomerRoom/s/survey?recordId=%7B%7B%7BQuestionnaire_Response__c.Id%7D%7D%7D+ &gt;  &lt; https://zadnipro.dp.ua/en &gt;</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

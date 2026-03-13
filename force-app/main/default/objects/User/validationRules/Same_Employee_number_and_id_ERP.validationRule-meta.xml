@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Same_Employee_number_and_id_ERP</fullName>
+    <active>false</active>
+    <errorConditionFormula>EmployeeNumber != ID_ERP__c</errorConditionFormula>
+    <errorMessage>Employee Number must be same like id ERP</errorMessage>
+</ValidationRule>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AccountDealingStatus</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>DealingStatus__c</columns>
+    <columns>BlockDate__c</columns>
+    <columns>Balance__c</columns>
+    <columns>CurrentMonthReceipts__c</columns>
+    <columns>PastDueDebt__c</columns>
+    <columns>PastDueDebt15More__c</columns>
+    <columns>PermissionDate__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>Account Dealing Status</label>
+    <sharedTo></sharedTo>
+</ListView>

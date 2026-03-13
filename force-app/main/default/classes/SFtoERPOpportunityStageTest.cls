@@ -369,7 +369,7 @@ private class SFtoERPOpportunityStageTest {
     @IsTest
     static void test_getJSONData_id_erp_not_null_written() {
         Opportunity opp = makeOpp(null, 'Prospecting');
-        // Пишемо ID_ERP у пам’яті (без апдейту) і перевіряємо, що він потрапив у JSON
+        // Пишемо ID_ERP у пам'яті (без апдейту) і перевіряємо, що він потрапив у JSON
         opp.Id_ERP__c = 'ERP-42';
 
         String wrapperStr = SFtoERPOpportunityStage.getJSONData(opp);
@@ -378,5 +378,203 @@ private class SFtoERPOpportunityStageTest {
 
         System.assertEquals('ERP-42', (String) innerMap.get('ID_ERP'),
             'ID_ERP має серіалізуватися, коли не null');
+    }
+
+    // ---------- Mock classes for testing ERP integration ----------
+    private class EmptyTicketMock implements WebServiceMock {
+        public void doInvoke(
+            Object stub, Object request, Map<String, Object> response,
+            String endpoint, String soapAction, String requestName,
+            String responseNS, String responseName, String responseType
+        ) {
+            if (requestName == 'LoginEx') {
+                SFToERP.LoginExResponse_element respElement = new SFToERP.LoginExResponse_element();
+                respElement.LoginExResult = '{"Success":true,"Ticket":""}';
+                response.put('response_x', respElement);
+            }
+        }
+    }
+
+    private class SuccessExecuteMock implements WebServiceMock {
+        public void doInvoke(
+            Object stub, Object request, Map<String, Object> response,
+            String endpoint, String soapAction, String requestName,
+            String responseNS, String responseName, String responseType
+        ) {
+            if (requestName == 'LoginEx') {
+                SFToERP.LoginExResponse_element respElement = new SFToERP.LoginExResponse_element();
+                respElement.LoginExResult = '{"Success":true,"Ticket":"test_ticket_123"}';
+                response.put('response_x', respElement);
+            } else if (requestName == 'ExecuteEx') {
+                SFToERP.ExecuteExResponse_element respElement = new SFToERP.ExecuteExResponse_element();
+                respElement.ExecuteExResult = '{"Success":true,"Comments":"Operation completed"}';
+                response.put('response_x', respElement);
+            }
+        }
+    }
+
+    private class FailureExecuteMock implements WebServiceMock {
+        public void doInvoke(
+            Object stub, Object request, Map<String, Object> response,
+            String endpoint, String soapAction, String requestName,
+            String responseNS, String responseName, String responseType
+        ) {
+            if (requestName == 'LoginEx') {
+                SFToERP.LoginExResponse_element respElement = new SFToERP.LoginExResponse_element();
+                respElement.LoginExResult = '{"Success":true,"Ticket":"test_ticket_456"}';
+                response.put('response_x', respElement);
+            } else if (requestName == 'ExecuteEx') {
+                SFToERP.ExecuteExResponse_element respElement = new SFToERP.ExecuteExResponse_element();
+                respElement.ExecuteExResult = '{"Success":false,"Comments":"ERP validation error"}';
+                response.put('response_x', respElement);
+            }
+        }
+    }
+
+    private class ExecuteCalloutExceptionMock implements WebServiceMock {
+        public void doInvoke(
+            Object stub, Object request, Map<String, Object> response,
+            String endpoint, String soapAction, String requestName,
+            String responseNS, String responseName, String responseType
+        ) {
+            if (requestName == 'LoginEx') {
+                SFToERP.LoginExResponse_element respElement = new SFToERP.LoginExResponse_element();
+                respElement.LoginExResult = '{"Success":true,"Ticket":"test_ticket_789"}';
+                response.put('response_x', respElement);
+            } else if (requestName == 'ExecuteEx') {
+                throw new CalloutException('Network timeout during ExecuteEx');
+            }
+        }
+    }
+
+    private class InvalidJSONMock implements WebServiceMock {
+        public void doInvoke(
+            Object stub, Object request, Map<String, Object> response,
+            String endpoint, String soapAction, String requestName,
+            String responseNS, String responseName, String responseType
+        ) {
+            if (requestName == 'LoginEx') {
+                SFToERP.LoginExResponse_element respElement = new SFToERP.LoginExResponse_element();
+                respElement.LoginExResult = '{"Success":true,"Ticket":"test_ticket_json"}';
+                response.put('response_x', respElement);
+            } else if (requestName == 'ExecuteEx') {
+                SFToERP.ExecuteExResponse_element respElement = new SFToERP.ExecuteExResponse_element();
+                respElement.ExecuteExResult = 'NOT_VALID_JSON{broken';
+                response.put('response_x', respElement);
+            }
+        }
+    }
+
+    // ---------- Tests with WebServiceMock ----------
+    @IsTest
+    static void test_sendJSONData_empty_ticket_sends_status_email() {
+        Opportunity opp = makeOpp(null, 'Qualification');
+        ensureCredentialsOrgDefaults();
+
+        Test.setMock(WebServiceMock.class, new EmptyTicketMock());
+
+        SFtoERPOpportunityStage.testBypassMode = null;
+        SFtoERPOpportunityStage.recipientsOverride = new List<String>{ 'empty_ticket@example.com' };
+        SFtoERPOpportunityStage.testEmailsSent = 0;
+        SFtoERPOpportunityStage.testLastSyncUpdated = false;
+
+        Test.startTest();
+        SFtoERPOpportunityStage.sendJSONData(opp.Id);
+        Test.stopTest();
+
+        SFtoERPOpportunityStage.recipientsOverride = null;
+
+        System.assertEquals(1, SFtoERPOpportunityStage.testEmailsSent,
+            'Empty ticket має надіслати 1 status email');
+        System.assertEquals(false, SFtoERPOpportunityStage.testLastSyncUpdated,
+            'LastSyncERP не має оновлюватися при empty ticket');
+    }
+
+    @IsTest
+    static void test_sendJSONData_success_execute_updates_lastSync() {
+        Opportunity opp = makeOpp(null, 'Qualification');
+        ensureCredentialsOrgDefaults();
+
+        Test.setMock(WebServiceMock.class, new SuccessExecuteMock());
+
+        SFtoERPOpportunityStage.testBypassMode = null;
+        SFtoERPOpportunityStage.testLastSyncUpdated = false;
+
+        Test.startTest();
+        SFtoERPOpportunityStage.sendJSONData(opp.Id);
+        Test.stopTest();
+
+        System.assertEquals(true, SFtoERPOpportunityStage.testLastSyncUpdated,
+            'Success response має встановити testLastSyncUpdated');
+
+        Opportunity updatedOpp = [SELECT Id, LastSyncERP__c FROM Opportunity WHERE Id = :opp.Id];
+        System.assertNotEquals(null, updatedOpp.LastSyncERP__c,
+            'LastSyncERP__c має бути оновлено при успішній відповіді');
+    }
+
+    @IsTest
+    static void test_sendJSONData_failure_execute_sends_status_email() {
+        Opportunity opp = makeOpp(null, 'Qualification');
+        ensureCredentialsOrgDefaults();
+
+        Test.setMock(WebServiceMock.class, new FailureExecuteMock());
+
+        SFtoERPOpportunityStage.testBypassMode = null;
+        SFtoERPOpportunityStage.recipientsOverride = new List<String>{ 'failure@example.com' };
+        SFtoERPOpportunityStage.testEmailsSent = 0;
+        SFtoERPOpportunityStage.testLastSyncUpdated = false;
+
+        Test.startTest();
+        SFtoERPOpportunityStage.sendJSONData(opp.Id);
+        Test.stopTest();
+
+        SFtoERPOpportunityStage.recipientsOverride = null;
+
+        System.assertEquals(1, SFtoERPOpportunityStage.testEmailsSent,
+            'Failure response (Success=false) має надіслати status email');
+        System.assertEquals(false, SFtoERPOpportunityStage.testLastSyncUpdated,
+            'LastSyncERP не має оновлюватися при неуспішній відповіді');
+    }
+
+    @IsTest
+    static void test_sendJSONData_execute_callout_exception_sends_callout_email() {
+        Opportunity opp = makeOpp(null, 'Qualification');
+        ensureCredentialsOrgDefaults();
+
+        Test.setMock(WebServiceMock.class, new ExecuteCalloutExceptionMock());
+
+        SFtoERPOpportunityStage.testBypassMode = null;
+        SFtoERPOpportunityStage.recipientsOverride = new List<String>{ 'callout_ex@example.com' };
+        SFtoERPOpportunityStage.testEmailsSent = 0;
+        SFtoERPOpportunityStage.testLastSyncUpdated = false;
+
+        Test.startTest();
+        SFtoERPOpportunityStage.sendJSONData(opp.Id);
+        Test.stopTest();
+
+        SFtoERPOpportunityStage.recipientsOverride = null;
+
+        System.assertEquals(1, SFtoERPOpportunityStage.testEmailsSent,
+            'ExecuteEx callout exception має надіслати callout exception email');
+        System.assertEquals(false, SFtoERPOpportunityStage.testLastSyncUpdated,
+            'LastSyncERP не має оновлюватися при CalloutException');
+    }
+
+    @IsTest
+    static void test_sendJSONData_invalid_json_response_catches_json_exception() {
+        Opportunity opp = makeOpp(null, 'Qualification');
+        ensureCredentialsOrgDefaults();
+
+        Test.setMock(WebServiceMock.class, new InvalidJSONMock());
+
+        SFtoERPOpportunityStage.testBypassMode = null;
+        SFtoERPOpportunityStage.testLastSyncUpdated = false;
+
+        Test.startTest();
+        SFtoERPOpportunityStage.sendJSONData(opp.Id);
+        Test.stopTest();
+
+        System.assertEquals(false, SFtoERPOpportunityStage.testLastSyncUpdated,
+            'JSONException при парсингу має запобігти оновленню LastSyncERP');
     }
 }

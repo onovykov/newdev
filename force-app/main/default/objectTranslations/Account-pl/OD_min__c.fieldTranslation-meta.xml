@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Minimum outside diameter in millimeters, that the competitor is able to produce. --></help>
+    <label><!-- OD (min) --></label>
+    <name>OD_min__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Products_number</fullName>
+    <active>false</active>
+    <description>An opportunity must have at least one product before placing it to the &quot;Closed won&quot; stage</description>
+    <errorConditionFormula>And (Text(StageName) = &apos;Closed won&apos;, HasOpportunityLineItem = false)</errorConditionFormula>
+    <errorMessage>An opportunity must have at least one product before placing it to the &quot;Closed won&quot; stage</errorMessage>
+</ValidationRule>

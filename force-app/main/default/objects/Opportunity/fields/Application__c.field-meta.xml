@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Application__c</fullName>
+    <inlineHelpText>Application of material</inlineHelpText>
+    <label>Application</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Industry__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetName>Application</valueSetName>
+        <valueSettings>
+            <controllingFieldValue>Fabrication</controllingFieldValue>
+            <controllingFieldValue>Infrastructure</controllingFieldValue>
+            <controllingFieldValue>Residential Construction</controllingFieldValue>
+            <controllingFieldValue>Non-residential Construction</controllingFieldValue>
+            <controllingFieldValue>Machinery</controllingFieldValue>
+            <controllingFieldValue>Distribution</controllingFieldValue>
+            <valueName>Structural</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Infrastructure</controllingFieldValue>
+            <controllingFieldValue>Residential Construction</controllingFieldValue>
+            <controllingFieldValue>Non-residential Construction</controllingFieldValue>
+            <controllingFieldValue>Distribution</controllingFieldValue>
+            <valueName>Sewage</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Infrastructure</controllingFieldValue>
+            <controllingFieldValue>Residential Construction</controllingFieldValue>
+            <controllingFieldValue>Non-residential Construction</controllingFieldValue>
+            <controllingFieldValue>Distribution</controllingFieldValue>
+            <valueName>Firefighting</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Infrastructure</controllingFieldValue>
+            <controllingFieldValue>Residential Construction</controllingFieldValue>
+            <controllingFieldValue>Non-residential Construction</controllingFieldValue>
+            <controllingFieldValue>Distribution</controllingFieldValue>
+            <valueName>Chilled Water</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

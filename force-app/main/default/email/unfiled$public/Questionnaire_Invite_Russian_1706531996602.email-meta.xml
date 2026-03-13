@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Questionnaire Invite Russian</name>
+    <pageDevName>Questionnaire_Invite_Russian</pageDevName>
+    <relatedEntityType>Questionnaire_Response__c</relatedEntityType>
+    <style>none</style>
+    <subject>Опрос Интерпайп</subject>
+    <textOnly>&lt; https://interpipe.biz/en/ &gt; 
+
+ &lt; https://interpipe.biz/en/ &gt; 
+
+{{{Questionnaire_Response__c.Salutation__c}}} {{{Questionnaire_Response__c.Respondent__c}}},
+
+Мы высоко ценим ваше партнерство с Интерпайп, и ваши отзывы играют ключевую роль в улучшении нашей работы. Каждый год мы проводим Опрос Удовлетворенности Клиентов и будем рады вашему участию как одного из избранных клиентов.
+
+Для простоты и удобства опрос доступен в онлайн-формате и займет не более 10 минут вашего времени. Ваше мнение поможет нам улучшить ваш опыт работы с нами и продолжать двигаться в правильном направлении.
+
+Если у вас возникли вопросы, свяжитесь с нашей командой маркетинга в ответ на это письмо. Заранее благодарим за ваше время – мы искренне ценим это!
+
+С уважением, 
+
+Юлия Козаченко 
+
+________________ 
+
+Начальник отдела маркетинга 
+
+Интерпайп
+
+yuliya.kozachenko@m.interpipe.biz 
+
++38 (056) 7474 797
+
+Пройти опрос &lt; https://interpipe.my.site.com/NewCustomerRoom/s/survey?recordId=%7B%7B%7BQuestionnaire_Response__c.Id%7D%7D%7D+ &gt;  &lt; https://zadnipro.dp.ua/en &gt;</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

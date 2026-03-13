@@ -1,0 +1,304 @@
+<template>
+    <lightning-card title="Notification Service — демо" icon-name="utility:notification">
+        <!-- Busy overlay -->
+        <template if:true={isBusy}>
+            <div class="busy">
+                <div class="busy__glass"></div>
+                <div class="busy__content">
+                    <lightning-spinner alternative-text="Виконується..." size="medium"></lightning-spinner>
+                    <div class="busy__text mono">Обробка…</div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Header -->
+        <div class="header">
+            <div class="header__left">
+                <div class="header__badge">
+                    <span class="dot"></span>
+                    <span class="mono">NS</span>
+                </div>
+                <div>
+                    <div class="header__title">Notification Service — тестова консоль</div>
+                    <div class="header__sub slds-text-body_small">
+                        Тестування сценарію <b>SYSTEM_CALLOUT</b>: звичайний виклик, ескалація та нагадування по Work Item
+                        з оновленням логів у реальному часі.
+                    </div>
+                </div>
+            </div>
+
+            <div class="header__right">
+                <div>
+                    <div class="header__statusLabel">Останній запуск</div>
+                    <div class="header__statusValue mono">{lastRunText}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="wrap">
+            <div class="actions">
+                <!-- System Callout -->
+                <section class="card card--action card--callout">
+                    <div class="card__top">
+                        <div class="card__icon">
+                            <lightning-icon icon-name="utility:sync" size="small"></lightning-icon>
+                        </div>
+                        <div>
+                            <div class="card__title">System Callout</div>
+                            <div class="card__desc slds-text-body_small">
+                                Видаляє всі попередні <span class="mono">pharos__Log__c</span> для
+                                <b>SYSTEM_CALLOUT</b> та створює один новий лог.
+                                Ескалація при цьому <b>не</b> повинна спрацювати.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card__bottom">
+                        <lightning-button
+                                variant="brand"
+                                label="Запустити callout"
+                                onclick={runCalloutOnly}
+                                disabled={isBusy}
+                        ></lightning-button>
+                    </div>
+                </section>
+
+                <!-- Escalation -->
+                <section class="card card--action card--escalation">
+                    <div class="card__top">
+                        <div class="card__icon">
+                            <lightning-icon icon-name="utility:warning" size="small"></lightning-icon>
+                        </div>
+                        <div>
+                            <div class="card__title">Callout Escalation</div>
+                            <div class="card__desc slds-text-body_small">
+                                Очищає Notification Logs з подією <b>SYSTEM_CALLOUT_ESCALATION</b>
+                                (щоб уникнути throttling), після чого створює достатню кількість
+                                <b>SYSTEM_CALLOUT</b> логів (≥ 4 за 7 днів) для запуску ескалації
+                                та створення Work Item.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card__bottom">
+                        <lightning-button
+                                variant="destructive"
+                                label="Запустити ескалацію"
+                                onclick={runEscalation}
+                                disabled={isBusy}
+                        ></lightning-button>
+                    </div>
+                </section>
+
+                <!-- Reminder -->
+                <section class="card card--action card--reminder">
+                    <div class="card__top">
+                        <div class="card__icon">
+                            <lightning-icon icon-name="utility:reminder" size="small"></lightning-icon>
+                        </div>
+                        <div>
+                            <div class="card__title">Нагадування Work Item</div>
+                            <div class="card__desc slds-text-body_small">
+                                Знаходить перший Work Item зі статусом <b>New</b>,
+                                примусово встановлює <span class="mono">Next_Reminder_At__c</span> у минуле
+                                та запускає обробку нагадувань.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card__bottom">
+                        <lightning-button
+                                variant="neutral"
+                                label="Надіслати нагадування"
+                                onclick={runReminder}
+                                disabled={isBusy}
+                        ></lightning-button>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Lists -->
+        <div class="wrap">
+            <div class="grid">
+                <!-- Work Items -->
+                <section class="panel panel--work">
+                    <header class="panel__head">
+                        <div class="panel__headLeft">
+                            <div class="panel__icon">
+                                <lightning-icon icon-name="utility:task" size="x-small"></lightning-icon>
+                            </div>
+                            <div class="panel__title">Work Items</div>
+                        </div>
+                        <div class="pill mono">{workItemsCount}</div>
+                    </header>
+
+                    <div class="panel__body">
+                        <template if:true={workItems.length}>
+                            <ul class="list">
+                                <template for:each={workItems} for:item="w">
+                                    <li key={w.Id} class="row">
+                                        <div class="row__top">
+                                            <a class="row__link" href="javascript:void(0)" data-id={w.Id} onclick={navigateTo}>
+                                                <span class="mono">{w.Name}</span>
+                                            </a>
+                                            <div class="chips">
+                                                <span class="chip chip--soft">Статус: {w.Status}</span>
+                                                <span class="chip chip--soft">Нагадувань: {w.ReminderCount}</span>
+                                            </div>
+                                        </div>
+
+                                        <template if:true={w.Summary}>
+                                            <div class="row__desc slds-text-body_small">
+                                                {w.Summary}
+                                            </div>
+                                        </template>
+
+                                        <div class="row__meta slds-text-body_small">
+                                            <span class="mono">{w.CreatedDateText}</span>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                        </template>
+
+                        <template if:false={workItems.length}>
+                            <div class="empty slds-text-body_small">Записів немає.</div>
+                        </template>
+                    </div>
+                </section>
+
+                <!-- Pharos Logs -->
+                <section class="panel panel--pharos">
+                    <header class="panel__head">
+                        <div class="panel__headLeft">
+                            <div class="panel__icon">
+                                <lightning-icon icon-name="utility:file" size="x-small"></lightning-icon>
+                            </div>
+                            <div class="panel__title">Pharos Logs</div>
+                        </div>
+                        <div class="pill mono">{pharosLogsCount}</div>
+                    </header>
+
+                    <div class="panel__body">
+                        <template if:true={pharosLogs.length}>
+                            <ul class="list">
+                                <template for:each={pharosLogs} for:item="p">
+                                    <li key={p.Id} class="row">
+                                        <div class="row__top">
+                                            <a class="row__link" href="javascript:void(0)" data-id={p.Id} onclick={navigateTo}>
+                                                <span class="mono">{p.Name}</span>
+                                            </a>
+                                            <div class="chips">
+                                                <span class="chip chip--outline mono">{p.ErrorKey}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row__meta slds-text-body_small">
+                                            <span class="mono">{p.CreatedDateText}</span>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                        </template>
+
+                        <template if:false={pharosLogs.length}>
+                            <div class="empty slds-text-body_small">Записів немає.</div>
+                        </template>
+                    </div>
+                </section>
+
+                <!-- Notification Logs -->
+                <section class="panel panel--notif">
+                    <header class="panel__head">
+                        <div class="panel__headLeft">
+                            <div class="panel__icon">
+                                <lightning-icon icon-name="utility:email" size="x-small"></lightning-icon>
+                            </div>
+                            <div class="panel__title">Notification Logs</div>
+                        </div>
+                        <div class="pill mono">{notificationLogsCount}</div>
+                    </header>
+
+                    <div class="panel__body">
+                        <template if:true={notificationLogs.length}>
+                            <ul class="list">
+                                <template for:each={notificationLogs} for:item="n">
+                                    <li key={n.Id} class="row">
+                                        <div class="row__top">
+                                            <a class="row__link" href="javascript:void(0)" data-id={n.Id} onclick={navigateTo}>
+                                                <span class="mono">{n.Name}</span>
+                                            </a>
+                                            <div class="chips">
+                                                <span class="chip chip--outline">{n.EventKey}</span>
+                                                <span class="chip chip--soft">{n.Channel}</span>
+                                                <span class="chip chip--soft">Статус: {n.Status}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row__meta slds-text-body_small">
+                                            <span class="mono">{n.CreatedDateText}</span>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                        </template>
+
+                        <template if:false={notificationLogs.length}>
+                            <div class="empty slds-text-body_small">Записів немає.</div>
+                        </template>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Run Log -->
+        <div class="wrap wrap--bottom">
+            <section class="panel panel--log">
+                <header class="panel__head panel__head--tight">
+                    <div class="panel__headLeft">
+                        <div class="panel__icon">
+                            <lightning-icon icon-name="utility:trail" size="x-small"></lightning-icon>
+                        </div>
+                        <div class="panel__title">Журнал запусків</div>
+                    </div>
+
+                    <div class="panel__right">
+                        <div class="slds-text-body_small muted">
+                            Останній: <span class="mono">{lastRunText}</span>
+                        </div>
+                        <lightning-button-icon
+                                icon-name={runLogToggleIcon}
+                                variant="bare"
+                                alternative-text="Показати / приховати журнал"
+                                title="Показати / приховати журнал"
+                                onclick={toggleRunLog}
+                                class="slds-m-left_x-small"
+                        ></lightning-button-icon>
+                    </div>
+                </header>
+
+                <template if:true={isRunLogOpen}>
+                    <div class="panel__body panel__body--log">
+                        <template if:true={runLog.length}>
+                            <ul class="logList">
+                                <template for:each={runLog} for:item="row">
+                                    <li key={row.id} class={row.className}>
+                                        <span class="mono logList__ts">{row.ts}</span>
+                                        <span class="mono logList__tag">{row.tag}</span>
+                                        <span class="logList__msg">{row.message}</span>
+                                    </li>
+                                </template>
+                            </ul>
+                        </template>
+
+                        <template if:false={runLog.length}>
+                            <div class="empty slds-text-body_small">Журнал порожній.</div>
+                        </template>
+                    </div>
+                </template>
+            </section>
+        </div>
+    </lightning-card>
+</template>

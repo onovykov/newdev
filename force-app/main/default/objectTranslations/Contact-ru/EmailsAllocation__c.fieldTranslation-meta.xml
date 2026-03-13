@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Emails Allocation --></label>
+    <name>EmailsAllocation__c</name>
+    <picklistValues>
+        <masterLabel>Send CMR</masterLabel>
+        <translation><!-- Send CMR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Send Invoice PDF</masterLabel>
+        <translation><!-- Send Invoice PDF --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Send MTC</masterLabel>
+        <translation><!-- Send MTC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Send Packing list</masterLabel>
+        <translation><!-- Send Packing list --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

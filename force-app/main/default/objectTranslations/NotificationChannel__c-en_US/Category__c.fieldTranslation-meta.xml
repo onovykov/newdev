@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Category --></label>
+    <name>Category__c</name>
+    <picklistValues>
+        <masterLabel>Account Blocked</masterLabel>
+        <translation><!-- Account Blocked --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Apex Exception</masterLabel>
+        <translation><!-- Apex Exception --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Aura</masterLabel>
+        <translation><!-- Aura --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Callout Exception</masterLabel>
+        <translation><!-- Callout Exception --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DML Exception</masterLabel>
+        <translation><!-- DML Exception --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Flow</masterLabel>
+        <translation><!-- Flow --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>General</masterLabel>
+        <translation><!-- General --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Jobs</masterLabel>
+        <translation><!-- Jobs --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>LWC</masterLabel>
+        <translation><!-- LWC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Limit Exception</masterLabel>
+        <translation><!-- Limit Exception --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Security</masterLabel>
+        <translation><!-- Security --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This name will be displayed on the list layouts, some reports, etc. --></help>
+    <label>Наименование продукта</label>
+    <name>Name__c</name>
+</CustomFieldTranslation>

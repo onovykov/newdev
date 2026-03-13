@@ -10,6 +10,40 @@ public class SysUtils {
         7=>'July',8=>'August',9=>'September',10=>'October',11=>'November',12=>'December'
     };
 
+    /**
+     * Методи, що створюють SHA Hex Hash зі String
+    */
+    public static String hashCreate(String inputStr) {
+        Blob b = Crypto.generateDigest(
+            'SHA-256',
+            Blob.valueOf(inputStr)
+        );
+        return EncodingUtil.convertToHex(b);
+    }
+
+    private static String normalizeKeyPart(String s) {
+        return s == null
+            ? ''
+            : s.trim().normalizeSpace();
+    }
+
+    public static String buildERPHash(List<String> params) {
+
+        if (params == null || params.isEmpty()) {
+            return null;
+        }
+
+        List<String> normalized = new List<String>();
+
+        for (String s : params) {
+            normalized.add(normalizeKeyPart(s));
+        }
+
+        String source = String.join(normalized, '|');
+
+        return hashCreate(source);
+    }
+
     /** Для сервісу CurrencyRatesService:
      * Перевіряє, чи увімкнено Advanced Currency Management (ACM).
      * Повертає true, якщо об'єкт DatedConversionRate доступний у SOQL.

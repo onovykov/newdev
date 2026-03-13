@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pharos_Error_Type__c</fullName>
+    <label>Pharos Error Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>pharos_Error_Category__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetName>pharos_Error_Type</valueSetName>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <controllingFieldValue>Pharos Error</controllingFieldValue>
+            <valueName>Apex Exception</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <controllingFieldValue>Wrong User Action</controllingFieldValue>
+            <controllingFieldValue>Pharos Error</controllingFieldValue>
+            <valueName>Flow Error</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <controllingFieldValue>SOQL Error</controllingFieldValue>
+            <valueName>Bulk API</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <controllingFieldValue>SOQL Error</controllingFieldValue>
+            <valueName>Limit Exception</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <controllingFieldValue>Wrong User Action</controllingFieldValue>
+            <controllingFieldValue>Pharos Error</controllingFieldValue>
+            <valueName>Workflow/Job</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <controllingFieldValue>SOQL Error</controllingFieldValue>
+            <valueName>Trigger</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <controllingFieldValue>Wrong User Action</controllingFieldValue>
+            <valueName>Duplicate Error</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <controllingFieldValue>Wrong User Action</controllingFieldValue>
+            <valueName>No ID in ERP Error</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration</controllingFieldValue>
+            <controllingFieldValue>Wrong User Action</controllingFieldValue>
+            <valueName>Wrong ERP Order</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

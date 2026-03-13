@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AdditionalBOS__c</fullName>
+    <description>Additional  back office specialist.</description>
+    <inlineHelpText>Additional back office specialist. If selected, then it will be automatically selected by default in new opportunities of this user.</inlineHelpText>
+    <label>Additional BO Specialist</label>
+    <lookupFilter>
+        <active>false</active>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+        <filterItems>
+            <field>User.Profile.Name</field>
+            <operation>equals</operation>
+            <value>Chatter Free User</value>
+        </filterItems>
+        <filterItems>
+            <field>User.IsActive</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <filterItems>
+            <field>User.Department</field>
+            <operation>equals</operation>
+            <value>Back Office</value>
+        </filterItems>
+        <filterItems>
+            <field>User.Department</field>
+            <operation>equals</operation>
+            <value>Sales Support Department</value>
+        </filterItems>
+        <filterItems>
+            <field>User.SalesDivision__c</field>
+            <operation>contains</operation>
+            <valueField>$Source.SalesDivision__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <relationshipName>AdditionalSalesManagers</relationshipName>
+    <restrictedAdminField>false</restrictedAdminField>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Hierarchy</type>
+</CustomField>

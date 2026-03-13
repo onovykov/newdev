@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Error</fullName>
+        <default>false</default>
+        <label>Error</label>
+    </customValue>
+    <customValue>
+        <fullName>Warning</fullName>
+        <default>false</default>
+        <label>Warning</label>
+    </customValue>
+    <customValue>
+        <fullName>Debug</fullName>
+        <default>false</default>
+        <label>Debug</label>
+    </customValue>
+    <customValue>
+        <fullName>Event</fullName>
+        <default>false</default>
+        <label>Event</label>
+    </customValue>
+    <masterLabel>errRecordType</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

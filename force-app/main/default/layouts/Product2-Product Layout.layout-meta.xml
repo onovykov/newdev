@@ -43,6 +43,14 @@
                 <behavior>Edit</behavior>
                 <field>Material__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ClassifierCode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Dencity__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -138,10 +146,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>ProductsClassifier__c.Product__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <relatedList>ProdNameForDoc__c.Product__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -159,6 +163,23 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>OrderItemProductInfoPipes__c.Product__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>Value__c</fields>
+        <fields>ID_ERP__c</fields>
+        <fields>Type__c</fields>
+        <relatedList>ProductDetail__c.Product__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Dencity__c</fields>
+        <fields>WeightKPM__c</fields>
+        <fields>WeightPPF__c</fields>
+        <relatedList>ProducMainSKU__c.Product2Id__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>WheelContractLine__c.Product__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

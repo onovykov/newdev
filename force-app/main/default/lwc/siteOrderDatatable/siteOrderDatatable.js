@@ -39,7 +39,6 @@ import nonDeliveryInfo from '@salesforce/label/c.OrderDeliveryNonInfo';
 import NO_PLAN_DATA from '@salesforce/label/c.NoPlanDataMessage';
 
 
-
 import Balance_for_Shipment from '@salesforce/label/c.Balance_for_Shipment';
 import Stock from '@salesforce/label/c.Stock';
 import Balance_for_Production from '@salesforce/label/c.Balance_for_Production';
@@ -178,8 +177,21 @@ export default class SiteOrderDatatable extends NavigationMixin(LightningElement
         return this.isPortal ? 'portal-container production-plan_container full-height-content' : 'internal-container production-plan_container full-height-content';
     }
 
-    @wire(getOrders, {}) handleOrders(result) {
+    get isPortalForWire() {
+        // true/false для порталу; якщо не можемо визначити — undefined (тоді wire не виконається)
+        try { return window.location.href.includes('/s/'); } catch(e){ return undefined; }
+    }
+    get recordIdForWire() {
+        // Для порталу recordId не потрібен -> явно повертаємо null.
+        // Для внутрішнього випадку — чекаємо, поки з’явиться this.recordId (інакше undefined, wire не викличеться).
+        const onPortal = this.isPortalForWire === true;
+        if (onPortal) return null;
+        return this.recordId || undefined;
+    }
 
+
+    @wire(getOrders, { isPortal: '$isPortalForWire', recordId: '$recordIdForWire' })
+    handleOrders(result) {
         this.ordersResult = result;
         const {error, data} = result;
         if (data) {
@@ -190,75 +202,104 @@ export default class SiteOrderDatatable extends NavigationMixin(LightningElement
                 this.isKLWSegment = this.userMarketSegment === '00006';
 
                 dataCopy.forEach(item => {
-                    if (item.Status == 'Activated') {
+                    if (item.Status === 'Activated') {
                         item.Status = 'Active';
                     }
                     if (!item.PO_Number__c) {
                         item.PO_Number__c = item.AdditionalNumber__c;
                     }
-                    item.TotalOrderQuantity__c = item.TotalOrderQuantity__c.toFixed(3);
-                    item.Quantity_pcs__c = item.Quantity_pcs__c ? item.Quantity_pcs__c.toFixed(0) : 0;
-                    item.ProducedQuantity_pcs__c = item.ProducedQuantity_pcs__c ? item.ProducedQuantity_pcs__c.toFixed(0) : 0;
-                    item.DispatchedQuantity_pcs__c = item.DispatchedQuantity_pcs__c ? item.DispatchedQuantity_pcs__c.toFixed(0) : 0;
-                    item.DeliveredQuantity_pcs__c = item.DeliveredQuantity_pcs__c ? item.DeliveredQuantity_pcs__c.toFixed(0) : 0;
-                    // сюди додати
-                    item.ProducedQuantity__c = item.ProducedQuantity__c.toFixed(3);
-                    item.ShippedQuantity__c = item.ShippedQuantity__c.toFixed(3);
-                    item.DispatchedQuantity__c = item.DispatchedQuantity__c < 0 ? 0 : item.DispatchedQuantity__c.toFixed(3);
 
-                    item.Stock = (item.ProducedQuantity__c - item.ShippedQuantity__c).toFixed(3);
-                    // item.BalanceForShipment = (item.TotalOrderQuantity__c - item.DispatchedQuantity__c).toFixed(3);
-                    item.BalanceForShipment = 0;
-                    if (item.BalanceForShipment < 0) {
-                        item.BalanceForShipment = 0;
-                    }
+                    // форматуємо тони через хелпер
+                    item.TotalOrderQuantity__c = this.formatTons(item.TotalOrderQuantity__c);
+                    item.ProducedQuantity__c   = this.formatTons(item.ProducedQuantity__c);
+                    item.ShippedQuantity__c    = this.formatTons(item.ShippedQuantity__c);
+
+                    const disp = Number(item.DispatchedQuantity__c);
+                    item.DispatchedQuantity__c = this.formatTons(disp < 0 ? 0 : disp);
+
+                    // pcs як і було — цілі
+                    item.Quantity_pcs__c          = item.Quantity_pcs__c ? item.Quantity_pcs__c.toFixed(0) : 0;
+                    item.ProducedQuantity_pcs__c  = item.ProducedQuantity_pcs__c ? item.ProducedQuantity_pcs__c.toFixed(0) : 0;
+                    item.DispatchedQuantity_pcs__c= item.DispatchedQuantity_pcs__c ? item.DispatchedQuantity_pcs__c.toFixed(0) : 0;
+                    item.DeliveredQuantity_pcs__c = item.DeliveredQuantity_pcs__c ? item.DeliveredQuantity_pcs__c.toFixed(0) : 0;
+
+                    // stock на рівні ордера (числом → потім формат)
+                    const orderStock = Number(item.ProducedQuantity__c) - Number(item.ShippedQuantity__c);
+                    item.Stock = this.formatTons(orderStock);
+
+                    // ініціалізація сум — числові!
+                    item.BalanceForShipment   = 0;
                     item.BalanceForProduction = 0;
-                    item.MonthlyProdPlan = 0;
-                    item.WeeklyProdPlan = 0;
+                    item.MonthlyProdPlan      = 0;
+                    item.WeeklyProdPlan       = 0;
                     item.EstimatedProdBalance = 0;
+
                     item.expandDocuments = false;
+
+                    if (!item.OrderItems) return;
+
                     if (item.OrderItems) {
                         item.OrderItems = item.OrderItems.map(ordItem => {
-                            ordItem.Quantity = ordItem.Quantity.toFixed(3);
-                            ordItem.Stock = (ordItem.ProducedQuantity__c - ordItem.DispatchedQuantity__c).toFixed(3);
-                            ordItem.BalanceForShipment = (ordItem.Quantity - ordItem.ShippedQuantity__c).toFixed(3);
-                            if (ordItem.BalanceForShipment < 0) {
-                                ordItem.BalanceForShipment = 0;
+                            // кількість
+                            ordItem.Quantity = this.formatTons(ordItem.Quantity);
+
+                            // stock по айтему
+                            const oiStock = Number(ordItem.ProducedQuantity__c) - Number(ordItem.DispatchedQuantity__c);
+                            ordItem.Stock = this.formatTons(oiStock);
+
+                            // баланс до відвантаження по айтему
+                            const bfs = Number(ordItem.Quantity) - Number(ordItem.ShippedQuantity__c);
+                            ordItem.BalanceForShipment = this.formatTons(bfs < 0 ? 0 : bfs);
+
+                            // сумуємо в ордер: тільки числовими значеннями
+                            if (Number(oiStock) !== 0) {
+                                item.BalanceForShipment += Number(ordItem.BalanceForShipment);
                             }
-                            if(ordItem.Stock != 0) {
-                                item.BalanceForShipment += parseFloat(ordItem.BalanceForShipment);
-                            }
-                            if(ordItem.WeekStartDate__c != null && (ordItem.WeeklyProdPlan__c != 0 || ordItem.MonthlyProdPlan__c != 0 || ordItem.BalanceForProduction__c != 0 || ordItem.Estimated_Prod_Balance__c != 0)) {
-                                item.BalanceForProduction += ordItem.BalanceForProduction__c;
-                                item.MonthlyProdPlan += ordItem.MonthlyProdPlan__c;
-                                item.WeeklyProdPlan += ordItem.WeeklyProdPlan__c;
-                                item.EstimatedProdBalance += ordItem.Estimated_Prod_Balance__c;
+
+                            if (
+                                ordItem.WeekStartDate__c != null &&
+                                (Number(ordItem.WeeklyProdPlan__c)       !== 0 ||
+                                    Number(ordItem.MonthlyProdPlan__c)      !== 0 ||
+                                    Number(ordItem.BalanceForProduction__c) !== 0 ||
+                                    Number(ordItem.Estimated_Prod_Balance__c) !== 0)
+                            ) {
+                                item.BalanceForProduction += Number(ordItem.BalanceForProduction__c || 0);
+                                item.MonthlyProdPlan      += Number(ordItem.MonthlyProdPlan__c      || 0);
+                                item.WeeklyProdPlan       += Number(ordItem.WeeklyProdPlan__c       || 0);
+                                item.EstimatedProdBalance += Number(ordItem.Estimated_Prod_Balance__c || 0);
                                 this.prodPlanStartDate = ordItem.WeekStartDate__c;
-                                this.prodPlanEndDate = ordItem.WeekEndDate__c;
+                                this.prodPlanEndDate   = ordItem.WeekEndDate__c;
                             }
+
                             return ordItem;
+                        });
 
-                        })
-                        item.BalanceForShipment = item.BalanceForShipment.toFixed(3);
-                        item.BalanceForProduction = item.BalanceForProduction.toFixed(3);
-                        item.MonthlyProdPlan = item.MonthlyProdPlan.toFixed(3);
-                        item.WeeklyProdPlan = item.WeeklyProdPlan.toFixed(3);
-                        item.EstimatedProdBalance = item.EstimatedProdBalance.toFixed(3);
+                        item.BalanceForShipment   = this.formatTons(item.BalanceForShipment);
+                        item.BalanceForProduction = this.formatTons(item.BalanceForProduction);
+                        item.MonthlyProdPlan      = this.formatTons(item.MonthlyProdPlan);
+                        item.WeeklyProdPlan       = this.formatTons(item.WeeklyProdPlan);
+                        item.EstimatedProdBalance = this.formatTons(item.EstimatedProdBalance);
+
                         item.OrderNumberProdPlan = item.AdditionalNumber__c + ' | ' + item.PO_Number__c;
-                        item.OrderItemsForProdPlan = item.OrderItems.filter(ordItem => {
-                            return ordItem.WeekStartDate__c != null && (ordItem.WeeklyProdPlan__c != 0 || ordItem.MonthlyProdPlan__c != 0 || ordItem.BalanceForProduction__c != 0 || ordItem.Estimated_Prod_Balance__c != 0);
-                        })
-                        item.OrderItems = item.OrderItems.filter(ordItem => {
-                            return ordItem.Stock != 0;
-                        })
 
-                        if (this.userMarketSegment =='00011') { // Перевірка ProducedQuantity__c на 0
-                            const hasNMPP = item.OrderItems.some(item => item.Shop__r.Plant__r.Name === 'NMPP');
+                        item.OrderItemsForProdPlan = item.OrderItems.filter(oi => {
+                            return oi.WeekStartDate__c != null && (
+                                Number(oi.WeeklyProdPlan__c)       !== 0 ||
+                                Number(oi.MonthlyProdPlan__c)      !== 0 ||
+                                Number(oi.BalanceForProduction__c) !== 0 ||
+                                Number(oi.Estimated_Prod_Balance__c) !== 0
+                            );
+                        });
 
-                            if (hasNMPP) { // Якщо хоча б один OrderItem відповідає критерію
-                                item.ProducedQuantity__c = item.ShippedQuantity__c; // Оновлення ProducedQuantity__c
+                        item.OrderItems = item.OrderItems.filter(oi => Number(oi.Stock) !== 0);
+
+                        if (this.userMarketSegment == '00011') {
+                            const hasNMPP = item.OrderItems.some(oi => oi.Shop__r?.Plant__r?.Name === 'NMPP');
+                            if (hasNMPP) {
+                                item.ProducedQuantity__c = item.ShippedQuantity__c;
                             }
                         }
+
                     }
                 });
             })
@@ -292,6 +333,8 @@ export default class SiteOrderDatatable extends NavigationMixin(LightningElement
         }
         if (error) {
             console.error(error);
+            console.error('getOrders ERROR =', JSON.parse(JSON.stringify(error)));
+
         }
 
     }
@@ -307,7 +350,7 @@ export default class SiteOrderDatatable extends NavigationMixin(LightningElement
             loadScript(this, autoTable),
             loadScript(this, XLSX)
         ]).then(() => {
-            // console.log('jsPDF loaded successfully');
+            console.log('jsPDF loaded successfully');
         }).catch(error => {
             console.error('Error loading jsPDF:', error);
         });
@@ -604,7 +647,6 @@ export default class SiteOrderDatatable extends NavigationMixin(LightningElement
         this.isPortal = !!href.includes('/s/');
 
         if (!this.isPortal) {
-            // Логіка для сторінки рекорда: лише один таб
             this.isProdPlanVisible = true;
             this.isStockVisible = false;
             this.isProductionPlan = true;
@@ -612,7 +654,6 @@ export default class SiteOrderDatatable extends NavigationMixin(LightningElement
             this.options = [
                 { id: 'tab-default-7__item', label: this.productionPlan, order: 1 }
             ];
-            // this.selectedOption = this.productionPlan;
             this.selectedOption = this.options[0].label;
 
             this.optionsToDisplay = [];
@@ -623,10 +664,8 @@ export default class SiteOrderDatatable extends NavigationMixin(LightningElement
             // Достроково виходимо з connectedCallback
             return;
         }
-
         // Для порталу далі виконується стандартна логіка
         getProdPlanVisible().then(resultVisible => {
-
             getBusinessDivision().then(businessDivision => {
                 this.isProdPlanVisible = businessDivision === 'Railway' ? false : resultVisible;
                 this.isStockVisible = businessDivision !== 'Railway';
@@ -649,7 +688,6 @@ export default class SiteOrderDatatable extends NavigationMixin(LightningElement
                 this.optionsToDisplay = this.options.filter((option) => option.label !== this.selectedOption);
             });
         });
-
         getAllDivisions().then(resultAllDivisions => {
             this.isAllDivisions = resultAllDivisions;
         });
@@ -679,86 +717,51 @@ export default class SiteOrderDatatable extends NavigationMixin(LightningElement
     }
 
     searchBy() {
-        this.filteredOrdersList = this.ordersList;
+        const base = Array.isArray(this.ordersList) ? this.ordersList : [];
+        this.filteredOrdersList = [...base];
+
         if (this.searchKey) {
-            if (this.filteredOrdersList) {
-                let searchRecords = [];
-                for (let record of this.filteredOrdersList) {
-                    let valuesArray = Object.values(record);
-
-                    for (let val of valuesArray) {
-                        let strVal = String(val);
-
-                        if (strVal) {
-
-                            if (strVal.toLowerCase().includes(this.searchKey)) {
-                                searchRecords.push(record);
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                this.filteredOrdersList = searchRecords;
-            }
-        } else {
-            this.filteredOrdersList = this.ordersList;
+            const needle = this.searchKey.toLowerCase();
+            this.filteredOrdersList = this.filteredOrdersList.filter(rec =>
+                Object.values(rec || {}).some(v => String(v ?? '').toLowerCase().includes(needle))
+            );
         }
 
         if (this.startDate) {
-            this.filteredOrdersList = this.filteredOrdersList.filter(order => {
-                return order.EffectiveDate >= this.startDate;
-            })
+            this.filteredOrdersList = this.filteredOrdersList.filter(o => o.EffectiveDate >= this.startDate);
         }
-
         if (this.endDate) {
-            this.filteredOrdersList = this.filteredOrdersList.filter(order => {
-                return order.EffectiveDate <= this.endDate;
-            })
+            this.filteredOrdersList = this.filteredOrdersList.filter(o => o.EffectiveDate <= this.endDate);
         }
 
         if (this.allOrders) {
-            this.filteredOrdersList = this.filteredOrdersList.filter(order => {
-                return order;
-            })
             this.amountAllOrders = this.filteredOrdersList.length;
         }
         if (this.isActiveOrders) {
-            this.filteredOrdersList = this.filteredOrdersList.filter(order => {
-                return order.Status == 'Active';
-            })
+            this.filteredOrdersList = this.filteredOrdersList.filter(o => o.Status === 'Active');
             this.amountActiveOrders = this.filteredOrdersList.length;
         }
         if (this.isClosedOrders) {
-            this.filteredOrdersList = this.filteredOrdersList.filter(order => {
-                return order.Status == 'Closed';
-            })
+            this.filteredOrdersList = this.filteredOrdersList.filter(o => o.Status === 'Closed');
             this.amountClosedOrders = this.filteredOrdersList.length;
         }
         if (this.isDraftOrders) {
-            this.filteredOrdersList = this.filteredOrdersList.filter(order => {
-                return order.Status == 'Draft';
-            })
+            this.filteredOrdersList = this.filteredOrdersList.filter(o => o.Status === 'Draft');
             this.amountDraftOrders = this.filteredOrdersList.length;
         }
         if (this.isShippedOrders) {
-            this.filteredOrdersList = this.filteredOrdersList.filter(order => {
-                return order.ShippedQuantity__c != 0 && order.Status != 'Closed';
-            })
+            this.filteredOrdersList = this.filteredOrdersList.filter(o => o.ShippedQuantity__c != 0 && o.Status !== 'Closed');
             this.amountShippedOrders = this.filteredOrdersList.length;
         }
         if (this.isStockOrders) {
-            this.filteredOrdersList = this.filteredOrdersList.filter(order => {
-                return order.Stock > 0;
-            })
+            this.filteredOrdersList = this.filteredOrdersList.filter(o => Number(o.Stock) > 0);
         }
         if (this.isProductionPlan) {
-            this.filteredOrdersList = this.filteredOrdersList.filter(order => {
-                return this.prodPlanStartDate != null && (order.WeeklyProdPlan != 0 || order.MonthlyProdPlan != 0 || order.BalanceForProduction != 0 || order.EstimatedProdBalance != 0);
-            })
+            const visibleIds = new Set((this.structuredPlans || []).map(o => o.orderId));
+            this.filteredOrdersList = this.filteredOrdersList.filter(o => visibleIds.has(o.Id));
         }
-
     }
+
     refreshSearch() {
         this.filteredOrdersList = this.ordersList;
         this.searchKey = null;
@@ -1033,8 +1036,6 @@ export default class SiteOrderDatatable extends NavigationMixin(LightningElement
         } catch (error) {
             console.log(error);
         }
-
-        //console.log( this.filteredOrdersList);
     }
 
     filterByNumber() {
@@ -1229,64 +1230,167 @@ export default class SiteOrderDatatable extends NavigationMixin(LightningElement
     @track structuredPlans = [];
 
     loadProductionPlanData() {
-        console.log('--- loadProductionPlanData START ---');
-        console.log('isPortal:', this.isPortal);
-        console.log('recordId:', this.recordId);
-
         getStructuredProdPlan({ isPortal: this.isPortal, recordId: this.recordId })
             .then(result => {
-                console.log('Result from Apex:', JSON.parse(JSON.stringify(result, null, 2)));
+                const cloned = JSON.parse(JSON.stringify(result || []));
+                this.structuredPlans = this.filterForView(cloned);
+                this.normalizePlansForDisplay();
 
-                const cloned = JSON.parse(JSON.stringify(result));
-
-                cloned.forEach(order => {
-                    console.log('Processing order:', order.orderId, order.orderName);
-
-                    let sumPlan = 0, sumFact = 0, sumBalance = 0;
-                    let latestPlanDate = null, latestFactDate = null;
-
-                    if (!order.items || order.items.length === 0) {
-                        console.log('Order has no items:', order.orderId);
-                    }
-
-                    order.items.forEach(item => {
-                        console.log('Processing item:', item.orderItemId, item.itemName);
-
-                        console.log('Raw values - planQty:', item.planQty, 'factQty:', item.factQty, 'balance:', item.balance);
-                        sumPlan += item.planQty || 0;
-                        sumFact += item.factQty || 0;
-                        sumBalance += item.balance || 0;
-
-                        const plan = item.planDate ? this.parseDDMMYYYY(item.planDate) : null;
-                        const fact = item.factDate ? this.parseDDMMYYYY(item.factDate) : null;
-
-                        console.log('Parsed dates - plan:', plan, 'fact:', fact);
-
-                        if (plan && (!latestPlanDate || plan > latestPlanDate)) latestPlanDate = plan;
-                        if (fact && (!latestFactDate || fact > latestFactDate)) latestFactDate = fact;
+                // ↓↓↓ ДОДАТИ ОДРАЗУ ПІСЛЯ normalizePlansForDisplay()
+                this.structuredPlans = (this.structuredPlans || []).map(order => {
+                    order.items = (order.items || []).map(oi => {
+                        const m = (oi.months || [])[0]; // перший видимий місяць (після filterForView)
+                        if (m) {
+                            // дублюємо показники місяця в рядок item
+                            oi.balance  = m.balance;       // Balance for Production (t)
+                            oi.planQty  = m.monthlyPlan;   // Monthly Plan Qty (t)
+                            oi.factQty  = m.factQty;       // Fact Qty (t)
+                            oi.planDate = m.planDate;      // Plan Date
+                            oi.factDate = m.factDate;      // Fact Date
+                        } else {
+                            // якщо немає місяців — ставимо прочерки/нулями як у тебе прийнято
+                            oi.balance  = '---';
+                            oi.planQty  = '---';
+                            oi.factQty  = '---';
+                            oi.planDate = '---';
+                            oi.factDate = '---';
+                        }
+                        return oi;
                     });
-
-                    order.totalPlanQty = Number(sumPlan.toFixed(3));
-                    order.totalFactQty = Number(sumFact.toFixed(3));
-                    order.totalBalance = Number(sumBalance.toFixed(3));
-                    order.latestPlanDate = latestPlanDate
-                        ? latestPlanDate.toISOString().split('T')[0].split('-').reverse().join('.')
-                        : '---';
-                    order.latestFactDate = latestFactDate
-                        ? latestFactDate.toISOString().split('T')[0].split('-').reverse().join('.')
-                        : '---';
-
-                    console.log(`Order [${order.orderId}] totals - Plan: ${order.totalPlanQty}, Fact: ${order.totalFactQty}, Balance: ${order.totalBalance}`);
-                    console.log(`Order [${order.orderId}] dates - Plan: ${order.latestPlanDate}, Fact: ${order.latestFactDate}`);
+                    return order;
                 });
 
-                this.structuredPlans = cloned;
-                console.log('Final structuredPlans:', JSON.stringify(this.structuredPlans, null, 2));
+
+                // Після normalize:
+                // Після this.normalizePlansForDisplay();
+                const totalsByOrderId = new Map(
+                    (this.structuredPlans || []).map(o => [
+                        o.orderId,
+                        {
+                            balanceForProduction: o.balanceForProduction, // т
+                            monthlyPlanQty:       o.monthlyPlanQty,       // т
+                            factQty:              o.factQty,              // т
+                            planDate:             o.planDate,
+                            factDate:             o.factDate
+                        }
+                    ])
+                );
+
+                if (Array.isArray(this.ordersList)) {
+                    this.ordersList = this.ordersList.map(ord => {
+                        const t = totalsByOrderId.get(ord.Id);
+                        if (t) {
+                            ord.BalanceForProduction      = Number.isFinite(+t.balanceForProduction) ? (+t.balanceForProduction).toFixed(3) : '---';
+                            ord.MonthlyProdPlan           = Number.isFinite(+t.monthlyPlanQty)       ? (+t.monthlyPlanQty).toFixed(3)       : '---';
+                            // якщо хочеш показувати факт у верхній таблиці — вибери куди його класти:
+                            ord.WeeklyProdPlan            = Number.isFinite(+t.factQty)              ? (+t.factQty).toFixed(3)              : '---';
+                            // або ord.EstimatedProdBalance = ...
+
+                            // дати — додай колонки в шаблон, якщо треба показувати:
+                            ord.ProdPlan_LatestPlanDate   = t.planDate || '---';
+                            ord.ProdPlan_LatestFactDate   = t.factDate || '---';
+                        }
+                        return ord;
+                    });
+                }
+
+
+                if (Array.isArray(this.ordersList)) {
+                    this.ordersList = this.ordersList.map(ord => {
+                        const t = totalsByOrderId.get(ord.Id);
+                        if (t) {
+                            // ці поля вже є у вашій розмітці під Production Plan
+                            ord.BalanceForProduction = t.balance;      // т
+                            ord.MonthlyProdPlan      = t.monthPlan;    // т
+                            // якщо хочете показувати ФАКТ у верхній таблиці — використайте одну з колонок:
+                            // наприклад, замінити WeeklyProdPlan або EstimatedProdBalance на factQty/дати
+                            ord.WeeklyProdPlan       = t.fact;         // т (за бажанням)
+                            ord.EstimatedProdBalance = t.fact;         // або сюди, якщо Weekly лишаєте як є
+
+                            // якщо в шапці треба ще дати — додайте нові поля і в шаблон:
+                            ord.ProdPlan_LatestPlanDate = t.planDate;  // 'dd.MM.yyyy' або '---'
+                            ord.ProdPlan_LatestFactDate = t.factDate;  // 'dd.MM.yyyy' або '---'
+                        }
+                        return ord;
+                    });
+                }
+
+
+                if (Array.isArray(this.ordersList) && this.ordersList.length) {
+                    this.searchBy();
+                }
             })
-            .catch(error => {
-                console.error('Error loading production plan data', error);
+            .catch(() => {
+                this.structuredPlans = [];
+                if (Array.isArray(this.ordersList) && this.ordersList.length) {
+                    this.searchBy();
+                }
             });
     }
+
+    formatTons(v) {
+        if (v === null || v === undefined || v === '' || Number.isNaN(Number(v))) return '---';
+        const n = Number(v);
+        const isInt = Math.abs(n - Math.trunc(n)) < 1e-9;
+        return isInt ? String(Math.trunc(n)) : n.toFixed(3);
+    }
+
+
+    filterForView(orders) {
+        const today = new Date();
+
+        // межі поточного місяця (UTC)
+        const startOfMonth = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), 1));
+        const endOfMonth   = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth()+1, 0));
+        const ymNow = `${today.getUTCFullYear()}-${String(today.getUTCMonth()+1).padStart(2,'0')}`;
+
+        // тижневе вікно для порталу: цей + наступний тиждень
+        const monday = d => { const x=new Date(Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate())); const wd=(x.getUTCDay()+6)%7; x.setUTCDate(x.getUTCDate()-wd); return x; };
+        const addDays = (d,n)=>{ const x=new Date(d); x.setUTCDate(x.getUTCDate()+n); return x; };
+        const thisWeekStart = monday(today);
+        const thisWeekEnd   = addDays(thisWeekStart,6);
+        const nextWeekStart = addDays(thisWeekStart,7);
+        const nextWeekEnd   = addDays(nextWeekStart,6);
+
+        const inMonth = d => d>=startOfMonth && d<=endOfMonth;
+        const inPortalWindow = d => (d>=thisWeekStart && d<=thisWeekEnd) || (d>=nextWeekStart && d<=nextWeekEnd);
+
+        const parseDDMMYYYY = s => {
+            if (!s || s === '---') return null;
+            const [dd,mm,yyyy] = s.split('.');
+            const dt = new Date(`${yyyy}-${mm}-${dd}T00:00:00Z`);
+            return isNaN(dt.getTime()) ? null : dt;
+        };
+
+        (orders || []).forEach(o => {
+            (o.items || []).forEach(it => {
+                // 1) фільтруємо тижні
+                (it.months || []).forEach(m => {
+                    m.weeks = (m.weeks || []).filter(w => {
+                        const d = parseDDMMYYYY(w.planDate) || parseDDMMYYYY(w.factDate);
+                        if (!d) return false;
+                        return this.isPortal ? inPortalWindow(d) : inMonth(d);
+                    });
+                });
+
+                // 2) фільтруємо місяці
+                it.months = (it.months || []).filter(m => {
+                    if (this.isPortal) {
+                        // на порталі показуємо тільки місяці, де є видимі тижні у вікні
+                        return m.weeks && m.weeks.length > 0;
+                    } else {
+                        // внутрішній користувач: тільки поточний місяць (навіть без тижнів)
+                        return m.key === ymNow;
+                    }
+                });
+            });
+        });
+
+        return orders;
+    }
+
+
+
 
     parseDDMMYYYY(dateStr) {
         const [dd, mm, yyyy] = dateStr.split('.');
@@ -1346,8 +1450,6 @@ export default class SiteOrderDatatable extends NavigationMixin(LightningElement
     }
 
     toggleOrder(event) {
-        console.log('--- toggleOrder triggered ---');
-
         const row = event.target.closest('.order-row');
         if (!row) {
             console.warn('No .order-row found for event target');
@@ -1355,42 +1457,33 @@ export default class SiteOrderDatatable extends NavigationMixin(LightningElement
         }
 
         const orderId = row.dataset.id;
-        console.log('Toggled orderId:', orderId);
 
         const itemRows = this.template.querySelectorAll(`.order-item-row[data-order-id="${orderId}"]`);
-        console.log('Found itemRows count:', itemRows.length);
 
         const shouldHide = Array.from(itemRows).some(el => !el.classList.contains('hidden'));
-        console.log('Should hide itemRows:', shouldHide);
 
         itemRows.forEach(itemRow => {
             const itemId = itemRow.dataset.id;
-            console.log('Toggling itemId:', itemId);
 
             itemRow.classList.toggle('hidden', shouldHide);
 
             const monthRows = this.template.querySelectorAll(`.month-row[data-item-id="${itemId}"]`);
-            console.log('Found monthRows count:', monthRows.length);
             monthRows.forEach(month => {
                 month.classList.add('hidden');
             });
 
             const weekRows = this.template.querySelectorAll(`.week-row[data-item-id="${itemId}"]`);
-            console.log('Found weekRows count:', weekRows.length);
             weekRows.forEach(week => {
                 week.classList.add('hidden');
             });
 
             const monthIcons = this.template.querySelectorAll(`.month-icon[data-item-id="${itemId}"]`);
-            console.log('Found monthIcons count:', monthIcons.length);
             monthIcons.forEach(icon => icon.classList.remove('rotate'));
 
             const itemIcon = this.template.querySelector(`.item-icon[data-id="${itemId}"]`);
             if (itemIcon) {
-                console.log('Found itemIcon for itemId:', itemId);
                 if (shouldHide) {
                     itemIcon.classList.remove('rotate');
-                    console.log('Removed rotate from itemIcon');
                 }
             } else {
                 console.warn('No itemIcon found for itemId:', itemId);
@@ -1400,12 +1493,47 @@ export default class SiteOrderDatatable extends NavigationMixin(LightningElement
         const icon = this.template.querySelector(`.order-icon[data-id="${orderId}"]`);
         if (icon) {
             icon.classList.toggle('rotate', !shouldHide);
-            console.log('Toggled rotate on order icon:', !shouldHide);
         } else {
             console.warn('No order icon found for orderId:', orderId);
         }
     }
 
 
+    normalizePlansForDisplay() {
+        const fmtNum  = (v) => this.formatTons(v);
+        const fmtDate = v => (v && v !== '' ? v : '---');
+
+        (this.structuredPlans || []).forEach(order => {
+            order.totalBalance      = fmtNum(order.totalBalance);
+            order.totalMonthPlanQty = fmtNum(order.totalMonthPlanQty);
+            order.totalFactQty      = fmtNum(order.totalFactQty);
+            order.latestPlanDate    = fmtDate(order.latestPlanDate);
+            order.latestFactDate    = fmtDate(order.latestFactDate);
+
+            (order.items || []).forEach(oi => {
+                oi.balance  = fmtNum(oi.balance);
+                oi.planQty  = fmtNum(oi.planQty);
+                oi.factQty  = fmtNum(oi.factQty);
+                oi.planDate = fmtDate(oi.planDate);
+                oi.factDate = fmtDate(oi.factDate);
+
+                (oi.months || []).forEach(m => {
+                    m.balance     = fmtNum(m.balance);
+                    m.monthlyPlan = fmtNum(m.monthlyPlan);
+                    m.factQty     = fmtNum(m.factQty);
+                    m.planDate    = fmtDate(m.planDate);
+                    m.factDate    = fmtDate(m.factDate);
+
+                    (m.weeks || []).forEach(w => {
+                        w.balance  = w.balance ?? '-';
+                        w.planQty  = fmtNum(w.planQty);
+                        w.factQty  = fmtNum(w.factQty);
+                        w.planDate = fmtDate(w.planDate);
+                        w.factDate = fmtDate(w.factDate);
+                    });
+                });
+            });
+        });
+    }
 
 }

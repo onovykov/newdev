@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Additional back office specialist. If selected, then it will be automatically selected by default in new opportunities of this user. --></help>
+    <label><!-- Additional BO Specialist --></label>
+    <name>AdditionalBOS__c</name>
+    <relationshipLabel><!-- Users (Additional BO Specialist) --></relationshipLabel>
+</CustomFieldTranslation>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Questionnaire Recall Ukrainian</name>
+    <pageDevName>Questionnaire_Recall_Ukrainian</pageDevName>
+    <relatedEntityType>Questionnaire_Response__c</relatedEntityType>
+    <style>none</style>
+    <subject>Опитування Інтерпайп</subject>
+    <textOnly>&lt; https://interpipe.biz/en/ &gt; 
+
+ &lt; https://interpipe.biz/en/ &gt; 
+
+{{{Questionnaire_Response__c.Salutation__c}}} {{{Questionnaire_Response__c.Respondent__c}}},
+
+Ми помітили, що Ви ще не заповнили наше Опитування Задоволеності Клієнтів. Це люб&apos;язне нагадування, адже ваші відповіді є надзвичайно важливими для нас, щоб ми могли покращити 
+
+Ваш досвід роботи з нашою компанією.
+
+Просто перейдіть за посиланням нижче. Опитування займе до 10 хвилин вашого часу.
+
+Якщо у вас виникнуть питання або труднощі, будь ласка, зв&apos;яжіться з відділом маркетингу у відповідь на цей лист.
+
+З повагою, 
+
+Юлія Козаченко 
+
+________________ 
+
+Начальник відділу маркетингу 
+
+Інтерпайп
+
+yuliya.kozachenko@m.interpipe.biz 
+
++38 (056) 7474 797
+
+Пройти Опитування &lt; https://interpipe.my.site.com/NewCustomerRoom/s/survey?recordId=%7B%7B%7BQuestionnaire_Response__c.Id%7D%7D%7D+ &gt;  &lt; https://zadnipro.dp.ua/en &gt;</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

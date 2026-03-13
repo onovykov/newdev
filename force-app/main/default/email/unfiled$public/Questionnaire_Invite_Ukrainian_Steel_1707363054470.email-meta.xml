@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Questionnaire Invite Ukrainian Steel</name>
+    <pageDevName>Questionnaire_Invite_Ukrainian_Steel</pageDevName>
+    <relatedEntityType>Questionnaire_Response__c</relatedEntityType>
+    <style>none</style>
+    <subject>Опитування Інтерпайп Сталь</subject>
+    <textOnly>&lt; https://interpipe.biz/en/ &gt; 
+
+{{{Questionnaire_Response__c.Salutation__c}}} {{{Questionnaire_Response__c.Respondent__c}}},
+
+Ми високо цінуємо ваше партнерство з Інтерпайп, і ваші відгуки відіграють ключову роль у покращенні нашої роботи. Щороку ми проводимо Опитування Задоволеності Клієнтів і будемо раді вашій участі як одного із обраних клієнтів.
+
+Для простоти та зручності опитування доступне в онлайн-форматі і займе не більше 10 хвилин вашого часу. Ваша думка допоможе нам покращити ваш досвід роботи з нами і продовжувати рухатися в правильному напрямку.
+
+Якщо у вас виникли питання, зв’яжіться з нашою командою маркетингу у відповідь на цей електронний лист. Заздалегідь дякуємо за ваш час — ми щиро цінуємо це!
+
+З повагою, 
+
+Юлія Козаченко 
+
+________________ 
+
+Начальник відділу маркетингу 
+
+Інтерпайп
+
+yuliya.kozachenko@m.interpipe.biz 
+
++38 (056) 7474 797
+
+Пройти Опитування &lt; https://interpipe.my.site.com/NewCustomerRoom/s/survey?recordId=%7B%7B%7BQuestionnaire_Response__c.Id%7D%7D%7D+ &gt;  &lt; https://zadnipro.dp.ua/en &gt;</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

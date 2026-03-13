@@ -240,10 +240,8 @@ public without sharing class OpportunityInfoController {
 
 			} else {
 				ERPWebServiceHandler.insertErrorTask('SF to ERP', arg, erpResult, wrapper.oppo.Id);
-				Triton.instance.error(TritonTypes.Type.Backend, 
-							  		  TritonTypes.Area.SendToBackoffice,   
-									  Label.AuraMsgErrorFromERP,
-									  idResponse.ErrorType + ' ' + idResponse.ErrorMessage + '; Opportunity Id - ' + wrapper.oppo.Id);
+				Exception backendError = new CalloutException(Label.AuraMsgErrorFromERP + ': ' + idResponse.ErrorType + ' ' + idResponse.ErrorMessage);
+				ErrorService.handle('ERR_CALLOUT_BACKEND_FAILED', wrapper.oppo, backendError);
 				throw new AuraHandledException(Label.AuraMsgErrorFromERP + '</br>' + idResponse.ErrorType + '</br>' + idResponse.ErrorMessage);
 			}
 		} catch(CalloutException callfail) {
@@ -251,12 +249,12 @@ public without sharing class OpportunityInfoController {
 //			FalseSynchroService.createFalseSynchroRecord(calc,arg,wrapper.oppo.Id);
 			sendSyncEmailForUser(wrapper.oppo.Id);
 			ERPWebServiceHandler.insertErrorTask('SF to ERP (callout exception)', arg, errorMessage, wrapper.oppo.Id);
-			Triton.instance.error(TritonTypes.Area.SendToBackoffice, callfail);
+			ErrorService.handle('SYSTEM_CALLOUT', wrapper.oppo, callfail);
 			throw new AuraHandledException(Label.SFtoERPConnectionFails);
 		} catch(System.JSONException jsfailed) {
 			String errorMessage = jsfailed.getMessage() + '\n' + jsfailed.getStackTraceString();
 			ERPWebServiceHandler.insertErrorTask('SF to ERP (serialization exception)', arg, errorMessage, wrapper.oppo.Id);
-			Triton.instance.error(TritonTypes.Area.SendToBackoffice, jsfailed);
+			ErrorService.handle('ERR_CALLOUT_JSON_EXCEPTION', wrapper.oppo, jsfailed);
 			throw new AuraHandledException(Label.InvalidJSONReceived);
 		}
 

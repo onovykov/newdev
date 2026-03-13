@@ -390,46 +390,6 @@
                 <identifier>RecordDescriptionField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Q1__c</fieldItem>
-                <identifier>RecordQ1_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Q2_2018_Distribution_Agreement__c</fieldItem>
-                <identifier>RecordQ2_2018_Distribution_Agreement_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Q3_2018_Distribution_Agreement__c</fieldItem>
-                <identifier>RecordQ3_2018_Distribution_Agreement_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Q4_2018_Distribution_Agreement__c</fieldItem>
-                <identifier>RecordQ4_2018_Distribution_Agreement_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-965bac69-41a7-4bae-acff-e6c81eb8c43c</name>
         <type>Facet</type>
     </flexiPageRegions>

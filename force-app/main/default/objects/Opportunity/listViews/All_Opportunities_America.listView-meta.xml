@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Opportunities_America</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>AdditionalNumber__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Country__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.QUANTITY</columns>
+    <columns>Margin__c</columns>
+    <columns>Owner__c</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>MarketSegment__c</field>
+        <operation>equals</operation>
+        <value>00001</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.CREATED_DATE</field>
+        <operation>equals</operation>
+        <value>THIS_YEAR</value>
+    </filters>
+    <label>All Opportunities (America)</label>
+    <sharedTo>
+        <role>CSO_Americas</role>
+        <role>SalesManager_Americas</role>
+        <role>SeniorSM_Americas</role>
+    </sharedTo>
+</ListView>

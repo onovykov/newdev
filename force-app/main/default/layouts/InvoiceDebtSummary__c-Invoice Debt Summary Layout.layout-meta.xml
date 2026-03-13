@@ -26,6 +26,10 @@
                 <behavior>Edit</behavior>
                 <field>SumDebt__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CompositeKey__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

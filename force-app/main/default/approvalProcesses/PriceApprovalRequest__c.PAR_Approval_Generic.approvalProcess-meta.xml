@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>creator</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>sf-ite@interpipe.biz</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>DocDate__c</field>
+        <field>Owner</field>
+        <field>Account__c</field>
+        <field>BilletCost_t__c</field>
+        <field>CoatingCost_t__c</field>
+        <field>CostsTKB_t__c</field>
+        <field>CustomDuty_t__c</field>
+        <field>DeliveryTerms__c</field>
+        <field>ExtraCosts_t__c</field>
+        <field>Liabilities_t__c</field>
+        <field>Margin_t__c</field>
+        <field>MetalPrice_t__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>aleksandr.novikov@interpipe.biz</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>TRUE</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
+        <label>Generic Approval Step</label>
+        <name>Generic_Approval_Step</name>
+    </approvalStep>
+    <description>New Price Approval Request approval process</description>
+    <emailTemplate>unfiled$public/PAR_Approval</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>TRUE</formula>
+    </entryCriteria>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>PAR Approval Generic</label>
+    <processOrder>4</processOrder>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

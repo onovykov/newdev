@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- SubCategory --></label>
+    <name>SubCategory__c</name>
+    <picklistValues>
+        <masterLabel>Apex CPU time limit</masterLabel>
+        <translation><!-- Apex CPU time limit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bulk API</masterLabel>
+        <translation><!-- Bulk API --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Callout Exception</masterLabel>
+        <translation><!-- Callout Exception --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delete/Upsert Exception</masterLabel>
+        <translation><!-- Delete/Upsert Exception --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Duplicate Error</masterLabel>
+        <translation><!-- Duplicate Error --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Heap Limit</masterLabel>
+        <translation><!-- Heap Limit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Incorrect Data</masterLabel>
+        <translation><!-- Incorrect Data --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Insert/Update Exception</masterLabel>
+        <translation><!-- Insert/Update Exception --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>JSON Exception</masterLabel>
+        <translation><!-- JSON Exception --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Recurring Callout Exception</masterLabel>
+        <translation><!-- Recurring Callout Exception --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SOQL Limit</masterLabel>
+        <translation><!-- SOQL Limit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Server Request Error</masterLabel>
+        <translation><!-- Server Request Error --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Server Response Error</masterLabel>
+        <translation><!-- Server Response Error --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Workflow/Job</masterLabel>
+        <translation><!-- Workflow/Job --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,90 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body style="margin: 0px; padding: 0px; background: rgb(246, 248, 251); height: auto; min-height: auto;">
+<table border="0" cellpadding="0" cellspacing="0" style="background:#f6f8fb;" width="100%">
+	
+		<tr>
+			<td align="center" style="padding:24px;">
+			<table border="0" cellpadding="0" cellspacing="0" style="width:720px;max-width:720px;background:#ffffff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;font-family:Arial,Helvetica,sans-serif;color:#111827;" width="720">
+				
+					<tr>
+						<td style="padding:18px 20px;background:#fffbeb;border-bottom:1px solid #e5e7eb;">
+						<div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#92400e;">Reminder</div>
+
+						<div style="margin-top:6px;font-size:18px;font-weight:700;">{{{Notification_Work_Item__c.Summary__c}}}</div>
+
+						<div style="margin-top:6px;font-size:13px;color:#374151;">Work Item <strong>{{{Notification_Work_Item__c.Name}}}</strong> · Status <strong>{{{Notification_Work_Item__c.Work_Status__c}}}</strong></div>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding:16px 20px;">
+						<table border="0" cellpadding="0" cellspacing="0" width="100%">
+							
+								<tr>
+									<td style="padding:8px;" width="50%">
+									<table border="0" cellpadding="0" cellspacing="0" style="border:1px solid #e5e7eb;border-radius:12px;" width="100%">
+										
+											<tr>
+												<td style="padding:12px;">
+												<div style="font-size:12px;color:#6b7280;">Reminder progress</div>
+
+												<div style="margin-top:4px;font-size:16px;font-weight:800;">{{{Notification_Work_Item__c.Reminder_Count__c}}} / {{{Notification_Work_Item__c.Maximum_Reminders__c}}}</div>
+
+												<div style="margin-top:6px;font-size:12px;color:#6b7280;">Last reminder: <span style="color:#111827;">{{{Notification_Work_Item__c.Last_Reminder_At__c}}}</span></div>
+
+												<div style="margin-top:6px;font-size:12px;color:#6b7280;">Next reminder: <span style="color:#111827;">{{{Notification_Work_Item__c.Next_Reminder_At__c}}}</span></div>
+												</td>
+											</tr>
+										
+									</table>
+									</td>
+									<td style="padding:8px;" width="50%">
+									<table border="0" cellpadding="0" cellspacing="0" style="border:1px solid #e5e7eb;border-radius:12px;" width="100%">
+										
+											<tr>
+												<td style="padding:12px;">
+												<div style="font-size:12px;color:#6b7280;">Context</div>
+
+												<div style="margin-top:4px;font-size:14px;font-weight:700;">{{{Notification_Work_Item__c.Notification_Type__c}}}</div>
+
+												<div style="margin-top:6px;font-size:12px;color:#6b7280;">Reaction Time: <span style="color:#111827;">{{{Notification_Work_Item__c.Reaction_Time_Hours__c}}} h</span></div>
+
+												<div style="margin-top:6px;font-size:12px;color:#6b7280;">Correlation Key: <span style="color:#111827;">{{{Notification_Work_Item__c.Correlation_Key__c}}}</span></div>
+												</td>
+											</tr>
+										
+									</table>
+									</td>
+								</tr>
+							
+						</table>
+
+						<div style="margin-top:12px;border-left:4px solid #f59e0b;background:#fffbeb;padding:12px;border-radius:10px;font-size:13px;line-height:1.55;color:#111827;">This is an automated reminder. Please review and update the Work Item status. If no action is taken after reaching the maximum reminders, the record may be closed by the reminder process.</div>
+
+						<div style="margin-top:14px;">
+						<div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;">Details</div>
+
+						<div style="margin-top:8px;background:#0b1220;color:#e5e7eb;border-radius:12px;padding:14px;
+                              font-family:Consolas,Menlo,Monaco,'Courier New',monospace;font-size:12.5px;line-height:1.55;white-space:pre-wrap;">{{{Notification_Work_Item__c.Details__c}}}</div>
+						</div>
+
+						<div style="margin-top:14px;">
+						<div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;">Resolution comment (if any)</div>
+
+						<div style="margin-top:8px;border:1px solid #e5e7eb;border-radius:12px;padding:12px;
+                              font-size:13px;line-height:1.55;white-space:pre-wrap;color:#111827;">{{{Notification_Work_Item__c.Resolution_Comment__c}}}</div>
+						</div>
+
+						<div style="margin-top:18px;padding-top:14px;border-top:1px solid #e5e7eb;font-size:12px;color:#6b7280;">Automated reminder from Work Item Reminder Service · Work Item <strong style="color:#111827;">{{{Notification_Work_Item__c.Name}}}</strong></div>
+						</td>
+					</tr>
+				
+			</table>
+			</td>
+		</tr>
+	
+</table>
+</body>
+</html>

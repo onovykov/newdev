@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Lost Reason --></label>
+    <name>LostReason__c</name>
+    <picklistValues>
+        <masterLabel>Bad documentation</masterLabel>
+        <translation><!-- Bad documentation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery time</masterLabel>
+        <translation><!-- Delivery time --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Less than min production q-ty</masterLabel>
+        <translation><!-- Less than min production q-ty --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No mill capacity</masterLabel>
+        <translation><!-- No mill capacity --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Nonconformity with tender requirements</masterLabel>
+        <translation><!-- Nonconformity with tender requirements --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Out of product range</masterLabel>
+        <translation><!-- Out of product range --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Out of size range</masterLabel>
+        <translation><!-- Out of size range --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Out of steel grade</masterLabel>
+        <translation><!-- Out of steel grade --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Price loss</masterLabel>
+        <translation><!-- Price loss --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

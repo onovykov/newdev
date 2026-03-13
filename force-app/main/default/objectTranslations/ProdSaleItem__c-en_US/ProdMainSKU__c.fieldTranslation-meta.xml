@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- ProductMain SKU --></label>
+    <name>ProdMainSKU__c</name>
+    <relationshipLabel><!-- Prod Sale Items --></relationshipLabel>
+</CustomFieldTranslation>

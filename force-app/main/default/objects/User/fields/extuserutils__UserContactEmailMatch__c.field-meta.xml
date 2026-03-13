@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>extuserutils__UserContactEmailMatch__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Indicates whether the Contact email address matches the User email address for experience cloud users.</description>
+    <formula>IF(NOT((ISBLANK(Email) &amp;&amp; ISBLANK(Contact.Email))), (LOWER(Email) ==  LOWER(Contact.Email)), false)</formula>
+    <inlineHelpText>Indicates whether the Contact email address matches the User email address for experience cloud users.</inlineHelpText>
+    <label>UserContactEmailMatch</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

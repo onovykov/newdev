@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SalesRegion__c</fullName>
+    <description>Default region of sales (used for sales managers)</description>
+    <inlineHelpText>If selected, then this region will also be selected by default in new opportunities of this user.</inlineHelpText>
+    <label>Sales Region</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Regions</valueSetName>
+    </valueSet>
+</CustomField>

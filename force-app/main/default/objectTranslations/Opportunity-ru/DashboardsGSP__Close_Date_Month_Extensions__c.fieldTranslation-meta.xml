@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Number of times the Close Date has been extended from one month to another month. --></help>
+    <label><!-- # Close Date Month Extensions --></label>
+    <name>DashboardsGSP__Close_Date_Month_Extensions__c</name>
+</CustomFieldTranslation>

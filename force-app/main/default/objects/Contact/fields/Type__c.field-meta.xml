@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <label>Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>IT-Admin</fullName>
+                <default>false</default>
+                <label>IT-Admin</label>
+            </value>
+            <value>
+                <fullName>OrdersAdmin</fullName>
+                <default>false</default>
+                <label>Orders Admin</label>
+            </value>
+            <value>
+                <fullName>Integration Primary Admin</fullName>
+                <default>false</default>
+                <label>Integration Primary Admin</label>
+            </value>
+            <value>
+                <fullName>Helpdesk Admin</fullName>
+                <default>false</default>
+                <label>Helpdesk Admin</label>
+            </value>
+            <value>
+                <fullName>BO Specialist</fullName>
+                <default>false</default>
+                <label>BO Specialist</label>
+            </value>
+            <value>
+                <fullName>BO Manager</fullName>
+                <default>false</default>
+                <label>BO Manager</label>
+            </value>
+            <value>
+                <fullName>Sales Officer</fullName>
+                <default>false</default>
+                <label>Sales Officer</label>
+            </value>
+            <value>
+                <fullName>Sales Manager</fullName>
+                <default>false</default>
+                <label>Sales Manager</label>
+            </value>
+            <value>
+                <fullName>Sales Director</fullName>
+                <default>false</default>
+                <label>Sales Director</label>
+            </value>
+            <value>
+                <fullName>App Admin</fullName>
+                <default>false</default>
+                <label>App Admin</label>
+            </value>
+            <value>
+                <fullName>SF Admin</fullName>
+                <default>false</default>
+                <label>SF Admin</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Orders_MENA</fullName>
+    <columns>ORDERS.ORDER_NUMBER</columns>
+    <columns>AdditionalNumber__c</columns>
+    <columns>SALES.ACCOUNT.NAME</columns>
+    <columns>ORDERS.EFFECTIVE_DATE</columns>
+    <columns>ORDERS.STATUS</columns>
+    <columns>TotalOrderQuantity__c</columns>
+    <columns>ProducedQuantity__c</columns>
+    <columns>DispatchedQuantity__c</columns>
+    <columns>ShippedQuantity__c</columns>
+    <columns>Margin__c</columns>
+    <columns>Margin_t__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>MarketSegment__c</field>
+        <operation>equals</operation>
+        <value>00002</value>
+    </filters>
+    <filters>
+        <field>ShippedQuantity__c</field>
+        <operation>lessThan</operation>
+        <value>1</value>
+    </filters>
+    <label>All Orders MENA</label>
+    <sharedTo>
+        <group>ADMIN</group>
+        <role>CSO_MENA_UKR</role>
+        <role>SeniorSM_MENA</role>
+    </sharedTo>
+</ListView>

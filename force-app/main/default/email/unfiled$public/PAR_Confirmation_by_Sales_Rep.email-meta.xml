@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This type of email is sent when a Price Approval Request needs confirmation by the Sales rep.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>PAR Confirmation by Sales Rep</name>
+    <style>none</style>
+    <subject>Confirm Price Approval Request for {!Account.Name}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

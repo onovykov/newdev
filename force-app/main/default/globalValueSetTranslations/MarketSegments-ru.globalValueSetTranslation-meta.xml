@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Americas</masterLabel>
+        <translation>Америка</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>CIS</masterLabel>
+        <translation>СНГ</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Customs Union</masterLabel>
+        <translation>ТС</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>ETA</masterLabel>
+        <translation><!-- ETA --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Europe</masterLabel>
+        <translation>Европа</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>IPS</masterLabel>
+        <translation>Сталь</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>KLW</masterLabel>
+        <translation>Колеса</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>MENA</masterLabel>
+        <translation>БВиСA</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Machinery</masterLabel>
+        <translation><!-- Machinery --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>NMD</masterLabel>
+        <translation><!-- NMD --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Steel</masterLabel>
+        <translation><!-- Steel --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Ukraine</masterLabel>
+        <translation>Украина</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Vallourec</masterLabel>
+        <translation>Vallourec</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Изоляция</masterLabel>
+        <translation><!-- Изоляция --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Опытные/Освоение</masterLabel>
+        <translation><!-- Опытные/Освоение --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Оседание</masterLabel>
+        <translation><!-- Оседание --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Передел</masterLabel>
+        <translation><!-- Передел --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Сплавы</masterLabel>
+        <translation><!-- Сплавы --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Сторонние организации</masterLabel>
+        <translation><!-- Сторонние организации --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>ФЭС прочее</masterLabel>
+        <translation><!-- ФЭС прочее --></translation>
+    </valueTranslation>
+</GlobalValueSetTranslation>

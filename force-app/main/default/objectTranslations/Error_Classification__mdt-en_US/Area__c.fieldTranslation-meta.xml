@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Area --></label>
+    <name>Area__c</name>
+    <picklistValues>
+        <masterLabel>AccountManagement</masterLabel>
+        <translation><!-- AccountManagement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AdjustmentQuotaRequest</masterLabel>
+        <translation><!-- AdjustmentQuotaRequest --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ContactManagement</masterLabel>
+        <translation><!-- ContactManagement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>InvoiceOrderDebt</masterLabel>
+        <translation><!-- InvoiceOrderDebt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>LeadManagement</masterLabel>
+        <translation><!-- LeadManagement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OpportunityData</masterLabel>
+        <translation><!-- OpportunityData --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OpportunityManagement</masterLabel>
+        <translation><!-- OpportunityManagement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OpportunityStage</masterLabel>
+        <translation><!-- OpportunityStage --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Order Management</masterLabel>
+        <translation><!-- Order Management --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PriceApprovalRequest</masterLabel>
+        <translation><!-- PriceApprovalRequest --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ProdQuotaManagement</masterLabel>
+        <translation><!-- ProdQuotaManagement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ProductionPlan</masterLabel>
+        <translation><!-- ProductionPlan --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ProductionQuotes</masterLabel>
+        <translation><!-- ProductionQuotes --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SalesBudget</masterLabel>
+        <translation><!-- SalesBudget --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SalesPlanFact</masterLabel>
+        <translation><!-- SalesPlanFact --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ScrapManagement</masterLabel>
+        <translation><!-- ScrapManagement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SendToBackoffice</masterLabel>
+        <translation><!-- SendToBackoffice --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>UserManagement</masterLabel>
+        <translation><!-- UserManagement --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

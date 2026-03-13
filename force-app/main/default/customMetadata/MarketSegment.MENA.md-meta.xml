@@ -6,4 +6,8 @@
         <field>Code__c</field>
         <value xsi:type="xsd:string">00002</value>
     </values>
+    <values>
+        <field>IsActive__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
 </CustomMetadata>

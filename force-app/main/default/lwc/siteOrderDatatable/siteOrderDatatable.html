@@ -54,8 +54,8 @@
         </lightning-spinner>
         <div>
             <template if:true={isPortal}>
-            <div class="datatable-tabs not-stock-selected">
-                <ul class="slds-tabs_default__nav" role="tablist">
+                <div class="datatable-tabs not-stock-selected">
+                    <ul class="slds-tabs_default__nav" role="tablist">
                         <div class="li-wrapper">
                             <li class="slds-tabs_default__item slds-is-active"  role="presentation" data-id="tab-default-3__item">
                                 <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="0" aria-selected="false" aria-controls="tab-default-3" data-id="tab-default-3__item">{allOrdersTxt}
@@ -97,14 +97,14 @@
                                 </a>
                             </li>
                         </div>
-                    <div if:true={isProdPlanVisible} class="li-wrapper">
-                        <li class="slds-tabs_default__item"  role="presentation"  data-id="tab-default-7__item" >
-                            <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-7" data-id="tab-default-7__item">{productionPlan}
-                            </a>
-                        </li>
-                    </div>
-                </ul>
-            </div>
+                        <div if:true={isProdPlanVisible} class="li-wrapper">
+                            <li class="slds-tabs_default__item"  role="presentation"  data-id="tab-default-7__item" >
+                                <a onclick={toggleSubtabs} class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-7" data-id="tab-default-7__item">{productionPlan}
+                                </a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
             </template>
 
 
@@ -127,22 +127,7 @@
             </div>
             <div class="datatable-menu not-stock-selected" if:false={isProductionPlan}>
                 <div if:false={isProductionPlan} class="blank-space" style="width: 256px;"><!-- onclick={generatePdf} -->
-                    <!-- <img src={printImg} alt="" class="print-icon">
-                    <p class="print-text">{print}</p> -->
                 </div>
-
-<!--                <div if:true={isProdPlanOnDesktop} class="calendar">-->
-<!--                    <p class="calendar-choose-date">{productionDates}: </p>-->
-<!--                    <p class="calendar-from">{startDateProd}</p>-->
-<!--                    <div class="calendar-start-date">-->
-<!--                        <lightning-input type="date" value={prodPlanStartDate} disabled="true"></lightning-input>-->
-<!--                    </div>-->
-<!--                    <p class="calendar-to">{endDateProd}</p>-->
-<!--                    <div class="calendar-end-date">-->
-<!--                        <lightning-input type="date" value={prodPlanEndDate} disabled="true"></lightning-input>-->
-<!--                    </div>-->
-<!--                </div>-->
-
                 <div class="calendar" if:false={isProductionPlan}>
                     <p class="calendar-choose-date">{chooseADate}: </p>
                     <p class="calendar-from">{from}</p>
@@ -163,29 +148,6 @@
                     </div>
                 </div>
             </div>
-
-<!--            <div if:true={isProdPlanNotOnDesktop} class="datatable-menu not-stock-selected">-->
-<!--                <div if:true={isProdPlanOnMobile} class="calendar">-->
-<!--                    <p class="calendar-to">{endDateProd}</p>-->
-<!--                    <div class="calendar-end-date">-->
-<!--                        <lightning-input type="date" value={prodPlanEndDate} disabled="true"></lightning-input>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--                <div class="calendar">-->
-<!--                    <p class="calendar-choose-date">{productionDates}: </p>-->
-<!--                    <p class="calendar-from">{startDateProd}</p>-->
-<!--                    <div class="calendar-start-date">-->
-<!--                        <lightning-input type="date" value={prodPlanStartDate} disabled="true"></lightning-input>-->
-<!--                    </div>-->
-<!--                    <p if:false={isProdPlanOnMobile} class="calendar-to">{endDateProd}</p>-->
-<!--                    <div if:false={isProdPlanOnMobile} class="calendar-end-date">-->
-<!--                        <lightning-input type="date" value={prodPlanEndDate} disabled="true"></lightning-input>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <p if:true={isProductionPlan} class="calendar-choose-date-mobile">{productionDates}: </p>-->
-<!--            </div>-->
-
             <div class="datatable not-stock-selected" if:false={isProductionPlan}>
                 <table>
                     <thead>
@@ -227,9 +189,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <template for:each= {filteredOrdersList} for:item="item">
+                    <template for:each={filteredOrdersList} for:item="item">
 
-                        <tr key = {item.Id} data-id={item.id}>
+
+                        <tr key={item.Id} data-id={item.Id}>
                             <td if:true={isStockOrProdPlan}>
                                 <img  class="extend-btn-img" src={plusIcon} style="cursor:pointer;"  alt="" onclick={openOrderItem} data-id={item.Id} data-icontype="subicon" data-state="extended">
                                 <input class="selectRow" type="checkbox" onchange={selectRowForXSLX} data-id={item.Id}>
@@ -397,68 +360,71 @@
                             </thead>
                             <tbody>
 
-                                <template for:each={structuredPlans} for:item="order">
-                                    <tr key={order.orderId} class="pp_row order-row" onclick={toggleOrder} data-id={order.orderId}>
-                                        <td class="left-align order-header-cell" data-id={order.orderId}>
+                            <template for:each={structuredPlans} for:item="order">
+                                <tr key={order.orderId} class="pp_row order-row" onclick={toggleOrder} data-id={order.orderId}>
+                                    <td class="left-align order-header-cell" data-id={order.orderId}>
                                         <span class="accordion-icon order-icon" data-id={order.orderId}>
                                             <svg viewBox="0 0 24 24" fill="none">
                                                 <path d="M9 6L15 12L9 18" stroke="#333" stroke-width="2"></path>
                                             </svg>
                                         </span>
-                                            <strong>{order.orderName}</strong>
-                                        </td>
-                                        <td>{order.totalBalance}</td>
-                                        <td>{order.totalPlanQty}</td>
-                                        <td>{order.totalFactQty}</td>
-                                        <td>{order.latestPlanDate}</td>
-                                        <td>{order.latestFactDate}</td>
-                                    </tr>
+                                        <strong>{order.orderName}</strong>
+                                    </td>
+                                    <td>{order.balanceForProduction}</td>
+                                    <td>{order.monthlyPlanQty}</td>
+                                    <td>{order.factQty}</td>
+                                    <td>{order.planDate}</td>
+                                    <td>{order.factDate}</td>
+                                </tr>
 
-                                    <template for:each={order.items} for:item="oi">
-                                        <tr key={oi.orderItemId} class="pp_row order-item-row hidden" data-order-id={order.orderId} data-id={oi.orderItemId} onclick={toggleItem}>
-                                            <td class="left-align order-item-cell truncate-cell" title={oi.itemName}>
+                                <template for:each={order.items} for:item="oi">
+                                    <tr key={oi.orderItemId} class="pp_row order-item-row hidden" data-order-id={order.orderId} data-id={oi.orderItemId} onclick={toggleItem}>
+                                        <td class="left-align order-item-cell truncate-cell" title={oi.itemName}>
                                             <span class="accordion-icon item-icon" data-id={oi.orderItemId}>
                                                 <svg viewBox="0 0 24 24" fill="none">
                                                     <path d="M9 6L15 12L9 18" stroke="#333" stroke-width="2"></path>
                                                 </svg>
                                             </span>
-                                                {oi.itemName}
-                                            </td>
-                                            <td>{oi.balance}</td>
-                                            <td>{oi.planQty}</td>
-                                            <td>{oi.factQty}</td>
-                                            <td>{oi.planDate}</td>
-                                            <td>{oi.factDate}</td>
-                                        </tr>
+                                            <div class="item-name-container">
+                                                <div>{oi.itemName}</div>
+                                                <div class="item-ite-number">{oi.iteNumber}</div>
+                                            </div>
+                                        </td>
+                                        <td>{oi.balance}</td>
+                                        <td>{oi.planQty}</td>
+                                        <td>{oi.factQty}</td>
+                                        <td>{oi.planDate}</td>
+                                        <td>{oi.factDate}</td>
+                                    </tr>
 
-                                        <template for:each={oi.months} for:item="month">
-                                            <tr key={month.key} class="pp_row month-row hidden" data-item-id={oi.orderItemId} data-month-key={month.key} onclick={toggleMonth}>
-                                                <td class="left-align month-indent">
+                                    <template for:each={oi.months} for:item="month">
+                                        <tr key={month.key} class="pp_row month-row hidden" data-item-id={oi.orderItemId} data-month-key={month.key} onclick={toggleMonth}>
+                                            <td class="left-align month-indent">
                                                 <span class="accordion-icon month-icon" data-item-id={oi.orderItemId} data-month-key={month.key}>
                                                     <svg viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="#333" stroke-width="2"></path></svg>
                                                 </span>
-                                                    {month.label}
-                                                </td>
-                                                <td>{month.balance}</td>
-                                                <td>{month.planQty}</td>
-                                                <td>{month.factQty}</td>
-                                                <td>{month.planDate}</td>
-                                                <td>{month.factDate}</td>
-                                            </tr>
+                                                {month.label}
+                                            </td>
+                                            <td>{month.balance}</td>
+                                            <td>{month.monthlyPlan}</td>
+                                            <td>{month.factQty}</td>
+                                            <td>{month.planDate}</td>
+                                            <td>{month.factDate}</td>
+                                        </tr>
 
-                                            <template for:each={month.weeks} for:item="week">
-                                                <tr key={week.label} class="pp_row week-row hidden" data-item-id={oi.orderItemId} data-month-key={month.key}>
-                                                    <td class="left-align week-indent">{week.label}</td>
-                                                    <td>{week.balance}</td>
-                                                    <td>{week.planQty}</td>
-                                                    <td>{week.factQty}</td>
-                                                    <td>{week.planDate}</td>
-                                                    <td>{week.factDate}</td>
-                                                </tr>
-                                            </template>
+                                        <template for:each={month.weeks} for:item="week">
+                                            <tr key={week.label} class="pp_row week-row hidden" data-item-id={oi.orderItemId} data-month-key={month.key}>
+                                                <td class="left-align week-indent">{week.label}</td>
+                                                <td>{week.balance}</td>
+                                                <td>{week.planQty}</td>
+                                                <td>{week.factQty}</td>
+                                                <td>{week.planDate}</td>
+                                                <td>{week.factDate}</td>
+                                            </tr>
                                         </template>
                                     </template>
                                 </template>
+                            </template>
 
                             </tbody>
                         </table>
@@ -489,11 +455,6 @@
                     <img src={xlsxIcon} alt="" class="xlsx-icon">
                     <p class="print-text">Excel</p>
                 </div>
-
-<!--                <div if:true={isProductionPlan} class="print-btn"   onclick={generateXLSXforProdPlan} >-->
-<!--                    <img src={xlsxIcon} alt="" class="xlsx-icon">-->
-<!--                    <p class="print-text">Excel</p>-->
-<!--                </div>-->
             </div>
 
         </div>
@@ -526,13 +487,6 @@
 
                     <c-order-delivery if:true={isOrderDispatched} record-id={orderDeliveryId}></c-order-delivery>
                 </div>
-                <!-- <lightning-spinner
-                if:false={modalContainer}
-                class="slds-is-absolute slds-align_absolute-center"
-                alternative-text="Loading Details..."
-                size="medium"
-                variant="brand"
-            > -->
                 </lightning-spinner>
             </div>
         </section>

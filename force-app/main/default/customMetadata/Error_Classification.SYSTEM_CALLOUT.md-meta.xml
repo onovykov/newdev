@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>SYSTEM_CALLOUT</label>
+    <protected>false</protected>
+    <values>
+        <field>AreaType__c</field>
+        <value xsi:type="xsd:string">OPPORTUNITY</value>
+    </values>
+    <values>
+        <field>Area__c</field>
+        <value xsi:type="xsd:string">OpportunityData</value>
+    </values>
+    <values>
+        <field>Category__c</field>
+        <value xsi:type="xsd:string">REST/SOAP API</value>
+    </values>
+    <values>
+        <field>CriticalLevel__c</field>
+        <value xsi:type="xsd:string">Critical</value>
+    </values>
+    <values>
+        <field>Default_Notification_Event__c</field>
+        <value xsi:type="xsd:string">SYSTEM_CALLOUT</value>
+    </values>
+    <values>
+        <field>ErrorKey__c</field>
+        <value xsi:type="xsd:string">SYSTEM_CALLOUT</value>
+    </values>
+    <values>
+        <field>ReactTimeHours__c</field>
+        <value xsi:type="xsd:double">4.0</value>
+    </values>
+    <values>
+        <field>SubCategory__c</field>
+        <value xsi:type="xsd:string">Callout Exception</value>
+    </values>
+</CustomMetadata>

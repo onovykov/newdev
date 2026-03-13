@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>PAR_HAS_NO_ITEMS</label>
+    <protected>false</protected>
+    <values>
+        <field>Handler__c</field>
+        <value xsi:type="xsd:string">PAR</value>
+    </values>
+    <values>
+        <field>MessageText__c</field>
+        <value xsi:type="xsd:string">PAR was not saved because it has no items</value>
+    </values>
+</CustomMetadata>

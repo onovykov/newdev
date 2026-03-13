@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Service field to define if there are still any opportunity products without margin calculated. --></help>
+    <label><!-- Count of products without margin --></label>
+    <name>CountOfProductsWithoutMargin__c</name>
+</CustomFieldTranslation>

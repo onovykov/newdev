@@ -1,0 +1,86 @@
+<html>
+<head>
+	<title>Work Item Reminder</title>
+</head>
+<body style="margin: 0px; padding: 0px; background: rgb(246, 248, 251); height: auto; min-height: auto;">
+<table cellpadding="0" cellspacing="0" style="background:#f6f8fb;" width="100%">
+	
+		<tr>
+			<td align="center" style="padding:24px;">
+			<table cellpadding="0" cellspacing="0" style="max-width:720px;width:100%;background:#ffffff;border:1px solid #e5e7eb;border-radius:14px;
+                 font-family:Arial,Helvetica,sans-serif;color:#111827;overflow:hidden;" width="720">
+				
+					<tr>
+						<td style="padding:20px;background:#fff7ed;border-bottom:1px solid #e5e7eb;">
+						<div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9a3412;">Нагадування</div>
+
+						<div style="margin-top:6px;font-size:20px;font-weight:800;">Потрібно опрацювати Notification Work Item</div>
+
+						<div style="margin-top:8px;font-size:14px;color:#374151;line-height:1.5;">Час реакції для цього Work Item <b>вже сплив</b>. Будь ласка, виконайте необхідні дії або оновіть статус.</div>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding:20px;">
+						<table cellpadding="0" cellspacing="0" style="margin-bottom:6px;" width="100%">
+							
+								<tr>
+									<td style="padding:8px;vertical-align:top;" width="50%">
+									<div style="font-size:12px;color:#6b7280;">Notification Work Item</div>
+
+									<div style="margin-top:4px;font-size:18px;font-weight:800;">{{{Notification_Work_Item__c.Name}}}</div>
+
+									<div style="margin-top:10px;font-size:12px;color:#6b7280;">Notification Type</div>
+
+									<div style="margin-top:4px;font-size:14px;color:#111827;">{{{Notification_Work_Item__c.Notification_Type__c}}}</div>
+
+									<div style="margin-top:10px;font-size:12px;color:#6b7280;">Поточний статус: <b style="color:#111827;">{{{Notification_Work_Item__c.Work_Status__c}}}</b></div>
+									</td>
+									<td style="padding:8px;vertical-align:top;" width="50%">
+									<div style="font-size:12px;color:#6b7280;">Час реакції</div>
+
+									<div style="margin-top:4px;font-size:16px;font-weight:800;">{{{Notification_Work_Item__c.Reaction_Time_Hours__c}}} год.</div>
+
+									<div style="margin-top:10px;font-size:12px;color:#6b7280;">Correlation Key</div>
+
+									<div style="margin-top:4px;font-size:12.5px;font-family:Consolas,Menlo,Monaco,'Courier New',monospace;color:#111827;">{{{Notification_Work_Item__c.Correlation_Key__c}}}</div>
+
+									<div style="margin-top:10px;font-size:12px;color:#6b7280;">&nbsp;</div>
+									</td>
+								</tr>
+							
+						</table>
+
+						<div style="margin-top:10px;padding:14px;border:1px solid #fecaca;border-radius:12px;background:#fff1f2;">
+						<div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#991b1b;">Увага</div>
+
+						<div style="margin-top:8px;font-size:14px;color:#111827;line-height:1.55;">Якщо Work Item не буде опрацьовано найближчим часом, його статус буде <b>автоматично переведено в статус "Проігноровано"</b>.</div>
+						</div>
+
+						<div style="margin-top:14px;padding:14px;border:1px solid #e5e7eb;border-radius:12px;background:#ffffff;">
+						<div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;">Summary</div>
+
+						<div style="margin-top:8px;font-size:14px;color:#111827;line-height:1.5;">{{{Notification_Work_Item__c.Summary__c}}}</div>
+						</div>
+
+						<div style="margin-top:14px;">
+						<div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;">Details</div>
+
+						<div style="margin-top:8px;background:#0b1220;color:#e5e7eb;border-radius:12px;padding:14px;
+                  font-family:Consolas,Menlo,Monaco,'Courier New',monospace;font-size:12.5px;line-height:1.55;white-space:pre-wrap;">{{{Notification_Work_Item__c.Details__c}}}</div>
+						</div>
+
+						<div style="margin-top:18px;padding-top:18px;border-top:1px solid #e5e7eb;"><a href="https://interpipe--newdev.sandbox.lightning.force.com/lightning/r/Notification_Work_Item__c/{{{Notification_Work_Item__c.Id}}}/view" style="display:inline-block;background:#b91c1c;color:#ffffff;text-decoration:none;
+                          padding:12px 16px;border-radius:10px;font-size:13px;font-weight:800;">Відкрити Notification Work Item </a></div>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding:14px 20px;background:#f9fafb;border-top:1px solid #e5e7eb;font-size:12px;color:#6b7280;">Це автоматичне нагадування Notification Service. Будь ласка, не ігноруйте цей лист.</td>
+					</tr>
+				
+			</table>
+			</td>
+		</tr>
+	
+</table>
+</body>
+</html>

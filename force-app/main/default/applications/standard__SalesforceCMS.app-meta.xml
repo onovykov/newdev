@@ -1577,7 +1577,6 @@
     <tabs>standard-CmsWorkspaces</tabs>
     <tabs>standard-CmsExperiences</tabs>
     <tabs>News_from_the_Market__c</tabs>
-    <tabs>Production_Quota__c</tabs>
     <tabs>ProductionJournalRecord__c</tabs>
     <tabs>InvoiceOrderDebt__c</tabs>
     <tabs>Questionnaire__c</tabs>
@@ -1588,22 +1587,14 @@
     <tabs>WheelHub__c</tabs>
     <tabs>Answer__c</tabs>
     <tabs>Question__c</tabs>
-    <tabs>AccountSegments__c</tabs>
     <tabs>AccountDeliveryTerms__c</tabs>
     <tabs>AccountPaymentTerms__c</tabs>
     <tabs>WheelAxlialLoadType__c</tabs>
     <tabs>WheelsetComponent__c</tabs>
     <tabs>AccountSalesSegmentation__c</tabs>
-    <tabs>Currency__c</tabs>
     <tabs>ProductsClassifier__c</tabs>
     <tabs>WheelHubBore__c</tabs>
-    <tabs>MarketingHierarchy__c</tabs>
-    <tabs>MarketingMainTable__c</tabs>
-    <tabs>MarketingConsumptions__c</tabs>
-    <tabs>MarketingQuestions__c</tabs>
-    <tabs>MarketingAnswers__c</tabs>
     <tabs>ProdKind__c</tabs>
-    <tabs>KLWProdNames__c</tabs>
     <tabs>ProdNameForDoc__c</tabs>
     <tabs>SteelGradeGroup__c</tabs>
     <tabs>TubeEndsGroup__c</tabs>
@@ -1614,8 +1605,6 @@
     <tabs>CustomerPortalUsers__c</tabs>
     <tabs>OrderItemGeneral__c</tabs>
     <tabs>WheelShape__c</tabs>
-    <tabs>MarketingTableExp__c</tabs>
-    <tabs>MarketingRevenewTable__c</tabs>
     <tabs>KLWDocStage__c</tabs>
     <tabs>WheelPlugType__c</tabs>
     <tabs>WheelPartProducer__c</tabs>
@@ -1627,7 +1616,6 @@
     <tabs>UserRole__c</tabs>
     <tabs>SaleBOAcc_Rel__c</tabs>
     <tabs>UserAuditLog__c</tabs>
-    <tabs>UpdateFailure__c</tabs>
     <tabs>ClientLead__c</tabs>
     <tabs>HoldingGroups__c</tabs>
     <tabs>AccountSoundexGroup__c</tabs>
@@ -1645,9 +1633,35 @@
     <tabs>ScrapSlotReserve__c</tabs>
     <tabs>SupplierLimitEdit__c</tabs>
     <tabs>Decades_Calendar</tabs>
-    <tabs>NewRoles__c</tabs>
-    <tabs>NewRolesUsers__c</tabs>
     <tabs>NotifRecip__c</tabs>
+    <tabs>OD_SCH_WT__c</tabs>
+    <tabs>RecipientGroup__c</tabs>
+    <tabs>Translation__c</tabs>
+    <tabs>NotifEventRecGrp_Junk__c</tabs>
+    <tabs>Roles_Users_Junktion__c</tabs>
+    <tabs>NotifEventRecGrp_Users__c</tabs>
+    <tabs>NotifEventRecGrp_Contacts__c</tabs>
+    <tabs>OrderItemStageEvent__c</tabs>
+    <tabs>ProdTechRef__c</tabs>
+    <tabs>ProdTechRefDetails__c</tabs>
+    <tabs>ProdTechRefAttrib__c</tabs>
+    <tabs>Notification_Work_Item__c</tabs>
+    <tabs>PatternSetting__c</tabs>
+    <tabs>ProductDetail__c</tabs>
+    <tabs>Field_Audit_Log__c</tabs>
+    <tabs>ManagerBOS_H__c</tabs>
+    <tabs>ProducMainSKU__c</tabs>
+    <tabs>ProdSaleItem__c</tabs>
+    <tabs>ProdSaleItemDetail__c</tabs>
+    <tabs>ProdMainSKUDetail__c</tabs>
+    <tabs>StandardVariant__c</tabs>
+    <tabs>AccountSegment__c</tabs>
+    <tabs>AccountSegmentJunktion__c</tabs>
+    <tabs>ERP_InboundBatch__c</tabs>
+    <tabs>WheelContract__c</tabs>
+    <tabs>WheelContractLine__c</tabs>
+    <tabs>PAROutbox__c</tabs>
+    <tabs>PARPendingApproval__c</tabs>
     <uiType>Lightning</uiType>
     <workspaceConfig>
         <mappings>
@@ -1663,7 +1677,10 @@
             <tab>AccountSalesSegmentation__c</tab>
         </mappings>
         <mappings>
-            <tab>AccountSegments__c</tab>
+            <tab>AccountSegmentJunktion__c</tab>
+        </mappings>
+        <mappings>
+            <tab>AccountSegment__c</tab>
         </mappings>
         <mappings>
             <tab>AccountSoundexGroup__c</tab>
@@ -1675,9 +1692,6 @@
             <tab>ClientLead__c</tab>
         </mappings>
         <mappings>
-            <tab>Currency__c</tab>
-        </mappings>
-        <mappings>
             <tab>CustomerPortalUsers__c</tab>
         </mappings>
         <mappings>
@@ -1685,6 +1699,12 @@
         </mappings>
         <mappings>
             <tab>Decades_Calendar</tab>
+        </mappings>
+        <mappings>
+            <tab>ERP_InboundBatch__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Field_Audit_Log__c</tab>
         </mappings>
         <mappings>
             <tab>HoldingGroups__c</tab>
@@ -1699,46 +1719,46 @@
             <tab>KLWDocStage__c</tab>
         </mappings>
         <mappings>
-            <tab>KLWProdNames__c</tab>
-        </mappings>
-        <mappings>
-            <tab>MarketingAnswers__c</tab>
-        </mappings>
-        <mappings>
-            <tab>MarketingConsumptions__c</tab>
-        </mappings>
-        <mappings>
-            <tab>MarketingHierarchy__c</tab>
-        </mappings>
-        <mappings>
-            <tab>MarketingMainTable__c</tab>
-        </mappings>
-        <mappings>
-            <tab>MarketingQuestions__c</tab>
-        </mappings>
-        <mappings>
-            <tab>MarketingRevenewTable__c</tab>
-        </mappings>
-        <mappings>
-            <tab>MarketingTableExp__c</tab>
+            <tab>ManagerBOS_H__c</tab>
         </mappings>
         <mappings>
             <tab>MatchResult__c</tab>
         </mappings>
         <mappings>
-            <tab>NewRolesUsers__c</tab>
-        </mappings>
-        <mappings>
-            <tab>NewRoles__c</tab>
-        </mappings>
-        <mappings>
             <tab>News_from_the_Market__c</tab>
+        </mappings>
+        <mappings>
+            <tab>NotifEventRecGrp_Contacts__c</tab>
+        </mappings>
+        <mappings>
+            <tab>NotifEventRecGrp_Junk__c</tab>
+        </mappings>
+        <mappings>
+            <tab>NotifEventRecGrp_Users__c</tab>
         </mappings>
         <mappings>
             <tab>NotifRecip__c</tab>
         </mappings>
         <mappings>
+            <tab>Notification_Work_Item__c</tab>
+        </mappings>
+        <mappings>
+            <tab>OD_SCH_WT__c</tab>
+        </mappings>
+        <mappings>
             <tab>OrderItemGeneral__c</tab>
+        </mappings>
+        <mappings>
+            <tab>OrderItemStageEvent__c</tab>
+        </mappings>
+        <mappings>
+            <tab>PAROutbox__c</tab>
+        </mappings>
+        <mappings>
+            <tab>PARPendingApproval__c</tab>
+        </mappings>
+        <mappings>
+            <tab>PatternSetting__c</tab>
         </mappings>
         <mappings>
             <tab>PortalUser__c</tab>
@@ -1747,16 +1767,37 @@
             <tab>ProdKind__c</tab>
         </mappings>
         <mappings>
+            <tab>ProdMainSKUDetail__c</tab>
+        </mappings>
+        <mappings>
             <tab>ProdNameForDoc__c</tab>
+        </mappings>
+        <mappings>
+            <tab>ProdSaleItemDetail__c</tab>
+        </mappings>
+        <mappings>
+            <tab>ProdSaleItem__c</tab>
+        </mappings>
+        <mappings>
+            <tab>ProdTechRefAttrib__c</tab>
+        </mappings>
+        <mappings>
+            <tab>ProdTechRefDetails__c</tab>
+        </mappings>
+        <mappings>
+            <tab>ProdTechRef__c</tab>
         </mappings>
         <mappings>
             <tab>ProdWeeksH__c</tab>
         </mappings>
         <mappings>
-            <tab>ProductionJournalRecord__c</tab>
+            <tab>ProducMainSKU__c</tab>
         </mappings>
         <mappings>
-            <tab>Production_Quota__c</tab>
+            <tab>ProductDetail__c</tab>
+        </mappings>
+        <mappings>
+            <tab>ProductionJournalRecord__c</tab>
         </mappings>
         <mappings>
             <tab>ProductsClassifier__c</tab>
@@ -1766,6 +1807,12 @@
         </mappings>
         <mappings>
             <tab>Questionnaire__c</tab>
+        </mappings>
+        <mappings>
+            <tab>RecipientGroup__c</tab>
+        </mappings>
+        <mappings>
+            <tab>Roles_Users_Junktion__c</tab>
         </mappings>
         <mappings>
             <tab>SaleBOAcc_Rel__c</tab>
@@ -1798,6 +1845,9 @@
             <tab>ScrapType__c</tab>
         </mappings>
         <mappings>
+            <tab>StandardVariant__c</tab>
+        </mappings>
+        <mappings>
             <tab>SteelGradeGroup__c</tab>
         </mappings>
         <mappings>
@@ -1807,10 +1857,10 @@
             <tab>SupplierLimitEdit__c</tab>
         </mappings>
         <mappings>
-            <tab>TubeEndsGroup__c</tab>
+            <tab>Translation__c</tab>
         </mappings>
         <mappings>
-            <tab>UpdateFailure__c</tab>
+            <tab>TubeEndsGroup__c</tab>
         </mappings>
         <mappings>
             <tab>UserAuditLog__c</tab>
@@ -1823,6 +1873,12 @@
         </mappings>
         <mappings>
             <tab>WheelCoatingType__c</tab>
+        </mappings>
+        <mappings>
+            <tab>WheelContractLine__c</tab>
+        </mappings>
+        <mappings>
+            <tab>WheelContract__c</tab>
         </mappings>
         <mappings>
             <tab>WheelDiameter__c</tab>

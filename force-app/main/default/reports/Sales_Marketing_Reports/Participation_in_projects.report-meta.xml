@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Project__c$EndUserId__c</field>
+    </columns>
+    <columns>
+        <field>Project__c$LaunchDate__c</field>
+    </columns>
+    <columns>
+        <field>Project__c$CompletionDate__c</field>
+    </columns>
+    <columns>
+        <field>Project__c$Phase__c</field>
+    </columns>
+    <columns>
+        <field>Project__c$Stage__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Project__c$Quantity_t__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Project__c$ProcurementShare__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Our participation in customer projects</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Project__c$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Participation in Projects</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>Projects_with_Opportunities__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Project__c$CompletionDate__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

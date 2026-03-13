@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Area Type --></label>
+    <name>AreaType__c</name>
+    <picklistValues>
+        <masterLabel>ACCOUNT</masterLabel>
+        <translation><!-- ACCOUNT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CONTACTS</masterLabel>
+        <translation><!-- CONTACTS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>LEADS</masterLabel>
+        <translation><!-- LEADS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPPORTUNITY</masterLabel>
+        <translation><!-- OPPORTUNITY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ORDER</masterLabel>
+        <translation><!-- ORDER --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PAR</masterLabel>
+        <translation><!-- PAR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PRICE LIST</masterLabel>
+        <translation><!-- PRICE LIST --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PROD. PLAN</masterLabel>
+        <translation><!-- PROD. PLAN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PROD. QUOTAS</masterLabel>
+        <translation><!-- PROD. QUOTAS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SCRAP</masterLabel>
+        <translation><!-- SCRAP --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>USERS</masterLabel>
+        <translation><!-- USERS --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

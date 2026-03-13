@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IndustrySubcategory__c</fullName>
+    <label>Industry Subcategory</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Industry</controllingField>
+        <restricted>true</restricted>
+        <valueSetName>IndustrySubcategories</valueSetName>
+        <valueSettings>
+            <controllingFieldValue>Locomotive</controllingFieldValue>
+            <controllingFieldValue>Freight</controllingFieldValue>
+            <controllingFieldValue>Passenger</controllingFieldValue>
+            <valueName>Wagon Manufacturing (OEM)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Locomotive</controllingFieldValue>
+            <controllingFieldValue>Freight</controllingFieldValue>
+            <controllingFieldValue>Passenger</controllingFieldValue>
+            <valueName>Repairing (AM)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Locomotive</controllingFieldValue>
+            <controllingFieldValue>Freight</controllingFieldValue>
+            <controllingFieldValue>Passenger</controllingFieldValue>
+            <valueName>Wagon Keeping</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Locomotive</controllingFieldValue>
+            <controllingFieldValue>Freight</controllingFieldValue>
+            <controllingFieldValue>Passenger</controllingFieldValue>
+            <valueName>Railway Undertaking</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Locomotive</controllingFieldValue>
+            <controllingFieldValue>Freight</controllingFieldValue>
+            <valueName>Industrial Segment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Oil &amp; Gas</controllingFieldValue>
+            <valueName>Upstream</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Oil &amp; Gas</controllingFieldValue>
+            <valueName>Downstream</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Oil &amp; Gas</controllingFieldValue>
+            <valueName>Midstream</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Infrastructure</controllingFieldValue>
+            <valueName>Roads</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Infrastructure</controllingFieldValue>
+            <valueName>Metro</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Infrastructure</controllingFieldValue>
+            <valueName>Railways / Tramways</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Infrastructure</controllingFieldValue>
+            <valueName>Power Generation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Infrastructure</controllingFieldValue>
+            <valueName>Bridges</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Infrastructure</controllingFieldValue>
+            <valueName>Ports</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Residential Construction</controllingFieldValue>
+            <valueName>High-Rise Buildings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Residential Construction</controllingFieldValue>
+            <valueName>Mid-Rise Buildings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Residential Construction</controllingFieldValue>
+            <valueName>Individual Housing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non-Residential Construction</controllingFieldValue>
+            <valueName>Commercial Buildings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non-Residential Construction</controllingFieldValue>
+            <valueName>Administrative Buildings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non-Residential Construction</controllingFieldValue>
+            <valueName>Local Authorities</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non-Residential Construction</controllingFieldValue>
+            <valueName>Industrial Projects</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non-Residential Construction</controllingFieldValue>
+            <valueName>Warehouses and commercial depots</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT &amp; Software</controllingFieldValue>
+            <controllingFieldValue>Machinery</controllingFieldValue>
+            <controllingFieldValue>Fabrication</controllingFieldValue>
+            <valueName>Others</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IT &amp; Software</controllingFieldValue>
+            <valueName>Salesforce Applications</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Machinery</controllingFieldValue>
+            <valueName>Industrial Machinery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Machinery</controllingFieldValue>
+            <valueName>Heavy Machinery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Machinery</controllingFieldValue>
+            <valueName>Construction Elements</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Machinery</controllingFieldValue>
+            <valueName>Shipbuilding</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fabrication</controllingFieldValue>
+            <valueName>O&amp;G</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fabrication</controllingFieldValue>
+            <valueName>Construction</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fabrication</controllingFieldValue>
+            <valueName>Wheel Set Assembling</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fabrication</controllingFieldValue>
+            <valueName>Wheels/Axles Processing</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

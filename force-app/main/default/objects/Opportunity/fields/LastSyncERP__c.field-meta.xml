@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LastSyncERP__c</fullName>
+    <description>Date/time of the last synchronization with ERP system</description>
+    <inlineHelpText>Date/time of the last synchronization with ERP system</inlineHelpText>
+    <label>Last Sync (ERP)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>DateTime</type>
+</CustomField>

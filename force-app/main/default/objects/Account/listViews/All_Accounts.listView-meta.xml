@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Accounts</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.RECORDTYPE</columns>
+    <columns>ACCOUNT.TYPE</columns>
+    <columns>ACCOUNT.INDUSTRY</columns>
+    <columns>MarketSegment__c</columns>
+    <columns>CORE.USERS.LAST_NAME</columns>
+    <columns>CORE.USERS.FIRST_NAME</columns>
+    <columns>ACCOUNT.ADDRESS1_COUNTRY_CODE</columns>
+    <columns>ACCOUNT.ADDRESS2_COUNTRY_CODE</columns>
+    <columns>ACCOUNT.CURRENCY_ISO_CODE</columns>
+    <columns>ID_ERP__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ACCOUNT.RECORDTYPE</field>
+        <operation>notEqual</operation>
+        <value>Account.Competitor</value>
+    </filters>
+    <filters>
+        <field>Under_Sanctions__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.TYPE</field>
+        <operation>notEqual</operation>
+        <value>Inner Firm</value>
+    </filters>
+    <filters>
+        <field>ID_ERP__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Activity_Type__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </filters>
+    <label>All ACTIVE Accounts</label>
+    <sharedTo>
+        <group>ADMIN</group>
+        <group>SeniorManagementTeam</group>
+    </sharedTo>
+</ListView>

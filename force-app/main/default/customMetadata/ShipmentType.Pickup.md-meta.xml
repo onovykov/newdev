@@ -7,6 +7,10 @@
         <value xsi:type="xsd:string">C</value>
     </values>
     <values>
+        <field>IsActive__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
         <field>IsDefault__c</field>
         <value xsi:type="xsd:boolean">false</value>
     </values>

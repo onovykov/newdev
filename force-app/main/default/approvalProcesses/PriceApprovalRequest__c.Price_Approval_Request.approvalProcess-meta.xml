@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>creator</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>sf-ite@interpipe.biz</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+        <field>IsPriceModel__c</field>
+        <field>SalesRep__c</field>
+        <field>MarketSegment__c</field>
+        <field>Account__c</field>
+        <field>PaymentTerms__c</field>
+        <field>DeliveryTerms__c</field>
+        <field>CurrencyIsoCode</field>
+        <field>Quantity_t__c</field>
+        <field>Revenue__c</field>
+        <field>Margin_t__c</field>
+        <field>ROI__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>Set_PAR_Approved_by_Sales_Rep</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>SalesRep__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Needs confirmation by the related sales representative.</description>
+        <label>Confirmation by Sales Rep</label>
+        <name>SalesRep</name>
+        <rejectionActions>
+            <action>
+                <name>Set_PAR_Returned_by_Sales_Rep</name>
+                <type>FieldUpdate</type>
+            </action>
+        </rejectionActions>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>sf-ite@interpipe.biz</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>On this step we are waiting for finishing of the approval process in the ERP system and then automatically approve or reject it here.</description>
+        <label>Final Approval</label>
+        <name>Final_Approval</name>
+        <rejectBehavior>
+            <type>BackToPrevious</type>
+        </rejectBehavior>
+    </approvalStep>
+    <description>Price Approval Request approval process</description>
+    <emailTemplate>unfiled$public/PAR_Approval</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>Price Approval Request</label>
+    <processOrder>1</processOrder>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

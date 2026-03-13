@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Если текст темы входящего электронного письма содержит этот тег, он будет назначен этому Запросу</help>
+    <label>Тег Возможности</label>
+    <name>Tag__c</name>
+</CustomFieldTranslation>

@@ -137,6 +137,18 @@
                 <identifier>RecordStatus__cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.BidGuarantees__c</fieldItem>
+                <identifier>RecordBidGuarantees__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.WheelContract__c</fieldItem>
+                <identifier>RecordWheelContract__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-7bf6a4af-38e2-45de-9fdf-981387b5bb5d</name>
         <type>Facet</type>
     </flexiPageRegions>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contacts_Wheels_UA_for_Questionary1</fullName>
+    <columns>CONTACT.SALUTATION</columns>
+    <columns>FULL_NAME</columns>
+    <columns>CONTACT.LAST_NAME</columns>
+    <columns>CONTACT.FIRST_NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CONTACT.TITLE</columns>
+    <columns>CONTACT.PHONE1</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>Account.MarketSegment__c</columns>
+    <columns>IsPortalUser__c</columns>
+    <columns>CORE.USERS.LAST_NAME</columns>
+    <columns>CORE.USERS.FIRST_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Is_Primary_Respondent__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Account.MarketSegment__c</field>
+        <operation>equals</operation>
+        <value>00006</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.ADDRESS2_COUNTRY_CODE</field>
+        <operation>equals</operation>
+        <value>UA</value>
+    </filters>
+    <label>Contacts Wheels UA (for Questionary)</label>
+    <sharedTo>
+        <group>Marketing</group>
+    </sharedTo>
+</ListView>

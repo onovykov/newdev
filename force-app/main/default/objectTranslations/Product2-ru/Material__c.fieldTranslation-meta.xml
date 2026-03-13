@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Material --></label>
+    <name>Material__c</name>
+    <picklistValues>
+        <masterLabel>ALUMINIUM</masterLabel>
+        <translation><!-- ALUMINIUM --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CARBON STEEL</masterLabel>
+        <translation><!-- CARBON STEEL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>COPPER</masterLabel>
+        <translation><!-- COPPER --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>STAINLESS STEEL</masterLabel>
+        <translation><!-- STAINLESS STEEL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TITANIUM</masterLabel>
+        <translation><!-- TITANIUM --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

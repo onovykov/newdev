@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Kind --></label>
+    <name>Kind__c</name>
+    <picklistValues>
+        <masterLabel>Contacts</masterLabel>
+        <translation><!-- Contacts --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Users</masterLabel>
+        <translation><!-- Users --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

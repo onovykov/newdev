@@ -5,8 +5,7 @@
         <label>Create Production Quote</label>
         <locationX>747</locationX>
         <locationY>436</locationY>
-        <actionName>FlowTriggerProductionQuoteCreate</actionName>
-        <actionType>apex</actionType>
+        <actionName>01p1n00000Q3SiTNotFound</actionName>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>ids</name>
@@ -14,7 +13,6 @@
                 <elementReference>SaleBudgetId</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>FlowTriggerProductionQuoteCreate</nameSegment>
     </actionCalls>
     <apiVersion>54.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>

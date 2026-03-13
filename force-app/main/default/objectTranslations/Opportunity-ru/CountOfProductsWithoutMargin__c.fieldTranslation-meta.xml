@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Сервисное поле для определения продуктов Запроса, по которым нет расчета маржи</help>
+    <label>Количество продуктов без маржи</label>
+    <name>CountOfProductsWithoutMargin__c</name>
+</CustomFieldTranslation>

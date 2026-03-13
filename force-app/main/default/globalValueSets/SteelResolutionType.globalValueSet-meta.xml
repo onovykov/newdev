@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>GRADE</fullName>
+        <default>false</default>
+        <label>GRADE</label>
+    </customValue>
+    <customValue>
+        <fullName>VARIANT</fullName>
+        <default>false</default>
+        <label>VARIANT</label>
+    </customValue>
+    <customValue>
+        <fullName>STANDARD</fullName>
+        <default>false</default>
+        <label>STANDARD</label>
+    </customValue>
+    <customValue>
+        <fullName>TRASH</fullName>
+        <default>false</default>
+        <label>TRASH</label>
+    </customValue>
+    <customValue>
+        <fullName>UNKNOWN</fullName>
+        <default>false</default>
+        <label>UNKNOWN</label>
+    </customValue>
+    <masterLabel>Steel Resolution Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

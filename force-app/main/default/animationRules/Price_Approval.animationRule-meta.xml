@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnimationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <animationFrequency>always</animationFrequency>
+    <developerName>Price_Approval</developerName>
+    <isActive>true</isActive>
+    <masterLabel>Price Approval</masterLabel>
+    <recordTypeContext>Master</recordTypeContext>
+    <recordTypeName>__MASTER__</recordTypeName>
+    <sobjectType>PriceApprovalRequest__c</sobjectType>
+    <targetField>Stage__c</targetField>
+    <targetFieldChangeToValues>Resolved</targetFieldChangeToValues>
+</AnimationRule>

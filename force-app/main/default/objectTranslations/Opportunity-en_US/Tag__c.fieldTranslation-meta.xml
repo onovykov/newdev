@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If and inbound email theme text contains this tag it will be assigned to this opportunity. --></help>
+    <label><!-- Opportunity Tag --></label>
+    <name>Tag__c</name>
+</CustomFieldTranslation>

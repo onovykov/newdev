@@ -30,16 +30,19 @@ public class SendAdjustmentQuotaCalloutJob implements Queueable, Database.Allows
             ERPRequestParser.ExecuteResponceQuotaRequest idResponse = (ERPRequestParser.ExecuteResponceQuotaRequest) JSON.deserialize(processed, ERPRequestParser.ExecuteResponceQuotaRequest.class);
 
             if (!idResponse.Success) {
-                Triton.instance.error(TritonTypes.Type.Backend, TritonTypes.Area.AdjustmentQuotaRequest,   
-                                      'Send Adjustment Quota Request failed', idResponse.Comments);
+                SObject ctxObject = (!quotaRequestDetailList.isEmpty()) ? quotaRequestDetailList[0] : null;
+                Exception backendError = new CalloutException('Send Adjustment Quota Request failed: ' + idResponse.Comments);
+                ErrorService.handle('ERR_CALLOUT_BACKEND_FAILED', ctxObject, backendError);
             } else {
                 Triton.instance.debug(TritonTypes.Type.RequestDebug, TritonTypes.Area.AdjustmentQuotaRequest, 
                                   'Send Adjustment Quota Response body', String.valueOf(idResponse));
             }
         } catch(CalloutException callfail) {
-			Triton.instance.error(TritonTypes.Area.SendToBackoffice, callfail);
+			SObject ctx = (!quotaRequestDetailList.isEmpty()) ? quotaRequestDetailList[0] : null;
+			ErrorService.handle('SYSTEM_CALLOUT', ctx, callfail);
 		} catch(System.JSONException jsfailed) {
-			Triton.instance.error(TritonTypes.Area.SendToBackoffice, jsfailed);
+			SObject ctx = (!quotaRequestDetailList.isEmpty()) ? quotaRequestDetailList[0] : null;
+			ErrorService.handle('ERR_CALLOUT_JSON_EXCEPTION', ctx, jsfailed);
 		}
 
         updateQuoteStructureDetails(quotaRequestDetailList);

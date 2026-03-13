@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Material__c</fullName>
+    <label>Material</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CARBON_STEEL</fullName>
+                <default>false</default>
+                <label>CARBON STEEL</label>
+            </value>
+            <value>
+                <fullName>STAINLESS_STEEL</fullName>
+                <default>false</default>
+                <label>STAINLESS STEEL</label>
+            </value>
+            <value>
+                <fullName>ALUMINIUM</fullName>
+                <default>false</default>
+                <label>ALUMINIUM</label>
+            </value>
+            <value>
+                <fullName>COPPER</fullName>
+                <default>false</default>
+                <label>COPPER</label>
+            </value>
+            <value>
+                <fullName>TITANIUM</fullName>
+                <default>false</default>
+                <label>TITANIUM</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

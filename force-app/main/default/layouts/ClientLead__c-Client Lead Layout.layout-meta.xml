@@ -28,10 +28,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CityName__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Web__c</field>
             </layoutItems>
             <layoutItems>
@@ -133,6 +129,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Account__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Email_Is_Invalid__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

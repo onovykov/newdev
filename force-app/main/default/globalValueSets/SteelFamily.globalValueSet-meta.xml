@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>WHEEL_CARBON</fullName>
+        <default>false</default>
+        <label>Wheel carbon steel</label>
+    </customValue>
+    <customValue>
+        <fullName>WHEEL_ALLOY</fullName>
+        <default>false</default>
+        <label>Wheel alloy steel</label>
+    </customValue>
+    <customValue>
+        <fullName>STRUCTURAL</fullName>
+        <default>false</default>
+        <label>Structural steel</label>
+    </customValue>
+    <customValue>
+        <fullName>PRESSURE</fullName>
+        <default>false</default>
+        <label>Pressure steel</label>
+    </customValue>
+    <customValue>
+        <fullName>MECHANICAL</fullName>
+        <default>false</default>
+        <label>Mechanical</label>
+    </customValue>
+    <customValue>
+        <fullName>ALLOY</fullName>
+        <default>false</default>
+        <label>Alloy steel</label>
+    </customValue>
+    <customValue>
+        <fullName>OTHER</fullName>
+        <default>false</default>
+        <label>Other / legacy</label>
+    </customValue>
+    <masterLabel>Steel Family</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

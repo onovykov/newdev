@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>3LPE Coating</masterLabel>
+        <translation>3-слойное полиэтиленовое покрытие</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Dyeing</masterLabel>
+        <translation>Краска</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Galvanizing</masterLabel>
+        <translation>Оцинкование</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>No Varnish</masterLabel>
+        <translation>Без лака</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>None</masterLabel>
+        <translation>Без покрытия</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Polyethylene Coating</masterLabel>
+        <translation>Полиэтиленовое покрытие</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Varnish</masterLabel>
+        <translation>Покрытие лаком</translation>
+    </valueTranslation>
+</GlobalValueSetTranslation>

@@ -1,0 +1,4 @@
+Quota adjustment request "{!QuoteRequestHeader__c.Request_Name__c}" was created.
+
+Please, review the request and approve or reject it by navigating to:
+{!QuoteRequestHeader__c.Link}

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
-        <fullName>00002</fullName>
-        <default>false</default>
-        <label>MENA</label>
-    </customValue>
-    <customValue>
         <fullName>00001</fullName>
         <default>false</default>
         <label>Americas</label>
+    </customValue>
+    <customValue>
+        <fullName>00002</fullName>
+        <default>false</default>
+        <label>MENA</label>
     </customValue>
     <customValue>
         <fullName>00004</fullName>
@@ -26,14 +26,14 @@
         <label>Ukraine</label>
     </customValue>
     <customValue>
-        <fullName>00016</fullName>
-        <default>false</default>
-        <label>Customs Union</label>
-    </customValue>
-    <customValue>
         <fullName>00006</fullName>
         <default>false</default>
         <label>KLW</label>
+    </customValue>
+    <customValue>
+        <fullName>00016</fullName>
+        <default>false</default>
+        <label>Customs Union</label>
     </customValue>
     <customValue>
         <fullName>00019</fullName>

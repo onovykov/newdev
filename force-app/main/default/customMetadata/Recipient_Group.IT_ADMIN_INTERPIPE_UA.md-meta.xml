@@ -16,6 +16,6 @@
     </values>
     <values>
         <field>Notes__c</field>
-        <value xsi:type="xsd:string">Contacts with Type__c = IT-Admin on Account 0011n00002MXoKYAA1</value>
+        <value xsi:type="xsd:string">Contacts with Type__c = IT-Admin (Interpipe UA)</value>
     </values>
 </CustomMetadata>

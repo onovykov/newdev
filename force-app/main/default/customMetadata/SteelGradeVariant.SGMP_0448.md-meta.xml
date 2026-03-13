@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>B/P265GH</label>
+    <protected>false</protected>
+    <values>
+        <field>CanonicalGrade__c</field>
+        <value xsi:type="xsd:string">B/P265GH</value>
+    </values>
+    <values>
+        <field>ERP_FacetGroup__c</field>
+        <value xsi:type="xsd:string">SGMP</value>
+    </values>
+    <values>
+        <field>IsActive__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Priority__c</field>
+        <value xsi:type="xsd:double">200.0</value>
+    </values>
+    <values>
+        <field>VariantRegex__c</field>
+        <value xsi:type="xsd:string">B/\s+P265GH\s+TC1/\s+S275JRH/E275\+AR</value>
+    </values>
+</CustomMetadata>

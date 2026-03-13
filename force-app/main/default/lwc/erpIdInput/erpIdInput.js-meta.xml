@@ -12,9 +12,7 @@
             <property
                 name="erpId"
                 type="String"
-                label="ERP ID"
-                role="inputOnly"
-            />
+                label="ERP ID"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

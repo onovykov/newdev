@@ -1,0 +1,91 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body style="margin: 0px; padding: 0px; background: rgb(246, 248, 251); height: auto; min-height: auto;">
+<table cellpadding="0" cellspacing="0" style="background:#f6f8fb;" width="100%">
+	
+		<tr>
+			<td align="center" style="padding:24px;">
+			<table cellpadding="0" cellspacing="0" style="max-width:720px;background:#ffffff;border:1px solid #e5e7eb;
+                    border-radius:14px;overflow:hidden;font-family:Arial,Helvetica,sans-serif;color:#111827;" width="720">
+				
+					<tr>
+						<td style="padding:18px 20px;background:#fff7ed;border-bottom:1px solid #e5e7eb;">
+						<div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9a3412;">Критичне сповіщення</div>
+
+						<div style="margin-top:6px;font-size:20px;font-weight:700;">SYSTEM CALLOUT</div>
+
+						<div style="margin-top:8px;font-size:14px;color:#374151;"><b>Суть:</b> {{{pharos__Log__c.Error_Type__c}}}</div>
+
+						<div style="margin-top:6px;font-size:14px;color:#374151;"><b>Коротко:</b> {{{pharos__Log__c.pharos__Summary__c}}}</div>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding:16px 20px;">
+						<table cellpadding="0" cellspacing="0" width="100%">
+							
+								<tr>
+									<td style="padding:8px;" width="50%">
+									<table cellpadding="0" cellspacing="0" style="border:1px solid #e5e7eb;border-radius:12px;" width="100%">
+										
+											<tr>
+												<td style="padding:12px;">
+												<div style="font-size:12px;color:#6b7280;">Класифікація</div>
+
+												<div style="margin-top:6px;font-size:12px;color:#6b7280;">Рівень: <span style="color:#111827;font-weight:700;">{{{pharos__Log__c.Error_Classification_CriticalLevel__c}}}</span></div>
+
+												<div style="margin-top:6px;font-size:12px;color:#6b7280;">Категорія: <span style="color:#111827;">{{{pharos__Log__c.Error_Classification_Category__c}}}</span></div>
+
+												<div style="margin-top:6px;font-size:12px;color:#6b7280;">Підкатегорія: <span style="color:#111827;">{{{pharos__Log__c.Error_Classification_SubCategory__c}}}</span></div>
+
+												<div style="margin-top:6px;font-size:12px;color:#6b7280;">AreaType: <span style="color:#111827;">{{{pharos__Log__c.Classification_AreaType__c}}}</span></div>
+												</td>
+											</tr>
+										
+									</table>
+									</td>
+									<td style="padding:8px;" width="50%">
+									<table cellpadding="0" cellspacing="0" style="border:1px solid #e5e7eb;border-radius:12px;" width="100%">
+										
+											<tr>
+												<td style="padding:12px;">
+												<div style="font-size:12px;color:#6b7280;">Час / Джерело</div>
+
+												<div style="margin-top:6px;font-size:12px;color:#6b7280;">React time: <span style="color:#111827;font-weight:700;">{{{pharos__Log__c.ReactTimeHours__c}}} год</span></div>
+
+												<div style="margin-top:6px;font-size:12px;color:#6b7280;">Створено: <span style="color:#111827;">{{{pharos__Log__c.CreatedDate}}}</span></div>
+
+												<div style="margin-top:6px;font-size:12px;color:#6b7280;">Джерело: <span style="color:#111827;">{{{pharos__Log__c.Log_Source__c}}}</span></div>
+
+												<div style="margin-top:6px;font-size:12px;color:#6b7280;">Error Key: <span style="color:#111827;">{{{pharos__Log__c.Error_Classification_ErrorKey__c}}}</span></div>
+												</td>
+											</tr>
+										
+									</table>
+									</td>
+								</tr>
+							
+						</table>
+
+						<div style="margin-top:14px;border-top:1px solid #e5e7eb;padding-top:14px;">
+						<div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;">Деталі помилки</div>
+
+						<div style="margin-top:8px;background:#0b1220;color:#e5e7eb;border-radius:12px;padding:14px;
+                          font-family:Consolas,Menlo,Monaco,'Courier New',monospace;font-size:12.5px;line-height:1.55;white-space:pre-wrap;">{{{pharos__Log__c.pharos__Details__c}}}</div>
+						</div>
+
+						<div style="margin-top:16px;padding-top:12px;border-top:1px solid #e5e7eb;"><a href="https://interpipe--newdev.sandbox.lightning.force.com/lightning/r/pharos__Log__c/{{{pharos__Log__c.Id}}}/view" style="display:inline-block;background:#2563eb;color:#ffffff;text-decoration:none;
+                        padding:10px 14px;border-radius:10px;font-size:13px;font-weight:700;">Відкрити Pharos Log (dev sandbox) </a></div>
+
+						<div style="margin-top:12px;color:#6b7280;font-size:12px;">Pharos Log: <span style="color:#111827;">{{{pharos__Log__c.Name}}}</span> &nbsp;|&nbsp; Id: <span style="color:#111827;">{{{pharos__Log__c.Id}}}</span></div>
+						</td>
+					</tr>
+				
+			</table>
+			</td>
+		</tr>
+	
+</table>
+</body>
+</html>

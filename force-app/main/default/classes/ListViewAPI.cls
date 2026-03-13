@@ -10,8 +10,7 @@ public class ListViewAPI {
         httpReq.setMethod( 'GET' );
         httpReq.setHeader( 'Content-Type', 'application/json; charset=UTF-8' );
         httpReq.setHeader( 'Accept', 'application/json' );
-        String sessionId = userinfo.getSessionId();
-        httpReq.setHeader( 'Authorization', 'Bearer ' + sessionId );
+        // Named Credential 'Interpipe_Self_Org' automatically adds Authorization header
         HTTPResponse httpRes = http.send( httpReq );
 
 

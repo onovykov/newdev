@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>SOQL Limit</fullName>
+        <default>false</default>
+        <label>SOQL Limit</label>
+    </customValue>
+    <customValue>
+        <fullName>Delete/Upsert Exception</fullName>
+        <default>false</default>
+        <label>Delete/Upsert Exception</label>
+    </customValue>
+    <customValue>
+        <fullName>Insert/Update Exception</fullName>
+        <default>false</default>
+        <label>Insert/Update Exception</label>
+    </customValue>
+    <customValue>
+        <fullName>Heap Limit</fullName>
+        <default>false</default>
+        <label>Heap Limit</label>
+    </customValue>
+    <customValue>
+        <fullName>Duplicate Error</fullName>
+        <default>false</default>
+        <label>Duplicate Error</label>
+    </customValue>
+    <customValue>
+        <fullName>Incorrect Data</fullName>
+        <default>false</default>
+        <label>Incorrect Data</label>
+    </customValue>
+    <customValue>
+        <fullName>Acync Jobs Limit</fullName>
+        <default>false</default>
+        <label>Acync Jobs Limit</label>
+    </customValue>
+    <customValue>
+        <fullName>Apex CPU time limit</fullName>
+        <default>false</default>
+        <label>Apex CPU time limit</label>
+    </customValue>
+    <customValue>
+        <fullName>JSON Exception</fullName>
+        <default>false</default>
+        <label>JSON Exception</label>
+    </customValue>
+    <customValue>
+        <fullName>Bulk API</fullName>
+        <default>false</default>
+        <label>Bulk API</label>
+    </customValue>
+    <customValue>
+        <fullName>Workflow/Job</fullName>
+        <default>false</default>
+        <label>Workflow/Job</label>
+    </customValue>
+    <customValue>
+        <fullName>Callout Exception</fullName>
+        <default>false</default>
+        <label>Callout Exception</label>
+    </customValue>
+    <customValue>
+        <fullName>Server Response Error</fullName>
+        <default>false</default>
+        <label>Server Response Error</label>
+    </customValue>
+    <customValue>
+        <fullName>Server Request Error</fullName>
+        <default>false</default>
+        <label>Server Request Error</label>
+    </customValue>
+    <masterLabel>errSubCategory</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -10,7 +10,7 @@ public class CountryRepository {
         countriesNumCodesMap = new Map<String, Country__c>();
         countriesMap = new Map<Id, Country__c>();
         List<Country__c> countryList = [SELECT
-                                            Id, A2Code__c, A3Code__c, Name, Currency__c, SysName__c,
+                                            Id, A2Code__c, A3Code__c, Name, SysName__c,
                                             ID_ERP__c, Market_Segment__c, NumCode__c, PhoneCode__c
                                         FROM Country__c
                                         WHERE A2Code__c!='0'

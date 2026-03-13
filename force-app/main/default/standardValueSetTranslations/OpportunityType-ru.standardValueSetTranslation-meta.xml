@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Ordinary Selling</masterLabel>
+        <translation>Обычная продажа</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Project</masterLabel>
+        <translation>Проект</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

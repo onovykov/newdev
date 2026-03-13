@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Ответственный Бэк-офис. Если выбран, то он будет автоматически отображаться в новых запросах пользователя</help>
+    <label>Менеджер Бэк-офиса</label>
+    <name>AssignedBOS__c</name>
+    <relationshipLabel><!-- Users (Assigned BO Specialist) --></relationshipLabel>
+</CustomFieldTranslation>

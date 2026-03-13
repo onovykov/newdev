@@ -23,6 +23,10 @@
                 <behavior>Readonly</behavior>
                 <field>CDD__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OppProduct__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

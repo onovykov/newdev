@@ -197,9 +197,6 @@ public class ERPMessageParser {
 		public String STATUS_DT;
 		public String STATUS_NAME;
 	}
-	
-
-
 
 
 	//======================================================================================
@@ -222,6 +219,7 @@ public class ERPMessageParser {
 		public DateTime createdDate;
 		public DateTime orderDate;
 		public ERPObject account;
+		public Boolean segmentAccount;
 		public String businessSegmentId;
 		public Integer regionId;
 		public Integer countryId;

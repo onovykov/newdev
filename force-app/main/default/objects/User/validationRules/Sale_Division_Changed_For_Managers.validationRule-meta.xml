@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sale_Division_Changed_For_Managers</fullName>
+    <active>false</active>
+    <description>Don&apos;t let change Sale Division For Managers.</description>
+    <errorConditionFormula>AND( ISCHANGED( SalesDivision__c ),
+			OR(Profile.Name = &apos;Sales Manager (MENA)&apos;,
+					Profile.Name = &apos;Sales Manager (KLW)&apos;,
+					Profile.Name = &apos;Sales Manager (EU)&apos;,
+					Profile.Name = &apos;Sales Manager (EU&amp;Africa)&apos;,
+					Profile.Name = &apos;Sales Manager (ETA)&apos;,
+					Profile.Name = &apos;Sales Manager (CU)&apos;,
+					Profile.Name = &apos;Sales Manager (CIS)&apos;,
+					Profile.Name = &apos;Sales Manager (America)&apos;
+					))</errorConditionFormula>
+    <errorMessage>You can&apos;t change sale division for Sale Managers. If it necessary required, please disable validation rule.</errorMessage>
+</ValidationRule>

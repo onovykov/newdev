@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>PAR Approval</name>
+    <style>none</style>
+    <subject>Price Approval Request was submitted for approval</subject>
+    <textOnly>Dear {!ApprovalRequest.Process_Approver},
+
+{!Approval_Requesting_User.Name} has submitted a price approval request {!PriceApprovalRequest__c.Name} for {!PriceApprovalRequest__c.Account__c} with the following comments:
+
+{!ApprovalRequest.Comments}
+
+Please, review the request and approve or reject it by navigating to:
+
+{!ApprovalRequest.Internal_URL}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

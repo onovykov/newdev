@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Cancel reason --></label>
+    <name>Cancel_reason__c</name>
+    <picklistValues>
+        <masterLabel>Client refusal</masterLabel>
+        <translation><!-- Client refusal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Out of product range/size</masterLabel>
+        <translation><!-- Out of product range/size --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Out of shipment conditions</masterLabel>
+        <translation><!-- Out of shipment conditions --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Out of standard</masterLabel>
+        <translation><!-- Out of standard --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Out of steel grade</masterLabel>
+        <translation><!-- Out of steel grade --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Price not agreed</masterLabel>
+        <translation><!-- Price not agreed --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -42,7 +42,8 @@ public with sharing class TritonTypes {
         SalesPlanFact,
         NewSpecification,
         AdjustmentQuotaRequest,
-        SalesBudget
+        SalesBudget,
+        AccountManagement
     }
 
     /**

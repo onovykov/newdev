@@ -1,0 +1,4 @@
+В Salesforce аккаунт {!Account.Name} отримав нове значення ID_ERP__c
+- Посилання: {!Account.Link}
+- Зміни вніс:  {!Account.LastModifiedById}
+- Коли: {!Account.LastModifiedDate}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ScrapSupplierType__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  AND(
+    IsSupplier__c,
+    OR(
+      ISPICKVAL(Type, &apos;Inner Firm&apos;),
+      CONTAINS(UPPER(Name), &apos;ВЗЦ&apos;)
+    )
+  ),
+  &apos;CORPORATE&apos;,
+  IF(
+    AND(
+      IsSupplier__c,
+      OR(
+        $RecordType.DeveloperName = &apos;Scrap_Supplier&apos;,
+        AND(
+          $RecordType.DeveloperName = &apos;Customer&apos;,
+          NOT(ISPICKVAL(Type, &apos;Inner Firm&apos;))
+        )
+      )
+    ),
+    &apos;COMMERCIAL&apos;,
+    &apos;&apos;
+  )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Тип постачальника</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

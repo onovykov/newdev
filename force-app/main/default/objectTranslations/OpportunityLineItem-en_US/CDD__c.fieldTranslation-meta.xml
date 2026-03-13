@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Critical Date of Dispatch (the last date when the mill has to dispatch the products from the shop). --></help>
+    <label><!-- CDD --></label>
+    <name>CDD__c</name>
+</CustomFieldTranslation>

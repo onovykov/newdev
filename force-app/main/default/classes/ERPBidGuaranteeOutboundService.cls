@@ -5,16 +5,19 @@ public with sharing class ERPBidGuaranteeOutboundService {
      */
     public static void sendAsync(List<Field_Audit_Log__c> logs) {
         if (logs == null || logs.isEmpty()) return;
-
-        //--- Check outbount Enabled
+        /* Check Outbound Enabled
+            Перевіряємо, чи дозволено Outbound до ERP
+            Переметр задається в полі OutboundActive__c (checkbox, default TRUE)
+            в об'єкті Field_Audit_Config__mdt
+        */
         if (!FieldAuditConfigProvider.isOutboundEnabled(
                 'Opportunity',
                 'BidGuarantees__c'
-            )
+        )
         ) {
             return;
         }
-                
+        /*****************************************/
         System.enqueueJob(
                 new OutboundQueueable(new List<Id>(
                         new Map<Id, Field_Audit_Log__c>(logs).keySet()

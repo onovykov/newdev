@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Administrative Buildings</masterLabel>
+        <translation>Административные строения</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Bridges</masterLabel>
+        <translation>Мосты</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Commercial Buildings</masterLabel>
+        <translation>Коммерческие строения</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Construction</masterLabel>
+        <translation>Строительство</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Construction Elements</masterLabel>
+        <translation>Оборудование для строительства</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Downstream</masterLabel>
+        <translation><!-- Downstream --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Heavy Machinery</masterLabel>
+        <translation>Тяжелое машиностроение</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>High-Rise Buildings</masterLabel>
+        <translation>Высоко-этажное строительство</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Individual Housing</masterLabel>
+        <translation>Частные дома</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Industrial Machinery</masterLabel>
+        <translation>Промышленное машиностроение</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Industrial Projects</masterLabel>
+        <translation><!-- Industrial Projects --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Industrial Segment</masterLabel>
+        <translation><!-- Industrial Segment --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Local Authorities</masterLabel>
+        <translation><!-- Local Authorities --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Metro</masterLabel>
+        <translation>Метро</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Mid-Rise Buildings</masterLabel>
+        <translation>Средне-этажное строительство</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Midstream</masterLabel>
+        <translation><!-- Midstream --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>O&amp;G</masterLabel>
+        <translation>Нефть и Газ</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Others</masterLabel>
+        <translation>Прочее</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Ports</masterLabel>
+        <translation>Порты</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Power Generation</masterLabel>
+        <translation>Энергетика</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Railway Undertaking</masterLabel>
+        <translation><!-- Railway Undertaking --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Railways / Tramways</masterLabel>
+        <translation>ЖД</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Repairing (AM)</masterLabel>
+        <translation><!-- Repairing (AM) --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Roads</masterLabel>
+        <translation>Дороги</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Salesforce Applications</masterLabel>
+        <translation><!-- Salesforce Applications --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Shipbuilding</masterLabel>
+        <translation>Судостроение</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Upstream</masterLabel>
+        <translation><!-- Upstream --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Wagon Keeping</masterLabel>
+        <translation><!-- Wagon Keeping --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Wagon Manufacturing (OEM)</masterLabel>
+        <translation><!-- Wagon Manufacturing (OEM) --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Warehouses and commercial depots</masterLabel>
+        <translation>Склады</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Wheel Set Assembling</masterLabel>
+        <translation><!-- Wheel Set Assembling --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Wheels/Axles Processing</masterLabel>
+        <translation><!-- Wheels/Axles Processing --></translation>
+    </valueTranslation>
+</GlobalValueSetTranslation>

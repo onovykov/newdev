@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PaymentTerms__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Payment terms for the opportunity</description>
+    <inlineHelpText>Payment terms for the opportunity</inlineHelpText>
+    <label>Payment Terms</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>PaymentTerms__c.Obsolete__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>PaymentTerms__c</referenceTo>
+    <relationshipLabel>Opportunities</relationshipLabel>
+    <relationshipName>Opportunities</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

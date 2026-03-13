@@ -28,7 +28,7 @@ public class ERPLotHandlerTest {
         // Standard Pricebook
         Id stdPbId = Test.getStandardPricebookId();
 
-        // Order (Pricebook2Id)
+        // Order (ВАЖЛИВО: з Pricebook2Id)
         Order ord = new Order(
             Name = 'Test Order ' + iteNumber,
             AccountId = acc.Id,

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>DataDotComAccountInsights</excludeButtons>
+    <excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -193,10 +196,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>WorldCountries__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>NormalizedName__c</field>
             </layoutItems>
             <layoutItems>
@@ -328,6 +327,19 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
+        <fields>TERRITORY.NAME</fields>
+        <fields>MODEL.NAME</fields>
+        <fields>MODEL.STATE</fields>
+        <fields>ASSIGNMENT_DATE</fields>
+        <fields>ASSOCIATION_CAUSE</fields>
+        <relatedList>AccountAssignedTerritory2sRelatedList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>Location</fields>
+        <fields>Type</fields>
+        <relatedList>AssociatedLocations</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>CONTACT.FULL_NAME</fields>
         <fields>CONTACT.ACCOUNT_NAME</fields>
         <fields>CONTACT.TITLE</fields>
@@ -338,22 +350,9 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Project__c</fields>
-        <relatedList>ProjectCompetitor__c.Competitor__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <fields>User__c</fields>
         <fields>Market_Segment__c</fields>
         <relatedList>Additional_Account_User__c.Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>BusinessDivision__c</fields>
-        <fields>MarketSegment__c</fields>
-        <fields>TotalAmount__c</fields>
-        <fields>TotalMargin__c</fields>
-        <fields>MarginPercent__c</fields>
-        <relatedList>AccountSegments__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>DeliveryTerms__c</fields>
@@ -454,6 +453,19 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>ClientLead__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>AccountSegmentJunktion__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>WheelContract__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>MEMBER_NAME</fields>
+        <fields>TEAM_MEMBER_ROLE</fields>
+        <relatedList>RelatedAccountSalesTeam</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Direction --></label>
+    <name>Direction__c</name>
+    <picklistValues>
+        <masterLabel>ERP_SF</masterLabel>
+        <translation><!-- ERP_SF --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SF_ERP</masterLabel>
+        <translation><!-- SF_ERP --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

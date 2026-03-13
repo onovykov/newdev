@@ -605,7 +605,7 @@ public class StringNormalize {
 
         List<SObject> records = Database.query(query);
         List<SObject> toUpdate = new List<SObject>();
-        List<UpdateFailure__c> failureLogs = new List<UpdateFailure__c>();
+        //List<UpdateFailure__c> failureLogs = new List<UpdateFailure__c>();
 
         for (SObject rec : records) {
             String name = (String)rec.get('Name');
@@ -632,6 +632,7 @@ public class StringNormalize {
             for (Integer i = 0; i < results.size(); i++) {
                 if (!results[i].isSuccess()) {
                     SObject failed = toUpdate[i];
+                    /*
                     for (Database.Error err : results[i].getErrors()) {
                         failureLogs.add(new UpdateFailure__c(
                             RecordId__c = (Id)failed.get('Id'),
@@ -640,12 +641,14 @@ public class StringNormalize {
                             Context__c = 'PhoneticFieldUpdater'
                         ));
                     }
+                    */
                 }
             }
-
+            /*
             if (!failureLogs.isEmpty()) {
                 insert failureLogs;
             }
+            */
         }
     } 
     

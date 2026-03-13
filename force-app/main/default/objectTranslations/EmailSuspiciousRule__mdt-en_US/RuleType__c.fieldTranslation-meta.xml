@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- RuleType --></label>
+    <name>RuleType__c</name>
+    <picklistValues>
+        <masterLabel>LOCAL_EQUALS_DOMAIN</masterLabel>
+        <translation><!-- LOCAL_EQUALS_DOMAIN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>NUMERIC_ONLY</masterLabel>
+        <translation><!-- NUMERIC_ONLY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PLACEHOLDER</masterLabel>
+        <translation><!-- PLACEHOLDER --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>REPEAT_PATTERN</masterLabel>
+        <translation><!-- REPEAT_PATTERN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SHORT_LOCAL</masterLabel>
+        <translation><!-- SHORT_LOCAL --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

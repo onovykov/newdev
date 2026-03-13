@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LegalDept__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Whether or not the legal department has approved customers terms and conditions.</description>
+    <inlineHelpText>Whether or not the legal department has approved customers terms and conditions.</inlineHelpText>
+    <label>Legal Dept Approval</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

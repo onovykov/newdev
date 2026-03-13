@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>DML Operation</fullName>
+        <default>false</default>
+        <label>DML Operation</label>
+    </customValue>
+    <customValue>
+        <fullName>Data Exchange</fullName>
+        <default>false</default>
+        <label>Data Exchange</label>
+    </customValue>
+    <customValue>
+        <fullName>Rest API</fullName>
+        <default>false</default>
+        <label>Rest API</label>
+    </customValue>
+    <customValue>
+        <fullName>Apex</fullName>
+        <default>false</default>
+        <label>Apex</label>
+    </customValue>
+    <customValue>
+        <fullName>Flow</fullName>
+        <default>false</default>
+        <label>Flow</label>
+    </customValue>
+    <customValue>
+        <fullName>LWC</fullName>
+        <default>false</default>
+        <label>LWC</label>
+    </customValue>
+    <customValue>
+        <fullName>Aura</fullName>
+        <default>false</default>
+        <label>Aura</label>
+    </customValue>
+    <customValue>
+        <fullName>Batch/Queueable</fullName>
+        <default>false</default>
+        <label>Batch/Queueable</label>
+    </customValue>
+    <customValue>
+        <fullName>Limit Exception</fullName>
+        <default>false</default>
+        <label>Limit Exception</label>
+    </customValue>
+    <customValue>
+        <fullName>Scheduler</fullName>
+        <default>false</default>
+        <label>Scheduler</label>
+    </customValue>
+    <customValue>
+        <fullName>User Action</fullName>
+        <default>false</default>
+        <label>User Action</label>
+    </customValue>
+    <customValue>
+        <fullName>REST/SOAP API</fullName>
+        <default>false</default>
+        <label>REST/SOAP API</label>
+    </customValue>
+    <masterLabel>errCategory</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

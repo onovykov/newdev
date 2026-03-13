@@ -4,10 +4,7 @@ global class PARUpdateOpportunityBatch implements Database.Batchable<SObject> {
     List<Opportunitylineitem> oppItemsToUpdate = new List<Opportunitylineitem>();
     
     global PARUpdateOpportunityBatch(){
-        List<aggregateresult> oppIds = [SELECT Opportunity__r.id FROM 
-                                        OpportunityPARRelationship__c 
-                                        where PriceApprovalRequest__r.stage__c = 'Resolved' 
-                                        group by Opportunity__r.id ];
+        List<aggregateresult> oppIds = [SELECT Opportunity__r.id FROM OpportunityPARRelationship__c where PriceApprovalRequest__r.stage__c = 'Resolved' group by Opportunity__r.id ];
         for(aggregateresult ar : oppIds){
             oppIdsSet.add(ar.id);
         }

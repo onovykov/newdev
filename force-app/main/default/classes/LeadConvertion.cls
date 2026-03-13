@@ -170,13 +170,8 @@ public with sharing class LeadConvertion {
             if (!ldaList.isEmpty()) Database.insert(ldaList, false);
 
             // ── LOG: duplicates found (critical)
-            Triton.instance.addEvent(
-                TritonTypes.Level.ERROR,
-                TritonTypes.Type.AccountDuplicates,
-                TritonTypes.Area.LeadConversion,
-                'Duplicate Accounts were found during Lead Conversion',
-                payload
-            );
+            Exception dupError = new IllegalArgumentException('Duplicate Accounts were found during Lead Conversion. Payload: ' + payload);
+            ErrorService.handle('ERR_LEADCONV_ACCOUNT_DUPLICATES', lead, dupError);
             return result; // критично — дубль знайдено
         }
 
@@ -253,12 +248,8 @@ public with sharing class LeadConvertion {
         if (!accSr.isSuccess()) {
             System.debug('❌ ERROR: Account creation was unsuccessful!');
             // ── LOG: account creation failed
-            Triton.instance.addError(
-                TritonTypes.Type.DMLResult,
-                TritonTypes.Area.LeadConversion,
-                'Account creation was unsuccessful',
-                'Account Name: ' + dataConv.Header.Account.Name
-            );
+            Exception accError = new DmlException('Account creation was unsuccessful. Account Name: ' + dataConv.Header.Account.Name);
+            ErrorService.handle('ERR_LEADCONV_DML_ACCOUNT', lead, accError);
             return result;
         }
         result.accResult = true;
@@ -292,12 +283,15 @@ public with sharing class LeadConvertion {
             if (!ok) {
                 System.debug(errStr);
                 // ── LOG: opportunity update failed
-                Triton.instance.addError(
-                    TritonTypes.Type.DMLResult,
-                    TritonTypes.Area.LeadConversion,
-                    'Opportunity update was unsuccessful',
-                    errStr
-                );
+                SObject ctx = lead;
+                for (Integer j = 0; j < oppSrs.size(); j++) {
+                    if (!oppSrs[j].isSuccess() && oppSrs[j].getId() != null) {
+                        ctx = oppList[j];
+                        break;
+                    }
+                }
+                Exception oppError = new DmlException('Opportunity update was unsuccessful. ' + errStr);
+                ErrorService.handle('ERR_LEADCONV_DML_OPP', ctx, oppError);
             } else {
                 result.oppResult = true;
             }
@@ -328,12 +322,15 @@ public with sharing class LeadConvertion {
             if (!ok) {
                 System.debug(errStr);
                 // ── LOG: contacts update failed
-                Triton.instance.addError(
-                    TritonTypes.Type.DMLResult,
-                    TritonTypes.Area.LeadConversion,
-                    'Contacts update were unsuccessful',
-                    errStr
-                );
+                SObject ctx = lead;
+                for (Integer j = 0; j < contSrs.size(); j++) {
+                    if (!contSrs[j].isSuccess() && contSrs[j].getId() != null) {
+                        ctx = contList[j];
+                        break;
+                    }
+                }
+                Exception contError = new DmlException('Contacts update were unsuccessful. ' + errStr);
+                ErrorService.handle('ERR_LEADCONV_DML_CONTACT', ctx, contError);
             } else {
                 result.contResult = true;
             }
@@ -348,12 +345,8 @@ public with sharing class LeadConvertion {
             if (!lSr.isSuccess()) {
                 System.debug('❌ ERROR: Lead Converted status update failed!');
                 // ── LOG: lead status failed
-                Triton.instance.addError(
-                    TritonTypes.Type.DMLResult,
-                    TritonTypes.Area.LeadConversion,
-                    'Lead Converted status was unsuccessful',
-                    'Lead Conversion was unsuccessful - Stage was not updated to Converted'
-                );
+                Exception leadError = new DmlException('Lead Converted status was unsuccessful. Lead Conversion was unsuccessful - Stage was not updated to Converted');
+                ErrorService.handle('ERR_LEADCONV_DML_LEAD', lead, leadError);
             } else {
                 result.leadConverted = true;
             }

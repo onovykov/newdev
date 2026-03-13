@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- AddParamKey --></label>
+    <name>AddParamKey__c</name>
+    <picklistValues>
+        <masterLabel>AXIAL_LOAD</masterLabel>
+        <translation><!-- AXIAL_LOAD --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>WS_COMP_TYPE</masterLabel>
+        <translation><!-- WS_COMP_TYPE --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

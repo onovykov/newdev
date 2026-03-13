@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>_1</fullName>
+        <default>false</default>
+        <label>Drafting</label>
+    </customValue>
+    <customValue>
+        <fullName>_2</fullName>
+        <default>false</default>
+        <label>Technical Review</label>
+    </customValue>
+    <customValue>
+        <fullName>_3</fullName>
+        <default>false</default>
+        <label>Pending Effective Date</label>
+    </customValue>
+    <customValue>
+        <fullName>_4</fullName>
+        <default>false</default>
+        <label>In Approval Process</label>
+    </customValue>
+    <customValue>
+        <fullName>_5</fullName>
+        <default>false</default>
+        <label>Approval</label>
+    </customValue>
+    <customValue>
+        <fullName>_6</fullName>
+        <default>false</default>
+        <label>Active</label>
+    </customValue>
+    <customValue>
+        <fullName>_7</fullName>
+        <default>false</default>
+        <label>Archived</label>
+    </customValue>
+    <masterLabel>KLW Spec Stages</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

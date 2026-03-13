@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Your Opportunity Payment Terms will appear after you save your new Quote. If you want to change Payment terms you can do it in Opportunity or fill Payment Terms field. --></help>
+    <label>Условия оплаты</label>
+    <name>PaymentTerms__c</name>
+    <relationshipLabel><!-- Quotes --></relationshipLabel>
+</CustomFieldTranslation>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>User_Type__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(OR(LEFT(Profile.Name,13)=&apos;Sales Manager&apos;, Username=&apos;denis.morozov@nterpipe.biz&apos;),&apos;SALES MANAGERS&apos;, 
+  IF(LEFT(Profile.Name,8)=&apos;Customer&apos;,&apos;CUSTOMER COMMUNITY&apos;,
+    IF(LEFT(Profile.Name,12)=&apos;Chatter Free&apos;,&apos;BACK OFFICE&apos;, 
+	  IF(TEXT(SalesDivision__c)=&apos;SFAdmins&apos;, &apos;SYSADMIN&apos;,
+	    IF(LEFT(Profile.Name,5)=&apos;Quota&apos;, &apos;QUOTA APPROVERS&apos;,&apos;OTHER USERS&apos;)
+	  )
+	)
+  )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>User`s Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

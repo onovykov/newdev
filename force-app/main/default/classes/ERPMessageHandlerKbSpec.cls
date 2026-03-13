@@ -57,7 +57,7 @@ public class ERPMessageHandlerKbSpec {
             return res;
 
         } catch (Exception e) {
-            Triton.instance.error(TritonTypes.Area.NewSpecification, e);
+            ErrorService.handle('ERR_INT_KBSPEC_PROCESS', null, e);
             res.error = e.getMessage() + ' : ' + e.getLineNumber();
             return res;
         }

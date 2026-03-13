@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If selected, then this region will also be selected by default in new opportunities of this user. --></help>
+    <label><!-- Sales Region --></label>
+    <name>SalesRegion__c</name>
+</CustomFieldTranslation>

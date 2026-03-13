@@ -222,4 +222,24 @@ Its Activity Type must be FREEZED only! -->
         <errorMessage><!-- Only System Administrator can set value in the &quot;Under Sanctions&quot; field in FALSE --></errorMessage>
         <name>Under_Sanctions_False_Set</name>
     </validationRules>
+    <webLinks>
+        <label>Google Карты</label>
+        <name>GoogleMaps</name>
+    </webLinks>
+    <webLinks>
+        <label>Google Новости</label>
+        <name>GoogleNews</name>
+    </webLinks>
+    <webLinks>
+        <label>Google Поиск</label>
+        <name>GoogleSearch</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Delete_Records --></label>
+        <name>Mass_Delete_Records</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New_Address --></label>
+        <name>New_Address</name>
+    </webLinks>
 </CustomObjectTranslation>

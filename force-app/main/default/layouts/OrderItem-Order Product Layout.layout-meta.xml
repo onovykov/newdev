@@ -55,6 +55,38 @@
                 <behavior>Readonly</behavior>
                 <field>Inq_Total__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ParentMaster__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IsMasterItem__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Cancelled__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ProdSaleItem__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ERP_LineKey__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ERP_SyncState__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ERP_Missing__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>WheelContractLine__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -373,6 +405,14 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>ProdWeek__c</fields>
+        <fields>LotDate__c</fields>
+        <fields>LotType__c</fields>
+        <fields>LotQty_t__c</fields>
+        <relatedList>Lot__c.OrderItem__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>RecordType__c</fields>
         <fields>Period__c</fields>
         <fields>DispatchedQuantity__c</fields>
@@ -394,6 +434,18 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>SalesPlanFact__c.OrderProduct__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>Product2</fields>
+        <fields>Quantity</fields>
+        <fields>UnitPrice</fields>
+        <fields>ListPrice</fields>
+        <fields>TotalPrice</fields>
+        <fields>ODER_ITEM.START_DATE</fields>
+        <fields>ODER_ITEM.END_DATE</fields>
+        <fields>QUOTE_LI</fields>
+        <fields>OriginalOrderItem</fields>
+        <relatedList>OrderItem.ParentMaster__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>

@@ -763,7 +763,7 @@ public class ERPMessageHandlerPriceApprovalRequest  {
         parItem.TubeEnds__c = null;
         parItem.Coating__c = null;
 */
-        parItem.QuotaType__c = objToIdMap.get('quotaType').get(parItemERP.quotaType.id.trim());
+        //parItem.QuotaType__c = objToIdMap.get('quotaType').get(parItemERP.quotaType.id.trim());
         parItem.Country__c = objToIdMap.get('country').get(parItemERP.country.id.trim());
         String spId = parItemERP.shippingPoint.spType + '-' + parItemERP.shippingPoint.id.trim();
         parItem.ShippingPoint__c = objToIdMap.get('shippingPoint').get(spId.toLowerCase());

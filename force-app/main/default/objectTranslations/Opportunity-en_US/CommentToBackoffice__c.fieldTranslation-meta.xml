@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Any comment that will be included in the text of the email that is sent to the selected back-office specialist (when the opp is sent to him). --></help>
+    <label><!-- Comment To Backoffice --></label>
+    <name>CommentToBackoffice__c</name>
+</CustomFieldTranslation>

@@ -178,10 +178,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>WorldCountries__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>NormalizedName__c</field>
             </layoutItems>
             <layoutItems>
@@ -435,14 +431,6 @@
         <relatedList>Additional_Account_User__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>BusinessDivision__c</fields>
-        <fields>MarketSegment__c</fields>
-        <fields>TotalAmount__c</fields>
-        <fields>TotalMargin__c</fields>
-        <fields>MarginPercent__c</fields>
-        <relatedList>AccountSegments__c.Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>DeliveryTerms__c</fields>
         <fields>Delivery_Type__c</fields>
         <fields>DDPCountry__c</fields>
@@ -541,6 +529,19 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>ClientLead__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>AccountSegmentJunktion__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>WheelContract__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>MEMBER_NAME</fields>
+        <fields>TEAM_MEMBER_ROLE</fields>
+        <relatedList>RelatedAccountSalesTeam</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

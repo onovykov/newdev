@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Do_not_update_Virtual_Type</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL(PRIORVALUE(Type), &quot;Virtual&quot;) &amp;&amp;  
+ISCHANGED(Type) &amp;&amp; 
+$Profile.Name &lt;&gt; &quot;System Administrator&quot; &amp;&amp;
+$Profile.Name &lt;&gt; &quot;ERP Integration Service&quot;</errorConditionFormula>
+    <errorMessage>You do not have access to update Virtual type</errorMessage>
+</ValidationRule>

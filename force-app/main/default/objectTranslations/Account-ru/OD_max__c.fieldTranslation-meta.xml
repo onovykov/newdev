@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Максимальный внешний диаметр трубы в миллиметрах, который может произвести конкурент</help>
+    <label>Диаметр (макс)</label>
+    <name>OD_max__c</name>
+</CustomFieldTranslation>

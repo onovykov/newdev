@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Installed</masterLabel>
+        <translation>Установлен</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Obsolete</masterLabel>
+        <translation>Устарелый</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Purchased</masterLabel>
+        <translation>Куплен</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Registered</masterLabel>
+        <translation>Зарегестрирован</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Shipped</masterLabel>
+        <translation>Отгружен</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

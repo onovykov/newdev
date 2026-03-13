@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>Edit</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>SM (KLW: CIS)</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Senior Sales Manager (KLW: CIS)</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>Chief_Sales_Officer_KLW_CIS</parentRole>
+</Role>

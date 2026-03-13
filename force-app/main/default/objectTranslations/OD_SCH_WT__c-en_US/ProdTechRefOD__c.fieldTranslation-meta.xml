@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Prod Tech Ref OD --></label>
+    <name>ProdTechRefOD__c</name>
+    <relationshipLabel><!-- ProdTechRefOD --></relationshipLabel>
+</CustomFieldTranslation>

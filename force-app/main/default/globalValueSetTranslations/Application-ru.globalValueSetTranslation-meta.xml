@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Chilled Water</masterLabel>
+        <translation>Водо-циркуляция</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Firefighting</masterLabel>
+        <translation>Противопожарные системы</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Sewage</masterLabel>
+        <translation>Стоки и канализация</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Structural</masterLabel>
+        <translation>Конструктивный элемент</translation>
+    </valueTranslation>
+</GlobalValueSetTranslation>

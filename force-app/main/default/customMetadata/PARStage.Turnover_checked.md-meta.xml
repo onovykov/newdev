@@ -16,6 +16,6 @@
     </values>
     <values>
         <field>StageName__c</field>
-        <value xsi:type="xsd:string">Виконано перевірку оборотності</value>
+        <value xsi:type="xsd:string">Виконано перевірку обіговості</value>
     </values>
 </CustomMetadata>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Type --></label>
+    <name>Type__c</name>
+    <picklistValues>
+        <masterLabel>App Admin</masterLabel>
+        <translation><!-- App Admin --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BO Manager</masterLabel>
+        <translation><!-- BO Manager --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BO Specialist</masterLabel>
+        <translation><!-- BO Specialist --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Helpdesk Admin</masterLabel>
+        <translation><!-- Helpdesk Admin --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IT-Admin</masterLabel>
+        <translation><!-- IT-Admin --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Integration Primary Admin</masterLabel>
+        <translation><!-- Integration Primary Admin --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Orders Admin</masterLabel>
+        <translation><!-- Orders Admin --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SF Admin</masterLabel>
+        <translation><!-- SF Admin --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sales Director</masterLabel>
+        <translation><!-- Sales Director --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sales Manager</masterLabel>
+        <translation><!-- Sales Manager --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sales Officer</masterLabel>
+        <translation><!-- Sales Officer --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

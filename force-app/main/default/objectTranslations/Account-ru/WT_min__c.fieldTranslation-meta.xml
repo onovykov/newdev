@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Минимальная толщина стенки в миллиметрах, которую может произвести конкурент</help>
+    <label>Толщина стенки (мин)</label>
+    <name>WT_min__c</name>
+</CustomFieldTranslation>

@@ -211,10 +211,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>WorldCountries__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>NormalizedName__c</field>
             </layoutItems>
             <layoutItems>
@@ -492,10 +488,6 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
-        <fields>Customer__c</fields>
-        <relatedList>Account_Supplier_Relationship__c.Supplier__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>NAME</fields>
         <fields>Contract__c</fields>
         <fields>COCNumber__c</fields>
@@ -511,15 +503,9 @@
         <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
-        <fields>NAME</fields>
-        <fields>Project__c</fields>
-        <relatedList>ProjectCompetitor__c.Competitor__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>CONTACT.FULL_NAME</fields>
         <fields>CONTACT.TITLE</fields>
-        <fields>IsPortalUser__c</fields>
+        <fields>Contact.IsPortalUser__c</fields>
         <fields>CONTACT.EMAIL</fields>
         <fields>CONTACT.PHONE1</fields>
         <fields>BusinessDivision__c</fields>
@@ -535,14 +521,6 @@
         <fields>User__c</fields>
         <fields>Market_Segment__c</fields>
         <relatedList>Additional_Account_User__c.Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>BusinessDivision__c</fields>
-        <fields>MarketSegment__c</fields>
-        <fields>TotalAmount__c</fields>
-        <fields>TotalMargin__c</fields>
-        <fields>MarginPercent__c</fields>
-        <relatedList>AccountSegments__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>DeliveryTerms__c</fields>
@@ -643,6 +621,19 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>ClientLead__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>AccountSegmentJunktion__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>WheelContract__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>MEMBER_NAME</fields>
+        <fields>TEAM_MEMBER_ROLE</fields>
+        <relatedList>RelatedAccountSalesTeam</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

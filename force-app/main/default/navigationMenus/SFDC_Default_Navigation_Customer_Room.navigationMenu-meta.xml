@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NavigationMenu xmlns="http://soap.sforce.com/2006/04/metadata">
+    <container>Customer Room</container>
+    <containerType>Network</containerType>
+    <label>Default Navigation</label>
+    <navigationMenuItem>
+        <label>Enquiries</label>
+        <position>1</position>
+        <publiclyAvailable>true</publiclyAvailable>
+        <target>/customerenquiry/CustomerEnquiry__c/00B1n000009QdlREAS</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Orders</label>
+        <position>2</position>
+        <publiclyAvailable>true</publiclyAvailable>
+        <target>/recordlist/Order/00B1n000009cHFIEA2</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Support</label>
+        <position>3</position>
+        <publiclyAvailable>true</publiclyAvailable>
+        <target>/support</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Claims</label>
+        <position>4</position>
+        <publiclyAvailable>true</publiclyAvailable>
+        <target>/claims</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Files</label>
+        <position>5</position>
+        <publiclyAvailable>true</publiclyAvailable>
+        <target>/contentdocument/ContentDocument/All</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Dealing Status</label>
+        <position>6</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/my-account-dealing-status</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+</NavigationMenu>

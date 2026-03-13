@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Opportunities_Shevtsova</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>AdditionalNumber__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Country__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.QUANTITY</columns>
+    <columns>Margin__c</columns>
+    <columns>Owner__c</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>equals</operation>
+        <value>i.shev</value>
+    </filters>
+    <label>All Opportunities (Shevtsova)</label>
+    <sharedTo>
+        <group>Shevtsova</group>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Africa</masterLabel>
+        <translation>Африка</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Azerbaijan</masterLabel>
+        <translation>Азербайджан</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Belarus</masterLabel>
+        <translation>Беларусь</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Brazil</masterLabel>
+        <translation>Бразилия</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>CIS</masterLabel>
+        <translation>СНГ</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>CIS &amp; Baltics</masterLabel>
+        <translation><!-- CIS &amp; Baltics --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Canada</masterLabel>
+        <translation>Канада</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>China</masterLabel>
+        <translation>Китай</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Custom Union</masterLabel>
+        <translation>Израиль</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Europe</masterLabel>
+        <translation>Европа</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Europe w/o Baltics</masterLabel>
+        <translation><!-- Europe w/o Baltics --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>India</masterLabel>
+        <translation>Индия</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Kazakhstan</masterLabel>
+        <translation>Казахстан</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Latin America</masterLabel>
+        <translation>Латинская Америка</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Middle East</masterLabel>
+        <translation>Ближний Восток</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Not specified</masterLabel>
+        <translation>Не указана</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other CIS</masterLabel>
+        <translation>Прочее СНГ</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Rest of the world</masterLabel>
+        <translation>Остальной мир</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Russia</masterLabel>
+        <translation>Россия</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Turkmenistan</masterLabel>
+        <translation>Туркменистан</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>USA</masterLabel>
+        <translation>США</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Ukraine</masterLabel>
+        <translation>Украина</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Uzbekistan</masterLabel>
+        <translation>Узбекистан</translation>
+    </valueTranslation>
+</GlobalValueSetTranslation>

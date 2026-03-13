@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Category --></label>
+    <name>Category__c</name>
+    <picklistValues>
+        <masterLabel>Apex</masterLabel>
+        <translation><!-- Apex --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Aura</masterLabel>
+        <translation><!-- Aura --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Batch/Queueable</masterLabel>
+        <translation><!-- Batch/Queueable --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DMLOperation</masterLabel>
+        <translation><!-- DMLOperation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DataExchange</masterLabel>
+        <translation><!-- DataExchange --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Flow</masterLabel>
+        <translation><!-- Flow --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>LWC</masterLabel>
+        <translation><!-- LWC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Limit Exception</masterLabel>
+        <translation><!-- Limit Exception --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>REST/SOAP API</masterLabel>
+        <translation><!-- REST/SOAP API --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RestAPI</masterLabel>
+        <translation><!-- RestAPI --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Scheduler</masterLabel>
+        <translation><!-- Scheduler --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>User Action</masterLabel>
+        <translation><!-- User Action --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

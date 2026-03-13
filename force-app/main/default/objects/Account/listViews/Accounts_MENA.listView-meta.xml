@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accounts_MENA</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Activity_Type__c</columns>
+    <columns>ACCOUNT.PHONE1</columns>
+    <columns>ACCOUNT.TYPE</columns>
+    <columns>CORE.USERS.LAST_NAME</columns>
+    <columns>CORE.USERS.FIRST_NAME</columns>
+    <columns>ACCOUNT.IS_CUSTOMERSUCCESS</columns>
+    <columns>ACCOUNT.ADDRESS1_COUNTRY_CODE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>MarketSegment__c</field>
+        <operation>equals</operation>
+        <value>00002</value>
+    </filters>
+    <filters>
+        <field>ACCOUNT.TYPE</field>
+        <operation>notEqual</operation>
+        <value>Competitor</value>
+    </filters>
+    <filters>
+        <field>Activity_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Unknown,Banned,Cancelled</value>
+    </filters>
+    <label>Accounts MENA</label>
+    <sharedTo>
+        <group>ADMIN</group>
+        <group>MENA</group>
+    </sharedTo>
+</ListView>

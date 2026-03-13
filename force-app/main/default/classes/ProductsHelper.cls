@@ -4,12 +4,12 @@ public with sharing class ProductsHelper {
    public static final Decimal INCH_TO_FOOT = 1 / 12;
    public static final Decimal INCHES_PER_FT = 12;
    public static final Decimal PI = 3.141592653589793;
-
+   
    @TestVisible
     private static ProductMaterialDensity__mdt mockDensity;
 
    /****************************************************************************
-    *              Хелпери та службові методи         *
+    *              Хелпери та службові методи для ProductsController           *
    *****************************************************************************/
    //--- Простий конвертор mm->inch ---
    public static Decimal mmToInches(Decimal mm, Integer precision) {
@@ -88,10 +88,6 @@ public with sharing class ProductsHelper {
             throw new IllegalArgumentException('Material API name is required');
         }
 
-        if (Test.isRunningTest() && mockDensity != null) {
-            return mockDensity;
-        }        
-        
         ProductMaterialDensity__mdt density =
             ProductMaterialDensity__mdt.getInstance(materialApiName);
 

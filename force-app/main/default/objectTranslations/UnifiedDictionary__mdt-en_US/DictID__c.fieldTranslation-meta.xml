@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- DictID --></label>
+    <name>DictID__c</name>
+    <picklistValues>
+        <masterLabel>ASSEMBLY</masterLabel>
+        <translation><!-- ASSEMBLY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AXLELOAD</masterLabel>
+        <translation><!-- AXLELOAD --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>COATING</masterLabel>
+        <translation><!-- COATING --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>COATINGTYPE</masterLabel>
+        <translation><!-- COATINGTYPE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>COATTYPE</masterLabel>
+        <translation><!-- COATTYPE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>COVER</masterLabel>
+        <translation><!-- COVER --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IMBAL</masterLabel>
+        <translation><!-- IMBAL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IMBALANCE</masterLabel>
+        <translation><!-- IMBALANCE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>INSPECT</masterLabel>
+        <translation><!-- INSPECT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MARKTYPE</masterLabel>
+        <translation><!-- MARKTYPE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PACKTYPE</masterLabel>
+        <translation><!-- PACKTYPE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PARTPROD</masterLabel>
+        <translation><!-- PARTPROD --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PRODTYPE</masterLabel>
+        <translation><!-- PRODTYPE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PURPOSE</masterLabel>
+        <translation><!-- PURPOSE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SHAPE</masterLabel>
+        <translation><!-- SHAPE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>WSCOMP</masterLabel>
+        <translation><!-- WSCOMP --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

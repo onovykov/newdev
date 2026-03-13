@@ -1,5 +1,5 @@
 global without sharing class SendPostFromFlowRestoreProd {
-	
+/*
     @InvocableMethod
    public static void sendPost(List<String> idCancelledProduct) {
     system.debug(idCancelledProduct);
@@ -42,5 +42,5 @@ global without sharing class SendPostFromFlowRestoreProd {
        }
       
    }
-
+*/
 }

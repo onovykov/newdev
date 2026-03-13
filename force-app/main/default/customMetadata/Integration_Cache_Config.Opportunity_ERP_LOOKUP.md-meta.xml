@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Opportunity.ERP_LOOKUP</label>
+    <protected>false</protected>
+    <values>
+        <field>CachePurpose__c</field>
+        <value xsi:type="xsd:string">ERP_LOOKUP</value>
+    </values>
+    <values>
+        <field>Description__c</field>
+        <value xsi:type="xsd:string">ERP inbound/outbound lookup</value>
+    </values>
+    <values>
+        <field>IsEnabled__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Key__c</field>
+        <value xsi:type="xsd:string">Opportunity.ERP_LOOKUP</value>
+    </values>
+    <values>
+        <field>ObjectApiName__c</field>
+        <value xsi:type="xsd:string">Opportunity</value>
+    </values>
+    <values>
+        <field>TTLSeconds__c</field>
+        <value xsi:type="xsd:double">300.0</value>
+    </values>
+</CustomMetadata>

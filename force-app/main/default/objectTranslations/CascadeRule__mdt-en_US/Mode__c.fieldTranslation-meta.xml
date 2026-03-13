@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Mode --></label>
+    <name>Mode__c</name>
+    <picklistValues>
+        <masterLabel>HARD_DELETE</masterLabel>
+        <translation><!-- HARD_DELETE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IGNORE</masterLabel>
+        <translation><!-- IGNORE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>REASSIGN</masterLabel>
+        <translation><!-- REASSIGN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SOFT_DELETE</masterLabel>
+        <translation><!-- SOFT_DELETE --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

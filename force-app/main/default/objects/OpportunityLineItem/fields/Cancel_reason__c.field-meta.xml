@@ -32,6 +32,11 @@
                 <default>false</default>
                 <label>Other</label>
             </value>
+            <value>
+                <fullName>Cancelled by ERP</fullName>
+                <default>false</default>
+                <label>Cancelled by ERP</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Questionnaire Invite English KLW</name>
+    <pageDevName>Questionnaire_Invite_English_KLW</pageDevName>
+    <relatedEntityType>Questionnaire_Response__c</relatedEntityType>
+    <style>none</style>
+    <subject>KLW Survey</subject>
+    <textOnly>&lt; https://interpipe.biz/en/ &gt; 
+
+{{{Questionnaire_Response__c.Salutation__c}}} {{{Questionnaire_Response__c.Respondent__c}}},
+
+We greatly value your partnership with Interpipe, and your feedback plays a key role in helping us improve. Each year, we conduct a Client Satisfaction Survey, and we would love for you to participate as one of our shortlisted clients.
+
+To make it easy and convenient, the survey is available online and will take no more than 10 minutes of your time. Your insights will help us enhance your experience and continue moving in the right direction.
+
+If you have any questions, feel free to reach out to our marketing team by replying to this email. Thank you in advance for your time—we truly appreciate it!
+
+Respectfully, 
+
+Yuliya Kozachenko 
+
+________________ 
+
+Head of Marketing 
+
+KLW | Interpipe
+
+yuliya.kozachenko@m.interpipe.biz 
+
++38 (056) 7474 797
+
+Take Survey &lt; https://interpipe.my.site.com/NewCustomerRoom/s/survey?recordId=%7B%7B%7BQuestionnaire_Response__c.Id%7D%7D%7D+ &gt;  &lt; https://zadnipro.dp.ua/en &gt;</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

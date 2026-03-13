@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AllOrders</fullName>
+    <columns>ITENumber__c</columns>
+    <columns>AdditionalNumber__c</columns>
+    <columns>MarketSegment__c</columns>
+    <columns>ORDERS.EFFECTIVE_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>SALES.ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>TotalOrderQuantity__c</columns>
+    <columns>ProducedPercentage__c</columns>
+    <columns>DispatchedPercentage__c</columns>
+    <columns>ShippedPercentage__c</columns>
+    <columns>ID_ERP__c</columns>
+    <columns>ORDERS.STATUS</columns>
+    <columns>ORDERS.ORDER_NUMBER</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Orders</label>
+    <sharedTo>
+        <group>ADMIN</group>
+        <group>SeniorManagementTeam</group>
+    </sharedTo>
+</ListView>

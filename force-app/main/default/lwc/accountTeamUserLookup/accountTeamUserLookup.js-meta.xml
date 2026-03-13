@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <isExposed>true</isExposed>
+
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property
+                name="mode"
+                type="String"
+                label="Mode"
+                description="MANAGER or BOS" />
+
+            <property
+                name="label"
+                type="String"
+                label="Label"
+                description="Field label" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

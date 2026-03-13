@@ -8,6 +8,6 @@
     </values>
     <values>
         <field>StatusSF__c</field>
-        <value xsi:type="xsd:string">Placed</value>
+        <value xsi:type="xsd:string">Hold</value>
     </values>
 </CustomMetadata>

@@ -1,0 +1,5 @@
+Dear {!Opportunity.AssignedBOS__c},
+Please cancel the order "{!Opportunity.Name}".
+Order additional number: {!NullValue(Opportunity.AdditionalNumber__c, "not defined")}.
+Order UnDoc number: {!Opportunity.ID_ERP__c}.
+Customer: {!Opportunity.Account}

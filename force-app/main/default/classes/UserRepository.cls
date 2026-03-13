@@ -137,6 +137,28 @@ public class UserRepository {
         return allUsersByLoginErp.get(LoginCode);
     }
 
+    //--- Повертаємо мапу юзерів по сету LoginERP__c
+    public static Map<String, User> getByLoginERPSet(Set<String> loginCodes){
+        Map<String, User> result = new Map<String, User>();
+
+        if(loginCodes == null || loginCodes.isEmpty()){
+            return result;
+        }
+        for(String raw : loginCodes){
+
+            if(String.isBlank(raw)) continue;
+
+            String login = raw.trim();
+
+            User u = getByLoginERP(login);
+
+            if(u != null){
+                result.put(login, u);
+            }
+        }
+        return result;
+    }
+
     //--- Повертаємо юзера по Alias
     public static User getByAlias(String userAlias) {
         loadAllUsers();

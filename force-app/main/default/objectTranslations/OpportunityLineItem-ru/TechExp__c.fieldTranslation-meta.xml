@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Заключение тех.экспертизы</help>
+    <label>Техническая экспертиза</label>
+    <name>TechExp__c</name>
+    <picklistValues>
+        <masterLabel>Approved</masterLabel>
+        <translation><!-- Approved --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not required</masterLabel>
+        <translation><!-- Not required --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not reviewed</masterLabel>
+        <translation><!-- Not reviewed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejected</masterLabel>
+        <translation><!-- Rejected --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

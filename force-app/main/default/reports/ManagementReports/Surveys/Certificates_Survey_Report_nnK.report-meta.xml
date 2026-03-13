@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>SurveyQuestionResponse$Question</field>
+    </columns>
+    <columns>
+        <field>SurveyQuestionResponse$Name</field>
+    </columns>
+    <columns>
+        <field>SurveyQuestionResponse$CreatedBy</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Task from technical team to analyze which certificates are required on the market.</description>
+    <filter>
+        <criteriaItems>
+            <column>SurveyQuestionResponse$CreatedBy</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notContain</operator>
+            <value>Svetlana Vereshchagina</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Certificates Survey Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Surveys_Reports__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>SurveyQuestionResponse$Question</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>SurveyQuestionResponse$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Community_View</fullName>
+    <columns>ORDERS.ORDER_NUMBER</columns>
+    <columns>AdditionalNumber__c</columns>
+    <columns>ITENumber__c</columns>
+    <columns>ORDERS.EFFECTIVE_DATE</columns>
+    <columns>ORDERS.STATUS</columns>
+    <columns>TotalOrderQuantity__c</columns>
+    <columns>ProducedQuantity__c</columns>
+    <columns>DispatchedQuantity__c</columns>
+    <columns>ShippedQuantity__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>Customer Orders</label>
+</ListView>

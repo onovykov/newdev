@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Please change if necessary. --></help>
+    <label><!-- Marking (Ukr) --></label>
+    <name>Marking_Ukr__c</name>
+</CustomFieldTranslation>

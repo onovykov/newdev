@@ -29,4 +29,16 @@
         <errorMessage><!-- You must specify the value in the &quot;Mailing Country&quot; field --></errorMessage>
         <name>Require_Mailing_Address</name>
     </validationRules>
+    <webLinks>
+        <label>Google Карты</label>
+        <name>GoogleMaps</name>
+    </webLinks>
+    <webLinks>
+        <label>Google Поиск</label>
+        <name>GoogleSearch</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Delete_Records --></label>
+        <name>Mass_Delete_Records</name>
+    </webLinks>
 </CustomObjectTranslation>

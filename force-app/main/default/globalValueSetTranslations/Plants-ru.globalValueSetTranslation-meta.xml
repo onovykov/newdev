@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>NMPP</masterLabel>
+        <translation>НМТЗ</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>NTRP</masterLabel>
+        <translation>НТЗ</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Niko Tube</masterLabel>
+        <translation>НикоТьюб</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Partners</masterLabel>
+        <translation>Партнеры</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Steel</masterLabel>
+        <translation>Сталь</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Vtormet</masterLabel>
+        <translation>Втормет</translation>
+    </valueTranslation>
+</GlobalValueSetTranslation>

@@ -186,7 +186,8 @@ public class PriceApprovalRequestTriggerHandler extends TriggerHandler implement
 		} catch(CalloutException callfail) {
 			String errorMessage = callfail.getMessage() + '\n' + callfail.getStackTraceString();
             //FalseSynchroService.createFalseSynchroRecord(calc,arg,parId);
-			Triton.instance.error(TritonTypes.Area.PriceApprovalRequest, callfail);
+			PriceApprovalRequest__c par = [SELECT Id FROM PriceApprovalRequest__c WHERE Id = :parId LIMIT 1];
+			ErrorService.handle('ERR_INT_PRICE_APPROVAL', par, callfail);
 	        sendEmailCalloutException(errorMessage);
 			//sendSyncEmailForUser(parId);
 
@@ -197,11 +198,13 @@ public class PriceApprovalRequestTriggerHandler extends TriggerHandler implement
 			String errorMessage = jsfailed.getMessage() + '\n' + jsfailed.getStackTraceString();
 			//ERPWebServiceHandler.insertErrorTask('SF to ERP (serialization exception)', arg, errorMessage, wrapper.oppo.Id);
 			//throw new AuraHandledException(Label.InvalidJSONReceived);
-			Triton.instance.error(TritonTypes.Area.PriceApprovalRequest, jsfailed);
+			PriceApprovalRequest__c par = [SELECT Id FROM PriceApprovalRequest__c WHERE Id = :parId LIMIT 1];
+			ErrorService.handle('ERR_INT_PRICE_APPROVAL', par, jsfailed);
 			//throw new erpException(errorMessage);
 		} catch(Exception jsfailed){
 			String errorMessage = jsfailed.getMessage() + '\n' + jsfailed.getStackTraceString();
-			Triton.instance.error(TritonTypes.Area.PriceApprovalRequest, jsfailed);
+			PriceApprovalRequest__c par = [SELECT Id FROM PriceApprovalRequest__c WHERE Id = :parId LIMIT 1];
+			ErrorService.handle('ERR_INT_PRICE_APPROVAL', par, jsfailed);
 			//throw new erpException(errorMessage);
 		}
 	}

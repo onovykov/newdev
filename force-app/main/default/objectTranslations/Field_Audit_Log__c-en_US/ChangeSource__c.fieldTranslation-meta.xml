@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- ChangeSource --></label>
+    <name>ChangeSource__c</name>
+    <picklistValues>
+        <masterLabel>ERP</masterLabel>
+        <translation><!-- ERP --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>INTERNAL</masterLabel>
+        <translation><!-- INTERNAL --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

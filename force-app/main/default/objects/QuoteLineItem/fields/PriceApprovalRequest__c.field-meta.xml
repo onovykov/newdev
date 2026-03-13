@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PriceApprovalRequest__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Price Approval Request that this quote is related to.</description>
+    <inlineHelpText>Price Approval Request that this quote is related to.</inlineHelpText>
+    <label>Price Approval Request</label>
+    <referenceTo>PriceApprovalRequest__c</referenceTo>
+    <relationshipLabel>Quote Line Items</relationshipLabel>
+    <relationshipName>Quote_Line_Items</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

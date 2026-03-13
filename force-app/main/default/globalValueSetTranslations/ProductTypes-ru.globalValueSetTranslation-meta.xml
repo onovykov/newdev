@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Axle</masterLabel>
+        <translation>Оси</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Centre</masterLabel>
+        <translation>Колесный центр</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Cookware</masterLabel>
+        <translation>Посуда</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Tube</masterLabel>
+        <translation>Трубы</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Tyre</masterLabel>
+        <translation>Бандажи</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Wheel</masterLabel>
+        <translation>Колеса</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Wheel set</masterLabel>
+        <translation>Колпара</translation>
+    </valueTranslation>
+</GlobalValueSetTranslation>

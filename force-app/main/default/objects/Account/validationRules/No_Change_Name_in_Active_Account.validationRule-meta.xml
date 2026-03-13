@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Change_Name_in_Active_Account</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ISPICKVAL(Activity_Type__c,&apos;Active&apos;),
+ISCHANGED(Name),
+NOT($Profile.Name = &quot;System Administrator&quot;),
+NOT($Profile.Name = &quot;ERP Integration Service&quot;)			
+)</errorConditionFormula>
+    <errorMessage>You cannot change Name for Account with Activity Type «Active»</errorMessage>
+</ValidationRule>

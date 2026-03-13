@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_in_Activity_report__c</fullName>
+    <formula>NOT( OR(
+				CONTAINS(LOWER(FirstName) , &apos;test&apos;),
+				CONTAINS(LOWER(LastName) , &apos;test&apos;),
+				CONTAINS( Profile.Name , &apos;System Administrator&apos;),
+				CONTAINS( Profile.Name , &apos;PT1&apos;),
+				CONTAINS( Profile.Name , &apos;Customer Room Profile&apos;),
+				CONTAINS( Profile.Name , &apos;Customer Community User (Custom)&apos;),
+				CONTAINS( Profile.Name , &apos;Analytics Cloud Integration User&apos;),
+				CONTAINS( Profile.Name , &apos;ERP Integration Service&apos;),
+				CONTAINS( Profile.Name , &apos;Chatter&apos;),
+				CONTAINS( Profile.Name , &apos;Analytics Cloud Security User&apos;)
+							) )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Show in Activity report</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

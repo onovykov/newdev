@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>local.OrderItemCache</label>
+    <protected>false</protected>
+    <values>
+        <field>CacheName__c</field>
+        <value xsi:type="xsd:string">local.OrderItemCache</value>
+    </values>
+    <values>
+        <field>KeyPrefix__c</field>
+        <value xsi:type="xsd:string">OI_BY_ITE_V2</value>
+    </values>
+    <values>
+        <field>ShardLen__c</field>
+        <value xsi:type="xsd:double">3.0</value>
+    </values>
+    <values>
+        <field>TtlNegative__c</field>
+        <value xsi:type="xsd:double">300.0</value>
+    </values>
+    <values>
+        <field>TtlSuccess__c</field>
+        <value xsi:type="xsd:double">3600.0</value>
+    </values>
+</CustomMetadata>

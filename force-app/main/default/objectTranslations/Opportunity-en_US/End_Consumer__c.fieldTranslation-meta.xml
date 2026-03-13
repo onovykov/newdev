@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Current client is an intermediary and placing an order for another customer, which must be selected here --></help>
+    <label><!-- End Consumer --></label>
+    <name>End_Consumer__c</name>
+    <relationshipLabel><!-- Opportunities (End Consumer) --></relationshipLabel>
+</CustomFieldTranslation>

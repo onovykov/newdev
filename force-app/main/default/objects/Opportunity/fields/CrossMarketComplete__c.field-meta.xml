@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CrossMarketComplete__c</fullName>
+    <formula>AND(
+  NOT(ISBLANK(CrossMarketManager__c)),
+  NOT(ISBLANK(TEXT(CrossMarketSegment__c))),
+  NOT(ISBLANK(CrossMarketShare__c))
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>CrossMarketComplete</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

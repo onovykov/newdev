@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Assigned back office specialist --></help>
+    <label><!-- Assigned BO specialist --></label>
+    <name>AssignedBOS__c</name>
+    <relationshipLabel><!-- Opportunities (Assigned BO specialist) --></relationshipLabel>
+</CustomFieldTranslation>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Area</fullName>
+        <default>false</default>
+        <label>Area</label>
+    </customValue>
+    <customValue>
+        <fullName>Account Management</fullName>
+        <default>false</default>
+        <label>Account Management</label>
+    </customValue>
+    <customValue>
+        <fullName>Contact Management</fullName>
+        <default>false</default>
+        <label>Contact Management</label>
+    </customValue>
+    <customValue>
+        <fullName>Lead Management</fullName>
+        <default>false</default>
+        <label>Lead Management</label>
+    </customValue>
+    <customValue>
+        <fullName>Send To Backoffice</fullName>
+        <default>false</default>
+        <label>Send To Backoffice</label>
+    </customValue>
+    <customValue>
+        <fullName>Opportunity Stage</fullName>
+        <default>false</default>
+        <label>Opportunity Stage</label>
+    </customValue>
+    <customValue>
+        <fullName>Opportunity Management</fullName>
+        <default>false</default>
+        <label>Opportunity Management</label>
+    </customValue>
+    <customValue>
+        <fullName>Opportunity Data</fullName>
+        <default>false</default>
+        <label>Opportunity Data</label>
+    </customValue>
+    <customValue>
+        <fullName>Order Management</fullName>
+        <default>false</default>
+        <label>Order Management</label>
+    </customValue>
+    <customValue>
+        <fullName>Invoice Order Debt</fullName>
+        <default>false</default>
+        <label>Invoice Order Debt</label>
+    </customValue>
+    <customValue>
+        <fullName>Price Approval Request</fullName>
+        <default>false</default>
+        <label>Price Approval Request</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales PlanFact</fullName>
+        <default>false</default>
+        <label>Sales PlanFact</label>
+    </customValue>
+    <customValue>
+        <fullName>Production Plan</fullName>
+        <default>false</default>
+        <label>Production Plan</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Budget</fullName>
+        <default>false</default>
+        <label>Sales Budget</label>
+    </customValue>
+    <customValue>
+        <fullName>Adjustment Quota Request</fullName>
+        <default>false</default>
+        <label>Adjustment Quota Request</label>
+    </customValue>
+    <customValue>
+        <fullName>Production Quotes</fullName>
+        <default>false</default>
+        <label>Production Quotes</label>
+    </customValue>
+    <customValue>
+        <fullName>Prod Quota Management</fullName>
+        <default>false</default>
+        <label>Prod Quota Management</label>
+    </customValue>
+    <customValue>
+        <fullName>Scrap Management</fullName>
+        <default>false</default>
+        <label>Scrap Management</label>
+    </customValue>
+    <customValue>
+        <fullName>User Management</fullName>
+        <default>false</default>
+        <label>User Management</label>
+    </customValue>
+    <masterLabel>errArea</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -243,7 +243,7 @@ public without sharing class SFtoERPOpportunityStage {
     }
     @TestVisible private static void logError(String msg, Exception e) {
         if (e != null) {
-            Triton.instance.error(TritonTypes.Area.SFtoERPOpportunityStage, e);
+            ErrorService.handle('ERR_INT_OPPSTAGE_SYNC', null, e);
         } else {
             Triton.instance.debug(TritonTypes.Type.RequestDebug, TritonTypes.Area.SFtoERPOpportunityStage, 'ERROR: ' + msg, null);
         }

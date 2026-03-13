@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MarketSegment</fullName>
+    <active>false</active>
+    <description>Market Segment field must contain value before placing the opportunity to the &quot;Analysis&quot; stage.</description>
+    <errorConditionFormula>And(Text(StageName) != &apos;New&apos;, Text(StageName) != &apos;Qualification&apos;, Text(StageName) != &apos;Closed Lost&apos;, IsBlank(Text(MarketSegment__c)))</errorConditionFormula>
+    <errorDisplayField>MarketSegment__c</errorDisplayField>
+    <errorMessage>Specify market segment (region)</errorMessage>
+</ValidationRule>

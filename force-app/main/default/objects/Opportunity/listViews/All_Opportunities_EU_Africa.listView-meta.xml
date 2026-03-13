@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Opportunities_EU_Africa</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>AdditionalNumber__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Country__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>Product_Family__c</columns>
+    <columns>OPPORTUNITY.QUANTITY</columns>
+    <columns>Margin_t__c</columns>
+    <columns>Margin__c</columns>
+    <columns>Owner__c</columns>
+    <columns>OppType__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>MarketSegment__c</field>
+        <operation>equals</operation>
+        <value>00004</value>
+    </filters>
+    <label>All Opportunities (Europe)</label>
+    <sharedTo>
+        <group>TechSupportEuropePipes</group>
+        <roleAndSubordinatesInternal>CSO_Europe</roleAndSubordinatesInternal>
+    </sharedTo>
+</ListView>

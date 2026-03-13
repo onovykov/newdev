@@ -7,7 +7,9 @@ public class QuestionTriggerHandler extends TriggerHandler implements ITrigger {
 
 	public void bulkBefore() {
 		System.debug('bulkBefore Question');
-        getQuestionnaireMap(newList);
+        // При Delete newList є NULL, використовуємо oldList
+        List<SObject> questionsToProcess = (newList != null) ? newList : oldList;
+        getQuestionnaireMap(questionsToProcess);
 	}
 	
 	public void bulkAfter() {
@@ -44,9 +46,14 @@ public class QuestionTriggerHandler extends TriggerHandler implements ITrigger {
 		System.debug('PostProcessing Question');
 	}
 
-    private void getQuestionnaireMap(List<SObject> newList) {
+    private void getQuestionnaireMap(List<SObject> questionList) {
+        if (questionList == null || questionList.isEmpty()) {
+            QuestionnaireMap = new Map<Id, Questionnaire__c>();
+            return;
+        }
+
         Set<Id> questionnaireIdSet = new Set<Id>();
-        for(SObject question : newList) {
+        for(SObject question : questionList) {
             questionnaireIdSet.add(((Question__c) question).Questionnaire__c);
         }
         QuestionnaireMap = new Map<Id, Questionnaire__c>([SELECT Id, Status__c FROM Questionnaire__c WHERE Id IN :questionnaireIdSet]);
@@ -54,7 +61,8 @@ public class QuestionTriggerHandler extends TriggerHandler implements ITrigger {
 
     private void checkQuestionnaireStatus(SObject so) {
         Question__c newQuestion = (Question__c)so;
-        if(QuestionnaireMap.get(newQuestion.Questionnaire__c).Status__c == 'Sent') {
+        Questionnaire__c questionnaire = QuestionnaireMap.get(newQuestion.Questionnaire__c);
+        if(questionnaire != null && questionnaire.Status__c == 'Sent') {
             newQuestion.addError('Question with Sent Questionnaire can not be created/updated.');
         }
     }

@@ -41,13 +41,13 @@ global class ProductionLotToLotBatchEx implements Database.Batchable<SObject>, D
 
     private Lot__c createLot(ProductionLot__c pl, Decimal qty, String lotType) {
         Lot__c lot = new Lot__c();
-        lot.ITENumber__c = pl.ITENumber__c;
-        lot.Order__c = pl.Order__c;
+        //lot.ITENumber__c = pl.ITENumber__c;
+        //lot.Order__c = pl.Order__c;
         lot.OrderItem__c = pl.OrderItem__c;
-        lot.LotDate__c = pl.LotDate__c;
+        //lot.LotDate__c = pl.LotDate__c;
         lot.LotQty_t__c = qty;
         lot.LotType__c = lotType;
-        lot.Name = pl.ITENumber__c + ' ' + String.valueOf(Date.today()) + ' ' + lotType;
+        lot.Name = /*pl.ITENumber__c + ' ' + */String.valueOf(Date.today()) + ' ' + lotType;
 
         for(ProdWeeksH__c prodWeek : ProdWeeks) {
             if (pl.LotDate__c >= prodWeek.DateFrom__c && pl.LotDate__c <= prodWeek.DateTo__c) {

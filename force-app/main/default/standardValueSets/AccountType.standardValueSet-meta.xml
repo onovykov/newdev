@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>End User</fullName>
+        <default>false</default>
+        <label>End User</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Stocker</fullName>
+        <default>false</default>
+        <label>Stocker</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Distributor</fullName>
+        <default>false</default>
+        <label>Distributor</label>
+    </standardValue>
+    <standardValue>
+        <fullName>EPC</fullName>
+        <default>false</default>
+        <label>EPC</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Internal Depot</fullName>
+        <default>false</default>
+        <label>Internal Depot</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Competitor</fullName>
+        <default>false</default>
+        <label>Competitor</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Corporate Group</fullName>
+        <default>false</default>
+        <label>Corporate Group</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Lobbyist</fullName>
+        <default>false</default>
+        <label>Lobbyist</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Consultant</fullName>
+        <default>false</default>
+        <label>Consultant</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Inner Firm</fullName>
+        <default>false</default>
+        <label>Inner Firm</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Virtual</fullName>
+        <default>false</default>
+        <label>Virtual</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Test</fullName>
+        <default>false</default>
+        <label>Test</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Supplier</fullName>
+        <default>false</default>
+        <label>Supplier</label>
+    </standardValue>
+</StandardValueSet>

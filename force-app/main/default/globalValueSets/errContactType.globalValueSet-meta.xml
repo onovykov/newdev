@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>IT-Admin</fullName>
+        <default>false</default>
+        <label>IT-Admin</label>
+    </customValue>
+    <customValue>
+        <fullName>IT Database Admin</fullName>
+        <default>false</default>
+        <label>IT Database Admin</label>
+    </customValue>
+    <customValue>
+        <fullName>Network Admin</fullName>
+        <default>false</default>
+        <label>Network Admin</label>
+    </customValue>
+    <customValue>
+        <fullName>IT-Analyst</fullName>
+        <default>false</default>
+        <label>IT-Analyst</label>
+    </customValue>
+    <masterLabel>errContactType</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

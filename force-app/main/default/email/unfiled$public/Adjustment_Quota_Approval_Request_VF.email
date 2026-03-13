@@ -1,0 +1,27 @@
+<messaging:emailTemplate subject="Запит на узгодження відкоригованої квоти" recipientType="User" relatedToType="QuoteRequestHeader__c">
+<messaging:htmlEmailBody >
+
+<p style="font-size: 15px; font-family: Calibri, Arial, sans-serif; font-weight: normal;">
+Вам надійшов запит <b>{!relatedTo.Request_Name__c}</b> на узгодження заявки на коригування квоти.
+<br />
+Щоби перейти до сторінки узгодження натисніть кнопку нижче.</p>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <table border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td bgcolor="#FFDD00" style="padding: 8px 14px 8px 14px; border-radius:5px" align="center">
+                                    
+                                    <c:EmailQuotaApprovalLink recordId="{!relatedTo.Id}"
+                                        userId="{!recipient.Id}"
+                                    />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

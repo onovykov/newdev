@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ManageForecastCategory__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>If checked then user can manually assign forecast category to the opportunity disregarding its current stage (except closed).</description>
+    <inlineHelpText>If checked then user can manually assign forecast category to the opportunity disregarding its current stage (except closed).</inlineHelpText>
+    <label>Manage Forecast Category</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,3002 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>About_Interpipe</fullName>
+        <categories>Customer Commnunity</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>About Interpipe</shortDescription>
+        <value>About Interpipe</value>
+    </labels>
+    <labels>
+        <fullName>About_me</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>About me</shortDescription>
+        <value>About me</value>
+    </labels>
+    <labels>
+        <fullName>Account</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account</shortDescription>
+        <value>Account</value>
+    </labels>
+    <labels>
+        <fullName>Active</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Active</shortDescription>
+        <value>Active</value>
+    </labels>
+    <labels>
+        <fullName>Addresses_for_callout_exception</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Addresses for callout exception</shortDescription>
+        <value>Sergey.Perushchiy@m.interpipe.biz,Aleksandr.Novikov@m.interpipe.biz,o.motoziuk@polytech.software</value>
+    </labels>
+    <labels>
+        <fullName>Addresses_for_faild_Opportunity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Addresses for faild Opportunity</shortDescription>
+        <value>o.motoziuk@polytech.software,Aleksandr.Novikov@m.interpipe.biz</value>
+    </labels>
+    <labels>
+        <fullName>All_Invoices</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>All Invoices</shortDescription>
+        <value>All Invoices</value>
+    </labels>
+    <labels>
+        <fullName>All_Reclamations</fullName>
+        <categories>site_reclamation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>All Reclamations</shortDescription>
+        <value>All Claims</value>
+    </labels>
+    <labels>
+        <fullName>All_Routes_Quotes_record_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>All Routes Quotes record Id</shortDescription>
+        <value>a2PP5000003ElzpMAC</value>
+    </labels>
+    <labels>
+        <fullName>All_cases</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>All cases</shortDescription>
+        <value>All cases</value>
+    </labels>
+    <labels>
+        <fullName>All_enquiries</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>All enquiries</shortDescription>
+        <value>All enquiries</value>
+    </labels>
+    <labels>
+        <fullName>All_orders</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>All orders</shortDescription>
+        <value>All orders</value>
+    </labels>
+    <labels>
+        <fullName>Are_you_sure_to_delete_this_file</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Are you sure to delete this file?</shortDescription>
+        <value>Are you sure to delete this file?</value>
+    </labels>
+    <labels>
+        <fullName>Are_you_sure_you_want_to_confirm_this_enquiry</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Are you sure you want to confirm this enquiry?</shortDescription>
+        <value>Are you sure you want to confirm this enquiry?</value>
+    </labels>
+    <labels>
+        <fullName>Are_you_sure_you_want_to_delete_this_request</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Are you sure you want to delete this request</shortDescription>
+        <value>Are you sure you want to delete this enquiry?</value>
+    </labels>
+    <labels>
+        <fullName>Attach_files</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attach files</shortDescription>
+        <value>Attach files</value>
+    </labels>
+    <labels>
+        <fullName>AuraMsgErrorFromERP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AuraMsgErrorFromERP</shortDescription>
+        <value>There is an issue with sending info to ERP</value>
+    </labels>
+    <labels>
+        <fullName>Balance_for_Production</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Balance for Production</shortDescription>
+        <value>Balance for Production</value>
+    </labels>
+    <labels>
+        <fullName>Balance_for_Shipment</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Balance for Shipment</shortDescription>
+        <value>Balance for Shipment</value>
+    </labels>
+    <labels>
+        <fullName>BodyEmailBlockedAccount3Days</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BodyEmailBlockedAccount3Days</shortDescription>
+        <value>Account may be blocked during 3 days</value>
+    </labels>
+    <labels>
+        <fullName>BodyEmailBlockedAccount7Days</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BodyEmailBlockedAccount7Days</shortDescription>
+        <value>Account may be blocked during 7 days</value>
+    </labels>
+    <labels>
+        <fullName>By_contracts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>By contracts</shortDescription>
+        <value>By contracts</value>
+    </labels>
+    <labels>
+        <fullName>COC</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>COC #</shortDescription>
+        <value>COC #</value>
+    </labels>
+    <labels>
+        <fullName>Cancel</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>Cancelled</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancelled</shortDescription>
+        <value>Cancelled</value>
+    </labels>
+    <labels>
+        <fullName>Certificates</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Certificates</shortDescription>
+        <value>Certificates</value>
+    </labels>
+    <labels>
+        <fullName>Changes_saved</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Changes saved</shortDescription>
+        <value>Сhanges saved!</value>
+    </labels>
+    <labels>
+        <fullName>Choose_a_date</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Choose a date</shortDescription>
+        <value>Choose a date</value>
+    </labels>
+    <labels>
+        <fullName>Claims</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Claims</shortDescription>
+        <value>Claims</value>
+    </labels>
+    <labels>
+        <fullName>Closed</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Closed</shortDescription>
+        <value>Closed</value>
+    </labels>
+    <labels>
+        <fullName>Company_name</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Company name</shortDescription>
+        <value>Company name</value>
+    </labels>
+    <labels>
+        <fullName>Confirm</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirm</shortDescription>
+        <value>Confirm</value>
+    </labels>
+    <labels>
+        <fullName>Contacts</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contacts</shortDescription>
+        <value>Contacts</value>
+    </labels>
+    <labels>
+        <fullName>Contract</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contract</shortDescription>
+        <value>Contract</value>
+    </labels>
+    <labels>
+        <fullName>Contract_Number</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reclamation Contract Number</shortDescription>
+        <value>Contract Number</value>
+    </labels>
+    <labels>
+        <fullName>Create_Enquiry</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create Enquiry</shortDescription>
+        <value>Create enquiry</value>
+    </labels>
+    <labels>
+        <fullName>Created_By</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Created By</shortDescription>
+        <value>Created By</value>
+    </labels>
+    <labels>
+        <fullName>Creation_date</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Creation date</shortDescription>
+        <value>Creation date</value>
+    </labels>
+    <labels>
+        <fullName>Currency</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Currency</shortDescription>
+        <value>Currency</value>
+    </labels>
+    <labels>
+        <fullName>CustomerEnquiryDetailsTable</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Name for table of products</shortDescription>
+        <value>Related Products</value>
+    </labels>
+    <labels>
+        <fullName>CustomerEnquiryDetailsTableEmpty</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Description of empty table</shortDescription>
+        <value>Empty</value>
+    </labels>
+    <labels>
+        <fullName>CustomerSupport</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CustomerSupportsHistory</shortDescription>
+        <value>My history</value>
+    </labels>
+    <labels>
+        <fullName>CustomerSupportFileLoaded</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CustomerSupportFileLoaded</shortDescription>
+        <value>uploaded</value>
+    </labels>
+    <labels>
+        <fullName>CustomerSupportHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CustomerSupportHeader</shortDescription>
+        <value>Contact Customer Support</value>
+    </labels>
+    <labels>
+        <fullName>CustomerSupportQuickAnswer</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CustomerSupportQuickAnswer</shortDescription>
+        <value>Need quick answer?</value>
+    </labels>
+    <labels>
+        <fullName>CustomerSupportSubHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CustomerSupportSubHeader</shortDescription>
+        <value>Tell us how we can help</value>
+    </labels>
+    <labels>
+        <fullName>Days_Overdue</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Days Overdue</shortDescription>
+        <value>Days Overdue</value>
+    </labels>
+    <labels>
+        <fullName>Dealing_Status</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Dealing Status</shortDescription>
+        <value>Dealing Status</value>
+    </labels>
+    <labels>
+        <fullName>Deselect_All</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Deselect All</shortDescription>
+        <value>Deselect All</value>
+    </labels>
+    <labels>
+        <fullName>Divisions</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Divisions</shortDescription>
+        <value>Divisions</value>
+    </labels>
+    <labels>
+        <fullName>Download_Manual</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Download Manual</shortDescription>
+        <value>Download Manual</value>
+    </labels>
+    <labels>
+        <fullName>Draft</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Draft</shortDescription>
+        <value>Drafts</value>
+    </labels>
+    <labels>
+        <fullName>Due_Date</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Due Date</shortDescription>
+        <value>Due Date</value>
+    </labels>
+    <labels>
+        <fullName>E_mail</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>E-mail</shortDescription>
+        <value>E-mail</value>
+    </labels>
+    <labels>
+        <fullName>Email</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>EmailForNewStageOnProduct</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailForNewStageOnProduct</shortDescription>
+        <value>v.rybak@polytech.software</value>
+    </labels>
+    <labels>
+        <fullName>Emails_for_Cancelled_Opportunity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Emails for Cancelled Opportunity Europe</shortDescription>
+        <value>Evgeniy.Zavrayskiy@m.interpipe.biz;Elena.Pozdnyakova@m.interpipe.biz;Ivan.Mazanka@m.interpipe.biz;Alina.Rada@m.interpipe.biz</value>
+    </labels>
+    <labels>
+        <fullName>End_Date</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>End Date</shortDescription>
+        <value>End Date</value>
+    </labels>
+    <labels>
+        <fullName>Enquiries</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enquiries</shortDescription>
+        <value>Enquiries</value>
+    </labels>
+    <labels>
+        <fullName>Enquiry</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enquiry</shortDescription>
+        <value>Enquiry</value>
+    </labels>
+    <labels>
+        <fullName>Enquiry_Confirmed</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enquiry Confirmed</shortDescription>
+        <value>Enquiry Confirmed</value>
+    </labels>
+    <labels>
+        <fullName>Enquiry_already_confirmed</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enquiry already confirmed</shortDescription>
+        <value>Enquiry already confirmed</value>
+    </labels>
+    <labels>
+        <fullName>Enquiry_deleted_successfully</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enquiry deleted successfully!</shortDescription>
+        <value>Enquiry deleted successfully!</value>
+    </labels>
+    <labels>
+        <fullName>Enquiry_number</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enquiry number</shortDescription>
+        <value>Enquiry number</value>
+    </labels>
+    <labels>
+        <fullName>Enter_order_number</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enter order number</shortDescription>
+        <value>Enter order number...</value>
+    </labels>
+    <labels>
+        <fullName>Estimated_Prod_Balance</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Estimated Prod. Balance</shortDescription>
+        <value>Estimated Prod. Balance</value>
+    </labels>
+    <labels>
+        <fullName>File_deleted_successfully</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>File deleted successfully</shortDescription>
+        <value>File deleted successfully</value>
+    </labels>
+    <labels>
+        <fullName>Files</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Files</shortDescription>
+        <value>Files</value>
+    </labels>
+    <labels>
+        <fullName>Files_uploaded_successfully</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Files uploaded successfully</shortDescription>
+        <value>Files uploaded successfully</value>
+    </labels>
+    <labels>
+        <fullName>Fill_in_your_Quote_Payment_and_Delivery_Terms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Fill in your Quote Payment and Delivery Terms</shortDescription>
+        <value>Please, fill in your Quote Payment and Delivery Terms information to generate PDF document.</value>
+    </labels>
+    <labels>
+        <fullName>Financial_Balance</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Financial Balance</shortDescription>
+        <value>Balance</value>
+    </labels>
+    <labels>
+        <fullName>First_Name</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>First Name</shortDescription>
+        <value>First Name</value>
+    </labels>
+    <labels>
+        <fullName>From</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>From</shortDescription>
+        <value>From</value>
+    </labels>
+    <labels>
+        <fullName>From_order_date</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>From order date</shortDescription>
+        <value>From order creation date</value>
+    </labels>
+    <labels>
+        <fullName>InvalidJSONReceived</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>InvalidJSONReceived</shortDescription>
+        <value>Answer received, but failed to be processed</value>
+    </labels>
+    <labels>
+        <fullName>Invoice</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invoice #</shortDescription>
+        <value>Invoice #</value>
+    </labels>
+    <labels>
+        <fullName>Invoice_Date</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invoice Date</shortDescription>
+        <value>Invoice Date</value>
+    </labels>
+    <labels>
+        <fullName>Language</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Language</shortDescription>
+        <value>Language</value>
+    </labels>
+    <labels>
+        <fullName>Last_Name</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Last Name</shortDescription>
+        <value>Last Name</value>
+    </labels>
+    <labels>
+        <fullName>Location</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Location</shortDescription>
+        <value>Location</value>
+    </labels>
+    <labels>
+        <fullName>Manager</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Manager</shortDescription>
+        <value>Manager</value>
+    </labels>
+    <labels>
+        <fullName>Mobile_phone</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Mobile phone</shortDescription>
+        <value>Mobile phone</value>
+    </labels>
+    <labels>
+        <fullName>Monthly_Prod_Plan</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Monthly Prod. Plan</shortDescription>
+        <value>Monthly Prod. Plan</value>
+    </labels>
+    <labels>
+        <fullName>More</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>More</shortDescription>
+        <value>More</value>
+    </labels>
+    <labels>
+        <fullName>My_application_history</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>My application history</shortDescription>
+        <value>My application history</value>
+    </labels>
+    <labels>
+        <fullName>Net_Amount</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Net Amount</shortDescription>
+        <value>Net Amount</value>
+    </labels>
+    <labels>
+        <fullName>New</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New</shortDescription>
+        <value>New</value>
+    </labels>
+    <labels>
+        <fullName>New_Enquiry</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New Enquiry</shortDescription>
+        <value>New Enquiry</value>
+    </labels>
+    <labels>
+        <fullName>News</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>News</shortDescription>
+        <value>News</value>
+    </labels>
+    <labels>
+        <fullName>Next</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>No</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No</shortDescription>
+        <value>No</value>
+    </labels>
+    <labels>
+        <fullName>NoAssignedBO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NoAssignedBO</shortDescription>
+        <value>BO Specialist doesn&apos;t defined. Please, specify BO Specialist for this opportunity.</value>
+    </labels>
+    <labels>
+        <fullName>NoEmailOnAssignedBO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NoEmailOnAssignedBO</shortDescription>
+        <value>BO Specialist email doesn&apos;t defined. Please, specify email for BO Specialist for this opportunity.</value>
+    </labels>
+    <labels>
+        <fullName>NoOwnerIdERP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NoOwnerIdERP</shortDescription>
+        <value>Opportunity Owner didn&apos;t have ERP ID field populated, please contact system administrator.</value>
+    </labels>
+    <labels>
+        <fullName>NoPlanDataMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NoPlanDataMessage</shortDescription>
+        <value>No scheduled data to display</value>
+    </labels>
+    <labels>
+        <fullName>No_Payment_or_Delivery_Terms_on_Quote</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Payment or Delivery Terms on Quote</shortDescription>
+        <value>Payment Terms or Delivery Terms are Empty!</value>
+    </labels>
+    <labels>
+        <fullName>NotificationAccountLink</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NotificationAccountLink</shortDescription>
+        <value>https://interpipe.lightning.force.com/lightning/r/Account/</value>
+    </labels>
+    <labels>
+        <fullName>NotificationBodyBlockedAccount3Days</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NotificationBodyBlockedAccount3Days</shortDescription>
+        <value>Account might be blocked during 3 days. Click to review Account.</value>
+    </labels>
+    <labels>
+        <fullName>NotificationBodyBlockedAccount7Days</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NotificationBodyBlockedAccount7Days</shortDescription>
+        <value>Account might be blocked during 7 days. Click to review Account</value>
+    </labels>
+    <labels>
+        <fullName>NotificationBodyPart1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NotificationBodyPart1</shortDescription>
+        <value>Please note, that your account</value>
+    </labels>
+    <labels>
+        <fullName>NotificationBodyPart1Day7</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NotificationBodyPart2Day7</shortDescription>
+        <value>will be blocked in 7 days. 
+To avoid your account getting into Stop List, please ask the client to pay the outstanding balance</value>
+    </labels>
+    <labels>
+        <fullName>NotificationBodyPart2Day3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NotificationBodyPart2Day3</shortDescription>
+        <value>will be blocked in 3 days.
+To avoid your account getting into Stop List, please ask the client to pay the outstanding balance</value>
+    </labels>
+    <labels>
+        <fullName>NotificationOpportunityLink</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NotificationOpportunityLink</shortDescription>
+        <value>https://interpipe.lightning.force.com/lightning/r/Opportunity/</value>
+    </labels>
+    <labels>
+        <fullName>NotificationTitleBlockedAccount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NotificationTitleBlockedAccount</shortDescription>
+        <value>Account might be blocked</value>
+    </labels>
+    <labels>
+        <fullName>On_Hold</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>On Hold</shortDescription>
+        <value>On Hold</value>
+    </labels>
+    <labels>
+        <fullName>OppAlreadySent</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OppAlreadySent</shortDescription>
+        <value>Opportunity was already sent to Backoffice</value>
+    </labels>
+    <labels>
+        <fullName>OrderDeliveryNonInfo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>no shipping information for order</shortDescription>
+        <value>Sorry, there is no shipping information for this order yet.</value>
+    </labels>
+    <labels>
+        <fullName>Order_Number_for_Prod_Plan</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order Number for Prod Plan</shortDescription>
+        <value>Order COC # | PO#</value>
+    </labels>
+    <labels>
+        <fullName>Orders</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Orders</shortDescription>
+        <value>Orders</value>
+    </labels>
+    <labels>
+        <fullName>OrganizationURL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OrganizationURL</shortDescription>
+        <value>https://interpipe.lightning.force.com</value>
+    </labels>
+    <labels>
+        <fullName>Outstanding_Debt</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Outstanding Debt</shortDescription>
+        <value>Outstanding Debt</value>
+    </labels>
+    <labels>
+        <fullName>Overdue_accounts_receivable</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Overdue accounts receivable</shortDescription>
+        <value>Overdue accounts receivable</value>
+    </labels>
+    <labels>
+        <fullName>Phone</fullName>
+        <categories>Customer Comnunity</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Phone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>Phone_number</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Phone number</shortDescription>
+        <value>Phone number</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_at_least_one_order</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please, select at least one order</shortDescription>
+        <value>Please select at least one order</value>
+    </labels>
+    <labels>
+        <fullName>Portal_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Portal URL</shortDescription>
+        <value>https://interpipe--devsand.sandbox.my.site.com/NewCustomerRoom</value>
+    </labels>
+    <labels>
+        <fullName>Price_List_H_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Price List (H) Id</shortDescription>
+        <value>a32P5000000t5GnIAI</value>
+    </labels>
+    <labels>
+        <fullName>Print</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Print</shortDescription>
+        <value>Print</value>
+    </labels>
+    <labels>
+        <fullName>Problem_description</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Problem description</shortDescription>
+        <value>Problem description</value>
+    </labels>
+    <labels>
+        <fullName>Processing</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Processing</shortDescription>
+        <value>Processing</value>
+    </labels>
+    <labels>
+        <fullName>Prod_Type</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Prod Type</shortDescription>
+        <value>Prod. Type</value>
+    </labels>
+    <labels>
+        <fullName>Production</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Production</shortDescription>
+        <value>Production</value>
+    </labels>
+    <labels>
+        <fullName>Production_Dates</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Production Dates</shortDescription>
+        <value>Production Dates</value>
+    </labels>
+    <labels>
+        <fullName>Production_Plan</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Production Plan</shortDescription>
+        <value>Production Plan</value>
+    </labels>
+    <labels>
+        <fullName>Production_online</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Production online</shortDescription>
+        <value>Production online</value>
+    </labels>
+    <labels>
+        <fullName>ProductsClassifier_H</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PRODUCTS CLASSIFIER</shortDescription>
+        <value>a2FP5000001TePhMAK</value>
+    </labels>
+    <labels>
+        <fullName>Profile</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Profile</shortDescription>
+        <value>Profile</value>
+    </labels>
+    <labels>
+        <fullName>ProfileNamesToEditAfterBO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ProfileNamesToEditAfterBO</shortDescription>
+        <value>ERP Integration Service; System Administrator</value>
+    </labels>
+    <labels>
+        <fullName>QuotaApplyChanges</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>QuotaApplyChanges</shortDescription>
+        <value>Apply Changes</value>
+    </labels>
+    <labels>
+        <fullName>QuotaCalculateChanges</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>QuotaCalculateChanges</shortDescription>
+        <value>Calculate Changes</value>
+    </labels>
+    <labels>
+        <fullName>QuotaCancelChanges</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>QuotaCancelChanges</shortDescription>
+        <value>Cancel Changes</value>
+    </labels>
+    <labels>
+        <fullName>Read</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Read</shortDescription>
+        <value>Read</value>
+    </labels>
+    <labels>
+        <fullName>ReclDetailStageMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ReclDetailStageMsg</shortDescription>
+        <value>Sorry. You can&apos;t add product to non Draft reclamation.</value>
+    </labels>
+    <labels>
+        <fullName>ReclDetailStageTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ReclDetailStageTitle</shortDescription>
+        <value>Error Add Product</value>
+    </labels>
+    <labels>
+        <fullName>Reclamation_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reclamation Account</shortDescription>
+        <value>Account</value>
+    </labels>
+    <labels>
+        <fullName>Reclamation_Attach_files</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reclamation Attach files</shortDescription>
+        <value>Attach files</value>
+    </labels>
+    <labels>
+        <fullName>Reclamation_Cancel_Button</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reclamation Cancel Button</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>Reclamation_Contract_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reclamation Contract Date</shortDescription>
+        <value>Contract Date</value>
+    </labels>
+    <labels>
+        <fullName>Reclamation_Create_Label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reclamation Create Label</shortDescription>
+        <value>Create Reclamation</value>
+    </labels>
+    <labels>
+        <fullName>Reclamation_Currency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reclamation Currency</shortDescription>
+        <value>Currency</value>
+    </labels>
+    <labels>
+        <fullName>Reclamation_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reclamation Date</shortDescription>
+        <value>Creation Date</value>
+    </labels>
+    <labels>
+        <fullName>Reclamation_Next_Button</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reclamation Next Button</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>Reclamation_No_Refund</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reclamation No Refund</shortDescription>
+        <value>No refund</value>
+    </labels>
+    <labels>
+        <fullName>Reclamation_Segment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reclamation Segment</shortDescription>
+        <value>Segment</value>
+    </labels>
+    <labels>
+        <fullName>Reclamation_Summary</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reclamation Summary</shortDescription>
+        <value>Claim Summary</value>
+    </labels>
+    <labels>
+        <fullName>Reclamation_confirmed</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reclamation confirmed</shortDescription>
+        <value>Claim confirmed</value>
+    </labels>
+    <labels>
+        <fullName>Reclamation_deleted</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reclamation deleted</shortDescription>
+        <value>Claim deleted</value>
+    </labels>
+    <labels>
+        <fullName>Reset_Password</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reset Password</shortDescription>
+        <value>Reset Password</value>
+    </labels>
+    <labels>
+        <fullName>SFtoERPConnectionFails</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFtoERPConnectionFails</shortDescription>
+        <value>There is an issue connecting to ERP&apos;</value>
+    </labels>
+    <labels>
+        <fullName>Save</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>Save_and_Confirm</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save and Confirm</shortDescription>
+        <value>Save and Confirm</value>
+    </labels>
+    <labels>
+        <fullName>Select_All</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select All</shortDescription>
+        <value>Select All</value>
+    </labels>
+    <labels>
+        <fullName>Select_Order</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Order</shortDescription>
+        <value>Select Order</value>
+    </labels>
+    <labels>
+        <fullName>Select_a_product_type</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select a product type</shortDescription>
+        <value>Select a product type</value>
+    </labels>
+    <labels>
+        <fullName>Self_Pickup_Message</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Self Pickup Message</shortDescription>
+        <value>Shipped in the customer&apos;s transport.</value>
+    </labels>
+    <labels>
+        <fullName>Send</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Send</shortDescription>
+        <value>Send</value>
+    </labels>
+    <labels>
+        <fullName>Sent</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sent</shortDescription>
+        <value>Sent</value>
+    </labels>
+    <labels>
+        <fullName>Settings</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Settings</shortDescription>
+        <value>Settings</value>
+    </labels>
+    <labels>
+        <fullName>Shipped</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Shipped</shortDescription>
+        <value>Shipped</value>
+    </labels>
+    <labels>
+        <fullName>Site_ConfirmReclamation</fullName>
+        <categories>site_reclamation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_ConfirmReclamation</shortDescription>
+        <value>Confirm Claim</value>
+    </labels>
+    <labels>
+        <fullName>Site_DeleteReclamation</fullName>
+        <categories>site_reclamation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_DeleteReclamation</shortDescription>
+        <value>Delete Claim</value>
+    </labels>
+    <labels>
+        <fullName>Site_Detail</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site Detail</shortDescription>
+        <value>Detail</value>
+    </labels>
+    <labels>
+        <fullName>Site_btn_AddProduct</fullName>
+        <categories>Site Button</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_btn_AddProduct</shortDescription>
+        <value>Add Product</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_Account</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_Account</shortDescription>
+        <value>Account</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_Address</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_Address</shortDescription>
+        <value>Address</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_Amount</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_Amount</shortDescription>
+        <value>Amount</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_BillingAddress</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_BillingAddress</shortDescription>
+        <value>Billing Address</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_Country</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_Currency</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_Currency</shortDescription>
+        <value>Currency</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_Date1</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_Date1</shortDescription>
+        <value>Date</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_Date2</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_Date2</shortDescription>
+        <value>Order Start Date</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_Date3</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_Date3</shortDescription>
+        <value>Order End Date</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_DeliveryStatus</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_DeliveryStatus</shortDescription>
+        <value>Delivery Status</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_Details</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_Details</shortDescription>
+        <value>Details</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_Dispatched</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_Dispatched</shortDescription>
+        <value>Dispatched</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_ExecutionStatus</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_ExecutionStatus</shortDescription>
+        <value>Execution Status</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_ITENumber</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_ITENumber</shortDescription>
+        <value>ITE Number</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_Order</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_Order</shortDescription>
+        <value>Order</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_OrderNumber</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_OrderNumber</shortDescription>
+        <value>Order Number</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_OrderOwner</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_OrderOwner</shortDescription>
+        <value>Order Owner</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_OrderProducts</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_OrderProducts</shortDescription>
+        <value>Order Products</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_PONumber</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_PONumber</shortDescription>
+        <value>PO Number</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_PhoneNumber</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_PhoneNumber</shortDescription>
+        <value>Phone number</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_Produced</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_Produced</shortDescription>
+        <value>Produced</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_Quantity</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_Quantity</shortDescription>
+        <value>Quantity</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_Shipped</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_Shipped</shortDescription>
+        <value>Shipped</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_ShippingAddress</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_ShippingAddress</shortDescription>
+        <value>Shipping Address</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_Stage</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_Stage</shortDescription>
+        <value>Stage</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_TypeOfProducts</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_TypeOfProducts</shortDescription>
+        <value>Type of products</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_pcs</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_pcs</shortDescription>
+        <value>(pcs)</value>
+    </labels>
+    <labels>
+        <fullName>Site_orderDetail_t</fullName>
+        <categories>site_orderDetail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_orderDetail_t</shortDescription>
+        <value>(t)</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Axle_Box</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Axle_Box</shortDescription>
+        <value>Axle Box</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Axle_Specification</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Axle_Specification</shortDescription>
+        <value>Axle Specification</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Bearer</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Bearer</shortDescription>
+        <value>Bearer</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Cover_Material</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Cover_Material</shortDescription>
+        <value>Cover Material</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Cover_Type</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Cover_Type</shortDescription>
+        <value>Cover Type</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Drawing</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Drawing</shortDescription>
+        <value>Drawing</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Exec_Category</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Exec_Category</shortDescription>
+        <value>Exec Category</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Has_Spec_Req</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Has_Spec_Req</shortDescription>
+        <value>Has Special Req.</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Imbalance</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Imbalance</shortDescription>
+        <value>Imbalance</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Inspection</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Inspection</shortDescription>
+        <value>Inspection</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Marking_Type</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Marking_Type</shortDescription>
+        <value>Marking Type</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Name_to_Srandard</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Name_to_Srandard</shortDescription>
+        <value>Product Name acc. to Standard</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Oil_Hole</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Oil_Hole</shortDescription>
+        <value>Oil Hole</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Packing_Type</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Packing_Type</shortDescription>
+        <value>Packing Type</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Plug_Type</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Plug_Type</shortDescription>
+        <value>Plug Type</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Product_Details</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Product_Details</shortDescription>
+        <value>Product Details</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Product_Name</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Product_Name</shortDescription>
+        <value>Product Name</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Product_Type</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Product_Type</shortDescription>
+        <value>Product Type</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Purpose</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Purpose</shortDescription>
+        <value>Purpose</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Shape</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Shape</shortDescription>
+        <value>Shape</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Specification</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Specification</shortDescription>
+        <value>Specification</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Standard</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Standard</shortDescription>
+        <value>Standard</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Steel_Grade</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Steel_Grade</shortDescription>
+        <value>Steel Grade</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Weight_kg</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Weight_kg</shortDescription>
+        <value>Site_prodSpec</value>
+    </labels>
+    <labels>
+        <fullName>Site_prodSpec_Wheel_Specification</fullName>
+        <categories>Site_prodSpec</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_prodSpec_Wheel_Specification</shortDescription>
+        <value>Wheel Specification</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_Car</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_Car</shortDescription>
+        <value>Car #</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_Certificate</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_Certificate</shortDescription>
+        <value>Certificate #</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_ClaimSum</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_ClaimSum</shortDescription>
+        <value>Claim Sum</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_DateUpload</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_DateUpload</shortDescription>
+        <value>Date of upload</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_DispatchedQuantity</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_DispatchedQuantity</shortDescription>
+        <value>Dispatched</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_Doc</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_Doc</shortDescription>
+        <value>Doc #</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_Edit</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_GetCertificate</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_GetCertificate</shortDescription>
+        <value>Get Certificate</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_MeasurementUnit</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_MeasurementUnit</shortDescription>
+        <value>Meas. unit</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_MistmatchDate</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_MistmatchDate</shortDescription>
+        <value>Mistmatch Date</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_MistmatchSubType</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_MistmatchSubType</shortDescription>
+        <value>Mistmatch SubType</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_MistmatchType</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_MistmatchType</shortDescription>
+        <value>Mistmatch Type</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_Name</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_OrderPrice</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_OrderPrice</shortDescription>
+        <value>Order Price</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_Owner</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_Owner</shortDescription>
+        <value>Owner</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_ProducedQuantity</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_ProducedQuantity</shortDescription>
+        <value>Produced</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_Product</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_Product</shortDescription>
+        <value>Product</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_Quantity</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_Quantity</shortDescription>
+        <value>Quantity</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_Refund</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_Refund</shortDescription>
+        <value>Refund</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_ShippedQuantity</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_ShippedQuantity</shortDescription>
+        <value>Delivered acc to Incoterms</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_Stage</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_Stage</shortDescription>
+        <value>Stage</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_Status</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_Status</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_UnitPrice</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_UnitPrice</shortDescription>
+        <value>Unit Price</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_currency</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_currency</shortDescription>
+        <value>Currency</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_dateReclamation</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_dateReclamation</shortDescription>
+        <value>Date of Claim</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_delete</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_erpNumber</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_erpNumber</shortDescription>
+        <value>ERP Number</value>
+    </labels>
+    <labels>
+        <fullName>Site_th_number</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site_th_number</shortDescription>
+        <value>Number</value>
+    </labels>
+    <labels>
+        <fullName>Sorry_you_can_not_delete_confirmed_enquiry</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sorry, you can not delete confirmed enquiry</shortDescription>
+        <value>Sorry, you can not delete confirmed enquiry</value>
+    </labels>
+    <labels>
+        <fullName>Sorry_you_cannot_edit_closed_enquiry</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sorry, you cannot edit confirmed enquiry</shortDescription>
+        <value>Sorry, you cannot edit confirmed enquiry</value>
+    </labels>
+    <labels>
+        <fullName>Stage_Accepted</fullName>
+        <categories>site_reclamation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stage_Accepted</shortDescription>
+        <value>Accepted</value>
+    </labels>
+    <labels>
+        <fullName>Stage_Considered</fullName>
+        <categories>site_reclamation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stage_Considered</shortDescription>
+        <value>Being considered</value>
+    </labels>
+    <labels>
+        <fullName>Stage_Director_Decision</fullName>
+        <categories>site_reclamation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stage_Director_Decision</shortDescription>
+        <value>Director Decision</value>
+    </labels>
+    <labels>
+        <fullName>Stage_Draft</fullName>
+        <categories>site_reclamation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stage_Draft</shortDescription>
+        <value>Draft</value>
+    </labels>
+    <labels>
+        <fullName>Stage_Registered</fullName>
+        <categories>site_reclamation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stage_Registered</shortDescription>
+        <value>Registered</value>
+    </labels>
+    <labels>
+        <fullName>Stage_Rejected</fullName>
+        <categories>site_reclamation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stage_Rejected</shortDescription>
+        <value>Declined</value>
+    </labels>
+    <labels>
+        <fullName>Stage_Sended</fullName>
+        <categories>site_reclamation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stage_Sended</shortDescription>
+        <value>Sended</value>
+    </labels>
+    <labels>
+        <fullName>Start_Date</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Start Date</shortDescription>
+        <value>Start Date</value>
+    </labels>
+    <labels>
+        <fullName>Status</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Status</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>Status_date</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Status date</shortDescription>
+        <value>Status date</value>
+    </labels>
+    <labels>
+        <fullName>Stock</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stock</shortDescription>
+        <value>Stock</value>
+    </labels>
+    <labels>
+        <fullName>Success</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Success</shortDescription>
+        <value>Success</value>
+    </labels>
+    <labels>
+        <fullName>SujectEmailBlockedAccount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SujectEmailBlockedAccount</shortDescription>
+        <value>Theme: your account can be blocked</value>
+    </labels>
+    <labels>
+        <fullName>Suport_ticket_created</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Suport ticket created</shortDescription>
+        <value>Suport ticket created</value>
+    </labels>
+    <labels>
+        <fullName>Support</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Support</shortDescription>
+        <value>Support</value>
+    </labels>
+    <labels>
+        <fullName>Support_account</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Support_account</shortDescription>
+        <value>Account</value>
+    </labels>
+    <labels>
+        <fullName>Support_contact</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Support contact</shortDescription>
+        <value>Support contact</value>
+    </labels>
+    <labels>
+        <fullName>Support_description</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Support_description</shortDescription>
+        <value>Description</value>
+    </labels>
+    <labels>
+        <fullName>Support_header</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Support_header</shortDescription>
+        <value>Contact customer support</value>
+    </labels>
+    <labels>
+        <fullName>Support_subHeader</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Support_subHeader</shortDescription>
+        <value>How can we help you?</value>
+    </labels>
+    <labels>
+        <fullName>Support_theme</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Support_theme</shortDescription>
+        <value>Theme</value>
+    </labels>
+    <labels>
+        <fullName>Time_zone</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Time zone</shortDescription>
+        <value>Time zone</value>
+    </labels>
+    <labels>
+        <fullName>To</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To</shortDescription>
+        <value>To</value>
+    </labels>
+    <labels>
+        <fullName>To_Order_creation_Date</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To Order creation Date</shortDescription>
+        <value>To order creation date</value>
+    </labels>
+    <labels>
+        <fullName>Total_Debt_Common</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Debt (Common)</shortDescription>
+        <value>Total Debt (Common)</value>
+    </labels>
+    <labels>
+        <fullName>Total_Debt_Orders</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Debt (Orders)</shortDescription>
+        <value>Total Debt (Orders)</value>
+    </labels>
+    <labels>
+        <fullName>Total_Debt_Other_documents</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Debt (Other documents)</shortDescription>
+        <value>Total Debt (Other documents)</value>
+    </labels>
+    <labels>
+        <fullName>Total_quantity_in_tons</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total quantity in tons</shortDescription>
+        <value>Total quantity in tons</value>
+    </labels>
+    <labels>
+        <fullName>URL_Org</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>URL_Org</shortDescription>
+        <value>https://interpipe.lightning.force.com/</value>
+    </labels>
+    <labels>
+        <fullName>Upload_file</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Upload file</shortDescription>
+        <value>Upload file</value>
+    </labels>
+    <labels>
+        <fullName>VAT_Amount</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VAT Amount</shortDescription>
+        <value>VAT Amount</value>
+    </labels>
+    <labels>
+        <fullName>View</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View</shortDescription>
+        <value>View</value>
+    </labels>
+    <labels>
+        <fullName>Warning</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Warning</shortDescription>
+        <value>Warning</value>
+    </labels>
+    <labels>
+        <fullName>Watch_the_production_of_INTERPIPE_products_online</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Watch the production of INTERPIPE products online</shortDescription>
+        <value>Watch the production of INTERPIPE products online</value>
+    </labels>
+    <labels>
+        <fullName>Weekly_Prod_Plan</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Weekly Prod. Plan</shortDescription>
+        <value>Weekly Prod. Plan</value>
+    </labels>
+    <labels>
+        <fullName>World_Countries_record_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>World Countries record Id</shortDescription>
+        <value>a2DP500000Cq9oWMAR</value>
+    </labels>
+    <labels>
+        <fullName>Write_to_manager</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Write to manager</shortDescription>
+        <value>Write to manager</value>
+    </labels>
+    <labels>
+        <fullName>Yes</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Yes</shortDescription>
+        <value>Yes</value>
+    </labels>
+    <labels>
+        <fullName>Your_name</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Your name</shortDescription>
+        <value>Your name</value>
+    </labels>
+    <labels>
+        <fullName>can_not_edit_reclamation</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>can not edit reclamation</shortDescription>
+        <value>Sorry, you can not edit confirmed reclamation</value>
+    </labels>
+    <labels>
+        <fullName>cant_order_any_products</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>cant order any products</shortDescription>
+        <value>You can`t order any products till pay your debt</value>
+    </labels>
+    <labels>
+        <fullName>card_details</fullName>
+        <categories>site_reclamation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>card_details</shortDescription>
+        <value>Details</value>
+    </labels>
+    <labels>
+        <fullName>card_files</fullName>
+        <categories>site_reclamation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>card_files</shortDescription>
+        <value>Files</value>
+    </labels>
+    <labels>
+        <fullName>card_related</fullName>
+        <categories>site_reclamation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>card_related</shortDescription>
+        <value>Related</value>
+    </labels>
+    <labels>
+        <fullName>confirm_claim_answer</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>confirm claim answer</shortDescription>
+        <value>Are you sure you want to confirm this reclamation?</value>
+    </labels>
+    <labels>
+        <fullName>contact_sys_admin</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>contact sys admin</shortDescription>
+        <value>Something went wrong. Contact with administrator, please</value>
+    </labels>
+    <labels>
+        <fullName>dateOfCreation</fullName>
+        <categories>Site Card Details</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>dateOfCreation</shortDescription>
+        <value>Creation date</value>
+    </labels>
+    <labels>
+        <fullName>delete_claim_answer</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>delete claim answer</shortDescription>
+        <value>Are you sure you want to delete this claim?</value>
+    </labels>
+    <labels>
+        <fullName>delete_file_question</fullName>
+        <categories>delete_file_question</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>delete_file_question</shortDescription>
+        <value>Are you sure you want to delete this file?</value>
+    </labels>
+    <labels>
+        <fullName>delete_item_answer</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>delete item answer</shortDescription>
+        <value>Are you sure you want to delete this item?</value>
+    </labels>
+    <labels>
+        <fullName>due_debt</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>due debt</shortDescription>
+        <value>Your due debt is</value>
+    </labels>
+    <labels>
+        <fullName>email_name_for_send_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email name for send error</shortDescription>
+        <value>yayarik98@gmail.com</value>
+    </labels>
+    <labels>
+        <fullName>ers_CancelButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>ers_ClearFilterAction</fullName>
+        <categories>actions</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clear Filter</shortDescription>
+        <value>Clear Filter</value>
+    </labels>
+    <labels>
+        <fullName>ers_ClearFilterButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clear All Filters</shortDescription>
+        <value>Clear All Filters</value>
+    </labels>
+    <labels>
+        <fullName>ers_ClearSelectionButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clear Selection</shortDescription>
+        <value>Clear Selection</value>
+    </labels>
+    <labels>
+        <fullName>ers_ColumnHeader</fullName>
+        <categories>headers</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Column</shortDescription>
+        <value>Column</value>
+    </labels>
+    <labels>
+        <fullName>ers_EmptyTableMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Empty</shortDescription>
+        <value>This table currently has no data to display</value>
+    </labels>
+    <labels>
+        <fullName>ers_ErrorRequiredEntry</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Required</shortDescription>
+        <value>This is a required entry.  At least 1 row must be selected.</value>
+    </labels>
+    <labels>
+        <fullName>ers_FilterHeader</fullName>
+        <categories>headers</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filter</shortDescription>
+        <value>Filter</value>
+    </labels>
+    <labels>
+        <fullName>ers_FirstButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>First Page</shortDescription>
+        <value>First</value>
+    </labels>
+    <labels>
+        <fullName>ers_LabelHeader</fullName>
+        <categories>headers</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Label</shortDescription>
+        <value>Label</value>
+    </labels>
+    <labels>
+        <fullName>ers_LastButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Last Page</shortDescription>
+        <value>Last</value>
+    </labels>
+    <labels>
+        <fullName>ers_NextButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next Page</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>ers_PreviousButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Previous Page</shortDescription>
+        <value>Prev</value>
+    </labels>
+    <labels>
+        <fullName>ers_RecordsPerPage</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Records per Page input label</shortDescription>
+        <value>Records per Page</value>
+    </labels>
+    <labels>
+        <fullName>ers_SaveButton</fullName>
+        <categories>buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>ers_SearchPlaceholder</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search Term</shortDescription>
+        <value>Enter search term ...</value>
+    </labels>
+    <labels>
+        <fullName>ers_SetFilterAction</fullName>
+        <categories>actions</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Set Filter</shortDescription>
+        <value>Set Filter</value>
+    </labels>
+    <labels>
+        <fullName>ers_ShowingPageMiddle</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Showing Page x of y Pages input label middle</shortDescription>
+        <value>of</value>
+    </labels>
+    <labels>
+        <fullName>ers_ShowingPagePrefix</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Showing Page x of y Pages input label prefix</shortDescription>
+        <value>Showing Page</value>
+    </labels>
+    <labels>
+        <fullName>ers_ShowingPageSuffix</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Showing Page x of y Pages input label suffix</shortDescription>
+        <value>Pages</value>
+    </labels>
+    <labels>
+        <fullName>ers_filterBlankHelpText</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Help Text for Filter Blank Checkbox</shortDescription>
+        <value>Check here if you want to filter rows where the value in this column is blank</value>
+    </labels>
+    <labels>
+        <fullName>ers_filterBlankLabel</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Label for Filter Blank Checkbox</shortDescription>
+        <value>Filter Blank Values?</value>
+    </labels>
+    <labels>
+        <fullName>fsc_AccessLevel</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AccessLevel</shortDescription>
+        <value>Access Level</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Back</fullName>
+        <categories>Buttons,Filters,Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Back</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>fsc_ButtonIsNotSupportedMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ButtonIsNotSupportedMessage</shortDescription>
+        <value>Following buttons are note supported:</value>
+    </labels>
+    <labels>
+        <fullName>fsc_ConditionLogicHelpText</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ConditionLogicHelpText</shortDescription>
+        <value>Use parentheses, AND, OR, and NOT to customize the logic. For example, if you enter “(1 AND 2 AND 3) OR 4”, the flow evaluates whether the first three conditions are true or only the fourth condition is true.</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Delete</fullName>
+        <categories>labels, buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>fsc_FieldIsNotSupportedMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FieldIsNotSupportedMessage</shortDescription>
+        <value>Following fields are not supported:</value>
+    </labels>
+    <labels>
+        <fullName>fsc_FieldTypeNotSuportedMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>fsc_FieldTypeNotSuportedMessage</shortDescription>
+        <value>You provided an unsupported value for the DataTypeFilter input on Object and Field Picker. Currently the only supported value is ’picklist’</value>
+    </labels>
+    <labels>
+        <fullName>fsc_For</fullName>
+        <categories>Buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>For</shortDescription>
+        <value>For</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Key_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Key Label</shortDescription>
+        <value>Key</value>
+    </labels>
+    <labels>
+        <fullName>fsc_LackingPermissions</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LackingPermissions</shortDescription>
+        <value>You don\&apos;t have the proper permissions for ths action</value>
+    </labels>
+    <labels>
+        <fullName>fsc_ManagerEmptyMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ManagerEmptyMessage</shortDescription>
+        <value>&quot;Manager APEX Class&quot; can not be empty</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Manual_Reference_Allowed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ComboBox Placeholder Txxt</shortDescription>
+        <value>Manual reference allowed</value>
+    </labels>
+    <labels>
+        <fullName>fsc_MultipleGroupsForRole</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MultipleGroupsForRole</shortDescription>
+        <value>There are multiple groups for that role</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Name</fullName>
+        <categories>quicklinks, Labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>fsc_NonePicklistValueLabel</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NonePicklistValueLabel</shortDescription>
+        <value>-- None --</value>
+    </labels>
+    <labels>
+        <fullName>fsc_OWDReadWrite</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OWDReadWrite</shortDescription>
+        <value>Sharing Settings must be private or public read/write to enable manual sharing</value>
+    </labels>
+    <labels>
+        <fullName>fsc_OwnerAdminModify</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OwnerAdminModify</shortDescription>
+        <value>Only the record owner or administrators can modify permissions</value>
+    </labels>
+    <labels>
+        <fullName>fsc_PublicGroups</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PublicGroups</shortDescription>
+        <value>Public Groups</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Queues</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Queues</shortDescription>
+        <value>Queues</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Read</fullName>
+        <categories>labels, buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Read</shortDescription>
+        <value>Read</value>
+    </labels>
+    <labels>
+        <fullName>fsc_ReadWrite</fullName>
+        <categories>labels, buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ReadWrite</shortDescription>
+        <value>Read / Write</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Reason</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reason</shortDescription>
+        <value>Reason</value>
+    </labels>
+    <labels>
+        <fullName>fsc_RelatedUsers</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RelatedUsers</shortDescription>
+        <value>Related Users</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Roles</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Roles</shortDescription>
+        <value>Roles</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Search</fullName>
+        <categories>Actions,Buttons,quicklinks</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search in</shortDescription>
+        <value>Search in</value>
+    </labels>
+    <labels>
+        <fullName>fsc_SearchFor</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SearchFor</shortDescription>
+        <value>For</value>
+    </labels>
+    <labels>
+        <fullName>fsc_SetAccessLevel</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SetAccessLevel</shortDescription>
+        <value>Set Access Level</value>
+    </labels>
+    <labels>
+        <fullName>fsc_SupportedAddCapabilitiesEmptyMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SupportedAddCapabilitiesEmptyMessage</shortDescription>
+        <value>&quot;Add Capabilities&quot; can not be empty</value>
+    </labels>
+    <labels>
+        <fullName>fsc_SupportedButtonsEmptyMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SupportedButtonsEmptyMessage</shortDescription>
+        <value>&quot;Supported Buttons&quot; can not be empty</value>
+    </labels>
+    <labels>
+        <fullName>fsc_SupportedEditCapabilitiesEmptyMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SupportedEditCapabilitiesEmptyMessage</shortDescription>
+        <value>&quot;Edit Capabilities&quot; can not be empty</value>
+    </labels>
+    <labels>
+        <fullName>fsc_TooManyResultsMessage</fullName>
+        <categories>messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TooManyResultsMessage</shortDescription>
+        <value>Your search found more than 200 results.  Keep typing to make it more specific</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Type</fullName>
+        <categories>Buttons,Filters,Title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Type</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>fsc_UserOrGroup</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UserOrGroup</shortDescription>
+        <value>User Or Group</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Users</fullName>
+        <categories>labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Users</shortDescription>
+        <value>Users</value>
+    </labels>
+    <labels>
+        <fullName>fsc_Value_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Value Label</shortDescription>
+        <value>Value</value>
+    </labels>
+    <labels>
+        <fullName>password_change_link</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>password change link</shortDescription>
+        <value>A password change link has been sent to your email!</value>
+    </labels>
+    <labels>
+        <fullName>password_change_link2</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>password_change_link2</shortDescription>
+        <value>If you don&apos;t see the email, check your spam folder or contact support.</value>
+    </labels>
+    <labels>
+        <fullName>reclamationNumber</fullName>
+        <categories>Site Card Details</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>reclamationNumber</shortDescription>
+        <value>Claim number</value>
+    </labels>
+    <labels>
+        <fullName>reset_password_question</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>reset password question</shortDescription>
+        <value>Are you sure you want to reset password?  A password change link will be sent to your email! Session will be closed.
+If you will not see the email, check your spam folder or contact support.</value>
+    </labels>
+    <labels>
+        <fullName>scd_Comment</fullName>
+        <categories>Site Card Details</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>scd_Comment</shortDescription>
+        <value>Comment</value>
+    </labels>
+    <labels>
+        <fullName>scd_account</fullName>
+        <categories>Site Card Details</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>scd_account</shortDescription>
+        <value>Account</value>
+    </labels>
+    <labels>
+        <fullName>scd_contractDate</fullName>
+        <categories>Site Card Details</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>scd_contractDate</shortDescription>
+        <value>Contract Date</value>
+    </labels>
+    <labels>
+        <fullName>scd_contractNumber</fullName>
+        <categories>Site Card Details</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>scd_contractNumber</shortDescription>
+        <value>Contract number</value>
+    </labels>
+    <labels>
+        <fullName>scd_currency</fullName>
+        <categories>Site Card Details</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>scd_currency</shortDescription>
+        <value>Currency</value>
+    </labels>
+    <labels>
+        <fullName>scd_erpNumber</fullName>
+        <categories>Site Card Details</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>scd_erpNumber</shortDescription>
+        <value>ERP Number</value>
+    </labels>
+    <labels>
+        <fullName>scd_noRefund</fullName>
+        <categories>Site Card Details</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>scd_noRefund</shortDescription>
+        <value>No Refund</value>
+    </labels>
+    <labels>
+        <fullName>scd_stage</fullName>
+        <categories>Site Card Details</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>scd_stage</shortDescription>
+        <value>Stage</value>
+    </labels>
+    <labels>
+        <fullName>scf_lastChange</fullName>
+        <categories>Site Card Files</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>scf_lastChange</shortDescription>
+        <value>Last Change</value>
+    </labels>
+    <labels>
+        <fullName>scf_name</fullName>
+        <categories>Site Card Files</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>scf_name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>scf_owner</fullName>
+        <categories>Site Card Files</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>scf_owner</shortDescription>
+        <value>Owner</value>
+    </labels>
+    <labels>
+        <fullName>scf_size</fullName>
+        <categories>Site Card Files</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>scf_size</shortDescription>
+        <value>Size</value>
+    </labels>
+    <labels>
+        <fullName>site_createReclamation</fullName>
+        <categories>Site buttons</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>site_createReclamation</shortDescription>
+        <value>Create Claim</value>
+    </labels>
+    <labels>
+        <fullName>site_reclamation</fullName>
+        <categories>site_reclamation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>site_reclamation</shortDescription>
+        <value>Claim</value>
+    </labels>
+    <labels>
+        <fullName>site_request</fullName>
+        <categories>site_reclamation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>site_request</shortDescription>
+        <value>Request</value>
+    </labels>
+    <labels>
+        <fullName>site_th_descriptionClaim</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>site_th_descriptionClaim</shortDescription>
+        <value>Claim Description</value>
+    </labels>
+    <labels>
+        <fullName>site_th_orderQuantity</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>site_th_orderQuantity</shortDescription>
+        <value>Order quantity</value>
+    </labels>
+    <labels>
+        <fullName>site_th_reclamationQuantity</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>site_th_reclamationQuantity</shortDescription>
+        <value>Claim quantity</value>
+    </labels>
+    <labels>
+        <fullName>site_th_subtype</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>site_th_subtype</shortDescription>
+        <value>Subtype</value>
+    </labels>
+    <labels>
+        <fullName>site_th_type</fullName>
+        <categories>Table Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>site_th_type</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>subject</fullName>
+        <categories>site_support</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>subject</shortDescription>
+        <value>Subject</value>
+    </labels>
+    <labels>
+        <fullName>theme_for_suport_ticket</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>theme for suport ticket</shortDescription>
+        <value>Write theme for suport ticket, please.</value>
+    </labels>
+    <labels>
+        <fullName>want_to_exit</fullName>
+        <categories>Customer Community</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>want to exit</shortDescription>
+        <value>Are you sure you want to exit?</value>
+    </labels>
+    <labels>
+        <fullName>will_not_be_able_to_place_an_order</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>will not be able to place an order</shortDescription>
+        <value>You will not be able to place an order if the debt is not paid by</value>
+    </labels>
+</CustomLabels>

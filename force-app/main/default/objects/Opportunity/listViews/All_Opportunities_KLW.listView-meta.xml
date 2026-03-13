@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Opportunities_KLW</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>ITENumber__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>MarketSegment__c</columns>
+    <columns>Country__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CREATED_DATE</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.QUANTITY</columns>
+    <columns>Margin__c</columns>
+    <columns>CREATEDBY_USER.ALIAS</columns>
+    <columns>Owner__c</columns>
+    <columns>AdditionalNumber__c</columns>
+    <columns>ID_ERP__c</columns>
+    <columns>OPPORTUNITY.LAST_ACTIVITY</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>MarketSegment__c</field>
+        <operation>equals</operation>
+        <value>00006</value>
+    </filters>
+    <label>All Opportunities (KLW)</label>
+    <sharedTo>
+        <group>KLW</group>
+    </sharedTo>
+</ListView>

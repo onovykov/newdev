@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AssignedBOS__c</fullName>
+    <description>Assigned back office specialist.</description>
+    <inlineHelpText>Assigned back office specialist. If selected, then it will be automatically selected by default in new opportunities of this user.</inlineHelpText>
+    <label>Assigned BO Specialist</label>
+    <lookupFilter>
+        <active>false</active>
+        <filterItems>
+            <field>$User.Department</field>
+            <operation>contains</operation>
+            <value>Sales Support Department</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <relationshipName>SalesManagers</relationshipName>
+    <restrictedAdminField>false</restrictedAdminField>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Hierarchy</type>
+</CustomField>

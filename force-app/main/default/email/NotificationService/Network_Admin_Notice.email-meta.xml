@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Network_Admin_Notice</name>
+    <relatedEntityType>Notification_Work_Item__c</relatedEntityType>
+    <style>none</style>
+    <subject>🚨 SYSTEM CALLOUT: {{{pharos__Log__c.Error_Type__c}}} — {{{pharos__Log__c.pharos__Summary__c}}}</subject>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

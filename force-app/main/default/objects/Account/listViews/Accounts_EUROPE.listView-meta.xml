@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accounts_EUROPE</fullName>
+    <columns>ID__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.INDUSTRY</columns>
+    <columns>Activity_Type__c</columns>
+    <columns>CORE.USERS.LAST_NAME</columns>
+    <columns>ACCOUNT.ADDRESS1_COUNTRY_CODE</columns>
+    <columns>ACCOUNT.ADDRESS2_COUNTRY_CODE</columns>
+    <columns>ACCOUNT.CURRENCY_ISO_CODE</columns>
+    <columns>ACCOUNT.IS_CUSTOMERSUCCESS</columns>
+    <columns>HoldingGroup__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>MarketSegment__c</field>
+        <operation>equals</operation>
+        <value>00004</value>
+    </filters>
+    <filters>
+        <field>Activity_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Unknown,Banned,Cancelled</value>
+    </filters>
+    <label>Accounts EUROPE</label>
+    <sharedTo>
+        <group>ADMIN</group>
+        <group>Chiefs_and_Seniors_Sales_Managers</group>
+        <group>Customer_Portal_Users</group>
+        <group>EUROPE</group>
+        <role>CSO_Europe</role>
+    </sharedTo>
+</ListView>

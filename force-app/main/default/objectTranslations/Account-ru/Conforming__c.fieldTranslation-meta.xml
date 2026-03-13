@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Тип производства</label>
+    <name>Conforming__c</name>
+    <picklistValues>
+        <masterLabel>Processing</masterLabel>
+        <translation><!-- Processing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SMLS</masterLabel>
+        <translation><!-- SMLS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>WLD</masterLabel>
+        <translation><!-- WLD --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

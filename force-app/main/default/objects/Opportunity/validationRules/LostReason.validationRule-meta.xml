@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LostReason</fullName>
+    <active>true</active>
+    <description>Lost reason should be specified when an opportunity is moved to Close Lost stage</description>
+    <errorConditionFormula>Text(StageName) = &apos;Closed Lost&apos; &amp;&amp; IsBlank(LostReason__c)</errorConditionFormula>
+    <errorDisplayField>LostReason__c</errorDisplayField>
+    <errorMessage>Specify the reason why the opportunity is lost</errorMessage>
+</ValidationRule>

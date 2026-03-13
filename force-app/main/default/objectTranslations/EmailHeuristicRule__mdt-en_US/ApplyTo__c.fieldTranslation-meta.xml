@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- ApplyTo --></label>
+    <name>ApplyTo__c</name>
+    <picklistValues>
+        <masterLabel>DOMAIN</masterLabel>
+        <translation><!-- DOMAIN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FULL</masterLabel>
+        <translation><!-- FULL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>LOCAL</masterLabel>
+        <translation><!-- LOCAL --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

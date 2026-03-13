@@ -11,14 +11,14 @@
         <label>m</label>
     </customValue>
     <customValue>
-        <fullName>74</fullName>
-        <default>false</default>
-        <label>ft</label>
-    </customValue>
-    <customValue>
         <fullName>43</fullName>
         <default>false</default>
         <label>pcs</label>
+    </customValue>
+    <customValue>
+        <fullName>74</fullName>
+        <default>false</default>
+        <label>ft</label>
     </customValue>
     <customValue>
         <fullName>962</fullName>

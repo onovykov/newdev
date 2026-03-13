@@ -161,13 +161,6 @@
         <relatedList>AccountBOS__c.User__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>BusinessDivision__c</fields>
-        <fields>MarketSegment__c</fields>
-        <fields>IsSegmentHead__c</fields>
-        <fields>IsDefaultOwner__c</fields>
-        <relatedList>SegmentOwnerDefault__c.User__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>OPPORTUNITY.NAME</fields>
         <fields>ACCOUNT.NAME</fields>

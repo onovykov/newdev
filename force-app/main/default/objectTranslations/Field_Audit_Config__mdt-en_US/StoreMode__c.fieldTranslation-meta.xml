@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- StoreMode --></label>
+    <name>StoreMode__c</name>
+    <picklistValues>
+        <masterLabel>ALL</masterLabel>
+        <translation><!-- ALL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>LAST_ONLY</masterLabel>
+        <translation><!-- LAST_ONLY --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

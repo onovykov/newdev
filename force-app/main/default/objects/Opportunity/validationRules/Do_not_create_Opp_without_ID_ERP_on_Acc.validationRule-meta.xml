@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Do_not_create_Opp_without_ID_ERP_on_Acc</fullName>
+    <active>false</active>
+    <errorConditionFormula>ISBLANK( Account.ID_ERP__c) &amp;&amp; ISNEW()</errorConditionFormula>
+    <errorMessage>Opportunity creation for Account without value in the &quot;ID in ERP&quot; field is prohibited!</errorMessage>
+</ValidationRule>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Draft_Orders</fullName>
+    <columns>ORDERS.ORDER_NUMBER</columns>
+    <columns>ORDERS.EFFECTIVE_DATE</columns>
+    <columns>AdditionalNumber__c</columns>
+    <columns>ORDERS.STATUS</columns>
+    <columns>TotalOrderQuantity__c</columns>
+    <columns>ProducedQuantity__c</columns>
+    <columns>DispatchedQuantity__c</columns>
+    <columns>ShippedQuantity__c</columns>
+    <columns>ID_ERP__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ORDERS.STATUS</field>
+        <operation>equals</operation>
+        <value>Draft</value>
+    </filters>
+    <label>Draft Orders</label>
+</ListView>

@@ -67,6 +67,30 @@
                 <behavior>Edit</behavior>
                 <field>Lead__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ERP_LastPayloadHash__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ERP_LastSyncAt__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ERP_SyncState__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ERP_CreatedDateTime__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ERP_OrderDate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>WheelContract__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -310,14 +334,12 @@
         <excludeButtons>MultiEdit</excludeButtons>
         <fields>Product2</fields>
         <fields>ITENumber__c</fields>
-        <fields>Name__c</fields>
+        <fields>MeasUnit__c</fields>
+        <fields>ProdSaleItem__c</fields>
+        <fields>InqQuantuty__c</fields>
+        <fields>InqUnitPrice__c</fields>
         <fields>Quantity</fields>
-        <fields>CDD__c</fields>
-        <fields>Stage__c</fields>
-        <fields>ProducedQuantity__c</fields>
-        <fields>DispatchedQuantity__c</fields>
-        <fields>ShippedQuantity__c</fields>
-        <fields>ODER_ITEM.START_DATE</fields>
+        <fields>UnitPrice</fields>
         <relatedList>RelatedOrderItemList</relatedList>
     </relatedLists>
     <relatedLists>

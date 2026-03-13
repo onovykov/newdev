@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>ACCOUNT</fullName>
+        <default>false</default>
+        <label>ACCOUNT</label>
+    </customValue>
+    <customValue>
+        <fullName>CONTACTS</fullName>
+        <default>false</default>
+        <label>CONTACTS</label>
+    </customValue>
+    <customValue>
+        <fullName>LEADS</fullName>
+        <default>false</default>
+        <label>LEADS</label>
+    </customValue>
+    <customValue>
+        <fullName>OPPORTUNITY</fullName>
+        <default>false</default>
+        <label>OPPORTUNITY</label>
+    </customValue>
+    <customValue>
+        <fullName>ORDER</fullName>
+        <default>false</default>
+        <label>ORDER</label>
+    </customValue>
+    <customValue>
+        <fullName>PAR</fullName>
+        <default>false</default>
+        <label>PAR</label>
+    </customValue>
+    <customValue>
+        <fullName>PRICE LIST</fullName>
+        <default>false</default>
+        <label>PRICE LIST</label>
+    </customValue>
+    <customValue>
+        <fullName>PROD. QUOTAS</fullName>
+        <default>false</default>
+        <label>PROD. QUOTAS</label>
+    </customValue>
+    <customValue>
+        <fullName>PROD. PLAN</fullName>
+        <default>false</default>
+        <label>PROD. PLAN</label>
+    </customValue>
+    <customValue>
+        <fullName>SCRAP</fullName>
+        <default>false</default>
+        <label>SCRAP</label>
+    </customValue>
+    <customValue>
+        <fullName>USERS</fullName>
+        <default>false</default>
+        <label>USERS</label>
+    </customValue>
+    <masterLabel>errAreaType</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

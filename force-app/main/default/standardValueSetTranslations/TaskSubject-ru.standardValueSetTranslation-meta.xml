@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Additional Volumes</masterLabel>
+        <translation>Дополнительный объем</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Call</masterLabel>
+        <translation>Звонок</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Financial Confirmation</masterLabel>
+        <translation>Фин.подтверждение</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Meeting</masterLabel>
+        <translation>Встреча</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>News</masterLabel>
+        <translation><!-- News --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>Прочее</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Place Order</masterLabel>
+        <translation>Размещение заказа</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Send Letter</masterLabel>
+        <translation>Отправка письма</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Send Quote</masterLabel>
+        <translation>Отправка ценового предложения</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

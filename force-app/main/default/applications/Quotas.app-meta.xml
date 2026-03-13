@@ -18,7 +18,6 @@
     <tabs>FamiliesTypes__c</tabs>
     <tabs>Family__c</tabs>
     <tabs>UserAuditLog__c</tabs>
-    <tabs>UpdateFailure__c</tabs>
     <tabs>ClientLead__c</tabs>
     <tabs>HoldingGroups__c</tabs>
     <tabs>AccountSoundexGroup__c</tabs>
@@ -36,9 +35,35 @@
     <tabs>ScrapSlotReserve__c</tabs>
     <tabs>SupplierLimitEdit__c</tabs>
     <tabs>Decades_Calendar</tabs>
-    <tabs>NewRoles__c</tabs>
-    <tabs>NewRolesUsers__c</tabs>
     <tabs>NotifRecip__c</tabs>
+    <tabs>OD_SCH_WT__c</tabs>
+    <tabs>RecipientGroup__c</tabs>
+    <tabs>Translation__c</tabs>
+    <tabs>NotifEventRecGrp_Junk__c</tabs>
+    <tabs>Roles_Users_Junktion__c</tabs>
+    <tabs>NotifEventRecGrp_Users__c</tabs>
+    <tabs>NotifEventRecGrp_Contacts__c</tabs>
+    <tabs>OrderItemStageEvent__c</tabs>
+    <tabs>ProdTechRef__c</tabs>
+    <tabs>ProdTechRefDetails__c</tabs>
+    <tabs>ProdTechRefAttrib__c</tabs>
+    <tabs>Notification_Work_Item__c</tabs>
+    <tabs>PatternSetting__c</tabs>
+    <tabs>ProductDetail__c</tabs>
+    <tabs>Field_Audit_Log__c</tabs>
+    <tabs>ManagerBOS_H__c</tabs>
+    <tabs>ProducMainSKU__c</tabs>
+    <tabs>ProdSaleItem__c</tabs>
+    <tabs>ProdSaleItemDetail__c</tabs>
+    <tabs>ProdMainSKUDetail__c</tabs>
+    <tabs>StandardVariant__c</tabs>
+    <tabs>AccountSegment__c</tabs>
+    <tabs>AccountSegmentJunktion__c</tabs>
+    <tabs>ERP_InboundBatch__c</tabs>
+    <tabs>WheelContract__c</tabs>
+    <tabs>WheelContractLine__c</tabs>
+    <tabs>PAROutbox__c</tabs>
+    <tabs>PARPendingApproval__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Quotas_UtilityBar</utilityBar>
 </CustomApplication>

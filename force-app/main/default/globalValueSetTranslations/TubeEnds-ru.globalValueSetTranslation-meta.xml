@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>BE</masterLabel>
+        <translation>Фаска</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>BTC</masterLabel>
+        <translation><!-- BTC --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Chamfer</masterLabel>
+        <translation>Фаска</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Chamfer 30-35’</masterLabel>
+        <translation>Фаска 30-35&apos;</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>EU with upset</masterLabel>
+        <translation>Высаженные концы</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>EUE</masterLabel>
+        <translation>Высаженные концы</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>JFEBEAR</masterLabel>
+        <translation><!-- JFEBEAR --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>LTC</masterLabel>
+        <translation><!-- LTC --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>PE</masterLabel>
+        <translation>Гладкие концы</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Quench and Temper</masterLabel>
+        <translation>Закалка и отпуск</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>TCBC-HT</masterLabel>
+        <translation><!-- TCBC-HT --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>UPJ</masterLabel>
+        <translation><!-- UPJ --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>UPJ-M</masterLabel>
+        <translation><!-- UPJ-M --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>ОГ1М</masterLabel>
+        <translation><!-- ОГ1М --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>ОТТГ</masterLabel>
+        <translation><!-- ОТТГ --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>ОТТМ</masterLabel>
+        <translation><!-- ОТТМ --></translation>
+    </valueTranslation>
+</GlobalValueSetTranslation>

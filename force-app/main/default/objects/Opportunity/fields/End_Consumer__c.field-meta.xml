@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>End_Consumer__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Current client is an intermediary and placing an order for another customer, which must be selected here</description>
+    <inlineHelpText>Current client is an intermediary and placing an order for another customer, which must be selected here</inlineHelpText>
+    <label>End Consumer</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Opportunities (End Consumer)</relationshipLabel>
+    <relationshipName>Opportunities1</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

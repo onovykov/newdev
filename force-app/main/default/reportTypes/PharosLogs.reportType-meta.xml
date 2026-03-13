@@ -508,6 +508,46 @@
             <field>ErrorSeverity__c</field>
             <table>pharos__Log__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ReactTimeHours__c</field>
+            <table>pharos__Log__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Classification_AreaType__c</field>
+            <table>pharos__Log__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Error_Classification_Category__c</field>
+            <table>pharos__Log__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Error_Classification_SubCategory__c</field>
+            <table>pharos__Log__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Error_Classification_ErrorKey__c</field>
+            <table>pharos__Log__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Error_Classification_CriticalLevel__c</field>
+            <table>pharos__Log__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Log_Source__c</field>
+            <table>pharos__Log__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Error_Type__c</field>
+            <table>pharos__Log__c</table>
+        </columns>
         <masterLabel>Logs</masterLabel>
     </sections>
     <sections>

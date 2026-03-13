@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>D_mm</fullName>
+        <default>false</default>
+        <label>D (mm)</label>
+    </customValue>
+    <customValue>
+        <fullName>WT_mm</fullName>
+        <default>false</default>
+        <label>WT (mm)</label>
+    </customValue>
+    <customValue>
+        <fullName>H_mm</fullName>
+        <default>false</default>
+        <label>H (mm)</label>
+    </customValue>
+    <customValue>
+        <fullName>L_mm</fullName>
+        <default>false</default>
+        <label>L (mm)</label>
+    </customValue>
+    <customValue>
+        <fullName>W_kg</fullName>
+        <default>false</default>
+        <label>Weight (kg)</label>
+    </customValue>
+    <customValue>
+        <fullName>NPS</fullName>
+        <default>false</default>
+        <label>NPS</label>
+    </customValue>
+    <customValue>
+        <fullName>IsRound</fullName>
+        <default>false</default>
+        <label>Is Round</label>
+    </customValue>
+    <customValue>
+        <fullName>LenMinSize</fullName>
+        <default>false</default>
+        <label>Tube Len Min Size</label>
+    </customValue>
+    <customValue>
+        <fullName>LenMaxSize</fullName>
+        <default>false</default>
+        <label>Tube Len Max Size</label>
+    </customValue>
+    <masterLabel>Charact Values Types</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -627,11 +627,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>WorldCountries__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Phonetic_Code__c</field>
             <table>Account</table>
         </columns>
@@ -678,6 +673,46 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Parent__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Email_Is_Invalid__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Mobile_Is_Invalid__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Phone_Is_Invalid__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Email_Is_Suspicious__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Mobile_Is_Suspicious__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Phone_Is_Suspicious__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Website_Is_Invalid__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Website_Is_Suspicious__c</field>
             <table>Account</table>
         </columns>
         <masterLabel>Accounts</masterLabel>
@@ -1126,6 +1161,36 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Lead__c</field>
+            <table>Account.Orders</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ERP_LastPayloadHash__c</field>
+            <table>Account.Orders</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ERP_LastSyncAt__c</field>
+            <table>Account.Orders</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ERP_SyncState__c</field>
+            <table>Account.Orders</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ERP_CreatedDateTime__c</field>
+            <table>Account.Orders</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ERP_OrderDate__c</field>
+            <table>Account.Orders</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>WheelContract__c</field>
             <table>Account.Orders</table>
         </columns>
         <masterLabel>Orders</masterLabel>

@@ -1,0 +1,3 @@
+Hi {!PriceApprovalRequest__c.OwnerFirstName},
+
+Please, confirm the Price Approval Request {!PriceApprovalRequest__c.Name} for {!PriceApprovalRequest__c.Account__c}

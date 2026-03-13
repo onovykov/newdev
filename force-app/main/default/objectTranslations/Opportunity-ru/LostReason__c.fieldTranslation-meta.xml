@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Причина потери заказа</label>
+    <name>LostReason__c</name>
+    <picklistValues>
+        <masterLabel>Bad documentation</masterLabel>
+        <translation>Плохая документация</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivery time</masterLabel>
+        <translation>Время доставки</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Less than min production q-ty</masterLabel>
+        <translation>Меньше минимальной нормы производства</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No mill capacity</masterLabel>
+        <translation>Нет производственной мощьности</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Nonconformity with tender requirements</masterLabel>
+        <translation>Несоответствие требованиям тендера</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Другое</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Out of product range</masterLabel>
+        <translation>Вне ассортимента продукции</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Out of size range</masterLabel>
+        <translation>Вне диапазона размеров</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Out of steel grade</masterLabel>
+        <translation>Марка стали</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Price loss</masterLabel>
+        <translation>Цена</translation>
+    </picklistValues>
+</CustomFieldTranslation>

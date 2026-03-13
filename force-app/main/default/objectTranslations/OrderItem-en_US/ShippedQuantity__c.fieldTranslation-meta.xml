@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Shipped quantity in metric tons --></help>
+    <label><!-- Delivered acc. INCOTERMS (t) --></label>
+    <name>ShippedQuantity__c</name>
+</CustomFieldTranslation>

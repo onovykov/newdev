@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Revision number of quote (auto increments when PDF is created). --></help>
+    <label>Количество изменений</label>
+    <name>RevisionNumber__c</name>
+</CustomFieldTranslation>

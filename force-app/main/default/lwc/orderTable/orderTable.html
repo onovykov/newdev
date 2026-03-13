@@ -125,7 +125,7 @@
                 <template if:false={isUkraineUser}>
                     <th>Date/Time GPS</th>
                 </template>
-                <th>Country</th>
+                <th>Arrival Date</th>
                 <th>Place</th>
                 <th>Status</th>
             </tr>
@@ -157,8 +157,15 @@
                         <td data-label="Date/Time GPS">{row.COORD_DT}</td>
                     </template>
 
-                    <td data-label="Country">{row.COUNTRY}</td>
-                    <td data-label="Place"><a href={row.GPS_LOCATION} target="_blank">{row.PLACE}</a></td>
+                    <td data-label="Arrival Date">{row.STATUSDT}</td>
+                    <td data-label="Place">
+                        <template if:true={showCountryForDelivered}>
+                            {row.COUNTRY}
+                        </template>
+                        <template if:false={showCountryForDelivered}>
+                            <a href={row.GPS_LOCATION} target="_blank">{row.PLACE}</a>
+                        </template>
+                    </td>
                     <td data-label="Status">{row.STATUS_NAME}</td>
 
                     <!--                    <td data-label="Car #">{row.NOM_VM}</td>-->

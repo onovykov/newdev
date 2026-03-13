@@ -19,4 +19,8 @@
             <section>Wheel Product Characteristics</section>
         </sections>
     </layouts>
+    <webLinks>
+        <label>Копировать</label>
+        <name>CloneOppProduct</name>
+    </webLinks>
 </CustomObjectTranslation>

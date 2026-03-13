@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- ERP Sync State --></label>
+    <name>ERP_SyncState__c</name>
+    <picklistValues>
+        <masterLabel>ERROR</masterLabel>
+        <translation><!-- ERROR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MISSING_IN_ERP</masterLabel>
+        <translation><!-- MISSING_IN_ERP --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OK</masterLabel>
+        <translation><!-- OK --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SKIPPED</masterLabel>
+        <translation><!-- SKIPPED --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>WARNING</masterLabel>
+        <translation><!-- WARNING --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

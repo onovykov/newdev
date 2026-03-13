@@ -34,6 +34,10 @@
                 <behavior>Edit</behavior>
                 <field>BusinessDivision__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ManagerBOS_H__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

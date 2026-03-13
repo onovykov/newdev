@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Required_Employee_Number_and_Id_Erp</fullName>
+    <active>false</active>
+    <description>Required Employee Number and Id Erp Besides customer user and external user</description>
+    <errorConditionFormula>AND(AND(Profile.Name!=&apos;Customer Community User (Custom)&apos;,
+						Profile.Name!=&apos;Chatter External User&apos;,
+						Profile.Name!=&apos;Chatter Free User&apos;),
+ OR(ISBLANK( ID_ERP__c ),
+				ISBLANK(EmployeeNumber))  )</errorConditionFormula>
+    <errorMessage>Employee Number and ID ERP  fields are required</errorMessage>
+</ValidationRule>

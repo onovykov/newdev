@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Internal</fullName>
+    <active>true</active>
+    <description>Our employee</description>
+    <label>Internal</label>
+    <picklistValues>
+        <picklist>ContactType__c</picklist>
+        <values>
+            <fullName>IT Database Admin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IT-Admin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IT-Analyst</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Network Admin</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>EmailsAllocation__c</picklist>
+        <values>
+            <fullName>Send CMR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send Invoice PDF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send MTC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send Packing list</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>Advertisement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Employee Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Google AdWords</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Purchased List</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Trade Show</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Website</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Name</picklist>
+        <values>
+            <fullName>Dr%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mr%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mrs%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ms%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prof%2E</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>App Admin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BO Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BO Specialist</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Helpdesk Admin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IT-Admin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Integration Primary Admin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OrdersAdmin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SF Admin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Officer</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

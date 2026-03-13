@@ -61,40 +61,7 @@ export default class OrderTable extends NavigationMixin(LightningElement) {
     history = [];
     arrivalDateLabel = 'Estimated Arrival Date';
 
-    // connectedCallback() {
-    //     console.log('----------DATA ----------' , JSON.parse(JSON.stringify(this.getMyData)));
-    //
-    //     loadStyle(this, OrderTableCustomStyles)
-    //     .then(() => {
-    //         // console.log('Custom styles loaded.');
-    //     })
-    //     .catch(error => {
-    //         console.error('Error loading custom styles', error);
-    //     });
-    //
-    //     getUserMarketSegment().then(result => {
-    //         if(result == '00001'){
-    //             this.isAmericanUser = true;
-    //         } else if(result == '00011'){
-    //             this.isUkraineUser = true;
-    //         }
-    //
-    //         this.getAndSortHistory();
-    //         this.updateDynamicColumns();
-    //         this.populateBookingData();
-    //         this.calculateAndAppendTotals();
-    //         this.calculateAndAppendTotalsForOrderItems();
-    //         this.formatNumbersInData();
-    //         if(this.isUkraineUser) {
-    //             this.updateColumnsForUkraine();
-    //         }
-    //     })
-    //
-    // }
-
     async connectedCallback() {
-        console.log('----------DATA ----------', JSON.parse(JSON.stringify(this.getMyData)));
-
         loadStyle(this, OrderTableCustomStyles)
             .catch(error => {
                 console.error('Error loading custom styles', error);
@@ -104,13 +71,9 @@ export default class OrderTable extends NavigationMixin(LightningElement) {
 
         if (result === '00001') {
             this.isAmericanUser = true;
-            console.log('AMERICAN USER!!!!!')
         } else if (result === '00011') {
             this.isUkraineUser = true;
-            console.log('UKRAINE USER!!!!!')
         }
-
-
 
         await this.getAndSortHistory();
         this.updateDynamicColumns();
@@ -119,9 +82,8 @@ export default class OrderTable extends NavigationMixin(LightningElement) {
         this.calculateAndAppendTotalsForOrderItems();
         this.formatNumbersInData();
 
-        if (this.isUkraineUser) {
-            this.updateColumnsForUkraine();
-        }
+        // Форматуємо дати для всіх користувачів
+        this.formatAllDates();
     }
 
 
@@ -148,45 +110,6 @@ export default class OrderTable extends NavigationMixin(LightningElement) {
         }
     }
 
-
-    // async formatDateForOrg(inputDate, withTime) {
-    //     console.log('⏳ Calling Apex parseDotNetDate with:', inputDate, 'withTime:', withTime);
-    //
-    //     let result = null;
-    //     try {
-    //         result = await parseDotNetDate(inputDate);
-    //         console.log('✅ Apex returned formatted date:', result);
-    //     } catch (error) {
-    //         console.error('❌ Apex parseDotNetDate error:', error?.body?.message || error);
-    //     }
-    //
-    //     return result;
-    // }
-
-    // formatDateForOrg(rawDate, withTime = false) {
-    //     if (!rawDate || typeof rawDate !== 'string') return '-';
-    //
-    //     const match = rawDate.match(/\/Date\((\d+)\)\//);
-    //     if (!match) return '-';
-    //
-    //     const millis = parseInt(match[1], 10);
-    //     if (isNaN(millis)) return '-';
-    //
-    //     const dtUtc = new Date(millis);
-    //     const localDate = new Date(dtUtc.getTime() + dtUtc.getTimezoneOffset() * -60000); // local offset
-    //
-    //     if (localDate.getFullYear() < 2015) {
-    //         return '----';
-    //     }
-    //
-    //     const day = String(localDate.getDate()).padStart(2, '0');
-    //     const month = String(localDate.getMonth() + 1).padStart(2, '0');
-    //     const year = localDate.getFullYear();
-    //
-    //     return `${day}.${month}.${year}`;
-    // }
-
-
     formatDateForOrg(inputDate, withTime) {
         console.log('--- formatDateForOrg called ---');
         console.log('Raw inputDate:', inputDate);
@@ -202,14 +125,47 @@ export default class OrderTable extends NavigationMixin(LightningElement) {
         if (typeof inputDate === 'string') {
             console.log('Detected string input');
 
-            const match = inputDate.match(/\/Date\((\-?\d+)\)\//); // ← підтримка від’ємних
-            if (match && match[1]) {
-                console.log('Matched .NET format:', match[0]);
-                timestamp = Number(match[1]);
+            // Спроба 1: .NET формат /Date(timestamp)/
+            const dotNetMatch = inputDate.match(/\/Date\((\-?\d+)\)\//);
+            if (dotNetMatch && dotNetMatch[1]) {
+                console.log('Matched .NET format:', dotNetMatch[0]);
+                timestamp = Number(dotNetMatch[1]);
             } else {
-                console.log('No .NET match, trying fallback number extract...');
-                const fallback = inputDate.match(/\-?\d+/);
-                timestamp = fallback ? Number(fallback[0]) : NaN;
+                // Спроба 2: Рядковий формат DD.MM.YYYY HH:mm:ss або DD.MM.YYYY
+                const stringDateMatch = inputDate.match(/(\d{1,2})\.(\d{1,2})\.(\d{4})(?:\s+(\d{1,2}):(\d{1,2}):(\d{1,2}))?/);
+                if (stringDateMatch) {
+                    console.log('Matched string date format:', inputDate);
+                    const [, day, month, year, hour = '0', minute = '0', second = '0'] = stringDateMatch;
+                    const dateObj = new Date(
+                        parseInt(year),
+                        parseInt(month) - 1, // місяці в JS починаються з 0
+                        parseInt(day),
+                        parseInt(hour),
+                        parseInt(minute),
+                        parseInt(second)
+                    );
+                    timestamp = dateObj.getTime();
+                } else {
+                    // Спроба 3: ISO формат YYYY-MM-DD HH:mm:ss або YYYY-MM-DD
+                    const isoDateMatch = inputDate.match(/(\d{4})-(\d{1,2})-(\d{1,2})(?:\s+(\d{1,2}):(\d{1,2}):(\d{1,2}))?/);
+                    if (isoDateMatch) {
+                        console.log('Matched ISO date format (YYYY-MM-DD):', inputDate);
+                        const [, year, month, day, hour = '0', minute = '0', second = '0'] = isoDateMatch;
+                        const dateObj = new Date(
+                            parseInt(year),
+                            parseInt(month) - 1,
+                            parseInt(day),
+                            parseInt(hour),
+                            parseInt(minute),
+                            parseInt(second)
+                        );
+                        timestamp = dateObj.getTime();
+                    } else {
+                        // Якщо нічого не підійшло - повертаємо оригінал
+                        console.log('⚠️ No format matched, returning original value');
+                        return inputDate;
+                    }
+                }
             }
         } else if (inputDate instanceof Date) {
             console.log('Detected Date object');
@@ -261,6 +217,14 @@ export default class OrderTable extends NavigationMixin(LightningElement) {
     }
 
 
+
+    get isEuropeanUser() {
+        return !this.isAmericanUser && !this.isUkraineUser;
+    }
+
+    get showCountryForDelivered() {
+        return this.isEuropeanUser && this.getMyData && this.getMyData.some(item => item.STATUS_NAME === 'Delivered');
+    }
 
     updateDynamicColumns() {
         this.isSeaShipment = this.getMyData.some(item => item.SHIPMENT_TYPE_COD === 'A');
@@ -315,35 +279,46 @@ export default class OrderTable extends NavigationMixin(LightningElement) {
             if(this.isUkraineUser)  {
                 gpsColumns = [
                     {label: 'Date GPS', fieldName: 'STATUSDT', type: 'text', cellAttributes: { class: { fieldName: 'rowClass' } }},
-                    {label: 'Country ', fieldName: 'COUNTRY', type: 'text', cellAttributes: { class: { fieldName: 'rowClass' } }},
+                    {label: 'Arrival Date', fieldName: 'STATUSDT', type: 'text', cellAttributes: { class: { fieldName: 'rowClass' } }},
                 ];
             } else {
                 gpsColumns = [
                     {label: 'Date/Time GPS', fieldName: 'COORD_DT', type: 'text', cellAttributes: { class: { fieldName: 'rowClass' } }},
-                    {label: 'Country ', fieldName: 'COUNTRY', type: 'text', cellAttributes: { class: { fieldName: 'rowClass' } }},
+                    {label: 'Arrival Date', fieldName: 'STATUSDT', type: 'text', cellAttributes: { class: { fieldName: 'rowClass' } }},
                 ];
             }
             this.dynamicColumns.push(...gpsColumns);
 
-            if (this.getMyData[0].GPS_LOCATION && this.getMyData[0].GPS_LOCATION != ' ') {
+            // Для європейських клієнтів: якщо статус "Delivered" - показуємо країну, інакше GPS
+            const isEuropeanUser = !this.isAmericanUser && !this.isUkraineUser;
+            const isDelivered = this.getMyData.some(item => item.STATUS_NAME === 'Delivered');
+
+            if (isEuropeanUser && isDelivered) {
+                // Для європейських клієнтів зі статусом Delivered показуємо країну
+                let placeColumn = [
+                    {label: 'Place', fieldName: 'COUNTRY', type: 'text', cellAttributes: { class: { fieldName: 'rowClass' }}},
+                    {label: 'Status', fieldName: 'STATUS_NAME', type: 'text', wrapText: true, cellAttributes: { class: { fieldName: 'rowClass' }}},
+                ];
+                this.dynamicColumns.push(...placeColumn);
+            } else if (this.getMyData[0].GPS_LOCATION && this.getMyData[0].GPS_LOCATION != ' ') {
                 let placeColumn = [
                     {
                         label: 'Place', fieldName: 'GPS_LOCATION', type: 'url', typeAttributes: {
                             label: {fieldName: 'PLACE'},
                             target: '_blank'
                         },
-                        sortable: true, 
+                        sortable: true,
                         cellAttributes: { class: { fieldName: 'rowClass' }}
                     },
                     {label: 'Status', fieldName: 'STATUS_NAME', type: 'text', wrapText: true, cellAttributes: { class: { fieldName: 'rowClass' }}},
                 ];
-                this.dynamicColumns.push(...placeColumn);            
+                this.dynamicColumns.push(...placeColumn);
             } else {
                 let placeColumn = [
                     {label: 'Place ', fieldName: 'PLACE', type: 'text', cellAttributes: { class: { fieldName: 'rowClass' }}},
                     {label: 'Status', fieldName: 'STATUS_NAME', type: 'text', wrapText: true, cellAttributes: { class: { fieldName: 'rowClass' }}},
                 ];
-                this.dynamicColumns.push(...placeColumn);         
+                this.dynamicColumns.push(...placeColumn);
             }
         }
     }
@@ -364,11 +339,11 @@ export default class OrderTable extends NavigationMixin(LightningElement) {
                 }, 
                 cellAttributes: { class: { fieldName: 'rowClass' }}
             },
-            { label: 'Qty (t), netto', fieldName: 'QTY_T_NETTO', type: 'text', initialWidth: 160, cellAttributes: { alignment: 'right' }, cellAttributes: { class: { fieldName: 'rowClass' }}},
+            { label: 'Qty (t), netto', fieldName: 'QTY_T_NETTO', type: 'text', initialWidth: 160, cellAttributes: { alignment: 'right', class: { fieldName: 'rowClass' }}},
             this.isAmericanUser
-                ? { label: 'Qty, ft', fieldName: 'LENGTH_FT', type: 'text', initialWidth: 160, cellAttributes: { alignment: 'right' }, cellAttributes: { class: { fieldName: 'rowClass' }}}
-                : { label: 'Qty, m', fieldName: 'LENGTH_M', type: 'text', initialWidth: 160, cellAttributes: { alignment: 'right' }, cellAttributes: { class: { fieldName: 'rowClass' }}},
-            { label: 'Qty (pcs)', fieldName: 'QTY_PCS', type: 'text', initialWidth: 160, cellAttributes: { alignment: 'right' }, cellAttributes: { class: { fieldName: 'rowClass' }}},
+                ? { label: 'Qty, ft', fieldName: 'LENGTH_FT', type: 'text', initialWidth: 160, cellAttributes: { alignment: 'right', class: { fieldName: 'rowClass' }}}
+                : { label: 'Qty, m', fieldName: 'LENGTH_M', type: 'text', initialWidth: 160, cellAttributes: { alignment: 'right', class: { fieldName: 'rowClass' }}},
+            { label: 'Qty (pcs)', fieldName: 'QTY_PCS', type: 'text', initialWidth: 160, cellAttributes: { alignment: 'right', class: { fieldName: 'rowClass' }}},
         ];    
         return columns;
     }
@@ -507,16 +482,24 @@ export default class OrderTable extends NavigationMixin(LightningElement) {
         }
     }
 
-    updateColumnsForUkraine() {
+    formatAllDates() {
         if (this.getMyData && Array.isArray(this.getMyData)) {
-    
-            this.getMyData = this.getMyData.map(row => ({
-                ...row,
-                DATE_OTGR: this.formatDateForOrg(row.DATE_OTGR, true),
-                STATUSDT: this.formatDateForOrg(row.STATUSDT, false),
-                COUNTRY: 'Ukraine',
-            }));
+            this.getMyData = this.getMyData.map(row => {
+                return {
+                    ...row,
+                    // Форматуємо дати для всіх користувачів
+                    DATE_OTGR: this.formatDateForOrg(row.DATE_OTGR, true),
+                    DEPARTURE_TIME: this.formatDateForOrg(row.DEPARTURE_TIME, true),
+                    STATUSDT: this.formatDateForOrg(row.STATUSDT, false), // Arrival date
+                    COORD_DT: this.formatDateForOrg(row.COORD_DT, true), // Date/Time tracking
+                };
+            });
         }
+    }
+
+    // Залишаємо для зворотної сумісності
+    updateColumnsForUkraine() {
+        this.formatAllDates();
     }
 
     renderedCallback() {

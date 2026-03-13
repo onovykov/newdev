@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Ожидаемая разница между потенциальным доходом на тонну и себестоимостью, рассчитанная финансовым отделом в процессе утверждения цены</help>
+    <label>Маржа (за тонну)</label>
+    <name>Margin_t__c</name>
+</CustomFieldTranslation>

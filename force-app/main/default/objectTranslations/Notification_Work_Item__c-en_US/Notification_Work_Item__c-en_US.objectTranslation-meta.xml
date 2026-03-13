@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Notification Work Item</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Notification Work Items</value>
+    </caseValues>
+    <layouts>
+        <layout>Notification Work Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Класифікація --></label>
+            <section>Класифікація</section>
+        </sections>
+        <sections>
+            <label><!-- Огляд --></label>
+            <section>Огляд</section>
+        </sections>
+        <sections>
+            <label><!-- Рішення --></label>
+            <section>Рішення</section>
+        </sections>
+        <sections>
+            <label><!-- Час / Нагадування --></label>
+            <section>Час / Нагадування</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Взяти в роботу --></label>
+        <name>TakeToWork</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Закрити Work Item --></label>
+        <name>Work_Item</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

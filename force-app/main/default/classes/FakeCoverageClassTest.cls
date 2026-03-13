@@ -23,8 +23,6 @@ class FakeCoverageClassTest {
         OpportunityTriggerHandler.FakeCoverageMethod();
 
         ERPMessageHandlerInvoicePDF.FakeCoverageMethod();
-        SyncUsers.FakeCoverageMethod();
-        ERPRequestParser.FakeCoverageMethod();
         OrderDatatableController.FakeCoverageMethod();
         orderDeliveryController.FakeCoverageMethod();
         OrderItemHandler.FakeCoverageMethod();
@@ -38,8 +36,6 @@ class FakeCoverageClassTest {
         ERPMessageParser.FakeCoverageMethod();
         DisplayImageController.FakeCoverageMethod();
         CustomNewEnquiryController.FakeCoverageMethod();
-        OpportunityDataEmails.FakeCoverageMethod();
-        OppDataCheckCancelledProducts.FakeCoverageMethod();
         PriceApprovalRequestTriggerHandler.FakeCoverageMethod();
         EnquiryDatatableController.FakeCoverageMethod();
         ReclamationDatatableController.FakeCoverageMethod();
@@ -48,17 +44,14 @@ class FakeCoverageClassTest {
         OpportunityLineItemControllerExtension.FakeCoverageMethod();
         PreviewPdfController.FakeCoverageMethod();
         ERPWebServiceHandler.FakeCoverageMethod();
-        ClientDeliveryStatus.FakeCoverageMethod();
         ERPMessageHandlerMonthPlanFact.FakeCoverageMethod();
         ERPMessageHandlerSalesBudget.FakeCoverageMethod();
+        ERPMessageHandler.FakeCoverageMethod();
         AccountMatches.FakeCoverageMethod();
         MetadataService.FakeCoverageMethod();
         ERPMessageHandlerPriceApprovalRequest.FakeCoverageMethod();
         ShopQuotaTriggerHelper.FakeCoverageMethod();
         ShopQuotaTriggerHelper.FakeCoverageMethod();
-        ProductionLotToLotMigrationBatch.FakeCoverageMethod();
-        InsertProdPlanBatch.FakeCoverageMethod();
-        OrderItemChildService.FakeCoverageMethod();
         StringUtilsEx.FakeCoverageMethod();
         StringNormalizer.FakeCoverageMethod();
         AccountDuplicateFinderBatch.FakeCoverageMethod();
@@ -77,7 +70,6 @@ class FakeCoverageClassTest {
         ScrapTypeService.FakeCoverageMethod();
         ScrapAccessController.FakeCoverageMethod();
         ScrapDecadesController.FakeCoverageMethod();
-        ScrapLimitsPanelController.FakeCoverageMethod();
         ScrapAdminLimitRequestService.FakeCoverageMethod();
         SlotChangeAdminService.FakeCoverageMethod();
         OutOfPlanAdminService.FakeCoverageMethod();

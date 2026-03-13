@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Anticipated difference between opportunity revenue and cost of production, calculated by finance department in price approval process. --></help>
+    <label><!-- Total Margin (USD) --></label>
+    <name>Margin__c</name>
+</CustomFieldTranslation>

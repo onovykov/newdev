@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DashboardsGSP__Days_Since_Last_Stage_Change__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Number of days since the last change in Opportunity Stage.</description>
+    <externalId>false</externalId>
+    <formula>IF(ISBLANK(DashboardsGSP__Date_Opportunity_was_Closed__c),
+TODAY()-DashboardsGSP__Last_Stage_Change_Date__c,
+DashboardsGSP__Date_Opportunity_was_Closed__c - DashboardsGSP__Last_Stage_Change_Date__c
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Number of days since the Opportunity Stage was last changed.</inlineHelpText>
+    <label>Days Since Last Stage Change</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

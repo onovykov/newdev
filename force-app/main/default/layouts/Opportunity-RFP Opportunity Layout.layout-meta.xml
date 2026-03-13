@@ -54,6 +54,10 @@
                 <behavior>Edit</behavior>
                 <field>Status__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>WheelContract__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -414,9 +418,9 @@
         <fields>Quantity</fields>
         <fields>UnitPrice</fields>
         <fields>InquiryUnitPrice__c</fields>
-        <fields>Margin_t__c</fields>
+        <fields>Cancelled__c</fields>
         <fields>Stage__c</fields>
-        <fields>TechExp__c</fields>
+        <fields>Is_Placed__c</fields>
         <fields>ID_ERP__c</fields>
         <fields>ITENumber__c</fields>
         <relatedList>RelatedLineItemList</relatedList>
@@ -509,20 +513,16 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Product2Id__c</fields>
-        <fields>Shop__c</fields>
-        <fields>Quantity__c</fields>
-        <fields>Margin_t__c</fields>
-        <fields>CancelReason__c</fields>
-        <fields>CancelReasonDetails__c</fields>
-        <relatedList>CancelledOpportunityLineItem__c.Opportunity__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <relatedList>OpportunityProductApproval__c.Opportunity__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>MemberName</fields>
+        <fields>OppAccessLevel</fields>
+        <fields>TeamMemberRole</fields>
+        <relatedList>RelatedOpportunitySalesTeam</relatedList>
     </relatedLists>
     <relatedObjects>AccountId</relatedObjects>
     <relatedObjects>EndUser__c</relatedObjects>

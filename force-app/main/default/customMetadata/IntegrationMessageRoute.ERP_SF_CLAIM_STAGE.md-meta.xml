@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>ERP-SF ClaimStage</label>
+    <protected>false</protected>
+    <values>
+        <field>Active__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Description__c</field>
+        <value xsi:type="xsd:string">Claim stage update</value>
+    </values>
+    <values>
+        <field>Direction__c</field>
+        <value xsi:type="xsd:string">ERP_SF</value>
+    </values>
+    <values>
+        <field>HandlerClass__c</field>
+        <value xsi:type="xsd:string">ERP_SF_ClaimStageHandler</value>
+    </values>
+    <values>
+        <field>IsAsync__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>MessageCode__c</field>
+        <value xsi:type="xsd:string">ERP-SF_ClaimStage</value>
+    </values>
+    <values>
+        <field>MessageGroup__c</field>
+        <value xsi:type="xsd:string">CLAIMS</value>
+    </values>
+    <values>
+        <field>RequiresAuth__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Version__c</field>
+        <value xsi:type="xsd:string">v1</value>
+    </values>
+</CustomMetadata>

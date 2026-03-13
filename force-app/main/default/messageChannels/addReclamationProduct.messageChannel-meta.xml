@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Message Channel to sent reclamation id for adding product</description>
+    <isExposed>true</isExposed>
+    <lightningMessageFields>
+        <description>Reclamation id</description>
+        <fieldName>reclamationId</fieldName>
+    </lightningMessageFields>
+    <masterLabel>AddReclamationProduct</masterLabel>
+</LightningMessageChannel>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>RSMP</fullName>
+        <default>false</default>
+        <label>Wheels</label>
+    </customValue>
+    <customValue>
+        <fullName>SGMP</fullName>
+        <default>false</default>
+        <label>Tubes</label>
+    </customValue>
+    <masterLabel>Prod Steel Application</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

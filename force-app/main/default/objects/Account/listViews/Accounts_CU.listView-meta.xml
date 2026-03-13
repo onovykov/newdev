@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accounts_CU</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.ADDRESS1_COUNTRY_CODE</columns>
+    <columns>ACCOUNT.ADDRESS2_COUNTRY_CODE</columns>
+    <columns>Activity_Type__c</columns>
+    <columns>Under_Sanctions__c</columns>
+    <columns>ACCOUNT.CURRENCY_ISO_CODE</columns>
+    <columns>ID_ERP__c</columns>
+    <columns>CORE.USERS.LAST_NAME</columns>
+    <columns>CORE.USERS.FIRST_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>MarketSegment__c</field>
+        <operation>equals</operation>
+        <value>00011</value>
+    </filters>
+    <filters>
+        <field>Activity_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Freezed,Unknown,Banned,Cancelled</value>
+    </filters>
+    <label>Accounts UKRAINE</label>
+    <sharedTo>
+        <group>ADMIN</group>
+        <group>Chiefs_and_Seniors_Sales_Managers</group>
+        <group>UKRAINE</group>
+    </sharedTo>
+</ListView>

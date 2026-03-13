@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PaymentTerms__c</fullName>
+    <description>Invoice payment terms and conditions for the customer</description>
+    <inlineHelpText>invoice payment terms and conditions for the customer</inlineHelpText>
+    <label>Payment Terms (not use)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>PaymentTerms</valueSetName>
+    </valueSet>
+</CustomField>

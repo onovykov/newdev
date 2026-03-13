@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>creator</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>sf-ite@interpipe.biz</submitter>
+        <type>user</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>SalesRep__c</field>
+        <field>Account__c</field>
+        <field>Margin_t__c</field>
+        <field>ROI__c</field>
+        <field>Revenue__c</field>
+        <field>Quantity_t__c</field>
+        <field>IsPriceModel__c</field>
+        <field>MarketSegment__c</field>
+        <field>PaymentTerms__c</field>
+        <field>DeliveryTerms__c</field>
+        <field>CurrencyIsoCode</field>
+        <field>Liabilities__c</field>
+        <field>Liabilities_t__c</field>
+        <field>Owner</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>artem.poliakov@interpipe.biz</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>CEO approval</description>
+        <label>CEO</label>
+        <name>CEO</name>
+    </approvalStep>
+    <description>Price Approval Request - CEO approval</description>
+    <emailTemplate>unfiled$public/PAR_Approval</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <finalApprovalActions>
+        <action>
+            <name>Set_PAR_Approved_by_CEO</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Set_PAR_Rejected_by_CEO</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>PAR - CEO</label>
+    <processOrder>3</processOrder>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>false</showApprovalHistory>
+</ApprovalProcess>

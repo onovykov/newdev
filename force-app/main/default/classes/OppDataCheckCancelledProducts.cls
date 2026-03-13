@@ -1,5 +1,5 @@
 public class OppDataCheckCancelledProducts {
-
+/*
     public static void checkCancelledProducts(List<OpportunityLineItem> productsToCheck){
         List<String> idErpProducts = new List<String>();
         List<String> idErpCancelledProducts = new List<String>();
@@ -12,8 +12,8 @@ public class OppDataCheckCancelledProducts {
         try{
             existingCancelledProduct = [SELECT id,ID_ERP__c FROM CancelledOpportunityLineItem__c WHERE ID_ERP__c IN:idErpProducts];
             for(CancelledOpportunityLineItem__c coli : existingCancelledProduct){
-            	idErpCancelledProducts.add(coli.ID_ERP__c);
-        	}   
+                idErpCancelledProducts.add(coli.ID_ERP__c);
+            }   
         } catch(Exception e){
             system.debug(e.getMessage());
         }
@@ -871,4 +871,5 @@ public class OppDataCheckCancelledProducts {
         i++;
         i++;
     }
+    */
 }

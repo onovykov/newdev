@@ -2,5 +2,5 @@
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <label><!-- Декада --></label>
     <name>Decade__c</name>
-    <relationshipLabel><!-- SupplierLimitEdit --></relationshipLabel>
+    <relationshipLabel><!-- SupplierLimitEdit (Декада) --></relationshipLabel>
 </CustomFieldTranslation>

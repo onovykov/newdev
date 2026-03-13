@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>From_Cancelled_to_Closed_Stage</fullName>
+    <active>false</active>
+    <description>disagree moving From Cancelled to Closed Stage</description>
+    <errorConditionFormula>AND(
+ISPICKVAL(PRIORVALUE(StageName),&quot;Cancelled&quot;), 
+				OR(
+				ISPICKVAL(StageName,&quot;Closed Won&quot;),
+				ISPICKVAL(StageName,&quot;Closed Lost&quot;)
+				)				
+)&amp;&amp; $Profile.Name &lt;&gt; &quot;System Administrator&quot;</errorConditionFormula>
+    <errorMessage>You can&apos;t change stage from Cancelled to Closed.</errorMessage>
+</ValidationRule>

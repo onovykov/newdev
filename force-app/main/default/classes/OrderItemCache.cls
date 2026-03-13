@@ -1,4 +1,5 @@
 public class OrderItemCache {
+
     private static final ExternalIdCache CACHE =
         ExternalIdCache.forObject(
             'OrderItem',

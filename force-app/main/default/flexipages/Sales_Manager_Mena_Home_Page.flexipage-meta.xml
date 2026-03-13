@@ -3,22 +3,112 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>approvalManager</componentName>
-                <identifier>c_approvalManager</identifier>
+                <componentName>adminConsole</componentName>
+                <identifier>c_adminConsole</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-d97ad4aa-64fa-4249-90f9-5c06b7d3fafe</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-d97ad4aa-64fa-4249-90f9-5c06b7d3fafe</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Admin Concole</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>name</name>
+                    <value>accordionSection--u58qj8ffrw</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:accordionSection</componentName>
+                <identifier>flexipage_accordionSection3</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-3c86b46e-affb-4781-95fe-231f505ea642</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>tabs</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>standard-AppLauncher</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>standard-Account</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>standard-Contact</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>standard-Contract</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>ProdTechRef__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>standard-MergeRequest</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>standard-FlowRecord</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>standard-Opportunity</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>standard-Order</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>standard-Product2</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>standard-Event</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>standard-DeleteEvent</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>standard-Monitor</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pharos__Log__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>rbin__Error_Log__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>ClientLead__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                </componentInstanceProperties>
+                <componentName>runtime_mobilesapp:launchPadTileList</componentName>
+                <identifier>runtime_mobilesapp_launchPadTileList</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>dashboardName</name>
-                    <value>CIEeAommqRcYJLZoARQkuJOzIRXmeI</value>
+                    <name>accordionSections</name>
+                    <value>Facet-3c86b46e-affb-4781-95fe-231f505ea642</value>
                 </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>hideOnError</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentName>desktopDashboards:embeddedDashboard</componentName>
-                <identifier>desktopDashboards_embeddedDashboard</identifier>
+                <componentName>flexipage:accordion</componentName>
+                <identifier>flexipage_accordion</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>approvalManager</componentName>
+                <identifier>c_approvalManager</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -26,52 +116,16 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentName>home:eventContainer</componentName>
-                <identifier>home_eventContainer</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>home:recentRecordContainer</componentName>
-                <identifier>home_recentRecordContainer</identifier>
-            </componentInstance>
-        </itemInstances>
         <mode>Replace</mode>
         <name>bottomLeft</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentName>runtime_sales_activities:todayTaskContainer</componentName>
-                <identifier>runtime_sales_activities_todayTaskContainer</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>home:topDealsContainer</componentName>
-                <identifier>home_topDealsContainer</identifier>
-            </componentInstance>
-        </itemInstances>
         <mode>Replace</mode>
         <name>bottomRight</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentName>home:assistant</componentName>
-                <identifier>home_assistant</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>runtime_approval_process:pendingApprovalCard</componentName>
-                <identifier>runtime_approval_process_pendingApprovalCard</identifier>
-            </componentInstance>
-        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -82,6 +136,10 @@
                 <identifier>c_currencyRatesLite</identifier>
             </componentInstance>
         </itemInstances>
+        <name>Facet-f3e90spubp</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -101,6 +159,60 @@
                         <rightValue>System Administrator</rightValue>
                     </criteria>
                 </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-b2298a29-18b4-4478-8895-79ce60365362</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-f3e90spubp</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Currency Rates (Lite)</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>name</name>
+                    <value>accordionSection--lpogq0otl4a</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:accordionSection</componentName>
+                <identifier>flexipage_accordionSection4</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-b2298a29-18b4-4478-8895-79ce60365362</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Currency Rates (Dashboard)</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>name</name>
+                    <value>accordionSection--6gr9cikpnd5</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:accordionSection</componentName>
+                <identifier>flexipage_accordionSection</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-a2b7dc83-24dc-481a-a64a-280e8e9bee8f</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>accordionSections</name>
+                    <value>Facet-a2b7dc83-24dc-481a-a64a-280e8e9bee8f</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:accordion</componentName>
+                <identifier>flexipage_accordion2</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>

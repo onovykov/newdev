@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Work Item Reminder Template</name>
+    <relatedEntityType>Notification_Work_Item__c</relatedEntityType>
+    <style>none</style>
+    <subject>⏰ Reminder {{{Notification_Work_Item__c.Reminder_Count__c}}}/{{{Notification_Work_Item__c.Maximum_Reminders__c}}}: {{{Notification_Work_Item__c.Summary__c}}}</subject>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

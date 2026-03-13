@@ -4,21 +4,22 @@ private class TritonTypesTest {
     @IsTest
     static void test_Area_values_and_order() {
         List<TritonTypes.Area> expected = new List<TritonTypes.Area>{
-            TritonTypes.Area.OpportunityManagement,
-            TritonTypes.Area.LeadConversion,
-            TritonTypes.Area.Community,
-            TritonTypes.Area.RestAPI,
-            TritonTypes.Area.Accounts,
-            TritonTypes.Area.LWC,
-            TritonTypes.Area.Flow,
-            TritonTypes.Area.OpportunityData,
-            TritonTypes.Area.PriceApprovalRequest,
-            TritonTypes.Area.SendToBackoffice,
-            TritonTypes.Area.SFtoERPOpportunityStage,
-            TritonTypes.Area.SalesPlanFact,
-            TritonTypes.Area.NewSpecification,
-            TritonTypes.Area.AdjustmentQuotaRequest,
-            TritonTypes.Area.SalesBudget
+                TritonTypes.Area.OpportunityManagement,
+                TritonTypes.Area.LeadConversion,
+                TritonTypes.Area.Community,
+                TritonTypes.Area.RestAPI,
+                TritonTypes.Area.Accounts,
+                TritonTypes.Area.LWC,
+                TritonTypes.Area.Flow,
+                TritonTypes.Area.OpportunityData,
+                TritonTypes.Area.PriceApprovalRequest,
+                TritonTypes.Area.SendToBackoffice,
+                TritonTypes.Area.SFtoERPOpportunityStage,
+                TritonTypes.Area.SalesPlanFact,
+                TritonTypes.Area.NewSpecification,
+                TritonTypes.Area.AdjustmentQuotaRequest,
+                TritonTypes.Area.SalesBudget,
+                TritonTypes.Area.AccountManagement
         };
         List<TritonTypes.Area> actual = TritonTypes.Area.values();
 

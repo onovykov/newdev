@@ -570,4 +570,45 @@
         </columns>
         <masterLabel>Price Approval Request Products</masterLabel>
     </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>OppProduct__c</field>
+            <table>PriceApprovalRequest__c.Items__r</table>
+        </columns>
+        <masterLabel>Price Approval Request Items</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Comment__c</field>
+            <table>PriceApprovalRequest__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ApprovalStatus__c</field>
+            <table>PriceApprovalRequest__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastAttemptDate__c</field>
+            <table>PriceApprovalRequest__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>RetryCount__c</field>
+            <table>PriceApprovalRequest__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CorrelationId__c</field>
+            <table>PriceApprovalRequest__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastErrorMessage__c</field>
+            <table>PriceApprovalRequest__c</table>
+        </columns>
+        <masterLabel>Price Approval Requests</masterLabel>
+    </sections>
 </ReportType>

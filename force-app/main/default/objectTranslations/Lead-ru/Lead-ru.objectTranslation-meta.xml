@@ -5,4 +5,20 @@
         <label>Добавить Email в черный список</label>
         <name>Delete_Lead</name>
     </quickActions>
+    <webLinks>
+        <label>Google Карты</label>
+        <name>GoogleMaps</name>
+    </webLinks>
+    <webLinks>
+        <label>Google Новости</label>
+        <name>GoogleNews</name>
+    </webLinks>
+    <webLinks>
+        <label>Google Поиск</label>
+        <name>GoogleSearch</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Delete_Records --></label>
+        <name>Mass_Delete_Records</name>
+    </webLinks>
 </CustomObjectTranslation>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Groups_WHEELS</fullName>
+    <columns>Type__c</columns>
+    <columns>PRODUCT2.FAMILY</columns>
+    <columns>PRODUCT2.NAME</columns>
+    <columns>NameUkr__c</columns>
+    <columns>NameRus__c</columns>
+    <columns>ProductKind__c</columns>
+    <columns>KindID__c</columns>
+    <columns>ID_ERP__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value>Wheel,Tyre,Axle,Wheel set,Centre,Cookware</value>
+    </filters>
+    <label>Product Groups WHEELS</label>
+</ListView>

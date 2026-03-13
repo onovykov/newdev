@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Account Type --></label>
+    <name>AccountType__c</name>
+    <picklistValues>
+        <masterLabel>Agent</masterLabel>
+        <translation><!-- Agent --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Consultant</masterLabel>
+        <translation><!-- Consultant --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EPC/MEP</masterLabel>
+        <translation><!-- EPC/MEP --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>End User</masterLabel>
+        <translation><!-- End User --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lobbyist</masterLabel>
+        <translation><!-- Lobbyist --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stockist/Distributor</masterLabel>
+        <translation><!-- Stockist/Distributor --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Trader</masterLabel>
+        <translation><!-- Trader --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

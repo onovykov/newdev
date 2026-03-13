@@ -92,6 +92,10 @@
         <name>Closed_Status</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- You cannot set Closed Won stage with empty Opportinity Products list --></errorMessage>
+        <name>Closed_Won_Empty</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Created Date can`t be grater than CloseDate --></errorMessage>
         <name>Created_Date_Conrol</name>
     </validationRules>
@@ -134,4 +138,20 @@
         <errorMessage><!-- Payment Terms is required --></errorMessage>
         <name>Require_PaymentTerms</name>
     </validationRules>
+    <validationRules>
+        <errorMessage><!-- Крос-маркет має бути або повністю заповнений (усі 3 поля), або порожній --></errorMessage>
+        <name>VR_CrossMarket_AllOrNothing</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Поля крос-маркету зафіксовані після відправки повідомлення і більше не можуть змінюватись --></errorMessage>
+        <name>VR_CrossMarket_LockedAfterNotify</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Mass_Delete_Records --></label>
+        <name>Mass_Delete_Records</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Sharing --></label>
+        <name>Sharing</name>
+    </webLinks>
 </CustomObjectTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates whether the Contact email address matches the User email address for experience cloud users. --></help>
+    <label><!-- UserContactEmailMatch --></label>
+    <name>extuserutils__UserContactEmailMatch__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Please change if necessary. --></help>
+    <label><!-- Packing (Rus) --></label>
+    <name>Packing_Rus__c</name>
+</CustomFieldTranslation>

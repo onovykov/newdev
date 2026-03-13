@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Distribution</masterLabel>
+        <translation>Дистрибуция</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Energy</masterLabel>
+        <translation><!-- Energy --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Fabrication</masterLabel>
+        <translation>Переработка</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Freight</masterLabel>
+        <translation><!-- Freight --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Infrastructure</masterLabel>
+        <translation>Инфраструктура</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Locomotive</masterLabel>
+        <translation><!-- Locomotive --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Machinery</masterLabel>
+        <translation>Машиностроение</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Non-residential Construction</masterLabel>
+        <translation>Нежилое строительство</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Oil&amp;Gas</masterLabel>
+        <translation>Нефть и Газ</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Passenger</masterLabel>
+        <translation><!-- Passenger --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Residential Construction</masterLabel>
+        <translation>Жилое строительство</translation>
+    </valueTranslation>
+</GlobalValueSetTranslation>

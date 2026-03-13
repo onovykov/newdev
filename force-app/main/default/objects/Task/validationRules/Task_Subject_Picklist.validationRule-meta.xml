@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Task_Subject_Picklist</fullName>
+    <active>false</active>
+    <description>This rule is to help users to choose subject only from picklist, w/o typing any random word</description>
+    <errorConditionFormula>AND(
+Subject &lt;&gt; &quot;Meeting &quot;,
+Subject &lt;&gt; &quot;Call&quot;,
+Subject &lt;&gt; &quot;Place Order&quot;,
+Subject &lt;&gt; &quot;Additional Volumes&quot;,
+Subject &lt;&gt; &quot;Financial Confirmation&quot;,
+Subject &lt;&gt; &quot;Send Letter&quot;,
+Subject &lt;&gt; &quot;Send Quote&quot;,
+Subject &lt;&gt; &quot;Upcoming Birthday&quot;,
+Subject &lt;&gt; &quot;Birthday Reminder&quot;,
+Subject &lt;&gt; &quot;Email&quot;,
+Subject &lt;&gt; &quot;Other&quot;,
+NOT(BEGINS(Subject, &quot;E-Mail&quot;)))</errorConditionFormula>
+    <errorDisplayField>Subject</errorDisplayField>
+    <errorMessage>Please choose from Picklist. Выберите тему задачи из выпадающего списка</errorMessage>
+</ValidationRule>

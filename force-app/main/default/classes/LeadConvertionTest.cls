@@ -20,8 +20,15 @@ private class LeadConvertionTest {
             insert new DeliveryTerms__c(Name='DT', ID_ERP__c='008');
             insert new PaymentTerms__c(Name='PT', ID_ERP__c='C33');
 
-            ClientLead__c lead = new ClientLead__c(Name='Lead X');
+            ClientLead__c lead = new ClientLead__c(
+                Name='Lead X',
+                BusinessDivision__c = 'Pipes',  // Валідне значення з picklist
+                MarketSegment__c = '00001'       // Ukraine
+            );
             insert lead;
+
+            // Очищаємо кеш, щоб LeadRepository знайшов щойно створений Lead
+            LeadRepository.clearCache();
 
             Id rtOppEnquiry  = RecordTypeCache.getId(Opportunity.SObjectType, 'New_Client_Enquiry');
             Id rtContactLead = RecordTypeCache.getId(Contact.SObjectType,     'Lead_Contact');
@@ -92,8 +99,15 @@ private class LeadConvertionTest {
 
     @IsTest
     static void test_convert_duplicates_early_exit() {
-        ClientLead__c lead = new ClientLead__c(Name='Lead D');
+        ClientLead__c lead = new ClientLead__c(
+            Name='Lead D',
+            BusinessDivision__c = 'Pipes',  // Валідне значення з picklist
+            MarketSegment__c = '00011'       // Ukraine
+        );
         insert lead;
+
+        // Очищаємо кеш, щоб LeadRepository знайшов щойно створений Lead
+        LeadRepository.clearCache();
 
         Opportunity o = new Opportunity(
             Name='Head D',
@@ -142,5 +156,91 @@ private class LeadConvertionTest {
         } finally {
             LeadConvertion.testDuplicates = null; // скидаємо
         }
+    }
+
+    @IsTest
+    static void test_getSegmVirtAcc_found() {
+        // Створюємо віртуальний акаунт
+        Account virtualAcc = new Account(
+            Name = 'Virtual Account Europe',
+            ID_ERP__c = 'VIRT_EU_001',
+            Type = 'Virtual'
+        );
+        insert virtualAcc;
+
+        // Створюємо SegmentAccount, що посилається на цей акаунт через ID_ERP__c
+        SegmentAccount__c segAcc = new SegmentAccount__c(
+            Name = 'EUROPE',
+            ID_ERP__c = 'VIRT_EU_001'
+        );
+        insert segAcc;
+
+        // Очищаємо кеш AccountRepository, щоб він завантажив наш тестовий акаунт
+        AccountRepository.clearCache();
+
+        Test.startTest();
+        Map<String, Id> result = LeadConvertion.getSegmVirtAcc();
+        Test.stopTest();
+
+        System.assertNotEquals(null, result, 'Map не має бути null');
+        System.assert(result.containsKey('EUROPE'), 'Map має містити ключ EUROPE');
+        System.assertEquals(virtualAcc.Id, result.get('EUROPE'), 'Id акаунта має співпадати');
+    }
+
+    @IsTest
+    static void test_getSegmVirtAcc_notFound() {
+        // Створюємо SegmentAccount БЕЗ відповідного Account
+        SegmentAccount__c segAcc = new SegmentAccount__c(
+            Name = 'AMERICA',
+            ID_ERP__c = 'VIRT_AM_999'
+        );
+        insert segAcc;
+
+        // Очищаємо кеш
+        AccountRepository.clearCache();
+
+        Test.startTest();
+        Map<String, Id> result = LeadConvertion.getSegmVirtAcc();
+        Test.stopTest();
+
+        System.assertNotEquals(null, result, 'Map не має бути null');
+        System.assertEquals(false, result.containsKey('AMERICA'), 'Map не має містити AMERICA, бо акаунт не знайдено');
+    }
+
+    @IsTest
+    static void test_getVirtAccIdBySegm_found() {
+        // Створюємо віртуальний акаунт
+        Account virtualAcc = new Account(
+            Name = 'Virtual Account CIS',
+            ID_ERP__c = 'VIRT_CIS_001',
+            Type = 'Virtual'
+        );
+        insert virtualAcc;
+
+        // Створюємо SegmentAccount
+        SegmentAccount__c segAcc = new SegmentAccount__c(
+            Name = 'CIS',
+            ID_ERP__c = 'VIRT_CIS_001'
+        );
+        insert segAcc;
+
+        // Очищаємо кеш
+        AccountRepository.clearCache();
+
+        Test.startTest();
+        Id result = LeadConvertion.getVirtAccIdBySegm('CIS');
+        Test.stopTest();
+
+        System.assertNotEquals(null, result, 'Id не має бути null');
+        System.assertEquals(virtualAcc.Id, result, 'Id має співпадати з віртуальним акаунтом');
+    }
+
+    @IsTest
+    static void test_getVirtAccIdBySegm_notFound() {
+        Test.startTest();
+        Id result = LeadConvertion.getVirtAccIdBySegm('UNKNOWN_SEGMENT');
+        Test.stopTest();
+
+        System.assertEquals(null, result, 'Для невідомого сегменту має повертатися null');
     }
 }

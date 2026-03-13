@@ -36,6 +36,1595 @@
         <label><!-- Sales Operations --></label>
         <name>Sales_Operations</name>
     </customApplications>
+    <customLabels>
+        <label>Про Інтерпайп</label>
+        <name>About_Interpipe</name>
+    </customLabels>
+    <customLabels>
+        <label>Про мене</label>
+        <name>About_me</name>
+    </customLabels>
+    <customLabels>
+        <label>Акаунт</label>
+        <name>Account</name>
+    </customLabels>
+    <customLabels>
+        <label>Активні</label>
+        <name>Active</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Addresses for callout exception --></label>
+        <name>Addresses_for_callout_exception</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Addresses for faild Opportunity --></label>
+        <name>Addresses_for_faild_Opportunity</name>
+    </customLabels>
+    <customLabels>
+        <label>Всі рахунки</label>
+        <name>All_Invoices</name>
+    </customLabels>
+    <customLabels>
+        <label>Усі рекламації</label>
+        <name>All_Reclamations</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- All Routes Quotes record Id --></label>
+        <name>All_Routes_Quotes_record_Id</name>
+    </customLabels>
+    <customLabels>
+        <label>Усі звернення</label>
+        <name>All_cases</name>
+    </customLabels>
+    <customLabels>
+        <label>Всі запити</label>
+        <name>All_enquiries</name>
+    </customLabels>
+    <customLabels>
+        <label>Усі замовлення</label>
+        <name>All_orders</name>
+    </customLabels>
+    <customLabels>
+        <label>Ви впевнені, що хочете видалити цей файл?</label>
+        <name>Are_you_sure_to_delete_this_file</name>
+    </customLabels>
+    <customLabels>
+        <label>Ви впевнені, що хочете підтвердити цей запит?</label>
+        <name>Are_you_sure_you_want_to_confirm_this_enquiry</name>
+    </customLabels>
+    <customLabels>
+        <label>Ви впевнені, що хочете видалити цей запит?</label>
+        <name>Are_you_sure_you_want_to_delete_this_request</name>
+    </customLabels>
+    <customLabels>
+        <label>Прикріпити файли</label>
+        <name>Attach_files</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AuraMsgErrorFromERP --></label>
+        <name>AuraMsgErrorFromERP</name>
+    </customLabels>
+    <customLabels>
+        <label>Баланс Виробництва</label>
+        <name>Balance_for_Production</name>
+    </customLabels>
+    <customLabels>
+        <label>Залишок до відвантаження</label>
+        <name>Balance_for_Shipment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BodyEmailBlockedAccount3Days --></label>
+        <name>BodyEmailBlockedAccount3Days</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BodyEmailBlockedAccount7Days --></label>
+        <name>BodyEmailBlockedAccount7Days</name>
+    </customLabels>
+    <customLabels>
+        <label>По контрактах</label>
+        <name>By_contracts</name>
+    </customLabels>
+    <customLabels>
+        <label>№ замовлення</label>
+        <name>COC</name>
+    </customLabels>
+    <customLabels>
+        <label>Скасувати</label>
+        <name>Cancel</name>
+    </customLabels>
+    <customLabels>
+        <label>Скасовані</label>
+        <name>Cancelled</name>
+    </customLabels>
+    <customLabels>
+        <label>Сертифікати</label>
+        <name>Certificates</name>
+    </customLabels>
+    <customLabels>
+        <label>Зміни збережено!</label>
+        <name>Changes_saved</name>
+    </customLabels>
+    <customLabels>
+        <label>Оберіть дату</label>
+        <name>Choose_a_date</name>
+    </customLabels>
+    <customLabels>
+        <label>Рекламації</label>
+        <name>Claims</name>
+    </customLabels>
+    <customLabels>
+        <label>Закриті</label>
+        <name>Closed</name>
+    </customLabels>
+    <customLabels>
+        <label>Назва компанії</label>
+        <name>Company_name</name>
+    </customLabels>
+    <customLabels>
+        <label>Підтвердити</label>
+        <name>Confirm</name>
+    </customLabels>
+    <customLabels>
+        <label>Контакти</label>
+        <name>Contacts</name>
+    </customLabels>
+    <customLabels>
+        <label>Контракт</label>
+        <name>Contract</name>
+    </customLabels>
+    <customLabels>
+        <label>Номер контракту</label>
+        <name>Contract_Number</name>
+    </customLabels>
+    <customLabels>
+        <label>Створити запит</label>
+        <name>Create_Enquiry</name>
+    </customLabels>
+    <customLabels>
+        <label>Створено</label>
+        <name>Created_By</name>
+    </customLabels>
+    <customLabels>
+        <label>Дата створення</label>
+        <name>Creation_date</name>
+    </customLabels>
+    <customLabels>
+        <label>Валюта</label>
+        <name>Currency</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Name for table of products --></label>
+        <name>CustomerEnquiryDetailsTable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of empty table --></label>
+        <name>CustomerEnquiryDetailsTableEmpty</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CustomerSupportsHistory --></label>
+        <name>CustomerSupport</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CustomerSupportFileLoaded --></label>
+        <name>CustomerSupportFileLoaded</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CustomerSupportHeader --></label>
+        <name>CustomerSupportHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CustomerSupportQuickAnswer --></label>
+        <name>CustomerSupportQuickAnswer</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CustomerSupportSubHeader --></label>
+        <name>CustomerSupportSubHeader</name>
+    </customLabels>
+    <customLabels>
+        <label>Протерміновано днів</label>
+        <name>Days_Overdue</name>
+    </customLabels>
+    <customLabels>
+        <label>Поточний баланс</label>
+        <name>Dealing_Status</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Deselect All --></label>
+        <name>Deselect_All</name>
+    </customLabels>
+    <customLabels>
+        <label>Дивізіони</label>
+        <name>Divisions</name>
+    </customLabels>
+    <customLabels>
+        <label>Завантажити посібник</label>
+        <name>Download_Manual</name>
+    </customLabels>
+    <customLabels>
+        <label>Чорнові</label>
+        <name>Draft</name>
+    </customLabels>
+    <customLabels>
+        <label>Термін виконання</label>
+        <name>Due_Date</name>
+    </customLabels>
+    <customLabels>
+        <label>Електронна адреса</label>
+        <name>E_mail</name>
+    </customLabels>
+    <customLabels>
+        <label>Електронна пошта</label>
+        <name>Email</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EmailForNewStageOnProduct --></label>
+        <name>EmailForNewStageOnProduct</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Emails for Cancelled Opportunity Europe --></label>
+        <name>Emails_for_Cancelled_Opportunity</name>
+    </customLabels>
+    <customLabels>
+        <label>Кінець</label>
+        <name>End_Date</name>
+    </customLabels>
+    <customLabels>
+        <label>Запити</label>
+        <name>Enquiries</name>
+    </customLabels>
+    <customLabels>
+        <label>Запит</label>
+        <name>Enquiry</name>
+    </customLabels>
+    <customLabels>
+        <label>Запит підтверджено</label>
+        <name>Enquiry_Confirmed</name>
+    </customLabels>
+    <customLabels>
+        <label>Запит уже підтверджено</label>
+        <name>Enquiry_already_confirmed</name>
+    </customLabels>
+    <customLabels>
+        <label>Запит видалено успішно!</label>
+        <name>Enquiry_deleted_successfully</name>
+    </customLabels>
+    <customLabels>
+        <label>Номер запиту</label>
+        <name>Enquiry_number</name>
+    </customLabels>
+    <customLabels>
+        <label>Введіть номер замовлення...</label>
+        <name>Enter_order_number</name>
+    </customLabels>
+    <customLabels>
+        <label>Розрахунковий Виробничий Баланс</label>
+        <name>Estimated_Prod_Balance</name>
+    </customLabels>
+    <customLabels>
+        <label>Файл успішно видалено</label>
+        <name>File_deleted_successfully</name>
+    </customLabels>
+    <customLabels>
+        <label>Файли</label>
+        <name>Files</name>
+    </customLabels>
+    <customLabels>
+        <label>Файли успішно завантажено</label>
+        <name>Files_uploaded_successfully</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fill in your Quote Payment and Delivery Terms --></label>
+        <name>Fill_in_your_Quote_Payment_and_Delivery_Terms</name>
+    </customLabels>
+    <customLabels>
+        <label>Баланс</label>
+        <name>Financial_Balance</name>
+    </customLabels>
+    <customLabels>
+        <label>Ім&apos;я</label>
+        <name>First_Name</name>
+    </customLabels>
+    <customLabels>
+        <label>Від</label>
+        <name>From</name>
+    </customLabels>
+    <customLabels>
+        <label>Від дати створення замовлення</label>
+        <name>From_order_date</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- InvalidJSONReceived --></label>
+        <name>InvalidJSONReceived</name>
+    </customLabels>
+    <customLabels>
+        <label>Рахунок-фактура</label>
+        <name>Invoice</name>
+    </customLabels>
+    <customLabels>
+        <label>Дата рахунку</label>
+        <name>Invoice_Date</name>
+    </customLabels>
+    <customLabels>
+        <label>Мова</label>
+        <name>Language</name>
+    </customLabels>
+    <customLabels>
+        <label>Прізвище</label>
+        <name>Last_Name</name>
+    </customLabels>
+    <customLabels>
+        <label>Місцезнаходження</label>
+        <name>Location</name>
+    </customLabels>
+    <customLabels>
+        <label>Менеджер</label>
+        <name>Manager</name>
+    </customLabels>
+    <customLabels>
+        <label>Мобільний телефон</label>
+        <name>Mobile_phone</name>
+    </customLabels>
+    <customLabels>
+        <label>Місячний План Виробництва</label>
+        <name>Monthly_Prod_Plan</name>
+    </customLabels>
+    <customLabels>
+        <label>Більше</label>
+        <name>More</name>
+    </customLabels>
+    <customLabels>
+        <label>Моя історія звернень</label>
+        <name>My_application_history</name>
+    </customLabels>
+    <customLabels>
+        <label>Сума з ПДВ</label>
+        <name>Net_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label>Нові</label>
+        <name>New</name>
+    </customLabels>
+    <customLabels>
+        <label>Новий запит</label>
+        <name>New_Enquiry</name>
+    </customLabels>
+    <customLabels>
+        <label>Новини</label>
+        <name>News</name>
+    </customLabels>
+    <customLabels>
+        <label>Далі</label>
+        <name>Next</name>
+    </customLabels>
+    <customLabels>
+        <label>Ні</label>
+        <name>No</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoAssignedBO --></label>
+        <name>NoAssignedBO</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoEmailOnAssignedBO --></label>
+        <name>NoEmailOnAssignedBO</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoOwnerIdERP --></label>
+        <name>NoOwnerIdERP</name>
+    </customLabels>
+    <customLabels>
+        <label>Немає планових даних для відображення</label>
+        <name>NoPlanDataMessage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- No Payment or Delivery Terms on Quote --></label>
+        <name>No_Payment_or_Delivery_Terms_on_Quote</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NotificationAccountLink --></label>
+        <name>NotificationAccountLink</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NotificationBodyBlockedAccount3Days --></label>
+        <name>NotificationBodyBlockedAccount3Days</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NotificationBodyBlockedAccount7Days --></label>
+        <name>NotificationBodyBlockedAccount7Days</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NotificationBodyPart1 --></label>
+        <name>NotificationBodyPart1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NotificationBodyPart2Day7 --></label>
+        <name>NotificationBodyPart1Day7</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NotificationBodyPart2Day3 --></label>
+        <name>NotificationBodyPart2Day3</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NotificationOpportunityLink --></label>
+        <name>NotificationOpportunityLink</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NotificationTitleBlockedAccount --></label>
+        <name>NotificationTitleBlockedAccount</name>
+    </customLabels>
+    <customLabels>
+        <label>На утриманні</label>
+        <name>On_Hold</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- OppAlreadySent --></label>
+        <name>OppAlreadySent</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- no shipping information for order --></label>
+        <name>OrderDeliveryNonInfo</name>
+    </customLabels>
+    <customLabels>
+        <label>Замовлення COC # | PO#</label>
+        <name>Order_Number_for_Prod_Plan</name>
+    </customLabels>
+    <customLabels>
+        <label>Замовлення</label>
+        <name>Orders</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- OrganizationURL --></label>
+        <name>OrganizationURL</name>
+    </customLabels>
+    <customLabels>
+        <label>Несплачений борг</label>
+        <name>Outstanding_Debt</name>
+    </customLabels>
+    <customLabels>
+        <label>У т.ч. протермінована дебіторська заборгованість</label>
+        <name>Overdue_accounts_receivable</name>
+    </customLabels>
+    <customLabels>
+        <label>Телефон</label>
+        <name>Phone</name>
+    </customLabels>
+    <customLabels>
+        <label>Номер телефону</label>
+        <name>Phone_number</name>
+    </customLabels>
+    <customLabels>
+        <label>Будь ласка, оберіть принаймні одне замовлення</label>
+        <name>Please_select_at_least_one_order</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Portal URL --></label>
+        <name>Portal_URL</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Price List (H) Id --></label>
+        <name>Price_List_H_Id</name>
+    </customLabels>
+    <customLabels>
+        <label>Роздрукувати</label>
+        <name>Print</name>
+    </customLabels>
+    <customLabels>
+        <label>Опис проблеми</label>
+        <name>Problem_description</name>
+    </customLabels>
+    <customLabels>
+        <label>В обробці</label>
+        <name>Processing</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Prod Type --></label>
+        <name>Prod_Type</name>
+    </customLabels>
+    <customLabels>
+        <label>Виробництво</label>
+        <name>Production</name>
+    </customLabels>
+    <customLabels>
+        <label>Дати Виробництва</label>
+        <name>Production_Dates</name>
+    </customLabels>
+    <customLabels>
+        <label>План Виробництва</label>
+        <name>Production_Plan</name>
+    </customLabels>
+    <customLabels>
+        <label>Виробництво онлайн</label>
+        <name>Production_online</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PRODUCTS CLASSIFIER --></label>
+        <name>ProductsClassifier_H</name>
+    </customLabels>
+    <customLabels>
+        <label>Профіль</label>
+        <name>Profile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ProfileNamesToEditAfterBO --></label>
+        <name>ProfileNamesToEditAfterBO</name>
+    </customLabels>
+    <customLabels>
+        <label>Застосувати зміни</label>
+        <name>QuotaApplyChanges</name>
+    </customLabels>
+    <customLabels>
+        <label>Обрахувати зміни</label>
+        <name>QuotaCalculateChanges</name>
+    </customLabels>
+    <customLabels>
+        <label>Скасувати зміни</label>
+        <name>QuotaCancelChanges</name>
+    </customLabels>
+    <customLabels>
+        <label>Читати</label>
+        <name>Read</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ReclDetailStageMsg --></label>
+        <name>ReclDetailStageMsg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ReclDetailStageTitle --></label>
+        <name>ReclDetailStageTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Аккаунт</label>
+        <name>Reclamation_Account</name>
+    </customLabels>
+    <customLabels>
+        <label>Додати файли</label>
+        <name>Reclamation_Attach_files</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Reclamation Cancel Button --></label>
+        <name>Reclamation_Cancel_Button</name>
+    </customLabels>
+    <customLabels>
+        <label>Дата контракту</label>
+        <name>Reclamation_Contract_Date</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Reclamation Create Label --></label>
+        <name>Reclamation_Create_Label</name>
+    </customLabels>
+    <customLabels>
+        <label>Валюта</label>
+        <name>Reclamation_Currency</name>
+    </customLabels>
+    <customLabels>
+        <label>Дата</label>
+        <name>Reclamation_Date</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Reclamation Next Button --></label>
+        <name>Reclamation_Next_Button</name>
+    </customLabels>
+    <customLabels>
+        <label>Без відшкодування</label>
+        <name>Reclamation_No_Refund</name>
+    </customLabels>
+    <customLabels>
+        <label>Сегмент</label>
+        <name>Reclamation_Segment</name>
+    </customLabels>
+    <customLabels>
+        <label>Сумма рекламації</label>
+        <name>Reclamation_Summary</name>
+    </customLabels>
+    <customLabels>
+        <label>Рекламація підтверджена</label>
+        <name>Reclamation_confirmed</name>
+    </customLabels>
+    <customLabels>
+        <label>Рекламацію видалено</label>
+        <name>Reclamation_deleted</name>
+    </customLabels>
+    <customLabels>
+        <label>Скинути пароль</label>
+        <name>Reset_Password</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SFtoERPConnectionFails --></label>
+        <name>SFtoERPConnectionFails</name>
+    </customLabels>
+    <customLabels>
+        <label>Зберегти</label>
+        <name>Save</name>
+    </customLabels>
+    <customLabels>
+        <label>Зберегти та Підтвердити</label>
+        <name>Save_and_Confirm</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Select All --></label>
+        <name>Select_All</name>
+    </customLabels>
+    <customLabels>
+        <label>Виберіть Замовлення</label>
+        <name>Select_Order</name>
+    </customLabels>
+    <customLabels>
+        <label>Виберіть тип продукції</label>
+        <name>Select_a_product_type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Self Pickup Message --></label>
+        <name>Self_Pickup_Message</name>
+    </customLabels>
+    <customLabels>
+        <label>Надіслати</label>
+        <name>Send</name>
+    </customLabels>
+    <customLabels>
+        <label>Надіслані</label>
+        <name>Sent</name>
+    </customLabels>
+    <customLabels>
+        <label>Налаштування</label>
+        <name>Settings</name>
+    </customLabels>
+    <customLabels>
+        <label>Відвантажені</label>
+        <name>Shipped</name>
+    </customLabels>
+    <customLabels>
+        <label>Затвердити рекламацію</label>
+        <name>Site_ConfirmReclamation</name>
+    </customLabels>
+    <customLabels>
+        <label>Видалити рекламацію</label>
+        <name>Site_DeleteReclamation</name>
+    </customLabels>
+    <customLabels>
+        <label>Детально</label>
+        <name>Site_Detail</name>
+    </customLabels>
+    <customLabels>
+        <label>Додати продукт</label>
+        <name>Site_btn_AddProduct</name>
+    </customLabels>
+    <customLabels>
+        <label>Аккаунт</label>
+        <name>Site_orderDetail_Account</name>
+    </customLabels>
+    <customLabels>
+        <label>Адреса</label>
+        <name>Site_orderDetail_Address</name>
+    </customLabels>
+    <customLabels>
+        <label>Сума замовлення</label>
+        <name>Site_orderDetail_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label>Адреса реєстрації</label>
+        <name>Site_orderDetail_BillingAddress</name>
+    </customLabels>
+    <customLabels>
+        <label>Країна</label>
+        <name>Site_orderDetail_Country</name>
+    </customLabels>
+    <customLabels>
+        <label>Валюта замовлення</label>
+        <name>Site_orderDetail_Currency</name>
+    </customLabels>
+    <customLabels>
+        <label>Дата</label>
+        <name>Site_orderDetail_Date1</name>
+    </customLabels>
+    <customLabels>
+        <label>Початкова дата замовлення</label>
+        <name>Site_orderDetail_Date2</name>
+    </customLabels>
+    <customLabels>
+        <label>Кінцева дата замовлення</label>
+        <name>Site_orderDetail_Date3</name>
+    </customLabels>
+    <customLabels>
+        <label>Статус доставки</label>
+        <name>Site_orderDetail_DeliveryStatus</name>
+    </customLabels>
+    <customLabels>
+        <label>Деталі</label>
+        <name>Site_orderDetail_Details</name>
+    </customLabels>
+    <customLabels>
+        <label>Відвантажено</label>
+        <name>Site_orderDetail_Dispatched</name>
+    </customLabels>
+    <customLabels>
+        <label>Статус виконання</label>
+        <name>Site_orderDetail_ExecutionStatus</name>
+    </customLabels>
+    <customLabels>
+        <label>ІТЕ номер</label>
+        <name>Site_orderDetail_ITENumber</name>
+    </customLabels>
+    <customLabels>
+        <label>Замовлення</label>
+        <name>Site_orderDetail_Order</name>
+    </customLabels>
+    <customLabels>
+        <label>Номер замовлення</label>
+        <name>Site_orderDetail_OrderNumber</name>
+    </customLabels>
+    <customLabels>
+        <label>Власник замовлення</label>
+        <name>Site_orderDetail_OrderOwner</name>
+    </customLabels>
+    <customLabels>
+        <label>Продукти замовлення</label>
+        <name>Site_orderDetail_OrderProducts</name>
+    </customLabels>
+    <customLabels>
+        <label>РО номер</label>
+        <name>Site_orderDetail_PONumber</name>
+    </customLabels>
+    <customLabels>
+        <label>Контактний номер</label>
+        <name>Site_orderDetail_PhoneNumber</name>
+    </customLabels>
+    <customLabels>
+        <label>Вироблено</label>
+        <name>Site_orderDetail_Produced</name>
+    </customLabels>
+    <customLabels>
+        <label>Кількість</label>
+        <name>Site_orderDetail_Quantity</name>
+    </customLabels>
+    <customLabels>
+        <label>Доставлено</label>
+        <name>Site_orderDetail_Shipped</name>
+    </customLabels>
+    <customLabels>
+        <label>Адреса доставки</label>
+        <name>Site_orderDetail_ShippingAddress</name>
+    </customLabels>
+    <customLabels>
+        <label>Статус</label>
+        <name>Site_orderDetail_Stage</name>
+    </customLabels>
+    <customLabels>
+        <label>Тип продукції</label>
+        <name>Site_orderDetail_TypeOfProducts</name>
+    </customLabels>
+    <customLabels>
+        <label>(шт)</label>
+        <name>Site_orderDetail_pcs</name>
+    </customLabels>
+    <customLabels>
+        <label>(тонн)</label>
+        <name>Site_orderDetail_t</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Axle_Box --></label>
+        <name>Site_prodSpec_Axle_Box</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Axle_Specification --></label>
+        <name>Site_prodSpec_Axle_Specification</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Bearer --></label>
+        <name>Site_prodSpec_Bearer</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Cover_Material --></label>
+        <name>Site_prodSpec_Cover_Material</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Cover_Type --></label>
+        <name>Site_prodSpec_Cover_Type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Drawing --></label>
+        <name>Site_prodSpec_Drawing</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Exec_Category --></label>
+        <name>Site_prodSpec_Exec_Category</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Has_Spec_Req --></label>
+        <name>Site_prodSpec_Has_Spec_Req</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Imbalance --></label>
+        <name>Site_prodSpec_Imbalance</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Inspection --></label>
+        <name>Site_prodSpec_Inspection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Marking_Type --></label>
+        <name>Site_prodSpec_Marking_Type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Name_to_Srandard --></label>
+        <name>Site_prodSpec_Name_to_Srandard</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Oil_Hole --></label>
+        <name>Site_prodSpec_Oil_Hole</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Packing_Type --></label>
+        <name>Site_prodSpec_Packing_Type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Plug_Type --></label>
+        <name>Site_prodSpec_Plug_Type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Product_Details --></label>
+        <name>Site_prodSpec_Product_Details</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Product_Name --></label>
+        <name>Site_prodSpec_Product_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Product_Type --></label>
+        <name>Site_prodSpec_Product_Type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Purpose --></label>
+        <name>Site_prodSpec_Purpose</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Shape --></label>
+        <name>Site_prodSpec_Shape</name>
+    </customLabels>
+    <customLabels>
+        <label>Специфікація</label>
+        <name>Site_prodSpec_Specification</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Standard --></label>
+        <name>Site_prodSpec_Standard</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Steel_Grade --></label>
+        <name>Site_prodSpec_Steel_Grade</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Weight_kg --></label>
+        <name>Site_prodSpec_Weight_kg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site_prodSpec_Wheel_Specification --></label>
+        <name>Site_prodSpec_Wheel_Specification</name>
+    </customLabels>
+    <customLabels>
+        <label>Авто #</label>
+        <name>Site_th_Car</name>
+    </customLabels>
+    <customLabels>
+        <label>Сертифікат #</label>
+        <name>Site_th_Certificate</name>
+    </customLabels>
+    <customLabels>
+        <label>Сума рекламації</label>
+        <name>Site_th_ClaimSum</name>
+    </customLabels>
+    <customLabels>
+        <label>Дата завантаження</label>
+        <name>Site_th_DateUpload</name>
+    </customLabels>
+    <customLabels>
+        <label>Відвантажено</label>
+        <name>Site_th_DispatchedQuantity</name>
+    </customLabels>
+    <customLabels>
+        <label>Док #</label>
+        <name>Site_th_Doc</name>
+    </customLabels>
+    <customLabels>
+        <label>Редагувати</label>
+        <name>Site_th_Edit</name>
+    </customLabels>
+    <customLabels>
+        <label>Скачати сертифікат</label>
+        <name>Site_th_GetCertificate</name>
+    </customLabels>
+    <customLabels>
+        <label>од. виміру</label>
+        <name>Site_th_MeasurementUnit</name>
+    </customLabels>
+    <customLabels>
+        <label>Дата невідповідності</label>
+        <name>Site_th_MistmatchDate</name>
+    </customLabels>
+    <customLabels>
+        <label>Підтип невідповідності</label>
+        <name>Site_th_MistmatchSubType</name>
+    </customLabels>
+    <customLabels>
+        <label>Тип невідповідності</label>
+        <name>Site_th_MistmatchType</name>
+    </customLabels>
+    <customLabels>
+        <label>Назва</label>
+        <name>Site_th_Name</name>
+    </customLabels>
+    <customLabels>
+        <label>Ціна замовлення</label>
+        <name>Site_th_OrderPrice</name>
+    </customLabels>
+    <customLabels>
+        <label>Власник</label>
+        <name>Site_th_Owner</name>
+    </customLabels>
+    <customLabels>
+        <label>Вироблено</label>
+        <name>Site_th_ProducedQuantity</name>
+    </customLabels>
+    <customLabels>
+        <label>Продукт</label>
+        <name>Site_th_Product</name>
+    </customLabels>
+    <customLabels>
+        <label>Кількість</label>
+        <name>Site_th_Quantity</name>
+    </customLabels>
+    <customLabels>
+        <label>Відшкодування</label>
+        <name>Site_th_Refund</name>
+    </customLabels>
+    <customLabels>
+        <label>Доставлено</label>
+        <name>Site_th_ShippedQuantity</name>
+    </customLabels>
+    <customLabels>
+        <label>Статус</label>
+        <name>Site_th_Stage</name>
+    </customLabels>
+    <customLabels>
+        <label>Статус</label>
+        <name>Site_th_Status</name>
+    </customLabels>
+    <customLabels>
+        <label>Ціна за одиницю</label>
+        <name>Site_th_UnitPrice</name>
+    </customLabels>
+    <customLabels>
+        <label>Валюта</label>
+        <name>Site_th_currency</name>
+    </customLabels>
+    <customLabels>
+        <label>Дата рекламації</label>
+        <name>Site_th_dateReclamation</name>
+    </customLabels>
+    <customLabels>
+        <label>Видалити</label>
+        <name>Site_th_delete</name>
+    </customLabels>
+    <customLabels>
+        <label>ERP номер</label>
+        <name>Site_th_erpNumber</name>
+    </customLabels>
+    <customLabels>
+        <label>Номер</label>
+        <name>Site_th_number</name>
+    </customLabels>
+    <customLabels>
+        <label>На жаль, ви не можете видалити підтверджений запит</label>
+        <name>Sorry_you_can_not_delete_confirmed_enquiry</name>
+    </customLabels>
+    <customLabels>
+        <label>Вибачте, ви не можете редагувати підтверджений запит</label>
+        <name>Sorry_you_cannot_edit_closed_enquiry</name>
+    </customLabels>
+    <customLabels>
+        <label>Прийняті</label>
+        <name>Stage_Accepted</name>
+    </customLabels>
+    <customLabels>
+        <label>Розглядаються</label>
+        <name>Stage_Considered</name>
+    </customLabels>
+    <customLabels>
+        <label>Рішення директора</label>
+        <name>Stage_Director_Decision</name>
+    </customLabels>
+    <customLabels>
+        <label>Чернетка</label>
+        <name>Stage_Draft</name>
+    </customLabels>
+    <customLabels>
+        <label>Зареєстровані</label>
+        <name>Stage_Registered</name>
+    </customLabels>
+    <customLabels>
+        <label>Відхилені</label>
+        <name>Stage_Rejected</name>
+    </customLabels>
+    <customLabels>
+        <label>Надіслані</label>
+        <name>Stage_Sended</name>
+    </customLabels>
+    <customLabels>
+        <label>Початок</label>
+        <name>Start_Date</name>
+    </customLabels>
+    <customLabels>
+        <label>Статус</label>
+        <name>Status</name>
+    </customLabels>
+    <customLabels>
+        <label>Дата статусу</label>
+        <name>Status_date</name>
+    </customLabels>
+    <customLabels>
+        <label>Cклад</label>
+        <name>Stock</name>
+    </customLabels>
+    <customLabels>
+        <label>Успішно</label>
+        <name>Success</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SujectEmailBlockedAccount --></label>
+        <name>SujectEmailBlockedAccount</name>
+    </customLabels>
+    <customLabels>
+        <label>Заявка в службу підтримки створена</label>
+        <name>Suport_ticket_created</name>
+    </customLabels>
+    <customLabels>
+        <label>Підтримка</label>
+        <name>Support</name>
+    </customLabels>
+    <customLabels>
+        <label>Аккаунт</label>
+        <name>Support_account</name>
+    </customLabels>
+    <customLabels>
+        <label>Контак підтримки</label>
+        <name>Support_contact</name>
+    </customLabels>
+    <customLabels>
+        <label>Опис</label>
+        <name>Support_description</name>
+    </customLabels>
+    <customLabels>
+        <label>Зверніться до служби підтримки клієнтів</label>
+        <name>Support_header</name>
+    </customLabels>
+    <customLabels>
+        <label>Як ми можемо вам допомогти?</label>
+        <name>Support_subHeader</name>
+    </customLabels>
+    <customLabels>
+        <label>Тема</label>
+        <name>Support_theme</name>
+    </customLabels>
+    <customLabels>
+        <label>Часовий пояс</label>
+        <name>Time_zone</name>
+    </customLabels>
+    <customLabels>
+        <label>До</label>
+        <name>To</name>
+    </customLabels>
+    <customLabels>
+        <label>До дати створення замовлення</label>
+        <name>To_Order_creation_Date</name>
+    </customLabels>
+    <customLabels>
+        <label>Загалом по всіх документах</label>
+        <name>Total_Debt_Common</name>
+    </customLabels>
+    <customLabels>
+        <label>Всього (по замовленнях)</label>
+        <name>Total_Debt_Orders</name>
+    </customLabels>
+    <customLabels>
+        <label>Всього (інші документи)</label>
+        <name>Total_Debt_Other_documents</name>
+    </customLabels>
+    <customLabels>
+        <label>Загальна кількість у тоннах</label>
+        <name>Total_quantity_in_tons</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- URL_Org --></label>
+        <name>URL_Org</name>
+    </customLabels>
+    <customLabels>
+        <label>Завантажити файл</label>
+        <name>Upload_file</name>
+    </customLabels>
+    <customLabels>
+        <label>Сума ПДВ</label>
+        <name>VAT_Amount</name>
+    </customLabels>
+    <customLabels>
+        <label>Переглянути</label>
+        <name>View</name>
+    </customLabels>
+    <customLabels>
+        <label>Увага</label>
+        <name>Warning</name>
+    </customLabels>
+    <customLabels>
+        <label>Дивіться онлайн на виробництво продукції INTERPIPE!</label>
+        <name>Watch_the_production_of_INTERPIPE_products_online</name>
+    </customLabels>
+    <customLabels>
+        <label>Тижневий План Виробництва</label>
+        <name>Weekly_Prod_Plan</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- World Countries record Id --></label>
+        <name>World_Countries_record_Id</name>
+    </customLabels>
+    <customLabels>
+        <label>Написати менеджеру</label>
+        <name>Write_to_manager</name>
+    </customLabels>
+    <customLabels>
+        <label>Так</label>
+        <name>Yes</name>
+    </customLabels>
+    <customLabels>
+        <label>Ваше ім’я</label>
+        <name>Your_name</name>
+    </customLabels>
+    <customLabels>
+        <label>На жаль, ви не можете редагувати підтверджену рекламацію</label>
+        <name>can_not_edit_reclamation</name>
+    </customLabels>
+    <customLabels>
+        <label>Для Вас припинено можливість створити замовлення до погашення заборгованності</label>
+        <name>cant_order_any_products</name>
+    </customLabels>
+    <customLabels>
+        <label>Деталі</label>
+        <name>card_details</name>
+    </customLabels>
+    <customLabels>
+        <label>Файли</label>
+        <name>card_files</name>
+    </customLabels>
+    <customLabels>
+        <label>Пов&apos;язано</label>
+        <name>card_related</name>
+    </customLabels>
+    <customLabels>
+        <label>Ви впевнені, що хочете підтвердити цю рекламацію?</label>
+        <name>confirm_claim_answer</name>
+    </customLabels>
+    <customLabels>
+        <label>Щось пішло не так. Будь ласка, зв&apos;яжіться з адміністратором</label>
+        <name>contact_sys_admin</name>
+    </customLabels>
+    <customLabels>
+        <label>Дата створення</label>
+        <name>dateOfCreation</name>
+    </customLabels>
+    <customLabels>
+        <label>Ви впевнені, що хочете видалити цю рекламацію?</label>
+        <name>delete_claim_answer</name>
+    </customLabels>
+    <customLabels>
+        <label>Ви впевнені що хочете видалити цей файл?</label>
+        <name>delete_file_question</name>
+    </customLabels>
+    <customLabels>
+        <label>Ви впевнені, що хочете видалити цей елемент?</label>
+        <name>delete_item_answer</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- fflib_security_error_field_not_insertable --></label>
+        <name>dlrs__fflib_security_error_field_not_insertable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- fflib_security_error_field_not_readable --></label>
+        <name>dlrs__fflib_security_error_field_not_readable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- fflib_security_error_field_not_updateable --></label>
+        <name>dlrs__fflib_security_error_field_not_updateable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- fflib_security_error_object_not_deletable --></label>
+        <name>dlrs__fflib_security_error_object_not_deletable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- fflib_security_error_object_not_insertable --></label>
+        <name>dlrs__fflib_security_error_object_not_insertable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- fflib_security_error_object_not_readable --></label>
+        <name>dlrs__fflib_security_error_object_not_readable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- fflib_security_error_object_not_updateable --></label>
+        <name>dlrs__fflib_security_error_object_not_updateable</name>
+    </customLabels>
+    <customLabels>
+        <label>Ваша дебіторська заборгованість складає</label>
+        <name>due_debt</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Email name for send error --></label>
+        <name>email_name_for_send_error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Cancel --></label>
+        <name>ers_CancelButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clear Filter --></label>
+        <name>ers_ClearFilterAction</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clear All Filters --></label>
+        <name>ers_ClearFilterButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clear Selection --></label>
+        <name>ers_ClearSelectionButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Column --></label>
+        <name>ers_ColumnHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Empty --></label>
+        <name>ers_EmptyTableMessage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Required --></label>
+        <name>ers_ErrorRequiredEntry</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Filter --></label>
+        <name>ers_FilterHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- First Page --></label>
+        <name>ers_FirstButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label --></label>
+        <name>ers_LabelHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Last Page --></label>
+        <name>ers_LastButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Next Page --></label>
+        <name>ers_NextButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Previous Page --></label>
+        <name>ers_PreviousButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Records per Page input label --></label>
+        <name>ers_RecordsPerPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save --></label>
+        <name>ers_SaveButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Search Term --></label>
+        <name>ers_SearchPlaceholder</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Set Filter --></label>
+        <name>ers_SetFilterAction</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Showing Page x of y Pages input label middle --></label>
+        <name>ers_ShowingPageMiddle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Showing Page x of y Pages input label prefix --></label>
+        <name>ers_ShowingPagePrefix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Showing Page x of y Pages input label suffix --></label>
+        <name>ers_ShowingPageSuffix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Help Text for Filter Blank Checkbox --></label>
+        <name>ers_filterBlankHelpText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for Filter Blank Checkbox --></label>
+        <name>ers_filterBlankLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AccessLevel --></label>
+        <name>fsc_AccessLevel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Back --></label>
+        <name>fsc_Back</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ButtonIsNotSupportedMessage --></label>
+        <name>fsc_ButtonIsNotSupportedMessage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ConditionLogicHelpText --></label>
+        <name>fsc_ConditionLogicHelpText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Delete --></label>
+        <name>fsc_Delete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FieldIsNotSupportedMessage --></label>
+        <name>fsc_FieldIsNotSupportedMessage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- fsc_FieldTypeNotSuportedMessage --></label>
+        <name>fsc_FieldTypeNotSuportedMessage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- For --></label>
+        <name>fsc_For</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Key Label --></label>
+        <name>fsc_Key_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- LackingPermissions --></label>
+        <name>fsc_LackingPermissions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ManagerEmptyMessage --></label>
+        <name>fsc_ManagerEmptyMessage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ComboBox Placeholder Txxt --></label>
+        <name>fsc_Manual_Reference_Allowed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- MultipleGroupsForRole --></label>
+        <name>fsc_MultipleGroupsForRole</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Name --></label>
+        <name>fsc_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NonePicklistValueLabel --></label>
+        <name>fsc_NonePicklistValueLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- OWDReadWrite --></label>
+        <name>fsc_OWDReadWrite</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- OwnerAdminModify --></label>
+        <name>fsc_OwnerAdminModify</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PublicGroups --></label>
+        <name>fsc_PublicGroups</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Queues --></label>
+        <name>fsc_Queues</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Read --></label>
+        <name>fsc_Read</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ReadWrite --></label>
+        <name>fsc_ReadWrite</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Reason --></label>
+        <name>fsc_Reason</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RelatedUsers --></label>
+        <name>fsc_RelatedUsers</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Roles --></label>
+        <name>fsc_Roles</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Search in --></label>
+        <name>fsc_Search</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SearchFor --></label>
+        <name>fsc_SearchFor</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SetAccessLevel --></label>
+        <name>fsc_SetAccessLevel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SupportedAddCapabilitiesEmptyMessage --></label>
+        <name>fsc_SupportedAddCapabilitiesEmptyMessage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SupportedButtonsEmptyMessage --></label>
+        <name>fsc_SupportedButtonsEmptyMessage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SupportedEditCapabilitiesEmptyMessage --></label>
+        <name>fsc_SupportedEditCapabilitiesEmptyMessage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TooManyResultsMessage --></label>
+        <name>fsc_TooManyResultsMessage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Type --></label>
+        <name>fsc_Type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UserOrGroup --></label>
+        <name>fsc_UserOrGroup</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Users --></label>
+        <name>fsc_Users</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Value Label --></label>
+        <name>fsc_Value_Label</name>
+    </customLabels>
+    <customLabels>
+        <label>Посилання для зміни пароля надіслано на вашу електронну адресу!</label>
+        <name>password_change_link</name>
+    </customLabels>
+    <customLabels>
+        <label>Якщо ви не бачите листа, перевірте папку зі спамом або зверніться до служби підтримки</label>
+        <name>password_change_link2</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AddNewButton --></label>
+        <name>rbin__AddNewButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Help Text for Permanent Deleted Data Restore --></label>
+        <name>rbin__Help_Text_for_Permanent_Deleted_Data_Restore</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Row Count Limit --></label>
+        <name>rbin__Row_Count_Limit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Row Count Limit For Permanent Deleted Data --></label>
+        <name>rbin__Row_Count_Limit_For_Permanent_Deleted_Data</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save rbin --></label>
+        <name>rbin__Save_rbin</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Search In Helptext --></label>
+        <name>rbin__Search_In_Helptext</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Track Batch Process --></label>
+        <name>rbin__Track_Batch_Process</name>
+    </customLabels>
+    <customLabels>
+        <label>Номер рекламації</label>
+        <name>reclamationNumber</name>
+    </customLabels>
+    <customLabels>
+        <label>Ви впевнені, що бажаєте скинути пароль? Посилання для зміни пароля буде надіслано на вашу електронну пошту! Сесія буде закрита.
+Якщо ви не побачите листа, перевірте папку зі спамом або зверніться до служби підтримки.</label>
+        <name>reset_password_question</name>
+    </customLabels>
+    <customLabels>
+        <label>Коментар</label>
+        <name>scd_Comment</name>
+    </customLabels>
+    <customLabels>
+        <label>Аккаунт</label>
+        <name>scd_account</name>
+    </customLabels>
+    <customLabels>
+        <label>Дата контракту</label>
+        <name>scd_contractDate</name>
+    </customLabels>
+    <customLabels>
+        <label>Номер контракту</label>
+        <name>scd_contractNumber</name>
+    </customLabels>
+    <customLabels>
+        <label>Валюта</label>
+        <name>scd_currency</name>
+    </customLabels>
+    <customLabels>
+        <label>Номер ERP</label>
+        <name>scd_erpNumber</name>
+    </customLabels>
+    <customLabels>
+        <label>Без відшкодування</label>
+        <name>scd_noRefund</name>
+    </customLabels>
+    <customLabels>
+        <label>Статус</label>
+        <name>scd_stage</name>
+    </customLabels>
+    <customLabels>
+        <label>Остання зміна</label>
+        <name>scf_lastChange</name>
+    </customLabels>
+    <customLabels>
+        <label>Назва</label>
+        <name>scf_name</name>
+    </customLabels>
+    <customLabels>
+        <label>Власник</label>
+        <name>scf_owner</name>
+    </customLabels>
+    <customLabels>
+        <label>Розмір</label>
+        <name>scf_size</name>
+    </customLabels>
+    <customLabels>
+        <label>Створити рекламацію</label>
+        <name>site_createReclamation</name>
+    </customLabels>
+    <customLabels>
+        <label>Рекламація</label>
+        <name>site_reclamation</name>
+    </customLabels>
+    <customLabels>
+        <label>Запит</label>
+        <name>site_request</name>
+    </customLabels>
+    <customLabels>
+        <label>Опис рекламації</label>
+        <name>site_th_descriptionClaim</name>
+    </customLabels>
+    <customLabels>
+        <label>Кількість замовлення</label>
+        <name>site_th_orderQuantity</name>
+    </customLabels>
+    <customLabels>
+        <label>Кількість рекламації</label>
+        <name>site_th_reclamationQuantity</name>
+    </customLabels>
+    <customLabels>
+        <label>Підтип</label>
+        <name>site_th_subtype</name>
+    </customLabels>
+    <customLabels>
+        <label>Тип</label>
+        <name>site_th_type</name>
+    </customLabels>
+    <customLabels>
+        <label>Тема</label>
+        <name>subject</name>
+    </customLabels>
+    <customLabels>
+        <label>Будь ласка, напишіть тему для заявки в службу підтримки.</label>
+        <name>theme_for_suport_ticket</name>
+    </customLabels>
+    <customLabels>
+        <label>Ви впевнені що хочете вийти?</label>
+        <name>want_to_exit</name>
+    </customLabels>
+    <customLabels>
+        <label>Для Вас буде припинено можливість створити замовлення, якщо заборгованість не буде погащено до</label>
+        <name>will_not_be_able_to_place_an_order</name>
+    </customLabels>
     <customTabs>
         <label><!-- All Prices --></label>
         <name>All_Prices</name>
@@ -65,6 +1654,10 @@
         <name>Scrap_Admin_Panel</name>
     </customTabs>
     <customTabs>
+        <label><!-- ДВМ --></label>
+        <name>Tab</name>
+    </customTabs>
+    <customTabs>
         <label><!-- World Countries --></label>
         <name>World_Countries</name>
     </customTabs>
@@ -85,72 +1678,51 @@
         <fullName>Auto_Populating_Comments_from_the_Head_of_Sales</fullName>
     </flowDefinitions>
     <flowDefinitions>
-        <flows>
-            <screens>
-                <fields>
-                    <name>Reason_cancel</name>
-                </fields>
-                <name>Select_reason_of_cancel</name>
-            </screens>
-            <screens>
-                <fields>
-                    <name>not_cancelled_text</name>
-                </fields>
-                <name>This_Opportunity_can_not_be_cancelled</name>
-            </screens>
-        </flows>
-        <fullName>Cancel_Opportunity</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
-        <flows>
-            <screens>
-                <fields>
-                    <name>Cancel_Reason</name>
-                </fields>
-                <fields>
-                    <name>Cancel_Reason_Details</name>
-                </fields>
-                <name>Specify_cancelling_reason</name>
-            </screens>
-        </flows>
-        <fullName>Cancel_Opportunity_Product</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
-        <flows>
-            <screens>
-                <fields>
-                    <name>FailedTest</name>
-                </fields>
-                <name>FalseAllert</name>
-            </screens>
-            <screens>
-                <fields>
-                    <name>sended_text_to_bo</name>
-                </fields>
-                <name>Sended_Text</name>
-            </screens>
-            <screens>
-                <fields>
-                    <name>Cancel_Reason</name>
-                </fields>
-                <fields>
-                    <name>Cancel_Reason_Details</name>
-                </fields>
-                <fields>
-                    <name>test</name>
-                </fields>
-                <name>Specify_cancelling_reason</name>
-            </screens>
-        </flows>
-        <fullName>Cancel_Opportunity_Product_2</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
         <flows/>
         <fullName>Change_Status_Date_in_Case</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows/>
         <fullName>Clear_IT_Ids_on_Opportunity</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <choices>
+                <name>ClosedWResolve</name>
+            </choices>
+            <choices>
+                <name>Completed</name>
+            </choices>
+            <screens>
+                <fields>
+                    <name>CloseText</name>
+                </fields>
+                <fields>
+                    <name>Close_Notification_Work_Item_Section1</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>width</name>
+                        <value/>
+                    </inputParameters>
+                    <name>Close_Notification_Work_Item_Section1_Column1</name>
+                </fields>
+                <fields>
+                    <name>WIStatus</name>
+                </fields>
+                <fields>
+                    <name>resolvedText</name>
+                </fields>
+                <name>Close_Notification_Work_Item</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>successIcon</name>
+                </fields>
+                <name>Successfull_Close</name>
+            </screens>
+        </flows>
+        <fullName>Close_Notification_Work_Item</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows>
@@ -177,32 +1749,6 @@
             </textTemplates>
         </flows>
         <fullName>Confirm_Reclamation</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
-        <flows>
-            <screens>
-                <fields>
-                    <name>Display_Text_0</name>
-                </fields>
-                <fields>
-                    <name>Yes_I_am_sure</name>
-                </fields>
-                <name>Copy_Production_Amount_in_Quotas_0</name>
-            </screens>
-            <screens>
-                <fields>
-                    <name>DontHaveAccess</name>
-                </fields>
-                <name>Dont_Have_Access</name>
-            </screens>
-            <screens>
-                <fields>
-                    <name>Error_Message</name>
-                </fields>
-                <name>Error</name>
-            </screens>
-        </flows>
-        <fullName>Copy_Production_Amount_in_Quotas</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows/>
@@ -245,6 +1791,413 @@
         <fullName>Custommer_Support_Notification</fullName>
     </flowDefinitions>
     <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>displayMode</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>iconSize</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>includeIcons</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>inputMode</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>masterLabel</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>navOnSelect</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>numberOfColumns</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>required</name>
+                        <value/>
+                    </inputParameters>
+                    <name>FieldSelectionMethod</name>
+                </fields>
+                <fields>
+                    <name>qcHeader</name>
+                </fields>
+                <name>Field_Selection_Method_Screen</name>
+            </screens>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>cb_hideClearSelectionButton</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>cb_isDisplayHeader</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>cb_matchCaseOnFilters</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>cb_navigateNextOnSave</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>cb_singleRowSelection</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>cb_suppressBottomBar</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columnFields</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columnFilters</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columnLabels</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columnWidths</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columnWraps</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>hideClearSelectionButton</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>isDisplayHeader</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>objectName</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>singleRowSelection</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>tableIcon</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>tableLabel</name>
+                        <value/>
+                    </inputParameters>
+                    <name>ConfigTable_select</name>
+                </fields>
+                <name>Select_Config_Record</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>List_of_Field_Names</name>
+                </fields>
+                <fields>
+                    <name>Object</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>allOptionsStringFormat</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>max</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>min</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>selectedLabel</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>size</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>sourceLabel</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>useWhichObjectKeyForData</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>useWhichObjectKeyForSort</name>
+                        <value/>
+                    </inputParameters>
+                    <name>SelectFields</name>
+                </fields>
+                <name>Select_Fields</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>FinishMessage_0</name>
+                </fields>
+                <name>Wizard_Exit</name>
+            </screens>
+            <screens>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>messageToggleActive</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>messageToggleInactive</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>value</name>
+                        <value/>
+                    </inputParameters>
+                    <name>AttributeToggle</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>actionMode</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>alignment</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>buttons</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>orientation</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>showLines</name>
+                        <value/>
+                    </inputParameters>
+                    <name>ConfigButtonCreate</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>actionMode</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>alignment</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>buttons</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>orientation</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>showLines</name>
+                        <value/>
+                    </inputParameters>
+                    <name>ConfigButtonSave</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>cb_hideClearSelectionButton</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>cb_isDisplayHeader</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>cb_navigateNextOnSave</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>cb_singleRowSelection</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>cb_suppressBottomBar</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columnFields</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columnFilters</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columnLabels</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columnWidths</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columnWraps</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>hideClearSelectionButton</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>isDisplayHeader</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>objectName</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>singleRowSelection</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>tableIcon</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>tableLabel</name>
+                        <value/>
+                    </inputParameters>
+                    <name>ConfigTable_saveas</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>label</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>messageToggleActive</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>messageToggleInactive</name>
+                        <value/>
+                    </inputParameters>
+                    <name>ConfigToggle</name>
+                </fields>
+                <fields>
+                    <name>Configuration_Record_Name</name>
+                </fields>
+                <fields>
+                    <name>DuplicateNameErrorMessage</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>actionMode</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>alignment</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>buttons</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>orientation</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>showLines</name>
+                        <value/>
+                    </inputParameters>
+                    <name>NoLoadConfig</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>actionMode</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>alignment</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>buttons</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>orientation</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>showLines</name>
+                        <value/>
+                    </inputParameters>
+                    <name>SaveAttributes</name>
+                </fields>
+                <fields>
+                    <name>Special_Cell_Attributes</name>
+                </fields>
+                <fields>
+                    <name>Special_Other_Attributes</name>
+                </fields>
+                <fields>
+                    <name>Special_Type_Attributes</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>cb_isUserDefinedObject</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>hideCheckboxColumn</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>isConfigMode</name>
+                        <value/>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>isUserDefinedObject</name>
+                        <value/>
+                    </inputParameters>
+                    <name>WizardTable</name>
+                </fields>
+                <fields>
+                    <name>debug</name>
+                </fields>
+                <name>Wizard_Screen</name>
+            </screens>
+        </flows>
+        <fullName>Datatable_Configuration_Wizard5</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
         <flows/>
         <fullName>Delete_Account_Share</fullName>
     </flowDefinitions>
@@ -265,6 +2218,174 @@
         <fullName>Email_Alert_Opportunity_Stage_Created_with_Closed_Won_Stage</fullName>
     </flowDefinitions>
     <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>AccLabel</name>
+                </fields>
+                <fields>
+                    <name>AccountCity</name>
+                </fields>
+                <fields>
+                    <name>AccountInfo_Section1</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>width</name>
+                        <value/>
+                    </inputParameters>
+                    <name>AccountInfo_Section1_Column1</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>width</name>
+                        <value/>
+                    </inputParameters>
+                    <name>AccountInfo_Section1_Column2</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>width</name>
+                        <value/>
+                    </inputParameters>
+                    <name>AccountInfo_Section1_Column3</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>width</name>
+                        <value/>
+                    </inputParameters>
+                    <name>AccountInfo_Section1_Column4</name>
+                </fields>
+                <fields>
+                    <name>AccountName</name>
+                </fields>
+                <fields>
+                    <name>AddressStreetBuilding</name>
+                </fields>
+                <fields>
+                    <name>EMail</name>
+                </fields>
+                <fields>
+                    <name>Mobile</name>
+                </fields>
+                <fields>
+                    <name>Phone</name>
+                </fields>
+                <fields>
+                    <name>PostalCode</name>
+                </fields>
+                <fields>
+                    <name>Website</name>
+                </fields>
+                <fields>
+                    <name>erpId</name>
+                </fields>
+                <name>AccountInfo</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>ContactLabel</name>
+                </fields>
+                <fields>
+                    <name>Department</name>
+                </fields>
+                <fields>
+                    <name>EMailContact</name>
+                </fields>
+                <fields>
+                    <name>FirstName</name>
+                </fields>
+                <fields>
+                    <name>IsPortalUser</name>
+                </fields>
+                <fields>
+                    <name>LastName</name>
+                </fields>
+                <fields>
+                    <name>MiddleName</name>
+                </fields>
+                <fields>
+                    <name>MobileContact</name>
+                </fields>
+                <fields>
+                    <name>NewContact_Section1</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>width</name>
+                        <value/>
+                    </inputParameters>
+                    <name>NewContact_Section1_Column1</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>width</name>
+                        <value/>
+                    </inputParameters>
+                    <name>NewContact_Section1_Column2</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>width</name>
+                        <value/>
+                    </inputParameters>
+                    <name>NewContact_Section1_Column3</name>
+                </fields>
+                <fields>
+                    <name>PhoneContact</name>
+                </fields>
+                <fields>
+                    <name>Title</name>
+                </fields>
+                <name>NewContact</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>ContractLabel</name>
+                </fields>
+                <fields>
+                    <name>ContractName</name>
+                </fields>
+                <fields>
+                    <name>ContractTerm</name>
+                </fields>
+                <fields>
+                    <name>NewContract_Section1</name>
+                </fields>
+                <fields>
+                    <inputParameters>
+                        <name>width</name>
+                        <value/>
+                    </inputParameters>
+                    <name>NewContract_Section1_Column1</name>
+                </fields>
+                <fields>
+                    <name>StartDate</name>
+                </fields>
+                <name>NewContract</name>
+            </screens>
+            <screens>
+                <fields>
+                    <name>FinishText</name>
+                </fields>
+                <name>SuccessFinal</name>
+            </screens>
+        </flows>
+        <fullName>New_Account_DVM</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <screens>
+                <fields>
+                    <name>StatChange</name>
+                </fields>
+                <name>Status_Changed</name>
+            </screens>
+        </flows>
+        <fullName>Notification_Work_Item</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
         <flows/>
         <fullName>OpportunityFieldAutopopulation</fullName>
     </flowDefinitions>
@@ -279,6 +2400,10 @@
     <flowDefinitions>
         <flows/>
         <fullName>Opportunity_Deletion</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows/>
+        <fullName>Opportunity_Team_Sync_Cross_Market_Manager</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows/>
@@ -329,14 +2454,6 @@
     </flowDefinitions>
     <flowDefinitions>
         <flows>
-            <screens>
-                <name>Recover_Opportunity_Product</name>
-            </screens>
-        </flows>
-        <fullName>Recover_Cancelled_Opportunity_Product</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
-        <flows>
             <textTemplates>
                 <name>Email_body</name>
             </textTemplates>
@@ -362,22 +2479,6 @@
     <flowDefinitions>
         <flows/>
         <fullName>Test_Opportunity_Email_Alert_for_Support</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
-        <flows/>
-        <fullName>Update_Related_Items_Of_Production_Quote_3</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
-        <flows/>
-        <fullName>Update_Related_Items_Of_Production_Quote_4</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
-        <flows/>
-        <fullName>Update_Related_Items_Of_Production_Quote_5</fullName>
-    </flowDefinitions>
-    <flowDefinitions>
-        <flows/>
-        <fullName>Update_Related_Items_Of_Production_Quote_6</fullName>
     </flowDefinitions>
     <flowDefinitions>
         <flows>
@@ -1801,6 +3902,10 @@
             <name>Opportunities</name>
         </sections>
         <sections>
+            <label><!-- Opportunity Product --></label>
+            <name>Opportunity Product</name>
+        </sections>
+        <sections>
             <label><!-- Products --></label>
             <name>Products</name>
         </sections>
@@ -1896,15 +4001,6 @@
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Pipe Benchmarks --></description>
-        <label><!-- Pipe Benchmarks --></label>
-        <name>Pipe_Benchmarks</name>
-        <sections>
-            <label><!-- Pipe Benchmarks --></label>
-            <name>Pipe Benchmarks</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
         <description><!-- Portal Users --></description>
         <label><!-- Portal Users --></label>
         <name>Portal_Users</name>
@@ -1926,8 +4022,16 @@
             <name>Price Approval Request</name>
         </sections>
         <sections>
+            <label><!-- Price Approval Request Items --></label>
+            <name>Price Approval Request Items</name>
+        </sections>
+        <sections>
             <label><!-- Price Approval Request Products --></label>
             <name>Price Approval Request Products</name>
+        </sections>
+        <sections>
+            <label><!-- Price Approval Requests --></label>
+            <name>Price Approval Requests</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -1941,6 +4045,23 @@
         <sections>
             <label><!-- Sales Plan and Fact --></label>
             <name>Sales Plan and Fact</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- ProductMain SKU with Prod Sale Items with Prod Sale Item Details --></description>
+        <label><!-- ProductMain SKU with Prod Sale Items with Prod Sale Item Details --></label>
+        <name>ProductMain_SKU_with_Prod_Sale_Items_with_Prod_Sale_Item_Details</name>
+        <sections>
+            <label><!-- Prod Sale Item Details --></label>
+            <name>Prod Sale Item Details</name>
+        </sections>
+        <sections>
+            <label><!-- Prod Sale Items --></label>
+            <name>Prod Sale Items</name>
+        </sections>
+        <sections>
+            <label><!-- ProductMain SKU --></label>
+            <name>ProductMain SKU</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -1959,6 +4080,10 @@
         <sections>
             <label><!-- Opportunities --></label>
             <name>Opportunities</name>
+        </sections>
+        <sections>
+            <label><!-- Opportunity Product --></label>
+            <name>Opportunity Product</name>
         </sections>
         <sections>
             <columns>
@@ -1997,15 +4122,6 @@
         <sections>
             <label><!-- Quotes Structures --></label>
             <name>Quotes Structures</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
-        <description><!-- Raw Materials --></description>
-        <label><!-- Raw Materials --></label>
-        <name>Raw_Materials</name>
-        <sections>
-            <label><!-- Raw Materials --></label>
-            <name>Raw Materials</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -2083,15 +4199,6 @@
         <sections>
             <label><!-- Survey Question Responses --></label>
             <name>Survey Question Responses</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
-        <description><!-- Trade Data --></description>
-        <label><!-- Trade Data --></label>
-        <name>Trade_Data</name>
-        <sections>
-            <label><!-- Trade Data --></label>
-            <name>Trade Data</name>
         </sections>
     </reportTypes>
     <reportTypes>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CountOfProductsWithoutMargin__c</fullName>
+    <description>Service field to define if there are still any opportunity products without margin calculated.</description>
+    <inlineHelpText>Service field to define if there are still any opportunity products without margin calculated.</inlineHelpText>
+    <label>Count of products without margin</label>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.Margin_t__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </summaryFilterItems>
+    <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

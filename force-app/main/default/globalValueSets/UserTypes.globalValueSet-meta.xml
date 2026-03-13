@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Sales Manager</fullName>
+        <default>false</default>
+        <label>Sales Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Senior Manager</fullName>
+        <default>false</default>
+        <label>Sales Senior Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Chief Officer</fullName>
+        <default>false</default>
+        <label>Sales Chief Officer</label>
+    </customValue>
+    <customValue>
+        <fullName>BO Specialist</fullName>
+        <default>false</default>
+        <label>BO Specialist</label>
+    </customValue>
+    <customValue>
+        <fullName>BO Manager</fullName>
+        <default>false</default>
+        <label>BO Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>Marketing</fullName>
+        <default>false</default>
+        <label>Marketing</label>
+    </customValue>
+    <customValue>
+        <fullName>Product &amp; Resources</fullName>
+        <default>false</default>
+        <label>Product &amp; Resources</label>
+    </customValue>
+    <customValue>
+        <fullName>Director</fullName>
+        <default>false</default>
+        <label>Director</label>
+    </customValue>
+    <customValue>
+        <fullName>Top Management</fullName>
+        <default>false</default>
+        <label>Top Management</label>
+    </customValue>
+    <customValue>
+        <fullName>IT Department</fullName>
+        <default>false</default>
+        <label>IT Department</label>
+    </customValue>
+    <masterLabel>User Types</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

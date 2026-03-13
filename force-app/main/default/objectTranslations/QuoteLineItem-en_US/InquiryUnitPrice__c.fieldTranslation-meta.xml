@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Price of the product per measurement unit in customer&apos;s inquiry. --></help>
+    <label><!-- Sales Price (per unit) --></label>
+    <name>InquiryUnitPrice__c</name>
+</CustomFieldTranslation>

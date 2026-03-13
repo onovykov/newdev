@@ -1,0 +1,6 @@
+<p>Dear user,</p>
+
+<p>{!Approval_Requesting_User.Name} has submitted a price approval request <a href="{!PriceApprovalRequest__c.Link}">{!PriceApprovalRequest__c.Name}</a> for {!PriceApprovalRequest__c.Account__c} with the following comments:
+<p>{!ApprovalRequest.Comments}</p>
+<p>Please, review the request and approve or reject it by navigating to:
+<p>{!ApprovalRequest.Internal_URL}</p>

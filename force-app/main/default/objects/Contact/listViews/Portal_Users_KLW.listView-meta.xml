@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Portal_Users_KLW</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>CONTACT.LAST_NAME</columns>
+    <columns>CONTACT.FIRST_NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CONTACT.TITLE</columns>
+    <columns>CONTACT.PHONE1</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>Account.ID_ERP__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>IsPortalUser__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Account.MarketSegment__c</field>
+        <operation>equals</operation>
+        <value>00006</value>
+    </filters>
+    <label>Portal Users KLW</label>
+    <sharedTo>
+        <group>KLW</group>
+        <group>Marketing</group>
+        <group>SeniorManagementTeam</group>
+    </sharedTo>
+</ListView>

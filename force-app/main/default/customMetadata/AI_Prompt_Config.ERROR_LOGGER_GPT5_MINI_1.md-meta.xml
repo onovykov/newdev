@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>ERROR_LOGGER_GPT5_MINI_1</label>
+    <protected>false</protected>
+    <values>
+        <field>Default__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Domain__c</field>
+        <value xsi:type="xsd:string">ERROR_LOGGER</value>
+    </values>
+    <values>
+        <field>IsActive__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Key__c</field>
+        <value xsi:type="xsd:string">ERROR_LOGGER_gpt_5.0_mini_v1.0</value>
+    </values>
+    <values>
+        <field>Model__c</field>
+        <value xsi:type="xsd:string">gpt 5.0 mini</value>
+    </values>
+    <values>
+        <field>SystemPrompt__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Temperature__c</field>
+        <value xsi:type="xsd:double">0.0</value>
+    </values>
+    <values>
+        <field>Version__c</field>
+        <value xsi:type="xsd:string">1.0</value>
+    </values>
+</CustomMetadata>

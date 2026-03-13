@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Attrib. Type --></label>
+    <name>AttribType__c</name>
+    <picklistValues>
+        <masterLabel>NUMBER</masterLabel>
+        <translation><!-- NUMBER --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TEXT</masterLabel>
+        <translation><!-- TEXT --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -18,38 +18,38 @@ global class EmailMessageServiceHandler implements Messaging.InboundEmailHandler
 
 		// generate EmailMessages
 		EmailMessage emailMessage = generateEmailMessage(email);
-		
+
 		// get all users
 		Map<String, List<Id>> usersMap = getUsersMap(emails);
 		Map<String, List<Id>> contactsMap = getContactsMap(emails);
 		Map<String, List<Id>> leadsMap = getLeadsMap(emails);
-		// create new Lead if there not assosiated Leads and Contacts, and address not in ignor list emails	
-		
-		System.debug(emailMessage.FromAddress);
-		Ignored_Emails__c[] ignoredEmails = [SELECT Email_address__c FROM Ignored_Emails__c WHERE Email_address__c = :emailMessage.FromAddress];
-		if (ignoredEmails.size() == 0) {
-			List<Opportunity> oppsWithNotEmptyTag = [SELECT Id, Tag__c FROM Opportunity WHERE Tag__c!=null];
-			for(Opportunity opp : oppsWithNotEmptyTag){
-				if(emailMessage.Subject.contains(opp.Tag__c)){
-					emailMessage.RelatedToId = opp.Id;
-				}
-			}
-			if(emailMessage.RelatedToId==null){
-				emailMessage.RelatedToId = getRelatedId(emails, emailMessage.Subject);
-			}
+		// create new Lead if there not assosiated Leads and Contacts, and address not in ignor list emails
 
-			// add user to owner
-			if (contactsMap.isEmpty() && leadsMap.isEmpty() && !usersMap.isEmpty() && emailMessage.Incoming) {					
-				ID userId = usersMap.values().get(0).get(0);
-				Lead lead = generateLead(emailMessage.FromAddress, userId);
-				insert lead;
-				leadsMap.put(lead.Email, new List<Id> { lead.id });
-			}
-		}
-		insert emailMessage;
-		System.debug(emailMessage.Id);
+//		System.debug(emailMessage.FromAddress);
+//		Ignored_Emails__c[] ignoredEmails = [SELECT Email_address__c FROM Ignored_Emails__c WHERE Email_address__c = :emailMessage.FromAddress];
+//		if (ignoredEmails.size() == 0) {
+//			List<Opportunity> oppsWithNotEmptyTag = [SELECT Id, Tag__c FROM Opportunity WHERE Tag__c!=null];
+//			for(Opportunity opp : oppsWithNotEmptyTag){
+//				if(emailMessage.Subject.contains(opp.Tag__c)){
+//					emailMessage.RelatedToId = opp.Id;
+//				}
+//			}
+//			if(emailMessage.RelatedToId==null){
+//				emailMessage.RelatedToId = getRelatedId(emails, emailMessage.Subject);
+//			}
+//
+//			// add user to owner
+//			if (contactsMap.isEmpty() && leadsMap.isEmpty() && !usersMap.isEmpty() && emailMessage.Incoming) {
+//				ID userId = usersMap.values().get(0).get(0);
+//				Lead lead = generateLead(emailMessage.FromAddress, userId);
+//				insert lead;
+//				leadsMap.put(lead.Email, new List<Id> { lead.id });
+//			}
+//		}
+//		insert emailMessage;
+//		System.debug(emailMessage.Id);
 
-		// retrieve all email relationships 
+		// retrieve all email relationships
 		List<EmailMessageRelation> relationships = getEmailRelationship(emailMessage.Id);
 
 
@@ -67,8 +67,8 @@ global class EmailMessageServiceHandler implements Messaging.InboundEmailHandler
 			System.debug(emr.RelationObjectType);
 		}
 
-		//Check on filled relations and delete email if there is no any relations except to users	
-		
+		//Check on filled relations and delete email if there is no any relations except to users
+
 		System.debug(emailMessage.Id);
 		EmailMessageRelation[] emrCheck = [Select Id, RelationAddress, RelationId, RelationObjectType FROM EmailMessageRelation WHERE EmailMessageId = :emailMessage.Id];
 		for(EmailMessageRelation emr1 : emrCheck) {
@@ -150,7 +150,7 @@ global class EmailMessageServiceHandler implements Messaging.InboundEmailHandler
 			}
 
 			if (opportunitiesList.size() > 1) {
-				// insert task assign to opportunity owner 
+				// insert task assign to opportunity owner
 				Task ownerTask = generateTaskForOppOwner(actualOpp.OwnerId, actualOpp.Id, opportunitiesList);
 				insert ownerTask;
 			}
