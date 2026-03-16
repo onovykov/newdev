@@ -139,4 +139,21 @@ private class UserRepositoryTest {
         System.assertEquals(UserRepository.getAllUsers().size(), UserRepository.getAllUsers().size(),
             'Після повторного clearCache повторне завантаження повинне спрацювати коректно');
     }
+
+    @IsTest
+    static void test_getByLoginERPSet() {
+        UserRepository.clearCache();
+
+        User u1 = mkUser('L1', 'Pipes', '00001', 'ERP-L1', 'UID-L1', 'LOGIN-L1', 'ERP-L1');
+        User u2 = mkUser('L2', 'Pipes', '00002', 'ERP-L2', 'UID-L2', 'LOGIN-L2', 'ERP-L2');
+
+        Map<String, User> res = UserRepository.getByLoginERPSet(
+            new Set<String>{ 'LOGIN-L1', ' LOGIN-L2 ', 'UNKNOWN', '' }
+        );
+
+        System.assertEquals(2, res.size(), 'Only existing users must be returned');
+        System.assertEquals(u1.Id, res.get('LOGIN-L1').Id, 'LOGIN-L1 must resolve correctly');
+        System.assertEquals(u2.Id, res.get('LOGIN-L2').Id, 'LOGIN-L2 must be trimmed and resolved');
+        System.assertEquals(false, res.containsKey('UNKNOWN'), 'Unknown login must not be included');
+    }
 }

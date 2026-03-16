@@ -268,4 +268,25 @@ private class SysUtilsTest {
         SysUtils.coverageProbe2();
         Test.stopTest();
     }
+
+    @IsTest
+    static void test_hashCreate_and_buildERPHash() {
+        String h1 = SysUtils.hashCreate('ABC');
+        String h2 = SysUtils.hashCreate('ABC');
+        String h3 = SysUtils.hashCreate('abc');
+
+        System.assertEquals(64, h1.length(), 'SHA-256 hex must have length 64');
+        System.assertEquals(h1, h2, 'Hash must be deterministic for same input');
+        System.assertNotEquals(h1, h3, 'Hash must remain case-sensitive');
+
+        System.assertEquals(null, SysUtils.buildERPHash(null), 'Null list must return null');
+        System.assertEquals(null, SysUtils.buildERPHash(new List<String>()), 'Empty list must return null');
+
+        String k1 = SysUtils.buildERPHash(new List<String>{'  A  ', 'B'});
+        String k2 = SysUtils.buildERPHash(new List<String>{'A', 'B'});
+        String k3 = SysUtils.buildERPHash(new List<String>{'a', 'B'});
+
+        System.assertEquals(k1, k2, 'Whitespace normalization must not affect hash');
+        System.assertNotEquals(k1, k3, 'Case must remain significant');
+    }
 }
