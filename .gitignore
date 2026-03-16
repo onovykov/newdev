@@ -7,3 +7,4 @@ notepad .gitignore
 git add .gitignore
 git commit -m "chore(git): add Salesforce-friendly .gitignore"
 git pushforce-app/main/default/externalCredentials/*.externalCredential-meta.xml
+force-app/main/default/externalCredentials/
