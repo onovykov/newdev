@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+
+    <!-- ===================== -->
+    <!-- CORE TRIGGER HANDLER -->
+    <!-- ===================== -->
+    <types>
+        <members>OpportunityTriggerHandler</members>
+        <members>SFtoERPOpportunityStage</members>
+        <name>ApexClass</name>
+    </types>
+
+    <!-- ===================== -->
+    <!-- NEW ARCHITECTURE -->
+    <!-- ===================== -->
+    <types>
+        <members>OpportunityStageSyncContext</members>
+        <members>OpportunityStageSyncDispatcher</members>
+        <members>OpportunityStageSyncJob</members>
+        <members>OpportunityStageSyncGatewayFactory</members>
+        <members>LegacyOpportunityStageSyncGateway</members>
+        <members>LegacyOpportunityStageSyncService</members>
+        <members>LegacyOpportunityStageSyncServiceFacade</members>
+        <members>IOpportunityStageSyncGateway</members>
+        <name>ApexClass</name>
+    </types>
+
+    <!-- ===================== -->
+    <!-- TEST CLASSES -->
+    <!-- ===================== -->
+    <types>
+		<members>LegacyOppStageSyncServiceFacadeTest</members>
+		<members>ERPWebServiceMock</members>
+		<members>TestHttpMock</members>
+		<members>LegacyOpportunityStageSyncServiceTest</members>
+		<members>OpportunityTriggerHandlerExtraTest</members>
+        <members>SFtoERPOpportunityStageCoverageTest</members>
+        <members>LegacyOppStageSyncServiceCoverageTest</members>
+        <members>OpportunityTriggerHandlerCoverageTest</members>
+        <members>OpportunityStageSyncDispatcherTest</members>
+        <members>OpportunityStageSyncJobTest</members>
+        <members>LegacyOpportunityStageSyncGatewayTest</members>
+        <members>OpportunityTriggerAfterUpdateTest</members>
+        <members>OpportunityTriggerHandlerTest</members>
+        <name>ApexClass</name>
+    </types>
+
+    <version>64.0</version>
+</Package>

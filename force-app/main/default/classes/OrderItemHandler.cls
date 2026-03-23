@@ -58,6 +58,9 @@ public class OrderItemHandler extends TriggerHandler implements ITrigger {
 	
 
 	public void bulkBefore() {
+		if (TriggerControl.isDisabled(OrderItemHandler.class)) {
+			return;
+		}		
 		System.debug('bulkBefore OrderItem');
 		initializeOrdIdMap(newList);
 
@@ -179,6 +182,9 @@ public class OrderItemHandler extends TriggerHandler implements ITrigger {
 	
 
 	public void bulkAfter() {
+		if (TriggerControl.isDisabled(OrderItemHandler.class)) {
+			return;
+		}			
 		System.debug('bulkAfter OrderItem');
 		
 		// Подготовим данные для фомрирования записей в объекте SalesPlanFact__c:

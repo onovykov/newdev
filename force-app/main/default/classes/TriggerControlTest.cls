@@ -4,71 +4,79 @@ private class TriggerControlTest {
     private class DummyHandler {}
 
     @IsTest
-    static void test_disable_enable_by_name() {
+    static void testDisableEnableByString() {
 
-        TriggerControl.reset();
-
-        System.assertEquals(
-            false,
-            TriggerControl.isDisabled('DummyHandler')
-        );
-
+        // Act
         TriggerControl.disable('DummyHandler');
 
-        System.assertEquals(
-            true,
-            TriggerControl.isDisabled('DummyHandler')
-        );
+        // Assert
+        System.assertEquals(true, TriggerControl.isDisabled('DummyHandler'));
 
+        // Act
         TriggerControl.enable('DummyHandler');
 
-        System.assertEquals(
-            false,
-            TriggerControl.isDisabled('DummyHandler')
-        );
+        // Assert
+        System.assertEquals(false, TriggerControl.isDisabled('DummyHandler'));
     }
 
     @IsTest
-    static void test_disable_enable_by_type() {
+    static void testDisableEnableByType() {
 
-        TriggerControl.reset();
-
-        System.assertEquals(
-            false,
-            TriggerControl.isDisabled(DummyHandler.class)
-        );
-
+        // Act
         TriggerControl.disable(DummyHandler.class);
 
-        System.assertEquals(
-            true,
-            TriggerControl.isDisabled(DummyHandler.class)
-        );
+        // Assert
+        System.assertEquals(true, TriggerControl.isDisabled(DummyHandler.class));
 
+        // Act
         TriggerControl.enable(DummyHandler.class);
 
-        System.assertEquals(
-            false,
-            TriggerControl.isDisabled(DummyHandler.class)
-        );
+        // Assert
+        System.assertEquals(false, TriggerControl.isDisabled(DummyHandler.class));
     }
 
     @IsTest
-    static void test_reset() {
+    static void testReset() {
 
-        TriggerControl.disable('TestHandler');
+        // Arrange
+        TriggerControl.disable('A');
+        TriggerControl.disable('B');
 
-        System.assertEquals(
-            true,
-            TriggerControl.isDisabled('TestHandler')
-        );
-
+        // Act
         TriggerControl.reset();
 
-        System.assertEquals(
-            false,
-            TriggerControl.isDisabled('TestHandler')
-        );
+        // Assert
+        System.assertEquals(false, TriggerControl.isDisabled('A'));
+        System.assertEquals(false, TriggerControl.isDisabled('B'));
     }
 
+    @IsTest
+    static void testMultipleHandlers() {
+
+        // Arrange
+        TriggerControl.disable('Handler1');
+        TriggerControl.disable('Handler2');
+
+        // Assert
+        System.assertEquals(true, TriggerControl.isDisabled('Handler1'));
+        System.assertEquals(true, TriggerControl.isDisabled('Handler2'));
+
+        // Act
+        TriggerControl.enable('Handler1');
+
+        // Assert
+        System.assertEquals(false, TriggerControl.isDisabled('Handler1'));
+        System.assertEquals(true, TriggerControl.isDisabled('Handler2'));
+    }
+
+    @IsTest
+    static void testIdempotentDisable() {
+
+        // Act
+        TriggerControl.disable('HandlerX');
+        TriggerControl.disable('HandlerX');
+
+        // Assert
+        System.assertEquals(true, TriggerControl.isDisabled('HandlerX'));
+    }
 }

@@ -155,12 +155,13 @@ public class OpportunityTriggerHandler extends TriggerHandler implements ITrigge
 					}
 				}
 
-				/* 18.10.2020: Закомментировал создание ордеров, чтобы избежать конфликта, когда из ИТ-Предприятия приходит заказ,
+				/* 18.10.2020: Закомментировал создание ордеров, чтобы избежать конфликта, 
+				// когда из ИТ-Предприятия приходит заказ,
 				//а оппа еще не в стадии выигранной.
 				//opportunitiesToConvert.add(so.Id);
 				//Order newOrder = createOrder((Opportunity) so);
 				//oppIdWithOrderMap.put(so.Id, newOrder);
-				*///18.10.2020
+				*/
 			}
 		}
 	}
@@ -174,34 +175,50 @@ public class OpportunityTriggerHandler extends TriggerHandler implements ITrigge
 
 	}
 
+	/*
+		Refactored by O. Novykov
+		20.03.2026
+	*/
 	public void afterUpdate(SObject oldSo, SObject so) {
-		if (!Test.isRunningTest()) {
-            System.debug('afterUpdate');
-			Opportunity oldOpp = (Opportunity) oldSo;
-			Opportunity opp = (Opportunity) so;
-			if (opp.StageName != oldOpp.StageName && opp.ID_ERP__c != null) {
-				SFtoERPOpportunityStage.sendJSONData(opp.id);
-			}
-			if (String.isNotBlank(opp.ID_ERP__c) && String.isBlank(oldOpp.ID_ERP__c) ) {
-				SFtoERPOpportunityStage.sendJSONData(opp.id);
-			}
-			if (isFieldChanged(oldOpp, opp, 'Probability')) {
-				List<id> lastQuoteId = new List<id>();
-				List<Quote> lastQuote = [SELECT id FROM Quote WHERE OpportunityId =:opp.id ORDER BY CreatedDate DESC LIMIT 1];
-				System.debug('lastQuote ' +lastQuote.size());
+		/*
+		if (Test.isRunningTest()) {
+			return;
+		}
+		*/
+		if (Test.isRunningTest() && !OpportunityStageSyncContext.allowDispatchInTest) {
+			return;
+		}
+		
+		Opportunity oldOpp = (Opportunity) oldSo;
+		Opportunity opp = (Opportunity) so;
 
-				if (lastQuote.size() > 0) {
-					for (Quote qt : lastQuote) {
-						lastQuoteId.add(qt.Id);
-					}
-				System.debug('lastQuote ' +lastQuote);
-				if (lastQuote[0].Created_From_OPA_process__c = false) {
-					QuoteJSONGenerator.createJsonData(lastQuoteId);
-				}
-				}
-			}
-        }
+		Set<Id> oppIdsToSync = new Set<Id>();
 
+		if (opp.StageName != oldOpp.StageName && String.isNotBlank(opp.ID_ERP__c)) {
+			oppIdsToSync.add(opp.Id);
+		}
+
+		if (String.isNotBlank(opp.ID_ERP__c) && String.isBlank(oldOpp.ID_ERP__c)) {
+			oppIdsToSync.add(opp.Id);
+		}
+
+		if (!oppIdsToSync.isEmpty()) {
+			OpportunityStageSyncDispatcher.dispatch(oppIdsToSync);
+		}
+
+		if (isFieldChanged(oldOpp, opp, 'Probability')) {
+			List<Quote> lastQuote = [
+				SELECT Id, Created_From_OPA_process__c
+				FROM Quote
+				WHERE OpportunityId = :opp.Id
+				ORDER BY CreatedDate DESC
+				LIMIT 1
+			];
+
+			if (!lastQuote.isEmpty() && lastQuote[0].Created_From_OPA_process__c == false) {
+				QuoteJSONGenerator.createJsonData(new List<Id>{ lastQuote[0].Id });
+			}
+		}
 	}
 
 	public void afterDelete(SObject so) {
@@ -213,7 +230,8 @@ public class OpportunityTriggerHandler extends TriggerHandler implements ITrigge
 			insert oppIdWithOrderMap.values();
 
 			for (Id current_order_opp_id : oppIdWithOrderMap.keySet()) {
-				((Opportunity) newMap.get(current_order_opp_id)).SyncedOrder__c = oppIdWithOrderMap.get(current_order_opp_id).Id;
+				((Opportunity) newMap.get(current_order_opp_id)).SyncedOrder__c = 
+					oppIdWithOrderMap.get(current_order_opp_id).Id;
 			}
 
 			newOrderItems.addAll(createOrderItems(opportunitiesToConvert, oppIdWithOrderMap.values()));

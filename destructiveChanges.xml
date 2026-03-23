@@ -1,10 +1,8 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-  <types>
-    <members>Cancel_Opportunity_Product</members>
-    <members>Cancel_Opportunity_Product_2</members>
-    <members>Recover_Cancelled_Opportunity_Product</members>
-    <name>Flow</name>
-  </types>
-  <version>65.0</version>
+    <types>
+        <members>IOpportunityStageSyncGateway</members>
+        <name>ApexClass</name>
+    </types>
+    <version>64.0</version>
 </Package>

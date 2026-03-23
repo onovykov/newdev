@@ -899,7 +899,9 @@ public class ERPMessageHandlerOpportunityData {
     }
 
     @testVisible
-    public static void updateOLI(OpportunityLineItem oppProductSF, OrderItem ordProductSF, ERPMessageParser.ERPObject_OrderItem oppProdERP, Integer requestObjGeneral_DataID_ERP, List<ProductionLot__c> lotsToInsert, UpdateSFRecordsResultOrder result) {
+    public static void updateOLI(OpportunityLineItem oppProductSF, OrderItem ordProductSF, 
+    ERPMessageParser.ERPObject_OrderItem oppProdERP, Integer requestObjGeneral_DataID_ERP, 
+    List<ProductionLot__c> lotsToInsert, UpdateSFRecordsResultOrder result) {
 // NEW CORRECT    public static void updateOLI(OpportunityLineItem oppProductSF, OrderItem ordProductSF, ERPMessageParser.ERPObject_OrderItem oppProdERP, Integer requestObjGeneral_DataID_ERP, List<Lot__c> lotsToInsert, UpdateSFRecordsResultOrder result) {
         Map<String,String> stageCodeMap = makeMapForStage();
         if (oppProductSF != null) {

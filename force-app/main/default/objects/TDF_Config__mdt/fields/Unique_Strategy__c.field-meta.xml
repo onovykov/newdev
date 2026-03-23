@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Unique_Strategy__c</fullName>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Unique Strategy</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>TIMESTAMP_SEQ</fullName>
+                <default>true</default>
+                <label>TIMESTAMP_SEQ</label>
+            </value>
+            <value>
+                <fullName>RANDOM_SEQ</fullName>
+                <default>false</default>
+                <label>RANDOM_SEQ</label>
+            </value>
+            <value>
+                <fullName>TESTRUN_SEQ</fullName>
+                <default>false</default>
+                <label>TESTRUN_SEQ</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
