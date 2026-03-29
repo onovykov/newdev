@@ -7,7 +7,7 @@ public with sharing class PARPendingApprovalService {
         String ownersId
     ) {
 
-        // 1️⃣ Resolve users (strict mode ON)
+        // Resolve users (strict mode ON)
         ERPUserResolutionResult resolution =
             ERPUserResolverService.resolveFromOwnersId(
                 ownersId,
@@ -21,10 +21,10 @@ public with sharing class PARPendingApprovalService {
             return;
         }
 
-        // 2️⃣ Cancel old pending tasks
+        // Cancel old pending tasks
         cancelExistingPendingTasks(par.Id);
 
-        // 3️⃣ Create new tasks
+        // Create new tasks
         List<PARPendingApproval__c> tasks =
             new List<PARPendingApproval__c>();
 
@@ -54,7 +54,7 @@ public with sharing class PARPendingApprovalService {
             upsert tasks ExternalKey__c;
         }
 
-        // 4️⃣ Notify users
+        // Notify users
         sendNotifications(tasks);
     }
 

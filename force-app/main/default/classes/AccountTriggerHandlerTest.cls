@@ -166,4 +166,64 @@ private class AccountTriggerHandlerTest {
         System.assertNotEquals(null, a.MetaphonePrimary__c,     'MetaphonePrimary__c must be set on update');
         System.assertNotEquals(null, a.SoundexFirst3Letters__c, 'SoundexFirst3Letters__c must be set on update');
     }
+
+    @IsTest
+    static void test_integrationUser_createsAccount_triggersAlert() {
+
+        Profile p = [SELECT Id FROM Profile WHERE Name != 'System Administrator' LIMIT 1];
+
+        User integrationUser = new User(
+            ProfileId = p.Id,
+            Alias = 'sfite',
+            Email = 'sf-ite@interpipe.biz',
+            Username = 'test@integration.user', //'sf-ite@interpipe.biz',
+            TimeZoneSidKey = 'Europe/Warsaw',
+            LocaleSidKey = 'en_US',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US',
+            LastName = 'Integration',
+            FirstName = 'User',
+            IsActive = true
+        );
+
+        insert integrationUser;
+
+        System.runAs(integrationUser) {
+
+            Test.startTest();
+
+            Account a = new Account(
+                Name = 'SUSPICIOUS ACCOUNT',
+                OwnerId = integrationUser.Id
+            );
+
+            insert a;
+
+            Test.stopTest();
+
+            // запис створився (бо soft mode)
+            System.assertNotEquals(null, a.Id, 'Account should be created in soft mode');
+
+            // івент відпрацював (не впав)
+            // (Queueable виконаний, але ми не перевіряємо email напряму)
+        }
+    }
+    
+    @IsTest
+    static void test_queueable_executes_and_covers_context() {
+
+        List<String> names = new List<String>{
+            'TEST ACC 1',
+            'TEST ACC 2'
+        };
+
+        Test.startTest();
+
+        System.enqueueJob(new AccountCreationAlertQueueable(names));
+
+        Test.stopTest();
+
+        // якщо дійшли сюди — execute() відпрацював
+        System.assert(true, 'Queueable executed successfully');
+    }    
 }

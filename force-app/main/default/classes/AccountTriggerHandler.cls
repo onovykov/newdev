@@ -17,6 +17,13 @@ public class AccountTriggerHandler extends TriggerHandler implements ITrigger {
 
     public void beforeInsert(SObject so) { /* no-op */ }
     public void beforeInsert(List<SObject> newRecords) {
+    ///
+        List<Account> accs = new List<Account>(); 
+        for (SObject rec : newRecords) { 
+            accs.add((Account)rec); 
+        } 
+        preventIntegrationAccountCreation(accs);
+    ///    
         for (SObject rec : newRecords) {
             Account newAcc = (Account) rec;
 
@@ -139,6 +146,51 @@ public class AccountTriggerHandler extends TriggerHandler implements ITrigger {
     }
 
     // ---------- Helpers ----------
+    //=== O.N. 29.03.2026 =======================================================
+    private static Boolean integrationAlertSent = false;
+    //--- Відстежуємо створення акаунта юзером sf-ite@interpipe.biz
+    private void preventIntegrationAccountCreation(List<Account> newAccounts) {
+        //String integrationUsername = 'sf-ite@interpipe.biz';
+        String integrationUsername = getIntegrationUsername();
+
+        if (UserInfo.getUserName() != integrationUsername) {
+            return;
+        }
+
+        List<Account> suspicious = new List<Account>();
+
+        for (Account acc : newAccounts) {
+            if (acc.OwnerId == null || acc.OwnerId == UserInfo.getUserId()) {
+                suspicious.add(acc);
+            }
+        }
+
+        if (!suspicious.isEmpty()) {
+            if (!integrationAlertSent) {
+                integrationAlertSent = true;
+
+                List<String> accountNames = new List<String>();
+
+                for (Account acc : suspicious) {
+                    accountNames.add(
+                        String.isBlank(acc.Name) ? '<<NO NAME>>' : acc.Name
+                    );
+                }
+                System.enqueueJob(
+                    new AccountCreationAlertQueueable(accountNames)
+                );
+            }
+            // SOFT MODE — не блокуємо
+        }
+    }
+
+    private static String getIntegrationUsername() {
+        if (Test.isRunningTest()) {
+            return 'test@integration.user';
+        }
+        return 'sf-ite@interpipe.biz';
+    }
+    //===============================================================================
     private void createAccountBusinessDivisions(List<Account> newRecords) {
         List<AccountBusinessDivisions__c> toInsert = new List<AccountBusinessDivisions__c>();
         for (Account acc : newRecords) {
