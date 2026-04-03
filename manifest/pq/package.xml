@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+		<members>ProductionQuoteAddOppItem</members>
+		<members>ProductionQuoteAddOppItemTest</members>
+		<members>ProductionQuoteAddRelativeItems</members>
+		<members>ProductionQuoteAddShopQuota</members>
+		<members>ProductionQuoteCreateBatch</members>
+		<members>ProductionQuoteDeleteBatch</members>
+		<members>ProductionQuoteDeleteDuplicationBatch</members>
+		<members>ProductionQuoteDeleteDuplicationTest</members>
+		<members>ProductionQuoteDeleteOppItemsBatch</members>
+		<members>ProductionQuoteDeleteOppItemsBatchTest</members>
+		<members>ProductionQuoteDeleteShopItemBatch</members>
+		<members>ProductionQuoteFromSalBudgetBatch</members>
+		<members>ProductionQuoteFromSalBudgetBatchTest</members>
+		<members>ProductionQuoteGroupAllBatch</members>
+		<members>ProductionQuoteGroupBatch</members>
+		<members>ProductionQuoteOnUpdateBatch</members>
+		<members>ProductionQuoteUpdateOppItem</members>
+        <name>ApexClass</name>
+    </types>
+    <version>60.0</version>
+</Package>

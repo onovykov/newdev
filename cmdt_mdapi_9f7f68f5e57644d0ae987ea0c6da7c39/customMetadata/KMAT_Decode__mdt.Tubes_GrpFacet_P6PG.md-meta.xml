@@ -1,0 +1,42 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<CustomMetadata
+    xmlns='http://soap.sforce.com/2006/04/metadata'
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+
+    <label>Tubes GrpFacet EndProtection</label>
+    <fullName>KMAT_Decode__mdt.Tubes_GrpFacet_P6PG</fullName>
+
+    <values>
+        <field>OrderType__c</field>
+        <value xsi:type='xsd:string'>Tubes</value>
+    </values>
+    <values>
+        <field>KMAT_Part__c</field>
+        <value xsi:type='xsd:string'>GrpFacet</value>
+    </values>
+    <values>
+        <field>Sequence__c</field>
+        <value xsi:type='xsd:double'>6</value>
+    </values>
+    <values>
+        <field>FacetCode__c</field>
+        <value xsi:type='xsd:string'>P6PG</value>
+    </values>
+    <values>
+        <field>Object__c</field>
+        <value xsi:type='xsd:string'>EndProtection</value>
+    </values>
+    <values>
+        <field>StartPos__c</field>
+        <value xsi:type='xsd:double'>6</value>
+    </values>
+    <values>
+        <field>EndPos__c</field>
+        <value xsi:type='xsd:double'>6</value>
+    </values>
+    <values>
+        <field>CodeLen__c</field>
+        <value xsi:type='xsd:double'>1</value>
+    </values>
+</CustomMetadata>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>KMAT_Decode__mdt.Tubes_GrpFacet_P1PG</members>
+        <members>KMAT_Decode__mdt.Tubes_GrpFacet_P2PG</members>
+        <members>KMAT_Decode__mdt.Tubes_GrpFacet_P3PG</members>
+        <members>KMAT_Decode__mdt.Tubes_GrpFacet_P4PG</members>
+        <members>KMAT_Decode__mdt.Tubes_GrpFacet_P5PG</members>
+        <members>KMAT_Decode__mdt.Tubes_GrpFacet_P6PG</members>
+        <members>KMAT_Decode__mdt.Tubes_GrpFacet_P7PG</members>
+        <members>KMAT_Decode__mdt.Tubes_Main_DIMP</members>
+        <members>KMAT_Decode__mdt.Tubes_Main_GAMP</members>
+        <members>KMAT_Decode__mdt.Tubes_Main_LNMP</members>
+        <members>KMAT_Decode__mdt.Tubes_Main_SGMP</members>
+        <members>KMAT_Decode__mdt.Tubes_Main_WLMP</members>
+        <members>KMAT_Decode__mdt.Wheels_GrpFacet_P1RG</members>
+        <members>KMAT_Decode__mdt.Wheels_GrpFacet_P2RG</members>
+        <members>KMAT_Decode__mdt.Wheels_GrpFacet_P3RG</members>
+        <members>KMAT_Decode__mdt.Wheels_GrpFacet_P4RG</members>
+        <members>KMAT_Decode__mdt.Wheels_Main_HBMP</members>
+        <members>KMAT_Decode__mdt.Wheels_Main_RAMP</members>
+        <members>KMAT_Decode__mdt.Wheels_Main_RDMP</members>
+        <members>KMAT_Decode__mdt.Wheels_Main_RSMP</members>
+        <members>KMAT_Decode__mdt.Wheels_Main_WGMP</members>
+        <name>CustomMetadata</name>
+    </types>
+    <version>59.0</version>
+</Package>
