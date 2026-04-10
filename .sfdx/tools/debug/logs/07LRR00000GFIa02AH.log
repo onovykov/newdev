@@ -1,0 +1,1360 @@
+65.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+18:00:20.1 (1572290)|USER_INFO|[EXTERNAL]|0050Y000000nfxg|administrator@sf.interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Kyiv)|GMT+03:00
+18:00:20.1 (1631021)|EXECUTION_STARTED
+18:00:20.1 (1652017)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdjnR|PARRetryBatchTest.execute_finalFailure_noApproverEmail_onlyAdminNotified()
+18:00:20.1 (11380865)|SYSTEM_MODE_ENTER|false
+18:00:20.1 (11472510)|SYSTEM_MODE_EXIT|false
+18:00:20.1 (18749430)|SYSTEM_MODE_ENTER|false
+18:00:20.1 (18783978)|SYSTEM_MODE_EXIT|false
+18:00:20.1 (25796713)|SYSTEM_MODE_ENTER|false
+18:00:20.1 (25829202)|SYSTEM_MODE_EXIT|false
+18:00:20.1 (26253117)|DML_BEGIN|[12]|Op:Insert|Type:PriceApprovalRequest__c|Rows:1
+18:00:20.1 (100358051)|CODE_UNIT_STARTED|[EXTERNAL]|01q1n000001Zp7Z|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event BeforeInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:20.1 (112562570)|USER_DEBUG|[21]|DEBUG|bulkBefore PriceApprovalRequest
+18:00:20.1 (112836344)|USER_DEBUG|[25]|DEBUG|beforeInsert PriceApprovalRequest
+18:00:20.112 (112866576)|CUMULATIVE_LIMIT_USAGE
+18:00:20.112 (112866576)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:20.112 (112866576)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:20.1 (113072188)|CODE_UNIT_FINISHED|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event BeforeInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:20.1 (169705170)|CODE_UNIT_STARTED|[EXTERNAL]|01q1n000001Zp7Z|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event AfterInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:20.1 (170208361)|USER_DEBUG|[42]|DEBUG|bulkAfter PriceApprovalRequest
+18:00:20.1 (170319329)|USER_DEBUG|[46]|DEBUG|afterInsert PriceApprovalRequest
+18:00:20.1 (170343883)|USER_DEBUG|[72]|DEBUG|Post Processing
+18:00:20.170 (170350435)|CUMULATIVE_LIMIT_USAGE
+18:00:20.170 (170350435)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:20.170 (170350435)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:20.1 (170539423)|CODE_UNIT_FINISHED|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event AfterInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:20.1 (178917205)|CODE_UNIT_STARTED|[EXTERNAL]|Workflow:01I1n000001glPQ
+18:00:20.1 (178980279)|CODE_UNIT_FINISHED|Workflow:01I1n000001glPQ
+18:00:20.1 (189065870)|DML_END|[12]
+18:00:20.1 (190956145)|DML_BEGIN|[35]|Op:Insert|Type:PAR_Retry__c|Rows:1
+18:00:20.1 (283281299)|DML_END|[35]
+18:00:20.1 (294384023)|SYSTEM_MODE_ENTER|false
+18:00:20.1 (294417960)|SYSTEM_MODE_EXIT|false
+18:00:20.1 (294523030)|SYSTEM_MODE_ENTER|false
+18:00:20.1 (294538185)|SYSTEM_MODE_EXIT|false
+18:00:20.1 (294541990)|SYSTEM_MODE_ENTER|false
+18:00:20.1 (294544280)|SYSTEM_MODE_EXIT|false
+18:00:20.1 (339041489)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:20.1 (351737060)|SYSTEM_MODE_ENTER|false
+18:00:20.1 (352974064)|SOQL_EXECUTE_BEGIN|[22]|Aggregations:0|SELECT Id, PAR__c, Status__c, AttemptCount__c, MaxAttempts__c, NextAttemptAt__c, LastAttemptAt__c, LastError__c, Payload__c, ApproverEmail__c, ApprovalResolution__c, ApproverComment__c, NotificationSent__c FROM PAR_Retry__c WHERE (Status__c = 'Pending' AND NextAttemptAt__c <= :tmpVar1)
+18:00:20.1 (422008268)|SOQL_EXECUTE_END|[22]|Rows:1
+18:00:20.1 (422117779)|SYSTEM_MODE_EXIT|false
+18:00:20.448 (448794706)|CUMULATIVE_LIMIT_USAGE
+18:00:20.448 (448794706)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:20.448 (448794706)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:20.1 (448860976)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:20.1 (453501835)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:20.1 (496115386)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:20.1 (499272050)|SYSTEM_MODE_ENTER|false
+18:00:20.1 (500129606)|DML_BEGIN|[68]|Op:Update|Type:PAR_Retry__c|Rows:1
+18:00:20.1 (520361205)|DML_END|[68]
+18:00:20.1 (522487213)|SOQL_EXECUTE_BEGIN|[78]|Aggregations:0|SELECT Id, Name FROM PriceApprovalRequest__c WHERE Id = :tmpVar1
+18:00:20.1 (541304689)|SOQL_EXECUTE_END|[78]|Rows:1
+18:00:20.1 (542355584)|SYSTEM_MODE_EXIT|false
+18:00:20.1 (542387216)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:20.583 (583432692)|CUMULATIVE_LIMIT_USAGE
+18:00:20.583 (583432692)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:20.583 (583432692)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:20.1 (583482433)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:20.1 (587616600)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:20.1 (600317639)|SYSTEM_MODE_ENTER|false
+18:00:20.1 (600353415)|SYSTEM_MODE_EXIT|false
+18:00:20.616 (616302733)|CUMULATIVE_LIMIT_USAGE
+18:00:20.616 (616302733)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:20.616 (616302733)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:20.1 (616347950)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:20.1 (616996687)|SOQL_EXECUTE_BEGIN|[154]|Aggregations:0|SELECT Status__c, NotificationSent__c FROM PAR_Retry__c WHERE Id = :tmpVar1
+18:00:20.1 (629871076)|SOQL_EXECUTE_END|[154]|Rows:1
+18:00:20.630 (630189488)|CUMULATIVE_LIMIT_USAGE
+18:00:20.630 (630189488)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 2 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 2 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:20.630 (630189488)|TESTING_LIMITS
+18:00:20.630 (630189488)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:20.630 (630189488)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:20.1 (630230608)|CODE_UNIT_FINISHED|PARRetryBatchTest.execute_finalFailure_noApproverEmail_onlyAdminNotified()
+18:00:20.1 (630245408)|EXECUTION_FINISHED
+18:00:21.68 (1068166744)|USER_INFO|[EXTERNAL]|0050Y000000nfxg|administrator@sf.interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Kyiv)|GMT+03:00
+18:00:21.68 (1068193630)|EXECUTION_STARTED
+18:00:21.68 (1068204626)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdjnR|PARRetryBatchTest.execute_finalFailure_noEmailsAtAll_statusStillFailed()
+18:00:21.68 (1070459658)|SYSTEM_MODE_ENTER|false
+18:00:21.68 (1070499588)|SYSTEM_MODE_EXIT|false
+18:00:21.68 (1070568752)|SYSTEM_MODE_ENTER|false
+18:00:21.68 (1070576683)|SYSTEM_MODE_EXIT|false
+18:00:21.68 (1070822841)|DML_BEGIN|[12]|Op:Insert|Type:PriceApprovalRequest__c|Rows:1
+18:00:21.68 (1075961360)|CODE_UNIT_STARTED|[EXTERNAL]|01q1n000001Zp7Z|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event BeforeInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:21.68 (1076543671)|USER_DEBUG|[21]|DEBUG|bulkBefore PriceApprovalRequest
+18:00:21.68 (1076687185)|USER_DEBUG|[25]|DEBUG|beforeInsert PriceApprovalRequest
+18:00:21.76 (1076721429)|CUMULATIVE_LIMIT_USAGE
+18:00:21.76 (1076721429)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:21.76 (1076721429)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:21.68 (1076950729)|CODE_UNIT_FINISHED|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event BeforeInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:21.68 (1094303025)|CODE_UNIT_STARTED|[EXTERNAL]|01q1n000001Zp7Z|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event AfterInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:21.68 (1094753215)|USER_DEBUG|[42]|DEBUG|bulkAfter PriceApprovalRequest
+18:00:21.68 (1094858132)|USER_DEBUG|[46]|DEBUG|afterInsert PriceApprovalRequest
+18:00:21.68 (1094885284)|USER_DEBUG|[72]|DEBUG|Post Processing
+18:00:21.94 (1094893661)|CUMULATIVE_LIMIT_USAGE
+18:00:21.94 (1094893661)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:21.94 (1094893661)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:21.68 (1095093583)|CODE_UNIT_FINISHED|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event AfterInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:21.68 (1095195540)|CODE_UNIT_STARTED|[EXTERNAL]|Workflow:01I1n000001glPQ
+18:00:21.68 (1095226426)|CODE_UNIT_FINISHED|Workflow:01I1n000001glPQ
+18:00:21.68 (1097812794)|DML_END|[12]
+18:00:21.68 (1099394017)|DML_BEGIN|[35]|Op:Insert|Type:PAR_Retry__c|Rows:1
+18:00:21.68 (1122648186)|DML_END|[35]
+18:00:21.68 (1129311920)|SYSTEM_MODE_ENTER|false
+18:00:21.68 (1129339449)|SYSTEM_MODE_EXIT|false
+18:00:21.68 (1129403464)|SYSTEM_MODE_ENTER|false
+18:00:21.68 (1129416417)|SYSTEM_MODE_EXIT|false
+18:00:21.68 (1129419537)|SYSTEM_MODE_ENTER|false
+18:00:21.68 (1129423083)|SYSTEM_MODE_EXIT|false
+18:00:21.68 (1167298253)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:21.68 (1178762554)|SYSTEM_MODE_ENTER|false
+18:00:21.68 (1179814579)|SOQL_EXECUTE_BEGIN|[22]|Aggregations:0|SELECT Id, PAR__c, Status__c, AttemptCount__c, MaxAttempts__c, NextAttemptAt__c, LastAttemptAt__c, LastError__c, Payload__c, ApproverEmail__c, ApprovalResolution__c, ApproverComment__c, NotificationSent__c FROM PAR_Retry__c WHERE (Status__c = 'Pending' AND NextAttemptAt__c <= :tmpVar1)
+18:00:21.68 (1208576126)|SOQL_EXECUTE_END|[22]|Rows:1
+18:00:21.68 (1208673579)|SYSTEM_MODE_EXIT|false
+18:00:21.233 (1233108899)|CUMULATIVE_LIMIT_USAGE
+18:00:21.233 (1233108899)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:21.233 (1233108899)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:21.68 (1233162445)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:21.68 (1237385845)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:21.68 (1270205926)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:21.68 (1273245058)|SYSTEM_MODE_ENTER|false
+18:00:21.68 (1273808380)|DML_BEGIN|[68]|Op:Update|Type:PAR_Retry__c|Rows:1
+18:00:21.68 (1291836397)|DML_END|[68]
+18:00:21.68 (1293650997)|SOQL_EXECUTE_BEGIN|[78]|Aggregations:0|SELECT Id, Name FROM PriceApprovalRequest__c WHERE Id = :tmpVar1
+18:00:21.68 (1297176899)|SOQL_EXECUTE_END|[78]|Rows:1
+18:00:21.68 (1297916950)|SOQL_EXECUTE_BEGIN|[78]|Aggregations:0|SELECT Email FROM Contact WHERE (Type__c = 'IT-Admin' AND Email != NULL) LIMIT 1
+18:00:21.68 (1323709904)|SOQL_EXECUTE_END|[78]|Rows:0
+18:00:21.68 (1324180105)|SYSTEM_MODE_EXIT|false
+18:00:21.68 (1324210594)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:21.363 (1363472994)|CUMULATIVE_LIMIT_USAGE
+18:00:21.363 (1363472994)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:21.363 (1363472994)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:21.68 (1363515044)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:21.68 (1367965458)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:21.68 (1380844066)|SYSTEM_MODE_ENTER|false
+18:00:21.68 (1380884974)|SYSTEM_MODE_EXIT|false
+18:00:21.397 (1397105887)|CUMULATIVE_LIMIT_USAGE
+18:00:21.397 (1397105887)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:21.397 (1397105887)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:21.68 (1397160414)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:21.68 (1397681845)|SOQL_EXECUTE_BEGIN|[171]|Aggregations:0|SELECT Status__c FROM PAR_Retry__c WHERE Id = :tmpVar1
+18:00:21.68 (1407736952)|SOQL_EXECUTE_END|[171]|Rows:1
+18:00:21.407 (1407959970)|CUMULATIVE_LIMIT_USAGE
+18:00:21.407 (1407959970)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 2 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 2 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:21.407 (1407959970)|TESTING_LIMITS
+18:00:21.407 (1407959970)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:21.407 (1407959970)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:21.68 (1407995727)|CODE_UNIT_FINISHED|PARRetryBatchTest.execute_finalFailure_noEmailsAtAll_statusStillFailed()
+18:00:21.68 (1408009560)|EXECUTION_FINISHED
+18:00:21.707 (1707798419)|USER_INFO|[EXTERNAL]|0050Y000000nfxg|administrator@sf.interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Kyiv)|GMT+03:00
+18:00:21.707 (1707843444)|EXECUTION_STARTED
+18:00:21.707 (1707853824)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdjnR|PARRetryBatchTest.execute_finalFailure_statusIsFailedAndNotified()
+18:00:21.707 (1710160303)|SYSTEM_MODE_ENTER|false
+18:00:21.707 (1710184408)|SYSTEM_MODE_EXIT|false
+18:00:21.707 (1710221639)|SYSTEM_MODE_ENTER|false
+18:00:21.707 (1710224324)|SYSTEM_MODE_EXIT|false
+18:00:21.707 (1710234979)|SYSTEM_MODE_ENTER|false
+18:00:21.707 (1710237222)|SYSTEM_MODE_EXIT|false
+18:00:21.707 (1710460617)|DML_BEGIN|[12]|Op:Insert|Type:PriceApprovalRequest__c|Rows:1
+18:00:21.707 (1715992943)|CODE_UNIT_STARTED|[EXTERNAL]|01q1n000001Zp7Z|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event BeforeInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:21.707 (1716548962)|USER_DEBUG|[21]|DEBUG|bulkBefore PriceApprovalRequest
+18:00:21.707 (1716678585)|USER_DEBUG|[25]|DEBUG|beforeInsert PriceApprovalRequest
+18:00:21.716 (1716708716)|CUMULATIVE_LIMIT_USAGE
+18:00:21.716 (1716708716)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:21.716 (1716708716)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:21.707 (1716897683)|CODE_UNIT_FINISHED|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event BeforeInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:21.707 (1738896355)|CODE_UNIT_STARTED|[EXTERNAL]|01q1n000001Zp7Z|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event AfterInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:21.707 (1739280490)|USER_DEBUG|[42]|DEBUG|bulkAfter PriceApprovalRequest
+18:00:21.707 (1739374669)|USER_DEBUG|[46]|DEBUG|afterInsert PriceApprovalRequest
+18:00:21.707 (1739393929)|USER_DEBUG|[72]|DEBUG|Post Processing
+18:00:21.739 (1739402278)|CUMULATIVE_LIMIT_USAGE
+18:00:21.739 (1739402278)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:21.739 (1739402278)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:21.707 (1739550140)|CODE_UNIT_FINISHED|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event AfterInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:21.707 (1739625179)|CODE_UNIT_STARTED|[EXTERNAL]|Workflow:01I1n000001glPQ
+18:00:21.707 (1739648787)|CODE_UNIT_FINISHED|Workflow:01I1n000001glPQ
+18:00:21.707 (1741934308)|DML_END|[12]
+18:00:21.707 (1743589789)|DML_BEGIN|[35]|Op:Insert|Type:PAR_Retry__c|Rows:1
+18:00:21.707 (1769872019)|DML_END|[35]
+18:00:21.707 (1777004160)|SYSTEM_MODE_ENTER|false
+18:00:21.707 (1777051377)|SYSTEM_MODE_EXIT|false
+18:00:21.707 (1777140060)|SYSTEM_MODE_ENTER|false
+18:00:21.707 (1777160175)|SYSTEM_MODE_EXIT|false
+18:00:21.707 (1777165124)|SYSTEM_MODE_ENTER|false
+18:00:21.707 (1777168739)|SYSTEM_MODE_EXIT|false
+18:00:21.707 (1818505472)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:21.707 (1829695484)|SYSTEM_MODE_ENTER|false
+18:00:21.707 (1830847636)|SOQL_EXECUTE_BEGIN|[22]|Aggregations:0|SELECT Id, PAR__c, Status__c, AttemptCount__c, MaxAttempts__c, NextAttemptAt__c, LastAttemptAt__c, LastError__c, Payload__c, ApproverEmail__c, ApprovalResolution__c, ApproverComment__c, NotificationSent__c FROM PAR_Retry__c WHERE (Status__c = 'Pending' AND NextAttemptAt__c <= :tmpVar1)
+18:00:21.707 (1859643306)|SOQL_EXECUTE_END|[22]|Rows:1
+18:00:21.707 (1859742216)|SYSTEM_MODE_EXIT|false
+18:00:21.886 (1886158697)|CUMULATIVE_LIMIT_USAGE
+18:00:21.886 (1886158697)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:21.886 (1886158697)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:21.707 (1886210560)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:21.707 (1890650167)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:21.707 (1924057019)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:21.707 (1927196354)|SYSTEM_MODE_ENTER|false
+18:00:21.707 (1928100765)|DML_BEGIN|[68]|Op:Update|Type:PAR_Retry__c|Rows:1
+18:00:21.707 (1947853387)|DML_END|[68]
+18:00:21.707 (1950005327)|SOQL_EXECUTE_BEGIN|[78]|Aggregations:0|SELECT Id, Name FROM PriceApprovalRequest__c WHERE Id = :tmpVar1
+18:00:21.707 (1954119385)|SOQL_EXECUTE_END|[78]|Rows:1
+18:00:21.707 (1954848029)|SYSTEM_MODE_EXIT|false
+18:00:21.707 (1954877814)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:21.995 (1995998663)|CUMULATIVE_LIMIT_USAGE
+18:00:21.995 (1995998663)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:21.995 (1995998663)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:21.707 (1996046448)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:21.707 (2000240776)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:21.707 (2013560584)|SYSTEM_MODE_ENTER|false
+18:00:21.707 (2013602550)|SYSTEM_MODE_EXIT|false
+18:00:22.30 (2030293964)|CUMULATIVE_LIMIT_USAGE
+18:00:22.30 (2030293964)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:22.30 (2030293964)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:21.707 (2030334576)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:21.707 (2030978516)|SOQL_EXECUTE_BEGIN|[133]|Aggregations:0|SELECT Status__c, AttemptCount__c, NotificationSent__c FROM PAR_Retry__c WHERE Id = :tmpVar1
+18:00:21.707 (2044742937)|SOQL_EXECUTE_END|[133]|Rows:1
+18:00:22.45 (2045028037)|CUMULATIVE_LIMIT_USAGE
+18:00:22.45 (2045028037)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 2 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 2 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:22.45 (2045028037)|TESTING_LIMITS
+18:00:22.45 (2045028037)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:22.45 (2045028037)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:21.707 (2045061397)|CODE_UNIT_FINISHED|PARRetryBatchTest.execute_finalFailure_statusIsFailedAndNotified()
+18:00:21.707 (2045071959)|EXECUTION_FINISHED
+18:00:22.341 (2341169212)|USER_INFO|[EXTERNAL]|0050Y000000nfxg|administrator@sf.interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Kyiv)|GMT+03:00
+18:00:22.341 (2341194787)|EXECUTION_STARTED
+18:00:22.341 (2341204548)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdjnR|PARRetryBatchTest.execute_multipleRecords_eachProcessedCorrectly()
+18:00:22.341 (2343250660)|SYSTEM_MODE_ENTER|false
+18:00:22.341 (2343273646)|SYSTEM_MODE_EXIT|false
+18:00:22.341 (2343304173)|SYSTEM_MODE_ENTER|false
+18:00:22.341 (2343306912)|SYSTEM_MODE_EXIT|false
+18:00:22.341 (2343506827)|DML_BEGIN|[12]|Op:Insert|Type:PriceApprovalRequest__c|Rows:1
+18:00:22.341 (2348150158)|CODE_UNIT_STARTED|[EXTERNAL]|01q1n000001Zp7Z|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event BeforeInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:22.341 (2348648189)|USER_DEBUG|[21]|DEBUG|bulkBefore PriceApprovalRequest
+18:00:22.341 (2348780119)|USER_DEBUG|[25]|DEBUG|beforeInsert PriceApprovalRequest
+18:00:22.348 (2348817326)|CUMULATIVE_LIMIT_USAGE
+18:00:22.348 (2348817326)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:22.348 (2348817326)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:22.341 (2348981830)|CODE_UNIT_FINISHED|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event BeforeInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:22.341 (2364636943)|CODE_UNIT_STARTED|[EXTERNAL]|01q1n000001Zp7Z|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event AfterInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:22.341 (2365169027)|USER_DEBUG|[42]|DEBUG|bulkAfter PriceApprovalRequest
+18:00:22.341 (2365292445)|USER_DEBUG|[46]|DEBUG|afterInsert PriceApprovalRequest
+18:00:22.341 (2365513200)|USER_DEBUG|[72]|DEBUG|Post Processing
+18:00:22.365 (2365526698)|CUMULATIVE_LIMIT_USAGE
+18:00:22.365 (2365526698)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:22.365 (2365526698)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:22.341 (2365720036)|CODE_UNIT_FINISHED|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event AfterInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:22.341 (2365823453)|CODE_UNIT_STARTED|[EXTERNAL]|Workflow:01I1n000001glPQ
+18:00:22.341 (2365856294)|CODE_UNIT_FINISHED|Workflow:01I1n000001glPQ
+18:00:22.341 (2368453673)|DML_END|[12]
+18:00:22.341 (2369871325)|DML_BEGIN|[187]|Op:Insert|Type:PriceApprovalRequest__c|Rows:1
+18:00:22.341 (2375127750)|CODE_UNIT_STARTED|[EXTERNAL]|01q1n000001Zp7Z|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event BeforeInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:22.341 (2375413327)|USER_DEBUG|[21]|DEBUG|bulkBefore PriceApprovalRequest
+18:00:22.341 (2375501177)|USER_DEBUG|[25]|DEBUG|beforeInsert PriceApprovalRequest
+18:00:22.375 (2375519381)|CUMULATIVE_LIMIT_USAGE
+18:00:22.375 (2375519381)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 2 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 2 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:22.375 (2375519381)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:22.341 (2375677065)|CODE_UNIT_FINISHED|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event BeforeInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:22.341 (2389768731)|CODE_UNIT_STARTED|[EXTERNAL]|01q1n000001Zp7Z|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event AfterInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:22.341 (2390173547)|USER_DEBUG|[42]|DEBUG|bulkAfter PriceApprovalRequest
+18:00:22.341 (2390261262)|USER_DEBUG|[46]|DEBUG|afterInsert PriceApprovalRequest
+18:00:22.341 (2390277472)|USER_DEBUG|[72]|DEBUG|Post Processing
+18:00:22.390 (2390283839)|CUMULATIVE_LIMIT_USAGE
+18:00:22.390 (2390283839)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 2 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 2 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:22.390 (2390283839)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:22.341 (2390465582)|CODE_UNIT_FINISHED|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event AfterInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:22.341 (2390555908)|CODE_UNIT_STARTED|[EXTERNAL]|Workflow:01I1n000001glPQ
+18:00:22.341 (2390584816)|CODE_UNIT_FINISHED|Workflow:01I1n000001glPQ
+18:00:22.341 (2392909373)|DML_END|[187]
+18:00:22.341 (2394582594)|DML_BEGIN|[35]|Op:Insert|Type:PAR_Retry__c|Rows:1
+18:00:22.341 (2418309495)|DML_END|[35]
+18:00:22.341 (2419861201)|DML_BEGIN|[35]|Op:Insert|Type:PAR_Retry__c|Rows:1
+18:00:22.341 (2442362289)|DML_END|[35]
+18:00:22.341 (2445127150)|SYSTEM_MODE_ENTER|false
+18:00:22.341 (2445160536)|SYSTEM_MODE_EXIT|false
+18:00:22.341 (2449173721)|SYSTEM_MODE_ENTER|false
+18:00:22.341 (2449195912)|SYSTEM_MODE_EXIT|false
+18:00:22.341 (2449245047)|SYSTEM_MODE_ENTER|false
+18:00:22.341 (2449258871)|SYSTEM_MODE_EXIT|false
+18:00:22.341 (2449261686)|SYSTEM_MODE_ENTER|false
+18:00:22.341 (2449263881)|SYSTEM_MODE_EXIT|false
+18:00:22.341 (2488002885)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:22.341 (2499176558)|SYSTEM_MODE_ENTER|false
+18:00:22.341 (2500240162)|SOQL_EXECUTE_BEGIN|[22]|Aggregations:0|SELECT Id, PAR__c, Status__c, AttemptCount__c, MaxAttempts__c, NextAttemptAt__c, LastAttemptAt__c, LastError__c, Payload__c, ApproverEmail__c, ApprovalResolution__c, ApproverComment__c, NotificationSent__c FROM PAR_Retry__c WHERE (Status__c = 'Pending' AND NextAttemptAt__c <= :tmpVar1)
+18:00:22.341 (2549004551)|SOQL_EXECUTE_END|[22]|Rows:2
+18:00:22.341 (2549115055)|SYSTEM_MODE_EXIT|false
+18:00:22.573 (2573182342)|CUMULATIVE_LIMIT_USAGE
+18:00:22.573 (2573182342)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:22.573 (2573182342)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:22.341 (2573228164)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:22.341 (2577381766)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:22.341 (2620390113)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:22.341 (2623299485)|SYSTEM_MODE_ENTER|false
+18:00:22.341 (2623881501)|DML_BEGIN|[68]|Op:Update|Type:PAR_Retry__c|Rows:2
+18:00:22.341 (2651952293)|DML_END|[68]
+18:00:22.341 (2653802068)|SOQL_EXECUTE_BEGIN|[78]|Aggregations:0|SELECT Id, Name FROM PriceApprovalRequest__c WHERE Id = :tmpVar1
+18:00:22.341 (2658180887)|SOQL_EXECUTE_END|[78]|Rows:1
+18:00:22.341 (2659218149)|SYSTEM_MODE_EXIT|false
+18:00:22.341 (2659255476)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:22.698 (2698951231)|CUMULATIVE_LIMIT_USAGE
+18:00:22.698 (2698951231)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:22.698 (2698951231)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:22.341 (2698998212)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:22.341 (2703064801)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:22.341 (2715203823)|SYSTEM_MODE_ENTER|false
+18:00:22.341 (2715238043)|SYSTEM_MODE_EXIT|false
+18:00:22.731 (2731523484)|CUMULATIVE_LIMIT_USAGE
+18:00:22.731 (2731523484)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:22.731 (2731523484)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:22.341 (2731570116)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:22.341 (2732196417)|SOQL_EXECUTE_BEGIN|[201]|Aggregations:0|SELECT Status__c, AttemptCount__c FROM PAR_Retry__c WHERE Id = :tmpVar1
+18:00:22.341 (2746381557)|SOQL_EXECUTE_END|[201]|Rows:1
+18:00:22.341 (2746926283)|SOQL_EXECUTE_BEGIN|[202]|Aggregations:0|SELECT Status__c, NotificationSent__c FROM PAR_Retry__c WHERE Id = :tmpVar1
+18:00:22.341 (2756872616)|SOQL_EXECUTE_END|[202]|Rows:1
+18:00:22.757 (2757274080)|CUMULATIVE_LIMIT_USAGE
+18:00:22.757 (2757274080)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 4 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 4 out of 10000
+  Maximum CPU time: 25 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:22.757 (2757274080)|TESTING_LIMITS
+18:00:22.757 (2757274080)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:22.757 (2757274080)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:22.341 (2757325235)|CODE_UNIT_FINISHED|PARRetryBatchTest.execute_multipleRecords_eachProcessedCorrectly()
+18:00:22.341 (2757341450)|EXECUTION_FINISHED
+18:00:23.60 (3060003723)|USER_INFO|[EXTERNAL]|0050Y000000nfxg|administrator@sf.interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Kyiv)|GMT+03:00
+18:00:23.60 (3060032173)|EXECUTION_STARTED
+18:00:23.60 (3060043536)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdjnR|PARRetryBatchTest.execute_ongoingFailure_statusRemainssPending()
+18:00:23.60 (3062294473)|SYSTEM_MODE_ENTER|false
+18:00:23.60 (3062335194)|SYSTEM_MODE_EXIT|false
+18:00:23.60 (3062407570)|SYSTEM_MODE_ENTER|false
+18:00:23.60 (3062413045)|SYSTEM_MODE_EXIT|false
+18:00:23.60 (3062696544)|DML_BEGIN|[12]|Op:Insert|Type:PriceApprovalRequest__c|Rows:1
+18:00:23.60 (3068158247)|CODE_UNIT_STARTED|[EXTERNAL]|01q1n000001Zp7Z|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event BeforeInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:23.60 (3068754631)|USER_DEBUG|[21]|DEBUG|bulkBefore PriceApprovalRequest
+18:00:23.60 (3068908631)|USER_DEBUG|[25]|DEBUG|beforeInsert PriceApprovalRequest
+18:00:23.68 (3068942311)|CUMULATIVE_LIMIT_USAGE
+18:00:23.68 (3068942311)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:23.68 (3068942311)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:23.60 (3069123694)|CODE_UNIT_FINISHED|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event BeforeInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:23.60 (3085988415)|CODE_UNIT_STARTED|[EXTERNAL]|01q1n000001Zp7Z|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event AfterInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:23.60 (3086425525)|USER_DEBUG|[42]|DEBUG|bulkAfter PriceApprovalRequest
+18:00:23.60 (3086533683)|USER_DEBUG|[46]|DEBUG|afterInsert PriceApprovalRequest
+18:00:23.60 (3086559969)|USER_DEBUG|[72]|DEBUG|Post Processing
+18:00:23.86 (3086570163)|CUMULATIVE_LIMIT_USAGE
+18:00:23.86 (3086570163)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:23.86 (3086570163)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:23.60 (3086750046)|CODE_UNIT_FINISHED|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event AfterInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:23.60 (3086846276)|CODE_UNIT_STARTED|[EXTERNAL]|Workflow:01I1n000001glPQ
+18:00:23.60 (3086877899)|CODE_UNIT_FINISHED|Workflow:01I1n000001glPQ
+18:00:23.60 (3089547823)|DML_END|[12]
+18:00:23.60 (3091340690)|DML_BEGIN|[35]|Op:Insert|Type:PAR_Retry__c|Rows:1
+18:00:23.60 (3120932061)|DML_END|[35]
+18:00:23.60 (3128111676)|SYSTEM_MODE_ENTER|false
+18:00:23.60 (3128145584)|SYSTEM_MODE_EXIT|false
+18:00:23.60 (3128233682)|SYSTEM_MODE_ENTER|false
+18:00:23.60 (3128255677)|SYSTEM_MODE_EXIT|false
+18:00:23.60 (3128261432)|SYSTEM_MODE_ENTER|false
+18:00:23.60 (3128264876)|SYSTEM_MODE_EXIT|false
+18:00:23.60 (3167557961)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:23.60 (3179173674)|SYSTEM_MODE_ENTER|false
+18:00:23.60 (3180337213)|SOQL_EXECUTE_BEGIN|[22]|Aggregations:0|SELECT Id, PAR__c, Status__c, AttemptCount__c, MaxAttempts__c, NextAttemptAt__c, LastAttemptAt__c, LastError__c, Payload__c, ApproverEmail__c, ApprovalResolution__c, ApproverComment__c, NotificationSent__c FROM PAR_Retry__c WHERE (Status__c = 'Pending' AND NextAttemptAt__c <= :tmpVar1)
+18:00:23.60 (3209336721)|SOQL_EXECUTE_END|[22]|Rows:1
+18:00:23.60 (3209455019)|SYSTEM_MODE_EXIT|false
+18:00:23.235 (3235234492)|CUMULATIVE_LIMIT_USAGE
+18:00:23.235 (3235234492)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:23.235 (3235234492)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:23.60 (3235304125)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:23.60 (3239803996)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:23.60 (3272459349)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:23.60 (3275507258)|SYSTEM_MODE_ENTER|false
+18:00:23.60 (3276015132)|DML_BEGIN|[68]|Op:Update|Type:PAR_Retry__c|Rows:1
+18:00:23.60 (3295284174)|DML_END|[68]
+18:00:23.60 (3296596456)|SYSTEM_MODE_EXIT|false
+18:00:23.60 (3296641728)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:23.367 (3367021758)|CUMULATIVE_LIMIT_USAGE
+18:00:23.367 (3367021758)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:23.367 (3367021758)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:23.60 (3367070254)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:23.60 (3371402904)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:23.60 (3387551133)|SYSTEM_MODE_ENTER|false
+18:00:23.60 (3387591697)|SYSTEM_MODE_EXIT|false
+18:00:23.405 (3405048177)|CUMULATIVE_LIMIT_USAGE
+18:00:23.405 (3405048177)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:23.405 (3405048177)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:23.60 (3405096174)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:23.60 (3405756452)|SOQL_EXECUTE_BEGIN|[109]|Aggregations:0|SELECT Status__c, AttemptCount__c, NextAttemptAt__c FROM PAR_Retry__c WHERE Id = :tmpVar1
+18:00:23.60 (3439988726)|SOQL_EXECUTE_END|[109]|Rows:1
+18:00:23.440 (3440463026)|CUMULATIVE_LIMIT_USAGE
+18:00:23.440 (3440463026)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 2 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 2 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:23.440 (3440463026)|TESTING_LIMITS
+18:00:23.440 (3440463026)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:23.440 (3440463026)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:23.60 (3440498371)|CODE_UNIT_FINISHED|PARRetryBatchTest.execute_ongoingFailure_statusRemainssPending()
+18:00:23.60 (3440511392)|EXECUTION_FINISHED
+18:00:23.745 (3745832818)|USER_INFO|[EXTERNAL]|0050Y000000nfxg|administrator@sf.interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Kyiv)|GMT+03:00
+18:00:23.745 (3745858234)|EXECUTION_STARTED
+18:00:23.745 (3745867701)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdjnR|PARRetryBatchTest.execute_successfulRetry_statusIsSuccess()
+18:00:23.745 (3747988854)|SYSTEM_MODE_ENTER|false
+18:00:23.745 (3748052644)|SYSTEM_MODE_EXIT|false
+18:00:23.745 (3748117182)|SYSTEM_MODE_ENTER|false
+18:00:23.745 (3748122339)|SYSTEM_MODE_EXIT|false
+18:00:23.745 (3748379702)|DML_BEGIN|[12]|Op:Insert|Type:PriceApprovalRequest__c|Rows:1
+18:00:23.745 (3754123667)|CODE_UNIT_STARTED|[EXTERNAL]|01q1n000001Zp7Z|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event BeforeInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:23.745 (3754734690)|USER_DEBUG|[21]|DEBUG|bulkBefore PriceApprovalRequest
+18:00:23.745 (3754899584)|USER_DEBUG|[25]|DEBUG|beforeInsert PriceApprovalRequest
+18:00:23.754 (3754930491)|CUMULATIVE_LIMIT_USAGE
+18:00:23.754 (3754930491)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:23.754 (3754930491)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:23.745 (3755136661)|CODE_UNIT_FINISHED|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event BeforeInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:23.745 (3771843704)|CODE_UNIT_STARTED|[EXTERNAL]|01q1n000001Zp7Z|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event AfterInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:23.745 (3772213655)|USER_DEBUG|[42]|DEBUG|bulkAfter PriceApprovalRequest
+18:00:23.745 (3772306663)|USER_DEBUG|[46]|DEBUG|afterInsert PriceApprovalRequest
+18:00:23.745 (3772325682)|USER_DEBUG|[72]|DEBUG|Post Processing
+18:00:23.772 (3772331752)|CUMULATIVE_LIMIT_USAGE
+18:00:23.772 (3772331752)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:23.772 (3772331752)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:23.745 (3772694018)|CODE_UNIT_FINISHED|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event AfterInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:23.745 (3772829483)|CODE_UNIT_STARTED|[EXTERNAL]|Workflow:01I1n000001glPQ
+18:00:23.745 (3772859205)|CODE_UNIT_FINISHED|Workflow:01I1n000001glPQ
+18:00:23.745 (3775290190)|DML_END|[12]
+18:00:23.745 (3776844022)|DML_BEGIN|[35]|Op:Insert|Type:PAR_Retry__c|Rows:1
+18:00:23.745 (3801964167)|DML_END|[35]
+18:00:23.745 (3809414990)|SYSTEM_MODE_ENTER|false
+18:00:23.745 (3809455658)|SYSTEM_MODE_EXIT|false
+18:00:23.745 (3809547062)|SYSTEM_MODE_ENTER|false
+18:00:23.745 (3809562711)|SYSTEM_MODE_EXIT|false
+18:00:23.745 (3809568106)|SYSTEM_MODE_ENTER|false
+18:00:23.745 (3809571829)|SYSTEM_MODE_EXIT|false
+18:00:23.745 (3851796979)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:23.745 (3863970580)|SYSTEM_MODE_ENTER|false
+18:00:23.745 (3865252489)|SOQL_EXECUTE_BEGIN|[22]|Aggregations:0|SELECT Id, PAR__c, Status__c, AttemptCount__c, MaxAttempts__c, NextAttemptAt__c, LastAttemptAt__c, LastError__c, Payload__c, ApproverEmail__c, ApprovalResolution__c, ApproverComment__c, NotificationSent__c FROM PAR_Retry__c WHERE (Status__c = 'Pending' AND NextAttemptAt__c <= :tmpVar1)
+18:00:23.745 (3894572854)|SOQL_EXECUTE_END|[22]|Rows:1
+18:00:23.745 (3894667245)|SYSTEM_MODE_EXIT|false
+18:00:23.918 (3918404933)|CUMULATIVE_LIMIT_USAGE
+18:00:23.918 (3918404933)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:23.918 (3918404933)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:23.745 (3918451929)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:23.745 (3922699510)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:23.745 (3955112012)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:23.745 (3958133149)|SYSTEM_MODE_ENTER|false
+18:00:23.745 (3958581911)|DML_BEGIN|[68]|Op:Update|Type:PAR_Retry__c|Rows:1
+18:00:23.745 (3977496582)|DML_END|[68]
+18:00:23.745 (3978773068)|SYSTEM_MODE_EXIT|false
+18:00:23.745 (3978817860)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:24.18 (4018222398)|CUMULATIVE_LIMIT_USAGE
+18:00:24.18 (4018222398)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:24.18 (4018222398)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:23.745 (4018264383)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:23.745 (4022383206)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:23.745 (4035315042)|SYSTEM_MODE_ENTER|false
+18:00:23.745 (4035347460)|SYSTEM_MODE_EXIT|false
+18:00:24.51 (4051413692)|CUMULATIVE_LIMIT_USAGE
+18:00:24.51 (4051413692)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:24.51 (4051413692)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:23.745 (4051454342)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:23.745 (4052034561)|SOQL_EXECUTE_BEGIN|[87]|Aggregations:0|SELECT Status__c, AttemptCount__c, LastAttemptAt__c FROM PAR_Retry__c WHERE Id = :tmpVar1
+18:00:23.745 (4066406431)|SOQL_EXECUTE_END|[87]|Rows:1
+18:00:24.66 (4066734739)|CUMULATIVE_LIMIT_USAGE
+18:00:24.66 (4066734739)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 2 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 2 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:24.66 (4066734739)|TESTING_LIMITS
+18:00:24.66 (4066734739)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:24.66 (4066734739)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:23.745 (4066767162)|CODE_UNIT_FINISHED|PARRetryBatchTest.execute_successfulRetry_statusIsSuccess()
+18:00:23.745 (4066778818)|EXECUTION_FINISHED
+18:00:24.368 (4368023722)|USER_INFO|[EXTERNAL]|0050Y000000nfxg|administrator@sf.interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Kyiv)|GMT+03:00
+18:00:24.368 (4368049748)|EXECUTION_STARTED
+18:00:24.368 (4368059243)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdjnR|PARRetryBatchTest.finish_doesNotThrow()
+18:00:24.368 (4373949233)|SYSTEM_MODE_ENTER|false
+18:00:24.368 (4373995371)|SYSTEM_MODE_EXIT|false
+18:00:24.368 (4374078100)|SYSTEM_MODE_ENTER|false
+18:00:24.368 (4374101915)|SYSTEM_MODE_EXIT|false
+18:00:24.368 (4374107673)|SYSTEM_MODE_ENTER|false
+18:00:24.368 (4374110168)|SYSTEM_MODE_EXIT|false
+18:00:24.368 (4374144055)|SYSTEM_MODE_ENTER|false
+18:00:24.368 (4374147297)|SYSTEM_MODE_EXIT|false
+18:00:24.374 (4374279764)|CUMULATIVE_LIMIT_USAGE
+18:00:24.374 (4374279764)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:24.374 (4374279764)|TESTING_LIMITS
+18:00:24.374 (4374279764)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:24.374 (4374279764)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:24.368 (4374333354)|CODE_UNIT_FINISHED|PARRetryBatchTest.finish_doesNotThrow()
+18:00:24.368 (4374346330)|EXECUTION_FINISHED
+18:00:24.671 (4671321367)|USER_INFO|[EXTERNAL]|0050Y000000nfxg|administrator@sf.interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Kyiv)|GMT+03:00
+18:00:24.671 (4671349703)|EXECUTION_STARTED
+18:00:24.671 (4671359667)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdjnR|PARRetryBatchTest.start_doesNotPickUpFutureRecords()
+18:00:24.671 (4671871717)|DML_BEGIN|[12]|Op:Insert|Type:PriceApprovalRequest__c|Rows:1
+18:00:24.671 (4676748680)|CODE_UNIT_STARTED|[EXTERNAL]|01q1n000001Zp7Z|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event BeforeInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:24.671 (4677205790)|USER_DEBUG|[21]|DEBUG|bulkBefore PriceApprovalRequest
+18:00:24.671 (4677304764)|USER_DEBUG|[25]|DEBUG|beforeInsert PriceApprovalRequest
+18:00:24.677 (4677323900)|CUMULATIVE_LIMIT_USAGE
+18:00:24.677 (4677323900)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:24.677 (4677323900)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:24.671 (4677483952)|CODE_UNIT_FINISHED|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event BeforeInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:24.671 (4695982847)|CODE_UNIT_STARTED|[EXTERNAL]|01q1n000001Zp7Z|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event AfterInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:24.671 (4696371376)|USER_DEBUG|[42]|DEBUG|bulkAfter PriceApprovalRequest
+18:00:24.671 (4696493966)|USER_DEBUG|[46]|DEBUG|afterInsert PriceApprovalRequest
+18:00:24.671 (4696513858)|USER_DEBUG|[72]|DEBUG|Post Processing
+18:00:24.696 (4696520806)|CUMULATIVE_LIMIT_USAGE
+18:00:24.696 (4696520806)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:24.696 (4696520806)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:24.671 (4696690436)|CODE_UNIT_FINISHED|PriceApprovalRequestTrigger on PriceApprovalRequest trigger event AfterInsert|__sfdc_trigger/PriceApprovalRequestTrigger
+18:00:24.671 (4696768726)|CODE_UNIT_STARTED|[EXTERNAL]|Workflow:01I1n000001glPQ
+18:00:24.671 (4696794247)|CODE_UNIT_FINISHED|Workflow:01I1n000001glPQ
+18:00:24.671 (4699158654)|DML_END|[12]
+18:00:24.671 (4700795805)|DML_BEGIN|[35]|Op:Insert|Type:PAR_Retry__c|Rows:1
+18:00:24.671 (4730305913)|DML_END|[35]
+18:00:24.671 (4731748535)|DML_BEGIN|[60]|Op:Update|Type:PAR_Retry__c|Rows:1
+18:00:24.671 (4752478912)|DML_END|[60]
+18:00:24.671 (4755469025)|SYSTEM_MODE_ENTER|false
+18:00:24.671 (4755504322)|SYSTEM_MODE_EXIT|false
+18:00:24.671 (4755563152)|SYSTEM_MODE_ENTER|false
+18:00:24.671 (4755566247)|SYSTEM_MODE_EXIT|false
+18:00:24.671 (4759527457)|SYSTEM_MODE_ENTER|false
+18:00:24.671 (4759558859)|SYSTEM_MODE_EXIT|false
+18:00:24.671 (4759615699)|SYSTEM_MODE_ENTER|false
+18:00:24.671 (4759630718)|SYSTEM_MODE_EXIT|false
+18:00:24.671 (4759635117)|SYSTEM_MODE_ENTER|false
+18:00:24.671 (4759638844)|SYSTEM_MODE_EXIT|false
+18:00:24.671 (4800585418)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:24.671 (4812025077)|SYSTEM_MODE_ENTER|false
+18:00:24.671 (4813351832)|SOQL_EXECUTE_BEGIN|[22]|Aggregations:0|SELECT Id, PAR__c, Status__c, AttemptCount__c, MaxAttempts__c, NextAttemptAt__c, LastAttemptAt__c, LastError__c, Payload__c, ApproverEmail__c, ApprovalResolution__c, ApproverComment__c, NotificationSent__c FROM PAR_Retry__c WHERE (Status__c = 'Pending' AND NextAttemptAt__c <= :tmpVar1)
+18:00:24.671 (4817928916)|SOQL_EXECUTE_END|[22]|Rows:0
+18:00:24.671 (4818018336)|SYSTEM_MODE_EXIT|false
+18:00:24.830 (4830203240)|CUMULATIVE_LIMIT_USAGE
+18:00:24.830 (4830203240)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:24.830 (4830203240)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:24.671 (4830247553)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:24.671 (4834517665)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdV4X|PARRetryBatch
+18:00:24.671 (4847052953)|SYSTEM_MODE_ENTER|false
+18:00:24.671 (4847084276)|SYSTEM_MODE_EXIT|false
+18:00:24.863 (4863342808)|CUMULATIVE_LIMIT_USAGE
+18:00:24.863 (4863342808)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:24.863 (4863342808)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:24.671 (4863392209)|CODE_UNIT_FINISHED|PARRetryBatch
+18:00:24.671 (4864211738)|SOQL_EXECUTE_BEGIN|[69]|Aggregations:0|SELECT Status__c, AttemptCount__c FROM PAR_Retry__c WHERE Id = :tmpVar1
+18:00:24.671 (4878860051)|SOQL_EXECUTE_END|[69]|Rows:1
+18:00:24.879 (4879169661)|CUMULATIVE_LIMIT_USAGE
+18:00:24.879 (4879169661)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 3 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 3 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:24.879 (4879169661)|TESTING_LIMITS
+18:00:24.879 (4879169661)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:24.879 (4879169661)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:24.671 (4879209536)|CODE_UNIT_FINISHED|PARRetryBatchTest.start_doesNotPickUpFutureRecords()
+18:00:24.671 (4879220967)|EXECUTION_FINISHED
+18:00:25.172 (5172859934)|USER_INFO|[EXTERNAL]|0050Y000000nfxg|administrator@sf.interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Kyiv)|GMT+03:00
+18:00:25.172 (5172885743)|EXECUTION_STARTED
+18:00:25.172 (5172894182)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OdjnR|PARRetryBatchTest.start_returnsQueryLocator_doesNotThrow()
+18:00:25.172 (5178727827)|SYSTEM_MODE_ENTER|false
+18:00:25.172 (5178760800)|SYSTEM_MODE_EXIT|false
+18:00:25.172 (5178824421)|SYSTEM_MODE_ENTER|false
+18:00:25.172 (5178848357)|SYSTEM_MODE_EXIT|false
+18:00:25.172 (5178853882)|SYSTEM_MODE_ENTER|false
+18:00:25.172 (5178857580)|SYSTEM_MODE_EXIT|false
+18:00:25.172 (5178891182)|SYSTEM_MODE_ENTER|false
+18:00:25.172 (5179503421)|SOQL_EXECUTE_BEGIN|[22]|Aggregations:0|SELECT Id, PAR__c, Status__c, AttemptCount__c, MaxAttempts__c, NextAttemptAt__c, LastAttemptAt__c, LastError__c, Payload__c, ApproverEmail__c, ApprovalResolution__c, ApproverComment__c, NotificationSent__c FROM PAR_Retry__c WHERE (Status__c = 'Pending' AND NextAttemptAt__c <= :tmpVar1)
+18:00:25.172 (5191643168)|SOQL_EXECUTE_END|[22]|Rows:0
+18:00:25.172 (5191766346)|SYSTEM_MODE_EXIT|false
+18:00:25.192 (5192028248)|CUMULATIVE_LIMIT_USAGE
+18:00:25.192 (5192028248)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:25.192 (5192028248)|TESTING_LIMITS
+18:00:25.192 (5192028248)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:25.192 (5192028248)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:25.172 (5192069856)|CODE_UNIT_FINISHED|PARRetryBatchTest.start_returnsQueryLocator_doesNotThrow()
+18:00:25.172 (5192082763)|EXECUTION_FINISHED

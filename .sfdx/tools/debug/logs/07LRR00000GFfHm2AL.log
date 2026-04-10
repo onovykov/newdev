@@ -1,0 +1,46 @@
+47.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+18:17:00.146 (146750607)|SOQL_EXECUTE_BEGIN|[6]|Aggregations:0|SELECT COUNT() FROM Connected_Org__c
+18:17:00.146 (162718267)|SOQL_EXECUTE_END|[6]|Rows:1
+18:17:00.146 (179230228)|SOQL_EXECUTE_BEGIN|[297]|Aggregations:0|SELECT Id FROM AsyncApexJob WHERE (Status = :tmpVar1 AND JobType != :tmpVar2 AND ApexClass.Name IN :tmpVar3) LIMIT 1
+18:17:00.146 (201581344)|SOQL_EXECUTE_END|[297]|Rows:0
+18:17:00.146 (1010583042)|SOQL_EXECUTE_BEGIN|[34]|Aggregations:0|SELECT COUNT() FROM AsyncApexJob WHERE (JobType = 'BatchApex' AND Status = 'Holding')
+18:17:00.146 (1020437262)|SOQL_EXECUTE_END|[34]|Rows:0
+18:17:01.198 (1198135055)|SOQL_EXECUTE_BEGIN|[7]|Aggregations:0|SELECT COUNT() FROM Rule__c WHERE (Type__c = :tmpVar1 AND Active__c = TRUE) LIMIT :tmpVar2
+18:17:01.198 (1229958726)|SOQL_EXECUTE_END|[7]|Rows:0
+18:17:01.198 (1230800357)|SOQL_EXECUTE_BEGIN|[297]|Aggregations:0|SELECT Id FROM AsyncApexJob WHERE (Status = :tmpVar1 AND JobType != :tmpVar2 AND ApexClass.Name IN :tmpVar3) LIMIT 1
+18:17:01.198 (1241604480)|SOQL_EXECUTE_END|[297]|Rows:0
+18:17:01.198 (1451522659)|DML_BEGIN|[116]|Op:Upsert|Type:pharos__Logger_Settings__c|Rows:1
+18:17:01.198 (1511687708)|DML_END|[116]
+18:17:01.518 (1518282057)|CUMULATIVE_LIMIT_USAGE
+18:17:01.518 (1518282057)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 199 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:17:01.518 (1518282057)|LIMIT_USAGE_FOR_NS|pharos|
+  Number of SOQL queries: 5 out of 100
+  Number of query rows: 3 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:17:01.518 (1518282057)|CUMULATIVE_LIMIT_USAGE_END
+

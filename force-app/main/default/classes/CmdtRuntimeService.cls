@@ -22,6 +22,20 @@ public with sharing class CmdtRuntimeService {
     /**
      * Update existing CMDT record.
      */
+    /*
+    Приклад
+        CmdtRuntimeService.updateCmdtRecord(
+            'ShipmentStatus__mdt',  //Об’єкт mdt
+            'SHIPPED',  // поле DeveloperName
+            new Map<String, String>{
+                'Code__c' => 'SHIPPED_DEPT',
+                'Name__c' => 'Відвантажено з пункту'
+            }
+        );
+        працює через Metadata API
+        async deploy
+        з callback і логами
+    */
     public static Id updateCmdtRecord(
         String cmdtName,
         String developerName,

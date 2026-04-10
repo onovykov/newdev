@@ -1,0 +1,21 @@
+47.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+18:17:03.46 (46410300)|SOQL_EXECUTE_BEGIN|[46]|Aggregations:0|SELECT Id FROM CronTrigger WHERE CronJobDetail.Name = :tmpVar1
+18:17:03.46 (58037581)|SOQL_EXECUTE_END|[46]|Rows:0
+18:17:03.104 (104012985)|CUMULATIVE_LIMIT_USAGE
+18:17:03.104 (104012985)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 0
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:17:03.104 (104012985)|CUMULATIVE_LIMIT_USAGE_END
+

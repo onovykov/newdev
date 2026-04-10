@@ -1,0 +1,26 @@
+65.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+18:00:09.2 (2036166)|USER_INFO|[EXTERNAL]|0050Y000000nfxg|administrator@sf.interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Kyiv)|GMT+03:00
+18:00:09.2 (2072775)|EXECUTION_STARTED
+18:00:09.2 (2082706)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000K57bd|OrderItemStageEventBatch
+18:00:09.2 (36018032)|SOQL_EXECUTE_BEGIN|[38]|Aggregations:0|SELECT Id, ERP_Key__c, ERP_Opportunity_Id__c, ERP_Item_Id__c, Raw_Stage_Code__c, SF_Stage__c, Is_Unknown_Stage__c, Stage__c, Error_Message__c FROM OrderItemStageEvent__c WHERE Stage__c = 'Pending' ORDER BY CreatedDate ASC NULLS FIRST LIMIT 50000
+18:00:09.2 (63660858)|SOQL_EXECUTE_END|[38]|Rows:0
+18:00:09.75 (75895500)|CUMULATIVE_LIMIT_USAGE
+18:00:09.75 (75895500)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 0
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:09.75 (75895500)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:09.2 (76002021)|CODE_UNIT_FINISHED|OrderItemStageEventBatch
+18:00:09.2 (76016204)|EXECUTION_FINISHED

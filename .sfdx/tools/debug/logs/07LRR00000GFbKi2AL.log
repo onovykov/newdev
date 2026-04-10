@@ -1,0 +1,38 @@
+47.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+18:30:00.43 (43041796)|SOQL_EXECUTE_BEGIN|[258]|Aggregations:0|SELECT Id FROM Log__c WHERE (Post_Processing_Status__c = :tmpVar1 AND Organization_Id__c != NULL AND Created_At__c >= :tmpVar2) LIMIT :tmpVar3
+18:30:00.43 (59516853)|SOQL_EXECUTE_END|[258]|Rows:0
+18:30:00.43 (60156761)|SOQL_EXECUTE_BEGIN|[259]|Aggregations:0|SELECT Id FROM Log__c WHERE (Post_Processing_Status__c = :tmpVar1 AND Organization_Id__c != NULL AND Created_At__c >= :tmpVar2) LIMIT :tmpVar3
+18:30:00.43 (65477196)|SOQL_EXECUTE_END|[259]|Rows:0
+18:30:00.82 (82151832)|CUMULATIVE_LIMIT_USAGE
+18:30:00.82 (82151832)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:30:00.82 (82151832)|LIMIT_USAGE_FOR_NS|pharos|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:30:00.82 (82151832)|CUMULATIVE_LIMIT_USAGE_END
+

@@ -1,0 +1,21 @@
+47.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+18:17:02.28 (28283241)|SOQL_EXECUTE_BEGIN|[16]|Aggregations:0|SELECT Id, Name, Access_Token__c, Refresh_Token__c, Private_Key__c FROM Connected_Org__c
+18:17:02.28 (60926295)|SOQL_EXECUTE_END|[16]|Rows:1
+18:17:02.89 (89239521)|CUMULATIVE_LIMIT_USAGE
+18:17:02.89 (89239521)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 0
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:17:02.89 (89239521)|CUMULATIVE_LIMIT_USAGE_END
+

@@ -1,0 +1,52 @@
+50.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+18:22:00.38 (38444688)|SOQL_EXECUTE_BEGIN|[75]|Aggregations:0|SELECT Id FROM AsyncApexJob WHERE (ApexClass.Name = 'LogPostProcessingBatch' AND Status IN :tmpVar1 AND JobType = :tmpVar2 AND CreatedDate < :tmpVar3) LIMIT 1
+18:22:00.38 (59251048)|SOQL_EXECUTE_END|[75]|Rows:0
+18:22:00.38 (100607599)|SOQL_EXECUTE_BEGIN|[26]|Aggregations:0|SELECT COUNT() FROM AsyncApexJob WHERE (Status IN ('Completed', 'Failed') AND ParentJobId = NULL AND NumberOfErrors > 0 AND CompletedDate >= YESTERDAY)
+18:22:00.38 (139383574)|SOQL_EXECUTE_END|[26]|Rows:0
+18:22:00.38 (162230614)|SOQL_EXECUTE_BEGIN|[297]|Aggregations:0|SELECT Id FROM AsyncApexJob WHERE (Status = :tmpVar1 AND JobType != :tmpVar2 AND ApexClass.Name IN :tmpVar3) LIMIT 1
+18:22:00.38 (172337239)|SOQL_EXECUTE_END|[297]|Rows:0
+18:22:00.38 (612488276)|SOQL_EXECUTE_BEGIN|[211]|Aggregations:0|SELECT COUNT() FROM pharos__Log__c WHERE Jira_Integration_Status__c = 'Ticket Pending' OR Notification_Integration_Status__c = 'Pending' LIMIT 200
+18:22:00.38 (647392341)|SOQL_EXECUTE_END|[211]|Rows:0
+18:22:00.38 (648253671)|SOQL_EXECUTE_BEGIN|[297]|Aggregations:0|SELECT Id FROM AsyncApexJob WHERE (Status = :tmpVar1 AND JobType != :tmpVar2 AND ApexClass.Name IN :tmpVar3) LIMIT 1
+18:22:00.38 (655909941)|SOQL_EXECUTE_END|[297]|Rows:0
+18:22:00.38 (880538555)|SOQL_EXECUTE_BEGIN|[211]|Aggregations:0|SELECT COUNT() FROM pharos__Issue__c WHERE Jira_Integration_Status__c = 'Ticket Pending' OR Notification_Integration_Status__c = 'Pending' LIMIT 200
+18:22:00.38 (891946307)|SOQL_EXECUTE_END|[211]|Rows:0
+18:22:00.38 (892984699)|SOQL_EXECUTE_BEGIN|[297]|Aggregations:0|SELECT Id FROM AsyncApexJob WHERE (Status = :tmpVar1 AND JobType != :tmpVar2 AND ApexClass.Name IN :tmpVar3) LIMIT 1
+18:22:00.38 (901739106)|SOQL_EXECUTE_END|[297]|Rows:0
+18:22:01.266 (1266465380)|SOQL_EXECUTE_BEGIN|[16]|Aggregations:0|SELECT COUNT() FROM Log__c WHERE (Issue__c = NULL AND Hash_1__c != NULL AND Do_Not_Create_Issue__c = FALSE AND Post_Processing_Status__c = :tmpVar1) LIMIT :tmpVar2
+18:22:01.266 (1278824752)|SOQL_EXECUTE_END|[16]|Rows:0
+18:22:01.266 (1279549134)|SOQL_EXECUTE_BEGIN|[297]|Aggregations:0|SELECT Id FROM AsyncApexJob WHERE (Status = :tmpVar1 AND JobType != :tmpVar2 AND ApexClass.Name IN :tmpVar3) LIMIT 1
+18:22:01.266 (1287720245)|SOQL_EXECUTE_END|[297]|Rows:0
+18:22:01.573 (1573526108)|CUMULATIVE_LIMIT_USAGE
+18:22:01.573 (1573526108)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 219 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:22:01.573 (1573526108)|LIMIT_USAGE_FOR_NS|pharos|
+  Number of SOQL queries: 9 out of 100
+  Number of query rows: 4 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 1 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:22:01.573 (1573526108)|CUMULATIVE_LIMIT_USAGE_END
+

@@ -1,0 +1,25 @@
+56.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+18:25:05.170 (170947160)|SOQL_EXECUTE_BEGIN|[23]|Aggregations:0|SELECT Extended_Scope__c FROM OAuthSettings__mdt WHERE DeveloperName = :tmpVar1 LIMIT 1
+18:25:05.170 (190864431)|SOQL_EXECUTE_END|[23]|Rows:1
+18:25:05.170 (820101861)|DML_BEGIN|[116]|Op:Upsert|Type:pharos__Graph_API_Token__c|Rows:21
+18:25:06.176 (1176554508)|DML_END|[116]
+18:25:06.176 (1177891668)|DML_BEGIN|[116]|Op:Upsert|Type:pharos__Graph_API_Settings__c|Rows:1
+18:25:06.176 (1228497494)|DML_END|[116]
+18:25:06.252 (1252633183)|CUMULATIVE_LIMIT_USAGE
+18:25:06.252 (1252633183)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 0
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:25:06.252 (1252633183)|CUMULATIVE_LIMIT_USAGE_END
+

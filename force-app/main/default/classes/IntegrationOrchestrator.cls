@@ -8,11 +8,13 @@ public with sharing class IntegrationOrchestrator {
         IntegrationResponse response = new IntegrationResponse();
         response.timestamp = System.now();
 
-        IIntegrationHandler handler; // 🔥 оголошено тут
+        IIntegrationHandler handler;
 
         try {
 
-            // 1️. Parse metadata
+            // =====================================================
+            // 1. Parse metadata
+            // =====================================================
             Map<String, Object> untyped =
                 (Map<String, Object>) JSON.deserializeUntyped(rawJson);
 
@@ -20,12 +22,7 @@ public with sharing class IntegrationOrchestrator {
                 (Map<String, Object>) untyped.get('metadata');
 
             if (metaMap == null) {
-                return buildError(
-                    'Orchestrator',
-                    'INVALID_METADATA',
-                    null,
-                    400
-                );
+                return buildError('Orchestrator', 'INVALID_METADATA', null, 400);
             }
 
             ERPMessageParser.MessageMetadata meta =
@@ -36,50 +33,46 @@ public with sharing class IntegrationOrchestrator {
                     );
 
             if (String.isBlank(meta.msgType)) {
-                return buildError(
-                    'Orchestrator',
-                    'INVALID_MESSAGE_TYPE',
-                    null,
-                    400
-                );
+                return buildError('Orchestrator', 'INVALID_MESSAGE_TYPE', null, 400);
             }
 
-            // 2️. Resolve route
+            // =====================================================
+            // 2. Resolve route (CMDT)
+            // =====================================================
             IntegrationMessageRoute__mdt route =
-                getRoute(meta.msgType, 'IN');
+                getRoute(meta.msgType, IntegrationDirection.ERP_SF);
 
             if (route == null || !route.Active__c) {
-                return buildError(
-                    'Orchestrator',
-                    'ROUTE_NOT_FOUND',
-                    meta.msgType,
-                    404
-                );
+                return buildError('Orchestrator', 'ROUTE_NOT_FOUND', meta.msgType, 404);
             }
 
-            // 3️. Build context
+            // =====================================================
+            // 3. Build context
+            // =====================================================
             IntegrationContext context = new IntegrationContext();
             context.rawJson     = rawJson;
-            context.direction   = 'ERP_SF';
+            context.direction   = IntegrationDirection.ERP_SF;
             context.messageType = meta.msgType;
             context.handlerKey  = route.HandlerClass__c;
 
-            // 4️. Instantiate handler
+            // =====================================================
+            // 4. Instantiate handler (Dynamic Apex)
+            // =====================================================
             handler = instantiateHandler(route.HandlerClass__c);
 
             if (handler == null) {
-                return buildError(
-                    'Orchestrator',
-                    'HANDLER_NOT_FOUND',
-                    route.HandlerClass__c,
-                    500
-                );
+                return buildError('Orchestrator', 'HANDLER_NOT_FOUND', route.HandlerClass__c, 500);
             }
 
-            // 5️. Execute
+            // =====================================================
+            // 5. Execute handler
+            // =====================================================
             handler.handle(context);
 
-            if (context.hasErrors()) {
+            // =====================================================
+            // 6. Handle errors
+            // =====================================================
+            if (context.stopProcessing || context.hasErrors()) {
                 return buildError(
                     route.HandlerClass__c,
                     'DOMAIN_ERROR',
@@ -88,7 +81,25 @@ public with sharing class IntegrationOrchestrator {
                 );
             }
 
-            // 6️. Success
+            // =====================================================
+            // 7. Handle response
+            // =====================================================
+            IntegrationHandlerResponse handlerResp = context.getResponse();
+
+            if (handlerResp != null) {
+
+                response.success    = true;
+                response.statusCode = handlerResp.httpStatus;
+                response.code       = 'SUCCESS';
+                response.message    = 'OK';
+                response.payload    = JSON.serialize(handlerResp.body);
+
+                return response;
+            }
+
+            // =====================================================
+            // 8. Default success (fallback)
+            // =====================================================
             response.success    = true;
             response.statusCode = 200;
             response.code       = 'SUCCESS';
@@ -116,9 +127,9 @@ public with sharing class IntegrationOrchestrator {
         }
     }
 
-    // =========================
+    // =========================================================
     // Error builder
-    // =========================
+    // =========================================================
     private static IntegrationResponse buildError(
         String handler,
         String code,
@@ -141,9 +152,9 @@ public with sharing class IntegrationOrchestrator {
         return response;
     }
 
-    // =========================
-    // Helpers
-    // =========================
+    // =========================================================
+    // CMDT route resolver
+    // =========================================================
     private static IntegrationMessageRoute__mdt getRoute(
         String messageType,
         String direction
@@ -162,9 +173,10 @@ public with sharing class IntegrationOrchestrator {
         return routes.isEmpty() ? null : routes[0];
     }
 
-    private static IIntegrationHandler instantiateHandler(
-        String className
-    ) {
+    // =========================================================
+    // Dynamic handler instantiation
+    // =========================================================
+    private static IIntegrationHandler instantiateHandler(String className) {
         try {
             Type t = Type.forName(className);
             return (IIntegrationHandler) t.newInstance();

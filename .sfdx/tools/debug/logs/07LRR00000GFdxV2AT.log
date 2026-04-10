@@ -1,0 +1,26 @@
+66.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+18:12:01.2 (2151899)|USER_INFO|[EXTERNAL]|0050Y000000nfxg|administrator@sf.interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Kyiv)|GMT+03:00
+18:12:01.2 (2215774)|EXECUTION_STARTED
+18:12:01.2 (2235699)|CODE_UNIT_STARTED|[EXTERNAL]|VisualForce View State
+18:12:01.2 (7828223)|CODE_UNIT_FINISHED|VisualForce View State
+18:12:01.2 (7850356)|EXECUTION_FINISHED
+18:12:01.9 (9762791)|USER_INFO|[EXTERNAL]|0050Y000000nfxg|administrator@sf.interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Kyiv)|GMT+03:00
+18:12:01.9 (11218540)|SYSTEM_MODE_ENTER|true
+18:12:01.85 (85182268)|CUMULATIVE_LIMIT_USAGE
+18:12:01.85 (85182268)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:12:01.85 (85182268)|CUMULATIVE_LIMIT_USAGE_END
+

@@ -1,0 +1,24 @@
+65.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+18:00:10.7 (7225472)|USER_INFO|[EXTERNAL]|0050Y000000nfxg|administrator@sf.interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Kyiv)|GMT+03:00
+18:00:10.7 (7301019)|EXECUTION_STARTED
+18:00:10.7 (7316331)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000K57bd|OrderItemStageEventBatch
+18:00:10.77 (77904143)|CUMULATIVE_LIMIT_USAGE
+18:00:10.77 (77904143)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 0
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:00:10.77 (77904143)|CUMULATIVE_LIMIT_USAGE_END
+
+18:00:10.7 (78019201)|CODE_UNIT_FINISHED|OrderItemStageEventBatch
+18:00:10.7 (78035342)|EXECUTION_FINISHED

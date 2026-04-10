@@ -1,26 +1,23 @@
 public with sharing class PipeScheduleMapRepository {
 
-    private static Map<String, List<PipeScheduleMap__mdt>> byDimp;
+    private static Map<String, PipeScheduleMap__mdt> byComposite;
     private static Boolean loaded = false;
 
-    public static List<PipeScheduleMap__mdt> getByDimp(String dimpHex) {
+    public static PipeScheduleMap__mdt getByComposite(String key) {
         ensureLoaded();
-        return byDimp.get(dimpHex);
+        return byComposite.get(key);
     }
 
     private static void ensureLoaded() {
         if (loaded) return;
 
-        byDimp = new Map<String, List<PipeScheduleMap__mdt>>();
+        byComposite = new Map<String, PipeScheduleMap__mdt>();
 
         for (PipeScheduleMap__mdt rec : [
-            SELECT DIMP_Key__c, SCH__c, ForCarbonSteel__c, Priority__c
+            SELECT CompositeKey__c, SCH__c, Priority__c
             FROM PipeScheduleMap__mdt
         ]) {
-            if (!byDimp.containsKey(rec.DIMP_Key__c)) {
-                byDimp.put(rec.DIMP_Key__c, new List<PipeScheduleMap__mdt>());
-            }
-            byDimp.get(rec.DIMP_Key__c).add(rec);
+            byComposite.put(rec.CompositeKey__c, rec);
         }
 
         loaded = true;
@@ -28,6 +25,6 @@ public with sharing class PipeScheduleMapRepository {
 
     public static void clearCache() {
         loaded = false;
-        byDimp = null;
+        byComposite = null;
     }
 }

@@ -1,22 +1,102 @@
-@RestResource(urlMapping = '/ERPtoSF/v1/*')
+@RestResource(urlMapping='/ERPtoSF/v1/*')
 global with sharing class ERPtoSF {
 
-    // =====================================================
-    // TEST OVERRIDE
-    // =====================================================
+    @HttpPost
+    global static void postCST() {
 
-    @TestVisible
-    static Boolean overrideUseOld;
+        RestRequest req = RestContext.request;
+        RestResponse res = RestContext.response;
 
-    // =====================================================
-    // SWITCH RESOLUTION
-    // =====================================================
+        String rawJson = req.requestBody.toString();
+        String messageType = resolveMessageType(rawJson);
 
-    private static Boolean useOldPipeline() {
-        // Allow tests to override behavior
-        if (Test.isRunningTest() && overrideUseOld != null) {
-            return overrideUseOld;
+        try {
+
+            // =====================================================
+            // 1. GLOBAL SWITCH (UseOld__c)
+            // =====================================================
+            if (useOldPipeline()) {
+                ERPMessageHandler.postCSTfromHelper(req, res);
+                return;
+            }
+
+            // =====================================================
+            // 2. RESOLVE ROUTE
+            // =====================================================
+            IntegrationMessageRoute__mdt route =
+                resolveRoute(messageType);
+
+            if (route == null || !route.Active__c) {
+                ERPMessageHandler.postCSTfromHelper(req, res);
+                return;
+            }
+
+            // =====================================================
+            // 3. PROCESSING MODE (via IsAsync__c)
+            // =====================================================
+            if (route.IsAsync__c == true) {
+
+                // ASYNC FLOW
+                handleAsync(rawJson, res);
+                return;
+
+            } else {
+
+                // SYNC FLOW
+                handleSync(rawJson, res);
+                return;
+            }
+
+        } catch (Exception e) {
+
+            res.statusCode = 500;
+            res.responseBody = Blob.valueOf(
+                '{"status":"ERROR","message":"' +
+                escapeJson(e.getMessage()) +
+                '"}'
+            );
         }
+    }
+
+    // =========================================================
+    // SYNC FLOW
+    // =========================================================
+    private static void handleSync(String rawJson, RestResponse res) {
+
+        IntegrationResponse r =
+            IntegrationOrchestrator.process(
+                rawJson,
+                IntegrationDirection.ERP_SF
+            );
+
+        res.statusCode = r.statusCode;
+
+        if (r.payload != null) {
+            res.responseBody = Blob.valueOf(r.payload);
+        } else {
+            res.responseBody = Blob.valueOf(
+                '{"status":"' + r.code +
+                '","message":"' + escapeJson(r.message) + '"}'
+            );
+        }
+    }
+
+    // =========================================================
+    // ASYNC FLOW
+    // =========================================================
+    private static void handleAsync(String rawJson, RestResponse res) {
+
+        InboundBatchCoordinator.Result r =
+            InboundBatchCoordinator.acceptPart(rawJson);
+
+        res.statusCode = r.httpStatus;
+        res.responseBody = Blob.valueOf(r.responseBody);
+    }
+
+    // =========================================================
+    // GLOBAL SWITCH
+    // =========================================================
+    private static Boolean useOldPipeline() {
 
         ERPtoSF_Switcher__mdt cfg =
             ERPtoSF_Switcher__mdt.getInstance('Default');
@@ -24,58 +104,58 @@ global with sharing class ERPtoSF {
         return (cfg == null || cfg.UseOld__c == true);
     }
 
-    // =====================================================
-    // REST ENTRYPOINT
-    // =====================================================
+    // =========================================================
+    // ROUTE RESOLVER
+    // =========================================================
+    private static IntegrationMessageRoute__mdt resolveRoute(
+        String messageType
+    ) {
 
-    @HttpPost
-    global static void postCST() {
+        if (String.isBlank(messageType)) return null;
 
-        RestRequest request = RestContext.request;
-        RestResponse response = RestContext.response;
+        List<IntegrationMessageRoute__mdt> routes = [
+            SELECT MessageCode__c,
+                   Direction__c,
+                   HandlerClass__c,
+                   Active__c,
+                   IsAsync__c
+            FROM IntegrationMessageRoute__mdt
+            WHERE MessageCode__c = :messageType
+              AND Direction__c   = :IntegrationDirection.ERP_SF
+            LIMIT 1
+        ];
+
+        return routes.isEmpty() ? null : routes[0];
+    }
+
+    // =========================================================
+    // METADATA PARSER
+    // =========================================================
+    private static String resolveMessageType(String rawJson) {
 
         try {
+            Map<String,Object> root =
+                (Map<String,Object>) JSON.deserializeUntyped(rawJson);
 
-            Boolean useOld = useOldPipeline();
+            Map<String,Object> meta =
+                (Map<String,Object>) root.get('metadata');
 
-            System.debug(
-                'ERP inbound pipeline = ' +
-                (useOld ? 'OLD_HANDLER' : 'NEW_PIPELINE')
-            );
-
-            if (useOld) {
-                // =================================
-                // OLD PIPELINE
-                // =================================
-                ERPMessageHandler.postCSTfromHelper(
-                    request,
-                    response
-                );
-
-            } else {
-                // =================================
-                // NEW PIPELINE
-                // =================================
-                ERPInboundController.handle(
-                    request,
-                    response
-                );
-            }
+            return (String) meta.get('msgType');
 
         } catch (Exception e) {
-
-            System.debug(
-                'ERP endpoint error: ' + e.getMessage()
-            );
-
-            response.statusCode = 500;
-
-            response.responseBody =
-                Blob.valueOf(
-                    '{"status":"ERROR","message":"' +
-                    String.escapeSingleQuotes(e.getMessage()) +
-                    '"}'
-                );
+            return null;
         }
+    }
+
+    // =========================================================
+    // JSON SAFE
+    // =========================================================
+    private static String escapeJson(String s) {
+        if (s == null) return '';
+        return s
+            .replace('\\', '\\\\')
+            .replace('"', '\\"')
+            .replace('\r', '\\r')
+            .replace('\n', '\\n');
     }
 }

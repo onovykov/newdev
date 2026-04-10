@@ -1,13 +1,19 @@
 public with sharing class PipeScheduleResolverService {
 
-    public static String resolve(String rawDimp, String material) {
+    public static String resolve(
+        String rawDimp,
+        String rawWlmp,
+        String material
+    ) {
 
         ResolverRequest req = new ResolverRequest();
+
         req.resolverKey = 'PIPE_SCHEDULE';
         req.domain = 'Diameter';
         req.orderType = 'Tubes';
 
         req.rawInputs.put('DIMP', rawDimp);
+        req.rawInputs.put('WLMP', rawWlmp);
 
         req.attributes.put(
             'isCarbonSteel',
