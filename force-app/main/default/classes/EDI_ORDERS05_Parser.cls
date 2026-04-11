@@ -1,6 +1,23 @@
-public with sharing class EDI_ORDERS05_Parser {
+public with sharing class EDI_ORDERS05_Parser implements IEdiParser {
 
-    public static EDI_ORDERS05_DTO parse(String xmlString) {
+    // =====================================
+    // INTERFACE METHOD (єдиний parse)
+    // =====================================
+    public Object parse(String xmlString) {
+        return parseInternal(xmlString);
+    }
+
+    // =====================================
+    // STATIC (BACKWARD COMPATIBILITY)
+    // =====================================
+    public static EDI_ORDERS05_DTO parseToDto(String xmlString) {
+        return parseInternal(xmlString);
+    }
+
+    // =====================================
+    // CORE LOGIC
+    // =====================================
+    private static EDI_ORDERS05_DTO parseInternal(String xmlString) {
 
         Dom.Document doc = new Dom.Document();
         doc.load(xmlString);
@@ -13,25 +30,20 @@ public with sharing class EDI_ORDERS05_Parser {
         // =====================================
         // HEADER
         // =====================================
-
         for (Dom.XmlNode node : idoc.getChildElements()) {
 
             String name = node.getName();
 
-            // ARCKEY → documentNumber
             if (name == 'EDI_DC40') {
-                dto.documentNumber =
-                    getChildText(node, 'ARCKEY');
+                dto.documentNumber = getChildText(node, 'ARCKEY');
             }
 
-            // delivery date
             if (name == 'E1EDK03') {
                 String iddat = getChildText(node, 'IDDAT');
 
                 if (iddat == '002') {
                     String dateStr = getChildText(node, 'DATUM');
-                    dto.requestedDeliveryDate =
-                        parseDate(dateStr);
+                    dto.requestedDeliveryDate = parseDate(dateStr);
                 }
             }
         }
@@ -39,7 +51,6 @@ public with sharing class EDI_ORDERS05_Parser {
         // =====================================
         // ITEMS
         // =====================================
-
         for (Dom.XmlNode node : idoc.getChildElements()) {
 
             if (node.getName() != 'E1EDP01') continue;
@@ -47,33 +58,24 @@ public with sharing class EDI_ORDERS05_Parser {
             EDI_ORDERS05_DTO.Item item =
                 new EDI_ORDERS05_DTO.Item();
 
-            // POSEX
-            item.sapItemNumber =
-                getChildText(node, 'POSEX');
+            item.sapItemNumber = getChildText(node, 'POSEX');
 
-            // quantity
             String qty = getChildText(node, 'MENGE');
             if (qty != null) {
                 item.quantity = Decimal.valueOf(qty);
             }
 
-            // children of item
             for (Dom.XmlNode child : node.getChildElements()) {
 
-                String childName = child.getName();
-
-                // MATERIAL
-                if (childName == 'E1EDP19') {
+                if (child.getName() == 'E1EDP19') {
 
                     String qualf = getChildText(child, 'QUALF');
                     String idtnr = getChildText(child, 'IDTNR');
 
-                    // standard material
                     if (qualf == '001') {
                         item.materialNumber = idtnr;
                     }
 
-                    // 🔥 OUR EXT KEY
                     if (qualf == 'ZIT') {
                         item.extKey = idtnr;
                     }
@@ -89,11 +91,8 @@ public with sharing class EDI_ORDERS05_Parser {
     // =====================================
     // HELPERS
     // =====================================
-
     private static String getChildText(Dom.XmlNode node, String name) {
-
         Dom.XmlNode child = node.getChildElement(name, null);
-
         return child != null ? child.getText() : null;
     }
 

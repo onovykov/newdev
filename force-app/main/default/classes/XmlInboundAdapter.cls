@@ -4,97 +4,94 @@ public with sharing class XmlInboundAdapter {
 
         try {
 
-            String messageType = detectMessageType(xml);
+            // -------------------------------------
+            // 1. Detect root tag
+            // -------------------------------------
+            String rootTag = detectRootTag(xml);
 
-            if (messageType == 'EDI_ORDERS05') {
+            // -------------------------------------
+            // 2. Load config from MDT
+            // -------------------------------------
+            EdiMessageConfig__mdt cfg =
+                EdiMessageConfig__mdt.getInstance(rootTag);
 
-                // 1. Parse
-                EDI_ORDERS05_DTO transportDto =
-                    EDI_ORDERS05_Parser.parse(xml);
-
-                // 2. Map
-                OrderInboundDTO canonicalDto =
-                    EDI_ORDERS05_Mapper.mapToCanonical(transportDto);
-
-                // 3. Handle
-                OrderInboundHandler.Result handlerResult =
-                    OrderInboundHandler.handle(canonicalDto);
-
-                // 4. Build response
-                return buildResponse(handlerResult);
+            if (cfg == null || !cfg.Active__c) {
+                return IntegrationResponseBuilder.error(
+                    'UNKNOWN_XML_TYPE',
+                    'Unsupported XML type: ' + rootTag
+                );
             }
 
-            throw new IntegrationDomainException(
-                'XmlInboundAdapter',
-                'UNKNOWN_XML_TYPE',
-                messageType
-            );
+            // -------------------------------------
+            // 3. Parser (dynamic через interface)
+            // -------------------------------------
+            IEdiParser parser =
+                (IEdiParser) Type.forName(cfg.ParserClass__c).newInstance();
+
+            Object transportDto = parser.parse(xml);
+
+            // -------------------------------------
+            // 4. Mapper
+            // -------------------------------------
+            IEdiMapper mapper =
+                (IEdiMapper) Type.forName(cfg.MapperClass__c).newInstance();
+
+            Object canonicalDto = mapper.mapToCanonical(transportDto);
+
+            // -------------------------------------
+            // 5. Call Orchestrator (старий метод)
+            // -------------------------------------
+            IntegrationResponse resp =
+                IntegrationOrchestrator.process(
+                    JSON.serialize(canonicalDto),
+                    cfg.TargetMessageCode__c
+                );
+
+            return resp;
 
         } catch (Exception ex) {
 
-            IntegrationResponse error = new IntegrationResponse();
-            error.status = 'ERROR';
-            error.message = ex.getMessage();
-            error.statusCode = 500;
-            error.timestamp = System.now();
-
-            return error;
+            return IntegrationResponseBuilder.error(
+                'XML_PROCESSING_ERROR',
+                ex.getMessage()
+            );
         }
     }
 
     // =========================================================
-    // MESSAGE TYPE DETECTION
+    // ROOT TAG DETECTION (твій hybrid — ✔ правильний)
     // =========================================================
-    private static String detectMessageType(String xml) {
+    private static String detectRootTag(String xml) {
 
-        if (xml.contains('<ORDERS05')) return 'EDI_ORDERS05';
-        if (xml.contains('<DESADV')) return 'EDI_DESADV';
+        if (String.isBlank(xml)) return 'UNKNOWN';
+
+        // 1. TRY DOM
+        try {
+            Dom.Document doc = new Dom.Document();
+            doc.load(xml);
+
+            Dom.XmlNode root = doc.getRootElement();
+
+            if (root != null && root.getName() != 'IDOC') {
+                return root.getName();
+            }
+        } catch (Exception e) {
+            // ignore
+        }
+
+        // 2. FALLBACK MDT
+        List<EdiMessageConfig__mdt> configs = [
+            SELECT RootTag__c
+            FROM EdiMessageConfig__mdt
+            WHERE Active__c = true
+        ];
+
+        for (EdiMessageConfig__mdt cfg : configs) {
+            if (xml.contains('<' + cfg.RootTag__c)) {
+                return cfg.RootTag__c;
+            }
+        }
 
         return 'UNKNOWN';
-    }
-
-    // =========================================================
-    // RESPONSE BUILDER
-    // =========================================================
-    private static IntegrationResponse buildResponse(OrderInboundHandler.Result r) {
-
-        IntegrationResponse resp = new IntegrationResponse();
-
-        resp.timestamp = System.now();
-        resp.status = r.status;
-        resp.statusCode = 200;
-
-        // legacy compatibility
-        resp.success = (r.status == 'FULL_SUCCESS');
-
-        // correlation (optional but recommended)
-        resp.correlationId = String.valueOf(Crypto.getRandomLong());
-
-        String warningsText = (r.warnings != null && !r.warnings.isEmpty())
-            ? String.join(r.warnings, '; ')
-            : '';
-
-        String errorsText = (r.errors != null && !r.errors.isEmpty())
-            ? String.join(r.errors, '; ')
-            : '';
-
-        if (r.status == 'FULL_SUCCESS') {
-            resp.message = 'Full Success';
-        }
-        else if (r.status == 'PARTIAL_SUCCESS') {
-            resp.message = 'Partial success' +
-                (warningsText != '' ? ': ' + warningsText : '');
-        }
-        else {
-            resp.message = 'Error' +
-                (errorsText != '' ? ': ' + errorsText : '');
-        }
-
-        resp.data = r;
-
-        // bridge old ↔ new
-        IntegrationResponse.syncPayload(resp);
-
-        return resp;
     }
 }
