@@ -54,7 +54,10 @@ public with sharing class OppDtoFactory {
             normalizeTubesData(tubes);
             dataDto = tubes;
         } else if (orderType.equalsIgnoreCase('Wheels')) {
-            dataDto = (WheelsData) JSON.deserialize(dataJson, WheelsData.class);
+            WheelsData wheels = (WheelsData) JSON.deserialize(dataJson, WheelsData.class);
+            backfillWheelsLocalizedNames(wheels, dataNode);
+            normalizeWheelsData(wheels);
+            dataDto = wheels;
         } else {
             throw new AuraHandledException('Unsupported OrderType: ' + orderType);
         }
@@ -141,6 +144,70 @@ public with sharing class OppDtoFactory {
         }
     }
 
+    private static void backfillWheelsLocalizedNames(WheelsData data, Map<String, Object> dataNode) {
+        if (data == null || data.Items == null || dataNode == null) {
+            return;
+        }
+
+        Object itemsObj = dataNode.get('Items');
+        if (!(itemsObj instanceof List<Object>)) {
+            return;
+        }
+
+        List<Object> rawItems = (List<Object>) itemsObj;
+        Integer size = Math.min(data.Items.size(), rawItems.size());
+
+        for (Integer i = 0; i < size; i++) {
+            WheelsData.Item dtoItem = data.Items[i];
+            Object rawItemObj = rawItems[i];
+
+            if (dtoItem == null || !(rawItemObj instanceof Map<String, Object>)) {
+                continue;
+            }
+
+            Map<String, Object> rawItem = (Map<String, Object>) rawItemObj;
+
+            Object pcObj = rawItem.get('ProductCharacteristic');
+            if (!(pcObj instanceof Map<String, Object>)) {
+                continue;
+            }
+
+            Map<String, Object> pc = (Map<String, Object>) pcObj;
+
+            Object nfdObj = pc.get('NameForDoc');
+            if (!(nfdObj instanceof Map<String, Object>)) {
+                continue;
+            }
+
+            Map<String, Object> nfd = (Map<String, Object>) nfdObj;
+
+            Object nameObj = nfd.get('Name');
+            if (!(nameObj instanceof Map<String, Object>)) {
+                continue;
+            }
+
+            Map<String, Object> name = (Map<String, Object>) nameObj;
+
+            if (dtoItem.ProductCharacteristic == null) {
+                continue;
+            }
+            if (dtoItem.ProductCharacteristic.NameForDoc == null) {
+                continue;
+            }
+
+            if (dtoItem.ProductCharacteristic.NameForDoc.Name == null) {
+                dtoItem.ProductCharacteristic.NameForDoc.Name = new WheelsData.LocalizedName();
+            }
+
+            dtoItem.ProductCharacteristic.NameForDoc.Name.defaultLng =
+                trimToNull(asString(name.get('Default')));
+            dtoItem.ProductCharacteristic.NameForDoc.Name.En =
+                trimToNull(asString(name.get('En')));
+            dtoItem.ProductCharacteristic.NameForDoc.Name.Uk =
+                trimToNull(asString(name.get('Uk')));
+        }
+    }
+
     private static void normalizeTubesData(TubesData data) {
         if (data == null) {
             return;
@@ -159,6 +226,27 @@ public with sharing class OppDtoFactory {
 
         for (TubesData.Item item : data.Items) {
             normalizeTubesItem(item);
+        }
+    }
+
+    private static void normalizeWheelsData(WheelsData data) {
+        if (data == null) {
+            return;
+        }
+
+        data.OrderType = trimToNull(data.OrderType);
+        data.OrderCurrency = trimToNull(data.OrderCurrency);
+
+        if (data.Header != null) {
+            normalizeHeader(data.Header);
+        }
+
+        if (data.Items == null) {
+            return;
+        }
+
+        for (WheelsData.Item item : data.Items) {
+            normalizeWheelsItem(item);
         }
     }
 
@@ -263,22 +351,75 @@ public with sharing class OppDtoFactory {
         }
 
         if (item.ProductCharacteristic != null) {
-            normalizeProductCharacteristic(item.ProductCharacteristic);
+            normalizeTubesPC(item.ProductCharacteristic);
         }
     }
 
-    private static void normalizeProductCharacteristic(TubesData.ProductCharacteristic pc) {
+    private static void normalizeWheelsItem(WheelsData.Item item) {
+        if (item == null) {
+            return;
+        }
+
+        item.IteNumber = trimToNull(item.IteNumber);
+        item.KMAT = trimToNull(item.KMAT);
+        item.InqUnit = trimToNull(item.InqUnit);
+        item.FinStatus = trimToNull(item.FinStatus);
+        item.Stage = trimToNull(item.Stage);
+        item.CoatingSpec = trimToNull(item.CoatingSpec);
+
+        if (item.ProductGroup != null) {
+            item.ProductGroup.Name = trimToNull(item.ProductGroup.Name);
+            item.ProductGroup.Id = trimToNull(item.ProductGroup.Id);
+        }
+
+        if (item.QuotaType != null) {
+            item.QuotaType.Name = trimToNull(item.QuotaType.Name);
+            item.QuotaType.Id = trimToNull(item.QuotaType.Id);
+
+            if (item.QuotaType.Shop != null) {
+                item.QuotaType.Shop.Name = trimToNull(item.QuotaType.Shop.Name);
+                item.QuotaType.Shop.Id = trimToNull(item.QuotaType.Shop.Id);
+            }
+        }
+
+        if (item.Shop != null) {
+            item.Shop.Name = trimToNull(item.Shop.Name);
+            item.Shop.Id = trimToNull(item.Shop.Id);
+
+            if (item.Shop.Mill != null) {
+                item.Shop.Mill.Name = trimToNull(item.Shop.Mill.Name);
+                item.Shop.Mill.Id = trimToNull(item.Shop.Mill.Id);
+            }
+        }
+
+        if (item.ShippingPoint != null) {
+            item.ShippingPoint.spType = trimToNull(item.ShippingPoint.spType);
+            item.ShippingPoint.Id = trimToNull(item.ShippingPoint.Id);
+            item.ShippingPoint.Name = trimToNull(item.ShippingPoint.Name);
+        }
+
+        if (item.SpecLevel != null) {
+            item.SpecLevel.Name = trimToNull(item.SpecLevel.Name);
+            item.SpecLevel.Id = trimToNull(item.SpecLevel.Id);
+        }
+
+        if (item.ProductCharacteristic != null) {
+            normalizeWheelsPC(item.ProductCharacteristic);
+        }
+    }
+
+    private static void normalizeTubesPC(TubesData.ProductCharacteristic pc) {
         if (pc == null) {
             return;
         }
 
-        normalizeDiameter(pc.Diameter);
-        normalizeThickness(pc.Thickness);
-        normalizeLengthSize(pc.LengthSize);
-        normalizeProductOption(pc.Ends);
-        normalizeProductOption(pc.Coating);
-        normalizeSteelGrade(pc.SteelGrade);
-        normalizeStandard(pc.Standard);
+        normalizeTubesDiameter(pc.Diameter);
+        normalizeTubesThickness(pc.Thickness);
+        normalizeTubesLengthSize(pc.LengthSize);
+        normalizeTubesProductOption(pc.Ends);
+        normalizeTubesProductOption(pc.Coating);
+        normalizeTubesSteelGrade(pc.SteelGrade);
+        normalizeTubesStandard(pc.Standard);
 
         if (pc.NameForDoc != null) {
             pc.NameForDoc.Id = trimToNull(pc.NameForDoc.Id);
@@ -291,7 +432,31 @@ public with sharing class OppDtoFactory {
         }
     }
 
-    private static void normalizeDiameter(TubesData.Diameter dto) {
+    private static void normalizeWheelsPC(WheelsData.ProductCharacteristic pc) {
+        if (pc == null) {
+            return;
+        }
+
+        pc.Specification = trimToNull(pc.Specification);
+
+        normalizeWheelsDiameter(pc.Diameter);
+        normalizeWheelsHub(pc.Hub);
+        normalizeWheelsDrawing(pc.Drawing);
+        normalizeWheelsSteelGrade(pc.SteelGrade);
+        normalizeWheelsStandard(pc.Standard);
+
+        if (pc.NameForDoc != null) {
+            pc.NameForDoc.Id = trimToNull(pc.NameForDoc.Id);
+
+            if (pc.NameForDoc.Name != null) {
+                pc.NameForDoc.Name.defaultLng = trimToNull(pc.NameForDoc.Name.defaultLng);
+                pc.NameForDoc.Name.En = trimToNull(pc.NameForDoc.Name.En);
+                pc.NameForDoc.Name.Uk = trimToNull(pc.NameForDoc.Name.Uk);
+            }
+        }
+    }
+
+    private static void normalizeTubesDiameter(TubesData.Diameter dto) {
         if (dto == null) {
             return;
         }
@@ -301,14 +466,14 @@ public with sharing class OppDtoFactory {
         dto.Id = trimToNull(dto.Id);
 
         if (dto.Facet == null) {
-            dto.Facet = buildFacet(dto.FacetCode, dto.Id);
+            dto.Facet = buildTubesFacet(dto.FacetCode, dto.Id);
         } else {
             dto.Facet.Code = trimToNull(dto.Facet.Code);
             dto.Facet.Id = trimToNull(dto.Facet.Id);
         }
     }
 
-    private static void normalizeThickness(TubesData.Thickness dto) {
+    private static void normalizeTubesThickness(TubesData.Thickness dto) {
         if (dto == null) {
             return;
         }
@@ -318,14 +483,14 @@ public with sharing class OppDtoFactory {
         dto.Id = trimToNull(dto.Id);
 
         if (dto.Facet == null) {
-            dto.Facet = buildFacet(dto.FacetCode, dto.Id);
+            dto.Facet = buildTubesFacet(dto.FacetCode, dto.Id);
         } else {
             dto.Facet.Code = trimToNull(dto.Facet.Code);
             dto.Facet.Id = trimToNull(dto.Facet.Id);
         }
     }
 
-    private static void normalizeLengthSize(TubesData.LengthSize dto) {
+    private static void normalizeTubesLengthSize(TubesData.LengthSize dto) {
         if (dto == null) {
             return;
         }
@@ -335,14 +500,14 @@ public with sharing class OppDtoFactory {
         dto.Id = trimToNull(dto.Id);
 
         if (dto.Facet == null) {
-            dto.Facet = buildFacet(dto.FacetCode, dto.Id);
+            dto.Facet = buildTubesFacet(dto.FacetCode, dto.Id);
         } else {
             dto.Facet.Code = trimToNull(dto.Facet.Code);
             dto.Facet.Id = trimToNull(dto.Facet.Id);
         }
     }
 
-    private static void normalizeProductOption(TubesData.ProductOption dto) {
+    private static void normalizeTubesProductOption(TubesData.ProductOption dto) {
         if (dto == null) {
             return;
         }
@@ -352,14 +517,14 @@ public with sharing class OppDtoFactory {
         dto.Id = trimToNull(dto.Id);
 
         if (dto.Facet == null) {
-            dto.Facet = buildFacet(dto.FacetCode, dto.Id);
+            dto.Facet = buildTubesFacet(dto.FacetCode, dto.Id);
         } else {
             dto.Facet.Code = trimToNull(dto.Facet.Code);
             dto.Facet.Id = trimToNull(dto.Facet.Id);
         }
     }
 
-    private static void normalizeSteelGrade(TubesData.SteelGrade dto) {
+    private static void normalizeTubesSteelGrade(TubesData.SteelGrade dto) {
         if (dto == null) {
             return;
         }
@@ -369,14 +534,14 @@ public with sharing class OppDtoFactory {
         dto.Id = trimToNull(dto.Id);
 
         if (dto.Facet == null) {
-            dto.Facet = buildFacet(dto.FacetCode, dto.Id);
+            dto.Facet = buildTubesFacet(dto.FacetCode, dto.Id);
         } else {
             dto.Facet.Code = trimToNull(dto.Facet.Code);
             dto.Facet.Id = trimToNull(dto.Facet.Id);
         }
     }
 
-    private static void normalizeStandard(TubesData.Standard dto) {
+    private static void normalizeTubesStandard(TubesData.Standard dto) {
         if (dto == null) {
             return;
         }
@@ -387,21 +552,110 @@ public with sharing class OppDtoFactory {
         dto.FacetId = trimToNull(dto.FacetId);
 
         if (dto.Facet == null) {
-            dto.Facet = buildFacet(dto.FacetCode, dto.FacetId);
+            dto.Facet = buildTubesFacet(dto.FacetCode, dto.FacetId);
         } else {
             dto.Facet.Code = trimToNull(dto.Facet.Code);
             dto.Facet.Id = trimToNull(dto.Facet.Id);
         }
 
         if (dto.StdNameRef == null) {
-            dto.StdNameRef = buildNameRef(dto.Id, dto.Name);
+            dto.StdNameRef = buildTubesNameRef(dto.Id, dto.Name);
         } else {
             dto.StdNameRef.Id = trimToNull(dto.StdNameRef.Id);
             dto.StdNameRef.Name = trimToNull(dto.StdNameRef.Name);
         }
     }
 
-    private static TubesData.FacetRef buildFacet(String code, String idVal) {
+    private static void normalizeWheelsDiameter(WheelsData.Diameter dto) {
+        if (dto == null) {
+            return;
+        }
+
+        dto.Name = trimToNull(dto.Name);
+        dto.FacetCode = trimToNull(dto.FacetCode);
+        dto.Id = trimToNull(dto.Id);
+
+        if (dto.Facet == null) {
+            dto.Facet = buildWheelsFacet(dto.FacetCode, dto.Id);
+        } else {
+            dto.Facet.Code = trimToNull(dto.Facet.Code);
+            dto.Facet.Id = trimToNull(dto.Facet.Id);
+        }
+    }
+
+    private static void normalizeWheelsHub(WheelsData.Hub dto) {
+        if (dto == null) {
+            return;
+        }
+
+        dto.Name = trimToNull(dto.Name);
+        dto.FacetCode = trimToNull(dto.FacetCode);
+        dto.Id = trimToNull(dto.Id);
+
+        if (dto.Facet == null) {
+            dto.Facet = buildWheelsFacet(dto.FacetCode, dto.Id);
+        } else {
+            dto.Facet.Code = trimToNull(dto.Facet.Code);
+            dto.Facet.Id = trimToNull(dto.Facet.Id);
+        }
+    }
+
+    private static void normalizeWheelsDrawing(WheelsData.Drawing dto) {
+        if (dto == null) {
+            return;
+        }
+
+        dto.Name = trimToNull(dto.Name);
+        dto.FacetCode = trimToNull(dto.FacetCode);
+        dto.Id = trimToNull(dto.Id);
+
+        if (dto.Facet == null) {
+            dto.Facet = buildWheelsFacet(dto.FacetCode, dto.Id);
+        } else {
+            dto.Facet.Code = trimToNull(dto.Facet.Code);
+            dto.Facet.Id = trimToNull(dto.Facet.Id);
+        }
+    }
+
+    private static void normalizeWheelsSteelGrade(WheelsData.SteelGrade dto) {
+        if (dto == null) {
+            return;
+        }
+
+        dto.Name = trimToNull(dto.Name);
+        dto.FacetCode = trimToNull(dto.FacetCode);
+        dto.Id = trimToNull(dto.Id);
+
+        if (dto.Facet == null) {
+            dto.Facet = buildWheelsFacet(dto.FacetCode, dto.Id);
+        } else {
+            dto.Facet.Code = trimToNull(dto.Facet.Code);
+            dto.Facet.Id = trimToNull(dto.Facet.Id);
+        }
+    }
+
+    private static void normalizeWheelsStandard(WheelsData.Standard dto) {
+        if (dto == null) {
+            return;
+        }
+
+        dto.Id = trimToNull(dto.Id);
+        dto.Name = trimToNull(dto.Name);
+
+        if (dto.Facet != null) {
+            dto.Facet.Code = trimToNull(dto.Facet.Code);
+            dto.Facet.Id = trimToNull(dto.Facet.Id);
+        }
+
+        if (dto.StdNameRef == null) {
+            dto.StdNameRef = buildWheelsNameRef(dto.Id, dto.Name);
+        } else {
+            dto.StdNameRef.Id = trimToNull(dto.StdNameRef.Id);
+            dto.StdNameRef.Name = trimToNull(dto.StdNameRef.Name);
+        }
+    }
+
+    private static TubesData.FacetRef buildTubesFacet(String code, String idVal) {
         String cleanCode = trimToNull(code);
         String cleanId = trimToNull(idVal);
 
@@ -415,7 +669,21 @@ public with sharing class OppDtoFactory {
         return facet;
     }
 
-    private static TubesData.NameRef buildNameRef(String idVal, String nameVal) {
+    private static WheelsData.FacetRef buildWheelsFacet(String code, String idVal) {
+        String cleanCode = trimToNull(code);
+        String cleanId = trimToNull(idVal);
+
+        if (cleanCode == null && cleanId == null) {
+            return null;
+        }
+
+        WheelsData.FacetRef facet = new WheelsData.FacetRef();
+        facet.Code = cleanCode;
+        facet.Id = cleanId;
+        return facet;
+    }
+
+    private static TubesData.NameRef buildTubesNameRef(String idVal, String nameVal) {
         String cleanId = trimToNull(idVal);
         String cleanName = trimToNull(nameVal);
 
@@ -424,6 +692,20 @@ public with sharing class OppDtoFactory {
         }
 
         TubesData.NameRef ref = new TubesData.NameRef();
+        ref.Id = cleanId;
+        ref.Name = cleanName;
+        return ref;
+    }
+
+    private static WheelsData.NameRef buildWheelsNameRef(String idVal, String nameVal) {
+        String cleanId = trimToNull(idVal);
+        String cleanName = trimToNull(nameVal);
+
+        if (cleanId == null && cleanName == null) {
+            return null;
+        }
+
+        WheelsData.NameRef ref = new WheelsData.NameRef();
         ref.Id = cleanId;
         ref.Name = cleanName;
         return ref;
@@ -449,6 +731,7 @@ public with sharing class OppDtoFactory {
         if (raw == null) {
             return null;
         }
+
         return Decimal.valueOf(String.valueOf(raw)).intValue();
     }
 
