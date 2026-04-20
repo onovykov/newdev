@@ -10,44 +10,61 @@ global with sharing class ERPtoSF {
         String rawJson = req.requestBody.toString();
         String messageType = resolveMessageType(rawJson);
 
+        // 🔥 DEBUG 1
+        System.debug('=== ERPtoSF DEBUG START ===');
+        System.debug('messageType=' + messageType);
+
         try {
 
             // =====================================================
-            // 1. GLOBAL SWITCH (UseOld__c)
-            // =====================================================
-            if (useOldPipeline()) {
-                ERPMessageHandler.postCSTfromHelper(req, res);
-                return;
-            }
-
-            // =====================================================
-            // 2. RESOLVE ROUTE
+            // 1. RESOLVE ROUTE
             // =====================================================
             IntegrationMessageRoute__mdt route =
                 resolveRoute(messageType);
 
+            // 🔥 DEBUG 2
+            System.debug('route=' + route);
+            System.debug('IsNewPath=' + (route != null ? route.IsNewPath__c : null));
+            System.debug('IsAsync=' + (route != null ? route.IsAsync__c : null));
+            System.debug('Active=' + (route != null ? route.Active__c : null));
+
+            // -----------------------------------------------------
+            // FALLBACK → OLD FLOW
+            // -----------------------------------------------------
             if (route == null || !route.Active__c) {
+
+                System.debug('⚠️ FALLBACK TO OLD FLOW (route null or inactive)');
                 ERPMessageHandler.postCSTfromHelper(req, res);
                 return;
             }
 
             // =====================================================
-            // 3. PROCESSING MODE (via IsAsync__c)
+            // 2. NEW vs OLD PATH
             // =====================================================
-            if (route.IsAsync__c == true) {
+            if (route.IsNewPath__c != true) {
 
-                // ASYNC FLOW
-                handleAsync(rawJson, res);
-                return;
-
-            } else {
-
-                // SYNC FLOW
-                handleSync(rawJson, res);
+                System.debug('⚠️ OLD PATH (IsNewPath__c != true)');
+                ERPMessageHandler.postCSTfromHelper(req, res);
                 return;
             }
 
+            // =====================================================
+            // 3. PROCESS MODE
+            // =====================================================
+            if (route.IsAsync__c == true) {
+
+                System.debug('🚀 NEW ASYNC FLOW → Coordinator');
+                handleAsync(rawJson, res);
+
+            } else {
+
+                System.debug('🚀 NEW SYNC FLOW → Orchestrator');
+                handleSync(rawJson, res);
+            }
+
         } catch (Exception e) {
+
+            System.debug('❌ EXCEPTION: ' + e.getMessage());
 
             res.statusCode = 500;
             res.responseBody = Blob.valueOf(
@@ -56,18 +73,17 @@ global with sharing class ERPtoSF {
                 '"}'
             );
         }
+
+        System.debug('=== ERPtoSF DEBUG END ===');
     }
 
     // =========================================================
-    // SYNC FLOW
+    // SYNC
     // =========================================================
     private static void handleSync(String rawJson, RestResponse res) {
 
         IntegrationResponse r =
-            IntegrationOrchestrator.process(
-                rawJson,
-                IntegrationDirection.ERP_SF
-            );
+            IntegrationOrchestrator.process(rawJson, null);
 
         res.statusCode = r.statusCode;
 
@@ -82,34 +98,26 @@ global with sharing class ERPtoSF {
     }
 
     // =========================================================
-    // ASYNC FLOW
+    // ASYNC
     // =========================================================
     private static void handleAsync(String rawJson, RestResponse res) {
+
+        System.debug('➡️ Calling InboundBatchCoordinator.acceptPart');
 
         InboundBatchCoordinator.Result r =
             InboundBatchCoordinator.acceptPart(rawJson);
 
+        System.debug('⬅️ Coordinator response status=' + r.httpStatus);
+        System.debug('⬅️ Coordinator response body=' + r.responseBody);
+
         res.statusCode = r.httpStatus;
-        res.responseBody = Blob.valueOf(r.responseBody);
+        res.responseBody = Blob.valueOf(r.responseBody);        
     }
 
     // =========================================================
-    // GLOBAL SWITCH
+    // ROUTE
     // =========================================================
-    private static Boolean useOldPipeline() {
-
-        ERPtoSF_Switcher__mdt cfg =
-            ERPtoSF_Switcher__mdt.getInstance('Default');
-
-        return (cfg == null || cfg.UseOld__c == true);
-    }
-
-    // =========================================================
-    // ROUTE RESOLVER
-    // =========================================================
-    private static IntegrationMessageRoute__mdt resolveRoute(
-        String messageType
-    ) {
+    private static IntegrationMessageRoute__mdt resolveRoute(String messageType) {
 
         if (String.isBlank(messageType)) return null;
 
@@ -118,7 +126,8 @@ global with sharing class ERPtoSF {
                    Direction__c,
                    HandlerClass__c,
                    Active__c,
-                   IsAsync__c
+                   IsAsync__c,
+                   IsNewPath__c
             FROM IntegrationMessageRoute__mdt
             WHERE MessageCode__c = :messageType
               AND Direction__c   = :IntegrationDirection.ERP_SF
@@ -129,7 +138,7 @@ global with sharing class ERPtoSF {
     }
 
     // =========================================================
-    // METADATA PARSER
+    // MESSAGE TYPE PARSER
     // =========================================================
     private static String resolveMessageType(String rawJson) {
 
@@ -138,18 +147,35 @@ global with sharing class ERPtoSF {
                 (Map<String,Object>) JSON.deserializeUntyped(rawJson);
 
             Map<String,Object> meta =
-                (Map<String,Object>) root.get('metadata');
+                (Map<String,Object>) (
+                    root.containsKey('Metadata')
+                        ? root.get('Metadata')
+                        : root.get('metadata')
+                );
 
-            return (String) meta.get('msgType');
+            if (meta == null) {
+                System.debug('❌ Metadata NOT FOUND');
+                return null;
+            }
+
+            Object mt =
+                meta.containsKey('MsgType')
+                    ? meta.get('MsgType')
+                    : meta.get('msgType');
+
+            String result = mt == null ? null : String.valueOf(mt);
+
+            System.debug('Parsed messageType=' + result);
+
+            return result;
 
         } catch (Exception e) {
+
+            System.debug('❌ resolveMessageType EXCEPTION: ' + e.getMessage());
             return null;
         }
     }
 
-    // =========================================================
-    // JSON SAFE
-    // =========================================================
     private static String escapeJson(String s) {
         if (s == null) return '';
         return s

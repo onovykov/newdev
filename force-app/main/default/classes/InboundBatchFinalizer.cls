@@ -18,11 +18,16 @@ global with sharing class InboundBatchFinalizer
     // START
     // =========================================================
     global Database.QueryLocator start(Database.BatchableContext bc) {
+        // FIX: жорстко матеріалізуємо Set → щоб SOQL не зламав IN
+        Set<String> liveStatuses = new Set<String>();
+        liveStatuses.addAll(InboundBatchStatusProvider.liveStatusKeys());
+
+        System.debug('LIVE STATUSES (FINALIZER) = ' + liveStatuses);
 
         return Database.getQueryLocator([
             SELECT Id
             FROM ERP_InboundBatch__c
-            WHERE Status__c IN :InboundBatchStatusProvider.liveStatusKeys()
+            WHERE Status__c IN :liveStatuses
             ORDER BY LastSeenAt__c ASC
         ]);
     }
@@ -32,111 +37,123 @@ global with sharing class InboundBatchFinalizer
     // =========================================================
     global void execute(Database.BatchableContext bc, List<SObject> scope) {
 
-        if (scope == null || scope.isEmpty()) return;
+        if (scope == null || scope.isEmpty()) {
+            return;
+        }
 
+        // Config
         AsyncConfig cfg = AsyncConfigProvider.get();
         Integer timeoutSeconds = cfg.timeout;
 
-        // -----------------------------------------
-        // Convert scope → Ids
-        // -----------------------------------------
+        // Collect IDs
         Set<Id> ids = new Set<Id>();
         for (SObject s : scope) {
-            ids.add(s.Id);
+            ids.add((Id)s.get('Id'));
         }
 
-        // -----------------------------------------
-        // Lock headers
-        // -----------------------------------------
+        // Lock batches
         List<ERP_InboundBatch__c> batches = [
             SELECT Id,
-                   BatchKey__c,
-                   Status__c,
-                   Direction__c,
-                   TotalParts__c,
-                   ReceivedParts__c,
-                   FirstSeenAt__c,
-                   LastSeenAt__c,
-                   ProcessingStartedAt__c,
-                   CompletedAt__c,
-                   ErrorMessage__c
+                BatchKey__c,
+                Status__c,
+                Direction__c,
+                TotalParts__c,
+                ReceivedParts__c,
+                FirstSeenAt__c,
+                LastSeenAt__c,
+                ProcessingStartedAt__c,
+                CompletedAt__c,
+                ErrorMessage__c
             FROM ERP_InboundBatch__c
             WHERE Id IN :ids
             FOR UPDATE
         ];
 
-        List<ERP_InboundBatch__c> toUpdate  = new List<ERP_InboundBatch__c>();
+        List<ERP_InboundBatch__c> toUpdate = new List<ERP_InboundBatch__c>();
         List<ERP_InboundBatch__c> toProcess = new List<ERP_InboundBatch__c>();
 
         for (ERP_InboundBatch__c b : batches) {
 
-            // -------------------------------------
-            // TERMINAL GUARD
-            // -------------------------------------
+            // skip terminal
             if (InboundBatchStatusProvider.isTerminal(b.Status__c)) {
                 continue;
             }
 
-            Integer total = b.TotalParts__c == null
-                ? 0
-                : Integer.valueOf(b.TotalParts__c);
+            //Integer total = b.TotalParts__c;
+            //Integer recv  = b.ReceivedParts__c;
+            Integer total = b.TotalParts__c != null
+                ? Integer.valueOf(b.TotalParts__c)
+                : null;
 
-            Integer recv = b.ReceivedParts__c == null
-                ? 0
-                : Integer.valueOf(b.ReceivedParts__c);
+            Integer recv = b.ReceivedParts__c != null
+                ? Integer.valueOf(b.ReceivedParts__c)
+                : null;
 
-            Boolean isComplete = (total > 0 && recv >= total);
+            Boolean isComplete =
+                (total != null && recv != null && recv >= total);
 
-            Boolean isTimeout =
-                InboundBatchStatusProvider.canTimeout(b.Status__c)
-                && b.FirstSeenAt__c != null
-                && b.FirstSeenAt__c.addSeconds(timeoutSeconds) <= System.now();
+            Boolean isTimeout = false;
 
-            // -------------------------------------
-            // TIMEOUT
-            // -------------------------------------
-            if (!isComplete && isTimeout) {
+            if (!isComplete && b.LastSeenAt__c != null) {
+                Long ageMs = System.now().getTime() - b.LastSeenAt__c.getTime();
+                isTimeout =
+                    (ageMs > (timeoutSeconds * 1000)) &&
+                    InboundBatchStatusProvider.canTimeout(b.Status__c);
+            }
 
-                b.Status__c = InboundBatchStatusProvider.timeout();
-                b.ErrorMessage__c =
-                    'Timeout: received=' + recv +
-                    ', expected=' + total +
-                    ', timeoutSec=' + timeoutSeconds;
+            // 1. COMPLETE → COMPLETED
+            if (isComplete) {
+
+                b.Status__c = InboundBatchStatusProvider.completed();
+                b.CompletedAt__c = System.now();
 
                 toUpdate.add(b);
+                toProcess.add(b);
+
                 continue;
             }
 
-            // -------------------------------------
-            // WAIT
-            // -------------------------------------
-            if (!isComplete) {
+            // 2. TIMEOUT → TIMEOUT
+            if (isTimeout) {
+
+                b.Status__c = InboundBatchStatusProvider.timeout();
+                b.CompletedAt__c = System.now();
+                b.ErrorMessage__c = 'Batch timeout';
+
+                toUpdate.add(b);
+
                 continue;
             }
 
-            // -------------------------------------
-            // MOVE TO PROCESSING
-            // -------------------------------------
-            if (b.Status__c != InboundBatchStatusProvider.processing()) {
+            // 3. STILL PROCESSING → mark PROCESSING (once)
+            if (b.ProcessingStartedAt__c == null) {
 
                 b.Status__c = InboundBatchStatusProvider.processing();
                 b.ProcessingStartedAt__c = System.now();
 
                 toUpdate.add(b);
             }
-
-            toProcess.add(b);
         }
 
+        // Update statuses first
         if (!toUpdate.isEmpty()) {
             update toUpdate;
         }
 
-        // -----------------------------------------
-        // PROCESS COMPLETE BATCHES
-        // -----------------------------------------
+        // Process completed batches
         for (ERP_InboundBatch__c b : toProcess) {
-            processBatch(b);
+
+            try {
+                processBatch(b);
+
+            } catch (Exception ex) {
+
+                b.Status__c = InboundBatchStatusProvider.failed();
+                b.ErrorMessage__c = ex.getMessage();
+                b.CompletedAt__c = System.now();
+
+                update b;
+            }
         }
     }
 
@@ -169,16 +186,53 @@ global with sharing class InboundBatchFinalizer
             }
 
             // -------------------------------------
-            // 3. Call Orchestrator
+            // 3. Assemble + normalize JSON
+            // -------------------------------------
+            Map<String, Object> meta;
+            Map<String, Object> combinedData = new Map<String, Object>();
+
+            for (ERP_InboundPart__c p : parts) {
+
+                if (p.Payload__c == null) continue;
+
+                Map<String, Object> part =
+                    (Map<String, Object>) JSON.deserializeUntyped(p.Payload__c);
+
+                // Metadata беремо тільки один раз
+                if (meta == null && part.containsKey('Metadata')) {
+                    meta = (Map<String, Object>) part.get('Metadata');
+                }
+
+                // Data об'єднуємо
+                if (part.containsKey('Data')) {
+                    Map<String, Object> dataPart =
+                        (Map<String, Object>) part.get('Data');
+
+                    combinedData.putAll(dataPart);
+                }
+            }
+
+            // -------------------------------------
+            // FINAL NORMALIZED JSON
+            // -------------------------------------
+            Map<String, Object> normalized = new Map<String, Object>{
+                'Metadata' => meta,
+                'Payload'  => combinedData
+            };
+
+            String normalizedJson = JSON.serialize(normalized);
+
+            // -------------------------------------
+            // 4. Call Orchestrator
             // -------------------------------------
             IntegrationResponse r =
                 IntegrationOrchestrator.process(
-                    fullJson,
-                    batch.Direction__c
+                    normalizedJson,
+                    null
                 );
 
             // -------------------------------------
-            // 4. Finalize under lock
+            // 5. Finalize under lock
             // -------------------------------------
             ERP_InboundBatch__c locked = [
                 SELECT Id, Status__c, ErrorMessage__c, CompletedAt__c
@@ -187,7 +241,6 @@ global with sharing class InboundBatchFinalizer
                 FOR UPDATE
             ];
 
-            // Double-processing guard
             if (InboundBatchStatusProvider.isTerminal(locked.Status__c)) {
                 return;
             }
@@ -214,7 +267,6 @@ global with sharing class InboundBatchFinalizer
 
         } catch (Exception ex) {
 
-            // fallback error handling
             ERP_InboundBatch__c locked = [
                 SELECT Id, Status__c, ErrorMessage__c
                 FROM ERP_InboundBatch__c
@@ -230,18 +282,16 @@ global with sharing class InboundBatchFinalizer
     }
 
     // =========================================================
-    // SUCCESS CHECK (NEW RESPONSE MODEL)
+    // SUCCESS CHECK
     // =========================================================
     private static Boolean isSuccess(IntegrationResponse r) {
 
         if (r == null) return false;
 
-        // new model
         if (r.status == 'FULL_SUCCESS' || r.status == 'PARTIAL_SUCCESS') {
             return true;
         }
 
-        // legacy fallback
         if (r.success == true) {
             return true;
         }

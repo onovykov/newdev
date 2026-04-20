@@ -1,0 +1,30 @@
+66.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+Execute Anonymous: System.debug('LIVE STATUSES = ' + InboundBatchStatusProvider.liveStatusKeys());
+18:12:55.124 (124162587)|USER_INFO|[EXTERNAL]|0051n000006PLOd|aleksandr.novikov@interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Bucharest)|GMT+03:00
+18:12:55.124 (124182938)|EXECUTION_STARTED
+18:12:55.124 (124193155)|CODE_UNIT_STARTED|[EXTERNAL]|execute_anonymous_apex
+18:12:55.124 (124588198)|SYSTEM_MODE_ENTER|false
+18:12:55.124 (142832312)|SOQL_EXECUTE_BEGIN|[14]|Aggregations:0|SELECT DeveloperName, Role__c, IsTerminal__c, IsTimeoutEligible__c FROM Inbound_Batch_Status__mdt
+18:12:55.124 (185422972)|SOQL_EXECUTE_END|[14]|Rows:6
+18:12:55.124 (188534554)|SYSTEM_MODE_EXIT|false
+18:12:55.124 (188621281)|USER_DEBUG|[1]|DEBUG|LIVE STATUSES = {ACCEPTED, DUPLICATE, PROCESSING}
+18:12:55.188 (188699040)|CUMULATIVE_LIMIT_USAGE
+18:12:55.188 (188699040)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 6 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:12:55.188 (188699040)|CUMULATIVE_LIMIT_USAGE_END
+
+18:12:55.124 (188772030)|CODE_UNIT_FINISHED|execute_anonymous_apex
+18:12:55.124 (188784612)|EXECUTION_FINISHED

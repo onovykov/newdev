@@ -1,8 +1,5 @@
 public with sharing class InboundBatchCoordinator {
 
-    // =========================================================
-    // RESULT DTO
-    // =========================================================
     public class Result {
         public Integer httpStatus;
         public String responseBody;
@@ -13,117 +10,144 @@ public with sharing class InboundBatchCoordinator {
         public Integer receivedParts;
     }
 
-    // =========================================================
-    // ENTRY POINT
-    // =========================================================
     public static Result acceptPart(String rawJson) {
 
         if (String.isBlank(rawJson)) {
             return badRequest('Empty payload');
         }
 
-        // -----------------------------------------------------
-        // Extract metadata directly (do NOT depend on parser)
-        // -----------------------------------------------------
-
         Map<String,Object> root =
             (Map<String,Object>) JSON.deserializeUntyped(rawJson);
 
+        // ============================================
+        // Metadata (tolerant)
+        // ============================================
         Map<String,Object> metadata =
-            (Map<String,Object>) root.get('metadata');
+            (Map<String,Object>) (
+                root.containsKey('Metadata')
+                    ? root.get('Metadata')
+                    : root.get('metadata')
+            );
 
         if (metadata == null) {
             return badRequest('Missing metadata');
         }
 
-        Integer partNo =
-            metadata.containsKey('partNumber')
-            ? Integer.valueOf(String.valueOf(metadata.get('partNumber')))
-            : null;
+        // ============================================
+        // msgType
+        // ============================================
+        String msgType;
 
-        Integer total =
-            metadata.containsKey('totalParts')
-            ? Integer.valueOf(String.valueOf(metadata.get('totalParts')))
-            : null;
-
-        String msgType =
-            (String) metadata.get('msgType');
-
-        String timestamp =
-            String.valueOf(metadata.get('msgTimestamp'));
-
-        if (partNo == null) {
-            return badRequest('Missing partNumber');
+        if (metadata.containsKey('MsgType')) {
+            msgType = String.valueOf(metadata.get('MsgType'));
+        } else if (metadata.containsKey('msgType')) {
+            msgType = String.valueOf(metadata.get('msgType'));
         }
 
         if (String.isBlank(msgType)) {
             msgType = 'UNKNOWN';
         }
 
+        // ============================================
+        // partNumber
+        // ============================================
+        Integer partNo;
+
+        if (metadata.containsKey('PartNumber')) {
+            partNo = Integer.valueOf(String.valueOf(metadata.get('PartNumber')));
+        } else if (metadata.containsKey('partNumber')) {
+            partNo = Integer.valueOf(String.valueOf(metadata.get('partNumber')));
+        }
+
+        if (partNo == null) {
+            return badRequest('Missing partNumber');
+        }
+
+        // ============================================
+        // totalParts
+        // ============================================
+        Integer total;
+
+        if (metadata.containsKey('TotalParts')) {
+            total = Integer.valueOf(String.valueOf(metadata.get('TotalParts')));
+        } else if (metadata.containsKey('totalParts')) {
+            total = Integer.valueOf(String.valueOf(metadata.get('totalParts')));
+        }
+
+        // ============================================
+        // timestamp
+        // ============================================
+        String timestamp;
+
+        if (metadata.containsKey('MsgTimestamp')) {
+            timestamp = String.valueOf(metadata.get('MsgTimestamp'));
+        } else if (metadata.containsKey('msgTimestamp')) {
+            timestamp = String.valueOf(metadata.get('msgTimestamp'));
+        }
+
         if (String.isBlank(timestamp)) {
             timestamp = String.valueOf(System.now().getTime());
         }
 
-        // Stable batch key
-        String batchKey =
-            msgType + '_' + timestamp;
-
-        // -----------------------------------------------------
-        // Ensure batch header exists
-        // -----------------------------------------------------
+        // ============================================
+        // batch key
+        // ============================================
+        //String batchKey = msgType + '_' + timestamp;
+        String normalizedTs = normalizeTimestamp(timestamp);
+        String batchKey = msgType + '_' + normalizedTs;
 
         ERP_InboundBatch__c batch =
             getOrCreateHeader(batchKey, total);
 
-        // -----------------------------------------------------
-        // Insert part (idempotent)
-        // -----------------------------------------------------
+        // ============================================
+        // 🔥 NEW FIX: prevent overfill
+        // ============================================
+        if (batch.TotalParts__c != null &&
+            batch.ReceivedParts__c != null &&
+            batch.ReceivedParts__c >= batch.TotalParts__c) {
 
+            return ackDuplicate(batchKey, partNo, total);
+        }
+
+        // ============================================
+        // insert part
+        // ============================================
         ERP_InboundPart__c part = new ERP_InboundPart__c();
 
         part.BatchKey__c = batchKey;
         part.PartNumber__c = partNo;
         part.Payload__c = rawJson;
-        part.BatchPartKey__c =
-            batchKey + '_' + partNo;
+        part.BatchPartKey__c = batchKey + '_' + partNo;
 
         try {
             insert part;
         } catch (DmlException e) {
-
-            // Duplicate part retry from ERP
             return ackDuplicate(batchKey, partNo, total);
         }
 
-        // -----------------------------------------------------
-        // Increment safely
-        // -----------------------------------------------------
+        Integer newCount = incrementReceived(batch.Id);
+        if (total != null && newCount >= total) {
 
-        Integer newCount =
-            incrementReceived(batch.Id);
+            ERP_InboundBatch__c b = new ERP_InboundBatch__c(
+                Id = batch.Id,
+                Status__c = InboundBatchStatusProvider.processing()
+            );
 
-        return ackAccepted(
-            batchKey,
-            partNo,
-            total,
-            newCount
-        );
+            update b;
+        }
+        return ackAccepted(batchKey, partNo, total, newCount);
     }
 
-    // =========================================================
-    // HEADER CREATION
-    // =========================================================
+    // ============================================
+    // HEADER
+    // ============================================
     private static ERP_InboundBatch__c getOrCreateHeader(
         String batchKey,
         Integer totalParts
     ) {
 
         List<ERP_InboundBatch__c> existing = [
-
-            SELECT Id,
-                   Status__c,
-                   TotalParts__c,
-                   ReceivedParts__c
+            SELECT Id, Status__c, TotalParts__c, ReceivedParts__c
             FROM ERP_InboundBatch__c
             WHERE BatchKey__c = :batchKey
             LIMIT 1
@@ -148,20 +172,14 @@ public with sharing class InboundBatchCoordinator {
             return b;
         }
 
-        ERP_InboundBatch__c newBatch =
-            new ERP_InboundBatch__c();
+        ERP_InboundBatch__c newBatch = new ERP_InboundBatch__c();
 
         newBatch.BatchKey__c = batchKey;
         newBatch.Direction__c = 'ERP_SF';
-        newBatch.Status__c =
-            InboundBatchStatusProvider.accepted();
-
+        newBatch.Status__c = InboundBatchStatusProvider.accepted();
         newBatch.FirstSeenAt__c = System.now();
-        newBatch.LastSeenAt__c  = System.now();
-
-        newBatch.TotalParts__c =
-            totalParts != null ? totalParts : 0;
-
+        newBatch.LastSeenAt__c = System.now();
+        newBatch.TotalParts__c = totalParts != null ? totalParts : 0;
         newBatch.ReceivedParts__c = 0;
 
         insert newBatch;
@@ -169,17 +187,13 @@ public with sharing class InboundBatchCoordinator {
         return newBatch;
     }
 
-    // =========================================================
-    // SAFE COUNTER UPDATE
-    // =========================================================
+    // ============================================
+    // COUNTER
+    // ============================================
     private static Integer incrementReceived(Id batchId) {
 
         ERP_InboundBatch__c locked = [
-
-            SELECT Id,
-                   ReceivedParts__c,
-                   LastSeenAt__c,
-                   Status__c
+            SELECT Id, ReceivedParts__c, LastSeenAt__c, Status__c
             FROM ERP_InboundBatch__c
             WHERE Id = :batchId
             FOR UPDATE
@@ -204,10 +218,9 @@ public with sharing class InboundBatchCoordinator {
         return current + 1;
     }
 
-    // =========================================================
+    // ============================================
     // RESPONSES
-    // =========================================================
-
+    // ============================================
     private static Result ackAccepted(
         String batchKey,
         Integer partNo,
@@ -224,10 +237,9 @@ public with sharing class InboundBatchCoordinator {
         r.receivedParts = received;
 
         r.responseBody =
-            '{"status":"ACK",' +
-            '"batchKey":"' + batchKey + '",' +
-            '"received":' + received + ',' +
-            '"total":' + total + '}';
+            '{"status":"ACK","batchKey":"' + batchKey +
+            '","received":' + received +
+            ',"total":' + total + '}';
 
         return r;
     }
@@ -247,8 +259,7 @@ public with sharing class InboundBatchCoordinator {
         r.totalParts = total;
 
         r.responseBody =
-            '{"status":"DUPLICATE",' +
-            '"batchKey":"' + batchKey + '"}';
+            '{"status":"DUPLICATE","batchKey":"' + batchKey + '"}';
 
         return r;
     }
@@ -265,4 +276,16 @@ public with sharing class InboundBatchCoordinator {
 
         return r;
     }
+
+    private static String normalizeTimestamp(String ts) {
+
+        if (String.isBlank(ts)) return ts;
+
+        Integer dot = ts.indexOf('.');
+        if (dot > 0) {
+            return ts.substring(0, dot);
+        }
+
+        return ts;
+    }    
 }

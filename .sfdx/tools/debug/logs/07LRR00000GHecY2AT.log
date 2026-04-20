@@ -1,0 +1,32 @@
+66.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+17:23:22.1 (1606193)|USER_INFO|[EXTERNAL]|0051n000006PLOd|aleksandr.novikov@interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Bucharest)|GMT+03:00
+17:23:22.1 (1689732)|EXECUTION_STARTED
+17:23:22.1 (1718427)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OhS4r|InboundBatchFinalizer
+17:23:22.1 (33934183)|SYSTEM_MODE_ENTER|false
+17:23:22.1 (34145711)|SYSTEM_MODE_EXIT|false
+17:23:22.1 (34166142)|SYSTEM_MODE_ENTER|false
+17:23:22.1 (39585871)|SOQL_EXECUTE_BEGIN|[14]|Aggregations:0|SELECT DeveloperName, Role__c, IsTerminal__c, IsTimeoutEligible__c FROM Inbound_Batch_Status__mdt
+17:23:22.1 (46997526)|SOQL_EXECUTE_END|[14]|Rows:6
+17:23:22.1 (52146652)|SOQL_EXECUTE_BEGIN|[22]|Aggregations:0|SELECT Id FROM ERP_InboundBatch__c WHERE Status__c = :tmpVar1 ORDER BY LastSeenAt__c ASC NULLS FIRST
+17:23:22.1 (57965497)|SOQL_EXECUTE_END|[22]|Rows:0
+17:23:22.1 (58016621)|SYSTEM_MODE_EXIT|false
+17:23:22.77 (77054242)|CUMULATIVE_LIMIT_USAGE
+17:23:22.77 (77054242)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 0
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+17:23:22.77 (77054242)|CUMULATIVE_LIMIT_USAGE_END
+
+17:23:22.1 (77136717)|CODE_UNIT_FINISHED|InboundBatchFinalizer
+17:23:22.1 (77156748)|EXECUTION_FINISHED

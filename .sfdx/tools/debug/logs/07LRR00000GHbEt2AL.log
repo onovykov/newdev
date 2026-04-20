@@ -1,0 +1,137 @@
+66.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+Execute Anonymous: // =====================================================
+Execute Anonymous: // 1. Test JSON (ERP)
+Execute Anonymous: // =====================================================
+Execute Anonymous: String strJson = '{"Metadata":{"MsgType":"ERP-SF_OpportunityData","MsgTypeVersion":0.0,"MsgTimestamp":"2026-04-12T16:55:00.7993562+02:00","PartNumber":1,"TotalParts":2},"Data":{"OrderType":"Tubes","OrderCurrency":"EUR","Header":{"Undoc":38772521,"IteNumber":"25-007717","AltNumber":"COC25/01808","PONumber":"4500099024","ID_SF":"006RR00000SSSixYAH","CreatedDate":"2026-02-21T13:58:45","OrderDate":"2026-02-21T00:00:00","Account":{"Name":"HOBERG & DRIESCH GMBH & CO. KG ROEHRENGROSSHANDEL","CountryId":276,"Address":"Theodorstrasse 101, 40472 Dusseldorf, Germany","Id":"170421"},"BusinessSegmentId":"00004","RegionId":2,"CountryId":276,"PaymentTerms":{"Name":"оплата 100% в течение 30 календарных дней Дата счета-фактуры Банковский перевод","Id":"C08"},"DeliveryTerms":{"Name":"DDP - передача в пункте доставки","Incoterms":"DDP","Id":"020"},"SalesRep":{"Name":"Bartlomiej Robert Kania","UId":"     44892","UserId":"ICT__","Email":"bartlomiej.kania@m.interpipe.biz","Id":"  44503"},"BoSpecialist":{"Name":"Колесникова Наталья Евгеньевна","UId":"     45386","UserId":"NKOLESNIKO","Email":"Natalia.Kolesnikova@m.interpipe.biz","Id":"  58636"},"CrossMarket_BusinessSegment":"","CrossMarket_SalesRep":{"Name":"","UId":"","UserId":"","Email":"","Id":""},"CrossMarket_Percent":0.00},"Items":[{"Undoc":38772521,"Npp":1,"IteNumber":"25-007717-001","KMAT":"PB5820112MУИ004","ProductGroup":{"Name":"БОН","Id":"20"},"QuotaType":{"Shop":{"Name":"","Id":"0"},"Name":"","Id":"0"},"Shop":{"Mill":{"Name":"Interpipe Nikotube, LLC","Id":"2"},"Name":"Tube-rolling shop 7","Id":"7"},"InqQuantity":1400.00000,"InqUnit":20,"Quantity_Mt":6.49600,"Quantity_m":1400.00000,"Quantity_ft":0.0,"Quantity_pcs":0.0,"LinearWeight_ppf":3.107,"LinearWeight_kpm":4.640,"Price":5.70000,"Price_t":1228.45000,"Margin_t":0.00000,"TotalPrice":0.0,"ShippingPoint":{"spType":3,"Id":"DUESSELDORF","Name":"Dusseldorf"},"IsTypical":0,"TechExp":1,"CriticalDispatchDate":"2025-10-31T00:00:00","RecommendedCDD":"2025-11-30T00:00:00","RequestedDeliveryDate":"2025-11-30T00:00:00","ConfirmedDeliveryDate":"2025-12-28T00:00:00","FinStatus":"","FinApproval":1,"Stage":"_11","Produced":6.837,"Dispatched":6.837,"Shipped":6.837,"Lots":[{"LotDate":"2025-11-23T00:00:00","Produced":6.837,"Dispatched":0.0,"Shipped":0.0},{"LotDate":"2025-11-30T00:00:00","Produced":0.0,"Dispatched":6.837,"Shipped":0.0},{"LotDate":"2025-12-09T00:00:00","Produced":0.0,"Dispatched":0.0,"Shipped":6.837}],"Quotas":[],"FinDataShipped":0.0,"FinDataMargin":0.0,"ProductCharacteristic":{"Diameter":{"OD_mm":51.000,"Name":"51,00","FacetCode":"DIMP","Id":"11"},"Thickness":{"Wt_mm":4.000,"Name":"4,00","FacetCode":"WLMP","Id":"2M"},"LengthSize":{"MinLength":5900.000000,"MaxLength":6200.000000,"Name":"5900-6200","FacetCode":"LNMP","Id":"УИ"},"Ends":{"Name":"Обрезка под прямым углом","FacetCode":"P1PG","Id":"Г"},"Coating":{"Name":"Без покрытия","FacetCode":"P2PG","Id":"1"},"Standard":{"Name":"EN 10210-1:2006/ EN 10210-2:2019/ EN 10297-1:2003/ EN 10216-3:2013","Facet":{"Code":"GAMP","Id":"20"},"Id":"2313"},"SteelGrade":{"Name":"E355+N/ P355N TC1/ S355J2H","FacetCode":"SGMP","Id":"58"},"NameForDoc":{"Id":"207","Name":{"Default":"Трубы стальные бесшовные горячекатаные","En":"Seamless steel hot-rolled pipes","Uk":"Труби сталеві безшовні гарячекатані"}}},"CoatingSpec":"","SpecLevel":{"Name":"","Id":"0"},"NPS":"","SCH":"","Mark1":"","Print_Inch":false,"Print_NPS":false,"Print_Mark":false,"WeightMainUnit_kg":4.640}]}}';
+Execute Anonymous: 
+Execute Anonymous: // =====================================================
+Execute Anonymous: // 2. Mock REST request (як від ERP)
+Execute Anonymous: // =====================================================
+Execute Anonymous: RestRequest req = new RestRequest();
+Execute Anonymous: RestResponse res = new RestResponse();
+Execute Anonymous: 
+Execute Anonymous: req.requestUri = '/services/apexrest/ERPtoSF/v1/';
+Execute Anonymous: req.httpMethod = 'POST';
+Execute Anonymous: req.requestBody = Blob.valueOf(strJson);
+Execute Anonymous: req.addHeader('Content-Type', 'application/json');
+Execute Anonymous: 
+Execute Anonymous: RestContext.request = req;
+Execute Anonymous: RestContext.response = res;
+Execute Anonymous: 
+Execute Anonymous: // =====================================================
+Execute Anonymous: // 3. Call entrypoint
+Execute Anonymous: // =====================================================
+Execute Anonymous: System.debug('=== TEST START ===');
+Execute Anonymous: ERPtoSF.postCST();
+Execute Anonymous: System.debug('=== RESPONSE ===');
+Execute Anonymous: 
+Execute Anonymous: // =====================================================
+Execute Anonymous: // 4. Print response
+Execute Anonymous: // =====================================================
+Execute Anonymous: if (res.responseBody != null) {
+Execute Anonymous:     System.debug(res.responseBody.toString());
+Execute Anonymous: } else {
+Execute Anonymous:     System.debug('No response body');
+Execute Anonymous: }
+Execute Anonymous: 
+Execute Anonymous: // =====================================================
+Execute Anonymous: // 5. Optional: перевірка batch (якщо async)
+Execute Anonymous: // =====================================================
+Execute Anonymous: System.debug('=== ASYNC JOBS ===');
+Execute Anonymous: 
+Execute Anonymous: List<AsyncApexJob> jobs = [
+Execute Anonymous:     SELECT Id, Status, JobType, ApexClass.Name
+Execute Anonymous:     FROM AsyncApexJob
+Execute Anonymous:     ORDER BY CreatedDate DESC
+Execute Anonymous:     LIMIT 5
+Execute Anonymous: ];
+Execute Anonymous: 
+Execute Anonymous: for (AsyncApexJob job : jobs) {
+Execute Anonymous:     System.debug(
+Execute Anonymous:         'Job: ' + job.ApexClass.Name +
+Execute Anonymous:         ' :: Status: ' + job.Status +
+Execute Anonymous:         ' :: Type: ' + job.JobType
+Execute Anonymous:     );
+Execute Anonymous: }
+18:17:59.333 (3333857016)|USER_INFO|[EXTERNAL]|0051n000006PLOd|aleksandr.novikov@interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Bucharest)|GMT+03:00
+18:17:59.333 (3333879618)|EXECUTION_STARTED
+18:17:59.333 (3333888854)|CODE_UNIT_STARTED|[EXTERNAL]|execute_anonymous_apex
+18:17:59.333 (3334470648)|SYSTEM_MODE_ENTER|false
+18:17:59.333 (3339092028)|SYSTEM_MODE_EXIT|false
+18:17:59.333 (3339139816)|SYSTEM_MODE_ENTER|false
+18:17:59.333 (3339184485)|SYSTEM_MODE_EXIT|false
+18:17:59.333 (3339197924)|SYSTEM_MODE_ENTER|false
+18:17:59.333 (3339211448)|SYSTEM_MODE_EXIT|false
+18:17:59.333 (3339217510)|SYSTEM_MODE_ENTER|false
+18:17:59.333 (3339226113)|SYSTEM_MODE_EXIT|false
+18:17:59.333 (3339304522)|SYSTEM_MODE_ENTER|false
+18:17:59.333 (3339312113)|SYSTEM_MODE_EXIT|false
+18:17:59.333 (3339322378)|SYSTEM_MODE_ENTER|false
+18:17:59.333 (3339364970)|SYSTEM_MODE_EXIT|false
+18:17:59.333 (3339373675)|SYSTEM_MODE_ENTER|false
+18:17:59.333 (3339422419)|SYSTEM_MODE_EXIT|false
+18:17:59.333 (3339429269)|SYSTEM_MODE_ENTER|false
+18:17:59.333 (3339437607)|SYSTEM_MODE_EXIT|false
+18:17:59.333 (3339455742)|USER_DEBUG|[23]|DEBUG|=== TEST START ===
+18:17:59.333 (3339465497)|SYSTEM_MODE_ENTER|false
+18:17:59.333 (3347092395)|USER_DEBUG|[168]|DEBUG|Parsed messageType=ERP-SF_OpportunityData
+18:17:59.333 (3347117031)|USER_DEBUG|[14]|DEBUG|=== ERPtoSF DEBUG START ===
+18:17:59.333 (3347124080)|USER_DEBUG|[15]|DEBUG|messageType=ERP-SF_OpportunityData
+18:17:59.333 (3349162991)|SOQL_EXECUTE_BEGIN|[124]|Aggregations:0|SELECT MessageCode__c, Direction__c, HandlerClass__c, Active__c, IsAsync__c, IsNewPath__c FROM IntegrationMessageRoute__mdt WHERE (MessageCode__c = :tmpVar1 AND Direction__c = :tmpVar2) LIMIT 1
+18:17:59.333 (3356562850)|SOQL_EXECUTE_END|[124]|Rows:1
+18:17:59.333 (3356899719)|USER_DEBUG|[26]|DEBUG|route=IntegrationMessageRoute__mdt:{MessageCode__c=ERP-SF_OpportunityData, Direction__c=ERP_SF, HandlerClass__c=ERP_SF_OpportunityHandler, Active__c=true, IsAsync__c=true, IsNewPath__c=true, Id=m0qRR000005ysHNYAY}
+18:17:59.333 (3356940381)|USER_DEBUG|[27]|DEBUG|IsNewPath=true
+18:17:59.333 (3356959458)|USER_DEBUG|[28]|DEBUG|IsAsync=true
+18:17:59.333 (3356974810)|USER_DEBUG|[29]|DEBUG|Active=true
+18:17:59.333 (3356993424)|USER_DEBUG|[56]|DEBUG|🚀 NEW ASYNC FLOW → Coordinator
+18:17:59.333 (3357021714)|USER_DEBUG|[105]|DEBUG|➡️ Calling InboundBatchCoordinator.acceptPart
+18:17:59.333 (3361660770)|SOQL_EXECUTE_BEGIN|[149]|Aggregations:0|SELECT Id, Status__c, TotalParts__c, ReceivedParts__c FROM ERP_InboundBatch__c WHERE BatchKey__c = :tmpVar1 LIMIT 1
+18:17:59.333 (3375288960)|SOQL_EXECUTE_END|[149]|Rows:0
+18:17:59.333 (3377085690)|SOQL_EXECUTE_BEGIN|[14]|Aggregations:0|SELECT DeveloperName, Role__c, IsTerminal__c, IsTimeoutEligible__c FROM Inbound_Batch_Status__mdt
+18:17:59.333 (3383018119)|SOQL_EXECUTE_END|[14]|Rows:6
+18:17:59.333 (3383753887)|DML_BEGIN|[185]|Op:Insert|Type:ERP_InboundBatch__c|Rows:1
+18:17:59.333 (3424534060)|DML_END|[185]
+18:17:59.333 (3426511285)|DML_BEGIN|[123]|Op:Insert|Type:ERP_InboundPart__c|Rows:1
+18:17:59.333 (3461944425)|DML_END|[123]
+18:17:59.333 (3463938954)|SOQL_EXECUTE_BEGIN|[195]|Aggregations:0|SELECT Id, ReceivedParts__c, LastSeenAt__c, Status__c FROM ERP_InboundBatch__c WHERE Id = :tmpVar1 FOR UPDATE
+18:17:59.333 (3468241187)|SOQL_EXECUTE_END|[195]|Rows:1
+18:17:59.333 (3468707510)|DML_BEGIN|[216]|Op:Update|Type:ERP_InboundBatch__c|Rows:1
+18:17:59.333 (3489157035)|DML_END|[216]
+18:17:59.333 (3490843298)|USER_DEBUG|[110]|DEBUG|⬅️ Coordinator response status=202
+18:17:59.333 (3490867026)|USER_DEBUG|[111]|DEBUG|⬅️ Coordinator response body={"status":"ACK","batchKey":"ERP-SF_OpportunityData_2026-04-12T16:55:00","received":1,"total":2}
+18:17:59.333 (3490928845)|USER_DEBUG|[77]|DEBUG|=== ERPtoSF DEBUG END ===
+18:17:59.333 (3490937212)|SYSTEM_MODE_EXIT|false
+18:17:59.333 (3490949216)|USER_DEBUG|[25]|DEBUG|=== RESPONSE ===
+18:17:59.333 (3490987369)|SYSTEM_MODE_ENTER|false
+18:17:59.333 (3491008572)|SYSTEM_MODE_EXIT|false
+18:17:59.333 (3491017016)|SYSTEM_MODE_ENTER|false
+18:17:59.333 (3491022802)|SYSTEM_MODE_EXIT|false
+18:17:59.333 (3491039002)|USER_DEBUG|[31]|DEBUG|{"status":"ACK","batchKey":"ERP-SF_OpportunityData_2026-04-12T16:55:00","received":1,"total":2}
+18:17:59.333 (3491048436)|USER_DEBUG|[39]|DEBUG|=== ASYNC JOBS ===
+18:17:59.333 (3491542797)|SOQL_EXECUTE_BEGIN|[41]|Aggregations:0|SELECT Id, Status, JobType, ApexClass.Name FROM AsyncApexJob ORDER BY CreatedDate DESC NULLS FIRST LIMIT 5
+18:17:59.333 (3503990125)|SOQL_EXECUTE_END|[41]|Rows:5
+18:17:59.333 (3504496542)|USER_DEBUG|[49]|DEBUG|Job: LogServiceScheduler :: Status: Queued :: Type: ScheduledApex
+18:17:59.333 (3504525623)|USER_DEBUG|[49]|DEBUG|Job: LogServiceBatch :: Status: Completed :: Type: BatchApexWorker
+18:17:59.333 (3504536169)|USER_DEBUG|[49]|DEBUG|Job: null :: Status: Completed :: Type: ApexToken
+18:17:59.333 (3504544815)|USER_DEBUG|[49]|DEBUG|Job: LogServiceBatch :: Status: Completed :: Type: BatchApex
+18:17:59.333 (3504552648)|USER_DEBUG|[49]|DEBUG|Job: null :: Status: Completed :: Type: ApexToken
+18:17:59.532 (3532048558)|CUMULATIVE_LIMIT_USAGE
+18:17:59.532 (3532048558)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 13 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 3 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 3 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:17:59.532 (3532048558)|CUMULATIVE_LIMIT_USAGE_END
+
+18:17:59.333 (3532108273)|CODE_UNIT_FINISHED|execute_anonymous_apex
+18:17:59.333 (3532134868)|EXECUTION_FINISHED

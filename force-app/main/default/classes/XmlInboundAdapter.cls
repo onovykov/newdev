@@ -12,15 +12,25 @@ public with sharing class XmlInboundAdapter {
             // -------------------------------------
             // 2. Load config from MDT
             // -------------------------------------
-            EdiMessageConfig__mdt cfg =
-                EdiMessageConfig__mdt.getInstance(rootTag);
+            //EdiMessageConfig__mdt cfg =
+            //    EdiMessageConfig__mdt.getInstance(rootTag);
 
-            if (cfg == null || !cfg.Active__c) {
+            List<EdiMessageConfig__mdt> configs = [
+                SELECT DeveloperName, RootTag__c, ParserClass__c, MapperClass__c, TargetMessageCode__c, Active__c
+                FROM EdiMessageConfig__mdt
+                WHERE RootTag__c = :rootTag
+                AND Active__c = true
+                LIMIT 1
+            ];
+
+            if (configs.isEmpty()) {
                 return IntegrationResponseBuilder.error(
                     'UNKNOWN_XML_TYPE',
                     'Unsupported XML type: ' + rootTag
                 );
             }
+
+            EdiMessageConfig__mdt cfg = configs[0];
 
             // -------------------------------------
             // 3. Parser (dynamic через interface)
@@ -41,12 +51,31 @@ public with sharing class XmlInboundAdapter {
             // -------------------------------------
             // 5. Call Orchestrator (старий метод)
             // -------------------------------------
+            /*
             IntegrationResponse resp =
                 IntegrationOrchestrator.process(
                     JSON.serialize(canonicalDto),
                     cfg.TargetMessageCode__c
                 );
+            */
+            // =====================================================
+            // Build canonical envelope (CRITICAL FIX)
+            // =====================================================
+            Map<String, Object> envelope = new Map<String, Object>{
+                'Metadata' => new Map<String, Object>{
+                    'MsgType' => cfg.TargetMessageCode__c
+                },
+                'Payload' => canonicalDto
+            };
 
+            // =====================================================
+            // Call orchestrator
+            // =====================================================
+            IntegrationResponse resp =
+                IntegrationOrchestrator.process(
+                    JSON.serialize(envelope),
+                    cfg.TargetMessageCode__c
+                );            
             return resp;
 
         } catch (Exception ex) {

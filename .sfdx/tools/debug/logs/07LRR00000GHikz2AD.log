@@ -1,0 +1,386 @@
+66.0 APEX_CODE,FINEST;APEX_PROFILING,FINEST;CALLOUT,FINEST;DATA_ACCESS,INFO;DB,FINEST;NBA,FINE;SYSTEM,FINE;VALIDATION,INFO;VISUALFORCE,FINER;WAVE,FINEST;WORKFLOW,FINER
+18:18:44.2 (2066472)|USER_INFO|[EXTERNAL]|0051n000006PLOd|aleksandr.novikov@interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Bucharest)|GMT+03:00
+18:18:44.2 (2187678)|EXECUTION_STARTED
+18:18:44.2 (2206846)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OhS4r|InboundBatchFinalizer
+18:18:44.2 (6314262)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+18:18:44.2 (40407749)|HEAP_ALLOCATE|[95]|Bytes:3
+18:18:44.2 (40448382)|HEAP_ALLOCATE|[100]|Bytes:152
+18:18:44.2 (40461992)|HEAP_ALLOCATE|[417]|Bytes:408
+18:18:44.2 (40472575)|HEAP_ALLOCATE|[430]|Bytes:408
+18:18:44.2 (40490488)|HEAP_ALLOCATE|[317]|Bytes:6
+18:18:44.2 (40515435)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:11
+18:18:44.2 (40576807)|SYSTEM_METHOD_ENTRY|[15]|BatchableContextImpl.BatchableContextImpl()
+18:18:44.2 (40582446)|STATEMENT_EXECUTE|[15]
+18:18:44.2 (40591458)|SYSTEM_METHOD_EXIT|[15]|BatchableContextImpl
+18:18:44.2 (40595879)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:12
+18:18:44.2 (40598160)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+18:18:44.2 (40601996)|VARIABLE_SCOPE_BEGIN|[31]|this|Database.BatchableContextImpl|true|false
+18:18:44.2 (40660726)|VARIABLE_ASSIGNMENT|[31]|this|{}|0x53ce7d9a
+18:18:44.2 (40664318)|VARIABLE_SCOPE_BEGIN|[31]|jobId|Id|false|false
+18:18:44.2 (40767992)|VARIABLE_ASSIGNMENT|[31]|jobId|"707RR00001I2qn5YAB"
+18:18:44.2 (40771458)|VARIABLE_SCOPE_BEGIN|[31]|childJobId|Id|false|false
+18:18:44.2 (40776507)|VARIABLE_ASSIGNMENT|[31]|childJobId|null
+18:18:44.2 (46436819)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:76
+18:18:44.2 (46457959)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:19
+18:18:44.2 (46474932)|METHOD_ENTRY|[1]|01pRR00000OhS4r|InboundBatchFinalizer.InboundBatchFinalizer()
+18:18:44.2 (46481501)|STATEMENT_EXECUTE|[1]
+18:18:44.2 (46486573)|STATEMENT_EXECUTE|[1]
+18:18:44.2 (46508786)|HEAP_ALLOCATE|[68]|Bytes:5
+18:18:44.2 (46539536)|HEAP_ALLOCATE|[74]|Bytes:5
+18:18:44.2 (46547449)|HEAP_ALLOCATE|[82]|Bytes:7
+18:18:44.2 (48539788)|SYSTEM_MODE_ENTER|false
+18:18:44.2 (48696850)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:5
+18:18:44.2 (48707126)|SYSTEM_MODE_EXIT|false
+18:18:44.2 (48721177)|METHOD_EXIT|[1]|InboundBatchFinalizer
+18:18:44.2 (48739617)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+18:18:44.2 (48743522)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:12
+18:18:44.2 (48750096)|VARIABLE_SCOPE_BEGIN|[20]|this|InboundBatchFinalizer|true|false
+18:18:44.2 (48780223)|VARIABLE_ASSIGNMENT|[20]|this|{}|0x29c15f5
+18:18:44.2 (48784397)|VARIABLE_SCOPE_BEGIN|[20]|bc|Database.BatchableContext|true|false
+18:18:44.2 (48843469)|VARIABLE_ASSIGNMENT|[20]|bc|{"jobId":"707RR00001I2qn5YAB"}|0x53ce7d9a
+18:18:44.2 (48855941)|SYSTEM_MODE_ENTER|false
+18:18:44.2 (48859316)|HEAP_ALLOCATE|[21]|Bytes:5
+18:18:44.2 (48862458)|STATEMENT_EXECUTE|[20]
+18:18:44.2 (48863551)|STATEMENT_EXECUTE|[21]
+18:18:44.2 (48866183)|HEAP_ALLOCATE|[21]|Bytes:100
+18:18:44.2 (48882996)|HEAP_ALLOCATE|[21]|Bytes:4
+18:18:44.2 (48893169)|HEAP_ALLOCATE|[21]|Bytes:7
+18:18:44.2 (51527516)|VARIABLE_SCOPE_BEGIN|[5]|InboundBatchStatusProvider.byDevName|Map<String,Inbound_Batch_Status__mdt>|true|true
+18:18:44.2 (51546497)|VARIABLE_SCOPE_BEGIN|[6]|InboundBatchStatusProvider.byRole|Map<String,Inbound_Batch_Status__mdt>|true|true
+18:18:44.2 (51552968)|VARIABLE_SCOPE_BEGIN|[3]|InboundBatchStatusProvider.loaded|Boolean|false|true
+18:18:44.2 (51569992)|HEAP_ALLOCATE|[24]|Bytes:31
+18:18:44.2 (51590720)|METHOD_ENTRY|[1]|01pRR00000Nbi85|InboundBatchStatusProvider.InboundBatchStatusProvider()
+18:18:44.2 (51596262)|STATEMENT_EXECUTE|[1]
+18:18:44.2 (51600504)|STATEMENT_EXECUTE|[1]
+18:18:44.2 (51611652)|HEAP_ALLOCATE|[3]|Bytes:5
+18:18:44.2 (51615861)|STATEMENT_EXECUTE|[3]
+18:18:44.2 (51623100)|HEAP_ALLOCATE|[3]|Bytes:5
+18:18:44.2 (51637087)|VARIABLE_ASSIGNMENT|[3]|InboundBatchStatusProvider.loaded|false
+18:18:44.2 (51650142)|METHOD_EXIT|[1]|InboundBatchStatusProvider
+18:18:44.2 (51672722)|METHOD_ENTRY|[24]|01pRR00000Nbi85|InboundBatchStatusProvider.liveStatusKeys()
+18:18:44.2 (51708574)|HEAP_ALLOCATE|[67]|Bytes:5
+18:18:44.2 (51712506)|STATEMENT_EXECUTE|[66]
+18:18:44.2 (51713610)|STATEMENT_EXECUTE|[67]
+18:18:44.2 (51720304)|METHOD_ENTRY|[67]|01pRR00000Nbi85|InboundBatchStatusProvider.load()
+18:18:44.2 (51730908)|HEAP_ALLOCATE|[9]|Bytes:5
+18:18:44.2 (51733664)|STATEMENT_EXECUTE|[8]
+18:18:44.2 (51738222)|STATEMENT_EXECUTE|[9]
+18:18:44.2 (51739350)|STATEMENT_EXECUTE|[11]
+18:18:44.2 (51751721)|HEAP_ALLOCATE|[11]|Bytes:4
+18:18:44.2 (51792774)|VARIABLE_ASSIGNMENT|[11]|InboundBatchStatusProvider.byDevName|{}|0x32dcb359
+18:18:44.2 (51797494)|STATEMENT_EXECUTE|[12]
+18:18:44.2 (51802792)|HEAP_ALLOCATE|[12]|Bytes:4
+18:18:44.2 (51809529)|VARIABLE_ASSIGNMENT|[12]|InboundBatchStatusProvider.byRole|{}|0x30590593
+18:18:44.2 (51815835)|HEAP_ALLOCATE|[14]|Bytes:97
+18:18:44.2 (51823050)|HEAP_ALLOCATE|[14]|Bytes:4
+18:18:44.2 (53065299)|SOQL_EXECUTE_BEGIN|[14]|Aggregations:0|SELECT DeveloperName, Role__c, IsTerminal__c, IsTimeoutEligible__c FROM Inbound_Batch_Status__mdt
+18:18:44.2 (58802915)|SOQL_EXECUTE_EXPLAIN|[14]|No explain plan is available
+18:18:44.2 (58814513)|SOQL_EXECUTE_END|[14]|Rows:6
+18:18:44.2 (58829592)|LIMIT_USAGE|[14]|SOQL_ROWS|6|50000
+18:18:44.2 (58837215)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:28
+18:18:44.2 (58882255)|SYSTEM_METHOD_ENTRY|[14]|Database.QueryLocator.iterator()
+18:18:44.2 (58988198)|HEAP_ALLOCATE|[14]|Bytes:54
+18:18:44.2 (58998212)|HEAP_ALLOCATE|[14]|Bytes:8
+18:18:44.2 (59008647)|SYSTEM_METHOD_ENTRY|[7]|QueryLocatorIterator.QueryLocatorIterator()
+18:18:44.2 (59011215)|STATEMENT_EXECUTE|[7]
+18:18:44.2 (59018991)|SYSTEM_METHOD_EXIT|[7]|QueryLocatorIterator
+18:18:44.2 (59023685)|HEAP_ALLOCATE|[14]|Bytes:28
+18:18:44.2 (59054778)|HEAP_ALLOCATE|[14]|Bytes:28
+18:18:44.2 (59061605)|HEAP_ALLOCATE|[14]|Bytes:8
+18:18:44.2 (59063193)|HEAP_ALLOCATE|[14]|Bytes:8
+18:18:44.2 (59065921)|VARIABLE_SCOPE_BEGIN|[15]|this|Database.QueryLocatorIterator|true|false
+18:18:44.2 (59092677)|VARIABLE_ASSIGNMENT|[15]|this|{}|0x16f6afc6
+18:18:44.2 (59095554)|VARIABLE_SCOPE_BEGIN|[15]|values|List<SObject>|true|false
+18:18:44.2 (59107022)|VARIABLE_ASSIGNMENT|[15]|values|"List of size 6 too large to display"|0x47893e10
+18:18:44.2 (59109677)|VARIABLE_SCOPE_BEGIN|[15]|ql|Database.QueryLocator|true|false
+18:18:44.2 (59127760)|VARIABLE_ASSIGNMENT|[15]|ql|{"query":"SELECT DeveloperName (77 more) ..."}|0x6ff7a983
+18:18:44.2 (59130444)|VARIABLE_SCOPE_BEGIN|[15]|totalNumRecords|Integer|false|false
+18:18:44.2 (59135753)|VARIABLE_ASSIGNMENT|[15]|totalNumRecords|6
+18:18:44.2 (59137999)|VARIABLE_SCOPE_BEGIN|[15]|queryMoreSize|Integer|false|false
+18:18:44.2 (59141318)|VARIABLE_ASSIGNMENT|[15]|queryMoreSize|49994
+18:18:44.2 (59179057)|HEAP_ALLOCATE|[14]|Bytes:28
+18:18:44.2 (59184137)|SYSTEM_METHOD_EXIT|[14]|Database.QueryLocator.iterator()
+18:18:44.2 (59199145)|METHOD_ENTRY|[14]||Database.QueryLocatorIterator.hasNext()
+18:18:44.2 (59257657)|METHOD_EXIT|[14]||Database.QueryLocatorIterator.hasNext()
+18:18:44.2 (59262253)|METHOD_ENTRY|[14]||Database.QueryLocatorIterator.next()
+18:18:44.2 (59324512)|METHOD_EXIT|[14]||Database.QueryLocatorIterator.next()
+18:18:44.2 (59329122)|VARIABLE_SCOPE_BEGIN|[14]|s|Inbound_Batch_Status__mdt|true|false
+18:18:44.2 (59395624)|VARIABLE_ASSIGNMENT|[14]|s|{"IsTerminal__c":false,"IsTimeoutEligible__c":true,"Id":"m0rRR00000o5n6wYAA","DeveloperName":"ACCEPTED","Role__c":"ACCEPTED"}|0x137d2b96
+18:18:44.2 (59400542)|STATEMENT_EXECUTE|[20]
+18:18:44.2 (59401407)|STATEMENT_EXECUTE|[21]
+18:18:44.2 (59440969)|SYSTEM_METHOD_ENTRY|[21]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59456502)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+18:18:44.2 (59462049)|SYSTEM_METHOD_EXIT|[21]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59489242)|SYSTEM_METHOD_ENTRY|[23]|String.isNotBlank(String)
+18:18:44.2 (59500994)|SYSTEM_METHOD_EXIT|[23]|String.isNotBlank(String)
+18:18:44.2 (59503282)|STATEMENT_EXECUTE|[23]
+18:18:44.2 (59504097)|STATEMENT_EXECUTE|[24]
+18:18:44.2 (59510369)|SYSTEM_METHOD_ENTRY|[24]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59514917)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+18:18:44.2 (59518735)|SYSTEM_METHOD_EXIT|[24]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59522372)|METHOD_ENTRY|[14]||Database.QueryLocatorIterator.hasNext()
+18:18:44.2 (59532744)|METHOD_EXIT|[14]||Database.QueryLocatorIterator.hasNext()
+18:18:44.2 (59534824)|METHOD_ENTRY|[14]||Database.QueryLocatorIterator.next()
+18:18:44.2 (59560917)|METHOD_EXIT|[14]||Database.QueryLocatorIterator.next()
+18:18:44.2 (59563639)|VARIABLE_SCOPE_BEGIN|[14]|s|Inbound_Batch_Status__mdt|true|false
+18:18:44.2 (59585663)|VARIABLE_ASSIGNMENT|[14]|s|{"IsTerminal__c":true,"IsTimeoutEligible__c":false,"Id":"m0rRR00000o5n6xYAA","DeveloperName":"COMPLETED","Role__c":"COMPLETED"}|0x4e62ecff
+18:18:44.2 (59588717)|STATEMENT_EXECUTE|[20]
+18:18:44.2 (59589492)|STATEMENT_EXECUTE|[21]
+18:18:44.2 (59596037)|SYSTEM_METHOD_ENTRY|[21]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59598587)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+18:18:44.2 (59602642)|SYSTEM_METHOD_EXIT|[21]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59607764)|SYSTEM_METHOD_ENTRY|[23]|String.isNotBlank(String)
+18:18:44.2 (59611272)|SYSTEM_METHOD_EXIT|[23]|String.isNotBlank(String)
+18:18:44.2 (59612946)|STATEMENT_EXECUTE|[23]
+18:18:44.2 (59613729)|STATEMENT_EXECUTE|[24]
+18:18:44.2 (59617732)|SYSTEM_METHOD_ENTRY|[24]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59619568)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+18:18:44.2 (59623278)|SYSTEM_METHOD_EXIT|[24]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59625901)|METHOD_ENTRY|[14]||Database.QueryLocatorIterator.hasNext()
+18:18:44.2 (59634057)|METHOD_EXIT|[14]||Database.QueryLocatorIterator.hasNext()
+18:18:44.2 (59636299)|METHOD_ENTRY|[14]||Database.QueryLocatorIterator.next()
+18:18:44.2 (59657983)|METHOD_EXIT|[14]||Database.QueryLocatorIterator.next()
+18:18:44.2 (59659924)|VARIABLE_SCOPE_BEGIN|[14]|s|Inbound_Batch_Status__mdt|true|false
+18:18:44.2 (59677663)|VARIABLE_ASSIGNMENT|[14]|s|{"IsTerminal__c":false,"IsTimeoutEligible__c":false,"Id":"m0rRR00000o5n6yYAA","DeveloperName":"DUPLICATE","Role__c":"DUPLICATE"}|0x34b94f3e
+18:18:44.2 (59680444)|STATEMENT_EXECUTE|[20]
+18:18:44.2 (59681205)|STATEMENT_EXECUTE|[21]
+18:18:44.2 (59686622)|SYSTEM_METHOD_ENTRY|[21]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59689207)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+18:18:44.2 (59692969)|SYSTEM_METHOD_EXIT|[21]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59697439)|SYSTEM_METHOD_ENTRY|[23]|String.isNotBlank(String)
+18:18:44.2 (59700761)|SYSTEM_METHOD_EXIT|[23]|String.isNotBlank(String)
+18:18:44.2 (59702351)|STATEMENT_EXECUTE|[23]
+18:18:44.2 (59703057)|STATEMENT_EXECUTE|[24]
+18:18:44.2 (59706832)|SYSTEM_METHOD_ENTRY|[24]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59708589)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+18:18:44.2 (59712149)|SYSTEM_METHOD_EXIT|[24]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59714538)|METHOD_ENTRY|[14]||Database.QueryLocatorIterator.hasNext()
+18:18:44.2 (59721995)|METHOD_EXIT|[14]||Database.QueryLocatorIterator.hasNext()
+18:18:44.2 (59723942)|METHOD_ENTRY|[14]||Database.QueryLocatorIterator.next()
+18:18:44.2 (59743935)|METHOD_EXIT|[14]||Database.QueryLocatorIterator.next()
+18:18:44.2 (59745972)|VARIABLE_SCOPE_BEGIN|[14]|s|Inbound_Batch_Status__mdt|true|false
+18:18:44.2 (59762327)|VARIABLE_ASSIGNMENT|[14]|s|{"IsTerminal__c":true,"IsTimeoutEligible__c":false,"Id":"m0rRR00000o5n6zYAA","DeveloperName":"FAILED","Role__c":"FAILED"}|0x7e8be7a8
+18:18:44.2 (59764942)|STATEMENT_EXECUTE|[20]
+18:18:44.2 (59765717)|STATEMENT_EXECUTE|[21]
+18:18:44.2 (59770922)|SYSTEM_METHOD_ENTRY|[21]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59773034)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+18:18:44.2 (59776811)|SYSTEM_METHOD_EXIT|[21]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59781197)|SYSTEM_METHOD_ENTRY|[23]|String.isNotBlank(String)
+18:18:44.2 (59784662)|SYSTEM_METHOD_EXIT|[23]|String.isNotBlank(String)
+18:18:44.2 (59786309)|STATEMENT_EXECUTE|[23]
+18:18:44.2 (59787044)|STATEMENT_EXECUTE|[24]
+18:18:44.2 (59790877)|SYSTEM_METHOD_ENTRY|[24]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59792595)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+18:18:44.2 (59796128)|SYSTEM_METHOD_EXIT|[24]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59798523)|METHOD_ENTRY|[14]||Database.QueryLocatorIterator.hasNext()
+18:18:44.2 (59805957)|METHOD_EXIT|[14]||Database.QueryLocatorIterator.hasNext()
+18:18:44.2 (59807912)|METHOD_ENTRY|[14]||Database.QueryLocatorIterator.next()
+18:18:44.2 (59827813)|METHOD_EXIT|[14]||Database.QueryLocatorIterator.next()
+18:18:44.2 (59830003)|VARIABLE_SCOPE_BEGIN|[14]|s|Inbound_Batch_Status__mdt|true|false
+18:18:44.2 (59845937)|VARIABLE_ASSIGNMENT|[14]|s|{"IsTerminal__c":false,"IsTimeoutEligible__c":false,"Id":"m0rRR00000o5n70YAA","DeveloperName":"PROCESSING","Role__c":"PROCESSING"}|0x2e8672fa
+18:18:44.2 (59905759)|STATEMENT_EXECUTE|[20]
+18:18:44.2 (59906511)|STATEMENT_EXECUTE|[21]
+18:18:44.2 (59913361)|SYSTEM_METHOD_ENTRY|[21]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59915714)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+18:18:44.2 (59919721)|SYSTEM_METHOD_EXIT|[21]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59924531)|SYSTEM_METHOD_ENTRY|[23]|String.isNotBlank(String)
+18:18:44.2 (59928006)|SYSTEM_METHOD_EXIT|[23]|String.isNotBlank(String)
+18:18:44.2 (59929661)|STATEMENT_EXECUTE|[23]
+18:18:44.2 (59930376)|STATEMENT_EXECUTE|[24]
+18:18:44.2 (59934163)|SYSTEM_METHOD_ENTRY|[24]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59935863)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+18:18:44.2 (59939488)|SYSTEM_METHOD_EXIT|[24]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (59942151)|METHOD_ENTRY|[14]||Database.QueryLocatorIterator.hasNext()
+18:18:44.2 (59950281)|METHOD_EXIT|[14]||Database.QueryLocatorIterator.hasNext()
+18:18:44.2 (59952298)|METHOD_ENTRY|[14]||Database.QueryLocatorIterator.next()
+18:18:44.2 (59973833)|METHOD_EXIT|[14]||Database.QueryLocatorIterator.next()
+18:18:44.2 (59976106)|VARIABLE_SCOPE_BEGIN|[14]|s|Inbound_Batch_Status__mdt|true|false
+18:18:44.2 (59994161)|VARIABLE_ASSIGNMENT|[14]|s|{"IsTerminal__c":true,"IsTimeoutEligible__c":false,"Id":"m0rRR00000o5n71YAA","DeveloperName":"TIMEOUT","Role__c":"TIMEOUT"}|0x775a66c1
+18:18:44.2 (59996988)|STATEMENT_EXECUTE|[20]
+18:18:44.2 (59997741)|STATEMENT_EXECUTE|[21]
+18:18:44.2 (60003408)|SYSTEM_METHOD_ENTRY|[21]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (60006211)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+18:18:44.2 (60010008)|SYSTEM_METHOD_EXIT|[21]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (60014387)|SYSTEM_METHOD_ENTRY|[23]|String.isNotBlank(String)
+18:18:44.2 (60017839)|SYSTEM_METHOD_EXIT|[23]|String.isNotBlank(String)
+18:18:44.2 (60019443)|STATEMENT_EXECUTE|[23]
+18:18:44.2 (60020171)|STATEMENT_EXECUTE|[24]
+18:18:44.2 (60024011)|SYSTEM_METHOD_ENTRY|[24]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (60025796)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:-4
+18:18:44.2 (60029350)|SYSTEM_METHOD_EXIT|[24]|Map<String,Inbound_Batch_Status__mdt>.put(Object, Object)
+18:18:44.2 (60031975)|METHOD_ENTRY|[14]||Database.QueryLocatorIterator.hasNext()
+18:18:44.2 (60038129)|METHOD_EXIT|[14]||Database.QueryLocatorIterator.hasNext()
+18:18:44.2 (60042059)|VARIABLE_ASSIGNMENT|[14]|s|null|
+18:18:44.2 (60055316)|STATEMENT_EXECUTE|[28]
+18:18:44.2 (60060432)|HEAP_ALLOCATE|[28]|Bytes:5
+18:18:44.2 (60067537)|VARIABLE_ASSIGNMENT|[28]|InboundBatchStatusProvider.loaded|true
+18:18:44.2 (60072646)|METHOD_EXIT|[67]|01pRR00000Nbi85|InboundBatchStatusProvider.load()
+18:18:44.2 (60075218)|STATEMENT_EXECUTE|[69]
+18:18:44.2 (60085099)|HEAP_ALLOCATE|[69]|Bytes:4
+18:18:44.2 (60125371)|SYSTEM_CONSTRUCTOR_ENTRY|[69]|<init>(Integer)
+18:18:44.2 (60147024)|SYSTEM_CONSTRUCTOR_EXIT|[69]|<init>(Integer)
+18:18:44.2 (60149880)|VARIABLE_SCOPE_BEGIN|[69]|res|Set<String>|true|false
+18:18:44.2 (60174855)|VARIABLE_ASSIGNMENT|[69]|res|[]|0x96407ab
+18:18:44.2 (60182276)|SYSTEM_METHOD_ENTRY|[70]|Map<String,Inbound_Batch_Status__mdt>.values()
+18:18:44.2 (60195886)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:28
+18:18:44.2 (60208542)|HEAP_ALLOCATE|[70]|Bytes:756
+18:18:44.2 (60211140)|SYSTEM_METHOD_EXIT|[70]|Map<String,Inbound_Batch_Status__mdt>.values()
+18:18:44.2 (60215625)|SYSTEM_METHOD_ENTRY|[70]|List<Inbound_Batch_Status__mdt>.iterator()
+18:18:44.2 (60286076)|SYSTEM_METHOD_EXIT|[70]|List<Inbound_Batch_Status__mdt>.iterator()
+18:18:44.2 (60301219)|SYSTEM_METHOD_ENTRY|[70]|system.ListIterator.hasNext()
+18:18:44.2 (60307893)|HEAP_ALLOCATE|[70]|Bytes:5
+18:18:44.2 (60312923)|SYSTEM_METHOD_EXIT|[70]|system.ListIterator.hasNext()
+18:18:44.2 (60318951)|HEAP_ALLOCATE|[70]|Bytes:24
+18:18:44.2 (60322822)|VARIABLE_SCOPE_BEGIN|[70]|s|Inbound_Batch_Status__mdt|true|false
+18:18:44.2 (60357326)|VARIABLE_ASSIGNMENT|[70]|s|{"IsTerminal__c":false,"IsTimeoutEligible__c":true,"Id":"m0rRR00000o5n6wYAA","DeveloperName":"ACCEPTED","Role__c":"ACCEPTED"}|0x137d2b96
+18:18:44.2 (60360648)|STATEMENT_EXECUTE|[70]
+18:18:44.2 (60372516)|STATEMENT_EXECUTE|[71]
+18:18:44.2 (60373334)|STATEMENT_EXECUTE|[72]
+18:18:44.2 (60382898)|SYSTEM_METHOD_ENTRY|[72]|Set<String>.add(Object)
+18:18:44.2 (60391012)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+18:18:44.2 (60395724)|SYSTEM_METHOD_EXIT|[72]|Set<String>.add(Object)
+18:18:44.2 (60399120)|SYSTEM_METHOD_ENTRY|[70]|system.ListIterator.hasNext()
+18:18:44.2 (60401701)|HEAP_ALLOCATE|[70]|Bytes:5
+18:18:44.2 (60404102)|SYSTEM_METHOD_EXIT|[70]|system.ListIterator.hasNext()
+18:18:44.2 (60406833)|HEAP_ALLOCATE|[70]|Bytes:24
+18:18:44.2 (60409503)|VARIABLE_SCOPE_BEGIN|[70]|s|Inbound_Batch_Status__mdt|true|false
+18:18:44.2 (60427617)|VARIABLE_ASSIGNMENT|[70]|s|{"IsTerminal__c":true,"IsTimeoutEligible__c":false,"Id":"m0rRR00000o5n6xYAA","DeveloperName":"COMPLETED","Role__c":"COMPLETED"}|0x4e62ecff
+18:18:44.2 (60430361)|STATEMENT_EXECUTE|[70]
+18:18:44.2 (60433211)|STATEMENT_EXECUTE|[71]
+18:18:44.2 (60435196)|SYSTEM_METHOD_ENTRY|[70]|system.ListIterator.hasNext()
+18:18:44.2 (60437517)|HEAP_ALLOCATE|[70]|Bytes:5
+18:18:44.2 (60439918)|SYSTEM_METHOD_EXIT|[70]|system.ListIterator.hasNext()
+18:18:44.2 (60442279)|HEAP_ALLOCATE|[70]|Bytes:24
+18:18:44.2 (60444643)|VARIABLE_SCOPE_BEGIN|[70]|s|Inbound_Batch_Status__mdt|true|false
+18:18:44.2 (60459451)|VARIABLE_ASSIGNMENT|[70]|s|{"IsTerminal__c":false,"IsTimeoutEligible__c":false,"Id":"m0rRR00000o5n6yYAA","DeveloperName":"DUPLICATE","Role__c":"DUPLICATE"}|0x34b94f3e
+18:18:44.2 (60462126)|STATEMENT_EXECUTE|[70]
+18:18:44.2 (60464148)|STATEMENT_EXECUTE|[71]
+18:18:44.2 (60464870)|STATEMENT_EXECUTE|[72]
+18:18:44.2 (60469400)|SYSTEM_METHOD_ENTRY|[72]|Set<String>.add(Object)
+18:18:44.2 (60471401)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+18:18:44.2 (60475107)|SYSTEM_METHOD_EXIT|[72]|Set<String>.add(Object)
+18:18:44.2 (60477494)|SYSTEM_METHOD_ENTRY|[70]|system.ListIterator.hasNext()
+18:18:44.2 (60479641)|HEAP_ALLOCATE|[70]|Bytes:5
+18:18:44.2 (60481851)|SYSTEM_METHOD_EXIT|[70]|system.ListIterator.hasNext()
+18:18:44.2 (60484026)|HEAP_ALLOCATE|[70]|Bytes:24
+18:18:44.2 (60486343)|VARIABLE_SCOPE_BEGIN|[70]|s|Inbound_Batch_Status__mdt|true|false
+18:18:44.2 (60502066)|VARIABLE_ASSIGNMENT|[70]|s|{"IsTerminal__c":true,"IsTimeoutEligible__c":false,"Id":"m0rRR00000o5n6zYAA","DeveloperName":"FAILED","Role__c":"FAILED"}|0x7e8be7a8
+18:18:44.2 (60504776)|STATEMENT_EXECUTE|[70]
+18:18:44.2 (60507106)|STATEMENT_EXECUTE|[71]
+18:18:44.2 (60508737)|SYSTEM_METHOD_ENTRY|[70]|system.ListIterator.hasNext()
+18:18:44.2 (60510991)|HEAP_ALLOCATE|[70]|Bytes:5
+18:18:44.2 (60513050)|SYSTEM_METHOD_EXIT|[70]|system.ListIterator.hasNext()
+18:18:44.2 (60515201)|HEAP_ALLOCATE|[70]|Bytes:24
+18:18:44.2 (60517656)|VARIABLE_SCOPE_BEGIN|[70]|s|Inbound_Batch_Status__mdt|true|false
+18:18:44.2 (60532011)|VARIABLE_ASSIGNMENT|[70]|s|{"IsTerminal__c":false,"IsTimeoutEligible__c":false,"Id":"m0rRR00000o5n70YAA","DeveloperName":"PROCESSING","Role__c":"PROCESSING"}|0x2e8672fa
+18:18:44.2 (60534689)|STATEMENT_EXECUTE|[70]
+18:18:44.2 (60536641)|STATEMENT_EXECUTE|[71]
+18:18:44.2 (60537375)|STATEMENT_EXECUTE|[72]
+18:18:44.2 (60541186)|SYSTEM_METHOD_ENTRY|[72]|Set<String>.add(Object)
+18:18:44.2 (60542961)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+18:18:44.2 (60546006)|SYSTEM_METHOD_EXIT|[72]|Set<String>.add(Object)
+18:18:44.2 (60548126)|SYSTEM_METHOD_ENTRY|[70]|system.ListIterator.hasNext()
+18:18:44.2 (60550256)|HEAP_ALLOCATE|[70]|Bytes:5
+18:18:44.2 (60552371)|SYSTEM_METHOD_EXIT|[70]|system.ListIterator.hasNext()
+18:18:44.2 (60554551)|HEAP_ALLOCATE|[70]|Bytes:24
+18:18:44.2 (60556961)|VARIABLE_SCOPE_BEGIN|[70]|s|Inbound_Batch_Status__mdt|true|false
+18:18:44.2 (60572366)|VARIABLE_ASSIGNMENT|[70]|s|{"IsTerminal__c":true,"IsTimeoutEligible__c":false,"Id":"m0rRR00000o5n71YAA","DeveloperName":"TIMEOUT","Role__c":"TIMEOUT"}|0x775a66c1
+18:18:44.2 (60575069)|STATEMENT_EXECUTE|[70]
+18:18:44.2 (60577136)|STATEMENT_EXECUTE|[71]
+18:18:44.2 (60578784)|SYSTEM_METHOD_ENTRY|[70]|system.ListIterator.hasNext()
+18:18:44.2 (60580958)|HEAP_ALLOCATE|[70]|Bytes:5
+18:18:44.2 (60583103)|SYSTEM_METHOD_EXIT|[70]|system.ListIterator.hasNext()
+18:18:44.2 (60586689)|VARIABLE_ASSIGNMENT|[70]|s|null|
+18:18:44.2 (60589001)|STATEMENT_EXECUTE|[75]
+18:18:44.2 (60593707)|METHOD_EXIT|[24]|01pRR00000Nbi85|InboundBatchStatusProvider.liveStatusKeys()
+18:18:44.2 (60615090)|SYSTEM_METHOD_ENTRY|[21]|Database.getQueryLocator(String, Map)
+18:18:44.2 (61340832)|SOQL_EXECUTE_BEGIN|[21]|Aggregations:0|SELECT Id FROM ERP_InboundBatch__c WHERE Status__c = :tmpVar1 ORDER BY LastSeenAt__c ASC NULLS FIRST
+18:18:44.2 (61358744)|LIMIT_USAGE|[21]|SOQL|1|200
+18:18:44.2 (61363446)|LIMIT_USAGE|[21]|AGGS|0|600
+18:18:44.2 (96564832)|SOQL_EXECUTE_EXPLAIN|[21]|No explain plan is available
+18:18:44.2 (96580253)|SOQL_EXECUTE_END|[21]|Rows:1
+18:18:44.2 (96594522)|LIMIT_USAGE|[21]|QUERY_LOCATOR_SOQL_ROWS|1|50000000
+18:18:44.2 (96624128)|HEAP_ALLOCATE|[21]|Bytes:20
+18:18:44.2 (96638150)|SYSTEM_METHOD_EXIT|[21]|Database.getQueryLocator(String, Map)
+18:18:44.2 (96648956)|SYSTEM_MODE_EXIT|false
+18:18:44.149 (149696611)|CUMULATIVE_LIMIT_USAGE
+18:18:44.149 (149696611)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 0
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:18:44.149 (149696611)|TOTAL_EMAIL_RECIPIENTS_QUEUED|0
+18:18:44.149 (149696611)|STATIC_VARIABLE_LIST|
+  int:BYTES:0
+  int:BYTES:0
+  byte[]:DigitOnes:0
+  byte[]:DigitTens:0
+  Boolean:FALSE:0
+  int:MAX_EXPONENT:0
+  double:MAX_VALUE:0
+  int:MAX_VALUE:0
+  int:MIN_EXPONENT:0
+  double:MIN_NORMAL:0
+  double:MIN_VALUE:0
+  int:MIN_VALUE:0
+  double:NEGATIVE_INFINITY:0
+  double:NaN:0
+  double:POSITIVE_INFINITY:0
+  int:PRECISION:0
+  int:SIZE:0
+  int:SIZE:0
+  Boolean:TRUE:0
+  String:__sfdcParameterizedTypes:0
+  String:__sfdcParameterizedTypes:0
+  String:_sfdcAdditionalCodeLocations:0
+  String:_sfdcAdditionalCodeLocations:0
+  String:_sfdcAdditionalCodeLocations:0
+  String:_sfdcAdditionalCodeLocations:0
+  String:_sfdcAdditionalCodeLocations:0
+  Map<String,Inbound_Batch_Status__mdt>:_static_byDevName:0
+  Map<String,Inbound_Batch_Status__mdt>:_static_byRole:0
+  Boolean:_static_loaded:0
+  char[]:digits:0
+  long:serialVersionUID:0
+  long:serialVersionUID:0
+  long:serialVersionUID:0
+
+18:18:44.149 (149696611)|CUMULATIVE_LIMIT_USAGE_END
+
+18:18:44.2 (150088695)|CODE_UNIT_FINISHED|InboundBatchFinalizer
+18:18:44.2 (150111005)|EXECUTION_FINISHED
+18:18:44.219 (219739321)|CUMULATIVE_PROFILING_BEGIN
+18:18:44.219 (219739321)|CUMULATIVE_PROFILING|SOQL operations|
+Class.InboundBatchFinalizer.start: line 21, column 1: com.salesforce.api.Database.getQueryLocator(List<ERP_InboundBatch__c>): executed 1 time in 36 ms
+Class.InboundBatchStatusProvider.load: line 14, column 1: [
+            SELECT DeveloperName,
+                   Role__c,
+                   IsTerminal__c,
+                   IsTimeoutEligible__c
+            FROM Inbound_Batch_Status__mdt
+        ]: executed 15 times in 8 ms
+
+18:18:44.219 (219739321)|CUMULATIVE_PROFILING|No profiling information for SOSL operations
+18:18:44.219 (219739321)|CUMULATIVE_PROFILING|No profiling information for DML operations
+18:18:44.219 (219739321)|CUMULATIVE_PROFILING|method invocations|
+External entry point: global Database.QueryLocator start(Database.BatchableContext): executed 1 time in 50 ms
+Class.InboundBatchFinalizer.start: line 24, column 1: public static Set<String> liveStatusKeys(): executed 1 time in 9 ms
+Class.InboundBatchStatusProvider.liveStatusKeys: line 67, column 1: private static void load(): executed 1 time in 9 ms
+Class.InboundBatchStatusProvider.load: line 21, column 1: global public Object put(Object, Object): executed 6 times in 0 ms
+Class.InboundBatchStatusProvider.liveStatusKeys: line 69, column 1: public Set<String>(Integer): executed 1 time in 0 ms
+Class.InboundBatchStatusProvider.liveStatusKeys: line 70, column 1: global public List<ANY> values(): executed 9 times in 0 ms
+Class.InboundBatchStatusProvider.load: line 23, column 1: public static Boolean isNotBlank(String): executed 6 times in 0 ms
+Class.InboundBatchStatusProvider.load: line 24, column 1: global public Object put(Object, Object): executed 6 times in 0 ms
+Class.InboundBatchStatusProvider.liveStatusKeys: line 72, column 1: global public Boolean add(Object): executed 3 times in 0 ms
+
+18:18:44.219 (219739321)|CUMULATIVE_PROFILING_END

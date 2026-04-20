@@ -2,24 +2,26 @@ public with sharing class IntegrationOrchestrator {
 
     public static IntegrationResponse process(
         String rawJson,
-        String sourceSystem
+        String fallbackMessageType
     ) {
 
         IntegrationResponse response = new IntegrationResponse();
         response.timestamp = System.now();
 
-        IIntegrationHandler handler;
-
         try {
 
             // =====================================================
-            // 1. Parse metadata
+            // 1. Parse envelope
             // =====================================================
             Map<String, Object> untyped =
                 (Map<String, Object>) JSON.deserializeUntyped(rawJson);
 
             Map<String, Object> metaMap =
-                (Map<String, Object>) untyped.get('metadata');
+                (Map<String, Object>) (
+                    untyped.containsKey('Metadata')
+                        ? untyped.get('Metadata')
+                        : untyped.get('metadata')
+                );
 
             if (metaMap == null) {
                 return buildError('Orchestrator', 'INVALID_METADATA', null, 400);
@@ -32,45 +34,58 @@ public with sharing class IntegrationOrchestrator {
                         ERPMessageParser.MessageMetadata.class
                     );
 
-            if (String.isBlank(meta.msgType)) {
+            // =====================================================
+            // 2. Resolve messageType
+            // =====================================================
+            String messageType = !String.isBlank(meta.msgType)
+                ? meta.msgType
+                : fallbackMessageType;
+
+            if (String.isBlank(messageType)) {
                 return buildError('Orchestrator', 'INVALID_MESSAGE_TYPE', null, 400);
             }
 
             // =====================================================
-            // 2. Resolve route (CMDT)
+            // 3. Resolve direction
+            // =====================================================
+            String direction = resolveDirection(messageType);
+
+            // =====================================================
+            // 4. Resolve route (CMDT)
             // =====================================================
             IntegrationMessageRoute__mdt route =
-                getRoute(meta.msgType, IntegrationDirection.ERP_SF);
+                getRoute(messageType, direction);
 
             if (route == null || !route.Active__c) {
-                return buildError('Orchestrator', 'ROUTE_NOT_FOUND', meta.msgType, 404);
+                return buildError('Orchestrator', 'ROUTE_NOT_FOUND', messageType, 404);
             }
 
             // =====================================================
-            // 3. Build context
+            // 5. Build context
             // =====================================================
             IntegrationContext context = new IntegrationContext();
             context.rawJson     = rawJson;
-            context.direction   = IntegrationDirection.ERP_SF;
-            context.messageType = meta.msgType;
+            context.direction   = direction;
+            context.messageType = messageType;
             context.handlerKey  = route.HandlerClass__c;
 
             // =====================================================
-            // 4. Instantiate handler (Dynamic Apex)
+            // 6. Instantiate handler
             // =====================================================
-            handler = instantiateHandler(route.HandlerClass__c);
+            IIntegrationHandler handler =
+                instantiateHandler(route.HandlerClass__c);
 
             if (handler == null) {
                 return buildError('Orchestrator', 'HANDLER_NOT_FOUND', route.HandlerClass__c, 500);
             }
 
             // =====================================================
-            // 5. Execute handler
+            // 7. Execute handler
             // =====================================================
             handler.handle(context);
 
             // =====================================================
-            // 6. Handle errors
+            // 8. Handle domain errors
             // =====================================================
             if (context.stopProcessing || context.hasErrors()) {
                 return buildError(
@@ -82,23 +97,34 @@ public with sharing class IntegrationOrchestrator {
             }
 
             // =====================================================
-            // 7. Handle response
+            // 9. Handler response
             // =====================================================
             IntegrationHandlerResponse handlerResp = context.getResponse();
 
             if (handlerResp != null) {
 
                 response.success    = true;
-                response.statusCode = handlerResp.httpStatus;
+                response.statusCode = handlerResp.httpStatus != null ? handlerResp.httpStatus : 200;
                 response.code       = 'SUCCESS';
                 response.message    = 'OK';
                 response.payload    = JSON.serialize(handlerResp.body);
+
+                // =====================================================
+                // ПІДНІМАЄМО status З HANDLER
+                // =====================================================
+                if (handlerResp.body instanceof Map<String, Object>) {
+                    Map<String, Object> bodyMap = (Map<String, Object>) handlerResp.body;
+
+                    if (bodyMap.containsKey('status')) {
+                        response.status = (String) bodyMap.get('status');
+                    }
+                }
 
                 return response;
             }
 
             // =====================================================
-            // 8. Default success (fallback)
+            // 10. Default success
             // =====================================================
             response.success    = true;
             response.statusCode = 200;
@@ -128,28 +154,15 @@ public with sharing class IntegrationOrchestrator {
     }
 
     // =========================================================
-    // Error builder
+    // Direction resolver
     // =========================================================
-    private static IntegrationResponse buildError(
-        String handler,
-        String code,
-        String value,
-        Integer httpStatus
-    ) {
-        IntegrationResponse response = new IntegrationResponse();
-        response.success    = false;
-        response.statusCode = httpStatus;
-        response.code       = code;
+    private static String resolveDirection(String messageType) {
 
-        response.message =
-            ExceptionMessageProvider.buildByHandler(
-                handler,
-                code,
-                value,
-                true
-            );
+        if (messageType != null && messageType.startsWith('EDI_')) {
+            return 'EDI_SF';
+        }
 
-        return response;
+        return 'ERP_SF';
     }
 
     // =========================================================
@@ -183,5 +196,30 @@ public with sharing class IntegrationOrchestrator {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    // =========================================================
+    // Error builder
+    // =========================================================
+    private static IntegrationResponse buildError(
+        String handler,
+        String code,
+        String value,
+        Integer httpStatus
+    ) {
+        IntegrationResponse response = new IntegrationResponse();
+        response.success    = false;
+        response.statusCode = httpStatus;
+        response.code       = code;
+
+        response.message =
+            ExceptionMessageProvider.buildByHandler(
+                handler,
+                code,
+                value,
+                true
+            );
+
+        return response;
     }
 }

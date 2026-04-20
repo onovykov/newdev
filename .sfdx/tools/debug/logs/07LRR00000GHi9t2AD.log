@@ -1,0 +1,29 @@
+66.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO;CALLOUT,INFO;DATA_ACCESS,INFO;DB,INFO;NBA,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+Execute Anonymous: Database.executeBatch(new InboundBatchFinalizer(), 10);
+17:23:21.0 (436010)|USER_INFO|[EXTERNAL]|0051n000006PLOd|aleksandr.novikov@interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Bucharest)|GMT+03:00
+17:23:21.0 (455836)|EXECUTION_STARTED
+17:23:21.0 (466971)|CODE_UNIT_STARTED|[EXTERNAL]|execute_anonymous_apex
+17:23:21.0 (1008974)|SYSTEM_MODE_ENTER|false
+17:23:21.0 (1029741)|SYSTEM_MODE_EXIT|false
+17:23:21.0 (1051791)|SYSTEM_MODE_ENTER|false
+17:23:21.0 (1091312)|SYSTEM_MODE_EXIT|false
+17:23:21.85 (85055497)|CUMULATIVE_LIMIT_USAGE
+17:23:21.85 (85055497)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+17:23:21.85 (85055497)|CUMULATIVE_LIMIT_USAGE_END
+
+17:23:21.0 (85118405)|CODE_UNIT_FINISHED|execute_anonymous_apex
+17:23:21.0 (85143684)|EXECUTION_FINISHED

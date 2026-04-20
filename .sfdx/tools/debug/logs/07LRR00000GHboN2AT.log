@@ -1,0 +1,121 @@
+66.0 APEX_CODE,FINEST;APEX_PROFILING,FINEST;CALLOUT,FINEST;DATA_ACCESS,INFO;DB,FINEST;NBA,FINE;SYSTEM,FINE;VALIDATION,INFO;VISUALFORCE,FINER;WAVE,FINEST;WORKFLOW,FINER
+18:18:45.0 (930420)|USER_INFO|[EXTERNAL]|0051n000006PLOd|aleksandr.novikov@interpipe.biz.newdev|(GMT+03:00) Eastern European Summer Time (Europe/Bucharest)|GMT+03:00
+18:18:45.0 (1035270)|EXECUTION_STARTED
+18:18:45.0 (1066739)|CODE_UNIT_STARTED|[EXTERNAL]|01pRR00000OhS4r|InboundBatchFinalizer
+18:18:45.0 (4230394)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+18:18:45.0 (12512613)|HEAP_ALLOCATE|[95]|Bytes:3
+18:18:45.0 (12574656)|HEAP_ALLOCATE|[100]|Bytes:152
+18:18:45.0 (12589133)|HEAP_ALLOCATE|[417]|Bytes:408
+18:18:45.0 (12604737)|HEAP_ALLOCATE|[430]|Bytes:408
+18:18:45.0 (12630845)|HEAP_ALLOCATE|[317]|Bytes:6
+18:18:45.0 (12662822)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:11
+18:18:45.0 (12689249)|SYSTEM_METHOD_ENTRY|[15]|BatchableContextImpl.BatchableContextImpl()
+18:18:45.0 (12707148)|STATEMENT_EXECUTE|[15]
+18:18:45.0 (12725809)|SYSTEM_METHOD_EXIT|[15]|BatchableContextImpl
+18:18:45.0 (12731334)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:12
+18:18:45.0 (12734629)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+18:18:45.0 (12736970)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+18:18:45.0 (12748842)|VARIABLE_SCOPE_BEGIN|[31]|this|Database.BatchableContextImpl|true|false
+18:18:45.0 (12915679)|VARIABLE_ASSIGNMENT|[31]|this|{}|0x7a765716
+18:18:45.0 (12921916)|VARIABLE_SCOPE_BEGIN|[31]|jobId|Id|false|false
+18:18:45.0 (13067877)|VARIABLE_ASSIGNMENT|[31]|jobId|"707RR00001I2qn5YAB"
+18:18:45.0 (13077417)|VARIABLE_SCOPE_BEGIN|[31]|childJobId|Id|false|false
+18:18:45.0 (13098674)|VARIABLE_ASSIGNMENT|[31]|childJobId|"707RR00001I2iEqYAJ"
+18:18:45.0 (30030653)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:8
+18:18:45.485 (485417728)|CUMULATIVE_LIMIT_USAGE
+18:18:45.485 (485417728)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 200
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 0
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 0
+  Number of queueable jobs added to the queue: 0 out of 1
+  Number of Mobile Apex push calls: 0 out of 10
+
+18:18:45.485 (485417728)|TOTAL_EMAIL_RECIPIENTS_QUEUED|0
+18:18:45.485 (485417728)|CUMULATIVE_LIMIT_USAGE_END
+
+18:18:45.0 (485536786)|CODE_UNIT_FINISHED|InboundBatchFinalizer
+18:18:45.0 (485554487)|EXECUTION_FINISHED
+18:18:45.502 (502983223)|CUMULATIVE_PROFILING_BEGIN
+18:18:45.502 (502983223)|CUMULATIVE_PROFILING|SOQL operations|
+Class.AsyncConfigProvider.getDefault: line 14, column 1: [
+            SELECT SyncLimit__c, QueueLimit__c, BatchSize__c, Timeout__c
+            FROM Async_Config__mdt
+            WHERE IsDefault__c = true
+            LIMIT 1
+        ]: executed 1 time in 18 ms
+Class.InboundBatchFinalizer.execute: line 45, column 1: [
+            SELECT Id,
+                   BatchKey__c,
+                   Status__c,
+                   Direction__c,
+                   TotalParts__c,
+                   ReceivedParts__c,
+                   FirstSeenAt__c,
+                   LastSeenAt__c,
+                   ProcessingStartedAt__c,
+                   CompletedAt__c,
+                   ErrorMessage__c
+            FROM ERP_InboundBatch__c
+            WHERE Id IN :ids
+            FOR UPDATE
+        ]: executed 1 time in 17 ms
+Class.ExceptionMessageProvider.ensureLoaded: line 14, column 1: [
+            SELECT DeveloperName, Handler__c, MessageText__c
+            FROM ExceptionMessages__mdt
+        ]: executed 23 times in 15 ms
+Class.InboundBatchFinalizer.processBatch: line 127, column 1: [
+                SELECT PartNumber__c, Payload__c
+                FROM ERP_InboundPart__c
+                WHERE BatchKey__c = :batch.BatchKey__c
+                ORDER BY PartNumber__c ASC
+            ]: executed 1 time in 12 ms
+Class.InboundBatchStatusProvider.load: line 14, column 1: [
+            SELECT DeveloperName,
+                   Role__c,
+                   IsTerminal__c,
+                   IsTimeoutEligible__c
+            FROM Inbound_Batch_Status__mdt
+        ]: executed 15 times in 12 ms
+Class.IntegrationOrchestrator.getRoute: line 175, column 1: [
+            SELECT MessageCode__c,
+                   Direction__c,
+                   HandlerClass__c,
+                   Active__c
+            FROM IntegrationMessageRoute__mdt
+            WHERE MessageCode__c = :messageType
+              AND Direction__c   = :direction
+            LIMIT 1
+        ]: executed 1 time in 11 ms
+Class.InboundBatchFinalizer.processBatch: line 194, column 1: [
+                SELECT Id, Status__c, ErrorMessage__c, CompletedAt__c
+                FROM ERP_InboundBatch__c
+                WHERE Id = :batch.Id
+                FOR UPDATE
+            ]: executed 1 time in 7 ms
+
+18:18:45.502 (502983223)|CUMULATIVE_PROFILING|No profiling information for SOSL operations
+18:18:45.502 (502983223)|CUMULATIVE_PROFILING|DML operations|
+Class.InboundBatchFinalizer.processBatch: line 223, column 1: Update: ERP_InboundBatch__c: executed 1 time in 22 ms
+
+18:18:45.502 (502983223)|CUMULATIVE_PROFILING|method invocations|
+External entry point: global void execute(Database.BatchableContext, List<SObject>): executed 1 time in 323 ms
+Class.InboundBatchFinalizer.execute: line 113, column 1: private static void processBatch(ERP_InboundBatch__c): executed 1 time in 229 ms
+Class.InboundBatchFinalizer.processBatch: line 186, column 1: public static IntegrationResponse process(String, String): executed 1 time in 82 ms
+Class.IntegrationOrchestrator.process: line 79, column 1: private static IntegrationResponse buildError(String, String, String, Integer): executed 1 time in 27 ms
+Class.InboundBatchFinalizer.execute: line 37, column 1: public static AsyncConfig get(): executed 1 time in 21 ms
+Class.AsyncConfigProvider.get: line 7, column 1: public static AsyncConfig getDefault(): executed 1 time in 21 ms
+Class.ExceptionMessageProvider.buildByHandler: line 108, column 1: public static String getByHandlerAndCode(String, String): executed 1 time in 18 ms
+Class.ExceptionMessageProvider.getByHandlerAndCode: line 55, column 1: private static void ensureLoaded(): executed 1 time in 18 ms
+Class.IntegrationOrchestrator.buildError: line 216, column 1: public static String buildByHandler(String, String, String, Boolean): executed 1 time in 18 ms
+Class.InboundBatchFinalizer.execute: line 67, column 1: public static Boolean isTerminal(String): executed 1 time in 12 ms
+Class.InboundBatchStatusProvider.isTerminal: line 51, column 1: private static void load(): executed 2 times in 12 ms
+
+18:18:45.502 (502983223)|CUMULATIVE_PROFILING_END
