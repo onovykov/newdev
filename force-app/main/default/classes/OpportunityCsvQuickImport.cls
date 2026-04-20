@@ -107,6 +107,12 @@ public with sharing class OpportunityCsvQuickImport {
             if (!String.isBlank(row.get('RecordType'))) {
                 recordTypeNames.add(row.get('RecordType'));
             }
+            if (!String.isBlank(row.get('Currency'))) {
+                recordTypeNames.add(row.get('Currency'));
+            }
+            if (!String.isBlank(row.get('ExpectedDelivDate'))) {
+                recordTypeNames.add(row.get('ExpectedDelivDate'));
+            }
         }
 
         result.totalRows = rows.size();
@@ -226,6 +232,16 @@ public with sharing class OpportunityCsvQuickImport {
                     opp.CloseDate = Date.valueOf(row.get('CloseDate'));
                 } else {
                     opp.CloseDate = Date.today();
+                }
+                if (!String.isBlank(row.get('Currency'))) {
+                    opp.CurrencyISOCode = String.valueOf(row.get('Currency'));
+                } else {
+                    opp.CloseDate = Date.today();
+                }
+                if (!String.isBlank(row.get('ExpectedDelivDate'))) {
+                    opp.ExpectedDelivDate__c = Date.valueOf(row.get('ExpectedDelivDate'));
+                } else {
+                    opp.ExpectedDelivDate__c = Date.today().addDays(2);
                 }
 
                 oppsToInsert.add(opp);
