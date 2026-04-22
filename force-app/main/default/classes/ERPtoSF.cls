@@ -10,7 +10,7 @@ global with sharing class ERPtoSF {
         String rawJson = req.requestBody.toString();
         String messageType = resolveMessageType(rawJson);
 
-        // 🔥 DEBUG 1
+        // DEBUG 1
         System.debug('=== ERPtoSF DEBUG START ===');
         System.debug('messageType=' + messageType);
 
@@ -22,7 +22,7 @@ global with sharing class ERPtoSF {
             IntegrationMessageRoute__mdt route =
                 resolveRoute(messageType);
 
-            // 🔥 DEBUG 2
+            // DEBUG 2
             System.debug('route=' + route);
             System.debug('IsNewPath=' + (route != null ? route.IsNewPath__c : null));
             System.debug('IsAsync=' + (route != null ? route.IsAsync__c : null));
@@ -33,7 +33,7 @@ global with sharing class ERPtoSF {
             // -----------------------------------------------------
             if (route == null || !route.Active__c) {
 
-                System.debug('⚠️ FALLBACK TO OLD FLOW (route null or inactive)');
+                System.debug('FALLBACK TO OLD FLOW (route null or inactive)');
                 ERPMessageHandler.postCSTfromHelper(req, res);
                 return;
             }
@@ -43,7 +43,7 @@ global with sharing class ERPtoSF {
             // =====================================================
             if (route.IsNewPath__c != true) {
 
-                System.debug('⚠️ OLD PATH (IsNewPath__c != true)');
+                System.debug('OLD PATH (IsNewPath__c != true)');
                 ERPMessageHandler.postCSTfromHelper(req, res);
                 return;
             }
@@ -53,12 +53,12 @@ global with sharing class ERPtoSF {
             // =====================================================
             if (route.IsAsync__c == true) {
 
-                System.debug('🚀 NEW ASYNC FLOW → Coordinator');
+                System.debug('NEW ASYNC FLOW → Coordinator');
                 handleAsync(rawJson, res);
 
             } else {
 
-                System.debug('🚀 NEW SYNC FLOW → Orchestrator');
+                System.debug('NEW SYNC FLOW → Orchestrator');
                 handleSync(rawJson, res);
             }
 
