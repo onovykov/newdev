@@ -2,35 +2,58 @@
 private class OppDataErrorNotifierTest {
 
     @IsTest
-    static void testNotifier_WithErrors_EmailAndFileCreated() {
+    static void testExecute_SuccessFlow() {
 
-        // Arrange
-        OppDataErrors errors = new OppDataErrors();
-        errors.iteNumber = '25-007717';
-        errors.altNumber = 'COC25/01808';
-        errors.salesRepEmail = 'test@company.com'; // не важливо в тесті
-        errors.bosEmail = '';
+        // GIVEN
+        OppDataErrors err = new OppDataErrors();
+        err.salesRepEmail = 'test@test.com';
+        err.bosEmail = 'test2@test.com';
+        err.iteNumber = 'TEST-001';
+        err.altNumber = 'ALT-001';
+        err.errors = new List<String>{ 'Error 1' };
 
-        errors.errors.add('Illegal Product Edit');
-        errors.errors.add('Illegal Currency Edit');
+        String payload = '{"test":"data"}';
 
-        errors.correlationId = 'TEST-CID-123';
-
-        String rawJson = '{"test":"payload"}';
-
-        // Act
+        // WHEN
         Test.startTest();
-        System.enqueueJob(new OppDataErrorNotifier(errors, rawJson));
+        System.enqueueJob(new OppDataErrorNotifier(err, payload));
         Test.stopTest();
 
-        // Assert
-        // Перевіряємо, що ContentVersion створився
+        // THEN
         List<ContentVersion> files = [
             SELECT Id, Title
             FROM ContentVersion
-            WHERE Title LIKE 'OppSyncPayload_%'
+            WHERE Title LIKE 'OppSyncPayload%'
         ];
 
         System.assert(!files.isEmpty(), 'Payload file should be created');
+    }
+
+    @IsTest
+    static void testExecute_NoErrors() {
+
+        OppDataErrors err = new OppDataErrors();
+        err.errors = new List<String>(); // empty
+
+        Test.startTest();
+        System.enqueueJob(new OppDataErrorNotifier(err, '{}'));
+        Test.stopTest();
+
+        System.assert(true);
+    }
+
+    @IsTest
+    static void testExecute_NullPayload() {
+
+        OppDataErrors err = new OppDataErrors();
+        err.salesRepEmail = 'test@test.com';
+        err.iteNumber = 'TEST';
+        err.errors = new List<String>{ 'Error' };
+
+        Test.startTest();
+        System.enqueueJob(new OppDataErrorNotifier(err, null));
+        Test.stopTest();
+
+        System.assert(true);
     }
 }

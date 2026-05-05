@@ -25,29 +25,22 @@ public with sharing class OppDataErrorNotifier implements Queueable {
                 IntegrationErrorRecipientResolver.resolve(ctx);
 
             if (recipients.isEmpty()) {
-                System.debug('No recipients resolved, skipping notification');
+                System.debug('No recipients resolved');
                 return;
             }
 
-            // 2. Save payload as File (ContentVersion)
+            // 2. Save payload
             Id contentVersionId = savePayloadToFile();
 
-            // 3. Build email
-            Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
-            email.setToAddresses(new List<String>(recipients));
-            email.setSubject(buildSubject());
-            email.setPlainTextBody(buildBody(contentVersionId));
+            // 3. Send email через EmailService
+            EmailService.send(
+                recipients,
+                buildSubject(),
+                buildBody(contentVersionId)
+            );
 
-            // 4. Send email
-            Messaging.sendEmail(new List<Messaging.SingleEmailMessage>{ email });
-
-            // 5. Logging (basic)
+            // 4. Log
             logSuccess(recipients, contentVersionId);
-
-            // 6. Triton stub
-            // TODO: Must be log into Triton
-            // Example future call:
-            // TritonLogSink.log(errors, contentVersionId);
 
         } catch (Exception e) {
             System.debug('OppDataErrorNotifier failed: ' + e.getMessage());
@@ -55,9 +48,10 @@ public with sharing class OppDataErrorNotifier implements Queueable {
     }
 
     // -------------------------
-    // Payload → ContentVersion
+    // Payload
     // -------------------------
 
+    @TestVisible
     private Id savePayloadToFile() {
         if (String.isBlank(rawPayload)) {
             return null;
@@ -67,6 +61,7 @@ public with sharing class OppDataErrorNotifier implements Queueable {
         cv.Title = buildFileName();
         cv.PathOnClient = buildFileName() + '.json';
         cv.VersionData = Blob.valueOf(rawPayload);
+        cv.FirstPublishLocationId = UserInfo.getUserId();
 
         insert cv;
 
@@ -104,7 +99,6 @@ public with sharing class OppDataErrorNotifier implements Queueable {
             i++;
         }
 
-        // optional warnings
         if (errors.warnings != null && !errors.warnings.isEmpty()) {
             body += '\nWarnings:\n';
             i = 1;
@@ -114,17 +108,16 @@ public with sharing class OppDataErrorNotifier implements Queueable {
             }
         }
 
-        // payload reference
         if (contentVersionId != null) {
             body += '\nPayload saved as File (ContentVersion Id): '
                  + contentVersionId + '\n';
         }
 
-        // debug context
         body += '\n---\n';
         body += 'MessageType: OpportunityData\n';
         body += 'Timestamp: ' + String.valueOf(System.now()) + '\n';
-        body += 'CorrelationId: ' + (errors.correlationId != null ? errors.correlationId : 'N/A') + '\n';
+        body += 'CorrelationId: ' +
+            (String.isBlank(errors.correlationId) ? 'N/A' : errors.correlationId) + '\n';
 
         return body;
     }

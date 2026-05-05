@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>ERPLotAccumulator</members>
+        <members>ERPLotAggregate</members>
+        <members>ERPLotAggregationService</members>
+        <members>ERPLotBuilder</members>
+        <members>ERPLotHandler</members>
+        <members>ERPLotKeyUtil</members>
+        <members>ERPLotParseUtil</members>
+        <members>ERPLotService</members>
+        <members>LotRepository</members>
+        <members>ProdWeekCache</members>
+        <members>ERPLotAccumulatorTest</members>
+        <members>ERPLotAggregationServiceTest</members>
+        <members>ERPLotBuilderTest</members>
+        <members>ERPLotHandlerTest</members>
+        <members>ERPLotKeyUtilTest</members>
+        <members>ERPLotParseUtilTest</members>
+        <members>ERPLotServiceTest</members>
+        <members>ERPLotTestDataFactory</members>
+        <members>LotRepositoryTest</members>
+        <members>ProdWeekCacheTest</members>
+        <name>ApexClass</name>
+    </types>
+    <version>65.0</version>
+</Package>
