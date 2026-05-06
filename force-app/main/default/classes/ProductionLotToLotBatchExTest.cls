@@ -1,164 +1,225 @@
-@isTest
+@IsTest
 private class ProductionLotToLotBatchExTest {
 
-    @TestSetup
-    static void makeData(){
-        Account testAccount = new Account(Name = 'Test Account', MarketSegment__c = '00004');
-        insert testAccount;
+    private static final Date LOT_DATE = Date.newInstance(2026, 3, 3);
+    private static final Date WEEK_FROM = Date.newInstance(2026, 3, 1);
+    private static final Date WEEK_TO = Date.newInstance(2026, 3, 7);
 
-        Pricebook2 standardPricebook = new Pricebook2(
+    @TestSetup
+    static void makeData() {
+        Account acc = new Account(
+            Name = 'Batch Test Account',
+            MarketSegment__c = '00004'
+        );
+        insert acc;
+
+        Product2 product = new Product2(
+            Name = 'Batch Test Product',
+            IsActive = true
+        );
+        insert product;
+
+        Pricebook2 pb = new Pricebook2(
             Id = Test.getStandardPricebookId(),
             IsActive = true
         );
-        update standardPricebook;
+        update pb;
 
-        Order testOrder = new Order(
-            Name = 'Test Order',
-            AccountId = testAccount.Id,
+        PricebookEntry pbe = new PricebookEntry(
+            Pricebook2Id = pb.Id,
+            Product2Id = product.Id,
+            UnitPrice = 100,
+            IsActive = true
+        );
+        insert pbe;
+
+        Order ord = new Order(
+            Name = 'Batch Test Order',
+            AccountId = acc.Id,
             Status = 'Draft',
             EffectiveDate = Date.today(),
-            Pricebook2Id = standardPricebook.Id
+            Pricebook2Id = pb.Id
         );
-        insert testOrder;  
+        insert ord;
+
+        OrderItem oi = new OrderItem(
+            OrderId = ord.Id,
+            PricebookEntryId = pbe.Id,
+            Quantity = 1,
+            UnitPrice = 100,
+            ITENumber__c = '26-TEST-001'
+        );
+        insert oi;
+
+        insert new List<ProdWeeksH__c>{
+            new ProdWeeksH__c(
+                Name = 'WeekTest1',
+                DateFrom__c = WEEK_FROM,
+                DateTo__c = WEEK_TO
+            ),
+            new ProdWeeksH__c(
+                Name = 'WeekFuture',
+                DateFrom__c = Date.newInstance(2026, 6, 1),
+                DateTo__c = Date.newInstance(2026, 6, 7)
+            )
+        };
     }
 
-    @isTest
+    @IsTest
     static void testBatchExecutionPositive() {
-        Date lotDate = Date.today().addDays(-2);
-        Date dateFrom = Date.today().addDays(-3);
-        Order order = [SELECT Id FROM Order LIMIT 1];
+        OrderItem oi = [
+            SELECT Id
+            FROM OrderItem
+            WHERE ITENumber__c = '26-TEST-001'
+            LIMIT 1
+        ];
 
-        // ProductionLots з валідними кількостями і відповідною датою
-        List<ProductionLot__c> testProductionLots = new List<ProductionLot__c>();
+        List<ProductionLot__c> sourceLots = new List<ProductionLot__c>();
+
         for (Integer i = 0; i < 3; i++) {
-            testProductionLots.add(new ProductionLot__c(
-                ITE_Number__c = 'ITE-' + i,
-                Order__c = order.Id,
-                LotDate__c = lotDate,
+            sourceLots.add(new ProductionLot__c(
+                OrderItem__c = oi.Id,
+                LotDate__c = LOT_DATE,
                 ProducedQuantity__c = 10,
                 DispatchedQuantity__c = 5,
                 ShippedQuantity__c = 2
             ));
         }
-        insert testProductionLots;
 
-        // Production Week
-        ProdWeeksH__c testWeek = new ProdWeeksH__c(
-            Name = 'WeekTest',
-            DateFrom__c = Date.today().addDays(-10),
-            DateTo__c = Date.today().addDays(10)
-        );
-        insert testWeek;
+        insert sourceLots;
 
         Test.startTest();
-        ProductionLotToLotBatchEx batch = new ProductionLotToLotBatchEx(dateFrom);
-        Database.executeBatch(batch, 200);
+        Database.executeBatch(new ProductionLotToLotBatchEx(WEEK_FROM), 200);
         Test.stopTest();
-/*
+
         List<Lot__c> createdLots = [
-            SELECT Id, ITENumber__c, LotType__c, LotQty_t__c, ProdWeek__c
+            SELECT Id, ExtKey__c, OrderItem__c, LotType__c, LotQty_t__c, ProdWeek__c
             FROM Lot__c
+            WHERE OrderItem__c = :oi.Id
         ];
-*/
-//        System.assertEquals(9, createdLots.size(), 'Повинно бути створено 9 Lot__c записів');
-/*
-        for (Lot__c lot : createdLots) {
-            System.assertNotEquals(null, lot.LotType__c);
-            System.assertNotEquals(null, lot.LotQty_t__c);
-            System.assertEquals(testWeek.Id, lot.ProdWeek__c);
+
+        System.assertEquals(
+            3,
+            createdLots.size(),
+            'Upsert by ExtKey should leave 3 records: Produced, Shipped, Delivered'
+        );
+
+        Map<String, Lot__c> byType = new Map<String, Lot__c>();
+
+        for (Lot__c l : createdLots) {
+            byType.put(l.LotType__c, l);
+            System.assertEquals(oi.Id, l.OrderItem__c);
+            System.assertNotEquals(null, l.ExtKey__c);
+            System.assertNotEquals(null, l.ProdWeek__c);
         }
-*/
+
+        System.assertEquals(Decimal.valueOf('30'), byType.get('Produced').LotQty_t__c);
+        System.assertEquals(Decimal.valueOf('15'), byType.get('Shipped').LotQty_t__c);
+        System.assertEquals(Decimal.valueOf('6'), byType.get('Delivered').LotQty_t__c);
     }
 
-    @isTest
+    @IsTest
     static void testBatchExecutionNoLotsCreated() {
-        Date dateFrom = Date.today().addDays(-5);
-        Order order = [SELECT Id FROM Order LIMIT 1];
+        OrderItem oi = [
+            SELECT Id
+            FROM OrderItem
+            WHERE ITENumber__c = '26-TEST-001'
+            LIMIT 1
+        ];
 
-        ProductionLot__c lotWithoutQuantities = new ProductionLot__c(
-            ITE_Number__c = 'ITE-NULL',
-            Order__c = Order.Id,
-            LotDate__c = Date.today(),
+        insert new ProductionLot__c(
+            OrderItem__c = oi.Id,
+            LotDate__c = LOT_DATE,
             ProducedQuantity__c = null,
             DispatchedQuantity__c = null,
             ShippedQuantity__c = null
         );
-        insert lotWithoutQuantities;
 
         Test.startTest();
-        ProductionLotToLotBatchEx batch = new ProductionLotToLotBatchEx(dateFrom);
-        Database.executeBatch(batch, 200);
+        Database.executeBatch(new ProductionLotToLotBatchEx(WEEK_FROM), 200);
         Test.stopTest();
-/*
-        List<Lot__c> createdLots = [
-            SELECT Id
-            FROM Lot__c
-        ];
-        System.assertEquals(0, createdLots.size(), 'Жодного Lot__c не повинно бути створено');
-        */
+
+        System.assertEquals(0, [SELECT COUNT() FROM Lot__c]);
     }
 
-    @isTest
+    @IsTest
     static void testBatchSingleQuantity() {
-        Date dateFrom = Date.today().addDays(-1);
-        Order order = [SELECT Id FROM Order LIMIT 1];
+        OrderItem oi = [
+            SELECT Id
+            FROM OrderItem
+            WHERE ITENumber__c = '26-TEST-001'
+            LIMIT 1
+        ];
 
-        ProductionLot__c lotProducedOnly = new ProductionLot__c(
-            ITE_Number__c = 'ITE-ONLY',
-            LotDate__c = Date.today(),
-            Order__c = order.Id,
+        insert new ProductionLot__c(
+            OrderItem__c = oi.Id,
+            LotDate__c = LOT_DATE,
             ProducedQuantity__c = 5,
             DispatchedQuantity__c = null,
             ShippedQuantity__c = null
         );
-        insert lotProducedOnly;
-
-        ProdWeeksH__c testWeek = new ProdWeeksH__c(
-            Name = 'WeekTestOnly',
-            DateFrom__c = Date.today().addDays(-1),
-            DateTo__c = Date.today().addDays(1)
-        );
-        insert testWeek;
 
         Test.startTest();
-        ProductionLotToLotBatchEx batch = new ProductionLotToLotBatchEx(dateFrom);
-        Database.executeBatch(batch, 200);
+        Database.executeBatch(new ProductionLotToLotBatchEx(WEEK_FROM), 200);
         Test.stopTest();
 
         List<Lot__c> createdLots = [
-            SELECT Id, LotType__c
+            SELECT Id, ExtKey__c, OrderItem__c, LotType__c, LotQty_t__c, ProdWeek__c
             FROM Lot__c
+            WHERE OrderItem__c = :oi.Id
         ];
 
         System.assertEquals(1, createdLots.size());
         System.assertEquals('Produced', createdLots[0].LotType__c);
+        System.assertEquals(Decimal.valueOf('5'), createdLots[0].LotQty_t__c);
+        System.assertEquals(oi.Id, createdLots[0].OrderItem__c);
+        System.assertNotEquals(null, createdLots[0].ExtKey__c);
+        System.assertNotEquals(null, createdLots[0].ProdWeek__c);
     }
 
-    @isTest
+    @IsTest
     static void testDateFilterExcluded() {
-        Date dateFrom = Date.today().addDays(1); // майбутнє
-        Order order = [SELECT Id FROM Order LIMIT 1];
+        OrderItem oi = [
+            SELECT Id
+            FROM OrderItem
+            WHERE ITENumber__c = '26-TEST-001'
+            LIMIT 1
+        ];
 
-        ProductionLot__c futureLot = new ProductionLot__c(
-            ITE_Number__c = 'ITE-FUTURE',
-            LotDate__c = Date.today(),
-            Order__c = order.Id,
+        insert new ProductionLot__c(
+            OrderItem__c = oi.Id,
+            LotDate__c = LOT_DATE,
             ProducedQuantity__c = 10,
             DispatchedQuantity__c = 10,
             ShippedQuantity__c = 10
         );
-        insert futureLot;
 
         Test.startTest();
-        ProductionLotToLotBatchEx batch = new ProductionLotToLotBatchEx(dateFrom);
-        Database.executeBatch(batch, 200);
+        Database.executeBatch(new ProductionLotToLotBatchEx(LOT_DATE.addDays(1)), 200);
         Test.stopTest();
 
-        List<Lot__c> createdLots = [
+        System.assertEquals(0, [SELECT COUNT() FROM Lot__c]);
+    }
+
+    @IsTest
+    static void testBatchSkipsWhenNoProdWeekFound() {
+        OrderItem oi = [
             SELECT Id
-            FROM Lot__c
+            FROM OrderItem
+            WHERE ITENumber__c = '26-TEST-001'
+            LIMIT 1
         ];
 
-        System.assertEquals(0, createdLots.size(), 'Запис повинен бути проігнорований через фільтр дати');
+        insert new ProductionLot__c(
+            OrderItem__c = oi.Id,
+            LotDate__c = Date.newInstance(2030, 1, 1),
+            ProducedQuantity__c = 10
+        );
+
+        Test.startTest();
+        Database.executeBatch(new ProductionLotToLotBatchEx(WEEK_FROM), 200);
+        Test.stopTest();
+
+        System.assertEquals(0, [SELECT COUNT() FROM Lot__c]);
     }
 }

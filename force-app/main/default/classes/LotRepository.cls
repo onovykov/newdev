@@ -12,7 +12,7 @@ public with sharing class LotRepository {
                 Id,
                 Name,
                 ExtKey__c,
-                ITENumber__c,
+                // ITENumber__c,
                 // Order__c,
                 OrderItem__c,
                 ProdWeek__c,

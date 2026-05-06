@@ -37,7 +37,7 @@ private class ERPLotServiceTest {
         System.assertEquals(3, [SELECT COUNT() FROM Lot__c]);
 
         for (Lot__c l : [
-            SELECT Id, ExtKey__c, ITENumber__c, /*Order__c,*/ OrderItem__c, ProdWeek__c, LotType__c
+            SELECT Id, ExtKey__c, /* ITENumber__c, Order__c,*/ OrderItem__c, ProdWeek__c, LotType__c
             FROM Lot__c
         ]) {
             System.assertNotEquals(null, l.ExtKey__c);
