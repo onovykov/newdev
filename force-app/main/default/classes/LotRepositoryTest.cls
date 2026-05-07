@@ -11,7 +11,7 @@ private class LotRepositoryTest {
         };
 
         Test.startTest();
-        Map<String, Lot__c> result = new LotRepository().getByExtKeys(extKeys);
+        Map<String, Lot__c> result = LotRepository.getByExtKeys(extKeys);
         Test.stopTest();
 
         System.assertEquals(2, result.size());
@@ -21,10 +21,8 @@ private class LotRepositoryTest {
 
     @IsTest
     static void getByExtKeys_shouldReturnEmptyMapForNullOrEmptyInput() {
-        LotRepository repo = new LotRepository();
-
-        System.assertEquals(0, repo.getByExtKeys(null).size());
-        System.assertEquals(0, repo.getByExtKeys(new Set<String>()).size());
+        System.assertEquals(0, LotRepository.getByExtKeys(null).size());
+        System.assertEquals(0, LotRepository.getByExtKeys(new Set<String>()).size());
     }
 
     @IsTest
@@ -32,7 +30,7 @@ private class LotRepositoryTest {
         TestData data = createData();
 
         Test.startTest();
-        Map<String, Lot__c> result = new LotRepository().getLotsByIteNum(data.iteNumber);
+        Map<String, Lot__c> result = LotRepository.getLotsByIteNum(data.iteNumber);
         Test.stopTest();
 
         System.assertEquals(3, result.size());
@@ -43,11 +41,9 @@ private class LotRepositoryTest {
 
     @IsTest
     static void getLotsByIteNum_shouldReturnEmptyMapForBlankInput() {
-        LotRepository repo = new LotRepository();
-
-        System.assertEquals(0, repo.getLotsByIteNum(null).size());
-        System.assertEquals(0, repo.getLotsByIteNum('').size());
-        System.assertEquals(0, repo.getLotsByIteNum('   ').size());
+        System.assertEquals(0, LotRepository.getLotsByIteNum(null).size());
+        System.assertEquals(0, LotRepository.getLotsByIteNum('').size());
+        System.assertEquals(0, LotRepository.getLotsByIteNum('   ').size());
     }
 
     @IsTest
@@ -55,7 +51,7 @@ private class LotRepositoryTest {
         TestData data = createData();
 
         Test.startTest();
-        Map<String, Lot__c> result = new LotRepository().getLotsByDates(
+        Map<String, Lot__c> result = LotRepository.getLotsByDates(
             Date.newInstance(2024, 7, 1),
             Date.newInstance(2024, 7, 31)
         );
@@ -71,14 +67,12 @@ private class LotRepositoryTest {
     static void getLotsByDates_shouldReturnEmptyMapForInvalidInput() {
         createData();
 
-        LotRepository repo = new LotRepository();
-
-        System.assertEquals(0, repo.getLotsByDates(null, Date.today()).size());
-        System.assertEquals(0, repo.getLotsByDates(Date.today(), null).size());
+        System.assertEquals(0, LotRepository.getLotsByDates(null, Date.today()).size());
+        System.assertEquals(0, LotRepository.getLotsByDates(Date.today(), null).size());
 
         System.assertEquals(
             0,
-            repo.getLotsByDates(
+            LotRepository.getLotsByDates(
                 Date.newInstance(2024, 8, 31),
                 Date.newInstance(2024, 8, 1)
             ).size()
@@ -90,7 +84,7 @@ private class LotRepositoryTest {
         TestData data = createData();
 
         Test.startTest();
-        Map<String, Lot__c> result = new LotRepository().getLotsByYM(2024, 7);
+        Map<String, Lot__c> result = LotRepository.getLotsByYM(2024, 7);
         Test.stopTest();
 
         System.assertEquals(2, result.size());
@@ -103,13 +97,11 @@ private class LotRepositoryTest {
     static void getLotsByYM_shouldReturnEmptyMapForInvalidInput() {
         createData();
 
-        LotRepository repo = new LotRepository();
-
-        System.assertEquals(0, repo.getLotsByYM(null, 7).size());
-        System.assertEquals(0, repo.getLotsByYM(2024, null).size());
-        System.assertEquals(0, repo.getLotsByYM(2024, 0).size());
-        System.assertEquals(0, repo.getLotsByYM(2024, 13).size());
-        System.assertEquals(0, repo.getLotsByYM(0, 7).size());
+        System.assertEquals(0, LotRepository.getLotsByYM(null, 7).size());
+        System.assertEquals(0, LotRepository.getLotsByYM(2024, null).size());
+        System.assertEquals(0, LotRepository.getLotsByYM(2024, 0).size());
+        System.assertEquals(0, LotRepository.getLotsByYM(2024, 13).size());
+        System.assertEquals(0, LotRepository.getLotsByYM(0, 7).size());
     }
 
     @IsTest
@@ -117,7 +109,7 @@ private class LotRepositoryTest {
         TestData data = createData();
 
         Test.startTest();
-        Map<String, Lot__c> result = new LotRepository().getLotsByProdWeekId(data.julyWeek.Id);
+        Map<String, Lot__c> result = LotRepository.getLotsByProdWeekId(data.julyWeek.Id);
         Test.stopTest();
 
         System.assertEquals(2, result.size());
@@ -128,9 +120,7 @@ private class LotRepositoryTest {
 
     @IsTest
     static void getLotsByProdWeekId_shouldReturnEmptyMapForNullInput() {
-        LotRepository repo = new LotRepository();
-
-        System.assertEquals(0, repo.getLotsByProdWeekId(null).size());
+        System.assertEquals(0, LotRepository.getLotsByProdWeekId(null).size());
     }
 
     @IsTest
@@ -142,7 +132,6 @@ private class LotRepositoryTest {
             OrderItem__c = data.orderItem2.Id,
             ProdWeek__c = data.julyWeek.Id,
             LotDate__c = Date.newInstance(2024, 7, 27),
-            //CDD__c = Date.newInstance(2024, 7, 27),
             LotQty_t__c = 10,
             LotType__c = 'Produced'
         );
@@ -153,7 +142,7 @@ private class LotRepositoryTest {
         );
 
         Test.startTest();
-        Database.UpsertResult[] results = new LotRepository().upsertByExtKey(
+        Database.UpsertResult[] results = LotRepository.upsertByExtKey(
             new List<Lot__c>{ newLot, updatedLot }
         );
         Test.stopTest();
@@ -182,10 +171,8 @@ private class LotRepositoryTest {
 
     @IsTest
     static void upsertByExtKey_shouldReturnEmptyResultsForNullOrEmptyInput() {
-        LotRepository repo = new LotRepository();
-
-        System.assertEquals(0, repo.upsertByExtKey(null).size());
-        System.assertEquals(0, repo.upsertByExtKey(new List<Lot__c>()).size());
+        System.assertEquals(0, LotRepository.upsertByExtKey(null).size());
+        System.assertEquals(0, LotRepository.upsertByExtKey(new List<Lot__c>()).size());
     }
 
     private class TestData {
@@ -205,18 +192,38 @@ private class LotRepositoryTest {
 
         TestData data = new TestData();
 
-        data.orderItem1 = b.oi1;
-        data.orderItem2 = b.oi2;
+        //data.orderItem1 = b.oi1;
+        //data.orderItem2 = b.oi2;
+        data.orderItem1 = [
+            SELECT Id, ITENumber__c
+            FROM OrderItem
+            WHERE Id = :b.oi1.Id
+            LIMIT 1
+        ];
+
+        data.orderItem2 = [
+            SELECT Id, ITENumber__c
+            FROM OrderItem
+            WHERE Id = :b.oi2.Id
+            LIMIT 1
+        ];        
+
         data.julyWeek = b.julyWeek;
         data.augustWeek = b.augustWeek;
-        data.iteNumber = ERPLotTestDataFactory.ITE_1;
+        //data.iteNumber = ERPLotTestDataFactory.ITE_1;
+        data.iteNumber = data.orderItem1.ITENumber__c;
+
+        System.assertNotEquals(
+            null,
+            data.iteNumber,
+            'Test setup error: OrderItem.ITENumber__c is empty'
+        );
 
         data.producedLot = new Lot__c(
             ExtKey__c = data.orderItem1.Id + '#' + data.julyWeek.Id + '#Produced',
             OrderItem__c = data.orderItem1.Id,
             ProdWeek__c = data.julyWeek.Id,
             LotDate__c = Date.newInstance(2024, 7, 25),
-            //CDD__c = Date.newInstance(2024, 7, 25),
             LotQty_t__c = 60.210,
             LotType__c = 'Produced'
         );
@@ -226,7 +233,6 @@ private class LotRepositoryTest {
             OrderItem__c = data.orderItem1.Id,
             ProdWeek__c = data.julyWeek.Id,
             LotDate__c = Date.newInstance(2024, 7, 26),
-            //CDD__c = Date.newInstance(2024, 7, 26),
             LotQty_t__c = 40.140,
             LotType__c = 'Shipped'
         );
@@ -236,7 +242,6 @@ private class LotRepositoryTest {
             OrderItem__c = data.orderItem1.Id,
             ProdWeek__c = data.augustWeek.Id,
             LotDate__c = Date.newInstance(2024, 8, 5),
-            //CDD__c = Date.newInstance(2024, 8, 5),
             LotQty_t__c = 40.140,
             LotType__c = 'Shipped'
         );

@@ -1,7 +1,7 @@
 public with sharing class LotRepository {
 
     //=============== GET METHODS ================================
-    public Map<String, Lot__c> getByExtKeys(Set<String> extKeys) {
+    public static Map<String, Lot__c> getByExtKeys(Set<String> extKeys) {
         Map<String, Lot__c> result = new Map<String, Lot__c>();
 
         if (extKeys == null || extKeys.isEmpty()) {
@@ -29,7 +29,7 @@ public with sharing class LotRepository {
         return result;
     }
     //-------------------------------------------------------------
-    public Map<String, Lot__c> getLotsByIteNum(String iteNum) {
+    public static Map<String, Lot__c> getLotsByIteNum(String iteNum) {
         Map<String, Lot__c> result = new Map<String, Lot__c>();
 
         if (String.isBlank(iteNum)) {
@@ -48,14 +48,14 @@ public with sharing class LotRepository {
                 LotQty_t__c,
                 LotType__c
             FROM Lot__c
-            WHERE ITENumber__c = :iteNum
+            WHERE OrderItem__r.ITENumber__c = :iteNum
         ]) {
             putByExtKey(result, lotRecord);
         }
         return result;
     }
     //-------------------------------------------------------------
-    public Map<String, Lot__c> getLotsByDates(Date dateFrom, Date dateTo) {
+    public static Map<String, Lot__c> getLotsByDates(Date dateFrom, Date dateTo) {
         Map<String, Lot__c> result = new Map<String, Lot__c>();
 
         if (dateFrom == null || dateTo == null) {
@@ -86,7 +86,7 @@ public with sharing class LotRepository {
         return result;
     }
     //-------------------------------------------------------------
-    public Map<String, Lot__c> getLotsByYM(Integer year, Integer month) {
+    public static Map<String, Lot__c> getLotsByYM(Integer year, Integer month) {
         Map<String, Lot__c> result = new Map<String, Lot__c>();
 
         if (year == null || year <= 0 || month == null || month < 1 || month > 12) {
@@ -99,7 +99,7 @@ public with sharing class LotRepository {
         return getLotsByDates(firstDay, lastDay);
     }
     //-------------------------------------------------------------
-    public Map<String, Lot__c> getLotsByProdWeekId(Id prodWeekId) {
+    public static Map<String, Lot__c> getLotsByProdWeekId(Id prodWeekId) {
         Map<String, Lot__c> result = new Map<String, Lot__c>();
 
         if (prodWeekId == null) {
@@ -134,7 +134,7 @@ public with sharing class LotRepository {
         targetMap.put(lotRecord.ExtKey__c, lotRecord);
     }
     //-------------------------------------------------------------
-    public Database.UpsertResult[] upsertByExtKey(List<Lot__c> lots) {
+    public static Database.UpsertResult[] upsertByExtKey(List<Lot__c> lots) {
         if (lots == null || lots.isEmpty()) {
             return new List<Database.UpsertResult>();
         }
