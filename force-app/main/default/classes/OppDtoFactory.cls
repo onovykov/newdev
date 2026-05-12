@@ -350,6 +350,8 @@ public with sharing class OppDtoFactory {
             item.SpecLevel.Id = trimToNull(item.SpecLevel.Id);
         }
 
+        normalizeLots(item.Lots);
+
         if (item.ProductCharacteristic != null) {
             normalizeTubesPC(item.ProductCharacteristic);
         }
@@ -398,10 +400,13 @@ public with sharing class OppDtoFactory {
             item.ShippingPoint.Name = trimToNull(item.ShippingPoint.Name);
         }
 
+
         if (item.SpecLevel != null) {
             item.SpecLevel.Name = trimToNull(item.SpecLevel.Name);
             item.SpecLevel.Id = trimToNull(item.SpecLevel.Id);
         }
+
+        normalizeLots(item.Lots);
 
         if (item.ProductCharacteristic != null) {
             normalizeWheelsPC(item.ProductCharacteristic);
@@ -748,6 +753,8 @@ public with sharing class OppDtoFactory {
         return trimmed == '' ? null : trimmed;
     }
 
+    // Робить глобальний рекурсивний trim всього raw JSON дерева перед DTO-deserialize
+    // (Object node) - це будь-який вузол JSON-дерева
     private static void trimRecursively(Object node) {
         if (node == null) {
             return;
@@ -783,4 +790,26 @@ public with sharing class OppDtoFactory {
             }
         }
     }
+
+    private static void normalizeLots(List<OppEnvelope.CommonLot> lots) {
+        if (lots == null) {
+            return;
+        }
+
+        for (OppEnvelope.CommonLot lot : lots) {
+            if (lot == null) {
+                continue;
+            }
+
+            if (lot.Produced == null) {
+                lot.Produced = 0;
+            }
+            if (lot.Dispatched == null) {
+                lot.Dispatched = 0;
+            }
+            if (lot.Shipped == null) {
+                lot.Shipped = 0;
+            }
+        }
+    }    
 }

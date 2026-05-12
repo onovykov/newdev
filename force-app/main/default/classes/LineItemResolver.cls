@@ -7,7 +7,7 @@ public with sharing class LineItemResolver {
         public String sourceType; // 'ORDER' або 'OLI'
     }
 
-    public static List<LineItemDetails__c> resolve(List<InputItem> inputs) {
+    public static List<LineItemDetails__c> resolve(List<InputItem> inputs, Boolean isDryRun) {
 
         List<LineItemDetails__c> result = new List<LineItemDetails__c>();
 
@@ -170,7 +170,7 @@ public with sharing class LineItemResolver {
         }
 
         // 7. UPSERT (dedup + update)
-        if (!result.isEmpty()) {
+        if (!result.isEmpty() && !isDryRun) {
             upsert result CompositeKey__c;
         }
 

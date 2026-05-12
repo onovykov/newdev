@@ -46,7 +46,7 @@ public with sharing class TubesData extends OppEnvelope.DataBase {
         public Decimal Dispatched;
         public Decimal Shipped;
 
-        public List<Lot> Lots;
+        //public List<Lot> Lots;
         public List<Object> Quotas;
 
         public Decimal FinDataShipped;
@@ -66,15 +66,17 @@ public with sharing class TubesData extends OppEnvelope.DataBase {
         public Boolean Print_Mark;
 
         public Decimal WeightMainUnit_kg;
-    }
 
+        public List<OppEnvelope.CommonLot> Lots;
+    }
+    /*
     public class Lot {
         public Datetime LotDate;
         public Decimal Produced;
         public Decimal Dispatched;
         public Decimal Shipped;
     }
-
+    */
     public class FacetRef {
         public String Code;
         public String Id;

@@ -80,11 +80,17 @@ public with sharing class OppEnvelope {
 
     public class UserRef {
         public String Name;
-
         // ERP identifiers/codes -> String
         public String UId;
         public String UserId;
         public String Email;
         public String Id;
+    }
+
+    public class CommonLot {
+        public Datetime LotDate;
+        public Decimal Produced;
+        public Decimal Dispatched;
+        public Decimal Shipped;
     }
 }
