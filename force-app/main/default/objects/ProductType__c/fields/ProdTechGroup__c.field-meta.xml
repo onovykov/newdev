@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ProdTechGroup__c</fullName>
+    <label>ProdTechGroup</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Coupling Blank</fullName>
+                <default>false</default>
+                <label>Coupling Blank</label>
+            </value>
+            <value>
+                <fullName>Couplings</fullName>
+                <default>false</default>
+                <label>Couplings</label>
+            </value>
+            <value>
+                <fullName>ERW Pipes</fullName>
+                <default>false</default>
+                <label>ERW Pipes</label>
+            </value>
+            <value>
+                <fullName>General Purpose Pipes</fullName>
+                <default>false</default>
+                <label>General Purpose Pipes</label>
+            </value>
+            <value>
+                <fullName>Made-to-Order Pipes</fullName>
+                <default>false</default>
+                <label>Made-to-Order Pipes</label>
+            </value>
+            <value>
+                <fullName>OCTG / Oil &amp; Gas / Drilling</fullName>
+                <default>false</default>
+                <label>OCTG / Oil &amp; Gas / Drilling</label>
+            </value>
+            <value>
+                <fullName>Railway Wheels and Components</fullName>
+                <default>false</default>
+                <label>Railway Wheels and Components</label>
+            </value>
+            <value>
+                <fullName>Semi-finished Products and Blanks</fullName>
+                <default>false</default>
+                <label>Semi-finished Products and Blanks</label>
+            </value>
+            <value>
+                <fullName>Specialized Pipes</fullName>
+                <default>false</default>
+                <label>Specialized Pipes</label>
+            </value>
+            <value>
+                <fullName>Structural and Hollow Section Pipes</fullName>
+                <default>false</default>
+                <label>Structural and Hollow Section Pipes</label>
+            </value>
+            <value>
+                <fullName>Subs/Adapters</fullName>
+                <default>false</default>
+                <label>Subs/Adapters</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
